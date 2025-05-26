@@ -4,3 +4,6 @@
 [submodule "fabric-webstreamer"]
 	path = fabric-webstreamer
 	url = https://github.com/minefed/fabric-webstreamer
+[submodule "Automobility"]
+	path = Automobility
+	url = https://github.com/minefed/Automobility
