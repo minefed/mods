@@ -9,8 +9,12 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/Automobility" />
+            <option value="$PROJECT_DIR$/Minecraft-Transit-Railway" />
+            <option value="$PROJECT_DIR$/fabric-webstreamer" />
           </set>
         </option>
+        <option name="resolveExternalAnnotations" value="true" />
       </GradleProjectSettings>
     </option>
   </component>
