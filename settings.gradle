@@ -1,1 +1,7 @@
 rootProject.name = 'mods'
+
+include('Automobility', 'Minecraft-Transit-Railway', 'fabric-webstreamer')
+
+project(':Automobility').projectDir = file('Automobility')
+project(':Minecraft-Transit-Railway').projectDir = file('Minecraft-Transit-Railway')
+project(':fabric-webstreamer').projectDir = file('fabric-webstreamer')
