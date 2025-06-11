@@ -16,10 +16,16 @@ subprojects {
         dependsOn jarTasks
         from("$buildDir/libs")
         include('*.jar')
+        exclude('*-sources.jar')
         into modsOutputDir
     }
 }
 
+tasks.register('cleanModsDirectory', Delete) {
+    delete modsOutputDir
+}
+
 tasks.named('build') {
+    dependsOn cleanModsDirectory
     dependsOn subprojects.collect { it.tasks.named("copy${it.name}Jar") }
 }
