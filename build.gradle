@@ -3,11 +3,23 @@ plugins {
 }
 
 group = 'team.minefed'
-version = '1.0-SNAPSHOT'
+version = '20250610'
 
-repositories {
-    mavenCentral()
+def modsOutputDir = file("$rootProject.projectDir/mods")
+
+subprojects {
+    def jarTasks = tasks.matching { it.name in ['jar', 'remapJar', 'sourcesJar', 'remapSourcesJar'] }
+
+    jarTasks.configureEach {finalizedBy("copy${project.name}Jar") }
+
+    tasks.register("copy${project.name}Jar", Copy) {
+        dependsOn jarTasks
+        from("$buildDir/libs")
+        include('*.jar')
+        into modsOutputDir
+    }
 }
 
-dependencies {
+tasks.named('build') {
+    dependsOn subprojects.collect { it.tasks.named("copy${it.name}Jar") }
 }
