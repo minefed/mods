@@ -4,7 +4,6 @@ plugins {
 
 group = 'team.minefed'
 version = '20250610'
-minecraftVersion=1.20.4
 
 def modsOutputDir = file("$rootProject.projectDir/mods")
 
@@ -27,7 +26,5 @@ tasks.register('cleanModsDirectory', Delete) {
 }
 
 tasks.named('build') {
-    dependsOn cleanModsDirectory
-    dependsOn ':Minecraft-Transit-Railway:setupFiles'
-    dependsOn subprojects.collect { it.tasks.named("copy${it.name}Jar") }
+    dependsOn cleanModsDirectory, ':Minecraft-Transit-Railway:setupFiles', subprojects.collect { it.tasks.named("copy${it.name}Jar") }
 }
