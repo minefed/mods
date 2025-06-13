@@ -3,7 +3,6 @@
   <component name="VcsDirectoryMappings">
     <mapping directory="$PROJECT_DIR$" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/Automobility" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/Minecraft-Transit-Railway" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/fabric-webstreamer" vcs="Git" />
   </component>
 </project>

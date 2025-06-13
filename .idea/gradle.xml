@@ -4,13 +4,48 @@
   <component name="GradleSettings">
     <option name="linkedExternalProjectsSettings">
       <GradleProjectSettings>
+        <compositeConfiguration>
+          <compositeBuild compositeDefinitionSource="SCRIPT">
+            <builds>
+              <build path="$PROJECT_DIR$/Automobility" name="Automobility">
+                <projects>
+                  <project path="$PROJECT_DIR$/Automobility" />
+                  <project path="$PROJECT_DIR$/Automobility/common" />
+                  <project path="$PROJECT_DIR$/Automobility/fabric" />
+                  <project path="$PROJECT_DIR$/Automobility/forge" />
+                </projects>
+              </build>
+              <build path="$PROJECT_DIR$/fabric-webstreamer" name="fabric-webstreamer">
+                <projects>
+                  <project path="$PROJECT_DIR$/fabric-webstreamer" />
+                </projects>
+              </build>
+              <build path="$PROJECT_DIR$/Minecraft-Transit-Railway" name="Minecraft-Transit-Railway">
+                <projects>
+                  <project path="$PROJECT_DIR$/Minecraft-Transit-Railway" />
+                  <project path="$PROJECT_DIR$/Minecraft-Transit-Railway/fabric" />
+                </projects>
+              </build>
+              <build path="$PROJECT_DIR$/Minecraft-Transit-Railway/buildSrc" name="buildSrc">
+                <projects>
+                  <project path="$PROJECT_DIR$/Minecraft-Transit-Railway/buildSrc" />
+                </projects>
+              </build>
+            </builds>
+          </compositeBuild>
+        </compositeConfiguration>
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
         <option name="gradleHome" value="" />
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/Automobility" />
+            <option value="$PROJECT_DIR$/Automobility/common" />
+            <option value="$PROJECT_DIR$/Automobility/fabric" />
+            <option value="$PROJECT_DIR$/Automobility/forge" />
             <option value="$PROJECT_DIR$/Minecraft-Transit-Railway" />
+            <option value="$PROJECT_DIR$/Minecraft-Transit-Railway/buildSrc" />
+            <option value="$PROJECT_DIR$/Minecraft-Transit-Railway/fabric" />
             <option value="$PROJECT_DIR$/fabric-webstreamer" />
           </set>
         </option>

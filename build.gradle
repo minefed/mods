@@ -1,3 +1,6 @@
+import java.nio.file.Files
+import java.nio.file.StandardCopyOption
+
 plugins {
     id 'java'
 }
@@ -7,24 +10,60 @@ version = '20250610'
 
 def modsOutputDir = file("$rootProject.projectDir/mods")
 
-subprojects {
-    def jarTasks = tasks.matching { it.name in ['jar', 'remapJar', 'sourcesJar', 'remapSourcesJar'] }
-
-    jarTasks.configureEach {finalizedBy("copy${project.name}Jar") }
-
-    tasks.register("copy${project.name}Jar", Copy) {
-        dependsOn jarTasks
-        from("$buildDir/libs")
-        include('*.jar')
-        exclude('*-sources.jar')
-        into modsOutputDir
-    }
-}
+//gradle.includedBuilds {
+//    def jarTasks = tasks.matching { it.name in ['jar', 'remapJar', 'sourcesJar', 'remapSourcesJar'] }
+//
+//    jarTasks.configureEach {finalizedBy("copy${project.name}Jar") }
+//
+//    tasks.register("copy${project.name}Jar", Copy) {
+//        dependsOn jarTasks
+//        from("$buildDir/libs")
+//        include('*.jar')
+//        exclude('*-sources.jar')
+//        into modsOutputDir
+//    }
+//}
 
 tasks.register('cleanModsDirectory', Delete) {
     delete modsOutputDir
 }
 
 tasks.named('build') {
-    dependsOn cleanModsDirectory, ':Minecraft-Transit-Railway:setupFiles', subprojects.collect { it.tasks.named("copy${it.name}Jar") }
+    dependsOn cleanModsDirectory
+
+    // Automobility
+    dependsOn gradle.includedBuild("Automobility").task(":fabric:build")
+
+    // fabric-webstreamer
+    dependsOn gradle.includedBuild("fabric-webstreamer").task(":build")
+
+    // Minecraft-Transit-Railway
+    dependsOn gradle.includedBuild("Minecraft-Transit-Railway").task(":fabric:build")
+
+    doLast {
+        Files.createDirectory(modsOutputDir.toPath())
+
+        gradle.includedBuilds.forEach { includedBuild ->
+            def fabricPath = includedBuild.getProjectDir().path + "/fabric"
+            def fabricPathExists = new File(fabricPath).exists()
+
+            def libsPath = (fabricPathExists ? fabricPath : includedBuild.getProjectDir().path) + "/build/libs"
+            def libsPathExists = new File(libsPath).exists()
+
+            if (libsPathExists) {
+                def files = new File(libsPath).listFiles({ File file ->
+                    file.name.endsWith(".jar")
+                            && !file.name.contains("-sources")
+                            && !file.name.contains("-javadoc")
+                            && !file.name.contains("-all")
+                } as FileFilter)
+
+                files.collect().forEach { File file ->
+                    def newPath = modsOutputDir.toPath().toString() + "/" + (file.name.containsIgnoreCase(includedBuild.name) ? "" : includedBuild.name + "-") + file.name
+
+                    Files.copy(file.toPath(), java.nio.file.Path.of(newPath), StandardCopyOption.REPLACE_EXISTING)
+                }
+            }
+        }
+    }
 }
