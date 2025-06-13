@@ -10,20 +10,6 @@ version = '20250610'
 
 def modsOutputDir = file("$rootProject.projectDir/mods")
 
-//gradle.includedBuilds {
-//    def jarTasks = tasks.matching { it.name in ['jar', 'remapJar', 'sourcesJar', 'remapSourcesJar'] }
-//
-//    jarTasks.configureEach {finalizedBy("copy${project.name}Jar") }
-//
-//    tasks.register("copy${project.name}Jar", Copy) {
-//        dependsOn jarTasks
-//        from("$buildDir/libs")
-//        include('*.jar')
-//        exclude('*-sources.jar')
-//        into modsOutputDir
-//    }
-//}
-
 tasks.register('cleanModsDirectory', Delete) {
     delete modsOutputDir
 }
