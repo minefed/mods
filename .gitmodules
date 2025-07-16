@@ -7,3 +7,6 @@
 [submodule "Automobility"]
 	path = Automobility
 	url = https://github.com/minefed/Automobility
+[submodule "minefed-display"]
+	path = minefed-display
+	url = https://github.com/minefed/minefed-display
