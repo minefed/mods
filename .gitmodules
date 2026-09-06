@@ -174,3 +174,7 @@
 	path = Patchouli
 	url = https://github.com/minefed/Patchouli
 	branch = codex/minefed-1.20.4
+[submodule "Resourceful-Config"]
+	path = Resourceful-Config
+	url = https://github.com/minefed/Resourceful-Config
+	branch = codex/minefed-1.20.4
