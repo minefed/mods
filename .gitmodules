@@ -8,6 +8,7 @@
 [submodule "Automobility"]
 	path = Automobility
 	url = https://github.com/minefed/Automobility
+	branch = codex/minefed-1.20.4
 [submodule "minefed-display"]
 	path = minefed-display
 	url = https://github.com/minefed/minefed-display
