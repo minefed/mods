@@ -926,7 +926,7 @@
     {
       "modId": "wirelessredstone",
       "mode": "source",
-      "reason": "Fabric/common Kotlin Gradle project for Minecraft 1.20.4; Gradle 8.14.3 and Loom 1.10 require build JVM 21 while Java toolchain/release remains 17. Release tag environment suppresses the upstream timestamp suffix in archive names. Fabric metadata independently uses 1.2.2+1.20.4.",
+      "reason": "Fabric/common Kotlin Gradle project for Minecraft 1.20.4 using Gradle 8.14.3, Loom 1.10 and JDK 17. The Java toolchain/release is 17. Release tag environment suppresses the upstream timestamp suffix in archive names. Fabric metadata independently uses 1.2.2+1.20.4.",
       "sourcePath": "wireless-redstone",
       "java": 17,
       "tasks": [
