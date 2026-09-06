@@ -86,3 +86,7 @@
 	path = FerriteCore
 	url = https://github.com/minefed/FerriteCore
 	branch = codex/minefed-1.20.4
+[submodule "fabric-api"]
+	path = fabric-api
+	url = https://github.com/minefed/fabric-api
+	branch = codex/minefed-1.20.4
