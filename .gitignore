@@ -274,3 +274,15 @@ gradle-app.setting
 
 ## mods directory
 mods/
+
+# Server snapshots and JARs whose standalone redistribution is not approved.
+/.cache/
+/artifacts/local/*
+!/artifacts/local/README.md
+/vendor/local/*
+!/vendor/local/README.md
+# Explicitly reviewed redistributable binary-only dependencies.
+!/vendor/jars/*.jar
+
+# Python preparation tools
+__pycache__/
