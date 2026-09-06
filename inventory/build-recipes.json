@@ -196,14 +196,15 @@
     {
       "modId": "diagonalfences",
       "mode": "source",
-      "reason": "Fabric MC1.20.4 version catalog1.20.4-v37; embeds DiagonalBlocks; current upstream remote v2 build script uses mc prefix in filename.",
+      "reason": "Fabric MC1.20.4 catalog 1.20.4-v37; embeds DiagonalBlocks. Fuzss v2 scripts are recursively pinned to e6311c7c40cfb0fe4240f22fd80efbbe9c554585. Configure Common before the selected Fabric loader; the compatible scripts produce filenames without an mc prefix.",
       "sourcePath": "diagonal-fences",
       "java": 17,
       "tasks": [
         ":Fabric:remapJar"
       ],
       "args": [
-        "--configure-on-demand"
+        "--configure-on-demand",
+        "-PminefedLoaders=Fabric"
       ],
       "artifactGlobs": [
         "Fabric/build/libs/DiagonalFences-v20.4.1-1.20.4-Fabric.jar"
