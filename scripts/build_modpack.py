@@ -290,16 +290,33 @@ def build_source(root: Path, run: str, identity: str) -> None:
     if receipt.exists():
         raise mods.ModError(f"Source already built in this run: {identity}")
     tool_inputs = {}
-    for relative in ('scripts/build_modpack.py', 'scripts/source-repositories.gradle', 'gradle/wrapper/gradle-wrapper.jar'):
+    for relative in ('scripts/build_modpack.py', 'scripts/source-repositories.gradle',
+                     'gradle/wrapper/gradle-wrapper.jar', 'gradle/wrapper/gradle-wrapper.properties'):
         path = root / relative
         tool_inputs[relative] = mods.file_digest(path)[0] if path.is_file() else None
-    release = java_home(root, recipe['java']) / 'release'
-    tool_inputs['jdkRelease'] = mods.file_digest(release)[0] if release.is_file() else None
+    for version in sorted({r['java'] for r in plan['entries'] if r['mode'] == 'source'}):
+        release = java_home(root, version) / 'release'
+        tool_inputs[f'jdk{version}Release'] = mods.file_digest(release)[0] if release.is_file() else None
     gradle_home = Path(os.environ.get('GRADLE_USER_HOME', str(Path.home() / '.gradle')))
     user_properties = gradle_home / 'gradle.properties'
     tool_inputs['userGradleProperties'] = mods.file_digest(user_properties)[0] if user_properties.is_file() else None
+    init_files = [gradle_home / 'init.gradle', gradle_home / 'init.gradle.kts']
+    if (gradle_home / 'init.d').is_dir():
+        init_files.extend((gradle_home / 'init.d').glob('*.gradle*'))
+    tool_inputs['userInitScripts'] = {str(p.relative_to(gradle_home)): mods.file_digest(p)[0]
+                                     for p in sorted(init_files) if p.is_file()}
     for variable in ('JAVA_TOOL_OPTIONS', '_JAVA_OPTIONS', 'JDK_JAVA_OPTIONS'):
         tool_inputs[variable] = os.environ.get(variable)
+    # MTR's website is compiled by the host Node/npm, rather than a downloaded
+    # version pinned by an upstream Gradle Node plugin (as BlueMap uses).
+    if recipe['sourcePath'] == 'Minecraft-Transit-Railway':
+        node = shutil.which('node')
+        npm = shutil.which('npm.cmd' if os.name == 'nt' else 'npm')
+        if not node or not npm:
+            raise mods.ModError('MTR website compilation requires Node.js 22 and npm on PATH')
+        tool_inputs['nodeVersion'] = subprocess.run([node, '--version'], check=True, capture_output=True, text=True).stdout.strip()
+        npm_command = ['cmd.exe', '/d', '/c', 'npm', '--version'] if os.name == 'nt' else [npm, '--version']
+        tool_inputs['npmVersion'] = subprocess.run(npm_command, check=True, capture_output=True, text=True).stdout.strip()
     cache_key = canonical_digest({'source': state, 'recipe': recipe, 'tools': tool_inputs})
     cache = mods.output_path(root, 'build/source-cache/' + cache_key)
     cached_record = cache / 'result.json'

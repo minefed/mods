@@ -204,6 +204,15 @@ class MixedBuildTests(unittest.TestCase):
         self.assertEqual(len(self.build('second')), 1)
         self.assertFalse(builder.read_json(self.receipt_path('second'))['cacheHit'])
 
+    def test_root_wrapper_distribution_change_invalidates_source_cache(self):
+        self.prepare('first')
+        self.build('first')
+        properties = self.root / 'gradle' / 'wrapper' / 'gradle-wrapper.properties'
+        properties.parent.mkdir(parents=True, exist_ok=True)
+        properties.write_text('distributionUrl=https://services.gradle.org/distributions/gradle-8.13-bin.zip', encoding='utf-8')
+        self.prepare('second')
+        self.assertEqual(len(self.build('second')), 1)
+
     def test_rebuild_sources_forces_compilation(self):
         self.prepare('first')
         self.build('first')
