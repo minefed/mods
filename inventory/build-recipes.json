@@ -977,7 +977,7 @@
       "artifactGlobs": [
         "worldedit-fabric/build/libs/worldedit-fabric-mc1.20.4-7.3.0-dist.jar"
       ],
-      "expectedVersion": "7.3.0+088da04"
+      "expectedVersion": "7.3.0+159482a"
     },
     {
       "modId": "yuushya",
