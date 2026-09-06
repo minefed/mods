@@ -1,7 +1,7 @@
 """Offline integrity tests for mixed source/binary builds; no game or Gradle launch."""
 
 import copy
-from contextlib import ExitStack, redirect_stderr, redirect_stdout
+from contextlib import ExitStack, contextmanager, redirect_stderr, redirect_stdout
 import hashlib
 import io
 import json
@@ -357,6 +357,62 @@ class MixedBuildTests(unittest.TestCase):
         properties.write_text('distributionUrl=https://services.gradle.org/distributions/gradle-8.13-bin.zip', encoding='utf-8')
         self.prepare('second')
         self.assertEqual(len(self.build('second')), 1)
+
+    def change_tool(self, relative='scripts/source-repositories.gradle'):
+        path = self.root / relative
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_text('Changed tool input\n', encoding='utf-8')
+
+    def test_mods_tool_change_invalidates_verified_source_cache(self):
+        self.prepare('first')
+        self.build('first')
+        self.change_tool('scripts/mods.py')
+        self.prepare('second')
+        self.assertEqual(len(self.build('second')), 1)
+
+    def test_tool_change_while_waiting_for_gradle_lock_prevents_compilation(self):
+        @contextmanager
+        def changed_lock(root):
+            self.change_tool()
+            yield
+
+        self.prepare()
+        with patch.object(builder, 'gradle_cache_lock', side_effect=changed_lock):
+            with self.assertRaisesRegex(mods.ModError, 'Build tools changed'):
+                self.build()
+        self.assertFalse((self.source / 'build/libs/alpha-built.jar').exists())
+        self.assertFalse(self.receipt_path().exists())
+
+    def test_tool_change_during_build_cannot_publish_receipt_or_cache(self):
+        self.prepare()
+        with self.assertRaisesRegex(mods.ModError, 'Build tools changed'):
+            self.build(mutation=self.change_tool)
+        self.assertFalse(self.receipt_path().exists())
+        self.assertFalse(list((self.root / 'build/source-cache').glob('*/result.json')))
+
+    def test_tool_change_during_cache_copy_cannot_publish_receipt(self):
+        self.prepare('first')
+        self.build('first')
+        self.prepare('second')
+        original_copy = shutil.copyfile
+
+        def changing_copy(source, destination, *args, **kwargs):
+            result = original_copy(source, destination, *args, **kwargs)
+            self.change_tool()
+            return result
+
+        with patch.object(builder.shutil, 'copyfile', side_effect=changing_copy):
+            with self.assertRaisesRegex(mods.ModError, 'Build tools changed'):
+                self.build('second')
+        self.assertFalse(self.receipt_path('second').exists())
+
+    def test_tool_change_after_compilation_prevents_packaging(self):
+        self.prepare()
+        self.build()
+        self.change_tool('scripts/mods.py')
+        with self.assertRaisesRegex(mods.ModError, 'Build tools changed'):
+            builder.assemble(self.root, 'test-run')
+        self.assertFalse((self.root / 'build/distributions').exists())
 
     def test_rebuild_sources_forces_compilation(self):
         self.prepare('first')

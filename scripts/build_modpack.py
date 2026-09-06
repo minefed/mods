@@ -340,22 +340,10 @@ def build_source(root: Path, run: str, identity: str) -> None:
         _build_source(root, run, identity)
 
 
-def _build_source(root: Path, run: str, identity: str) -> None:
-    manifest, plan = load_plan(root)
-    work = check_run(root, run, manifest, plan)
-    recipe = next((r for r in plan["entries"] if r["modId"] == identity and r["mode"] == "source"), None)
-    if recipe is None:
-        raise mods.ModError(f"No source recipe: {identity}")
-    entry = next(e for e in manifest["entries"] if e["included"] and e["modId"] == identity)
-    state = source_state(root, entry)
-    source = mods.safe_path(root, recipe["sourcePath"])
-    output = work / "sources" / identity
-    output.mkdir(parents=True, exist_ok=True)
-    receipt = output / "result.json"
-    if receipt.exists():
-        raise mods.ModError(f"Source already built in this run: {identity}")
+def tool_fingerprint(root: Path, plan: dict, recipe: dict) -> dict:
+    """Inputs shared by cache keys, build completion and final receipt validation."""
     tool_inputs = {}
-    for relative in ('scripts/build_modpack.py', 'scripts/source-repositories.gradle',
+    for relative in ('scripts/build_modpack.py', 'scripts/mods.py', 'scripts/source-repositories.gradle',
                      'gradle/wrapper/gradle-wrapper.jar', 'gradle/wrapper/gradle-wrapper.properties'):
         path = root / relative
         tool_inputs[relative] = mods.file_digest(path)[0] if path.is_file() else None
@@ -382,12 +370,37 @@ def _build_source(root: Path, run: str, identity: str) -> None:
         tool_inputs['nodeVersion'] = subprocess.run([node, '--version'], check=True, capture_output=True, text=True).stdout.strip()
         npm_command = ['cmd.exe', '/d', '/c', 'npm', '--version'] if os.name == 'nt' else [npm, '--version']
         tool_inputs['npmVersion'] = subprocess.run(npm_command, check=True, capture_output=True, text=True).stdout.strip()
+    return tool_inputs
+
+
+def check_tool_fingerprint(root: Path, plan: dict, recipe: dict, expected: dict) -> None:
+    if tool_fingerprint(root, plan, recipe) != expected:
+        raise mods.ModError(f"Build tools changed for {recipe['modId']}; start a new Gradle invocation")
+
+
+def _build_source(root: Path, run: str, identity: str) -> None:
+    manifest, plan = load_plan(root)
+    work = check_run(root, run, manifest, plan)
+    recipe = next((r for r in plan["entries"] if r["modId"] == identity and r["mode"] == "source"), None)
+    if recipe is None:
+        raise mods.ModError(f"No source recipe: {identity}")
+    entry = next(e for e in manifest["entries"] if e["included"] and e["modId"] == identity)
+    state = source_state(root, entry)
+    source = mods.safe_path(root, recipe["sourcePath"])
+    output = work / "sources" / identity
+    output.mkdir(parents=True, exist_ok=True)
+    receipt = output / "result.json"
+    if receipt.exists():
+        raise mods.ModError(f"Source already built in this run: {identity}")
+    tool_inputs = tool_fingerprint(root, plan, recipe)
+    gradle_home = gradle_user_home(root)
     cache_key = canonical_digest({'source': state, 'recipe': recipe, 'tools': tool_inputs})
     cache = mods.output_path(root, 'build/source-cache/' + cache_key)
     cached_record = cache / 'result.json'
     if cached_record.is_file() and os.environ.get('MINEFED_REBUILD_SOURCES') != '1':
         cached = read_json(cached_record)
-        if cached.get('cacheKey') != cache_key or cached.get('source') != state or cached.get('recipeSha256') != canonical_digest(recipe):
+        if (cached.get('cacheKey') != cache_key or cached.get('source') != state or
+                cached.get('recipeSha256') != canonical_digest(recipe) or cached.get('buildTools') != tool_inputs):
             raise mods.ModError(f'Invalid source cache receipt: {identity}')
         cached_artifact = mods.safe_path(root, cached['artifactPath'])
         if not cached_artifact.is_relative_to(cache):
@@ -396,6 +409,7 @@ def _build_source(root: Path, run: str, identity: str) -> None:
         destination = output / cached_artifact.name
         shutil.copyfile(cached_artifact, destination)
         cached.update(run=run, artifactPath=destination.relative_to(root).as_posix(), cacheHit=True)
+        check_tool_fingerprint(root, plan, recipe, tool_inputs)
         write_json(receipt, cached)
         print(f"Reused verified source build {identity} {cached['metadata']['version']}", flush=True)
         return
@@ -428,6 +442,7 @@ def _build_source(root: Path, run: str, identity: str) -> None:
     # Protect shared Loom caches across mods and across Minefed checkouts.
     # Keep resource generation and compilation in the same critical section.
     with gradle_cache_lock(root):
+        check_tool_fingerprint(root, plan, recipe, tool_inputs)
         for number, phase in enumerate(phases, 1):
             invocation = command + common + phase
             commands.append(invocation)
@@ -447,6 +462,7 @@ def _build_source(root: Path, run: str, identity: str) -> None:
     final_state = source_state(root, entry)
     if state["treeSha256"] != final_state["treeSha256"]:
         raise mods.ModError(f"Source changed while building: {identity}")
+    check_tool_fingerprint(root, plan, recipe, tool_inputs)
     result_record = {"run": run, "compiledRun": run, "modId": identity, "mode": "source", "source": state,
                         "artifactPath": destination.relative_to(root).as_posix(), "sha256": digest, "size": size,
                         "metadata": metadata, "java": recipe["java"], "tasks": phases, "args": recipe.get("args", []),
@@ -479,6 +495,7 @@ def collect_entries(root: Path, run: str, manifest: dict, plan: dict) -> tuple[l
                 raise mods.ModError(f"Stale source build receipt: {recipe['modId']}")
             if receipt["source"] != source_state(root, entry):
                 raise mods.ModError(f"Source changed after compilation: {recipe['modId']}")
+            check_tool_fingerprint(root, plan, recipe, receipt.get('buildTools'))
             artifact = mods.safe_path(root, receipt["artifactPath"])
             if not artifact.is_relative_to(work):
                 raise mods.ModError(f"Build artifact is outside this run: {artifact}")
