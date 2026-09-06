@@ -206,3 +206,7 @@
 	path = wireless-redstone
 	url = https://github.com/minefed/wireless-redstone
 	branch = codex/minefed-1.20.4
+[submodule "stoneworks"]
+	path = stoneworks
+	url = https://github.com/minefed/stoneworks
+	branch = codex/minefed-1.20.4
