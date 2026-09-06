@@ -286,3 +286,6 @@ mods/
 
 # Python preparation tools
 __pycache__/
+
+# Machine-specific Java/Python locations for the one-command build launcher.
+/build.local.json

@@ -1,55 +1,69 @@
-import java.nio.file.Files
-import java.nio.file.StandardCopyOption
+import groovy.json.JsonSlurper
 
-plugins {
-    id 'java'
-}
+plugins { id 'base' }
 
 group = 'team.minefed'
-version = '20250610'
+version = '1.20.4'
 
-def modsOutputDir = file("$rootProject.projectDir/mods")
+tasks.withType(Exec).configureEach { environment 'PYTHONUTF8', '1' }
 
-tasks.register('cleanModsDirectory', Delete) {
-    delete modsOutputDir
+// Independent Exec tasks preserve every upstream wrapper and plugin version.
+def recipes = new JsonSlurper().parse(file('inventory/build-recipes.json'))
+def pythonExecutable = providers.gradleProperty('pythonExecutable')
+        .orElse(providers.environmentVariable('MINEFED_PYTHON')).getOrElse('python')
+def runId = new Date().format('yyyyMMdd-HHmmss', TimeZone.getTimeZone('UTC')) + '-' + UUID.randomUUID().toString().take(8)
+def runner = { List<String> arguments ->
+    [pythonExecutable, file('scripts/build_modpack.py').absolutePath] + arguments
 }
 
-tasks.named('build') {
-    dependsOn cleanModsDirectory
+def prepare = tasks.register('prepareModpack', Exec) {
+    group = 'build'
+    description = 'Validate the build plan and restore required binary-only JARs.'
+    workingDir rootDir
+    commandLine runner(['prepare', '--run', runId])
+}
 
-    // Automobility
-    dependsOn gradle.includedBuild("Automobility").task(":fabric:build")
-
-    // fabric-webstreamer
-    dependsOn gradle.includedBuild("fabric-webstreamer").task(":build")
-
-    // Minecraft-Transit-Railway
-    dependsOn gradle.includedBuild("Minecraft-Transit-Railway").task(":fabric:build")
-
-    doLast {
-        Files.createDirectory(modsOutputDir.toPath())
-
-        gradle.includedBuilds.forEach { includedBuild ->
-            def fabricPath = includedBuild.getProjectDir().path + "/fabric"
-            def fabricPathExists = new File(fabricPath).exists()
-
-            def libsPath = (fabricPathExists ? fabricPath : includedBuild.getProjectDir().path) + "/build/libs"
-            def libsPathExists = new File(libsPath).exists()
-
-            if (libsPathExists) {
-                def files = new File(libsPath).listFiles({ File file ->
-                    file.name.endsWith(".jar")
-                            && !file.name.contains("-sources")
-                            && !file.name.contains("-javadoc")
-                            && !file.name.contains("-all")
-                } as FileFilter)
-
-                files.collect().forEach { File file ->
-                    def newPath = modsOutputDir.toPath().toString() + "/" + (file.name.containsIgnoreCase(includedBuild.name) ? "" : includedBuild.name + "-") + file.name
-
-                    Files.copy(file.toPath(), java.nio.file.Path.of(newPath), StandardCopyOption.REPLACE_EXISTING)
-                }
-            }
-        }
+def sourceTasks = []
+recipes.entries.findAll { it.mode == 'source' }.each { recipe ->
+    def sourceTask = tasks.register('source_' + recipe.modId.replaceAll('[^A-Za-z0-9_]', '_'), Exec) {
+        group = 'mod sources'
+        description = "Build ${recipe.sourcePath} with its own Gradle wrapper."
+        dependsOn prepare
+        workingDir rootDir
+        commandLine runner(['source', '--run', runId, '--id', recipe.modId])
     }
+    // Serialize upstream builds, including when the root is invoked with --parallel.
+    def predecessors = sourceTasks.toList()
+    sourceTask.configure { mustRunAfter predecessors }
+    sourceTasks.add(sourceTask)
+}
+
+tasks.register('modpack', Exec) {
+    group = 'build'
+    description = 'Build source mods and package them with pinned binary-only JARs.'
+    dependsOn prepare, sourceTasks
+    workingDir rootDir
+    commandLine runner(['assemble', '--run', runId])
+}
+
+tasks.named('assemble') { dependsOn 'modpack' }
+tasks.register('testModpackTools', Exec) {
+    group = 'verification'
+    workingDir rootDir
+    commandLine pythonExecutable, '-m', 'unittest', 'discover', '-s', 'scripts', '-p', 'test_*.py'
+}
+tasks.named('check') { dependsOn 'testModpackTools' }
+
+tasks.register('modpackPlan', Exec) {
+    group = 'help'
+    description = 'Show source and binary selections without building or downloading.'
+    workingDir rootDir
+    commandLine runner(['plan'])
+}
+
+tasks.register('verifyBaseline', Exec) {
+    group = 'verification'
+    description = 'Verify the original operating-server JAR inventory.'
+    workingDir rootDir
+    commandLine pythonExecutable, 'scripts/mods.py', 'verify', '--sources'
 }

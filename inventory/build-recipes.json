@@ -1,0 +1,1013 @@
+{
+  "schemaVersion": 1,
+  "minecraftVersion": "1.20.4",
+  "loader": "fabric",
+  "entries": [
+    {
+      "modId": "alloy_forgery",
+      "mode": "source",
+      "reason": "Fabric MC1.20.4 target; release uses 1.20.3 in version suffix.",
+      "sourcePath": "alloy-forgery",
+      "java": 17,
+      "tasks": [
+        "remapJar"
+      ],
+      "args": [],
+      "artifactGlobs": [
+        "build/libs/alloy-forgery-2.1.4+1.20.3.jar"
+      ],
+      "expectedVersion": "2.1.4+1.20.3",
+      "sourceWorkDir": ".",
+      "env": {}
+    },
+    {
+      "modId": "architectury",
+      "mode": "source",
+      "reason": "Fabric MC1.20.4; publication task includes shaded common code.",
+      "sourcePath": "architectury-api",
+      "java": 17,
+      "tasks": [
+        ":fabric:renameJarForPublication"
+      ],
+      "args": [],
+      "artifactGlobs": [
+        "fabric/build/libs/architectury-11.1.17-fabric.jar"
+      ],
+      "expectedVersion": "11.1.17",
+      "sourceWorkDir": ".",
+      "env": {
+        "GITHUB_RUN_NUMBER": "17"
+      }
+    },
+    {
+      "modId": "automobility-refueled",
+      "mode": "source",
+      "reason": "Fabric MC1.20.4 release source; includes common project.",
+      "sourcePath": "Automobility-Refueled",
+      "java": 17,
+      "tasks": [
+        ":fabric:remapJar"
+      ],
+      "args": [],
+      "artifactGlobs": [
+        "fabric/build/libs/automobility-refueled-0.4.3.b+1.20.4-fabric.jar"
+      ],
+      "expectedVersion": "0.4.3.b+1.20.4-fabric",
+      "sourceWorkDir": ".",
+      "env": {}
+    },
+    {
+      "modId": "axiom",
+      "mode": "binary",
+      "reason": "운영 Fabric JAR만 사용하는 모드. 라이선스와 원본 SHA-256은 mods.lock.json을 따른다."
+    },
+    {
+      "modId": "bluemap",
+      "mode": "source",
+      "reason": "Legacy fabric-1.20 implementation explicitly supports 1.20 through 1.20.4; run this implementation directly to avoid modern loaders. Explicit releaseVersion preserves deployed version after policy commits.",
+      "sourcePath": "BlueMap",
+      "java": 17,
+      "tasks": [
+        "remappedShadowJar"
+      ],
+      "args": [
+        "-PreleaseVersion=5.3"
+      ],
+      "artifactGlobs": [
+        "build/release/BlueMap-5.3-fabric-1.20.jar"
+      ],
+      "expectedVersion": "5.3",
+      "sourceWorkDir": "implementations/fabric-1.20",
+      "env": {}
+    },
+    {
+      "modId": "botarium",
+      "mode": "source",
+      "reason": "Historical Botarium3.2.2 source targets Fabric MC1.20.4; common source sets merged and teamreborn energy nested.",
+      "sourcePath": "Common-Storage-Lib",
+      "java": 17,
+      "tasks": [
+        ":fabric:remapJar"
+      ],
+      "args": [],
+      "artifactGlobs": [
+        "fabric/build/libs/botarium-fabric-1.20.4-3.2.2.jar"
+      ],
+      "expectedVersion": "3.2.2",
+      "sourceWorkDir": ".",
+      "env": {}
+    },
+    {
+      "modId": "computercraft",
+      "mode": "source",
+      "reason": "Fabric MC1.20.4; custom buildSrc conventions set Java17 and include common/API projects and nested runtime dependencies.",
+      "sourcePath": "CC-Tweaked",
+      "java": 17,
+      "tasks": [
+        ":fabric:remapJar"
+      ],
+      "args": [],
+      "artifactGlobs": [
+        "projects/fabric/build/libs/cc-tweaked-1.20.4-fabric-1.110.2.jar"
+      ],
+      "expectedVersion": "1.110.2",
+      "sourceWorkDir": ".",
+      "env": {}
+    },
+    {
+      "modId": "chiselsandbits",
+      "mode": "source",
+      "reason": "Fabric MC1.20.4; api/core nested remapped JARs and Scena included; localVersion1.1.10-FC receives MC offset to1.5.10-FC.",
+      "sourcePath": "Chisels-and-Bits",
+      "java": 17,
+      "tasks": [
+        ":fabric:remapJar"
+      ],
+      "args": [],
+      "artifactGlobs": [
+        "fabric/build/libs/chisels-and-bits-fabric-1.5.10-FC.jar"
+      ],
+      "expectedVersion": "1.5.10-FC",
+      "sourceWorkDir": ".",
+      "env": {}
+    },
+    {
+      "modId": "chunky",
+      "mode": "source",
+      "reason": "Fabric source targets MC1.20 and published release supports1.20.4; common code shaded. Requires releaseVersion override addition to avoid AGENTS commit incrementing git-distance version.",
+      "sourcePath": "Chunky",
+      "java": 17,
+      "tasks": [
+        ":chunky-fabric:remapJar"
+      ],
+      "args": [
+        "-PreleaseVersion=1.3.146"
+      ],
+      "artifactGlobs": [
+        "fabric/build/libs/Chunky-1.3.146.jar"
+      ],
+      "expectedVersion": "1.3.146",
+      "sourceWorkDir": ".",
+      "env": {}
+    },
+    {
+      "modId": "citycraft",
+      "mode": "binary",
+      "reason": "Pinned public source gradle.properties targets Minecraft1.19.4 and mod1.0.0. Deployed JAR is2.0.0 for1.20.x; no matching build source in selected upstream pin.",
+      "sourcePath": "CityCraft",
+      "env": {}
+    },
+    {
+      "modId": "crossstitch",
+      "mode": "source",
+      "sourcePath": "CrossStitch",
+      "reason": "Minefed commit aa5545ce normally reverts upstream1.21.8/0.1.7 transition, restoring actual0.1.6 ancestor source (MC1.19.3 target, metadataMinecraft>=1.19.3, Java17) used by deployed server. Upstream0.1.6 tag incorrectly points at0.1.7.",
+      "java": 17,
+      "tasks": [
+        "remapJar"
+      ],
+      "args": [],
+      "artifactGlobs": [
+        "build/libs/crossstitch-0.1.6.jar"
+      ],
+      "expectedVersion": "0.1.6",
+      "env": {},
+      "sourceWorkDir": "."
+    },
+    {
+      "modId": "decorative_blocks",
+      "mode": "source",
+      "reason": "Fabric MC1.20.4/Java17; common classes/resources included in Fabric compile and resource tasks.",
+      "sourcePath": "Decorative-Blocks",
+      "java": 17,
+      "tasks": [
+        ":fabric:remapJar"
+      ],
+      "args": [],
+      "artifactGlobs": [
+        "fabric/build/libs/Decorative Blocks-Fabric-1.20.4-5.0.2.jar"
+      ],
+      "expectedVersion": "5.0.2",
+      "sourceWorkDir": ".",
+      "env": {}
+    },
+    {
+      "modId": "diagonalfences",
+      "mode": "source",
+      "reason": "Fabric MC1.20.4 version catalog1.20.4-v37; embeds DiagonalBlocks; current upstream remote v2 build script uses mc prefix in filename.",
+      "sourcePath": "diagonal-fences",
+      "java": 17,
+      "tasks": [
+        ":Fabric:remapJar"
+      ],
+      "args": [],
+      "artifactGlobs": [
+        "Fabric/build/libs/DiagonalFences-v20.4.1-1.20.4-Fabric.jar"
+      ],
+      "expectedVersion": "20.4.1",
+      "sourceWorkDir": ".",
+      "env": {
+        "local_maven": "../.cache/local-maven"
+      }
+    },
+    {
+      "modId": "diagonalwalls",
+      "mode": "source",
+      "reason": "Fabric MC1.20.4 version catalog1.20.4-v37; embeds DiagonalBlocks; current upstream remote v2 build script uses mc prefix in filename.",
+      "sourcePath": "diagonal-walls",
+      "java": 17,
+      "tasks": [
+        ":Fabric:remapJar"
+      ],
+      "args": [],
+      "artifactGlobs": [
+        "Fabric/build/libs/DiagonalWalls-v20.4.1-1.20.4-Fabric.jar"
+      ],
+      "expectedVersion": "20.4.1",
+      "sourceWorkDir": ".",
+      "env": {
+        "local_maven": "../.cache/local-maven"
+      }
+    },
+    {
+      "modId": "diagonalwindows",
+      "mode": "source",
+      "reason": "Fabric MC1.20.4 version catalog1.20.4-v37; embeds DiagonalBlocks; current upstream remote v2 build script uses mc prefix in filename.",
+      "sourcePath": "diagonal-windows",
+      "java": 17,
+      "tasks": [
+        ":Fabric:remapJar"
+      ],
+      "args": [],
+      "artifactGlobs": [
+        "Fabric/build/libs/DiagonalWindows-v20.4.1-1.20.4-Fabric.jar"
+      ],
+      "expectedVersion": "20.4.1",
+      "sourceWorkDir": ".",
+      "env": {
+        "local_maven": "../.cache/local-maven"
+      }
+    },
+    {
+      "modId": "dustydecorations",
+      "mode": "binary",
+      "reason": "운영 Fabric JAR만 사용하는 모드. 라이선스와 원본 SHA-256은 mods.lock.json을 따른다."
+    },
+    {
+      "modId": "exlinefurniture",
+      "mode": "binary",
+      "reason": "운영 Fabric JAR만 사용하는 모드. 라이선스와 원본 SHA-256은 mods.lock.json을 따른다."
+    },
+    {
+      "modId": "fabric-api",
+      "mode": "source",
+      "reason": "Root aggregate remapJar includes all published API module JARs; Fabric MC1.20.4 and Java17.",
+      "sourcePath": "fabric-api",
+      "java": 17,
+      "tasks": [
+        "remapJar"
+      ],
+      "args": [],
+      "artifactGlobs": [
+        "build/libs/fabric-api-0.97.2+1.20.4.jar"
+      ],
+      "expectedVersion": "0.97.2+1.20.4",
+      "sourceWorkDir": ".",
+      "env": {
+        "GITHUB_RUN_NUMBER": "1",
+        "GITHUB_REF": "refs/heads/1.20.4"
+      }
+    },
+    {
+      "modId": "carpet",
+      "mode": "source",
+      "reason": "Published1.20.3 baseline is compatible with deployed1.20.4. Requires buildDate override addition to preserve release metadata instead of using current day.",
+      "sourcePath": "fabric-carpet",
+      "java": 17,
+      "tasks": [
+        "remapJar"
+      ],
+      "args": [
+        "-PbuildDate=231205"
+      ],
+      "artifactGlobs": [
+        "build/libs/fabric-carpet-1.20.3-1.4.128+v231205.jar"
+      ],
+      "expectedVersion": "1.4.128+v231205",
+      "sourceWorkDir": ".",
+      "env": {}
+    },
+    {
+      "modId": "seasons",
+      "mode": "source",
+      "reason": "Fabric MC1.20.4/Java17 and matching explicit mod version.",
+      "sourcePath": "fabric-seasons",
+      "java": 17,
+      "tasks": [
+        "remapJar"
+      ],
+      "args": [],
+      "artifactGlobs": [
+        "build/libs/fabric-seasons-2.4.2-BETA+1.20.4.jar"
+      ],
+      "expectedVersion": "2.4.2-BETA+1.20.4",
+      "sourceWorkDir": ".",
+      "env": {}
+    },
+    {
+      "modId": "fabricproxy-lite",
+      "mode": "source",
+      "reason": "Build target1.20.2 with metadata supportingMinecraft>=1.20.1; official2.7.0 release deployed on1.20.4; nested networking API andtoml4j retained.",
+      "sourcePath": "FabricProxy-Lite",
+      "java": 17,
+      "tasks": [
+        "remapJar"
+      ],
+      "args": [],
+      "artifactGlobs": [
+        "build/libs/FabricProxy-Lite-2.7.0.jar"
+      ],
+      "expectedVersion": "2.7.0",
+      "sourceWorkDir": ".",
+      "env": {}
+    },
+    {
+      "modId": "fallingtree",
+      "mode": "source",
+      "reason": "Fabric MC1.20.4/Java17. Root buildJar combines common+remapped Fabric into final runtime; disableForge inclusion. Explicit version bypasses git-distance suffix caused by policy commit.",
+      "sourcePath": "FallingTree",
+      "java": 17,
+      "tasks": [
+        "buildJar"
+      ],
+      "args": [
+        "-PincludeFabric=true",
+        "-PincludeForge=false",
+        "-Pversion=1.20.4.3"
+      ],
+      "artifactGlobs": [
+        "build/libs/FallingTree-1.20.4-1.20.4.3.jar"
+      ],
+      "expectedVersion": "1.20.4.3",
+      "sourceWorkDir": ".",
+      "env": {}
+    },
+    {
+      "modId": "ferritecore",
+      "mode": "source",
+      "reason": "Minecraft 1.20.4 및 Fabric 모듈, Java 17 toolchain을 명시한다.",
+      "sourcePath": "FerriteCore",
+      "java": 17,
+      "tasks": [
+        ":Fabric:remapJar"
+      ],
+      "args": [
+        "--configure-on-demand"
+      ],
+      "artifactGlobs": [
+        "Fabric/build/libs/ferritecore-6.0.3-fabric.jar"
+      ],
+      "expectedVersion": "6.0.3"
+    },
+    {
+      "modId": "forgeconfigapiport",
+      "mode": "source",
+      "reason": "Fabric 모듈과 1.20.4-v40 버전 카탈로그를 사용한다. Fuzss 원격 Gradle v2 스크립트는 아직 mutable main을 참조한다.",
+      "sourcePath": "forge-config-api-port",
+      "java": 17,
+      "tasks": [
+        ":Fabric:remapJar"
+      ],
+      "args": [
+        "--configure-on-demand"
+      ],
+      "artifactGlobs": [
+        "Fabric/build/libs/ForgeConfigAPIPort-v20.4.3-1.20.4-Fabric.jar"
+      ],
+      "expectedVersion": "20.4.3"
+    },
+    {
+      "modId": "furnitureexpanded",
+      "mode": "binary",
+      "reason": "운영 Fabric JAR만 사용하는 모드. 라이선스와 원본 SHA-256은 mods.lock.json을 따른다."
+    },
+    {
+      "modId": "fusion",
+      "mode": "binary",
+      "reason": "운영 Fabric JAR만 사용하는 모드. 라이선스와 원본 SHA-256은 mods.lock.json을 따른다."
+    },
+    {
+      "modId": "geckolib",
+      "mode": "source",
+      "reason": "Fabric 1.20.4 소스 및 Java 17 toolchain이 있다. 원본 wrapper JAR 누락은 root runner가 검증된 wrapper JAR와 이 프로젝트의 Gradle 8.5 properties를 결합하여 처리한다.",
+      "sourcePath": "geckolib",
+      "java": 17,
+      "tasks": [
+        ":Fabric:remapJar"
+      ],
+      "args": [
+        "--configure-on-demand"
+      ],
+      "artifactGlobs": [
+        "Fabric/build/libs/geckolib-fabric-1.20.4-4.4.4.jar"
+      ],
+      "expectedVersion": "4.4.4"
+    },
+    {
+      "modId": "handcrafted",
+      "mode": "source",
+      "reason": "Minecraft 1.20.4 common 및 Fabric 모듈을 shadow 후 remap한다.",
+      "sourcePath": "Handcrafted",
+      "java": 17,
+      "tasks": [
+        ":fabric:remapJar"
+      ],
+      "args": [
+        "--configure-on-demand"
+      ],
+      "artifactGlobs": [
+        "fabric/build/libs/handcrafted-fabric-1.20.4-3.2.1.jar"
+      ],
+      "expectedVersion": "3.2.1"
+    },
+    {
+      "modId": "jpp",
+      "mode": "binary",
+      "reason": "운영 Fabric JAR만 사용하는 모드. 라이선스와 원본 SHA-256은 mods.lock.json을 따른다."
+    },
+    {
+      "modId": "lavender",
+      "mode": "source",
+      "reason": "Minecraft 빌드 대상은 1.20.4이며 버전 접미사만 공통 기준 1.20.3을 사용한다.",
+      "sourcePath": "lavender",
+      "java": 17,
+      "tasks": [
+        "remapJar"
+      ],
+      "args": [],
+      "artifactGlobs": [
+        "build/libs/lavender-0.1.9+1.20.3.jar"
+      ],
+      "expectedVersion": "0.1.9+1.20.3"
+    },
+    {
+      "modId": "lithium",
+      "mode": "source",
+      "reason": "Minecraft 1.20.4 Fabric 소스. 기본 빌드 버전에 실제 Git 커밋 접미사를 추가하므로 운영 0.12.1과 구분한다. BUILD_RELEASE 환경변수는 설정하지 않는다.",
+      "sourcePath": "lithium",
+      "java": 17,
+      "tasks": [
+        "remapJar"
+      ],
+      "args": [],
+      "artifactGlobs": [
+        "build/libs/lithium-fabric-mc1.20.4-0.12.1+git.*.jar"
+      ],
+      "expectedVersion": "0.12.1+git.6bb7238e"
+    },
+    {
+      "modId": "mcwdoors",
+      "mode": "binary",
+      "reason": "고정 저장소에는 버전별 Forge 소스만 있고 Fabric 모듈 및 Gradle 빌드 프로젝트가 없다.",
+      "sourcePath": "MacawsDoors"
+    },
+    {
+      "modId": "mcwfences",
+      "mode": "binary",
+      "reason": "고정 저장소에는 버전별 Forge 소스만 있고 Fabric 모듈 및 Gradle 빌드 프로젝트가 없다.",
+      "sourcePath": "Fences"
+    },
+    {
+      "modId": "mcwroofs",
+      "mode": "binary",
+      "reason": "운영 Fabric JAR만 사용하는 모드. 라이선스와 원본 SHA-256은 mods.lock.json을 따른다."
+    },
+    {
+      "modId": "mcwwindows",
+      "mode": "binary",
+      "reason": "운영 Fabric JAR만 사용하는 모드. 라이선스와 원본 SHA-256은 mods.lock.json을 따른다."
+    },
+    {
+      "modId": "memoryleakfix",
+      "mode": "source",
+      "reason": "Minecraft 1.20.4 Fabric 모듈을 shadow 후 remap한다. Gradle 7.4 실행은 JDK 17, 소스 bytecode release는 8이다. build16 옵션은 설정하지 않는다.",
+      "sourcePath": "MemoryLeakFix",
+      "java": 17,
+      "tasks": [
+        ":fabric:remapJar"
+      ],
+      "args": [
+        "--configure-on-demand"
+      ],
+      "artifactGlobs": [
+        "fabric/build/libs/memoryleakfix-fabric-1.17+-1.1.5.jar"
+      ],
+      "expectedVersion": "1.1.5"
+    },
+    {
+      "modId": "minefed-display",
+      "mode": "source",
+      "reason": "Minecraft 1.20.4 Fabric 공통/클라이언트 소스 세트, Java release 17. Loom 1.10의 공식 module metadata에 따라 JDK 17로 실행한다. MCEF 2.1.6-1.20.4 컴파일 의존성이 있다.",
+      "sourcePath": "minefed-display",
+      "java": 17,
+      "tasks": [
+        "remapJar"
+      ],
+      "args": [],
+      "artifactGlobs": [
+        "build/libs/minefed-display-1.0.0.jar"
+      ],
+      "expectedVersion": "1.0.0"
+    },
+    {
+      "modId": "mishanguc",
+      "mode": "source",
+      "reason": "Minecraft 1.20.4, Java release 17. Loom 1.11 실행에는 JDK 21을 사용한다. wrapper와 Minecraft metadata에 외부 미러 URL을 사용한다.",
+      "sourcePath": "mishanguc",
+      "java": 21,
+      "tasks": [
+        "remapJar"
+      ],
+      "args": [],
+      "artifactGlobs": [
+        "build/libs/mishanguc-1.5.3-1.20.4.jar"
+      ],
+      "expectedVersion": "1.5.3"
+    },
+    {
+      "modId": "modern_glass_doors",
+      "mode": "source",
+      "reason": "Minecraft 1.20.3 기준 소스이며 Fabric 메타데이터가 >=1.20.3 호환을 명시한다. Java release 17. 개발 전용 외부 모드는 비활성화한다.",
+      "sourcePath": "modern-glass-doors",
+      "java": 17,
+      "tasks": [
+        "remapJar"
+      ],
+      "args": [
+        "-Puse_third_party_mods=false"
+      ],
+      "artifactGlobs": [
+        "build/libs/modern-glass-doors-5.3.0+1.20.3-and-later.jar"
+      ],
+      "expectedVersion": "5.3.0+1.20.3-and-later"
+    },
+    {
+      "modId": "modernlights",
+      "mode": "source",
+      "reason": "고정 소스 버전은 운영 2.4.2보다 새로운 2.5.0. Minecraft 1.20 기준으로 컴파일하고 메타데이터가 >=1.20 <=1.20.4를 명시한다. Java release 17, Loom 1.10 실행 JDK 17.",
+      "sourcePath": "Modern-Lights",
+      "java": 17,
+      "tasks": [
+        "remapJar"
+      ],
+      "args": [],
+      "artifactGlobs": [
+        "build/libs/modern-lights-2.5.0.jar"
+      ],
+      "expectedVersion": "2.5.0"
+    },
+    {
+      "modId": "modernfix",
+      "mode": "source",
+      "reason": "Minecraft 1.20.4 Fabric/Java 17. AGENTS 커밋이 태그 이후 1개이므로 소스 빌드는 upstream 규칙에 따라 5.17.1-beta.1로 버전이 표기된다.",
+      "sourcePath": "ModernFix",
+      "java": 17,
+      "tasks": [
+        ":fabric:remapJar"
+      ],
+      "args": [
+        "-Penabled_platforms=fabric",
+        "--configure-on-demand"
+      ],
+      "artifactGlobs": [
+        "fabric/build/libs/modernfix-fabric-5.17.1-beta.1+mc1.20.4.2856.jar"
+      ],
+      "expectedVersion": "5.17.1-beta.1+mc1.20.4.2856"
+    },
+    {
+      "modId": "msd",
+      "mode": "source",
+      "reason": "Minecraft 1.20.4 Fabric, 운영과 같은 1.3.15 소스. setupFiles 선행 필요. Loom 1.10.5 고정, buildSrc JDK 17/release 8 수정은 실제 빌드 검증 대기 중. MTR beta.14 개발 JAR에 대해 컴파일한다.",
+      "sourcePath": "MTR-Station-Decoration-Addon",
+      "java": 17,
+      "tasks": [
+        ":fabric:setupFiles",
+        ":fabric:remapJar"
+      ],
+      "args": [
+        "-PminecraftVersion=1.20.4",
+        "--configure-on-demand"
+      ],
+      "artifactGlobs": [
+        "fabric/build/libs/fabric-1.3.15.jar"
+      ],
+      "expectedVersion": "1.3.15"
+    },
+    {
+      "modId": "mtr",
+      "mode": "source",
+      "reason": "Minecraft 1.20.4 Fabric. child Gradle에서 잠긴 npm 의존성 설치, website 빌드, setupFiles 생성 뒤 shadow/remap하도록 수정 중이며 실제 빌드 검증 대기. Node 22/npm 및 buildSrc JDK 21, 모드 JDK 17 toolchain이 필요하다.",
+      "sourcePath": "Minecraft-Transit-Railway",
+      "java": 21,
+      "tasks": [
+        ":fabric:remapJar"
+      ],
+      "args": [
+        "-PminecraftVersion=1.20.4",
+        "-PexcludeAssets=false",
+        "--configure-on-demand"
+      ],
+      "artifactGlobs": [
+        "fabric/build/libs/fabric-4.0.5.jar"
+      ],
+      "expectedVersion": "4.0.5"
+    },
+    {
+      "modId": "mythicmetals",
+      "mode": "source",
+      "reason": "Minecraft 1.20.4 Fabric 소스. 소스 라이선스와 자산 라이선스는 별도이며 빌드 JAR 공개 배포 판단은 inventory 정책을 따른다.",
+      "sourcePath": "MythicMetals",
+      "java": 17,
+      "tasks": [
+        "remapJar"
+      ],
+      "args": [],
+      "artifactGlobs": [
+        "build/libs/mythicmetals-0.19.7+1.20.4.jar"
+      ],
+      "expectedVersion": "0.19.7+1.20.4"
+    },
+    {
+      "modId": "mythicmetals_decorations",
+      "mode": "source",
+      "reason": "Minecraft 빌드 대상은 1.20.4이며 버전 접미사는 1.20.3. Java release 17. 자산 재배포 미확인 조건을 보존한다.",
+      "sourcePath": "MythicMetalsDecorations",
+      "java": 17,
+      "tasks": [
+        "remapJar"
+      ],
+      "args": [],
+      "artifactGlobs": [
+        "build/libs/mythicmetals-decorations-0.6.1+1.20.3.jar"
+      ],
+      "expectedVersion": "0.6.1+1.20.3"
+    },
+    {
+      "modId": "nicemod",
+      "mode": "source",
+      "reason": "Single Fabric Loom project. Compiles against Minecraft 1.20.2; src/main/resources/fabric.mod.json explicitly supports >=1.20 <1.21, including deployed 1.20.4. Java release 17; wrapper Gradle 8.3.",
+      "sourcePath": "NiceMod",
+      "java": 17,
+      "tasks": [
+        ":remapJar"
+      ],
+      "args": [],
+      "artifactGlobs": [
+        "build/libs/nicemod-1.4.1 - 1.20.jar"
+      ],
+      "expectedVersion": "1.4.1 - 1.20"
+    },
+    {
+      "modId": "oritech",
+      "mode": "source",
+      "reason": "Fabric Loom 1.6 project for Minecraft 1.20.4, Java release 17, Gradle 8.7. remapJar includes selected libraries and avoids the optional datagen launch.",
+      "sourcePath": "Oritech",
+      "java": 17,
+      "tasks": [
+        ":remapJar"
+      ],
+      "args": [],
+      "artifactGlobs": [
+        "build/libs/oritech-0.5.1+1.20.4.jar"
+      ],
+      "expectedVersion": "0.5.1+1.20.4"
+    },
+    {
+      "modId": "owo",
+      "mode": "source",
+      "reason": "Root Fabric Loom 1.4 project with owo-sentinel subproject, Java 17, Gradle 8.5. Compiles for 1.20.3 and emits the same 0.12.6+1.20.3 supported baseline family used on 1.20.4; select root remapJar, not sentinel as a separate deployed mod.",
+      "sourcePath": "owo-lib",
+      "java": 17,
+      "tasks": [
+        ":remapJar"
+      ],
+      "args": [],
+      "artifactGlobs": [
+        "build/libs/owo-lib-0.12.6+1.20.3.jar"
+      ],
+      "expectedVersion": "0.12.6+1.20.3",
+      "env": {
+        "MAVEN_URL": "build/local-maven"
+      }
+    },
+    {
+      "modId": "pfm",
+      "mode": "source",
+      "reason": "Architectury 1.20.4 project with common/fabric/forge/neoforge. fabric:remapJar remaps the shadowed common classes, with fabric-mc1.20.4 classifier. Build JVM 21 for Loom 1.9; emitted classes release 17. Gradle 8.12. Current source is 1.5.0 rather than deployed 1.4.4.",
+      "sourcePath": "paladins-furniture",
+      "java": 17,
+      "tasks": [
+        ":fabric:remapJar"
+      ],
+      "args": [],
+      "artifactGlobs": [
+        "fabric/build/libs/paladin-furniture-mod-1.5.0-fabric-mc1.20.4.jar"
+      ],
+      "expectedVersion": "1.5.0"
+    },
+    {
+      "modId": "patchouli",
+      "mode": "source",
+      "reason": "Fabric 1.20.4 project merges Xplat sources/resources, bundles Fiber, Java toolchain 17, Gradle 8.1.1. RELEASE_MODE=1 selects the release version rather than the upstream default SNAPSHOT. remapJar does not invoke publishing or Spotless.",
+      "sourcePath": "Patchouli",
+      "java": 17,
+      "tasks": [
+        ":Fabric:remapJar"
+      ],
+      "args": [],
+      "artifactGlobs": [
+        "Fabric/build/libs/Patchouli-1.20.4-85-FABRIC.jar"
+      ],
+      "expectedVersion": "1.20.4-85-FABRIC",
+      "env": {
+        "RELEASE_MODE": "1"
+      }
+    },
+    {
+      "modId": "ptsdeco",
+      "mode": "binary",
+      "reason": "운영 Fabric JAR만 사용하는 모드. 라이선스와 원본 SHA-256은 mods.lock.json을 따른다."
+    },
+    {
+      "modId": "puzzleslib",
+      "mode": "source",
+      "reason": "Fabric/Common Architectury project, Java 17, Gradle 8.5; dependency catalog 1.20.4-v40. Fabric remapJar uses shadowed common classes. Source version 20.4.53 versus deployed 20.4.52. Build applies mutable upstream Fuzss/modresources main/gradle/v2 scripts, so remote script drift must be surfaced as failure, never binary fallback. local_maven is only a local publication repository configuration; no publish task is selected.",
+      "sourcePath": "puzzles-lib",
+      "java": 17,
+      "tasks": [
+        ":Fabric:remapJar"
+      ],
+      "args": [
+        "--no-parallel"
+      ],
+      "artifactGlobs": [
+        "Fabric/build/libs/PuzzlesLib-v20.4.53-mc1.20.4-Fabric.jar"
+      ],
+      "expectedVersion": "20.4.53",
+      "env": {
+        "local_maven": "build/local-maven"
+      }
+    },
+    {
+      "modId": "realtime",
+      "mode": "source",
+      "reason": "Minecraft 1.20 기준으로 컴파일하며 Fabric 메타데이터에 >=1.20 <=1.21.1 호환을 명시한다. Java bytecode release 16, Loom 1.9의 공식 module metadata에 따라 JDK 17로 실행한다.",
+      "sourcePath": "mc-realtime",
+      "java": 17,
+      "tasks": [
+        "remapJar"
+      ],
+      "args": [],
+      "artifactGlobs": [
+        "build/libs/realtime-1.0.3-1.20-1.21.1.jar"
+      ],
+      "expectedVersion": "1.0.3-1.20-1.21.1"
+    },
+    {
+      "modId": "rechiseled",
+      "mode": "binary",
+      "reason": "운영 Fabric JAR만 사용하는 모드. 라이선스와 원본 SHA-256은 mods.lock.json을 따른다."
+    },
+    {
+      "modId": "resourcefulconfig",
+      "mode": "source",
+      "reason": "Architectury Fabric 1.20.4 path, Java release 17, Gradle 8.5. ResourcefulSettings reads version.properties as 2.4.8; fabric remapJar consumes shadowJar with fabric-1.20.4 appendix.",
+      "sourcePath": "Resourceful-Config",
+      "java": 17,
+      "tasks": [
+        ":fabric:remapJar"
+      ],
+      "args": [],
+      "artifactGlobs": [
+        "fabric/build/libs/resourcefulconfig-fabric-1.20.4-2.4.8.jar"
+      ],
+      "expectedVersion": "2.4.8"
+    },
+    {
+      "modId": "resourcefullib",
+      "mode": "source",
+      "reason": "Architectury Fabric 1.20.4 path, Java release 17, Gradle 8.3. ResourcefulSettings reads version.properties as 2.4.9, which differs from deployed 2.4.10. fabric remapJar includes yabn and bytecodecs and remaps shadowed common classes. Do not run updateModVersion, which mutates tracked version.properties.",
+      "sourcePath": "ResourcefulLib",
+      "java": 17,
+      "tasks": [
+        ":fabric:remapJar"
+      ],
+      "args": [],
+      "artifactGlobs": [
+        "fabric/build/libs/resourcefullib-fabric-1.20.4-2.4.9.jar"
+      ],
+      "expectedVersion": "2.4.9"
+    },
+    {
+      "modId": "starlight",
+      "mode": "source",
+      "reason": "Fabric Loom 1.2.7 project for Minecraft 1.20.4, Java 17, Gradle 8.1.1. Artifact version includes git rev-parse --short HEAD, so Minefed AGENTS commit changes the suffix from deployed f5dcd1a. Artifact glob tolerates the recorded remote commit suffix only; packaging must inspect metadata.",
+      "sourcePath": "Starlight",
+      "java": 17,
+      "tasks": [
+        ":remapJar"
+      ],
+      "args": [],
+      "artifactGlobs": [
+        "build/libs/starlight-1.1.3+fabric.*.jar"
+      ],
+      "expectedVersion": "1.1.3+fabric.c2b8391"
+    },
+    {
+      "modId": "stoneworks",
+      "mode": "source",
+      "reason": "Fabric/Common Architectury project, Java 17, Gradle 8.5, Minecraft catalog 1.20.4-v13. remapJar includes common assets/classes. Build applies mutable upstream Fuzss/modresources main/gradle/v2 scripts; diagnose drift without binary fallback. local_maven supplies configuration for an unused local publication repository.",
+      "sourcePath": "stoneworks",
+      "java": 17,
+      "tasks": [
+        ":Fabric:remapJar"
+      ],
+      "args": [],
+      "artifactGlobs": [
+        "Fabric/build/libs/Stoneworks-v20.4.0-mc1.20.4-Fabric.jar"
+      ],
+      "expectedVersion": "20.4.0",
+      "env": {
+        "local_maven": "build/local-maven"
+      }
+    },
+    {
+      "modId": "supermartijn642configlib",
+      "mode": "binary",
+      "reason": "운영 Fabric JAR만 사용하는 모드. 라이선스와 원본 SHA-256은 mods.lock.json을 따른다."
+    },
+    {
+      "modId": "supermartijn642corelib",
+      "mode": "binary",
+      "reason": "운영 Fabric JAR만 사용하는 모드. 라이선스와 원본 SHA-256은 mods.lock.json을 따른다."
+    },
+    {
+      "modId": "timeoutout",
+      "mode": "source",
+      "reason": "Single Fabric Loom 1.4 project, Java 17, Gradle 8.4. Compiles against 1.20.2 and fabric.mod.json supports >=1.20.2; the resulting 1.0.4+1.20.2 is the deployed 1.20.4 baseline version.",
+      "sourcePath": "TimeOutOut",
+      "java": 17,
+      "tasks": [
+        ":remapJar"
+      ],
+      "args": [],
+      "artifactGlobs": [
+        "build/libs/timeoutout-1.0.4+1.20.2.jar"
+      ],
+      "expectedVersion": "1.0.4+1.20.2"
+    },
+    {
+      "modId": "trafficcraft",
+      "mode": "source",
+      "reason": "Architectury 1.20.4 fabric/common/neoforge, Java 17, Gradle 8.7, Loom 1.6. fabric remapJar shadows common classes, uses official Mojang/Parchment mappings, and matches deployed 1.20.4-1.1.3.",
+      "sourcePath": "TrafficCraft",
+      "java": 17,
+      "tasks": [
+        ":fabric:remapJar"
+      ],
+      "args": [],
+      "artifactGlobs": [
+        "fabric/build/libs/trafficcraft-fabric-1.20.4-1.1.3.jar"
+      ],
+      "expectedVersion": "1.20.4-1.1.3"
+    },
+    {
+      "modId": "webstreamer",
+      "mode": "source",
+      "reason": "Fabric MC1.20.4/Java17; upstream does not commit wrapper, use rootGradle8.13 wrapper from this working directory. Runtime includes native JavaCV/FFmpeg nested dependencies.",
+      "sourcePath": "fabric-webstreamer",
+      "java": 17,
+      "tasks": [
+        "remapJar"
+      ],
+      "args": [],
+      "artifactGlobs": [
+        "build/libs/webstreamer-1.5.0.jar"
+      ],
+      "expectedVersion": "1.5.0",
+      "sourceWorkDir": ".",
+      "env": {},
+      "wrapperFromRoot": true
+    },
+    {
+      "modId": "wirelessredstone",
+      "mode": "source",
+      "reason": "Fabric/common Kotlin Gradle project for Minecraft 1.20.4; Gradle 8.14.3 and Loom 1.10 require build JVM 21 while Java toolchain/release remains 17. Release tag environment suppresses the upstream timestamp suffix in archive names. Fabric metadata independently uses 1.2.2+1.20.4.",
+      "sourcePath": "wireless-redstone",
+      "java": 17,
+      "tasks": [
+        ":fabric:remapJar"
+      ],
+      "args": [],
+      "artifactGlobs": [
+        "fabric/build/libs/wirelessredstone-fabric-1.2.2+1.20.4.jar"
+      ],
+      "expectedVersion": "1.2.2+1.20.4",
+      "env": {
+        "GITHUB_REF": "refs/tags/v1.2.2+1.20.4"
+      }
+    },
+    {
+      "modId": "worldedithangfix",
+      "mode": "source",
+      "reason": "Fabric compile target is 1.20.6, but versions/1.20.6-fabric/gradle.properties explicitly lists 1.20.4 in game_versions and metadata permits >=1.14. Official release is intentionally cross-version; Fabric Java bytecode target is 8. Build JVM 21 is required for 1.20.6 game artifacts. Gradle 8.8. Exclude the upstream compile prerequisite licenseFormatMain to prevent tracked copyright rewrites; the existing license headers remain preserved. BUILD_RELEASE=true sets metadata to 1.0.2.",
+      "sourcePath": "worldedit-hang-fix",
+      "java": 21,
+      "tasks": [
+        ":1.20.6-fabric:remapJar"
+      ],
+      "args": [
+        "-x",
+        ":1.20.6-fabric:licenseFormatMain"
+      ],
+      "artifactGlobs": [
+        "versions/1.20.6-fabric/build/libs/worldedit-hang-fix-v1.0.2-mc1.20.6-fabric.jar"
+      ],
+      "expectedVersion": "1.0.2",
+      "env": {
+        "BUILD_RELEASE": "true"
+      }
+    },
+    {
+      "modId": "worldedit",
+      "mode": "source",
+      "reason": "worldedit-fabric explicitly targets 1.20.4, Java 17, Gradle 8.5. remapShadowJar produces the standalone remapped shaded Fabric distribution with nested Fabric modules. Do not select worldedit-mod:jar, which assembles Fabric and Forge. fabric.mod.json uses root version plus current short git commit, differing from deployed upstream build number.",
+      "sourcePath": "WorldEdit",
+      "java": 17,
+      "tasks": [
+        ":worldedit-fabric:remapShadowJar"
+      ],
+      "args": [
+        "--no-parallel"
+      ],
+      "artifactGlobs": [
+        "worldedit-fabric/build/libs/worldedit-fabric-mc1.20.4-7.3.0-dist.jar"
+      ],
+      "expectedVersion": "7.3.0+088da04"
+    },
+    {
+      "modId": "yuushya",
+      "mode": "source",
+      "reason": "Multi-Minecraft Architectury tree has an explicit 1.20.4 Fabric path. Run common:gen-1.20.4 first to generate assets/data, copy licenses/terms and built-in resource packs; then remap 1.20.4:fabric. Generation outputs are ignored build directories (git check-ignore verified). Build JVM 21 handles included 1.20.6/1.21 configuration, 1.20.4 classes use release 17. Gradle 8.8 wrapper uses fastmirror. No all-version build/clean-all task.",
+      "sourcePath": "Yuushya-Townscape",
+      "java": 21,
+      "tasks": [
+        ":1.20.4:fabric:remapJar"
+      ],
+      "args": [
+        "--no-parallel"
+      ],
+      "artifactGlobs": [
+        "1.20.4/fabric/build/libs/yuushya-2.2.3.jar"
+      ],
+      "expectedVersion": "2.2.3",
+      "phases": [
+        [
+          ":common:gen-1.20.4"
+        ],
+        [
+          ":1.20.4:fabric:remapJar"
+        ]
+      ]
+    },
+    {
+      "modId": "yuushya_modelling",
+      "mode": "source",
+      "reason": "Multi-Minecraft Architectury tree has an explicit 1.20.4 Fabric path. Generate shared resources first in a separate Gradle invocation, then remap only 1.20.4:fabric. Generation writes only ignored build directories (git check-ignore verified). Build JVM 21 handles configuration of included 1.20.6/1.21 projects; 1.20.4 classes use release 17. Gradle 8.8 wrapper uses fastmirror. Disable checked-in developer localhost proxy via JVM args. No all-version build or clean-all task.",
+      "sourcePath": "Yuushya-Modelling",
+      "java": 21,
+      "tasks": [
+        ":1.20.4:fabric:remapJar"
+      ],
+      "args": [
+        "--no-parallel",
+        "-Dhttp.proxyHost=",
+        "-Dhttps.proxyHost=",
+        "-Dhttp.proxyPort=0",
+        "-Dhttps.proxyPort=0"
+      ],
+      "artifactGlobs": [
+        "1.20.4/fabric/build/libs/yuushya-modelling-2.2.0.jar"
+      ],
+      "expectedVersion": "2.2.0",
+      "phases": [
+        [
+          ":common:gen-1.20.4"
+        ],
+        [
+          ":1.20.4:fabric:remapJar"
+        ]
+      ]
+    }
+  ]
+}
