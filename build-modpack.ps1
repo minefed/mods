@@ -51,10 +51,14 @@ if (-not $env:MINEFED_PYTHON) {
 }
 
 Push-Location -LiteralPath $projectRoot
+$previousJavaOptions = $env:JAVA_OPTS
 try {
+    # gradle.properties configures the daemon; the wrapper client also needs UTF-8.
+    $env:JAVA_OPTS = "$previousJavaOptions -Dfile.encoding=UTF-8"
     & (Join-Path $projectRoot 'gradlew.bat') $Task @GradleArguments
     $buildExitCode = $LASTEXITCODE
 } finally {
+    $env:JAVA_OPTS = $previousJavaOptions
     Pop-Location
 }
 exit $buildExitCode
