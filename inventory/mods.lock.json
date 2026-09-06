@@ -3693,7 +3693,7 @@
         "url": "https://github.com/minefed/stoneworks",
         "upstream": "https://github.com/Fuzss/stoneworks",
         "ref": "minefed-1.20.4",
-        "commit": "c9c0c785045ebcde92743b0568941f4a299c9e94",
+        "commit": "022d517b25e6bf30d88e4338d4ad21d6013d5d8f",
         "trackingBranch": "minefed-1.20.4",
         "baselineRef": "refs/heads/1.20.4",
         "baselineCommit": "fc6ff7702dcf3bc203a4466039a2abe9c55b560f"
