@@ -982,14 +982,16 @@
     {
       "modId": "yuushya",
       "mode": "source",
-      "reason": "Multi-Minecraft Architectury tree has an explicit 1.20.4 Fabric path. Run common:gen-1.20.4 first to generate assets/data, copy licenses/terms and built-in resource packs; then remap 1.20.4:fabric. Generation outputs are ignored build directories (git check-ignore verified). Build JVM 21 handles included 1.20.6/1.21 configuration, 1.20.4 classes use release 17. Gradle 8.8 wrapper uses fastmirror. No all-version build/clean-all task.",
+      "reason": "Select the Minecraft 1.20.4 Fabric projects in the multi-version Architectury tree. Run common:gen-1.20.4 first to generate assets/data, licenses/terms and built-in resource packs, then remap 1.20.4:fabric in a separate invocation. Generated outputs are ignored build directories. Use official Gradle 8.8 with build JDK 21 and Java 17 mod bytecode. No all-version build or clean-all task is selected.",
       "sourcePath": "Yuushya-Townscape",
       "java": 21,
       "tasks": [
         ":1.20.4:fabric:remapJar"
       ],
       "args": [
-        "--no-parallel"
+        "--no-parallel",
+        "-PminefedTarget=1.20.4-fabric",
+        "-Penabled_platforms=fabric"
       ],
       "artifactGlobs": [
         "1.20.4/fabric/build/libs/yuushya-2.2.3.jar"

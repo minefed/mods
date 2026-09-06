@@ -4344,7 +4344,7 @@
         "url": "https://github.com/minefed/Yuushya-Townscape",
         "upstream": "https://gitee.com/yuushyatownscape/yuushya-townscape",
         "ref": "minefed-1.20.4",
-        "commit": "67dc8719977e229ddaa567bc0bd2107ef097dd23",
+        "commit": "07dfb2768e6c9e316fc2d142172237ad7eeb9f8e",
         "trackingBranch": "minefed-1.20.4",
         "baselineRef": "refs/tags/v2.2.3",
         "baselineCommit": "e76ea8ac5454ec424771f593ce05ee0082e4b278"
