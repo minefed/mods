@@ -891,7 +891,7 @@
         "url": "https://github.com/minefed/diagonal-walls",
         "upstream": "https://github.com/Fuzss/diagonal-walls",
         "ref": "minefed-1.20.4",
-        "commit": "4fefe0eb3c162dc1576cf72035e4e7d8b1a40bdb",
+        "commit": "66e7aec05e7f892fe1ca2bde47ced2d7590d744c",
         "trackingBranch": "minefed-1.20.4",
         "baselineRef": "1.20.4",
         "baselineCommit": "250c86bd48638d7f6979850a36e0240aed38fc85"
