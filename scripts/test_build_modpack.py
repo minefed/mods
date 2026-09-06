@@ -8,7 +8,9 @@ import json
 from pathlib import Path
 import shutil
 import subprocess
+import sys
 import tempfile
+import time
 import unittest
 from unittest.mock import patch
 import zipfile
@@ -36,6 +38,71 @@ class RepositoryRecipeTests(unittest.TestCase):
         for predicate in rejected:
             with self.subTest(predicate=predicate):
                 self.assertFalse(builder.version_satisfies("1.20.4", predicate))
+
+
+class SourceLockTests(unittest.TestCase):
+    def test_process_lock_blocks_same_mod_until_release_but_allows_other_mod(self):
+        worker = """
+import sys
+from pathlib import Path
+from build_modpack import source_lock
+
+root = Path(sys.argv[1])
+if sys.argv[2] == 'holder':
+    with source_lock(root, 'alpha'):
+        (root / 'alpha-held').touch()
+        sys.stdin.readline()
+else:
+    with source_lock(root, 'beta'):
+        (root / 'beta-entered').touch()
+    (root / 'alpha-attempted').touch()
+    with source_lock(root, 'alpha'):
+        (root / 'alpha-entered').touch()
+"""
+        with tempfile.TemporaryDirectory(prefix="minefed-lock-test-") as temporary:
+            root = Path(temporary).resolve()
+            processes = []
+
+            def launch(role):
+                process = subprocess.Popen(
+                    [sys.executable, "-u", "-c", worker, str(root), role],
+                    cwd=Path(__file__).resolve().parent,
+                    stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE,
+                    text=True, encoding="utf-8")
+                processes.append(process)
+                return process
+
+            def await_marker(name, process):
+                deadline = time.monotonic() + 15
+                while not (root / name).exists():
+                    if process.poll() is not None:
+                        self.fail(f"Worker exited before {name}: {process.communicate()}")
+                    if time.monotonic() >= deadline:
+                        self.fail(f"Worker did not reach {name} within 15 seconds")
+                    time.sleep(0.02)
+
+            try:
+                holder = launch("holder")
+                await_marker("alpha-held", holder)
+                contender = launch("contender")
+                # Beta must enter while another process still owns Alpha.
+                await_marker("beta-entered", contender)
+                await_marker("alpha-attempted", contender)
+                self.assertIsNone(holder.poll())
+                # The contender has no work besides entering Alpha and exiting.
+                with self.assertRaises(subprocess.TimeoutExpired):
+                    contender.wait(timeout=1)
+                self.assertFalse((root / "alpha-entered").exists())
+                _, holder_errors = holder.communicate(input="release\n", timeout=15)
+                _, contender_errors = contender.communicate(timeout=15)
+                self.assertEqual(holder.returncode, 0, holder_errors)
+                self.assertEqual(contender.returncode, 0, contender_errors)
+                self.assertTrue((root / "alpha-entered").is_file())
+            finally:
+                for process in processes:
+                    if process.poll() is None:
+                        process.kill()
+                    process.communicate(timeout=15)
 
 
 class MixedBuildTests(unittest.TestCase):
