@@ -74,3 +74,7 @@
 	path = FabricProxy-Lite
 	url = https://github.com/minefed/FabricProxy-Lite
 	branch = codex/minefed-1.20.4
+[submodule "fabric-carpet"]
+	path = fabric-carpet
+	url = https://github.com/minefed/fabric-carpet
+	branch = codex/minefed-1.20.4
