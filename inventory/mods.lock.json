@@ -676,7 +676,7 @@
         "url": "https://github.com/minefed/CrossStitch",
         "upstream": "https://github.com/PaperMC/CrossStitch",
         "ref": "minefed-1.20.4",
-        "commit": "b509f10b63bf67e2c91095b2d3a9dd75dd742562",
+        "commit": "aa5545ce774566f3c09f2b34ac4ec0412274dec8",
         "trackingBranch": "minefed-1.20.4",
         "baselineRef": "0.1.6",
         "baselineCommit": "35a21ed5f402ce0957de5d39670e1804705f2247"
@@ -724,7 +724,8 @@
       "licenseUrl": "https://github.com/VelocityPowered/CrossStitch/blob/35a21ed5f402ce0957de5d39670e1804705f2247/LICENSE",
       "licenseNoticesPath": "inventory/notices/crossstitch-cf5aac5c5579",
       "notes": [
-        "Exact release tag0.1.6; jar allows MC>=1.19.3."
+        "Exact release tag0.1.6; jar allows MC>=1.19.3.",
+        "Minefed build branch reverts the upstream Minecraft 1.21.8 transition to the deployed 0.1.6 source; the original audited baseline is retained in baselineCommit."
       ],
       "compatibility": {
         "minecraft": ">=1.19.3",
