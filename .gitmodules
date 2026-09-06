@@ -202,3 +202,7 @@
 	path = worldedit-hang-fix
 	url = https://github.com/minefed/worldedit-hang-fix
 	branch = codex/minefed-1.20.4
+[submodule "wireless-redstone"]
+	path = wireless-redstone
+	url = https://github.com/minefed/wireless-redstone
+	branch = codex/minefed-1.20.4
