@@ -222,3 +222,7 @@
 	path = TrafficCraft
 	url = https://github.com/minefed/TrafficCraft
 	branch = codex/minefed-1.20.4
+[submodule "Yuushya-Townscape"]
+	path = Yuushya-Townscape
+	url = https://github.com/minefed/Yuushya-Townscape
+	branch = codex/minefed-1.20.4
