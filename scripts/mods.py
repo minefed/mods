@@ -398,7 +398,8 @@ def pack(root: Path, manifest: dict, output: str = "build/minefed-baseline.zip",
             archive.writestr("LICENSES.md", license_summary(entries, private))
             add_notices(archive, root, entries)
             archive.writestr("PACK-INFO.json", json.dumps({"private": private, "artifactCount": len(entries),
-                             "sourceCompilation": False, "runtimeValidated": False}, indent=2) + "\n")
+                             "sourceCompilation": manifest.get("build", {}).get("sourceCompilation", False),
+                             "runtimeValidated": False}, indent=2) + "\n")
         publish_new(temporary, destination)
     finally:
         temporary.unlink(missing_ok=True)
