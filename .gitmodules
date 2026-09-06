@@ -114,3 +114,7 @@
 	path = MacawsDoors
 	url = https://github.com/minefed/MacawsDoors
 	branch = codex/minefed-1.20.4
+[submodule "Fences"]
+	path = Fences
+	url = https://github.com/minefed/Fences
+	branch = codex/minefed-1.20.4
