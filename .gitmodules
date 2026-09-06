@@ -58,3 +58,7 @@
 	path = Decorative-Blocks
 	url = https://github.com/minefed/Decorative-Blocks
 	branch = codex/minefed-1.20.4
+[submodule "CityCraft"]
+	path = CityCraft
+	url = https://github.com/minefed/CityCraft
+	branch = codex/minefed-1.20.4
