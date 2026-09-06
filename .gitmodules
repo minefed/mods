@@ -50,3 +50,7 @@
 	path = CC-Tweaked
 	url = https://github.com/minefed/CC-Tweaked
 	branch = codex/minefed-1.20.4
+[submodule "diagonal-fences"]
+	path = diagonal-fences
+	url = https://github.com/minefed/diagonal-fences
+	branch = codex/minefed-1.20.4
