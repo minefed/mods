@@ -142,3 +142,7 @@
 	path = MythicMetalsDecorations
 	url = https://github.com/minefed/MythicMetalsDecorations
 	branch = codex/minefed-1.20.4
+[submodule "NiceMod"]
+	path = NiceMod
+	url = https://github.com/minefed/NiceMod
+	branch = codex/minefed-1.20.4
