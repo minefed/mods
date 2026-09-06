@@ -46,3 +46,7 @@
 	path = Chunky
 	url = https://github.com/minefed/Chunky
 	branch = codex/minefed-1.20.4
+[submodule "CC-Tweaked"]
+	path = CC-Tweaked
+	url = https://github.com/minefed/CC-Tweaked
+	branch = codex/minefed-1.20.4
