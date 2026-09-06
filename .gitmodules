@@ -166,3 +166,7 @@
 	path = mc-realtime
 	url = https://github.com/minefed/mc-realtime
 	branch = codex/minefed-1.20.4
+[submodule "puzzles-lib"]
+	path = puzzles-lib
+	url = https://github.com/minefed/puzzles-lib
+	branch = codex/minefed-1.20.4
