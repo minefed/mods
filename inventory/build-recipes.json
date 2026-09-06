@@ -200,7 +200,9 @@
       "tasks": [
         ":Fabric:remapJar"
       ],
-      "args": [],
+      "args": [
+        "--configure-on-demand"
+      ],
       "artifactGlobs": [
         "Fabric/build/libs/DiagonalFences-v20.4.1-1.20.4-Fabric.jar"
       ],
@@ -219,7 +221,9 @@
       "tasks": [
         ":Fabric:remapJar"
       ],
-      "args": [],
+      "args": [
+        "--configure-on-demand"
+      ],
       "artifactGlobs": [
         "Fabric/build/libs/DiagonalWalls-v20.4.1-1.20.4-Fabric.jar"
       ],
@@ -238,7 +242,9 @@
       "tasks": [
         ":Fabric:remapJar"
       ],
-      "args": [],
+      "args": [
+        "--configure-on-demand"
+      ],
       "artifactGlobs": [
         "Fabric/build/libs/DiagonalWindows-v20.4.1-1.20.4-Fabric.jar"
       ],
@@ -587,7 +593,7 @@
     {
       "modId": "msd",
       "mode": "source",
-      "reason": "Minecraft 1.20.4 Fabric, 운영과 같은 1.3.15 소스. setupFiles 선행 필요. Loom 1.10.5 고정, buildSrc JDK 17/release 8 수정은 실제 빌드 검증 대기 중. MTR beta.14 개발 JAR에 대해 컴파일한다.",
+      "reason": "Build the Fabric 1.20.4 addon using pinned Loom 1.10.5, JDK 17 and Java 8 buildSrc bytecode.",
       "sourcePath": "MTR-Station-Decoration-Addon",
       "java": 17,
       "tasks": [
@@ -606,7 +612,7 @@
     {
       "modId": "mtr",
       "mode": "source",
-      "reason": "Minecraft 1.20.4 Fabric. child Gradle에서 잠긴 npm 의존성 설치, website 빌드, setupFiles 생성 뒤 shadow/remap하도록 수정 중이며 실제 빌드 검증 대기. Node 22/npm 및 buildSrc JDK 21, 모드 JDK 17 toolchain이 필요하다.",
+      "reason": "Build Fabric 1.20.4 and embedded website using locked npm dependencies, JDK 21 compiler with Java 17 bytecode, then remap the complete runtime JAR and preserve license notices.",
       "sourcePath": "Minecraft-Transit-Railway",
       "java": 21,
       "tasks": [
@@ -620,7 +626,10 @@
       "artifactGlobs": [
         "fabric/build/libs/fabric-4.0.5.jar"
       ],
-      "expectedVersion": "4.0.5"
+      "expectedVersion": "4.0.5",
+      "env": {
+        "NG_BUILD_MAX_WORKERS": "1"
+      }
     },
     {
       "modId": "mythicmetals",
@@ -748,10 +757,11 @@
         ":Fabric:remapJar"
       ],
       "args": [
-        "--no-parallel"
+        "--no-parallel",
+        "--configure-on-demand"
       ],
       "artifactGlobs": [
-        "Fabric/build/libs/PuzzlesLib-v20.4.53-mc1.20.4-Fabric.jar"
+        "Fabric/build/libs/PuzzlesLib-v20.4.53-1.20.4-Fabric.jar"
       ],
       "expectedVersion": "20.4.53",
       "env": {
@@ -832,9 +842,11 @@
       "tasks": [
         ":Fabric:remapJar"
       ],
-      "args": [],
+      "args": [
+        "--configure-on-demand"
+      ],
       "artifactGlobs": [
-        "Fabric/build/libs/Stoneworks-v20.4.0-mc1.20.4-Fabric.jar"
+        "Fabric/build/libs/Stoneworks-v20.4.0-1.20.4-Fabric.jar"
       ],
       "expectedVersion": "20.4.0",
       "env": {

@@ -338,6 +338,7 @@ def build_source(root: Path, run: str, identity: str) -> None:
     phases = recipe.get("phases", [recipe.get("tasks")])
     homes = [str(java_home(root, v)) for v in sorted({r["java"] for r in plan["entries"] if r["mode"] == "source"})]
     common = ["--no-daemon", "--max-workers=1", "--console=plain", "-Dorg.gradle.jvmargs=-Xmx1536m -Dfile.encoding=UTF-8",
+              "-Dfabric.loom.ci=true",
               "--init-script", str(root / "scripts" / "source-repositories.gradle"),
               "-Porg.gradle.java.installations.paths=" + ','.join(homes)] + recipe.get("args", [])
     commands = []
