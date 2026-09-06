@@ -6,6 +6,9 @@ param(
 )
 
 $ErrorActionPreference = 'Stop'
+# Gradle and Python both emit UTF-8, including Korean workspace paths.
+$OutputEncoding = [System.Text.UTF8Encoding]::new($false)
+[Console]::OutputEncoding = $OutputEncoding
 $env:PYTHONUTF8 = '1'
 $projectRoot = $PSScriptRoot
 $configuration = @{}
