@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import argparse
+from contextlib import contextmanager
 import copy
 from datetime import datetime, timezone
 import hashlib
@@ -15,6 +16,7 @@ import shutil
 import subprocess
 import sys
 import tempfile
+import time
 import zipfile
 
 import mods
@@ -275,7 +277,51 @@ def wrapper_command(root: Path, source: Path, work: Path, recipe: dict) -> list[
             str(launch / "gradle-wrapper.jar"), "org.gradle.wrapper.GradleWrapperMain", "--project-dir", str(project)]
 
 
+@contextmanager
+def source_lock(root: Path, identity: str):
+    """Serialize the same source across independent Gradle invocations."""
+    if not re.fullmatch(r'[a-z][a-z0-9_-]{1,63}', identity):
+        raise mods.ModError('Invalid source identity')
+    path = mods.output_path(root, f'build/source-locks/{identity}.lock')
+    path.parent.mkdir(parents=True, exist_ok=True)
+    with path.open('a+b') as stream:
+        if path.stat().st_size == 0:
+            stream.write(b'0')
+            stream.flush()
+        waiting = False
+        while True:
+            try:
+                stream.seek(0)
+                if os.name == 'nt':
+                    import msvcrt
+                    msvcrt.locking(stream.fileno(), msvcrt.LK_NBLCK, 1)
+                else:
+                    import fcntl
+                    fcntl.flock(stream.fileno(), fcntl.LOCK_EX | fcntl.LOCK_NB)
+                break
+            except OSError as exc:
+                if exc.errno not in (11, 13, 35, 36):
+                    raise
+                if not waiting:
+                    print(f'Waiting for another build of {identity}', flush=True)
+                    waiting = True
+                time.sleep(0.5)
+        try:
+            yield
+        finally:
+            stream.seek(0)
+            if os.name == 'nt':
+                msvcrt.locking(stream.fileno(), msvcrt.LK_UNLCK, 1)
+            else:
+                fcntl.flock(stream.fileno(), fcntl.LOCK_UN)
+
+
 def build_source(root: Path, run: str, identity: str) -> None:
+    with source_lock(root, identity):
+        _build_source(root, run, identity)
+
+
+def _build_source(root: Path, run: str, identity: str) -> None:
     manifest, plan = load_plan(root)
     work = check_run(root, run, manifest, plan)
     recipe = next((r for r in plan["entries"] if r["modId"] == identity and r["mode"] == "source"), None)
