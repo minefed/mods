@@ -30,3 +30,7 @@
 	path = Chisels-and-Bits
 	url = https://github.com/minefed/Chisels-and-Bits
 	branch = codex/minefed-1.20.4
+[submodule "Common-Storage-Lib"]
+	path = Common-Storage-Lib
+	url = https://github.com/minefed/Common-Storage-Lib
+	branch = codex/minefed-1.20.4
