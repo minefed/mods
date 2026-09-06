@@ -720,7 +720,7 @@
     {
       "modId": "pfm",
       "mode": "source",
-      "reason": "Architectury 1.20.4 project with common/fabric/forge/neoforge. fabric:remapJar remaps the shadowed common classes, with fabric-mc1.20.4 classifier. Build JVM 21 for Loom 1.9; emitted classes release 17. Gradle 8.12. Current source is 1.5.0 rather than deployed 1.4.4.",
+      "reason": "Architectury Minecraft 1.20.4 project with Common/Fabric/Forge/NeoForge. Fabric remapJar includes shadowed common classes and uses the fabric-mc1.20.4 classifier. Gradle 8.12 and Loom 1.9 run on JDK 17 and emit Java 17 classes. The managed source produces 1.5.0; the deployed baseline remains 1.4.4.",
       "sourcePath": "paladins-furniture",
       "java": 17,
       "tasks": [
