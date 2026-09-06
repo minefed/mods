@@ -32,9 +32,24 @@ Linux/macOS에서는 `JAVA_HOME`, `MINEFED_JAVA17_HOME`, `MINEFED_JAVA21_HOME` �
 5. 이번 실행에서 성공한 소스 JAR와 검증된 바이너리 JAR를 합쳐 ZIP을 생성한다.
    최종 ZIP의 CRC와 모든 JAR SHA-256을 다시 검사한다.
 
-`build`에는 오프라인 도구 테스트도 포함된다. `modpack`은 같은 제작 흐름을 테스트 태스크 없이
-실행한다. Gradle의 `--parallel`을 지정하더라도 하위 빌드는 순차 실행하여 Loom 캐시 충돌과
-과도한 메모리 사용을 피한다. 첫 실행에는 Gradle, Minecraft 및 모드 의존성 다운로드가 필요하다.
+`build`는 제작을 담당하는 `assemble`과 검사를 담당하는 `check`를 모두 실행한다.
+`check`에는 다음 검사가 포함되며, `modpack`은 이 검사 태스크 없이 제작 흐름만 실행한다.
+
+- `testModpackTools`: Python unittest 46개. 최근 Windows 검증에서는 심볼릭 링크를 생성할 수
+  없어 관련 1개를 건너뛰었고 나머지는 통과했다. 이 테스트는 모드를 컴파일하거나 게임을 실행하지 않는다.
+- `verifySourceRepositories`: 로컬 테스트 저장소와 실제 Gradle의 `--offline` 실행으로
+  Fabric 저장소 우선순위와 하위 프로젝트의 전용 저장소 정책이 함께 동작하는지 검사한다.
+  모드 소스나 Minecraft는 빌드하지 않는다. 루트 Gradle 배포판이 준비된 뒤에는 네트워크가 필요 없다.
+
+첫 실행에는 Gradle, Minecraft 및 모드 의존성 다운로드가 필요하다. 같은 `GRADLE_USER_HOME`
+(미설정 시 사용자 홈의 `.gradle`)을 사용하는 이 도구의 실제 하위 Gradle 호출은 OS 파일 잠금으로
+직렬화한다. 서로 다른 모드, 독립적인 루트 Gradle 실행, 별도 checkout도 같은 캐시 경로를 사용하면
+같은 잠금을 따르며, 여러 단계로 구성된 모드의 생성·컴파일 호출도 잠금을 유지한 채 실행한다.
+검증된 소스 JAR 캐시를 재사용할 때는 이 전역 잠금을 잡지 않는다. 같은 checkout에서 같은 모드의
+중복 작업은 별도의 모드 잠금으로 보호한다.
+
+하위 디렉터리에서 직접 실행한 `gradlew` 등 외부 수동 Gradle 실행은 이 도구의 잠금에 참여하지 않는다.
+첫 빌드로 캐시가 채워진 뒤에도 같은 Gradle 캐시를 사용하는 수동 빌드와 도구 빌드를 겹쳐 실행하지 않는다.
 
 ## 개발 환경
 
@@ -70,6 +85,7 @@ git -c core.longpaths=true submodule update --init --recursive
 .\build-modpack.ps1 -Task modpackPlan
 .\build-modpack.ps1 -Task source_alloy_forgery
 .\build-modpack.ps1 -Task testModpackTools
+.\build-modpack.ps1 -Task check
 .\build-modpack.ps1 -Task build '-PrebuildSources=true'
 ```
 
@@ -83,11 +99,16 @@ git -c core.longpaths=true submodule update --init --recursive
 
 - 최종 파일: `build/distributions/minefed-1.20.4-<실행ID>.zip`
 - 해시 파일: ZIP 옆의 `.sha256`
-- 최근 성공 결과: `build/distributions/latest.json`
+- 최근 패키징 성공 결과: `build/distributions/latest.json`
 - 실행별 로그와 수집한 JAR: `build/modpack-work/<실행ID>/sources/<모드ID>/`
 
-실행별 ZIP 이름을 사용하므로 이전 성공 결과를 덮어쓰지 않는다. 실패한 실행은 새 성공 ZIP이나
-`latest.json`을 만들지 않는다. 기존 성공 결과가 있더라도 실패한 빌드의 결과로 간주하지 않는다.
+실행별 ZIP 이름을 사용하므로 이전 결과를 덮어쓰지 않는다. 소스 컴파일이나 최종 ZIP 발행 전의
+소스·JAR·ZIP 검증이 실패하면 해당 실행의 배포 ZIP을 발행하거나 `latest.json`을 갱신하지 않는다.
+진단용 로그와 임시 파일은 실행 작업 디렉터리에 남을 수 있다.
+
+`check`는 `modpack`의 선행 조건이 아니므로, 패키징이 끝난 뒤 검사 태스크에서 실패하면 ZIP과
+`latest.json`이 이미 만들어져 있을 수 있다. `latest.json`은 패키징 성공을 가리키며 전체 `build`의
+검사 통과를 보증하지 않는다. 전체 빌드의 성공 여부는 Gradle 종료 코드와 검사 결과를 함께 확인한다.
 
 ZIP에는 `mods/`의 JAR, 실제 결과의 해시·버전을 담은 `inventory/mods.lock.json`, 빌드 방침,
 `BUILD-PROVENANCE.json`, 저작권·라이선스 고지와 `PACK-INFO.json`이 들어 있다.
