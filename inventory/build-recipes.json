@@ -155,7 +155,7 @@
     {
       "modId": "citycraft",
       "mode": "binary",
-      "reason": "Pinned public source gradle.properties targets Minecraft1.19.4 and mod1.0.0. Deployed JAR is2.0.0 for1.20.x; no matching build source in selected upstream pin.",
+      "reason": "The public repository has no matching Fabric 1.20.4 release source: its full published branch/history set targets at most Minecraft 1.19.4, while its Gradle and embedded metadata versions also disagree. Preserve the deployed 2.0.0 JAR and its recorded license/hash.",
       "sourcePath": "CityCraft",
       "env": {}
     },
