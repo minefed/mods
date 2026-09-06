@@ -537,7 +537,7 @@
         "url": "https://github.com/minefed/Chunky",
         "upstream": "https://github.com/pop4959/Chunky",
         "ref": "minefed-1.20.4",
-        "commit": "54bfd950b364202f635355dc2512f91dd1aa7ca9",
+        "commit": "1fe63d9331b5cbad47dac40b48aabd1b0085c000",
         "trackingBranch": "minefed-1.20.4",
         "baselineRef": "d3956d688b70c10ae598861dfbf901946f7cfabb",
         "baselineCommit": "d3956d688b70c10ae598861dfbf901946f7cfabb"
