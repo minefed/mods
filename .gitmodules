@@ -38,3 +38,7 @@
 	path = BlueMap
 	url = https://github.com/minefed/BlueMap
 	branch = codex/minefed-1.20.4
+[submodule "CrossStitch"]
+	path = CrossStitch
+	url = https://github.com/minefed/CrossStitch
+	branch = codex/minefed-1.20.4
