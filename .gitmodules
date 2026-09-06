@@ -214,3 +214,7 @@
 	path = WorldEdit
 	url = https://github.com/minefed/WorldEdit
 	branch = codex/minefed-1.20.4
+[submodule "Yuushya-Modelling"]
+	path = Yuushya-Modelling
+	url = https://github.com/minefed/Yuushya-Modelling
+	branch = codex/minefed-1.20.4
