@@ -130,3 +130,7 @@
 	path = ModernFix
 	url = https://github.com/minefed/ModernFix
 	branch = codex/minefed-1.20.4
+[submodule "Handcrafted"]
+	path = Handcrafted
+	url = https://github.com/minefed/Handcrafted
+	branch = codex/minefed-1.20.4
