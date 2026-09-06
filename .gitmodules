@@ -138,3 +138,7 @@
 	path = MythicMetals
 	url = https://github.com/minefed/MythicMetals
 	branch = codex/minefed-1.20.4
+[submodule "MythicMetalsDecorations"]
+	path = MythicMetalsDecorations
+	url = https://github.com/minefed/MythicMetalsDecorations
+	branch = codex/minefed-1.20.4
