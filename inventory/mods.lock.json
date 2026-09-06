@@ -2394,7 +2394,7 @@
         "url": "https://github.com/minefed/mishanguc",
         "upstream": "https://github.com/SolidBlock-cn/mishanguc",
         "ref": "minefed-1.20.4",
-        "commit": "b8addb773b1f6ff0db75cc8de4341c2e3ec37194",
+        "commit": "ed26012dc37d449fc8480a606319f7294fa9005a",
         "trackingBranch": "minefed-1.20.4",
         "baselineRef": "1.20.4",
         "baselineCommit": "ff9925d49a8e9512bfd0160038421b829c5ff68e"
