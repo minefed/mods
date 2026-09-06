@@ -170,3 +170,7 @@
 	path = puzzles-lib
 	url = https://github.com/minefed/puzzles-lib
 	branch = codex/minefed-1.20.4
+[submodule "Patchouli"]
+	path = Patchouli
+	url = https://github.com/minefed/Patchouli
+	branch = codex/minefed-1.20.4
