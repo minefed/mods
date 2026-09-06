@@ -194,3 +194,7 @@
 	path = RealIP
 	url = https://github.com/minefed/RealIP
 	branch = codex/minefed-1.20.4
+[submodule "TimeOutOut"]
+	path = TimeOutOut
+	url = https://github.com/minefed/TimeOutOut
+	branch = codex/minefed-1.20.4
