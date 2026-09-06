@@ -154,3 +154,7 @@
 	path = owo-lib
 	url = https://github.com/minefed/owo-lib
 	branch = codex/minefed-1.20.4
+[submodule "MTR-Station-Decoration-Addon"]
+	path = MTR-Station-Decoration-Addon
+	url = https://github.com/minefed/MTR-Station-Decoration-Addon
+	branch = codex/minefed-1.20.4
