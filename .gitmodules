@@ -26,3 +26,7 @@
 	path = Automobility-Refueled
 	url = https://github.com/minefed/Automobility-Refueled
 	branch = codex/minefed-1.20.4
+[submodule "Chisels-and-Bits"]
+	path = Chisels-and-Bits
+	url = https://github.com/minefed/Chisels-and-Bits
+	branch = codex/minefed-1.20.4
