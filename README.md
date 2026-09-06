@@ -40,7 +40,7 @@ python scripts/mods.py pack --private
 
 ## 변경과 커밋
 
-[AGENTS.md](AGENTS.md)는 모든 하위 모드에 적용된다. 각 minefed 서브모듈의 `codex/minefed-1.20.4` 브랜치에도 지침을 커밋해 독립 작업 시 적용한다. lock 파일은 조사한 원래 커밋과 지침을 포함한 관리 커밋을 구분한다.
+[AGENTS.md](AGENTS.md)는 모든 하위 모드에 적용된다. 각 minefed 서브모듈의 `minefed-1.20.4` 브랜치에도 지침을 커밋해 독립 작업 시 적용한다. lock 파일은 조사한 원래 커밋과 지침을 포함한 관리 커밋을 구분한다.
 
 작고 되돌릴 수 있는 단위마다 검증 후 Conventional Commits 형식으로 커밋한다. 하위 변경을 먼저 커밋하고 원격에서 가져올 수 있도록 한 뒤, 상위 gitlink와 lock 파일을 갱신한다. `git submodule update --remote`만 실행해 버전을 임의로 바꾸지 않는다.
 

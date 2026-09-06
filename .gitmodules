@@ -1,232 +1,232 @@
 [submodule "Minecraft-Transit-Railway"]
 	path = Minecraft-Transit-Railway
 	url = https://github.com/minefed/Minecraft-Transit-Railway
-	branch = codex/minefed-1.20.4
+	branch = minefed-1.20.4
 [submodule "fabric-webstreamer"]
 	path = fabric-webstreamer
 	url = https://github.com/minefed/fabric-webstreamer
-	branch = codex/minefed-1.20.4
+	branch = minefed-1.20.4
 [submodule "Automobility"]
 	path = Automobility
 	url = https://github.com/minefed/Automobility
-	branch = codex/minefed-1.20.4
+	branch = minefed-1.20.4
 [submodule "minefed-display"]
 	path = minefed-display
 	url = https://github.com/minefed/minefed-display
-	branch = codex/minefed-1.20.4
+	branch = minefed-1.20.4
 [submodule "alloy-forgery"]
 	path = alloy-forgery
 	url = https://github.com/minefed/alloy-forgery
-	branch = codex/minefed-1.20.4
+	branch = minefed-1.20.4
 [submodule "architectury-api"]
 	path = architectury-api
 	url = https://github.com/minefed/architectury-api
-	branch = codex/minefed-1.20.4
+	branch = minefed-1.20.4
 [submodule "Automobility-Refueled"]
 	path = Automobility-Refueled
 	url = https://github.com/minefed/Automobility-Refueled
-	branch = codex/minefed-1.20.4
+	branch = minefed-1.20.4
 [submodule "Chisels-and-Bits"]
 	path = Chisels-and-Bits
 	url = https://github.com/minefed/Chisels-and-Bits
-	branch = codex/minefed-1.20.4
+	branch = minefed-1.20.4
 [submodule "Common-Storage-Lib"]
 	path = Common-Storage-Lib
 	url = https://github.com/minefed/Common-Storage-Lib
-	branch = codex/minefed-1.20.4
+	branch = minefed-1.20.4
 [submodule "BlueMap"]
 	path = BlueMap
 	url = https://github.com/minefed/BlueMap
-	branch = codex/minefed-1.20.4
+	branch = minefed-1.20.4
 [submodule "CrossStitch"]
 	path = CrossStitch
 	url = https://github.com/minefed/CrossStitch
-	branch = codex/minefed-1.20.4
+	branch = minefed-1.20.4
 [submodule "Chunky"]
 	path = Chunky
 	url = https://github.com/minefed/Chunky
-	branch = codex/minefed-1.20.4
+	branch = minefed-1.20.4
 [submodule "CC-Tweaked"]
 	path = CC-Tweaked
 	url = https://github.com/minefed/CC-Tweaked
-	branch = codex/minefed-1.20.4
+	branch = minefed-1.20.4
 [submodule "diagonal-fences"]
 	path = diagonal-fences
 	url = https://github.com/minefed/diagonal-fences
-	branch = codex/minefed-1.20.4
+	branch = minefed-1.20.4
 [submodule "Decorative-Blocks"]
 	path = Decorative-Blocks
 	url = https://github.com/minefed/Decorative-Blocks
-	branch = codex/minefed-1.20.4
+	branch = minefed-1.20.4
 [submodule "CityCraft"]
 	path = CityCraft
 	url = https://github.com/minefed/CityCraft
-	branch = codex/minefed-1.20.4
+	branch = minefed-1.20.4
 [submodule "diagonal-walls"]
 	path = diagonal-walls
 	url = https://github.com/minefed/diagonal-walls
-	branch = codex/minefed-1.20.4
+	branch = minefed-1.20.4
 [submodule "diagonal-windows"]
 	path = diagonal-windows
 	url = https://github.com/minefed/diagonal-windows
-	branch = codex/minefed-1.20.4
+	branch = minefed-1.20.4
 [submodule "FabricProxy-Lite"]
 	path = FabricProxy-Lite
 	url = https://github.com/minefed/FabricProxy-Lite
-	branch = codex/minefed-1.20.4
+	branch = minefed-1.20.4
 [submodule "fabric-carpet"]
 	path = fabric-carpet
 	url = https://github.com/minefed/fabric-carpet
-	branch = codex/minefed-1.20.4
+	branch = minefed-1.20.4
 [submodule "fabric-seasons"]
 	path = fabric-seasons
 	url = https://github.com/minefed/fabric-seasons
-	branch = codex/minefed-1.20.4
+	branch = minefed-1.20.4
 [submodule "FerriteCore"]
 	path = FerriteCore
 	url = https://github.com/minefed/FerriteCore
-	branch = codex/minefed-1.20.4
+	branch = minefed-1.20.4
 [submodule "fabric-api"]
 	path = fabric-api
 	url = https://github.com/minefed/fabric-api
-	branch = codex/minefed-1.20.4
+	branch = minefed-1.20.4
 [submodule "forge-config-api-port"]
 	path = forge-config-api-port
 	url = https://github.com/minefed/forge-config-api-port
-	branch = codex/minefed-1.20.4
+	branch = minefed-1.20.4
 [submodule "FallingTree"]
 	path = FallingTree
 	url = https://github.com/minefed/FallingTree
-	branch = codex/minefed-1.20.4
+	branch = minefed-1.20.4
 [submodule "geckolib"]
 	path = geckolib
 	url = https://github.com/minefed/geckolib
-	branch = codex/minefed-1.20.4
+	branch = minefed-1.20.4
 [submodule "lavender"]
 	path = lavender
 	url = https://github.com/minefed/lavender
-	branch = codex/minefed-1.20.4
+	branch = minefed-1.20.4
 [submodule "lithium"]
 	path = lithium
 	url = https://github.com/minefed/lithium
-	branch = codex/minefed-1.20.4
+	branch = minefed-1.20.4
 [submodule "MacawsDoors"]
 	path = MacawsDoors
 	url = https://github.com/minefed/MacawsDoors
-	branch = codex/minefed-1.20.4
+	branch = minefed-1.20.4
 [submodule "Fences"]
 	path = Fences
 	url = https://github.com/minefed/Fences
-	branch = codex/minefed-1.20.4
+	branch = minefed-1.20.4
 [submodule "MemoryLeakFix"]
 	path = MemoryLeakFix
 	url = https://github.com/minefed/MemoryLeakFix
-	branch = codex/minefed-1.20.4
+	branch = minefed-1.20.4
 [submodule "modern-glass-doors"]
 	path = modern-glass-doors
 	url = https://github.com/minefed/modern-glass-doors
-	branch = codex/minefed-1.20.4
+	branch = minefed-1.20.4
 [submodule "ModernFix"]
 	path = ModernFix
 	url = https://github.com/minefed/ModernFix
-	branch = codex/minefed-1.20.4
+	branch = minefed-1.20.4
 [submodule "Handcrafted"]
 	path = Handcrafted
 	url = https://github.com/minefed/Handcrafted
-	branch = codex/minefed-1.20.4
+	branch = minefed-1.20.4
 [submodule "MythicMetals"]
 	path = MythicMetals
 	url = https://github.com/minefed/MythicMetals
-	branch = codex/minefed-1.20.4
+	branch = minefed-1.20.4
 [submodule "MythicMetalsDecorations"]
 	path = MythicMetalsDecorations
 	url = https://github.com/minefed/MythicMetalsDecorations
-	branch = codex/minefed-1.20.4
+	branch = minefed-1.20.4
 [submodule "NiceMod"]
 	path = NiceMod
 	url = https://github.com/minefed/NiceMod
-	branch = codex/minefed-1.20.4
+	branch = minefed-1.20.4
 [submodule "mishanguc"]
 	path = mishanguc
 	url = https://github.com/minefed/mishanguc
-	branch = codex/minefed-1.20.4
+	branch = minefed-1.20.4
 [submodule "owo-lib"]
 	path = owo-lib
 	url = https://github.com/minefed/owo-lib
-	branch = codex/minefed-1.20.4
+	branch = minefed-1.20.4
 [submodule "MTR-Station-Decoration-Addon"]
 	path = MTR-Station-Decoration-Addon
 	url = https://github.com/minefed/MTR-Station-Decoration-Addon
-	branch = codex/minefed-1.20.4
+	branch = minefed-1.20.4
 [submodule "Oritech"]
 	path = Oritech
 	url = https://github.com/minefed/Oritech
-	branch = codex/minefed-1.20.4
+	branch = minefed-1.20.4
 [submodule "mc-realtime"]
 	path = mc-realtime
 	url = https://github.com/minefed/mc-realtime
-	branch = codex/minefed-1.20.4
+	branch = minefed-1.20.4
 [submodule "puzzles-lib"]
 	path = puzzles-lib
 	url = https://github.com/minefed/puzzles-lib
-	branch = codex/minefed-1.20.4
+	branch = minefed-1.20.4
 [submodule "Patchouli"]
 	path = Patchouli
 	url = https://github.com/minefed/Patchouli
-	branch = codex/minefed-1.20.4
+	branch = minefed-1.20.4
 [submodule "Resourceful-Config"]
 	path = Resourceful-Config
 	url = https://github.com/minefed/Resourceful-Config
-	branch = codex/minefed-1.20.4
+	branch = minefed-1.20.4
 [submodule "paladins-furniture"]
 	path = paladins-furniture
 	url = https://github.com/minefed/paladins-furniture
-	branch = codex/minefed-1.20.4
+	branch = minefed-1.20.4
 [submodule "ResourcefulLib"]
 	path = ResourcefulLib
 	url = https://github.com/minefed/ResourcefulLib
-	branch = codex/minefed-1.20.4
+	branch = minefed-1.20.4
 [submodule "Starlight"]
 	path = Starlight
 	url = https://github.com/minefed/Starlight
-	branch = codex/minefed-1.20.4
+	branch = minefed-1.20.4
 [submodule "RealIP"]
 	path = RealIP
 	url = https://github.com/minefed/RealIP
-	branch = codex/minefed-1.20.4
+	branch = minefed-1.20.4
 [submodule "TimeOutOut"]
 	path = TimeOutOut
 	url = https://github.com/minefed/TimeOutOut
-	branch = codex/minefed-1.20.4
+	branch = minefed-1.20.4
 [submodule "worldedit-hang-fix"]
 	path = worldedit-hang-fix
 	url = https://github.com/minefed/worldedit-hang-fix
-	branch = codex/minefed-1.20.4
+	branch = minefed-1.20.4
 [submodule "wireless-redstone"]
 	path = wireless-redstone
 	url = https://github.com/minefed/wireless-redstone
-	branch = codex/minefed-1.20.4
+	branch = minefed-1.20.4
 [submodule "stoneworks"]
 	path = stoneworks
 	url = https://github.com/minefed/stoneworks
-	branch = codex/minefed-1.20.4
+	branch = minefed-1.20.4
 [submodule "WorldEdit"]
 	path = WorldEdit
 	url = https://github.com/minefed/WorldEdit
-	branch = codex/minefed-1.20.4
+	branch = minefed-1.20.4
 [submodule "Yuushya-Modelling"]
 	path = Yuushya-Modelling
 	url = https://github.com/minefed/Yuushya-Modelling
-	branch = codex/minefed-1.20.4
+	branch = minefed-1.20.4
 [submodule "TrafficCraft"]
 	path = TrafficCraft
 	url = https://github.com/minefed/TrafficCraft
-	branch = codex/minefed-1.20.4
+	branch = minefed-1.20.4
 [submodule "Yuushya-Townscape"]
 	path = Yuushya-Townscape
 	url = https://github.com/minefed/Yuushya-Townscape
-	branch = codex/minefed-1.20.4
+	branch = minefed-1.20.4
 [submodule "Modern-Lights"]
 	path = Modern-Lights
 	url = https://github.com/minefed/Modern-Lights
-	branch = codex/minefed-1.20.4
+	branch = minefed-1.20.4

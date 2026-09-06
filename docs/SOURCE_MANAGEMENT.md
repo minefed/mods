@@ -2,7 +2,7 @@
 
 ## 원격 커밋과 운영 JAR
 
-서브모듈은 모두 minefed의 `codex/minefed-1.20.4` 브랜치를 추적한다. 이 브랜치는 조사한 소스 기준 커밋 위에 하위 저장소용 `AGENTS.md`를 추가한 관리 브랜치다. 원래 upstream/기존 fork 브랜치의 이력은 그대로 보존한다.
+서브모듈은 모두 minefed의 `minefed-1.20.4` 브랜치를 추적한다. 이 브랜치는 조사한 소스 기준 커밋 위에 하위 저장소용 `AGENTS.md`를 추가한 관리 브랜치다. 원래 upstream/기존 fork 브랜치의 이력은 그대로 보존한다.
 
 `inventory/mods.lock.json`의 각 `source`는 다음 값을 구분한다.
 
