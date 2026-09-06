@@ -162,3 +162,7 @@
 	path = Oritech
 	url = https://github.com/minefed/Oritech
 	branch = codex/minefed-1.20.4
+[submodule "mc-realtime"]
+	path = mc-realtime
+	url = https://github.com/minefed/mc-realtime
+	branch = codex/minefed-1.20.4
