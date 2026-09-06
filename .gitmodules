@@ -42,3 +42,7 @@
 	path = CrossStitch
 	url = https://github.com/minefed/CrossStitch
 	branch = codex/minefed-1.20.4
+[submodule "Chunky"]
+	path = Chunky
+	url = https://github.com/minefed/Chunky
+	branch = codex/minefed-1.20.4
