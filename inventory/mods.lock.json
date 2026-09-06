@@ -285,7 +285,7 @@
         "url": "https://github.com/minefed/BlueMap",
         "upstream": "https://github.com/BlueMap-Minecraft/BlueMap",
         "ref": "minefed-1.20.4",
-        "commit": "8008d439abcc2e27f5698b292480365331eb5aba",
+        "commit": "1e7e10d2c69ef7fd6f858d4bcffd7e2c5b1421d6",
         "trackingBranch": "minefed-1.20.4",
         "baselineRef": "v5.3",
         "baselineCommit": "eed8f79e68b053c119f88bbf358bed893a78d110"
