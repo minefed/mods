@@ -1,0 +1,1527 @@
+{
+  "schemaVersion": 1,
+  "reviewedAt": "2026-09-06",
+  "scope": "원본 JAR 메타데이터 및 공식 소스/배포 페이지의 라이선스 조사. 공개 소스, 자산, 바이너리 권한을 구분한다.",
+  "entries": [
+    {
+      "fileName": "alloy-forgery-2.1.4+1.20.3.jar",
+      "sha256": "f1aa20a0a51e332008c988ec8651b43b1ba6ed6516143f7f5454ba2479715a95",
+      "deployedMetadataLicense": "MIT",
+      "embeddedLicenseFiles": [
+        "LICENSE_alloy-forgery"
+      ],
+      "license": "MIT",
+      "licenseUrl": "https://github.com/wisp-forest/alloy-forgery/blob/f1b61a1b1c0dc7d483b9c44472237cc1c9cc8711/LICENSE",
+      "redistributionFinding": "permitted subject to retaining applicable copyright/license notices",
+      "notes": "Release tag matches deployed version; canonical source redirects from LordDeatHunter/Alloy-Forgery.",
+      "evidenceUrls": [
+        "https://api.modrinth.com/v2/project/jhl28YkY",
+        "https://api.modrinth.com/v2/version/X1pKXaia",
+        "https://github.com/wisp-forest/alloy-forgery",
+        "https://github.com/wisp-forest/alloy-forgery/blob/f1b61a1b1c0dc7d483b9c44472237cc1c9cc8711/LICENSE",
+        "https://github.com/wisp-forest/alloy-forgery/commit/f1b61a1b1c0dc7d483b9c44472237cc1c9cc8711"
+      ],
+      "sourceRef": "2.1.4+1.20.3",
+      "sourceCommit": "f1b61a1b1c0dc7d483b9c44472237cc1c9cc8711",
+      "deployedSourceUrl": null,
+      "deployedSourceRef": null,
+      "deployedSourceCommit": null
+    },
+    {
+      "fileName": "architectury-11.1.17-fabric.jar",
+      "sha256": "0762da4c5697abe1f87997dbdd6f2823420b7cc6c05aa4768c08318252e04903",
+      "deployedMetadataLicense": "LGPL-3",
+      "embeddedLicenseFiles": [],
+      "license": "LGPL-3.0-only",
+      "licenseUrl": "https://github.com/architectury/architectury-api/blob/327480e5490c2e7740ca117197a28b59dccb137d/LICENSE.md",
+      "redistributionFinding": "permitted subject to license notices and corresponding-source obligations",
+      "notes": "Branch head was committed 2024-03-11 11:15 UTC, immediately before the matching 11.1.17 official release. Version suffix is CI-generated; preserve this historical branch.",
+      "evidenceUrls": [
+        "https://api.modrinth.com/v2/project/lhGA9TYQ",
+        "https://api.modrinth.com/v2/version/kVjQWX0l",
+        "https://github.com/architectury/architectury-api",
+        "https://github.com/architectury/architectury-api/blob/327480e5490c2e7740ca117197a28b59dccb137d/LICENSE.md",
+        "https://github.com/architectury/architectury-api/commit/327480e5490c2e7740ca117197a28b59dccb137d"
+      ],
+      "sourceRef": "1.20.4",
+      "sourceCommit": "327480e5490c2e7740ca117197a28b59dccb137d",
+      "deployedSourceUrl": null,
+      "deployedSourceRef": null,
+      "deployedSourceCommit": null
+    },
+    {
+      "fileName": "automobility-refueled-0.4.3.b+1.20.4-fabric.jar",
+      "sha256": "917f092ef96b825a2abfc6ef85e897f326898a06ac4a5fe1e8ae16ce5bf84949",
+      "deployedMetadataLicense": "MIT",
+      "embeddedLicenseFiles": [],
+      "license": "MIT",
+      "licenseUrl": "https://github.com/codenobacon4u/Automobility/blob/96a6369eed2e5528ba8d09c643e032cf7fa15c51/LICENSE",
+      "redistributionFinding": "permitted subject to retaining applicable copyright/license notices",
+      "notes": "Exact deployed SHA512 matches GitHub release asset. Distinct mod ID and implementation from legacy minefed/Automobility. Same GitHub fork network may require carrying refueled/1.20.4 in the existing organization fork or a separately imported repository.",
+      "evidenceUrls": [
+        "https://github.com/codenobacon4u/Automobility",
+        "https://github.com/codenobacon4u/Automobility/blob/96a6369eed2e5528ba8d09c643e032cf7fa15c51/LICENSE",
+        "https://github.com/codenobacon4u/Automobility/commit/96a6369eed2e5528ba8d09c643e032cf7fa15c51",
+        "https://github.com/codenobacon4u/Automobility/releases/tag/v0.4.3.b%2B1.20.4"
+      ],
+      "sourceRef": "v0.4.3.b+1.20.4",
+      "sourceCommit": "96a6369eed2e5528ba8d09c643e032cf7fa15c51",
+      "deployedSourceUrl": null,
+      "deployedSourceRef": null,
+      "deployedSourceCommit": null
+    },
+    {
+      "fileName": "Axiom-5.3.0-for-MC1.20.4.jar",
+      "sha256": "4462d9f369dcaa86bbf2d05a52b0bdeae9272e7d5d53a54cf7ca48fe6088d716",
+      "deployedMetadataLicense": "All Rights Reserved",
+      "embeddedLicenseFiles": [
+        "META-INF/LICENSE",
+        "META-INF/LICENSE.txt",
+        "META-INF/NOTICE",
+        "META-INF/NOTICE.txt"
+      ],
+      "license": "LicenseRef-All-Rights-Reserved",
+      "licenseUrl": "https://axiom.moulberry.com/eula",
+      "redistributionFinding": "unconfirmed: local-only; use official download, no Git JAR rehosting",
+      "notes": "Closed source. JAR metadata and official Modrinth project declare All Rights Reserved. Preserve locally; no public rehosting permission verified. EULA is served by a client-rendered application; official URL recorded without claiming its terms were fully readable.",
+      "evidenceUrls": [
+        "https://api.modrinth.com/v2/project/N6n5dqoA",
+        "https://api.modrinth.com/v2/version/o8M6jc3k",
+        "https://axiom.moulberry.com/eula"
+      ],
+      "sourceRef": null,
+      "sourceCommit": null,
+      "deployedSourceUrl": null,
+      "deployedSourceRef": null,
+      "deployedSourceCommit": null
+    },
+    {
+      "fileName": "BlueMap-5.3-fabric-1.20.jar",
+      "sha256": "bd23d5bc5cf185e888ff061d127251d2baaad5a28ea2b87ad197f06535a7381c",
+      "deployedMetadataLicense": "MIT",
+      "embeddedLicenseFiles": [
+        "LICENSE.txt",
+        "META-INF/LICENSE",
+        "META-INF/LICENSE.txt",
+        "META-INF/NOTICE.txt",
+        "de/bluecolored/bluemap/core/util/CopyingPathVisitor.class"
+      ],
+      "license": "MIT",
+      "licenseUrl": "https://github.com/BlueMap-Minecraft/BlueMap/blob/eed8f79e68b053c119f88bbf358bed893a78d110/LICENSE",
+      "redistributionFinding": "permitted subject to retaining applicable copyright/license notices",
+      "notes": "Peeled annotated v5.3 tag; do not use tag object 5475fb02a6a3032fab7612b3e03ab22630a67a20 as gitlink.",
+      "evidenceUrls": [
+        "https://api.modrinth.com/v2/project/swbUV1cr",
+        "https://api.modrinth.com/v2/version/lHRktt6S",
+        "https://github.com/BlueMap-Minecraft/BlueMap",
+        "https://github.com/BlueMap-Minecraft/BlueMap/blob/eed8f79e68b053c119f88bbf358bed893a78d110/LICENSE",
+        "https://github.com/BlueMap-Minecraft/BlueMap/commit/eed8f79e68b053c119f88bbf358bed893a78d110"
+      ],
+      "sourceRef": "v5.3",
+      "sourceCommit": "eed8f79e68b053c119f88bbf358bed893a78d110",
+      "deployedSourceUrl": null,
+      "deployedSourceRef": null,
+      "deployedSourceCommit": null
+    },
+    {
+      "fileName": "botarium-fabric-1.20.4-3.2.2.jar",
+      "sha256": "7c85682c5d34dfce7005a1a61334c13687a3d117df454f505bf8be6ee3877483",
+      "deployedMetadataLicense": "MIT",
+      "embeddedLicenseFiles": [],
+      "license": "MIT",
+      "licenseUrl": "https://github.com/terrarium-earth/Common-Storage-Lib/blob/225bae30d2f2d9d9c1de79136160b725ff15f543/LICENSE.md",
+      "redistributionFinding": "permitted subject to retaining applicable copyright/license notices",
+      "notes": "Historical Botarium source at version3.2.2 / Minecraft1.20.4. Current1.20.4 branch declares3.2.4, so pin the release-era commit. Canonical repository renamed from terrarium-earth/Botarium.",
+      "evidenceUrls": [
+        "https://api.modrinth.com/v2/project/2u6LRnMa",
+        "https://api.modrinth.com/v2/version/Eqw90l8p",
+        "https://github.com/terrarium-earth/Common-Storage-Lib",
+        "https://github.com/terrarium-earth/Common-Storage-Lib/blob/225bae30d2f2d9d9c1de79136160b725ff15f543/LICENSE.md",
+        "https://github.com/terrarium-earth/Common-Storage-Lib/commit/225bae30d2f2d9d9c1de79136160b725ff15f543"
+      ],
+      "sourceRef": "1.20.4",
+      "sourceCommit": "225bae30d2f2d9d9c1de79136160b725ff15f543",
+      "deployedSourceUrl": null,
+      "deployedSourceRef": null,
+      "deployedSourceCommit": null
+    },
+    {
+      "fileName": "cc-tweaked-1.20.4-fabric-1.110.2.jar",
+      "sha256": "544b974507e0337a00472c828a643b88f34702dac2124297f4d017eca338fca5",
+      "deployedMetadataLicense": "ComputerCraft Public License (https://raw.githubusercontent.com/dan200/ComputerCraft/master/LICENSE)",
+      "embeddedLicenseFiles": [],
+      "license": "LicenseRef-CCPL",
+      "licenseUrl": "https://github.com/cc-tweaked/CC-Tweaked/blob/22bd5309babd469b95b7e0bfdc4c4929ded9ab5b/LICENSES/LicenseRef-CCPL.txt",
+      "redistributionFinding": "permitted under CCPL with complete corresponding sources available at no cost, unchanged licensing and notices",
+      "notes": "CCPL explicitly permits modification and original/modified redistribution; provide complete corresponding sources without cost and retain CCPL. Preserve all LICENSES and per-file SPDX notices; portions have other licenses.",
+      "evidenceUrls": [
+        "https://api.modrinth.com/v2/project/gu7yAYhd",
+        "https://api.modrinth.com/v2/version/afcOmjVN",
+        "https://github.com/cc-tweaked/CC-Tweaked",
+        "https://github.com/cc-tweaked/CC-Tweaked/blob/22bd5309babd469b95b7e0bfdc4c4929ded9ab5b/LICENSES/LicenseRef-CCPL.txt",
+        "https://github.com/cc-tweaked/CC-Tweaked/commit/22bd5309babd469b95b7e0bfdc4c4929ded9ab5b"
+      ],
+      "sourceRef": "v1.20.4-1.110.2",
+      "sourceCommit": "22bd5309babd469b95b7e0bfdc4c4929ded9ab5b",
+      "deployedSourceUrl": null,
+      "deployedSourceRef": null,
+      "deployedSourceCommit": null
+    },
+    {
+      "fileName": "chisels-and-bits-fabric-1.5.10-FC.jar",
+      "sha256": "f6d7248ee18cbac5b0232097fe5c6369a29f0bafa4818d6f295363d084c82d13",
+      "deployedMetadataLicense": "@license@",
+      "embeddedLicenseFiles": [],
+      "license": "MIT",
+      "licenseUrl": "https://github.com/minefed/Chisels-and-Bits/blob/f64db2d6124e004ae498cd1a1154909afd81a96d/LICENSE",
+      "redistributionFinding": "permitted subject to retaining applicable copyright/license notices",
+      "notes": "Already forked from ChiselsAndBits/Chisels-and-Bits. Latest fork commit2026-02-20 per user instruction. Deployed jar built2026-02-17, likely near preceding82689bf73fa1e83e052d012f588d8032fca876ac but exact correspondence is not proven. Build-version scheme uses localVersion1.1.10-FC; deployed metadata1.5.10-FC has unresolved @license@ and malformed source URL. Preserve server binary separately.",
+      "evidenceUrls": [
+        "https://github.com/minefed/Chisels-and-Bits",
+        "https://github.com/minefed/Chisels-and-Bits/blob/f64db2d6124e004ae498cd1a1154909afd81a96d/LICENSE",
+        "https://github.com/minefed/Chisels-and-Bits/commit/f64db2d6124e004ae498cd1a1154909afd81a96d"
+      ],
+      "sourceRef": "version/1.20.4",
+      "sourceCommit": "f64db2d6124e004ae498cd1a1154909afd81a96d",
+      "deployedSourceUrl": null,
+      "deployedSourceRef": null,
+      "deployedSourceCommit": null
+    },
+    {
+      "fileName": "Chunky-1.3.146.jar",
+      "sha256": "ae7fb9d35a3a9d9d4f2104aeae7b31a901c5e5842891e2edd9ddcc42c2646a38",
+      "deployedMetadataLicense": "GPLv3",
+      "embeddedLicenseFiles": [],
+      "license": "GPL-3.0-only",
+      "licenseUrl": "https://github.com/pop4959/Chunky/blob/d3956d688b70c10ae598861dfbf901946f7cfabb/LICENSE",
+      "redistributionFinding": "permitted subject to license notices and corresponding-source obligations",
+      "notes": "Source version1.3 plus146 commits after tag1.3.0 yields1.3.146 using build git-describe scheme. Matches Fabric1.20 / loader0.14.21 in jar manifest. Do not choose release upload date head: that already targets Java21/MC1.20.5. Preserve full history/tags for version derivation.",
+      "evidenceUrls": [
+        "https://api.modrinth.com/v2/project/fALzjamp",
+        "https://api.modrinth.com/v2/version/NHWYq9at",
+        "https://github.com/pop4959/Chunky",
+        "https://github.com/pop4959/Chunky/blob/d3956d688b70c10ae598861dfbf901946f7cfabb/LICENSE",
+        "https://github.com/pop4959/Chunky/commit/d3956d688b70c10ae598861dfbf901946f7cfabb"
+      ],
+      "sourceRef": "d3956d688b70c10ae598861dfbf901946f7cfabb",
+      "sourceCommit": "d3956d688b70c10ae598861dfbf901946f7cfabb",
+      "deployedSourceUrl": null,
+      "deployedSourceRef": null,
+      "deployedSourceCommit": null
+    },
+    {
+      "fileName": "City Craft-2.0.0-Fabric-1.20.x(ex.5.6).jar",
+      "sha256": "eacb5f0cc6d748ee3c15244932b1c3f4fb218602bdcfcdaf6df4301708425cc1",
+      "deployedMetadataLicense": "MIT",
+      "embeddedLicenseFiles": [
+        "LICENSE_fabric-example-mod"
+      ],
+      "license": "MIT (deployed JAR/project); CC0-1.0 (published source)",
+      "licenseUrl": "https://github.com/XiaoYao-MC/CityCraft/blob/9d38b13c11494f3aeb20fc98e2fbf8a80119eef5/LICENSE",
+      "redistributionFinding": "permitted subject to retaining applicable copyright/license notices",
+      "notes": "Public source linked by exact-hash official release has only1.17 through1.19.4 branches; selected source declares version1.0.0 / MC1.19.4 and cannot reproduce deployed2.0.0 / MC1.20.x. Fork preserves available history only; use deployed binary as baseline. Embedded LICENSE_fabric-example-mod is CC0 boilerplate while mod metadata and project declareMIT; retain both declarations.",
+      "evidenceUrls": [
+        "https://api.modrinth.com/v2/project/NCASj2oY",
+        "https://api.modrinth.com/v2/version/qWRV8sfH",
+        "https://github.com/XiaoYao-MC/CityCraft",
+        "https://github.com/XiaoYao-MC/CityCraft/blob/9d38b13c11494f3aeb20fc98e2fbf8a80119eef5/LICENSE",
+        "https://github.com/XiaoYao-MC/CityCraft/commit/9d38b13c11494f3aeb20fc98e2fbf8a80119eef5"
+      ],
+      "sourceRef": "1.19.3-1.19.4",
+      "sourceCommit": "9d38b13c11494f3aeb20fc98e2fbf8a80119eef5",
+      "deployedSourceUrl": null,
+      "deployedSourceRef": null,
+      "deployedSourceCommit": null
+    },
+    {
+      "fileName": "crossstitch-0.1.6.jar",
+      "sha256": "cf5aac5c5579b1ceb1b2bd25a15f1e2dcc9226f57670163ad1f841b2f905b82e",
+      "deployedMetadataLicense": "MIT",
+      "embeddedLicenseFiles": [
+        "LICENSE"
+      ],
+      "license": "MIT",
+      "licenseUrl": "https://github.com/VelocityPowered/CrossStitch/blob/35a21ed5f402ce0957de5d39670e1804705f2247/LICENSE",
+      "redistributionFinding": "permitted subject to retaining applicable copyright/license notices",
+      "notes": "Exact release tag0.1.6; jar allows MC>=1.19.3.",
+      "evidenceUrls": [
+        "https://api.modrinth.com/v2/project/YkOyn1Pn",
+        "https://api.modrinth.com/v2/version/dJioNlO8",
+        "https://github.com/VelocityPowered/CrossStitch",
+        "https://github.com/VelocityPowered/CrossStitch/blob/35a21ed5f402ce0957de5d39670e1804705f2247/LICENSE",
+        "https://github.com/VelocityPowered/CrossStitch/commit/35a21ed5f402ce0957de5d39670e1804705f2247"
+      ],
+      "sourceRef": "0.1.6",
+      "sourceCommit": "35a21ed5f402ce0957de5d39670e1804705f2247",
+      "deployedSourceUrl": null,
+      "deployedSourceRef": null,
+      "deployedSourceCommit": null
+    },
+    {
+      "fileName": "Decorative Blocks-Fabric-1.20.4-5.0.2.jar",
+      "sha256": "fed1a24bb2ad5fb53edc7661bd1bafccdd230f7ba54ca86369ad913a222a31c0",
+      "deployedMetadataLicense": "MIT",
+      "embeddedLicenseFiles": [],
+      "license": "MIT",
+      "licenseUrl": "https://github.com/lilypuree/Decorative-Blocks/blob/5775f8bb2c3fa57e041a2d40d377239e7c78d58d/LICENSE.txt",
+      "redistributionFinding": "permitted subject to retaining applicable copyright/license notices",
+      "notes": "main declares5.0.2 / MC1.20.4 and commit2024-02-08 11:54 precedes exact official release12:03. Branch named1.20 is older; select main pin.",
+      "evidenceUrls": [
+        "https://api.modrinth.com/v2/project/t6BIRVZn",
+        "https://api.modrinth.com/v2/version/txbqjIbZ",
+        "https://github.com/lilypuree/Decorative-Blocks",
+        "https://github.com/lilypuree/Decorative-Blocks/blob/5775f8bb2c3fa57e041a2d40d377239e7c78d58d/LICENSE.txt",
+        "https://github.com/lilypuree/Decorative-Blocks/commit/5775f8bb2c3fa57e041a2d40d377239e7c78d58d"
+      ],
+      "sourceRef": "main",
+      "sourceCommit": "5775f8bb2c3fa57e041a2d40d377239e7c78d58d",
+      "deployedSourceUrl": null,
+      "deployedSourceRef": null,
+      "deployedSourceCommit": null
+    },
+    {
+      "fileName": "DiagonalFences-v20.4.1-1.20.4-Fabric.jar",
+      "sha256": "ae42cd2bdb3c748c42345f3b8f92c3659ac93c06086e99360d0f35167bdcc838",
+      "deployedMetadataLicense": "MPL-2.0",
+      "embeddedLicenseFiles": [
+        "LICENSE-ASSETS.md",
+        "LICENSE.md"
+      ],
+      "license": "MPL-2.0 AND LicenseRef-All-Rights-Reserved-assets",
+      "licenseUrl": "https://github.com/Fuzss/diagonalfences/blob/57e3bc3958e313c772cf68c2bfcb06a367fceb5d/LICENSE.md",
+      "redistributionFinding": "source-code permitted under MPL; bundled asset rights reserved, binary rehosting unconfirmed",
+      "notes": "Matching-version1.20.4 branch pin declares20.4.1 and includes preserved license files. Original version commit was posted two minutes after binary publication; byte-equivalence not established. Source-code modification/fork rights are MPL2.0; bundled LICENSE-ASSETS.md separately reserves asset rights. Keep assets unchanged and public binary rehosting unresolved.",
+      "evidenceUrls": [
+        "https://api.modrinth.com/v2/project/IKARgflD",
+        "https://api.modrinth.com/v2/version/vRnCnKBa",
+        "https://github.com/Fuzss/diagonalfences",
+        "https://github.com/Fuzss/diagonalfences/blob/57e3bc3958e313c772cf68c2bfcb06a367fceb5d/LICENSE.md",
+        "https://github.com/Fuzss/diagonalfences/commit/57e3bc3958e313c772cf68c2bfcb06a367fceb5d"
+      ],
+      "sourceRef": "1.20.4",
+      "sourceCommit": "57e3bc3958e313c772cf68c2bfcb06a367fceb5d",
+      "deployedSourceUrl": null,
+      "deployedSourceRef": null,
+      "deployedSourceCommit": null
+    },
+    {
+      "fileName": "DiagonalWalls-v20.4.1-1.20.4-Fabric.jar",
+      "sha256": "1ebdd486ed7b337bf28f92a869bb53b587f1e26027597b9048602f4fe13d60d5",
+      "deployedMetadataLicense": "MPL-2.0",
+      "embeddedLicenseFiles": [
+        "LICENSE-ASSETS.md",
+        "LICENSE.md"
+      ],
+      "license": "MPL-2.0 AND LicenseRef-All-Rights-Reserved-assets",
+      "licenseUrl": "https://github.com/Fuzss/diagonalwalls/blob/250c86bd48638d7f6979850a36e0240aed38fc85/LICENSE.md",
+      "redistributionFinding": "source-code permitted under MPL; bundled asset rights reserved, binary rehosting unconfirmed",
+      "notes": "Matching-version1.20.4 branch pin declares20.4.1; exact original release commit not established. Code MPL2.0, bundled LICENSE-ASSETS.md reserves asset rights; preserve notices/assets and do not infer public binary rehosting permission.",
+      "evidenceUrls": [
+        "https://api.modrinth.com/v2/project/FQgc8dib",
+        "https://api.modrinth.com/v2/version/lfD849Zm",
+        "https://github.com/Fuzss/diagonalwalls",
+        "https://github.com/Fuzss/diagonalwalls/blob/250c86bd48638d7f6979850a36e0240aed38fc85/LICENSE.md",
+        "https://github.com/Fuzss/diagonalwalls/commit/250c86bd48638d7f6979850a36e0240aed38fc85"
+      ],
+      "sourceRef": "1.20.4",
+      "sourceCommit": "250c86bd48638d7f6979850a36e0240aed38fc85",
+      "deployedSourceUrl": null,
+      "deployedSourceRef": null,
+      "deployedSourceCommit": null
+    },
+    {
+      "fileName": "DiagonalWindows-v20.4.1-1.20.4-Fabric.jar",
+      "sha256": "569c9abb705252cd4f10663ea3b9b78e93d72c3443ad6e22636da26c027a3bc1",
+      "deployedMetadataLicense": "MPL-2.0",
+      "embeddedLicenseFiles": [
+        "LICENSE-ASSETS.md",
+        "LICENSE.md"
+      ],
+      "license": "MPL-2.0 AND LicenseRef-All-Rights-Reserved-assets",
+      "licenseUrl": "https://github.com/Fuzss/diagonalwindows/blob/4116d6bab254219ee1e78f25c8ecbd44ac42594b/LICENSE.md",
+      "redistributionFinding": "source-code permitted under MPL; bundled asset rights reserved, binary rehosting unconfirmed",
+      "notes": "Matching-version1.20.4 branch pin declares20.4.1; exact original release commit not established. Code MPL2.0, bundled LICENSE-ASSETS.md reserves asset rights; preserve notices/assets and do not infer public binary rehosting permission.",
+      "evidenceUrls": [
+        "https://api.modrinth.com/v2/project/oOi0CKes",
+        "https://api.modrinth.com/v2/version/1p2S1mYf",
+        "https://github.com/Fuzss/diagonalwindows",
+        "https://github.com/Fuzss/diagonalwindows/blob/4116d6bab254219ee1e78f25c8ecbd44ac42594b/LICENSE.md",
+        "https://github.com/Fuzss/diagonalwindows/commit/4116d6bab254219ee1e78f25c8ecbd44ac42594b"
+      ],
+      "sourceRef": "1.20.4",
+      "sourceCommit": "4116d6bab254219ee1e78f25c8ecbd44ac42594b",
+      "deployedSourceUrl": null,
+      "deployedSourceRef": null,
+      "deployedSourceCommit": null
+    },
+    {
+      "fileName": "DustyDecoRefabricated-1.1-1.20.3+1.20.4.jar",
+      "sha256": "762e412dabfe680713984b5cf8662931cf13067c15d62b5526ee0c5d9cba37f3",
+      "deployedMetadataLicense": "MIT",
+      "embeddedLicenseFiles": [],
+      "license": "MIT",
+      "licenseUrl": "https://modrinth.com/mod/dusty-decorations",
+      "redistributionFinding": "permitted subject to retaining applicable copyright/license notices",
+      "notes": "Exact server SHA512 matches official Dusty Decorations1.1 Fabric1.20.3/1.20.4 release. Official project credits Fabric port authorMhaks but source link redirects to legacy Forge1.19.2 project with only master8d2814ddfc71c18480256b6dca0c248ed576ad8e. Matching Fabric source is not published at that link. Keep released jar; no false source-build mapping.",
+      "evidenceUrls": [
+        "https://api.modrinth.com/v2/project/KgFOuaiZ",
+        "https://api.modrinth.com/v2/version/DHsgxScD",
+        "https://github.com/TipMischiff/DustyDecorations_1.19.2",
+        "https://modrinth.com/mod/dusty-decorations",
+        "https://www.curseforge.com/minecraft/mc-mods/dusty-decorations/files/5892241"
+      ],
+      "sourceRef": null,
+      "sourceCommit": null,
+      "deployedSourceUrl": null,
+      "deployedSourceRef": null,
+      "deployedSourceCommit": null
+    },
+    {
+      "fileName": "exlinefurniture-v2.7.2-fabric-1.20.4.jar",
+      "sha256": "bbe6c4ea2e9703f7b908515c70f081ababa7f1388610ace31f11f915e72bcfac",
+      "deployedMetadataLicense": "All-rights-reserved",
+      "embeddedLicenseFiles": [
+        "LICENSE_exlinefurniture"
+      ],
+      "license": "LicenseRef-All-Rights-Reserved (conflicting bundled CC0 boilerplate)",
+      "licenseUrl": "https://modrinth.com/mod/exlines-furniture",
+      "redistributionFinding": "unconfirmed: local-only; use official download, no Git JAR rehosting",
+      "notes": "Both official distribution pages and fabric.mod.json declareARR. LICENSE_exlinefurniture contains generic CC0 text, a material conflict. Official CurseForge page says no one has permission to upload another persons work. Preserve locally and use official download reference; do not infer rehosting permission from boilerplate.",
+      "evidenceUrls": [
+        "https://api.modrinth.com/v2/project/CQ7pGNKT",
+        "https://api.modrinth.com/v2/version/DfuDGYlp",
+        "https://modrinth.com/mod/exlines-furniture",
+        "https://www.curseforge.com/minecraft/mc-mods/exlines-furniture"
+      ],
+      "sourceRef": null,
+      "sourceCommit": null,
+      "deployedSourceUrl": null,
+      "deployedSourceRef": null,
+      "deployedSourceCommit": null
+    },
+    {
+      "fileName": "fabric-api-0.97.2+1.20.4.jar",
+      "sha256": "473b9278dc8e97cbde1d8d52e24af6ee3f296ae00d7b46d14967ebcbe16fb7a7",
+      "deployedMetadataLicense": "Apache-2.0",
+      "embeddedLicenseFiles": [
+        "LICENSE-fabric-api"
+      ],
+      "license": "Apache-2.0",
+      "licenseUrl": "https://github.com/FabricMC/fabric-api/blob/26460e8a3bf8fe181850b87815a39629551cef32/LICENSE",
+      "redistributionFinding": "permitted subject to retaining applicable copyright/license notices",
+      "notes": "Exact deployed release tag; repository canonical name redirected from FabricMC/fabric. Do not substitute latest0.97.3 without intentional runtime update.",
+      "evidenceUrls": [
+        "https://api.modrinth.com/v2/project/P7dR8mSH",
+        "https://api.modrinth.com/v2/version/QVBohPm2",
+        "https://github.com/FabricMC/fabric-api",
+        "https://github.com/FabricMC/fabric-api/blob/26460e8a3bf8fe181850b87815a39629551cef32/LICENSE",
+        "https://github.com/FabricMC/fabric-api/commit/26460e8a3bf8fe181850b87815a39629551cef32"
+      ],
+      "sourceRef": "0.97.2+1.20.4",
+      "sourceCommit": "26460e8a3bf8fe181850b87815a39629551cef32",
+      "deployedSourceUrl": null,
+      "deployedSourceRef": null,
+      "deployedSourceCommit": null
+    },
+    {
+      "fileName": "fabric-carpet-1.20.3-1.4.128+v231205.jar",
+      "sha256": "d8e5cf2184848fd78d482f23554ed814db2094acd37fab62d8ce7379d3ba02ca",
+      "deployedMetadataLicense": "MIT",
+      "embeddedLicenseFiles": [
+        "LICENSE_fabric-carpet"
+      ],
+      "license": "MIT",
+      "licenseUrl": "https://github.com/gnembon/fabric-carpet/blob/92176312d92bfc2595f0bad18b64475f3800921a/LICENSE",
+      "redistributionFinding": "permitted subject to retaining applicable copyright/license notices",
+      "notes": "Exact1.4.128 tag corresponding1.20.3-1.4.128+v231205 release; deployed metadata allowsMC>1.20.1.",
+      "evidenceUrls": [
+        "https://api.modrinth.com/v2/project/TQTTVgYE",
+        "https://api.modrinth.com/v2/version/yYzR60Xd",
+        "https://github.com/gnembon/fabric-carpet",
+        "https://github.com/gnembon/fabric-carpet/blob/92176312d92bfc2595f0bad18b64475f3800921a/LICENSE",
+        "https://github.com/gnembon/fabric-carpet/commit/92176312d92bfc2595f0bad18b64475f3800921a"
+      ],
+      "sourceRef": "1.4.128",
+      "sourceCommit": "92176312d92bfc2595f0bad18b64475f3800921a",
+      "deployedSourceUrl": null,
+      "deployedSourceRef": null,
+      "deployedSourceCommit": null
+    },
+    {
+      "fileName": "fabric-seasons-2.4.2-BETA+1.20.4.jar",
+      "sha256": "97be54d700cd3537899f52aad75ded51a17308c9585221967e7ea70ef02a432d",
+      "deployedMetadataLicense": "Mozilla Public License 2.0",
+      "embeddedLicenseFiles": [
+        "LICENSE"
+      ],
+      "license": "MPL-2.0",
+      "licenseUrl": "https://github.com/lucaargolo/fabric-seasons/blob/bccadddf4ea556fe0fcea95bb88360fd25b812e8/LICENSE",
+      "redistributionFinding": "permitted subject to license notices and corresponding-source obligations",
+      "notes": "Exact release tag and1.20.4 branch head; preserve MPL notices and source availability when distributing binaries.",
+      "evidenceUrls": [
+        "https://api.modrinth.com/v2/project/KJe6y9Eu",
+        "https://api.modrinth.com/v2/version/kSoN9Hi9",
+        "https://github.com/lucaargolo/fabric-seasons",
+        "https://github.com/lucaargolo/fabric-seasons/blob/bccadddf4ea556fe0fcea95bb88360fd25b812e8/LICENSE",
+        "https://github.com/lucaargolo/fabric-seasons/commit/bccadddf4ea556fe0fcea95bb88360fd25b812e8"
+      ],
+      "sourceRef": "2.4.2-BETA+1.20.4",
+      "sourceCommit": "bccadddf4ea556fe0fcea95bb88360fd25b812e8",
+      "deployedSourceUrl": null,
+      "deployedSourceRef": null,
+      "deployedSourceCommit": null
+    },
+    {
+      "fileName": "FabricProxy-Lite-2.7.0.jar",
+      "sha256": "4c8b1ffeb433ac6d076168068089a4c32a5a1f38eb5f4534ba2f2e1c692a4d4f",
+      "deployedMetadataLicense": "MIT",
+      "embeddedLicenseFiles": [
+        "LICENSE_FabricProxy-Lite"
+      ],
+      "license": "MIT",
+      "licenseUrl": "https://github.com/OKTW-Network/FabricProxy-Lite/blob/6a7e156c3b84c07adfb80fb99d1739a631ed341a/LICENSE",
+      "redistributionFinding": "permitted subject to retaining applicable copyright/license notices",
+      "notes": "Exact release tag; deployed metadata allowsMC>=1.20.1.",
+      "evidenceUrls": [
+        "https://api.modrinth.com/v2/project/8dI2tmqs",
+        "https://api.modrinth.com/v2/version/Mxw3Cbsk",
+        "https://github.com/OKTW-Network/FabricProxy-Lite",
+        "https://github.com/OKTW-Network/FabricProxy-Lite/blob/6a7e156c3b84c07adfb80fb99d1739a631ed341a/LICENSE",
+        "https://github.com/OKTW-Network/FabricProxy-Lite/commit/6a7e156c3b84c07adfb80fb99d1739a631ed341a"
+      ],
+      "sourceRef": "v2.7.0",
+      "sourceCommit": "6a7e156c3b84c07adfb80fb99d1739a631ed341a",
+      "deployedSourceUrl": null,
+      "deployedSourceRef": null,
+      "deployedSourceCommit": null
+    },
+    {
+      "fileName": "FallingTree-1.20.4-1.20.4.3.jar",
+      "sha256": "1757f8b8a102615ac60341b855857014fe39ca49301e2f95c7805e14d8b2ba24",
+      "deployedMetadataLicense": "LGPL-3.0",
+      "embeddedLicenseFiles": [],
+      "license": "LGPL-3.0-only",
+      "licenseUrl": "https://github.com/RakambdaOrg/FallingTree/blob/6db0a7bface140865da07009c0bd679f684a3340/LICENSE.md",
+      "redistributionFinding": "permitted subject to license notices and corresponding-source obligations",
+      "notes": "Exact1.20.4.3 tag; canonical owner renamed from Rakambda to RakambdaOrg. Preserve LGPL/GPL notices and corresponding source availability.",
+      "evidenceUrls": [
+        "https://api.modrinth.com/v2/project/Fb4jn8m6",
+        "https://api.modrinth.com/v2/version/mb15RrXi",
+        "https://github.com/RakambdaOrg/FallingTree",
+        "https://github.com/RakambdaOrg/FallingTree/blob/6db0a7bface140865da07009c0bd679f684a3340/LICENSE.md",
+        "https://github.com/RakambdaOrg/FallingTree/commit/6db0a7bface140865da07009c0bd679f684a3340"
+      ],
+      "sourceRef": "1.20.4.3",
+      "sourceCommit": "6db0a7bface140865da07009c0bd679f684a3340",
+      "deployedSourceUrl": null,
+      "deployedSourceRef": null,
+      "deployedSourceCommit": null
+    },
+    {
+      "fileName": "ferritecore-6.0.3-fabric.jar",
+      "sha256": "66984ee95c4ab05a83c437b0dd04568a4a2c8e7f219b7498604e25952c4cc125",
+      "deployedMetadataLicense": "MIT",
+      "embeddedLicenseFiles": [],
+      "license": "MIT",
+      "licenseUrl": "https://github.com/malte0811/FerriteCore/blob/a9a24d4f6945f4e41855f55660915b2f5b570dd7/LICENSE",
+      "redistributionFinding": "permitted subject to retaining applicable copyright/license notices",
+      "notes": "Exact build-6.0.3 tag; jar allowsMC>=1.20.4 <1.21.",
+      "evidenceUrls": [
+        "https://api.modrinth.com/v2/project/uXXizFIs",
+        "https://api.modrinth.com/v2/version/pguEMpy9",
+        "https://github.com/malte0811/FerriteCore",
+        "https://github.com/malte0811/FerriteCore/blob/a9a24d4f6945f4e41855f55660915b2f5b570dd7/LICENSE",
+        "https://github.com/malte0811/FerriteCore/commit/a9a24d4f6945f4e41855f55660915b2f5b570dd7"
+      ],
+      "sourceRef": "build-6.0.3",
+      "sourceCommit": "a9a24d4f6945f4e41855f55660915b2f5b570dd7",
+      "deployedSourceUrl": null,
+      "deployedSourceRef": null,
+      "deployedSourceCommit": null
+    },
+    {
+      "fileName": "ForgeConfigAPIPort-v20.4.3-1.20.4-Fabric.jar",
+      "sha256": "837665e2db855a5072f75964a7b30f12c59fddc92274db21c9b07cce172288b2",
+      "deployedMetadataLicense": "MPL-2.0",
+      "embeddedLicenseFiles": [
+        "LICENSE-ASSETS.md",
+        "LICENSE-FORGE.md",
+        "LICENSE-NIGHT-CONFIG.md",
+        "LICENSE.md"
+      ],
+      "license": "MPL-2.0 AND LGPL-2.1-only AND LGPL-3.0-only AND LicenseRef-All-Rights-Reserved-assets",
+      "licenseUrl": "https://github.com/Fuzss/forgeconfigapiport/blob/a99bf22e9242637d4a71a5f25f03c47d6ff2c2df/LICENSE.md",
+      "redistributionFinding": "source-code permitted under MPL; bundled asset rights reserved, binary rehosting unconfirmed",
+      "notes": "Matching-version1.20.4 branch pin declares20.4.3. Preserve LICENSE.md, LICENSE-ASSETS.md, LICENSE-FORGE.md, LICENSE-NIGHT-CONFIG.md and bundled source notices. Assets ARR means unrestricted public binary rehosting not established.",
+      "evidenceUrls": [
+        "https://api.modrinth.com/v2/project/ohNO6lps",
+        "https://api.modrinth.com/v2/version/xbVGsTLe",
+        "https://github.com/Fuzss/forgeconfigapiport",
+        "https://github.com/Fuzss/forgeconfigapiport/blob/a99bf22e9242637d4a71a5f25f03c47d6ff2c2df/LICENSE.md",
+        "https://github.com/Fuzss/forgeconfigapiport/commit/a99bf22e9242637d4a71a5f25f03c47d6ff2c2df"
+      ],
+      "sourceRef": "1.20.4",
+      "sourceCommit": "a99bf22e9242637d4a71a5f25f03c47d6ff2c2df",
+      "deployedSourceUrl": null,
+      "deployedSourceRef": null,
+      "deployedSourceCommit": null
+    },
+    {
+      "fileName": "furnitureexpanded-1.1-1.20.4-FABRIC-EXP.jar",
+      "sha256": "03029806014138224b9862295f6682e4b9ce8683e342685d15e622209b91f418",
+      "deployedMetadataLicense": "All rights reserved",
+      "embeddedLicenseFiles": [],
+      "license": "LicenseRef-All-Rights-Reserved",
+      "licenseUrl": "https://www.curseforge.com/minecraft/mc-mods/furniture-expanded/license",
+      "redistributionFinding": "unverified",
+      "notes": "No open license found in official public source. Deployed JAR and official project say ARR; no explicit modpack redistribution permission found.",
+      "evidenceUrls": [
+        "https://api.modrinth.com/v2/project/U1ACi6eg",
+        "https://github.com/clumsyc/decoration-mod",
+        "https://www.curseforge.com/minecraft/mc-mods/furniture-expanded/license"
+      ],
+      "sourceRef": null,
+      "sourceCommit": null,
+      "deployedSourceUrl": null,
+      "deployedSourceRef": null,
+      "deployedSourceCommit": null
+    },
+    {
+      "fileName": "fusion-1.2.12-fabric-mc1.20.4.jar",
+      "sha256": "23aa16b5f60dc609c66bc6098e82ce22c59f694b469114f4dada4f8aa2c00bff",
+      "deployedMetadataLicense": "All rights reserved",
+      "embeddedLicenseFiles": [],
+      "license": "LicenseRef-All-Rights-Reserved",
+      "licenseUrl": "https://github.com/SuperMartijn642/Fusion/blob/forge-1.20/README.md",
+      "redistributionFinding": "modpack-only; no standalone reupload",
+      "notes": "Official README permits use in modpacks but expressly prohibits alteration/reupload without direct permission. Source is public but not open source; keep standalone Git mirror local. Client-only library does nothing on server.",
+      "evidenceUrls": [
+        "https://api.modrinth.com/v2/project/p19vrgc2",
+        "https://github.com/SuperMartijn642/Fusion",
+        "https://github.com/SuperMartijn642/Fusion/blob/forge-1.20/README.md"
+      ],
+      "sourceRef": null,
+      "sourceCommit": null,
+      "deployedSourceUrl": null,
+      "deployedSourceRef": null,
+      "deployedSourceCommit": null
+    },
+    {
+      "fileName": "geckolib-fabric-1.20.4-4.4.4.jar",
+      "sha256": "8c11f943399fec3790d63686a7233cbb5731ccbcf60f490090c700b5dce819d0",
+      "deployedMetadataLicense": "MIT",
+      "embeddedLicenseFiles": [
+        "LICENSE"
+      ],
+      "license": "MIT",
+      "licenseUrl": "https://github.com/bernie-g/geckolib/blob/1.20.4/LICENSE",
+      "redistributionFinding": "permitted with MIT notice",
+      "notes": "Branch gradle.properties matches deployed 4.4.4, MC1.20.4/Fabric. Legacy stable branch; retain MIT notice.",
+      "evidenceUrls": [
+        "https://api.modrinth.com/v2/project/8BmcQJ2H",
+        "https://github.com/bernie-g/geckolib",
+        "https://github.com/bernie-g/geckolib/blob/1.20.4/LICENSE"
+      ],
+      "sourceRef": "1.20.4",
+      "sourceCommit": "d0b06fe3386e1be3242298e9373c54e5af0c65d1",
+      "deployedSourceUrl": null,
+      "deployedSourceRef": null,
+      "deployedSourceCommit": null
+    },
+    {
+      "fileName": "handcrafted-fabric-1.20.4-3.2.1.jar",
+      "sha256": "c18a198c84a27a1168a258114065e5398cb97e34756cc90faa7c11b34fc2bcdc",
+      "deployedMetadataLicense": "Terrarium Licence",
+      "embeddedLicenseFiles": [],
+      "license": "LicenseRef-Terrarium-v1 (MIT code; ARR non-code)",
+      "licenseUrl": "https://github.com/terrarium-earth/Handcrafted/blob/1.20.x/LICENSE",
+      "redistributionFinding": "code permitted; binary/assets unverified",
+      "notes": "Branch gradle.properties matches 3.2.1/MC1.20.4. MIT applies only to defined code; all non-code including models/textures is ARR. Preserve source license; official JAR local-only until redistribution permission for assets is established.",
+      "evidenceUrls": [
+        "https://api.modrinth.com/v2/project/pJmCFF0p",
+        "https://github.com/terrarium-earth/Handcrafted",
+        "https://github.com/terrarium-earth/Handcrafted/blob/1.20.x/LICENSE"
+      ],
+      "sourceRef": "1.20.x",
+      "sourceCommit": "5d3260b2882ebe5de1aa7a4ca4aa2336a593f31d",
+      "deployedSourceUrl": null,
+      "deployedSourceRef": null,
+      "deployedSourceCommit": null
+    },
+    {
+      "fileName": "JapanProps_1.20.1_0.0.3.3_Fabric.jar",
+      "sha256": "8f0839064ac3867b3414b4483c7bc33609e1a878a44b0f643fcb1a34c142e990",
+      "deployedMetadataLicense": "Creative Commons Attribution-NonCommercial 3.0",
+      "embeddedLicenseFiles": [],
+      "license": "CC-BY-NC-3.0 (deployed/CurseForge); CC-BY-NC-ND-4.0 (current Modrinth)",
+      "licenseUrl": "https://www.curseforge.com/minecraft/mc-mods/japan-props/license",
+      "redistributionFinding": "conditional noncommercial; license conflict recorded",
+      "notes": "No official source repository. JAR and CurseForge list CC-BY-NC-3.0; current hash-matched Modrinth project lists CC-BY-NC-ND-4.0. Preserve unmodified JAR locally pending intended noncommercial redistribution decision. Official project warns 0.0.3.3 may have MC1.20.4 compatibility issues, prefers1.20.1; deployed metadata accepts ~1.20.",
+      "evidenceUrls": [
+        "https://api.modrinth.com/v2/project/dbNTzFWE",
+        "https://www.curseforge.com/minecraft/mc-mods/japan-props/license"
+      ],
+      "sourceRef": null,
+      "sourceCommit": null,
+      "deployedSourceUrl": null,
+      "deployedSourceRef": null,
+      "deployedSourceCommit": null
+    },
+    {
+      "fileName": "lavender-0.1.9+1.20.3.jar",
+      "sha256": "e3da1be55cb3fc8d8d71e2cd85ba5c10d1768bf53225d4603032e3088ae5516d",
+      "deployedMetadataLicense": "MIT",
+      "embeddedLicenseFiles": [
+        "LICENSE_lavender"
+      ],
+      "license": "MIT",
+      "licenseUrl": "https://github.com/wisp-forest/lavender/blob/0.1.9+1.20.3/LICENSE",
+      "redistributionFinding": "permitted with MIT notice",
+      "notes": "Exact release tag, also 1.20.3 branch tip; deployed Minecraft dependency >=1.20.3 includes1.20.4.",
+      "evidenceUrls": [
+        "https://api.modrinth.com/v2/project/D5h9NKNI",
+        "https://github.com/wisp-forest/lavender",
+        "https://github.com/wisp-forest/lavender/blob/0.1.9+1.20.3/LICENSE"
+      ],
+      "sourceRef": "0.1.9+1.20.3",
+      "sourceCommit": "c40a0d26048779941e9f20d8cba0c87b8a687ab4",
+      "deployedSourceUrl": null,
+      "deployedSourceRef": null,
+      "deployedSourceCommit": null
+    },
+    {
+      "fileName": "lithium-fabric-mc1.20.4-0.12.1.jar",
+      "sha256": "6acd49595ee69e1264cfc79898f569452e41bd66985467fcb38d2804191af3cd",
+      "deployedMetadataLicense": "LGPL-3.0-only",
+      "embeddedLicenseFiles": [
+        "LICENSE.txt"
+      ],
+      "license": "LGPL-3.0-only",
+      "licenseUrl": "https://github.com/CaffeineMC/lithium/blob/mc1.20.4-0.12.1/LICENSE.txt",
+      "redistributionFinding": "permitted subject to LGPL source/notice obligations",
+      "notes": "Exact deployed tag MC1.20.4. Historical lithium-fabric URL redirects to lithium. Supply corresponding source and GPL/LGPL license notices when distributing binaries.",
+      "evidenceUrls": [
+        "https://api.modrinth.com/v2/project/gvQqBUqZ",
+        "https://github.com/CaffeineMC/lithium",
+        "https://github.com/CaffeineMC/lithium/blob/mc1.20.4-0.12.1/LICENSE.txt"
+      ],
+      "sourceRef": "mc1.20.4-0.12.1",
+      "sourceCommit": "b8f2818899bfcdae1bbf34991f2d3351e72c2f6c",
+      "deployedSourceUrl": null,
+      "deployedSourceRef": null,
+      "deployedSourceCommit": null
+    },
+    {
+      "fileName": "mcw-doors-1.1.2-mc1.20.4fabric.jar",
+      "sha256": "6ec6bc0c8ca80f65a1ebbbe0075a0bbbc4ea19a726d5c9fc1be57f80bc3ab22a",
+      "deployedMetadataLicense": "MIT",
+      "embeddedLicenseFiles": [
+        "LICENSE_mcwdoors"
+      ],
+      "license": "MIT (source/project/JAR metadata); embedded CC0 template",
+      "licenseUrl": "https://github.com/sketchmacaw/MacawsDoors/blob/main/LICENSE",
+      "redistributionFinding": "official modpack permission with sketch_macaw credit and project link; MIT source",
+      "notes": "Official source is MIT and contains 1.20.4 Forge tree only, no Fabric implementation; keep deployed Fabric JAR as runtime artifact because source cannot directly build it. JAR metadata MIT but embedded LICENSE_mcwdoors CC0; preserve both and use explicit project modpack permission with credit/link. Source tree is not an exact match to deployed Fabric binary.",
+      "evidenceUrls": [
+        "https://api.modrinth.com/v2/project/kNxa8z3e",
+        "https://github.com/sketchmacaw/MacawsDoors",
+        "https://github.com/sketchmacaw/MacawsDoors/blob/main/LICENSE"
+      ],
+      "sourceRef": "main",
+      "sourceCommit": "24b5b4ae1a93c60774f63bd620c53f009e0be7ae",
+      "deployedSourceUrl": null,
+      "deployedSourceRef": null,
+      "deployedSourceCommit": null
+    },
+    {
+      "fileName": "mcw-fences-1.2.0-1.20.4fabric.jar",
+      "sha256": "77b10cfcfc53ae7289838570f83e170accd0143e2245438d8c3b14da1e527025",
+      "deployedMetadataLicense": "MIT",
+      "embeddedLicenseFiles": [
+        "LICENSE_mcwfences"
+      ],
+      "license": "MIT (source/project/JAR metadata); embedded CC0 template",
+      "licenseUrl": "https://github.com/sketchmacaw/Fences/blob/main/LICENSE.md",
+      "redistributionFinding": "official modpack permission with sketch_macaw credit and project link; MIT source",
+      "notes": "Official source is MIT and contains 1.20.4 Forge tree only, no Fabric implementation; keep deployed Fabric JAR as runtime artifact. Embedded license copyright is Kaupenjoe; retain it. Source tree is not an exact match to deployed Fabric binary.",
+      "evidenceUrls": [
+        "https://api.modrinth.com/v2/project/GmwLse2I",
+        "https://github.com/sketchmacaw/Fences",
+        "https://github.com/sketchmacaw/Fences/blob/main/LICENSE.md"
+      ],
+      "sourceRef": "main",
+      "sourceCommit": "8c4e6d498d344115b7356ca68cdb724cbfc89cb3",
+      "deployedSourceUrl": null,
+      "deployedSourceRef": null,
+      "deployedSourceCommit": null
+    },
+    {
+      "fileName": "mcw-roofs-2.3.2-mc1.20.4fabric.jar",
+      "sha256": "00ad7d7f98f3ef0ddd459053c64f3b1f989d147eccc0178a765d0fad700e2f9d",
+      "deployedMetadataLicense": "All Rights Reserved",
+      "embeddedLicenseFiles": [
+        "LICENSE_mcwroofs"
+      ],
+      "license": "LicenseRef-All-Rights-Reserved (project/JAR metadata); embedded CC0 template",
+      "licenseUrl": "https://www.curseforge.com/minecraft/mc-mods/macaws-roofs/license",
+      "redistributionFinding": "modpack-only with sketch_macaw credit and project link",
+      "notes": "No official source repository. Official CurseForge/Modrinth descriptions permit modpacks with credit and project link. Embedded CC0 conflicts with ARR metadata; use narrow explicit modpack permission and avoid standalone Git mirroring.",
+      "evidenceUrls": [
+        "https://api.modrinth.com/v2/project/B8jaH3P1",
+        "https://www.curseforge.com/minecraft/mc-mods/macaws-roofs/license"
+      ],
+      "sourceRef": null,
+      "sourceCommit": null,
+      "deployedSourceUrl": null,
+      "deployedSourceRef": null,
+      "deployedSourceCommit": null
+    },
+    {
+      "fileName": "mcw-windows-2.3.1-mc1.20.4fabric.jar",
+      "sha256": "dcbb008a7a647cc120fd2cc93374291e7773be8b73c4d082772ed479e2074a73",
+      "deployedMetadataLicense": "All Rights Reserved",
+      "embeddedLicenseFiles": [
+        "LICENSE_mcwwindows"
+      ],
+      "license": "LicenseRef-All-Rights-Reserved (project/JAR metadata); embedded CC0 template",
+      "licenseUrl": "https://www.curseforge.com/minecraft/mc-mods/macaws-windows/license",
+      "redistributionFinding": "modpack-only with sketch_macaw credit and project link",
+      "notes": "No official source repository. Official CurseForge/Modrinth descriptions permit modpacks with credit and project link. Embedded CC0 conflicts with ARR metadata; use narrow explicit modpack permission and avoid standalone Git mirroring.",
+      "evidenceUrls": [
+        "https://api.modrinth.com/v2/project/C7I0BCni",
+        "https://www.curseforge.com/minecraft/mc-mods/macaws-windows/license"
+      ],
+      "sourceRef": null,
+      "sourceCommit": null,
+      "deployedSourceUrl": null,
+      "deployedSourceRef": null,
+      "deployedSourceCommit": null
+    },
+    {
+      "fileName": "memoryleakfix-fabric-1.17+-1.1.5.jar",
+      "sha256": "b8ac33d7262e019710dd25e454116616bc9ed1f714ed910594b28a4c1da5adde",
+      "deployedMetadataLicense": "LGPL-2.1-only",
+      "embeddedLicenseFiles": [
+        "LICENSE"
+      ],
+      "license": "LGPL-2.1-only",
+      "licenseUrl": "https://github.com/FxMorin/MemoryLeakFix/blob/v1.1.5/LICENSE",
+      "redistributionFinding": "permitted subject to LGPL source/notice obligations",
+      "notes": "Exact deployed version tag; gradle.properties targets Minecraft1.20.4. Supply corresponding source and LGPL notice when distributing binaries.",
+      "evidenceUrls": [
+        "https://api.modrinth.com/v2/project/NRjRiSSD",
+        "https://github.com/FxMorin/MemoryLeakFix",
+        "https://github.com/FxMorin/MemoryLeakFix/blob/v1.1.5/LICENSE"
+      ],
+      "sourceRef": "v1.1.5",
+      "sourceCommit": "f5e4087566740e9df661c5acf38e345f72068c90",
+      "deployedSourceUrl": null,
+      "deployedSourceRef": null,
+      "deployedSourceCommit": null
+    },
+    {
+      "fileName": "minefed-display-1.0.0.jar",
+      "sha256": "4d87f76f9ba4f00c7dd9d92daf97d9b6cdce40c54f984cd48f1b3b3f3a9b7dd4",
+      "deployedMetadataLicense": "MIT",
+      "embeddedLicenseFiles": [
+        "LICENSE_minefed-display"
+      ],
+      "license": "MIT",
+      "licenseUrl": "https://github.com/minefed/minefed-display",
+      "redistributionFinding": "permitted with MIT notice",
+      "notes": "Deployed metadata MIT, MC~1.20.4, Java>=17, FabricLoader>=0.16.14. Root agent resolves newest existing minefed source ref separately.",
+      "evidenceUrls": [
+        "https://github.com/minefed/minefed-display"
+      ],
+      "sourceRef": null,
+      "sourceCommit": null,
+      "deployedSourceUrl": null,
+      "deployedSourceRef": null,
+      "deployedSourceCommit": null
+    },
+    {
+      "fileName": "mishanguc-1.5.3-1.20.4.jar",
+      "sha256": "0b83023c51817e2ab9081fec62b97f3695d37821152c2a161e3a89dd908ecb07",
+      "deployedMetadataLicense": "LGPLv3",
+      "embeddedLicenseFiles": [
+        "LICENSE_extension 'base' property 'archivesName'"
+      ],
+      "license": "LGPL-3.0-only",
+      "licenseUrl": "https://github.com/SolidBlock-cn/mishanguc/blob/1.20.4/LICENSE",
+      "redistributionFinding": "permitted subject to LGPL source/notice obligations",
+      "notes": "Branch gradle.properties mod1.5.3, MC1.20.4, supported1.20.3/1.20.4. Do not use v1.5.3 tag: it points to1.20.2 branch. Branch pin matches version but exact deployed build commit is not proven.",
+      "evidenceUrls": [
+        "https://api.modrinth.com/v2/project/rItLmRo4",
+        "https://github.com/SolidBlock-cn/mishanguc",
+        "https://github.com/SolidBlock-cn/mishanguc/blob/1.20.4/LICENSE"
+      ],
+      "sourceRef": "1.20.4",
+      "sourceCommit": "ff9925d49a8e9512bfd0160038421b829c5ff68e",
+      "deployedSourceUrl": null,
+      "deployedSourceRef": null,
+      "deployedSourceCommit": null
+    },
+    {
+      "fileName": "modern-glass-doors-5.3.0+1.20.3-and-later.jar",
+      "sha256": "2915d5da4994ef0b589434afcd15417f087754b6126aa2ed9c680498c8779ab9",
+      "deployedMetadataLicense": "MIT",
+      "embeddedLicenseFiles": [],
+      "license": "MIT",
+      "licenseUrl": "https://github.com/ReviversMC/modern-glass-doors/blob/v5.3.0+1.20.3-and-later/LICENSE",
+      "redistributionFinding": "permitted with MIT notice",
+      "notes": "Exact deployed tag and1.20 branch tip; deployed metadata accepts MC>=1.20.3.",
+      "evidenceUrls": [
+        "https://api.modrinth.com/v2/project/zGSQY8dZ",
+        "https://github.com/ReviversMC/modern-glass-doors",
+        "https://github.com/ReviversMC/modern-glass-doors/blob/v5.3.0+1.20.3-and-later/LICENSE"
+      ],
+      "sourceRef": "v5.3.0+1.20.3-and-later",
+      "sourceCommit": "bf38d4feb851041357c81caa696450498cda0048",
+      "deployedSourceUrl": null,
+      "deployedSourceRef": null,
+      "deployedSourceCommit": null
+    },
+    {
+      "fileName": "modern-lights-1.20[2.4.2].jar",
+      "sha256": "362bb8dadd6e771ec3c90a9e38af18bd9433de626862d233aac15a79ad0987e5",
+      "deployedMetadataLicense": "CC BY-NC-SA 4.0",
+      "embeddedLicenseFiles": [
+        "LICENSE_modern-lights"
+      ],
+      "license": "CC-BY-NC-SA-4.0 (source/project/JAR metadata); embedded MIT",
+      "licenseUrl": "https://github.com/1-Jammy/Modern-Lights/blob/1.20---1.20.4/LICENSE",
+      "redistributionFinding": "conditional noncommercial attribution/share-alike; no automatic public binary distribution",
+      "notes": "Source fork allowed for noncommercial management with attribution and share-alike. Branch supports1.20 through1.20.4 but is2.5.0; published source history does not contain deployed2.4.2. Keep deployed binary separate. Embedded LICENSE_modern-lights says MIT(c)2024 1_Jammy, while metadata/project/upstream CC-BY-NC-SA; preserve both and apply restrictive noncommercial conditions.",
+      "evidenceUrls": [
+        "https://api.modrinth.com/v2/project/K3oeBO7O",
+        "https://github.com/1-Jammy/Modern-Lights",
+        "https://github.com/1-Jammy/Modern-Lights/blob/1.20---1.20.4/LICENSE"
+      ],
+      "sourceRef": "1.20---1.20.4",
+      "sourceCommit": "5df1c7567ac7f4dd8d40118000187585e5e9b725",
+      "deployedSourceUrl": null,
+      "deployedSourceRef": null,
+      "deployedSourceCommit": null
+    },
+    {
+      "fileName": "modernfix-fabric-5.17.0+mc1.20.4.jar",
+      "sha256": "af842acbf99eb94b55f40be4d51549ebd8ffd563f0bbc67e9b3529b4bdbb7f69",
+      "deployedMetadataLicense": "LGPL-3.0",
+      "embeddedLicenseFiles": [],
+      "license": "LGPL-3.0-or-later (source grant; deployed metadata LGPL-3.0)",
+      "licenseUrl": "https://github.com/embeddedt/ModernFix/blob/5.17.0+1.20.4/LICENSE",
+      "redistributionFinding": "permitted subject to LGPL source/notice obligations",
+      "notes": "Exact deployed tag peeled commit, also eol/1.20.4 branch tip. LICENSE expressly grants version3 or later. Supply GPL/LGPL notices and source.",
+      "evidenceUrls": [
+        "https://api.modrinth.com/v2/project/nmDcB62a",
+        "https://github.com/embeddedt/ModernFix",
+        "https://github.com/embeddedt/ModernFix/blob/5.17.0+1.20.4/LICENSE"
+      ],
+      "sourceRef": "5.17.0+1.20.4",
+      "sourceCommit": "c8f9b1cd843e69035ed988baeee04dc46a06fd1b",
+      "deployedSourceUrl": null,
+      "deployedSourceRef": null,
+      "deployedSourceCommit": null
+    },
+    {
+      "fileName": "MSD-fabric-1.20.4-4.0.0-beta.14-1.3.15.jar",
+      "sha256": "0ba17e1245cc8b375a129bde80562c1be083b58e8ea495088e24d7ee515ce375",
+      "deployedMetadataLicense": "MIT",
+      "embeddedLicenseFiles": [],
+      "license": "MIT",
+      "licenseUrl": "https://github.com/AIDA64S/MTR-Station-Decoration-Addon/blob/c0221a39c4b7829a47478bce4303f1f29f84527e/LICENSE.txt",
+      "redistributionFinding": "permitted with MIT notice",
+      "notes": "Last source state before bump to1.3.16; gradle.properties explicitly Minecraft1.20.4, MTR4.0.0-beta.14, version1.3.15. No deployed release tag exists; build equivalence not proven. Current4.0.0 branch tip14b0a8c9687bdbbfd755f282bbfab4030a92f3d3 is1.4.5/MTR4.0.5.",
+      "evidenceUrls": [
+        "https://api.modrinth.com/v2/project/AM3NyLOZ",
+        "https://github.com/AIDA64S/MTR-Station-Decoration-Addon",
+        "https://github.com/AIDA64S/MTR-Station-Decoration-Addon/blob/c0221a39c4b7829a47478bce4303f1f29f84527e/LICENSE.txt"
+      ],
+      "sourceRef": "4.0.0",
+      "sourceCommit": "c0221a39c4b7829a47478bce4303f1f29f84527e",
+      "deployedSourceUrl": null,
+      "deployedSourceRef": null,
+      "deployedSourceCommit": null
+    },
+    {
+      "fileName": "MTR-fabric-4.0.3+1.20.4.jar",
+      "sha256": "7ac59ffd87a9b5136dc5cc0ce4ded93bd9b98e058080bb724bb84d645ea37d49",
+      "deployedMetadataLicense": "MIT",
+      "embeddedLicenseFiles": [
+        "LICENSE",
+        "org/mtr/libraries/okhttp3/internal/publicsuffix/NOTICE"
+      ],
+      "license": "MIT",
+      "licenseUrl": "https://github.com/jonafanho/Minecraft-Transit-Railway",
+      "redistributionFinding": "permitted with MIT notice; preserve bundled notices",
+      "notes": "Deployed metadata id=mtr version4.0.3 requires MC1.20.4/Fabric. Duplicate id with4.0.5 in server folder; root agent selects active runtime policy and newest existing minefed source pin.",
+      "evidenceUrls": [
+        "https://github.com/jonafanho/Minecraft-Transit-Railway"
+      ],
+      "sourceRef": null,
+      "sourceCommit": null,
+      "deployedSourceUrl": null,
+      "deployedSourceRef": null,
+      "deployedSourceCommit": null
+    },
+    {
+      "fileName": "MTR-fabric-4.0.5+1.20.4.jar",
+      "sha256": "974fec15c7b2c1e5d3f6ab8e45a6f5c959a40acbaa3ff90997191085ccadda0f",
+      "deployedMetadataLicense": "MIT",
+      "embeddedLicenseFiles": [
+        "LICENSE",
+        "org/mtr/libraries/okhttp3/internal/publicsuffix/NOTICE"
+      ],
+      "license": "MIT",
+      "licenseUrl": "https://github.com/jonafanho/Minecraft-Transit-Railway",
+      "redistributionFinding": "permitted with MIT notice; preserve bundled notices",
+      "notes": "Deployed metadata id=mtr version4.0.5 requires MC1.20.4/Fabric. Duplicate id with4.0.3 in server folder; root agent resolves newest existing minefed source ref.",
+      "evidenceUrls": [
+        "https://github.com/jonafanho/Minecraft-Transit-Railway"
+      ],
+      "sourceRef": null,
+      "sourceCommit": null,
+      "deployedSourceUrl": null,
+      "deployedSourceRef": null,
+      "deployedSourceCommit": null
+    },
+    {
+      "fileName": "mythicmetals-0.19.7+1.20.4.jar",
+      "sha256": "f82f5dea1d6facd930abf8f30762c75546eb16c8ee68773d9d1049bf7de7f0aa",
+      "deployedMetadataLicense": "MIT",
+      "embeddedLicenseFiles": [
+        "LICENSE"
+      ],
+      "license": "MIT code; ARR textures",
+      "licenseUrl": "https://github.com/Noaaan/MythicMetals/blob/0.19.7+1.20.4/LICENSE",
+      "redistributionFinding": "code MIT; official modpack use expressly permitted; textures restricted",
+      "notes": "Exact deployed tag. LICENSE reserves all textures; README at same tag explicitly permits any modpack. Source MIT fork; official unmodified binary may be used in modpack, but do not treat textures or standalone reuploads as unrestricted.",
+      "evidenceUrls": [
+        "https://api.modrinth.com/v2/project/bAWzYNRd",
+        "https://github.com/Noaaan/MythicMetals",
+        "https://github.com/Noaaan/MythicMetals/blob/0.19.7+1.20.4/LICENSE"
+      ],
+      "sourceRef": "0.19.7+1.20.4",
+      "sourceCommit": "4f61b8a7d01c0edbc57fd3e14f9d2a413e0e62cf",
+      "deployedSourceUrl": null,
+      "deployedSourceRef": null,
+      "deployedSourceCommit": null
+    },
+    {
+      "fileName": "mythicmetals-decorations-0.6.1+1.20.3.jar",
+      "sha256": "b714e2098a0af1daaee7a9b35cb7c4e9347a2982800fc116961328354cedf077",
+      "deployedMetadataLicense": "MIT",
+      "embeddedLicenseFiles": [
+        "LICENSE_mythicmetals-decorations"
+      ],
+      "license": "MIT code; ARR textures",
+      "licenseUrl": "https://github.com/Noaaan/MythicMetalsDecorations/blob/0.6.1+1.20.3/LICENSE",
+      "redistributionFinding": "code permitted; binary/assets unverified",
+      "notes": "Exact deployed tag; gradle.properties targets MC1.20.4 despite filename1.20.3. LICENSE reserves all textures; no explicit binary/asset redistribution permission found on project description. Keep official JAR local-only.",
+      "evidenceUrls": [
+        "https://api.modrinth.com/v2/project/Wtv23AFN",
+        "https://github.com/Noaaan/MythicMetalsDecorations",
+        "https://github.com/Noaaan/MythicMetalsDecorations/blob/0.6.1+1.20.3/LICENSE"
+      ],
+      "sourceRef": "0.6.1+1.20.3",
+      "sourceCommit": "e31a9c7c4ffcdd6b38370a38519593c34f0b92f2",
+      "deployedSourceUrl": null,
+      "deployedSourceRef": null,
+      "deployedSourceCommit": null
+    },
+    {
+      "fileName": "nicemod-1.4.1 - 1.20.jar",
+      "sha256": "a6dd69de56fd474e599571ab0c906e3ca971cdd3a5cd715a10acf9f3205fd69b",
+      "deployedMetadataLicense": "MIT",
+      "embeddedLicenseFiles": [
+        "LICENSE_nicemod"
+      ],
+      "license": "MIT",
+      "licenseUrl": "https://github.com/MIUNO/NiceMod/blob/1.4.1/LICENSE",
+      "redistributionFinding": "permitted with MIT notice",
+      "notes": "Exact release tag contains mod_version1.4.1 -1.20 and metadata >=1.20 <1.21; build targets1.20.2. Do not use1.4.1_2 tag which targets1.21.",
+      "evidenceUrls": [
+        "https://api.modrinth.com/v2/project/QxAXhkEQ",
+        "https://github.com/MIUNO/NiceMod",
+        "https://github.com/MIUNO/NiceMod/blob/1.4.1/LICENSE"
+      ],
+      "sourceRef": "1.4.1",
+      "sourceCommit": "417dd6a481312298456cebb6e5201c56f0afb45a",
+      "deployedSourceUrl": null,
+      "deployedSourceRef": null,
+      "deployedSourceCommit": null
+    },
+    {
+      "fileName": "oritech-0.5.1+1.20.4.jar",
+      "sha256": "2dde3dcbe82124ec512ca7b05ef4fb4eb782694cbc33e576702cef87b6f02d7d",
+      "deployedMetadataLicense": "CC0-1.0",
+      "embeddedLicenseFiles": [
+        "LICENSE.md_oritech"
+      ],
+      "license": "CC0-1.0 (deployed tag)",
+      "licenseUrl": "https://github.com/Rearth/Oritech/blob/v0.5.1+1.20.4/LICENSE.md",
+      "redistributionFinding": "permitted under pinned CC0 license",
+      "notes": "Exact deployed tag and1.20.4 branch tip gradle.properties0.5.1+1.20.4. v0.6.1+1.20.4 tag points to same commit. Current Modrinth license CC-BY-4.0 differs; deployed historical tag/JAR both CC0.",
+      "evidenceUrls": [
+        "https://api.modrinth.com/v2/project/4sYI62kA",
+        "https://github.com/Rearth/Oritech",
+        "https://github.com/Rearth/Oritech/blob/v0.5.1+1.20.4/LICENSE.md"
+      ],
+      "sourceRef": "v0.5.1+1.20.4",
+      "sourceCommit": "83ba099a700478e4fd7e85548ced4f5d7227d114",
+      "deployedSourceUrl": null,
+      "deployedSourceRef": null,
+      "deployedSourceCommit": null
+    },
+    {
+      "fileName": "owo-lib-0.12.6+1.20.3.jar",
+      "sha256": "b7c1d03cb5bcfcb84ff2bd2d6a3b3a9ef2fa14ef9e53b7d3116c04838811f273",
+      "deployedMetadataLicense": "MIT",
+      "embeddedLicenseFiles": [
+        "LICENSE_owo-lib"
+      ],
+      "license": "MIT",
+      "licenseUrl": "https://github.com/wisp-forest/owo-lib/blob/0.12.6+1.20.3/LICENSE",
+      "redistributionFinding": "license-conditions",
+      "notes": "Deployed tag source targets MC1.20.3; JAR declares Minecraft>=1.20.2 and includes Jankson. Preserve bundled notices.",
+      "evidenceUrls": [
+        "https://github.com/wisp-forest/owo-lib",
+        "https://github.com/wisp-forest/owo-lib/blob/0.12.6+1.20.3/LICENSE"
+      ],
+      "sourceRef": "refs/tags/0.12.6+1.20.3",
+      "sourceCommit": "a06c4776d40248f2f897d86a94ea9b48187c603d",
+      "deployedSourceUrl": null,
+      "deployedSourceRef": null,
+      "deployedSourceCommit": null
+    },
+    {
+      "fileName": "paladin-furniture-mod-1.4.4-fabric-mc1.20.4.jar",
+      "sha256": "7df89e7f0146495dd634724c15ffb5e0b184192dc9468cfa221f4ff9aa5ff08f",
+      "deployedMetadataLicense": "LGPL-3.0-only",
+      "embeddedLicenseFiles": [],
+      "license": "LGPL-3.0-only (deployed); LGPL-3.0-only code / PolyForm-Shield-1.0.0 assets (current branch)",
+      "licenseUrl": "https://github.com/UnlikePaladin/paladins-furniture/blob/architectury-1.20.4/LICENSE.md",
+      "redistributionFinding": "deployed-license-conditions; current-assets-review",
+      "notes": "Current compatible branch targets1.20.4 but modVersion1.5.0 differs from deployed1.4.4. Do not use v1.20.4-v1.4.4 tag blindly: it points to MC1.17.1 source. Deployed JAR metadata and CurseForge list LGPL3. Current fork assets follow PolyForm Shield, see LICENSE.md.",
+      "evidenceUrls": [
+        "https://github.com/UnlikePaladin/paladins-furniture",
+        "https://github.com/UnlikePaladin/paladins-furniture/blob/architectury-1.20.4/LICENSE.md",
+        "https://github.com/UnlikePaladin/paladins-furniture/blob/v1.20.4-v1.4.4/LICENSE",
+        "https://www.curseforge.com/minecraft/mc-mods/paladins-furniture"
+      ],
+      "sourceRef": "refs/heads/architectury-1.20.4",
+      "sourceCommit": "0921e7cdd2684061f2372088bdedd37a9dce838d",
+      "deployedSourceUrl": null,
+      "deployedSourceRef": null,
+      "deployedSourceCommit": null
+    },
+    {
+      "fileName": "Patchouli-1.20.4-85-FABRIC.jar",
+      "sha256": "bad24b0918e88cdf84c64dbe928cbf391c7920558022e3f1d5167d0af5878eca",
+      "deployedMetadataLicense": "CC BY-NC-SA 3.0",
+      "embeddedLicenseFiles": [],
+      "license": "CC-BY-NC-SA-3.0",
+      "licenseUrl": "https://github.com/VazkiiMods/Patchouli/blob/release-1.20.4-85/LICENSE",
+      "redistributionFinding": "noncommercial-sharealike",
+      "notes": "Source-visible non-OSI license allows attributed noncommercial derivatives and redistribution under same terms. Exact deployed tag verified; MC1.20.4. Keep standalone dependency; upstream README warns about bundled raw Mojang mappings in Jar-in-Jar.",
+      "evidenceUrls": [
+        "https://github.com/VazkiiMods/Patchouli",
+        "https://github.com/VazkiiMods/Patchouli/blob/release-1.20.4-85/LICENSE"
+      ],
+      "sourceRef": "refs/tags/release-1.20.4-85",
+      "sourceCommit": "4522fbb3e42b5a31688c7c7666cf13c12c0fdb83",
+      "deployedSourceUrl": null,
+      "deployedSourceRef": null,
+      "deployedSourceCommit": null
+    },
+    {
+      "fileName": "PTS-Deco-2.1.0-Fabric+Quilt1.20-1.20.4.jar",
+      "sha256": "3b9f18e36755fe087a6b7c5d9501be6b92ee8039c27e207bd2d1f4263dbe02b5",
+      "deployedMetadataLicense": "All Rights Reserved",
+      "embeddedLicenseFiles": [],
+      "license": "All Rights Reserved",
+      "licenseUrl": "https://www.curseforge.com/minecraft/mc-mods/pts-deco",
+      "redistributionFinding": "modpack-permission",
+      "notes": "No source contact in deployed JAR. Official CurseForge page explicitly permits including this mod in a modpack; this is permission for unchanged modpack inclusion, not a general source or asset license.",
+      "evidenceUrls": [
+        "https://www.curseforge.com/minecraft/mc-mods/pts-deco"
+      ],
+      "sourceRef": null,
+      "sourceCommit": null,
+      "deployedSourceUrl": null,
+      "deployedSourceRef": null,
+      "deployedSourceCommit": null
+    },
+    {
+      "fileName": "PuzzlesLib-v20.4.52-1.20.4-Fabric.jar",
+      "sha256": "cfa2fc847681e69d31a4169ce22c3d57d2d080e4bcd7a878525e3400296c0770",
+      "deployedMetadataLicense": "MPL-2.0",
+      "embeddedLicenseFiles": [
+        "LICENSE-ASSETS.md",
+        "LICENSE.md"
+      ],
+      "license": "MPL-2.0 code; All Rights Reserved assets",
+      "licenseUrl": "https://github.com/Fuzss/puzzleslib/blob/1.20.4/LICENSE.md",
+      "redistributionFinding": "asset-permission-unverified",
+      "notes": "Current1.20.4 branch version20.4.53 differs from deployed20.4.52. JAR includes LICENSE.md MPL2 and LICENSE-ASSETS.md ARR. Fork MPL-covered code; preserve asset restrictions. Public whole-JAR redistribution not inferred from code license.",
+      "evidenceUrls": [
+        "https://github.com/Fuzss/puzzleslib",
+        "https://github.com/Fuzss/puzzleslib/blob/1.20.4/LICENSE-ASSETS.md",
+        "https://github.com/Fuzss/puzzleslib/blob/1.20.4/LICENSE.md"
+      ],
+      "sourceRef": "refs/heads/1.20.4",
+      "sourceCommit": "dff8529b28db23e197c34f47792839ae305571e5",
+      "deployedSourceUrl": null,
+      "deployedSourceRef": null,
+      "deployedSourceCommit": null
+    },
+    {
+      "fileName": "realtime-1.0.3-1.20-1.21.1.jar",
+      "sha256": "d4e65606ac1bc7e9dedd476ff08fb7e96d958ede60f002946a503d86ecf7f319",
+      "deployedMetadataLicense": "MIT",
+      "embeddedLicenseFiles": [],
+      "license": "MIT",
+      "licenseUrl": "https://github.com/ttianeo/mc-realtime/blob/1.20-1.21.1/src/main/resources/fabric.mod.json",
+      "redistributionFinding": "license-conditions",
+      "notes": "Both deployed and upstream fabric.mod.json explicitly declare MIT; no root LICENSE file found. gradle.properties confirms version1.0.3-1.20-1.21.1; compiled against1.20 and declares1.20 through1.21.1.",
+      "evidenceUrls": [
+        "https://github.com/ttianeo/mc-realtime",
+        "https://github.com/ttianeo/mc-realtime/blob/1.20-1.21.1/src/main/resources/fabric.mod.json"
+      ],
+      "sourceRef": "refs/heads/1.20-1.21.1",
+      "sourceCommit": "467b5728786dbfd260df9aced99770343b732267",
+      "deployedSourceUrl": null,
+      "deployedSourceRef": null,
+      "deployedSourceCommit": null
+    },
+    {
+      "fileName": "rechiseled-1.2.1-fabric-mc1.20.4.jar",
+      "sha256": "5e3745c4699964403fe25eb316312e5340d5d506f4d7af9336ea80922fdae90c",
+      "deployedMetadataLicense": "All rights reserved",
+      "embeddedLicenseFiles": [],
+      "license": "All Rights Reserved",
+      "licenseUrl": "https://github.com/SuperMartijn642/Rechiseled#faq",
+      "redistributionFinding": "modpack-permission",
+      "notes": "Public code has no open-source license; deployed fabric.mod.json ARR. Official README FAQ explicitly permits using this mod in modpacks. Preserve unchanged JAR and author notice.",
+      "evidenceUrls": [
+        "https://github.com/SuperMartijn642/Rechiseled",
+        "https://github.com/SuperMartijn642/Rechiseled#faq"
+      ],
+      "sourceRef": null,
+      "sourceCommit": null,
+      "deployedSourceUrl": null,
+      "deployedSourceRef": null,
+      "deployedSourceCommit": null
+    },
+    {
+      "fileName": "resourcefulconfig-fabric-1.20.4-2.4.8.jar",
+      "sha256": "1d82d48ec1f8e911f520a4dd07f74240e890db74209eecc8330ca6d5e016f104",
+      "deployedMetadataLicense": "MIT",
+      "embeddedLicenseFiles": [],
+      "license": "MIT",
+      "licenseUrl": "https://github.com/Team-Resourceful/Resourceful-Config/blob/1.20.4/LICENSE.md",
+      "redistributionFinding": "license-conditions",
+      "notes": "Corrected misspelled source URL in deployed metadata (Resouceful-Config). Branch README references2.4.8 and gradle.properties targets1.20.4. v2.4.8 tag currently resolves to1.21.4 branch commit; select1.20.4 branch instead.",
+      "evidenceUrls": [
+        "https://github.com/Team-Resourceful/Resourceful-Config",
+        "https://github.com/Team-Resourceful/Resourceful-Config/blob/1.20.4/LICENSE.md"
+      ],
+      "sourceRef": "refs/heads/1.20.4",
+      "sourceCommit": "ce3cc42d9a27cacbd98f802c55dab1ea083a57d9",
+      "deployedSourceUrl": null,
+      "deployedSourceRef": null,
+      "deployedSourceCommit": null
+    },
+    {
+      "fileName": "resourcefullib-fabric-1.20.4-2.4.10.jar",
+      "sha256": "f79dadaa2db8c621a064e678c4ec6a01f42b4f48a582aa4794da5626d313806f",
+      "deployedMetadataLicense": "MIT",
+      "embeddedLicenseFiles": [],
+      "license": "MIT",
+      "licenseUrl": "https://github.com/Team-Resourceful/ResourcefulLib/blob/v2.4.10/LICENSE",
+      "redistributionFinding": "license-conditions",
+      "notes": "Exact deployed release tag targets1.20.4; bundled yabn1.0.3 and bytecodecs1.0.2 notices must remain.",
+      "evidenceUrls": [
+        "https://github.com/Team-Resourceful/ResourcefulLib",
+        "https://github.com/Team-Resourceful/ResourcefulLib/blob/v2.4.10/LICENSE"
+      ],
+      "sourceRef": "refs/tags/v2.4.10",
+      "sourceCommit": "0d6cec97dd8755370c6242d83c5ad6fb4310a147",
+      "deployedSourceUrl": null,
+      "deployedSourceRef": null,
+      "deployedSourceCommit": null
+    },
+    {
+      "fileName": "starlight-1.1.3+fabric.f5dcd1a.jar",
+      "sha256": "bdf3a3f1c470894d8d24726c12e89eb309c7c46d86ff8527490c5ce5bb67b989",
+      "deployedMetadataLicense": "LGPL-3.0-only",
+      "embeddedLicenseFiles": [
+        "LICENSE"
+      ],
+      "license": "LGPL-3.0-only",
+      "licenseUrl": "https://github.com/PaperMC/Starlight/blob/fabric/LICENSE",
+      "redistributionFinding": "license-conditions",
+      "notes": "Fabric branch targets MC1.20.4 modVersion1.1.3. Deployed JAR embeds short source hash f5dcd1a; source pin is branch latest and not asserted binary-identical. Exact deployed short hash resolved via GitHub commits API to f5dcd1a4278aba0aceb92a64bb91d411154449f7.",
+      "evidenceUrls": [
+        "https://github.com/PaperMC/Starlight",
+        "https://github.com/PaperMC/Starlight/blob/fabric/LICENSE",
+        "https://github.com/PaperMC/Starlight/commit/f5dcd1a4278aba0aceb92a64bb91d411154449f7"
+      ],
+      "sourceRef": "refs/heads/fabric",
+      "sourceCommit": "cca03d62da48e876ac79196bad16864e8a96bbeb",
+      "deployedSourceUrl": null,
+      "deployedSourceRef": null,
+      "deployedSourceCommit": "f5dcd1a4278aba0aceb92a64bb91d411154449f7"
+    },
+    {
+      "fileName": "Stoneworks-v20.4.0-1.20.4-Fabric.jar",
+      "sha256": "8eec1130afc17125a0295fd142741e5f242f5255046f9b0a3d61a6d8b9ca8150",
+      "deployedMetadataLicense": "MPL-2.0",
+      "embeddedLicenseFiles": [
+        "LICENSE-ASSETS.md",
+        "LICENSE.md"
+      ],
+      "license": "MPL-2.0 code; All Rights Reserved assets",
+      "licenseUrl": "https://github.com/Fuzss/stoneworks/blob/1.20.4/LICENSE.md",
+      "redistributionFinding": "asset-permission-unverified",
+      "notes": "Compatible branch gradle.properties confirms20.4.0. Both deployed JAR and source include separate ARR LICENSE-ASSETS.md. Fork MPL-covered code; whole-JAR public redistribution requires separate asset permission.",
+      "evidenceUrls": [
+        "https://github.com/Fuzss/stoneworks",
+        "https://github.com/Fuzss/stoneworks/blob/1.20.4/LICENSE-ASSETS.md",
+        "https://github.com/Fuzss/stoneworks/blob/1.20.4/LICENSE.md"
+      ],
+      "sourceRef": "refs/heads/1.20.4",
+      "sourceCommit": "fc6ff7702dcf3bc203a4466039a2abe9c55b560f",
+      "deployedSourceUrl": null,
+      "deployedSourceRef": null,
+      "deployedSourceCommit": null
+    },
+    {
+      "fileName": "supermartijn642configlib-1.1.8a-fabric-mc1.20.2.jar",
+      "sha256": "b3a48fdee5415c614ba4e9360b8b904315996fafd2a907f666771fb09ea97eac",
+      "deployedMetadataLicense": "All rights reserved",
+      "embeddedLicenseFiles": [],
+      "license": "All Rights Reserved",
+      "licenseUrl": "https://github.com/SuperMartijn642/SuperMartijn642sConfigLib#faq",
+      "redistributionFinding": "modpack-permission",
+      "notes": "Source publicly visible without open license; deployed ARR. Official README FAQ explicitly allows modpacks. JAR declares Minecraft>=1.20.2 <1.21, compatible range includes1.20.4.",
+      "evidenceUrls": [
+        "https://github.com/SuperMartijn642/SuperMartijn642sConfigLib",
+        "https://github.com/SuperMartijn642/SuperMartijn642sConfigLib#faq"
+      ],
+      "sourceRef": null,
+      "sourceCommit": null,
+      "deployedSourceUrl": null,
+      "deployedSourceRef": null,
+      "deployedSourceCommit": null
+    },
+    {
+      "fileName": "supermartijn642corelib-1.1.20-fabric-mc1.20.4.jar",
+      "sha256": "79d7a9f469aaf5a9e0a2e4d974aeb30c6ee27cff004c61044dae224e1cd9339b",
+      "deployedMetadataLicense": "All rights reserved",
+      "embeddedLicenseFiles": [],
+      "license": "All Rights Reserved",
+      "licenseUrl": "https://github.com/SuperMartijn642/SuperMartijn642sCoreLib#faq",
+      "redistributionFinding": "modpack-permission",
+      "notes": "Source publicly visible without open license; deployed ARR. Official README FAQ explicitly allows modpacks. JAR declares Minecraft>=1.20.4 <1.20.5.",
+      "evidenceUrls": [
+        "https://github.com/SuperMartijn642/SuperMartijn642sCoreLib",
+        "https://github.com/SuperMartijn642/SuperMartijn642sCoreLib#faq"
+      ],
+      "sourceRef": null,
+      "sourceCommit": null,
+      "deployedSourceUrl": null,
+      "deployedSourceRef": null,
+      "deployedSourceCommit": null
+    },
+    {
+      "fileName": "TCPShield-2.8.1.jar",
+      "sha256": "43be074c48bedc99c8f0cb6416f96e968e0e350d11d03150b6f01a9f09bc0a5c",
+      "deployedMetadataLicense": null,
+      "embeddedLicenseFiles": [],
+      "license": "MIT",
+      "licenseUrl": "https://github.com/TCPShield/RealIP/blob/2.8.1/LICENSE",
+      "redistributionFinding": "license-conditions",
+      "notes": "Not a Fabric mod: deployed JAR has plugin.yml, bungee.yml and velocity-plugin.json, no fabric.mod.json. Source is Bukkit/Bungee/Velocity plugin and should be inventoried separately or excluded from Fabric modpack loading.",
+      "evidenceUrls": [
+        "https://github.com/TCPShield/RealIP",
+        "https://github.com/TCPShield/RealIP/blob/2.8.1/LICENSE",
+        "https://github.com/TCPShield/RealIP/releases/download/2.8.1/TCPShield-2.8.1.jar"
+      ],
+      "sourceRef": "refs/tags/2.8.1",
+      "sourceCommit": "b316629e047535cd227bf750f4a9d729137922e7",
+      "deployedSourceUrl": null,
+      "deployedSourceRef": null,
+      "deployedSourceCommit": null
+    },
+    {
+      "fileName": "timeoutout-1.0.4+1.20.2.jar",
+      "sha256": "acb1be1b9b88aaee5d780199d407e5b6b04883c5d93a7f9a17e8f8d9eddfccba",
+      "deployedMetadataLicense": "MIT",
+      "embeddedLicenseFiles": [
+        "LICENSE_timeoutout"
+      ],
+      "license": "MIT",
+      "licenseUrl": "https://github.com/PotatoPresident/TimeOutOut/blob/1.0.4/LICENSE",
+      "redistributionFinding": "license-conditions",
+      "notes": "Deployed tag targets1.20.2; JAR declaresMinecraft>=1.20.2. Preserve MIT notice from LICENSE_timeoutout.",
+      "evidenceUrls": [
+        "https://github.com/PotatoPresident/TimeOutOut",
+        "https://github.com/PotatoPresident/TimeOutOut/blob/1.0.4/LICENSE"
+      ],
+      "sourceRef": "refs/tags/1.0.4",
+      "sourceCommit": "14c126ab3dba59399d658bf52c198e2fdcdb8010",
+      "deployedSourceUrl": null,
+      "deployedSourceRef": null,
+      "deployedSourceCommit": null
+    },
+    {
+      "fileName": "trafficcraft-fabric-1.20.4-1.1.3.jar",
+      "sha256": "ddf1d434be7eee0ab7ff67ba4712cb213900bc10c43776cc52dddc40697a0a58",
+      "deployedMetadataLicense": "GNU General Public License v3.0",
+      "embeddedLicenseFiles": [],
+      "license": "GPL-3.0",
+      "licenseUrl": "https://github.com/MisterJulsen/TrafficCraft/blob/1.20.4-dev/LICENSE",
+      "redistributionFinding": "GPL-3.0 source; bundled ForgeConfigAPIPort assets All Rights Reserved, public whole-JAR redistribution unverified",
+      "notes": "Branch1.20.4-dev gradle.properties matches deployed1.1.3, MC1.20.4, DragonLib2.2.24; regular1.20.4 branch is1.1.2. JAR embeds DragonLib and ForgeConfigAPIPort; preserve their notices. Bundled META-INF/jars/forgeconfigapiport-fabric-20.4.3.jar contains LICENSE-ASSETS.md; keep deployed whole JAR local until asset permission is verified.",
+      "evidenceUrls": [
+        "https://github.com/MisterJulsen/TrafficCraft",
+        "https://github.com/MisterJulsen/TrafficCraft/blob/1.20.4-dev/LICENSE"
+      ],
+      "sourceRef": "refs/heads/1.20.4-dev",
+      "sourceCommit": "c6c7092df4c1f77e438e507756255eb47e7a3585",
+      "deployedSourceUrl": null,
+      "deployedSourceRef": null,
+      "deployedSourceCommit": null
+    },
+    {
+      "fileName": "webstreamer-1.5.0.jar",
+      "sha256": "e8efce988e65abd58f6b6371c33bdf7a2ea61aee209a53dc5fc3b6415f118041",
+      "deployedMetadataLicense": "LGPL-3.0",
+      "embeddedLicenseFiles": [
+        "LICENSE_webstreamer"
+      ],
+      "license": "LGPL-3.0",
+      "licenseUrl": "https://github.com/mindstorm38/fabric-webstreamer/blob/v1.5.0/LICENSE",
+      "redistributionFinding": "license-conditions",
+      "notes": "Root manages existing minefed fork latest ref. Deployed1.5.0 declares Minecraft>=1.20.3 and Java>=17; includes FFmpeg/JavaCPP/JavaCV/JSVG/m3u8-parser JARs requiring bundled-license preservation.",
+      "evidenceUrls": [
+        "https://github.com/mindstorm38/fabric-webstreamer",
+        "https://github.com/mindstorm38/fabric-webstreamer/blob/v1.5.0/LICENSE"
+      ],
+      "sourceRef": "refs/tags/v1.5.0",
+      "sourceCommit": "62d2f5bd26364aa994055ab55d2fd55461f87321",
+      "deployedSourceUrl": null,
+      "deployedSourceRef": null,
+      "deployedSourceCommit": null
+    },
+    {
+      "fileName": "wirelessredstone-fabric-1.2.2+1.20.4.jar",
+      "sha256": "c974ea1ce01c64f614d15227575640399475a0f44b8e36ca4fb1932b452612bd",
+      "deployedMetadataLicense": "GPL-3.0",
+      "embeddedLicenseFiles": [
+        "LICENSE"
+      ],
+      "license": "GPL-3.0",
+      "licenseUrl": "https://github.com/Razzokk/wireless-redstone/blob/v1.2.2+1.20.4/LICENSE",
+      "redistributionFinding": "license-conditions",
+      "notes": "Exact deployed release tag, Minecraft1.20.4 / Fabric>=0.17. Preserve GPL source and license requirements.",
+      "evidenceUrls": [
+        "https://github.com/Razzokk/wireless-redstone",
+        "https://github.com/Razzokk/wireless-redstone/blob/v1.2.2+1.20.4/LICENSE"
+      ],
+      "sourceRef": "refs/tags/v1.2.2+1.20.4",
+      "sourceCommit": "3a7b4d614bb3cc45cd90a809052f0eefb2ae1201",
+      "deployedSourceUrl": null,
+      "deployedSourceRef": null,
+      "deployedSourceCommit": null
+    },
+    {
+      "fileName": "worldedit-hang-fix-v1.0.2-mc1.20.6-fabric.jar",
+      "sha256": "0d375f10e18bee8dd2c00c683f0a9b9caf7f8b0b77ac0416bab6cfddee94b063",
+      "deployedMetadataLicense": null,
+      "embeddedLicenseFiles": [
+        "LICENSE_worldedit-hang-fix"
+      ],
+      "license": "LGPL-3.0",
+      "licenseUrl": "https://github.com/Fallen-Breath/worldedit-hang-fix/blob/v1.0.2/LICENSE",
+      "redistributionFinding": "license-conditions",
+      "notes": "Filename says mc1.20.6 but deployed metadata declaresMinecraft>=1.14 and depends on WorldEdit. Exact1.0.2 source tag verified; runtime compatibility still should be validated before deployment.",
+      "evidenceUrls": [
+        "https://github.com/Fallen-Breath/worldedit-hang-fix",
+        "https://github.com/Fallen-Breath/worldedit-hang-fix/blob/v1.0.2/LICENSE"
+      ],
+      "sourceRef": "refs/tags/v1.0.2",
+      "sourceCommit": "a68f1feda94d3cc2fa496726e3983d440bad2466",
+      "deployedSourceUrl": null,
+      "deployedSourceRef": null,
+      "deployedSourceCommit": null
+    },
+    {
+      "fileName": "worldedit-mod-7.3.0.jar",
+      "sha256": "c9deee4bdd58338585433df92475c43b11a0693706a5665506a3ac087d4c47e4",
+      "deployedMetadataLicense": "GPL3",
+      "embeddedLicenseFiles": [],
+      "license": "GPL-3.0",
+      "licenseUrl": "https://github.com/EngineHub/WorldEdit/blob/7.3.0/LICENSE.txt",
+      "redistributionFinding": "license-conditions",
+      "notes": "Exact deployed7.3.0+6678-55745ad tag resolves55745adbdb3fecbb2d5bac6d90655c511245a552. Fabric build; source README GPL3. Preserve bundled FabricAPI module notices.",
+      "evidenceUrls": [
+        "https://github.com/EngineHub/WorldEdit",
+        "https://github.com/EngineHub/WorldEdit/blob/7.3.0/LICENSE.txt"
+      ],
+      "sourceRef": "refs/tags/7.3.0",
+      "sourceCommit": "55745adbdb3fecbb2d5bac6d90655c511245a552",
+      "deployedSourceUrl": null,
+      "deployedSourceRef": null,
+      "deployedSourceCommit": null
+    },
+    {
+      "fileName": "yuushya-1.20.4-fabric-2.2.3.jar",
+      "sha256": "cd738522891f31f3d26fe753f53d1c2e44c4055e49d6678c0088624316d4a445",
+      "deployedMetadataLicense": "MIT",
+      "embeddedLicenseFiles": [
+        "LICENSE"
+      ],
+      "license": "MIT code; CC-BY-NC-SA-4.0 assets with author terms",
+      "licenseUrl": "https://github.com/XiLaiTL/Yuushya-Townscape/blob/master/LICENSE",
+      "redistributionFinding": "modpack-permission-with-attribution",
+      "notes": "Official author's GitHub mirror master has1.20.4 Gradle subprojects but root modVersion2.2.1, older than deployed2.2.3. Gitee is source contact in JAR. Terms permit modpack/server distribution with creator-page attribution and Yuushya portion free; other-version ports require author permission. Authoritative Gitee v2.2.3 tag exists and peels to e76ea8ac5454ec424771f593ce05ee0082e4b278. Import that tag to minefed GitHub fork before using exact deployed-source gitlink; GitHub-only mirror pin remains older.",
+      "evidenceUrls": [
+        "https://gitee.com/yuushyatownscape/yuushya-townscape/tree/v2.2.3/",
+        "https://github.com/XiLaiTL/Yuushya-Townscape",
+        "https://github.com/XiLaiTL/Yuushya-Townscape/blob/master/LICENSE",
+        "https://github.com/XiLaiTL/Yuushya-Townscape/blob/master/Terms_yuushya_user.md",
+        "https://yuushya.com/townscape/"
+      ],
+      "sourceRef": "refs/heads/master",
+      "sourceCommit": "817b148712feca477ce864d1d737b8abed2ae33f",
+      "deployedSourceUrl": "https://gitee.com/yuushyatownscape/yuushya-townscape",
+      "deployedSourceRef": "refs/tags/v2.2.3",
+      "deployedSourceCommit": "e76ea8ac5454ec424771f593ce05ee0082e4b278"
+    },
+    {
+      "fileName": "yuushya-modelling-1.20.4-fabric-2.2.0.jar",
+      "sha256": "76051599bbc7dacd4779528d116bdd87f2edbf89f8bb0ace8b20f0c29c82ce8c",
+      "deployedMetadataLicense": "MIT",
+      "embeddedLicenseFiles": [
+        "LICENSE"
+      ],
+      "license": "MIT code; Yuushya asset terms apply where included",
+      "licenseUrl": "https://github.com/XiLaiTL/Yuushya-Modelling/blob/master/LICENSE",
+      "redistributionFinding": "modpack-permission-with-attribution",
+      "notes": "Separate official author repo corrects deployed metadata pointing generically at Townscape. Root modVersion2.2.0 and1.20.4 Gradle subprojects match deployed. Source hardcodes127.0.0.1:7890 HTTP/HTTPS proxy; override for future builds. Retain author/asset attribution.",
+      "evidenceUrls": [
+        "https://github.com/XiLaiTL/Yuushya-Modelling",
+        "https://github.com/XiLaiTL/Yuushya-Modelling/blob/master/LICENSE",
+        "https://github.com/XiLaiTL/Yuushya-Townscape/blob/master/Terms_yuushya_user.md",
+        "https://yuushya.com/townscape/"
+      ],
+      "sourceRef": "refs/heads/master",
+      "sourceCommit": "3e36b9f66c0ae10202379f7287f88f7906976163",
+      "deployedSourceUrl": null,
+      "deployedSourceRef": null,
+      "deployedSourceCommit": null
+    }
+  ]
+}
