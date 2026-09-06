@@ -23,7 +23,27 @@ python scripts/mods.py verify --sources
 
 `hydrate`는 공식 URL이 확인된 누락 JAR를 다운로드하고 해시를 검증한다. URL이 없는 자체 빌드 기준본은 lock 파일에 기록된 경로에 운영 JAR를 직접 가져와야 한다. 다른 버전이나 해시가 맞지 않는 파일을 자동으로 대체하지 않는다. 이 작업 공간에는 관측한 원본 70개를 모두 준비했다.
 
-## 운영 JAR로 패키징 준비
+## 소스와 JAR를 한 번에 빌드
+
+Windows에서는 다음 명령으로 소스 모드와 JAR 전용 모드를 함께 패키징한다.
+
+```powershell
+.\build-modpack.ps1
+```
+
+Gradle 직접 실행은 `gradlew.bat build` 또는 `./gradlew build`다. JDK 17·21, Python 3.10 이상,
+MTR 웹 UI용 Node.js 22/npm이 필요하다. 이 작업 공간의 도구 경로는 Git에서 제외한
+`build.local.json`에 설정되어 있다.
+
+`inventory/build-recipes.json`은 소스 빌드 53개와 JAR 사용 15개를 구분한다. 기존 소스 중
+CityCraft와 Macaw Doors/Fences는 현재 Fabric 1.20.4용 빌드 입력이 아니므로 운영 JAR를 사용한다.
+각 소스는 전용 wrapper/JDK로 빌드하며 실패 시 운영 JAR로 자동 대체하지 않는다.
+
+완성 ZIP과 SHA-256은 `build/distributions/`, 최근 성공 결과 경로는 `latest.json`에 기록된다.
+각 JAR의 실제 버전·해시, 소스 커밋과 내용 해시, 라이선스 고지도 ZIP에 포함한다.
+환경 설정과 개별 모드 빌드, 로그 확인 방법은 [빌드 안내](docs/BUILDING.md)를 참고한다.
+
+## 운영 JAR 기준본 패키징
 
 ```sh
 python scripts/mods.py stage
@@ -34,7 +54,8 @@ python scripts/mods.py pack --private
 
 이 ZIP은 로컬 검토용 운영 바이너리 기준본이다. 공개 재배포 권한이 확인되지 않은 파일을 포함하므로 `--private` 없이 전체 ZIP을 생성하면 실패한다. 공개 배포에는 lock 파일의 라이선스 조건과 대응 소스 제공 의무를 별도로 충족해야 한다.
 
-이 단계에서 **전체 소스 컴파일과 서버 기동 검증은 수행하지 않는다**. 기존 루트 Gradle 구성은 이전 4개 프로젝트의 composite build이며, 새 모드 전체를 빌드하는 진입점은 아직 아니다. 모드별 Gradle/JDK 차이, 일부 공개 소스와 운영 버전의 차이, 자산 라이선스를 정리한 뒤 일괄 소스 빌드를 연결해야 한다. 검증 명령은 JAR 무결성과 소스 pin을 확인하며 Minecraft 런타임 호환성을 보증하지 않는다.
+운영 기준본 패키징은 원본 JAR를 보존한다. 소스를 컴파일하는 Gradle 빌드와 구분하며,
+두 방식 모두 Minecraft 서버/클라이언트 기동 검증이나 운영 서버 업로드·재시작을 수행하지 않는다.
 
 자세한 명령과 실패 처리 방식은 [도구 사용법](scripts/README.md), 소스 업데이트와 빌드 전 확인 사항은 [소스 관리 기록](docs/SOURCE_MANAGEMENT.md)을 참고한다.
 
