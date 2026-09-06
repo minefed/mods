@@ -22,3 +22,7 @@
 	path = architectury-api
 	url = https://github.com/minefed/architectury-api
 	branch = codex/minefed-1.20.4
+[submodule "Automobility-Refueled"]
+	path = Automobility-Refueled
+	url = https://github.com/minefed/Automobility-Refueled
+	branch = codex/minefed-1.20.4
