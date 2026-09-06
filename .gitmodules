@@ -150,3 +150,7 @@
 	path = mishanguc
 	url = https://github.com/minefed/mishanguc
 	branch = codex/minefed-1.20.4
+[submodule "owo-lib"]
+	path = owo-lib
+	url = https://github.com/minefed/owo-lib
+	branch = codex/minefed-1.20.4
