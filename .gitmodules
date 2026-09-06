@@ -226,3 +226,7 @@
 	path = Yuushya-Townscape
 	url = https://github.com/minefed/Yuushya-Townscape
 	branch = codex/minefed-1.20.4
+[submodule "Modern-Lights"]
+	path = Modern-Lights
+	url = https://github.com/minefed/Modern-Lights
+	branch = codex/minefed-1.20.4
