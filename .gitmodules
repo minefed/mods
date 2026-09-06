@@ -1,6 +1,7 @@
 [submodule "Minecraft-Transit-Railway"]
 	path = Minecraft-Transit-Railway
 	url = https://github.com/minefed/Minecraft-Transit-Railway
+	branch = codex/minefed-1.20.4
 [submodule "fabric-webstreamer"]
 	path = fabric-webstreamer
 	url = https://github.com/minefed/fabric-webstreamer
