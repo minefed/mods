@@ -182,6 +182,88 @@ with gradle_cache_lock(root):
         self.release(holder)
 
 
+class GradleProcessTests(unittest.TestCase):
+    worker = """
+import os
+from pathlib import Path
+import subprocess
+import sys
+import time
+from build_modpack import _file_lock
+
+directory, role = Path(sys.argv[1]), sys.argv[2]
+if role == 'wrapper':
+    subprocess.Popen([sys.executable, '-u', '-c', sys.argv[3], str(directory), 'descendant'],
+                     stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+with _file_lock(directory / (role + '.lock'), 'Unexpected test lock contender'):
+    (directory / (role + '.ready')).write_text(str(os.getpid()))
+    while True:
+        time.sleep(0.1)
+"""
+
+    def assert_worker_released(self, directory, role):
+        # The worker holds this OS lock for its entire lifetime. Reacquiring it
+        # is portable evidence that cleanup finished, without guessing user PIDs.
+        with (directory / (role + '.lock')).open('r+b') as stream:
+            if os.name == 'nt':
+                import msvcrt
+                msvcrt.locking(stream.fileno(), msvcrt.LK_NBLCK, 1)
+                msvcrt.locking(stream.fileno(), msvcrt.LK_UNLCK, 1)
+            else:
+                import fcntl
+                fcntl.flock(stream.fileno(), fcntl.LOCK_EX | fcntl.LOCK_NB)
+                fcntl.flock(stream.fileno(), fcntl.LOCK_UN)
+
+    def test_cancellation_stops_wrapper_and_descendant_before_cache_unlock(self):
+        for exception_type in (KeyboardInterrupt, SystemExit, RuntimeError):
+            with self.subTest(exception=exception_type.__name__), \
+                    tempfile.TemporaryDirectory(prefix='minefed-cancel-test-') as temporary:
+                directory = Path(temporary).resolve()
+                command = [sys.executable, '-u', '-c', self.worker, str(directory), 'wrapper', self.worker]
+                original_wait = subprocess.Popen.wait
+                cancelled = []
+
+                def wait_then_cancel(process, *args, **kwargs):
+                    if process.args == command and not cancelled:
+                        cancelled.append(process)
+                        deadline = time.monotonic() + 15
+                        while not all((directory / (role + '.ready')).exists() for role in ('wrapper', 'descendant')):
+                            if process.poll() is not None or time.monotonic() >= deadline:
+                                raise AssertionError('Cancellation fixture did not start both processes')
+                            time.sleep(0.02)
+                        raise exception_type('Simulated runner cancellation')
+                    return original_wait(process, *args, **kwargs)
+
+                environment = dict(os.environ, GRADLE_USER_HOME=str(directory / 'gradle-home'))
+                try:
+                    with patch.dict(os.environ, environment), \
+                            patch.object(subprocess.Popen, 'wait', new=wait_then_cancel), \
+                            (directory / 'worker.log').open('w') as log:
+                        with builder.gradle_cache_lock(directory):
+                            with self.assertRaisesRegex(exception_type, 'Simulated runner cancellation'):
+                                builder.run_gradle_process(command, cwd=Path(__file__).resolve().parent,
+                                                           env=environment, stdout=log)
+                            # The global lock is still held here. Both real test
+                            # processes must already have released their own locks.
+                            self.assert_worker_released(directory, 'wrapper')
+                            self.assert_worker_released(directory, 'descendant')
+                    self.assertIsNotNone(cancelled[0].poll())
+                finally:
+                    for process in cancelled:
+                        if process.poll() is None:
+                            builder.stop_process_tree(process)
+
+    def test_normal_process_exit_preserves_status_and_output(self):
+        with tempfile.TemporaryDirectory(prefix='minefed-process-test-') as temporary:
+            directory = Path(temporary)
+            with (directory / 'output.log').open('w') as output:
+                result = builder.run_gradle_process(
+                    [sys.executable, '-c', "import sys; print('build failed'); sys.exit(7)"],
+                    cwd=directory, env=dict(os.environ), stdout=output)
+            self.assertEqual(result.returncode, 7)
+            self.assertIn('build failed', (directory / 'output.log').read_text())
+
+
 class MixedBuildTests(unittest.TestCase):
     def setUp(self):
         self.temporary = tempfile.TemporaryDirectory(prefix="minefed-build-test-")
@@ -266,8 +348,6 @@ class MixedBuildTests(unittest.TestCase):
         outputs = [{"filename": "alpha-built.jar"}] if outputs is None else outputs
 
         def invoke(command, *args, **kwargs):
-            if command[0] != "fake-gradle":
-                return self.real_run(command, *args, **kwargs)
             kwargs["stdout"].write("Fake Gradle completed fixture phase\n")
             if not returncode:
                 for output in outputs:
@@ -279,7 +359,7 @@ class MixedBuildTests(unittest.TestCase):
             return subprocess.CompletedProcess(command, returncode)
 
         with patch.object(builder, "wrapper_command", return_value=["fake-gradle"]), \
-                patch.object(builder.subprocess, "run", side_effect=invoke) as process:
+                patch.object(builder, "run_gradle_process", side_effect=invoke) as process:
             builder.build_source(self.root, run, "alpha")
         return [call.args[0] for call in process.call_args_list if call.args[0][0] == "fake-gradle"]
 

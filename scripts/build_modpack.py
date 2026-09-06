@@ -13,6 +13,7 @@ import os
 from pathlib import Path
 import re
 import shutil
+import signal
 import subprocess
 import sys
 import tempfile
@@ -378,6 +379,41 @@ def check_tool_fingerprint(root: Path, plan: dict, recipe: dict, expected: dict)
         raise mods.ModError(f"Build tools changed for {recipe['modId']}; start a new Gradle invocation")
 
 
+def stop_process_tree(process: subprocess.Popen) -> None:
+    """Stop only the wrapper tree created by run_gradle_process, then reap it."""
+    if os.name == 'nt':
+        # Kill the tree before waiting/reaping its root so taskkill can still
+        # identify the Gradle daemon and compiler descendants by parent PID.
+        if process.poll() is None:
+            stopped = subprocess.run(['taskkill', '/PID', str(process.pid), '/T', '/F'],
+                                     capture_output=True, creationflags=subprocess.CREATE_NO_WINDOW)
+            if stopped.returncode and process.poll() is None:
+                raise mods.ModError(f"Could not stop Gradle process tree {process.pid}: " +
+                                    stopped.stdout.decode(errors='replace') + stopped.stderr.decode(errors='replace'))
+    else:
+        # The wrapper starts a new session, so its PID is also its process group.
+        try:
+            os.killpg(process.pid, signal.SIGKILL)
+        except ProcessLookupError:
+            pass
+    process.wait()
+
+
+def run_gradle_process(command: list[str], *, cwd: Path, env: dict, stdout) -> subprocess.CompletedProcess:
+    """Keep cancellation cleanup inside the caller's shared Gradle cache lock."""
+    options = ({'creationflags': subprocess.CREATE_NEW_PROCESS_GROUP} if os.name == 'nt'
+               else {'start_new_session': True})
+    process = subprocess.Popen(command, cwd=cwd, env=env, stdout=stdout,
+                               stderr=subprocess.STDOUT, **options)
+    try:
+        return subprocess.CompletedProcess(command, process.wait())
+    except BaseException:
+        # KeyboardInterrupt and SystemExit must follow the same cleanup path as
+        # ordinary exceptions; killing only the wrapper can leave a live daemon.
+        stop_process_tree(process)
+        raise
+
+
 def _build_source(root: Path, run: str, identity: str) -> None:
     manifest, plan = load_plan(root)
     work = check_run(root, run, manifest, plan)
@@ -448,7 +484,7 @@ def _build_source(root: Path, run: str, identity: str) -> None:
             commands.append(invocation)
             print(f"Building {recipe['sourcePath']} ({number}/{len(phases)}): {' '.join(phase)}", flush=True)
             with (output / f"gradle-{number}.log").open('w', encoding='utf-8') as log:
-                result = subprocess.run(invocation, cwd=source, env=environment, stdout=log, stderr=subprocess.STDOUT)
+                result = run_gradle_process(invocation, cwd=source, env=environment, stdout=log)
             if result.returncode:
                 tail = (output / f"gradle-{number}.log").read_text(encoding='utf-8', errors='replace').splitlines()[-65:]
                 print('\n'.join(tail), file=sys.stderr)
