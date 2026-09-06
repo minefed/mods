@@ -3313,7 +3313,7 @@
         "url": "https://github.com/minefed/puzzles-lib",
         "upstream": "https://github.com/Fuzss/puzzles-lib",
         "ref": "minefed-1.20.4",
-        "commit": "4dc587d46410583773960cfeba3ccf5db1d69bc6",
+        "commit": "23a3562d99a134ed9a07af8b90960a12f2dc0c58",
         "trackingBranch": "minefed-1.20.4",
         "baselineRef": "refs/heads/1.20.4",
         "baselineCommit": "dff8529b28db23e197c34f47792839ae305571e5"
