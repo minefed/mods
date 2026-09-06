@@ -1472,7 +1472,7 @@
         "url": "https://github.com/minefed/FerriteCore",
         "upstream": "https://github.com/malte0811/FerriteCore",
         "ref": "minefed-1.20.4",
-        "commit": "a6b89994d80bce3f1b834b0df68aca31e0adc125",
+        "commit": "1df30b595e231bc0dc9a8eabe65d34cce542d3f9",
         "trackingBranch": "minefed-1.20.4",
         "baselineRef": "build-6.0.3",
         "baselineCommit": "a9a24d4f6945f4e41855f55660915b2f5b570dd7"
