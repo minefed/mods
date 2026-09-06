@@ -102,3 +102,7 @@
 	path = geckolib
 	url = https://github.com/minefed/geckolib
 	branch = codex/minefed-1.20.4
+[submodule "lavender"]
+	path = lavender
+	url = https://github.com/minefed/lavender
+	branch = codex/minefed-1.20.4
