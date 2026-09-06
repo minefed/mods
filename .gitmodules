@@ -118,3 +118,7 @@
 	path = Fences
 	url = https://github.com/minefed/Fences
 	branch = codex/minefed-1.20.4
+[submodule "MemoryLeakFix"]
+	path = MemoryLeakFix
+	url = https://github.com/minefed/MemoryLeakFix
+	branch = codex/minefed-1.20.4
