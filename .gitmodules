@@ -78,3 +78,7 @@
 	path = fabric-carpet
 	url = https://github.com/minefed/fabric-carpet
 	branch = codex/minefed-1.20.4
+[submodule "fabric-seasons"]
+	path = fabric-seasons
+	url = https://github.com/minefed/fabric-seasons
+	branch = codex/minefed-1.20.4
