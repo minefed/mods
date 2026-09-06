@@ -959,7 +959,7 @@
         "url": "https://github.com/minefed/diagonal-windows",
         "upstream": "https://github.com/Fuzss/diagonal-windows",
         "ref": "minefed-1.20.4",
-        "commit": "0dea126717828a8c27da02b229042415eb60fcf8",
+        "commit": "8b7c3e04fc497f209532b15033b4f39f97a77ada",
         "trackingBranch": "minefed-1.20.4",
         "baselineRef": "1.20.4",
         "baselineCommit": "4116d6bab254219ee1e78f25c8ecbd44ac42594b"
