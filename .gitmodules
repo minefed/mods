@@ -190,3 +190,7 @@
 	path = Starlight
 	url = https://github.com/minefed/Starlight
 	branch = codex/minefed-1.20.4
+[submodule "RealIP"]
+	path = RealIP
+	url = https://github.com/minefed/RealIP
+	branch = codex/minefed-1.20.4
