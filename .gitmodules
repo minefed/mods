@@ -182,3 +182,7 @@
 	path = paladins-furniture
 	url = https://github.com/minefed/paladins-furniture
 	branch = codex/minefed-1.20.4
+[submodule "ResourcefulLib"]
+	path = ResourcefulLib
+	url = https://github.com/minefed/ResourcefulLib
+	branch = codex/minefed-1.20.4
