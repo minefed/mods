@@ -126,3 +126,7 @@
 	path = modern-glass-doors
 	url = https://github.com/minefed/modern-glass-doors
 	branch = codex/minefed-1.20.4
+[submodule "ModernFix"]
+	path = ModernFix
+	url = https://github.com/minefed/ModernFix
+	branch = codex/minefed-1.20.4
