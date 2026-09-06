@@ -55,7 +55,13 @@ tasks.register('testModpackTools', Exec) {
     workingDir rootDir
     commandLine pythonExecutable, '-m', 'unittest', 'discover', '-s', 'scripts', '-p', 'test_*.py'
 }
-tasks.named('check') { dependsOn 'testModpackTools' }
+tasks.register('verifySourceRepositories', Exec) {
+    group = 'verification'
+    description = 'Check Fabric repository routing with an offline upstream-policy fixture.'
+    workingDir rootDir
+    commandLine pythonExecutable, 'scripts/verify_source_repositories.py'
+}
+tasks.named('check') { dependsOn 'testModpackTools', 'verifySourceRepositories' }
 
 tasks.register('modpackPlan', Exec) {
     group = 'help'
