@@ -3209,7 +3209,7 @@
         "url": "https://github.com/minefed/Patchouli",
         "upstream": "https://github.com/VazkiiMods/Patchouli",
         "ref": "minefed-1.20.4",
-        "commit": "9b18022ce716b677c6beb63c234590a2c0355fc1",
+        "commit": "5bb9e96cd8256c0bcd2fa87eff2d65be0a7290d5",
         "trackingBranch": "minefed-1.20.4",
         "baselineRef": "refs/tags/release-1.20.4-85",
         "baselineCommit": "4522fbb3e42b5a31688c7c7666cf13c12c0fdb83"
