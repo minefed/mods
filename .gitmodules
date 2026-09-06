@@ -134,3 +134,7 @@
 	path = Handcrafted
 	url = https://github.com/minefed/Handcrafted
 	branch = codex/minefed-1.20.4
+[submodule "MythicMetals"]
+	path = MythicMetals
+	url = https://github.com/minefed/MythicMetals
+	branch = codex/minefed-1.20.4
