@@ -110,3 +110,7 @@
 	path = lithium
 	url = https://github.com/minefed/lithium
 	branch = codex/minefed-1.20.4
+[submodule "MacawsDoors"]
+	path = MacawsDoors
+	url = https://github.com/minefed/MacawsDoors
+	branch = codex/minefed-1.20.4
