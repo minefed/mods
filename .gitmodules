@@ -146,3 +146,7 @@
 	path = NiceMod
 	url = https://github.com/minefed/NiceMod
 	branch = codex/minefed-1.20.4
+[submodule "mishanguc"]
+	path = mishanguc
+	url = https://github.com/minefed/mishanguc
+	branch = codex/minefed-1.20.4
