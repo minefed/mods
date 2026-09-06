@@ -10,3 +10,4 @@
 [submodule "minefed-display"]
 	path = minefed-display
 	url = https://github.com/minefed/minefed-display
+	branch = codex/minefed-1.20.4
