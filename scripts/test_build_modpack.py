@@ -5,6 +5,7 @@ from contextlib import ExitStack, redirect_stderr, redirect_stdout
 import hashlib
 import io
 import json
+import os
 from pathlib import Path
 import shutil
 import subprocess
@@ -105,6 +106,82 @@ else:
                     process.communicate(timeout=15)
 
 
+class GradleCacheLockTests(unittest.TestCase):
+    worker = """
+import sys
+from pathlib import Path
+from build_modpack import gradle_cache_lock
+
+root, markers = map(Path, sys.argv[1:3])
+role = sys.argv[3]
+(markers / (role + '-attempted')).touch()
+with gradle_cache_lock(root):
+    (markers / (role + '-entered')).touch()
+    sys.stdin.readline()
+"""
+
+    def setUp(self):
+        self.temporary = tempfile.TemporaryDirectory(prefix="minefed-gradle-lock-test-")
+        self.addCleanup(self.temporary.cleanup)
+        self.directory = Path(self.temporary.name).resolve()
+        self.processes = []
+        self.addCleanup(self.stop_workers)
+
+    def stop_workers(self):
+        for process in self.processes:
+            if process.poll() is None:
+                process.kill()
+            process.communicate(timeout=15)
+
+    def launch(self, role, gradle_home):
+        workspace = self.directory / (role + '-workspace')
+        workspace.mkdir()
+        environment = dict(os.environ, GRADLE_USER_HOME=str(gradle_home))
+        process = subprocess.Popen(
+            [sys.executable, "-u", "-c", self.worker, str(workspace), str(self.directory), role],
+            cwd=Path(__file__).resolve().parent, env=environment,
+            stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE,
+            text=True, encoding="utf-8")
+        self.processes.append(process)
+        return process
+
+    def await_marker(self, name, process):
+        deadline = time.monotonic() + 15
+        while not (self.directory / name).exists():
+            if process.poll() is not None:
+                self.fail(f"Worker exited before {name}: {process.communicate()}")
+            if time.monotonic() >= deadline:
+                self.fail(f"Worker did not reach {name} within 15 seconds")
+            time.sleep(0.02)
+
+    def release(self, process):
+        _, errors = process.communicate(input="release\n", timeout=15)
+        self.assertEqual(process.returncode, 0, errors)
+
+    def test_shared_gradle_home_blocks_other_workspace_until_release(self):
+        gradle_home = self.directory / 'shared-gradle-home'
+        holder = self.launch('holder', gradle_home)
+        self.await_marker('holder-entered', holder)
+        contender = self.launch('contender', gradle_home)
+        self.await_marker('contender-attempted', contender)
+        # Workers use distinct workspaces; the shared Gradle cache is the boundary.
+        time.sleep(0.5)
+        self.assertIsNone(contender.poll())
+        self.assertFalse((self.directory / 'contender-entered').exists())
+        self.release(holder)
+        self.await_marker('contender-entered', contender)
+        self.release(contender)
+
+    def test_separate_gradle_homes_can_enter_before_first_process_releases(self):
+        holder = self.launch('holder', self.directory / 'gradle-home-a')
+        self.await_marker('holder-entered', holder)
+        contender = self.launch('contender', self.directory / 'gradle-home-b')
+        self.await_marker('contender-entered', contender)
+        self.assertIsNone(holder.poll())
+        self.release(contender)
+        self.release(holder)
+
+
 class MixedBuildTests(unittest.TestCase):
     def setUp(self):
         self.temporary = tempfile.TemporaryDirectory(prefix="minefed-build-test-")
@@ -142,6 +219,7 @@ class MixedBuildTests(unittest.TestCase):
         (notices / "author.txt").write_text("Retained deployment notice\n", encoding="utf-8")
         self.contexts = ExitStack()
         self.addCleanup(self.contexts.close)
+        self.contexts.enter_context(patch.dict(os.environ, {"GRADLE_USER_HOME": str(self.root / "gradle-home")}))
         self.contexts.enter_context(patch.object(builder, "java_home", return_value=self.root / "fake-jdk"))
         self.stdout = io.StringIO()
         self.stderr = io.StringIO()

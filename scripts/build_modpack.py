@@ -278,11 +278,7 @@ def wrapper_command(root: Path, source: Path, work: Path, recipe: dict) -> list[
 
 
 @contextmanager
-def source_lock(root: Path, identity: str):
-    """Serialize the same source across independent Gradle invocations."""
-    if not re.fullmatch(r'[a-z][a-z0-9_-]{1,63}', identity):
-        raise mods.ModError('Invalid source identity')
-    path = mods.output_path(root, f'build/source-locks/{identity}.lock')
+def _file_lock(path: Path, waiting_message: str):
     path.parent.mkdir(parents=True, exist_ok=True)
     with path.open('a+b') as stream:
         if path.stat().st_size == 0:
@@ -303,7 +299,7 @@ def source_lock(root: Path, identity: str):
                 if exc.errno not in (11, 13, 35, 36):
                     raise
                 if not waiting:
-                    print(f'Waiting for another build of {identity}', flush=True)
+                    print(waiting_message, flush=True)
                     waiting = True
                 time.sleep(0.5)
         try:
@@ -314,6 +310,29 @@ def source_lock(root: Path, identity: str):
                 msvcrt.locking(stream.fileno(), msvcrt.LK_UNLCK, 1)
             else:
                 fcntl.flock(stream.fileno(), fcntl.LOCK_UN)
+
+
+@contextmanager
+def source_lock(root: Path, identity: str):
+    """Serialize the same source across independent Gradle invocations."""
+    if not re.fullmatch(r'[a-z][a-z0-9_-]{1,63}', identity):
+        raise mods.ModError('Invalid source identity')
+    path = mods.output_path(root, f'build/source-locks/{identity}.lock')
+    with _file_lock(path, f'Waiting for another build of {identity}'):
+        yield
+
+
+def gradle_user_home(root: Path) -> Path:
+    path = Path(os.environ.get('GRADLE_USER_HOME', str(Path.home() / '.gradle'))).expanduser()
+    return (path if path.is_absolute() else root / path).resolve()
+
+
+@contextmanager
+def gradle_cache_lock(root: Path):
+    """Older Loom versions rebuild shared Minecraft caches without a global lock."""
+    path = gradle_user_home(root) / 'minefed-modpack-loom.lock'
+    with _file_lock(path, 'Waiting for another Gradle build to release the shared Minecraft cache'):
+        yield
 
 
 def build_source(root: Path, run: str, identity: str) -> None:
@@ -343,7 +362,7 @@ def _build_source(root: Path, run: str, identity: str) -> None:
     for version in sorted({r['java'] for r in plan['entries'] if r['mode'] == 'source'}):
         release = java_home(root, version) / 'release'
         tool_inputs[f'jdk{version}Release'] = mods.file_digest(release)[0] if release.is_file() else None
-    gradle_home = Path(os.environ.get('GRADLE_USER_HOME', str(Path.home() / '.gradle')))
+    gradle_home = gradle_user_home(root)
     user_properties = gradle_home / 'gradle.properties'
     tool_inputs['userGradleProperties'] = mods.file_digest(user_properties)[0] if user_properties.is_file() else None
     init_files = [gradle_home / 'init.gradle', gradle_home / 'init.gradle.kts']
@@ -397,6 +416,7 @@ def _build_source(root: Path, run: str, identity: str) -> None:
     environment = dict(os.environ)
     environment.update(recipe.get("env", {}))
     environment["JAVA_HOME"] = str(java_home(root, recipe["java"]))
+    environment["GRADLE_USER_HOME"] = str(gradle_home)
     environment["GRADLE_OPTS"] = "-Dfile.encoding=UTF-8"
     phases = recipe.get("phases", [recipe.get("tasks")])
     homes = [str(java_home(root, v)) for v in sorted({r["java"] for r in plan["entries"] if r["mode"] == "source"})]
@@ -405,16 +425,19 @@ def _build_source(root: Path, run: str, identity: str) -> None:
               "--init-script", str(root / "scripts" / "source-repositories.gradle"),
               "-Porg.gradle.java.installations.paths=" + ','.join(homes)] + recipe.get("args", [])
     commands = []
-    for number, phase in enumerate(phases, 1):
-        invocation = command + common + phase
-        commands.append(invocation)
-        print(f"Building {recipe['sourcePath']} ({number}/{len(phases)}): {' '.join(phase)}", flush=True)
-        with (output / f"gradle-{number}.log").open('w', encoding='utf-8') as log:
-            result = subprocess.run(invocation, cwd=source, env=environment, stdout=log, stderr=subprocess.STDOUT)
-        if result.returncode:
-            tail = (output / f"gradle-{number}.log").read_text(encoding='utf-8', errors='replace').splitlines()[-65:]
-            print('\n'.join(tail), file=sys.stderr)
-            raise mods.ModError(f"Source build failed: {identity}; no binary fallback. Full log: {output / f'gradle-{number}.log'}")
+    # Protect shared Loom caches across mods and across Minefed checkouts.
+    # Keep resource generation and compilation in the same critical section.
+    with gradle_cache_lock(root):
+        for number, phase in enumerate(phases, 1):
+            invocation = command + common + phase
+            commands.append(invocation)
+            print(f"Building {recipe['sourcePath']} ({number}/{len(phases)}): {' '.join(phase)}", flush=True)
+            with (output / f"gradle-{number}.log").open('w', encoding='utf-8') as log:
+                result = subprocess.run(invocation, cwd=source, env=environment, stdout=log, stderr=subprocess.STDOUT)
+            if result.returncode:
+                tail = (output / f"gradle-{number}.log").read_text(encoding='utf-8', errors='replace').splitlines()[-65:]
+                print('\n'.join(tail), file=sys.stderr)
+                raise mods.ModError(f"Source build failed: {identity}; no binary fallback. Full log: {output / f'gradle-{number}.log'}")
     artifact, metadata = select_runtime_jar(source, recipe)
     destination = output / artifact.name
     shutil.copyfile(artifact, destination)
