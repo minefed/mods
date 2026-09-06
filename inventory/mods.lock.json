@@ -1714,7 +1714,7 @@
         "url": "https://github.com/minefed/geckolib",
         "upstream": "https://github.com/bernie-g/geckolib",
         "ref": "minefed-1.20.4",
-        "commit": "0645b1062399afe8c74baad9705bd25ac80a368a",
+        "commit": "fb968c0379ef0f6ef5c0d6672a464b2f2712553f",
         "trackingBranch": "minefed-1.20.4",
         "baselineRef": "1.20.4",
         "baselineCommit": "d0b06fe3386e1be3242298e9373c54e5af0c65d1"
