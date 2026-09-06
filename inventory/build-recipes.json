@@ -594,9 +594,9 @@
         "--configure-on-demand"
       ],
       "artifactGlobs": [
-        "fabric/build/libs/modernfix-fabric-5.17.1-beta.1+mc1.20.4.2856.jar"
+        "fabric/build/libs/modernfix-fabric-5.17.1-beta.2+mc1.20.4.3f88.jar"
       ],
-      "expectedVersion": "5.17.1-beta.1+mc1.20.4.2856"
+      "expectedVersion": "5.17.1-beta.2+mc1.20.4.3f88"
     },
     {
       "modId": "msd",
