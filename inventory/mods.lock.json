@@ -1205,7 +1205,7 @@
         "url": "https://github.com/minefed/fabric-carpet",
         "upstream": "https://github.com/gnembon/fabric-carpet",
         "ref": "minefed-1.20.4",
-        "commit": "9e4083fc6169b61292da5d4742a74bdf3c2c874c",
+        "commit": "72248bbebe61dc0b2b7316378aa7629955d0f91a",
         "trackingBranch": "minefed-1.20.4",
         "baselineRef": "1.4.128",
         "baselineCommit": "92176312d92bfc2595f0bad18b64475f3800921a"
