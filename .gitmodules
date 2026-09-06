@@ -122,3 +122,7 @@
 	path = MemoryLeakFix
 	url = https://github.com/minefed/MemoryLeakFix
 	branch = codex/minefed-1.20.4
+[submodule "modern-glass-doors"]
+	path = modern-glass-doors
+	url = https://github.com/minefed/modern-glass-doors
+	branch = codex/minefed-1.20.4
