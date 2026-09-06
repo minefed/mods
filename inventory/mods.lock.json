@@ -1778,7 +1778,7 @@
         "url": "https://github.com/minefed/Handcrafted",
         "upstream": "https://github.com/terrarium-earth/Handcrafted",
         "ref": "minefed-1.20.4",
-        "commit": "7421fc235e928821ee84d0cb17a6921d7a3df3d3",
+        "commit": "7b5501555b4683757800e9ca7df264d0850caad3",
         "trackingBranch": "minefed-1.20.4",
         "baselineRef": "1.20.x",
         "baselineCommit": "5d3260b2882ebe5de1aa7a4ca4aa2336a593f31d"
