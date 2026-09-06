@@ -2653,7 +2653,7 @@
         "url": "https://github.com/minefed/MTR-Station-Decoration-Addon",
         "upstream": "https://github.com/AIDA64S/MTR-Station-Decoration-Addon",
         "ref": "minefed-1.20.4",
-        "commit": "d59160ac0b0ac801dfec9eb29065309e1d6fcfc0",
+        "commit": "4c1ce7298690b1036c8f58e30409799b57c11b6c",
         "trackingBranch": "minefed-1.20.4",
         "baselineRef": "4.0.0",
         "baselineCommit": "c0221a39c4b7829a47478bce4303f1f29f84527e"
