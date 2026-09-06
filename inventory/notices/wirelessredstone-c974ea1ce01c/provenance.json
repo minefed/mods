@@ -1,0 +1,8 @@
+{
+  "jar": "wirelessredstone-fabric-1.2.2+1.20.4.jar",
+  "sha256": "c974ea1ce01c64f614d15227575640399475a0f44b8e36ca4fb1932b452612bd",
+  "entries": [
+    "LICENSE"
+  ],
+  "notice": "Original embedded notices; declarations may conflict with upstream policy. Consult mods.lock.json."
+}

@@ -1,0 +1,9 @@
+{
+  "jar": "DiagonalWalls-v20.4.1-1.20.4-Fabric.jar",
+  "sha256": "1ebdd486ed7b337bf28f92a869bb53b587f1e26027597b9048602f4fe13d60d5",
+  "entries": [
+    "LICENSE-ASSETS.md",
+    "LICENSE.md"
+  ],
+  "notice": "Original embedded notices; declarations may conflict with upstream policy. Consult mods.lock.json."
+}

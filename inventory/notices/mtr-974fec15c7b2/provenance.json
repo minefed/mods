@@ -1,0 +1,9 @@
+{
+  "jar": "MTR-fabric-4.0.5+1.20.4.jar",
+  "sha256": "974fec15c7b2c1e5d3f6ab8e45a6f5c959a40acbaa3ff90997191085ccadda0f",
+  "entries": [
+    "LICENSE",
+    "org/mtr/libraries/okhttp3/internal/publicsuffix/NOTICE"
+  ],
+  "notice": "Original embedded notices; declarations may conflict with upstream policy. Consult mods.lock.json."
+}

@@ -1,0 +1,8 @@
+{
+  "jar": "mythicmetals-decorations-0.6.1+1.20.3.jar",
+  "sha256": "b714e2098a0af1daaee7a9b35cb7c4e9347a2982800fc116961328354cedf077",
+  "entries": [
+    "LICENSE_mythicmetals-decorations"
+  ],
+  "notice": "Original embedded notices; declarations may conflict with upstream policy. Consult mods.lock.json."
+}

@@ -1,0 +1,9 @@
+{
+  "jar": "PuzzlesLib-v20.4.52-1.20.4-Fabric.jar",
+  "sha256": "cfa2fc847681e69d31a4169ce22c3d57d2d080e4bcd7a878525e3400296c0770",
+  "entries": [
+    "LICENSE-ASSETS.md",
+    "LICENSE.md"
+  ],
+  "notice": "Original embedded notices; declarations may conflict with upstream policy. Consult mods.lock.json."
+}

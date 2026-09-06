@@ -1,0 +1,8 @@
+{
+  "jar": "starlight-1.1.3+fabric.f5dcd1a.jar",
+  "sha256": "bdf3a3f1c470894d8d24726c12e89eb309c7c46d86ff8527490c5ce5bb67b989",
+  "entries": [
+    "LICENSE"
+  ],
+  "notice": "Original embedded notices; declarations may conflict with upstream policy. Consult mods.lock.json."
+}

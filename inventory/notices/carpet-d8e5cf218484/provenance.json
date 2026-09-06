@@ -1,0 +1,8 @@
+{
+  "jar": "fabric-carpet-1.20.3-1.4.128+v231205.jar",
+  "sha256": "d8e5cf2184848fd78d482f23554ed814db2094acd37fab62d8ce7379d3ba02ca",
+  "entries": [
+    "LICENSE_fabric-carpet"
+  ],
+  "notice": "Original embedded notices; declarations may conflict with upstream policy. Consult mods.lock.json."
+}

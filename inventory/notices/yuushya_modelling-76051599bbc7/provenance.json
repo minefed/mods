@@ -1,0 +1,8 @@
+{
+  "jar": "yuushya-modelling-1.20.4-fabric-2.2.0.jar",
+  "sha256": "76051599bbc7dacd4779528d116bdd87f2edbf89f8bb0ace8b20f0c29c82ce8c",
+  "entries": [
+    "LICENSE"
+  ],
+  "notice": "Original embedded notices; declarations may conflict with upstream policy. Consult mods.lock.json."
+}

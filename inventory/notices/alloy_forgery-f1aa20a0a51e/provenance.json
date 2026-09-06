@@ -1,0 +1,8 @@
+{
+  "jar": "alloy-forgery-2.1.4+1.20.3.jar",
+  "sha256": "f1aa20a0a51e332008c988ec8651b43b1ba6ed6516143f7f5454ba2479715a95",
+  "entries": [
+    "LICENSE_alloy-forgery"
+  ],
+  "notice": "Original embedded notices; declarations may conflict with upstream policy. Consult mods.lock.json."
+}

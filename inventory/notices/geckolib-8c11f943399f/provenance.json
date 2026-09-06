@@ -1,0 +1,8 @@
+{
+  "jar": "geckolib-fabric-1.20.4-4.4.4.jar",
+  "sha256": "8c11f943399fec3790d63686a7233cbb5731ccbcf60f490090c700b5dce819d0",
+  "entries": [
+    "LICENSE"
+  ],
+  "notice": "Original embedded notices; declarations may conflict with upstream policy. Consult mods.lock.json."
+}

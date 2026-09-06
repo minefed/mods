@@ -1,0 +1,8 @@
+{
+  "jar": "exlinefurniture-v2.7.2-fabric-1.20.4.jar",
+  "sha256": "bbe6c4ea2e9703f7b908515c70f081ababa7f1388610ace31f11f915e72bcfac",
+  "entries": [
+    "LICENSE_exlinefurniture"
+  ],
+  "notice": "Original embedded notices; declarations may conflict with upstream policy. Consult mods.lock.json."
+}

@@ -1,0 +1,8 @@
+{
+  "jar": "modern-lights-1.20[2.4.2].jar",
+  "sha256": "362bb8dadd6e771ec3c90a9e38af18bd9433de626862d233aac15a79ad0987e5",
+  "entries": [
+    "LICENSE_modern-lights"
+  ],
+  "notice": "Original embedded notices; declarations may conflict with upstream policy. Consult mods.lock.json."
+}

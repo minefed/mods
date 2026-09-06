@@ -1,0 +1,8 @@
+{
+  "jar": "webstreamer-1.5.0.jar",
+  "sha256": "e8efce988e65abd58f6b6371c33bdf7a2ea61aee209a53dc5fc3b6415f118041",
+  "entries": [
+    "LICENSE_webstreamer"
+  ],
+  "notice": "Original embedded notices; declarations may conflict with upstream policy. Consult mods.lock.json."
+}

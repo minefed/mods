@@ -1,0 +1,8 @@
+{
+  "jar": "lithium-fabric-mc1.20.4-0.12.1.jar",
+  "sha256": "6acd49595ee69e1264cfc79898f569452e41bd66985467fcb38d2804191af3cd",
+  "entries": [
+    "LICENSE.txt"
+  ],
+  "notice": "Original embedded notices; declarations may conflict with upstream policy. Consult mods.lock.json."
+}

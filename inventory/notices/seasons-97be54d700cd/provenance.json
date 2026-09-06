@@ -1,0 +1,8 @@
+{
+  "jar": "fabric-seasons-2.4.2-BETA+1.20.4.jar",
+  "sha256": "97be54d700cd3537899f52aad75ded51a17308c9585221967e7ea70ef02a432d",
+  "entries": [
+    "LICENSE"
+  ],
+  "notice": "Original embedded notices; declarations may conflict with upstream policy. Consult mods.lock.json."
+}

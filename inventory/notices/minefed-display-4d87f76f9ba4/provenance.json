@@ -1,0 +1,8 @@
+{
+  "jar": "minefed-display-1.0.0.jar",
+  "sha256": "4d87f76f9ba4f00c7dd9d92daf97d9b6cdce40c54f984cd48f1b3b3f3a9b7dd4",
+  "entries": [
+    "LICENSE_minefed-display"
+  ],
+  "notice": "Original embedded notices; declarations may conflict with upstream policy. Consult mods.lock.json."
+}

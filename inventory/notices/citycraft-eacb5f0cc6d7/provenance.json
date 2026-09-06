@@ -1,0 +1,8 @@
+{
+  "jar": "City Craft-2.0.0-Fabric-1.20.x(ex.5.6).jar",
+  "sha256": "eacb5f0cc6d748ee3c15244932b1c3f4fb218602bdcfcdaf6df4301708425cc1",
+  "entries": [
+    "LICENSE_fabric-example-mod"
+  ],
+  "notice": "Original embedded notices; declarations may conflict with upstream policy. Consult mods.lock.json."
+}

@@ -1,0 +1,7 @@
+{
+  "parent": "yuushya:extra_building_material/button_sign/like",
+  "textures": {
+    "0": "yuushya:0extra_building_material/preview/button_sign/notice",
+    "particle": "yuushya:0extra_building_material/preview/button_sign/notice"
+  }
+}

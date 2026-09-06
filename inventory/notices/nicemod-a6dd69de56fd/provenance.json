@@ -1,0 +1,8 @@
+{
+  "jar": "nicemod-1.4.1 - 1.20.jar",
+  "sha256": "a6dd69de56fd474e599571ab0c906e3ca971cdd3a5cd715a10acf9f3205fd69b",
+  "entries": [
+    "LICENSE_nicemod"
+  ],
+  "notice": "Original embedded notices; declarations may conflict with upstream policy. Consult mods.lock.json."
+}

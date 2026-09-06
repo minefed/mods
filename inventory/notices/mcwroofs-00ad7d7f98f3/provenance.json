@@ -1,0 +1,8 @@
+{
+  "jar": "mcw-roofs-2.3.2-mc1.20.4fabric.jar",
+  "sha256": "00ad7d7f98f3ef0ddd459053c64f3b1f989d147eccc0178a765d0fad700e2f9d",
+  "entries": [
+    "LICENSE_mcwroofs"
+  ],
+  "notice": "Original embedded notices; declarations may conflict with upstream policy. Consult mods.lock.json."
+}

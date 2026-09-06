@@ -1,0 +1,8 @@
+{
+  "jar": "mcw-fences-1.2.0-1.20.4fabric.jar",
+  "sha256": "77b10cfcfc53ae7289838570f83e170accd0143e2245438d8c3b14da1e527025",
+  "entries": [
+    "LICENSE_mcwfences"
+  ],
+  "notice": "Original embedded notices; declarations may conflict with upstream policy. Consult mods.lock.json."
+}

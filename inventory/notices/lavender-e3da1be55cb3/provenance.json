@@ -1,0 +1,8 @@
+{
+  "jar": "lavender-0.1.9+1.20.3.jar",
+  "sha256": "e3da1be55cb3fc8d8d71e2cd85ba5c10d1768bf53225d4603032e3088ae5516d",
+  "entries": [
+    "LICENSE_lavender"
+  ],
+  "notice": "Original embedded notices; declarations may conflict with upstream policy. Consult mods.lock.json."
+}

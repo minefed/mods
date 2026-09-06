@@ -1,0 +1,8 @@
+{
+  "jar": "mcw-windows-2.3.1-mc1.20.4fabric.jar",
+  "sha256": "dcbb008a7a647cc120fd2cc93374291e7773be8b73c4d082772ed479e2074a73",
+  "entries": [
+    "LICENSE_mcwwindows"
+  ],
+  "notice": "Original embedded notices; declarations may conflict with upstream policy. Consult mods.lock.json."
+}

@@ -1,0 +1,11 @@
+{
+  "jar": "ForgeConfigAPIPort-v20.4.3-1.20.4-Fabric.jar",
+  "sha256": "837665e2db855a5072f75964a7b30f12c59fddc92274db21c9b07cce172288b2",
+  "entries": [
+    "LICENSE-ASSETS.md",
+    "LICENSE-FORGE.md",
+    "LICENSE-NIGHT-CONFIG.md",
+    "LICENSE.md"
+  ],
+  "notice": "Original embedded notices; declarations may conflict with upstream policy. Consult mods.lock.json."
+}

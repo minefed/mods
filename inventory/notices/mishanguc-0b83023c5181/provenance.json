@@ -1,0 +1,8 @@
+{
+  "jar": "mishanguc-1.5.3-1.20.4.jar",
+  "sha256": "0b83023c51817e2ab9081fec62b97f3695d37821152c2a161e3a89dd908ecb07",
+  "entries": [
+    "LICENSE_extension 'base' property 'archivesName'"
+  ],
+  "notice": "Original embedded notices; declarations may conflict with upstream policy. Consult mods.lock.json."
+}

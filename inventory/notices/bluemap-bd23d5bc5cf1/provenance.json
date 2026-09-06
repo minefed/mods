@@ -1,0 +1,12 @@
+{
+  "jar": "BlueMap-5.3-fabric-1.20.jar",
+  "sha256": "bd23d5bc5cf185e888ff061d127251d2baaad5a28ea2b87ad197f06535a7381c",
+  "entries": [
+    "LICENSE.txt",
+    "META-INF/LICENSE",
+    "META-INF/LICENSE.txt",
+    "META-INF/NOTICE.txt",
+    "de/bluecolored/bluemap/core/util/CopyingPathVisitor.class"
+  ],
+  "notice": "Original embedded notices; declarations may conflict with upstream policy. Consult mods.lock.json."
+}

@@ -1,0 +1,11 @@
+{
+  "jar": "Axiom-5.3.0-for-MC1.20.4.jar",
+  "sha256": "4462d9f369dcaa86bbf2d05a52b0bdeae9272e7d5d53a54cf7ca48fe6088d716",
+  "entries": [
+    "META-INF/LICENSE",
+    "META-INF/LICENSE.txt",
+    "META-INF/NOTICE",
+    "META-INF/NOTICE.txt"
+  ],
+  "notice": "Original embedded notices; declarations may conflict with upstream policy. Consult mods.lock.json."
+}

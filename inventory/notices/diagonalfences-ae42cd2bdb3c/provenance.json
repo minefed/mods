@@ -1,0 +1,9 @@
+{
+  "jar": "DiagonalFences-v20.4.1-1.20.4-Fabric.jar",
+  "sha256": "ae42cd2bdb3c748c42345f3b8f92c3659ac93c06086e99360d0f35167bdcc838",
+  "entries": [
+    "LICENSE-ASSETS.md",
+    "LICENSE.md"
+  ],
+  "notice": "Original embedded notices; declarations may conflict with upstream policy. Consult mods.lock.json."
+}

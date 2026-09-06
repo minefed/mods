@@ -1,0 +1,10 @@
+{
+  "jar": "yuushya-1.20.4-fabric-2.2.3.jar",
+  "sha256": "cd738522891f31f3d26fe753f53d1c2e44c4055e49d6678c0088624316d4a445",
+  "entries": [
+    "LICENSE",
+    "assets/yuushya/models/extra_building_material/button_sign/notice.json",
+    "assets/yuushya/textures/0extra_building_material/preview/button_sign/notice.png"
+  ],
+  "notice": "Original embedded notices; declarations may conflict with upstream policy. Consult mods.lock.json."
+}

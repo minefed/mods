@@ -1,0 +1,8 @@
+{
+  "jar": "memoryleakfix-fabric-1.17+-1.1.5.jar",
+  "sha256": "b8ac33d7262e019710dd25e454116616bc9ed1f714ed910594b28a4c1da5adde",
+  "entries": [
+    "LICENSE"
+  ],
+  "notice": "Original embedded notices; declarations may conflict with upstream policy. Consult mods.lock.json."
+}

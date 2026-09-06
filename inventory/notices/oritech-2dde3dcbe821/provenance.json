@@ -1,0 +1,8 @@
+{
+  "jar": "oritech-0.5.1+1.20.4.jar",
+  "sha256": "2dde3dcbe82124ec512ca7b05ef4fb4eb782694cbc33e576702cef87b6f02d7d",
+  "entries": [
+    "LICENSE.md_oritech"
+  ],
+  "notice": "Original embedded notices; declarations may conflict with upstream policy. Consult mods.lock.json."
+}

@@ -1,0 +1,8 @@
+{
+  "jar": "worldedit-hang-fix-v1.0.2-mc1.20.6-fabric.jar",
+  "sha256": "0d375f10e18bee8dd2c00c683f0a9b9caf7f8b0b77ac0416bab6cfddee94b063",
+  "entries": [
+    "LICENSE_worldedit-hang-fix"
+  ],
+  "notice": "Original embedded notices; declarations may conflict with upstream policy. Consult mods.lock.json."
+}

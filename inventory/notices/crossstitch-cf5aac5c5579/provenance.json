@@ -1,0 +1,8 @@
+{
+  "jar": "crossstitch-0.1.6.jar",
+  "sha256": "cf5aac5c5579b1ceb1b2bd25a15f1e2dcc9226f57670163ad1f841b2f905b82e",
+  "entries": [
+    "LICENSE"
+  ],
+  "notice": "Original embedded notices; declarations may conflict with upstream policy. Consult mods.lock.json."
+}

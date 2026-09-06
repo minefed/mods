@@ -1,0 +1,8 @@
+{
+  "jar": "mythicmetals-0.19.7+1.20.4.jar",
+  "sha256": "f82f5dea1d6facd930abf8f30762c75546eb16c8ee68773d9d1049bf7de7f0aa",
+  "entries": [
+    "LICENSE"
+  ],
+  "notice": "Original embedded notices; declarations may conflict with upstream policy. Consult mods.lock.json."
+}

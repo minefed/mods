@@ -1,0 +1,8 @@
+{
+  "jar": "FabricProxy-Lite-2.7.0.jar",
+  "sha256": "4c8b1ffeb433ac6d076168068089a4c32a5a1f38eb5f4534ba2f2e1c692a4d4f",
+  "entries": [
+    "LICENSE_FabricProxy-Lite"
+  ],
+  "notice": "Original embedded notices; declarations may conflict with upstream policy. Consult mods.lock.json."
+}

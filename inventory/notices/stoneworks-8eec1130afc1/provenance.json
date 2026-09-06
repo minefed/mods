@@ -1,0 +1,9 @@
+{
+  "jar": "Stoneworks-v20.4.0-1.20.4-Fabric.jar",
+  "sha256": "8eec1130afc17125a0295fd142741e5f242f5255046f9b0a3d61a6d8b9ca8150",
+  "entries": [
+    "LICENSE-ASSETS.md",
+    "LICENSE.md"
+  ],
+  "notice": "Original embedded notices; declarations may conflict with upstream policy. Consult mods.lock.json."
+}

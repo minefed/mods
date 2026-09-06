@@ -1,0 +1,8 @@
+{
+  "jar": "mcw-doors-1.1.2-mc1.20.4fabric.jar",
+  "sha256": "6ec6bc0c8ca80f65a1ebbbe0075a0bbbc4ea19a726d5c9fc1be57f80bc3ab22a",
+  "entries": [
+    "LICENSE_mcwdoors"
+  ],
+  "notice": "Original embedded notices; declarations may conflict with upstream policy. Consult mods.lock.json."
+}
