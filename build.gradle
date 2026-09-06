@@ -6,6 +6,9 @@ group = 'team.minefed'
 version = '1.20.4'
 
 tasks.withType(Exec).configureEach { environment 'PYTHONUTF8', '1' }
+if (providers.gradleProperty('rebuildSources').getOrElse('false').toBoolean()) {
+    tasks.withType(Exec).configureEach { environment 'MINEFED_REBUILD_SOURCES', '1' }
+}
 
 // Independent Exec tasks preserve every upstream wrapper and plugin version.
 def recipes = new JsonSlurper().parse(file('inventory/build-recipes.json'))

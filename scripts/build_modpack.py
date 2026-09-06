@@ -271,7 +271,7 @@ def wrapper_command(root: Path, source: Path, work: Path, recipe: dict) -> list[
     shutil.copyfile(bootstrap, launch / "gradle-wrapper.jar")
     shutil.copyfile(properties, launch / "gradle-wrapper.properties")
     project = mods.safe_path(source, recipe["sourceWorkDir"]) if recipe.get("sourceWorkDir") not in (None, ".") else source
-    return [str(home / "bin" / ("java.exe" if os.name == "nt" else "java")), "-Xmx64m", "-cp",
+    return [str(home / "bin" / ("java.exe" if os.name == "nt" else "java")), "-Xmx64m", "-Dfile.encoding=UTF-8", "-cp",
             str(launch / "gradle-wrapper.jar"), "org.gradle.wrapper.GradleWrapperMain", "--project-dir", str(project)]
 
 
@@ -289,6 +289,34 @@ def build_source(root: Path, run: str, identity: str) -> None:
     receipt = output / "result.json"
     if receipt.exists():
         raise mods.ModError(f"Source already built in this run: {identity}")
+    tool_inputs = {}
+    for relative in ('scripts/build_modpack.py', 'scripts/source-repositories.gradle', 'gradle/wrapper/gradle-wrapper.jar'):
+        path = root / relative
+        tool_inputs[relative] = mods.file_digest(path)[0] if path.is_file() else None
+    release = java_home(root, recipe['java']) / 'release'
+    tool_inputs['jdkRelease'] = mods.file_digest(release)[0] if release.is_file() else None
+    gradle_home = Path(os.environ.get('GRADLE_USER_HOME', str(Path.home() / '.gradle')))
+    user_properties = gradle_home / 'gradle.properties'
+    tool_inputs['userGradleProperties'] = mods.file_digest(user_properties)[0] if user_properties.is_file() else None
+    for variable in ('JAVA_TOOL_OPTIONS', '_JAVA_OPTIONS', 'JDK_JAVA_OPTIONS'):
+        tool_inputs[variable] = os.environ.get(variable)
+    cache_key = canonical_digest({'source': state, 'recipe': recipe, 'tools': tool_inputs})
+    cache = mods.output_path(root, 'build/source-cache/' + cache_key)
+    cached_record = cache / 'result.json'
+    if cached_record.is_file() and os.environ.get('MINEFED_REBUILD_SOURCES') != '1':
+        cached = read_json(cached_record)
+        if cached.get('cacheKey') != cache_key or cached.get('source') != state or cached.get('recipeSha256') != canonical_digest(recipe):
+            raise mods.ModError(f'Invalid source cache receipt: {identity}')
+        cached_artifact = mods.safe_path(root, cached['artifactPath'])
+        if not cached_artifact.is_relative_to(cache):
+            raise mods.ModError(f'Source cache artifact leaves its cache entry: {identity}')
+        mods.check_bytes(cached_artifact, {'fileName': cached_artifact.name, 'sha256': cached['sha256'], 'size': cached['size']})
+        destination = output / cached_artifact.name
+        shutil.copyfile(cached_artifact, destination)
+        cached.update(run=run, artifactPath=destination.relative_to(root).as_posix(), cacheHit=True)
+        write_json(receipt, cached)
+        print(f"Reused verified source build {identity} {cached['metadata']['version']}", flush=True)
+        return
     # A successful task with an outdated recipe must never select a leftover JAR.
     # Preserve prior matching outputs for recovery, then force Gradle to reproduce
     # the selected artifact. Other build products and all source files stay intact.
@@ -310,6 +338,7 @@ def build_source(root: Path, run: str, identity: str) -> None:
     phases = recipe.get("phases", [recipe.get("tasks")])
     homes = [str(java_home(root, v)) for v in sorted({r["java"] for r in plan["entries"] if r["mode"] == "source"})]
     common = ["--no-daemon", "--max-workers=1", "--console=plain", "-Dorg.gradle.jvmargs=-Xmx1536m -Dfile.encoding=UTF-8",
+              "--init-script", str(root / "scripts" / "source-repositories.gradle"),
               "-Porg.gradle.java.installations.paths=" + ','.join(homes)] + recipe.get("args", [])
     commands = []
     for number, phase in enumerate(phases, 1):
@@ -331,10 +360,16 @@ def build_source(root: Path, run: str, identity: str) -> None:
     final_state = source_state(root, entry)
     if state["treeSha256"] != final_state["treeSha256"]:
         raise mods.ModError(f"Source changed while building: {identity}")
-    write_json(receipt, {"run": run, "modId": identity, "mode": "source", "source": state,
+    result_record = {"run": run, "compiledRun": run, "modId": identity, "mode": "source", "source": state,
                         "artifactPath": destination.relative_to(root).as_posix(), "sha256": digest, "size": size,
                         "metadata": metadata, "java": recipe["java"], "tasks": phases, "args": recipe.get("args", []),
-                        "recipeSha256": canonical_digest(recipe)})
+                        "recipeSha256": canonical_digest(recipe), "cacheKey": cache_key, "cacheHit": False,
+                        "buildTools": tool_inputs}
+    write_json(receipt, result_record)
+    cache.mkdir(parents=True, exist_ok=True)
+    cache_artifact = cache / destination.name
+    shutil.copyfile(destination, cache_artifact)
+    write_json(cached_record, {**result_record, 'artifactPath': cache_artifact.relative_to(root).as_posix()})
     print(f"Built {identity} {metadata['version']}: {artifact.name}", flush=True)
 
 

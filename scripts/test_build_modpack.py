@@ -185,6 +185,47 @@ class MixedBuildTests(unittest.TestCase):
             builder.assemble(self.root, "test-run")
         self.assertFalse((self.root / "build" / "distributions").exists())
 
+    def test_verified_source_cache_reuses_only_identical_inputs(self):
+        self.prepare('first')
+        self.assertEqual(len(self.build('first')), 1)
+        self.prepare('second')
+        self.assertEqual(self.build('second'), [])
+        receipt = builder.read_json(self.receipt_path('second'))
+        self.assertTrue(receipt['cacheHit'])
+        self.assertEqual(receipt['compiledRun'], 'first')
+        self.assertEqual(receipt['run'], 'second')
+        builder.assemble(self.root, 'second')
+
+    def test_source_edit_invalidates_verified_cache(self):
+        self.prepare('first')
+        self.build('first')
+        (self.source / 'new-source.txt').write_text('new input', encoding='utf-8')
+        self.prepare('second')
+        self.assertEqual(len(self.build('second')), 1)
+        self.assertFalse(builder.read_json(self.receipt_path('second'))['cacheHit'])
+
+    def test_rebuild_sources_forces_compilation(self):
+        self.prepare('first')
+        self.build('first')
+        self.prepare('second')
+        with patch.dict(builder.os.environ, {'MINEFED_REBUILD_SOURCES': '1'}):
+            self.assertEqual(len(self.build('second')), 1)
+
+    def test_source_cache_corruption_is_rejected(self):
+        self.prepare('first')
+        self.build('first')
+        record_path = next((self.root / 'build' / 'source-cache').glob('*/result.json'))
+        record = builder.read_json(record_path)
+        (self.root / record['artifactPath']).write_bytes(b'corrupted')
+        self.prepare('second')
+        with self.assertRaisesRegex(mods.ModError, 'SHA-256'):
+            self.build('second')
+
+    def test_unexpected_source_version_is_rejected(self):
+        self.prepare()
+        with self.assertRaisesRegex(mods.ModError, 'Unexpected source version'):
+            self.build(outputs=[{'filename': 'alpha-built.jar', 'version': '3.0'}])
+
     def test_old_run_receipt_cannot_be_reused(self):
         self.prepare("old-run")
         self.build("old-run")

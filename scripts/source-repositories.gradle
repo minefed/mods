@@ -1,0 +1,18 @@
+// Fabric artifacts have a canonical repository. Old upstream builds otherwise
+// probe every Minecraft/Forge/Maven repository for every Fabric API module.
+// Keep all unrelated repositories and dependency coordinates as upstream defines.
+allprojects {
+    repositories {
+        exclusiveContent {
+            forRepository {
+                maven {
+                    name = 'MinefedFabric'
+                    url = uri('https://maven.fabricmc.net/')
+                }
+            }
+            filter {
+                includeGroupByRegex('net\\.fabricmc(\\..*)?')
+            }
+        }
+    }
+}
