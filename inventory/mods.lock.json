@@ -1537,7 +1537,7 @@
         "url": "https://github.com/minefed/forge-config-api-port",
         "upstream": "https://github.com/Fuzss/forge-config-api-port",
         "ref": "minefed-1.20.4",
-        "commit": "6d8b44f4c6084113ea420d81f990744aea171320",
+        "commit": "384b25f16b825c49ab608503da00830aef739721",
         "trackingBranch": "minefed-1.20.4",
         "baselineRef": "1.20.4",
         "baselineCommit": "a99bf22e9242637d4a71a5f25f03c47d6ff2c2df"
