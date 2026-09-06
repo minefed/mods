@@ -62,3 +62,7 @@
 	path = CityCraft
 	url = https://github.com/minefed/CityCraft
 	branch = codex/minefed-1.20.4
+[submodule "diagonal-walls"]
+	path = diagonal-walls
+	url = https://github.com/minefed/diagonal-walls
+	branch = codex/minefed-1.20.4
