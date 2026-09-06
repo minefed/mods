@@ -2343,7 +2343,7 @@
         "url": "https://github.com/minefed/minefed-display",
         "upstream": "https://github.com/minefed/minefed-display",
         "ref": "minefed-1.20.4",
-        "commit": "d4ce32261261079e62ff1ac1cfff8a615cbed189",
+        "commit": "869b976756be38f298105d4adf6be2d22e3a0b8c",
         "trackingBranch": "minefed-1.20.4",
         "baselineRef": "main",
         "baselineCommit": "79708da179682295df0dfc379320a0759c25a97d"
