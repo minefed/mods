@@ -757,7 +757,7 @@
         "url": "https://github.com/minefed/Decorative-Blocks",
         "upstream": "https://github.com/lilypuree/Decorative-Blocks",
         "ref": "minefed-1.20.4",
-        "commit": "7c8f25ae6a2c3f3bed505d51c5780d12c1d342f6",
+        "commit": "d5f04025d811dd1310ce5a72a5ed9d40ad16c841",
         "trackingBranch": "minefed-1.20.4",
         "baselineRef": "main",
         "baselineCommit": "5775f8bb2c3fa57e041a2d40d377239e7c78d58d"
