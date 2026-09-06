@@ -82,3 +82,7 @@
 	path = fabric-seasons
 	url = https://github.com/minefed/fabric-seasons
 	branch = codex/minefed-1.20.4
+[submodule "FerriteCore"]
+	path = FerriteCore
+	url = https://github.com/minefed/FerriteCore
+	branch = codex/minefed-1.20.4
