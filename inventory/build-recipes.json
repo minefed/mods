@@ -476,7 +476,7 @@
       "artifactGlobs": [
         "build/libs/lithium-fabric-mc1.20.4-0.12.1+git.*.jar"
       ],
-      "expectedVersion": "0.12.1+git.6bb7238e"
+      "expectedVersion": "0.12.1+git.c40b758"
     },
     {
       "modId": "mcwdoors",

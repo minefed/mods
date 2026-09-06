@@ -1968,7 +1968,7 @@
         "url": "https://github.com/minefed/lithium",
         "upstream": "https://github.com/CaffeineMC/lithium",
         "ref": "minefed-1.20.4",
-        "commit": "6bb7238ee7123d841df017f04ff6527731508f14",
+        "commit": "c40b7585606e8434b7a8f1e7ef15c20d99685f19",
         "trackingBranch": "minefed-1.20.4",
         "baselineRef": "mc1.20.4-0.12.1",
         "baselineCommit": "b8f2818899bfcdae1bbf34991f2d3351e72c2f6c"
