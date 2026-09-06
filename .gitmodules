@@ -198,3 +198,7 @@
 	path = TimeOutOut
 	url = https://github.com/minefed/TimeOutOut
 	branch = codex/minefed-1.20.4
+[submodule "worldedit-hang-fix"]
+	path = worldedit-hang-fix
+	url = https://github.com/minefed/worldedit-hang-fix
+	branch = codex/minefed-1.20.4
