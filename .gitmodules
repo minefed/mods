@@ -186,3 +186,7 @@
 	path = ResourcefulLib
 	url = https://github.com/minefed/ResourcefulLib
 	branch = codex/minefed-1.20.4
+[submodule "Starlight"]
+	path = Starlight
+	url = https://github.com/minefed/Starlight
+	branch = codex/minefed-1.20.4
