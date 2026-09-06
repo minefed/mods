@@ -847,14 +847,15 @@
     {
       "modId": "stoneworks",
       "mode": "source",
-      "reason": "Fabric/Common Architectury project, Java 17, Gradle 8.5, Minecraft catalog 1.20.4-v13. remapJar includes common assets/classes. Build applies mutable upstream Fuzss/modresources main/gradle/v2 scripts; diagnose drift without binary fallback. local_maven supplies configuration for an unused local publication repository.",
+      "reason": "Fabric/Common Architectury project for MC1.20.4, catalog 1.20.4-v13, Java 17. Fabric remapJar includes common assets/classes. Fuzss v2 scripts are recursively pinned to e6311c7c40cfb0fe4240f22fd80efbbe9c554585; only the Fabric loader is selected. local_maven configures an unused local publication repository.",
       "sourcePath": "stoneworks",
       "java": 17,
       "tasks": [
         ":Fabric:remapJar"
       ],
       "args": [
-        "--configure-on-demand"
+        "--configure-on-demand",
+        "-PminefedLoaders=Fabric"
       ],
       "artifactGlobs": [
         "Fabric/build/libs/Stoneworks-v20.4.0-1.20.4-Fabric.jar"
