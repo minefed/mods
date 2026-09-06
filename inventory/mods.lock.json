@@ -4412,7 +4412,7 @@
         "url": "https://github.com/minefed/Yuushya-Modelling",
         "upstream": "https://github.com/XiLaiTL/Yuushya-Modelling",
         "ref": "minefed-1.20.4",
-        "commit": "d730225771d16cf83f6cf1ad31ab31c60fec018c",
+        "commit": "431d217b6663ba46c221e2bbb7ad9d3049d89565",
         "trackingBranch": "minefed-1.20.4",
         "baselineRef": "refs/heads/master",
         "baselineCommit": "3e36b9f66c0ae10202379f7287f88f7906976163"

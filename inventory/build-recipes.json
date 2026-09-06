@@ -1009,7 +1009,7 @@
     {
       "modId": "yuushya_modelling",
       "mode": "source",
-      "reason": "Multi-Minecraft Architectury tree has an explicit 1.20.4 Fabric path. Generate shared resources first in a separate Gradle invocation, then remap only 1.20.4:fabric. Generation writes only ignored build directories (git check-ignore verified). Build JVM 21 handles configuration of included 1.20.6/1.21 projects; 1.20.4 classes use release 17. Gradle 8.8 wrapper uses fastmirror. Disable checked-in developer localhost proxy via JVM args. No all-version build or clean-all task.",
+      "reason": "Select the Minecraft 1.20.4 Fabric projects in the multi-version Architectury tree. Generate shared resources first in a separate invocation, then remap 1.20.4:fabric. Generated outputs are ignored build directories. Use official Gradle 8.8 with build JDK 21 and Java 17 mod bytecode. Disable the checked-in developer localhost proxy via JVM arguments. No all-version build or clean-all task is selected.",
       "sourcePath": "Yuushya-Modelling",
       "java": 21,
       "tasks": [
@@ -1020,7 +1020,9 @@
         "-Dhttp.proxyHost=",
         "-Dhttps.proxyHost=",
         "-Dhttp.proxyPort=0",
-        "-Dhttps.proxyPort=0"
+        "-Dhttps.proxyPort=0",
+        "-PminefedTarget=1.20.4-fabric",
+        "-Penabled_platforms=fabric"
       ],
       "artifactGlobs": [
         "1.20.4/fabric/build/libs/yuushya-modelling-2.2.0.jar"
