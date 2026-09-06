@@ -14,7 +14,7 @@ $projectRoot = $PSScriptRoot
 $configuration = @{}
 $localFile = Join-Path $projectRoot 'build.local.json'
 if (Test-Path -LiteralPath $localFile) {
-    $configuration = Get-Content -LiteralPath $localFile -Raw | ConvertFrom-Json
+    $configuration = Get-Content -LiteralPath $localFile -Raw -Encoding UTF8 | ConvertFrom-Json
 }
 
 foreach ($version in @(17, 21)) {
