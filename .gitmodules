@@ -210,3 +210,7 @@
 	path = stoneworks
 	url = https://github.com/minefed/stoneworks
 	branch = codex/minefed-1.20.4
+[submodule "WorldEdit"]
+	path = WorldEdit
+	url = https://github.com/minefed/WorldEdit
+	branch = codex/minefed-1.20.4
