@@ -54,3 +54,7 @@
 	path = diagonal-fences
 	url = https://github.com/minefed/diagonal-fences
 	branch = codex/minefed-1.20.4
+[submodule "Decorative-Blocks"]
+	path = Decorative-Blocks
+	url = https://github.com/minefed/Decorative-Blocks
+	branch = codex/minefed-1.20.4
