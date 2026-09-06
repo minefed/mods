@@ -383,14 +383,15 @@
     {
       "modId": "forgeconfigapiport",
       "mode": "source",
-      "reason": "Fabric 모듈과 1.20.4-v40 버전 카탈로그를 사용한다. Fuzss 원격 Gradle v2 스크립트는 아직 mutable main을 참조한다.",
+      "reason": "Fabric MC1.20.4 catalog 1.20.4-v40. Fuzss v2 scripts are recursively pinned to e6311c7c40cfb0fe4240f22fd80efbbe9c554585. Configure Common and the required Forge/NeoForge API libraries before the selected Fabric loader.",
       "sourcePath": "forge-config-api-port",
       "java": 17,
       "tasks": [
         ":Fabric:remapJar"
       ],
       "args": [
-        "--configure-on-demand"
+        "--configure-on-demand",
+        "-PminefedLoaders=Fabric"
       ],
       "artifactGlobs": [
         "Fabric/build/libs/ForgeConfigAPIPort-v20.4.3-1.20.4-Fabric.jar"
