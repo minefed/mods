@@ -823,7 +823,7 @@
         "url": "https://github.com/minefed/diagonal-fences",
         "upstream": "https://github.com/Fuzss/diagonal-fences",
         "ref": "minefed-1.20.4",
-        "commit": "dca73befe7cb6cb0d0fd212cebeb2ca001e03a59",
+        "commit": "7506415bc4df259306d10a8c20fffcecf5812804",
         "trackingBranch": "minefed-1.20.4",
         "baselineRef": "1.20.4",
         "baselineCommit": "57e3bc3958e313c772cf68c2bfcb06a367fceb5d"
