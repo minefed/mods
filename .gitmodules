@@ -94,3 +94,7 @@
 	path = forge-config-api-port
 	url = https://github.com/minefed/forge-config-api-port
 	branch = codex/minefed-1.20.4
+[submodule "FallingTree"]
+	path = FallingTree
+	url = https://github.com/minefed/FallingTree
+	branch = codex/minefed-1.20.4
