@@ -14,3 +14,7 @@
 	path = minefed-display
 	url = https://github.com/minefed/minefed-display
 	branch = codex/minefed-1.20.4
+[submodule "alloy-forgery"]
+	path = alloy-forgery
+	url = https://github.com/minefed/alloy-forgery
+	branch = codex/minefed-1.20.4
