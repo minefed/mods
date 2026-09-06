@@ -34,3 +34,7 @@
 	path = Common-Storage-Lib
 	url = https://github.com/minefed/Common-Storage-Lib
 	branch = codex/minefed-1.20.4
+[submodule "BlueMap"]
+	path = BlueMap
+	url = https://github.com/minefed/BlueMap
+	branch = codex/minefed-1.20.4
