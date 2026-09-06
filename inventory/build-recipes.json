@@ -510,7 +510,8 @@
         ":fabric:remapJar"
       ],
       "args": [
-        "--configure-on-demand"
+        "--configure-on-demand",
+        "-Penabled_platforms=fabric"
       ],
       "artifactGlobs": [
         "fabric/build/libs/memoryleakfix-fabric-1.17+-1.1.5.jar"
