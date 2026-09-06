@@ -758,7 +758,7 @@
     {
       "modId": "puzzleslib",
       "mode": "source",
-      "reason": "Fabric/Common Architectury project, Java 17, Gradle 8.5; dependency catalog 1.20.4-v40. Fabric remapJar uses shadowed common classes. Source version 20.4.53 versus deployed 20.4.52. Build applies mutable upstream Fuzss/modresources main/gradle/v2 scripts, so remote script drift must be surfaced as failure, never binary fallback. local_maven is only a local publication repository configuration; no publish task is selected.",
+      "reason": "Fabric/Common Architectury project for MC1.20.4, catalog 1.20.4-v40, Java 17. Fabric remapJar includes common classes. Source version 20.4.53 differs from deployed 20.4.52. Fuzss v2 scripts are recursively pinned to e6311c7c40cfb0fe4240f22fd80efbbe9c554585; only the Fabric loader is selected. local_maven configures an unused local publication repository.",
       "sourcePath": "puzzles-lib",
       "java": 17,
       "tasks": [
@@ -766,7 +766,8 @@
       ],
       "args": [
         "--no-parallel",
-        "--configure-on-demand"
+        "--configure-on-demand",
+        "-PminefedLoaders=Fabric"
       ],
       "artifactGlobs": [
         "Fabric/build/libs/PuzzlesLib-v20.4.53-1.20.4-Fabric.jar"
