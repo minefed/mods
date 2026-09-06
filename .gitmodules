@@ -90,3 +90,7 @@
 	path = fabric-api
 	url = https://github.com/minefed/fabric-api
 	branch = codex/minefed-1.20.4
+[submodule "forge-config-api-port"]
+	path = forge-config-api-port
+	url = https://github.com/minefed/forge-config-api-port
+	branch = codex/minefed-1.20.4
