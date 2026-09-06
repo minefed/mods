@@ -66,3 +66,7 @@
 	path = diagonal-walls
 	url = https://github.com/minefed/diagonal-walls
 	branch = codex/minefed-1.20.4
+[submodule "diagonal-windows"]
+	path = diagonal-windows
+	url = https://github.com/minefed/diagonal-windows
+	branch = codex/minefed-1.20.4
