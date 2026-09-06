@@ -806,7 +806,9 @@
       "tasks": [
         ":fabric:remapJar"
       ],
-      "args": [],
+      "args": [
+        "--stacktrace"
+      ],
       "artifactGlobs": [
         "fabric/build/libs/resourcefulconfig-fabric-1.20.4-2.4.8.jar"
       ],
