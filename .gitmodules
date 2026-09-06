@@ -218,3 +218,7 @@
 	path = Yuushya-Modelling
 	url = https://github.com/minefed/Yuushya-Modelling
 	branch = codex/minefed-1.20.4
+[submodule "TrafficCraft"]
+	path = TrafficCraft
+	url = https://github.com/minefed/TrafficCraft
+	branch = codex/minefed-1.20.4
