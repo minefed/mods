@@ -42,6 +42,7 @@ CityCraft와 Macaw Doors/Fences는 현재 Fabric 1.20.4용 빌드 입력이 아�
 완성 ZIP과 SHA-256은 `build/distributions/`, 최근 성공 결과 경로는 `latest.json`에 기록된다.
 각 JAR의 실제 버전·해시, 소스 커밋과 내용 해시, 라이선스 고지도 ZIP에 포함한다.
 환경 설정과 개별 모드 빌드, 로그 확인 방법은 [빌드 안내](docs/BUILDING.md)를 참고한다.
+실제 통합 빌드의 결과물 해시와 확인 범위는 [빌드 검증 기록](docs/BUILD_VALIDATION.md)에 정리했다.
 
 ## 운영 JAR 기준본 패키징
 
