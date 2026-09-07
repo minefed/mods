@@ -376,7 +376,8 @@
         "--configure-on-demand"
       ],
       "artifactGlobs": [
-        "Fabric/build/libs/ferritecore-6.0.3-fabric.jar"
+        "Fabric/build/libs/ferritecore-6.0.3-fabric.jar",
+        "Fabric/build/libs/ferritecore-6.0.3-GH[0-9]*-fabric.jar"
       ],
       "expectedVersion": "6.0.3"
     },
