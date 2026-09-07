@@ -328,6 +328,7 @@ def main(argv=None) -> int:
     commands.add_parser('bootstrap').add_argument('--plan')
     planner = commands.add_parser('plan')
     planner.add_argument('--output', default='build/release-plan.json')
+    planner.add_argument('--force', action='store_true', help='Explicitly release unchanged inputs with a new version')
     materializer = commands.add_parser('materialize')
     materializer.add_argument('--plan', required=True)
     materializer.add_argument('--patch', default='build/release-inputs.patch')
@@ -340,7 +341,7 @@ def main(argv=None) -> int:
         if args.command in ('plan', 'materialize'):
             import release_inputs
             if args.command == 'plan':
-                release_inputs.plan(ROOT, mods.output_path(ROOT, args.output))
+                release_inputs.plan(ROOT, mods.output_path(ROOT, args.output), force=args.force)
             else:
                 release_inputs.materialize(ROOT, mods.output_path(ROOT, args.plan), mods.output_path(ROOT, args.patch))
         elif args.command == 'bootstrap':
@@ -348,7 +349,7 @@ def main(argv=None) -> int:
         else:
             publish(ROOT, mods.output_path(ROOT, args.assets), mods.output_path(ROOT, args.plan), mods.output_path(ROOT, args.patch))
         return 0
-    except (mods.ModError, HTTPError, OSError, ValueError, zipfile.BadZipFile, subprocess.CalledProcessError) as exc:
+    except (mods.ModError, HTTPError, OSError, ValueError, RuntimeError, zipfile.BadZipFile, subprocess.CalledProcessError) as exc:
         print(f'Release failed: {exc}', file=__import__('sys').stderr)
         return 1
 
