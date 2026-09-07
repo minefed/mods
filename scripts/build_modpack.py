@@ -39,6 +39,49 @@ def canonical_digest(data) -> str:
     return hashlib.sha256(json.dumps(data, sort_keys=True, ensure_ascii=False).encode()).hexdigest()
 
 
+def resolve_binary_dependencies(root: Path, manifest: dict, plan: dict) -> dict:
+    """Overlay reviewed runtime binaries without changing the captured inventory."""
+    dependency_ids = {r["modId"] for r in plan["entries"] if r.get("dependency") is True}
+    if "dependencyManifest" not in plan:
+        if dependency_ids:
+            raise mods.ModError("Dependency recipes require dependencyManifest")
+        return manifest
+    dependencies = mods.load_manifest(root, plan["dependencyManifest"])
+    if dependencies.get("sourceRepositories"):
+        raise mods.ModError("Dependency manifest cannot contain active source repositories")
+    binary_ids = {r["modId"] for r in plan["entries"] if r["mode"] == "binary"}
+    selected_ids = {e["modId"] for e in manifest["entries"] if e["included"]}
+    replacements = {}
+    for entry in dependencies["entries"]:
+        identity = entry.get("modId")
+        if not isinstance(identity, str) or identity not in selected_ids or identity not in binary_ids:
+            raise mods.ModError(f"Dependency must replace an included binary recipe: {identity}")
+        if identity in replacements:
+            raise mods.ModError(f"Duplicate dependency modId: {identity}")
+        if not entry["included"] or entry["management"] != "binary" or entry.get("source") is not None:
+            raise mods.ModError(f"Dependency must be an included binary without active source: {identity}")
+        replacements[identity] = entry
+    if set(replacements) != dependency_ids:
+        missing = ", ".join(sorted(dependency_ids - set(replacements))) or "none"
+        extra = ", ".join(sorted(set(replacements) - dependency_ids)) or "none"
+        raise mods.ModError(f"Dependency manifest must exactly cover dependency recipes; missing: {missing}; extra: {extra}")
+    resolved = copy.deepcopy(manifest)
+    resolved["entries"] = [copy.deepcopy(replacements[e["modId"]])
+                           if e["included"] and e["modId"] in replacements else e
+                           for e in resolved["entries"]]
+    # Each input manifest has already passed mods.load_manifest. Check collisions
+    # introduced by merging them, including excluded historical inventory entries.
+    names, paths = set(), set()
+    for entry in resolved["entries"]:
+        name = entry["fileName"].casefold()
+        path = str(mods.safe_path(root, entry["artifact"]["path"])).casefold()
+        if name in names or path in paths:
+            raise mods.ModError(f"Dependency artifact collides with inventory: {entry['fileName']}")
+        names.add(name)
+        paths.add(path)
+    return resolved
+
+
 def load_plan(root: Path) -> tuple[dict, dict]:
     manifest = mods.load_manifest(root)
     plan = read_json(mods.safe_path(root, RECIPES))
@@ -59,6 +102,8 @@ def load_plan(root: Path) -> tuple[dict, dict]:
         entry = selected[identity]
         if recipe.get("mode") not in ("source", "binary") or not recipe.get("reason"):
             raise mods.ModError(f"Recipe needs an explicit source/binary choice and reason: {identity}")
+        if "dependency" in recipe and (type(recipe["dependency"]) is not bool or recipe["mode"] != "binary"):
+            raise mods.ModError(f"Dependency flag must be a boolean on a binary recipe: {identity}")
         if recipe["mode"] == "source":
             if not entry.get("source") or recipe.get("sourcePath") != entry["source"]["path"]:
                 raise mods.ModError(f"Source recipe differs from the locked submodule: {identity}")
@@ -82,7 +127,7 @@ def load_plan(root: Path) -> tuple[dict, dict]:
             if not isinstance(recipe.get("env", {}), dict) or any(not isinstance(k, str) or not isinstance(v, str)
                                                                 for k, v in recipe.get("env", {}).items()):
                 raise mods.ModError(f"Invalid recipe environment: {identity}")
-    return manifest, plan
+    return resolve_binary_dependencies(root, manifest, plan), plan
 
 
 def run_path(root: Path, run: str) -> Path:

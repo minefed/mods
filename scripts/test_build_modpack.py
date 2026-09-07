@@ -366,6 +366,144 @@ class MixedBuildTests(unittest.TestCase):
     def receipt_path(self, run="test-run"):
         return builder.run_path(self.root, run) / "sources" / "alpha" / "result.json"
 
+    def save_dependency(self, **changes):
+        path = self.jar(self.root / "vendor/local/beta-2.0.jar", "beta", version="2.0",
+                        marker=b"official dependency release bytes")
+        digest, size = mods.file_digest(path)
+        entry = copy.deepcopy(self.binary_entry)
+        entry.update(fileName=path.name, version="2.0", sha256=digest, size=size)
+        entry["artifact"]["path"] = path.relative_to(self.root).as_posix()
+        entry.update(changes)
+        dependencies = {"schemaVersion": 1, "minecraftVersion": "1.20.4", "loader": "fabric",
+                        "entries": [entry]}
+        self.plan["dependencyManifest"] = "inventory/dependencies.lock.json"
+        next(recipe for recipe in self.plan["entries"] if recipe["modId"] == "beta")["dependency"] = True
+        self.save_inputs()
+        builder.write_json(self.root / self.plan["dependencyManifest"], dependencies)
+        return dependencies
+
+    def test_official_dependency_overlay_is_prepared_and_packaged_without_changing_baseline(self):
+        dependencies = self.save_dependency()
+        baseline_path = self.root / "inventory/mods.lock.json"
+        baseline_bytes = baseline_path.read_bytes()
+        original_bytes = (self.root / self.binary_entry["artifact"]["path"]).read_bytes()
+        dependency = dependencies["entries"][0]
+        expected_bytes = (self.root / dependency["artifact"]["path"]).read_bytes()
+        with patch.object(mods, "hydrate", wraps=mods.hydrate) as hydrate:
+            self.prepare()
+        self.assertEqual(hydrate.call_args.args[1]["entries"], [dependency])
+        self.build()
+        artifact = builder.assemble(self.root, "test-run")
+        with zipfile.ZipFile(artifact) as archive:
+            self.assertEqual(archive.read("mods/beta-2.0.jar"), expected_bytes)
+            self.assertNotIn("mods/beta.jar", archive.namelist())
+            entries = json.loads(archive.read("inventory/mods.lock.json"))["entries"]
+            actual = next(entry for entry in entries if entry["modId"] == "beta")
+            self.assertEqual(actual, dependency)
+            provenance = json.loads(archive.read("BUILD-PROVENANCE.json"))
+            binary = next(item for item in provenance if item["modId"] == "beta")
+            self.assertEqual((binary["mode"], binary["version"], binary["sha256"]),
+                             ("binary", "2.0", dependency["sha256"]))
+        self.assertEqual(baseline_path.read_bytes(), baseline_bytes)
+        self.assertEqual((self.root / self.binary_entry["artifact"]["path"]).read_bytes(), original_bytes)
+
+    def test_dependency_overlay_preserves_excluded_entries_with_same_mod_id(self):
+        excluded = self.baseline("beta-legacy.jar", "beta")
+        excluded.update(included=False, exclusionReason="Historical duplicate")
+        self.manifest["entries"].append(excluded)
+        dependencies = self.save_dependency()
+        manifest, _ = builder.load_plan(self.root)
+        self.assertEqual(manifest["entries"][-1], excluded)
+        self.assertEqual(sum(e["included"] for e in manifest["entries"]), 2)
+        self.assertEqual(next(e for e in manifest["entries"] if e["modId"] == "beta" and e["included"]),
+                         dependencies["entries"][0])
+
+    def test_dependency_manifest_rejects_wrong_schema_target_and_loader(self):
+        for key, value in (("schemaVersion", 2), ("minecraftVersion", "1.21"), ("loader", "forge")):
+            with self.subTest(key=key):
+                dependencies = self.save_dependency()
+                dependencies[key] = value
+                builder.write_json(self.root / self.plan["dependencyManifest"], dependencies)
+                with self.assertRaises(mods.ModError):
+                    builder.load_plan(self.root)
+
+    def test_dependency_manifest_rejects_nonbinary_excluded_source_and_unknown_entries(self):
+        for changes in ({"management": "submodule", "source": self.source_entry["source"]},
+                        {"source": self.source_entry["source"]},
+                        {"included": False, "exclusionReason": "Excluded dependency"},
+                        {"modId": "unknown"}, {"modId": "alpha"}):
+            with self.subTest(changes=changes):
+                self.save_dependency(**changes)
+                with self.assertRaisesRegex(mods.ModError, "Dependency must"):
+                    builder.load_plan(self.root)
+
+    def test_dependency_manifest_rejects_duplicate_ids(self):
+        dependencies = self.save_dependency()
+        duplicate = copy.deepcopy(dependencies["entries"][0])
+        duplicate["fileName"] = "beta-duplicate.jar"
+        duplicate["artifact"]["path"] = "vendor/local/beta-duplicate.jar"
+        dependencies["entries"].append(duplicate)
+        builder.write_json(self.root / self.plan["dependencyManifest"], dependencies)
+        with self.assertRaisesRegex(mods.ModError, "Duplicate dependency modId"):
+            builder.load_plan(self.root)
+
+    def test_dependency_manifest_cannot_omit_a_declared_dependency(self):
+        self.save_dependency()
+        self.recipe.update(mode="binary", dependency=True)
+        self.save_inputs()
+        with self.assertRaisesRegex(mods.ModError, "missing: alpha"):
+            builder.load_plan(self.root)
+
+    def test_dependency_recipes_require_a_manifest_instead_of_using_baseline(self):
+        self.save_dependency()
+        del self.plan["dependencyManifest"]
+        self.save_inputs()
+        with self.assertRaisesRegex(mods.ModError, "require dependencyManifest"):
+            builder.load_plan(self.root)
+
+    def test_dependency_manifest_cannot_replace_an_unflagged_binary(self):
+        self.save_dependency()
+        next(recipe for recipe in self.plan["entries"] if recipe["modId"] == "beta")["dependency"] = False
+        self.save_inputs()
+        with self.assertRaisesRegex(mods.ModError, "extra: beta"):
+            builder.load_plan(self.root)
+
+    def test_dependency_flag_must_be_boolean_and_only_used_on_binary_recipes(self):
+        binary_recipe = next(recipe for recipe in self.plan["entries"] if recipe["modId"] == "beta")
+        for value in ("true", 1, None):
+            with self.subTest(value=value):
+                binary_recipe["dependency"] = value
+                self.save_inputs()
+                with self.assertRaisesRegex(mods.ModError, "boolean on a binary recipe"):
+                    builder.load_plan(self.root)
+        del binary_recipe["dependency"]
+        self.recipe["dependency"] = True
+        self.save_inputs()
+        with self.assertRaisesRegex(mods.ModError, "boolean on a binary recipe"):
+            builder.load_plan(self.root)
+
+    def test_dependency_overlay_rejects_collisions_with_remaining_inventory(self):
+        for artifact_path in ("vendor/local/alpha-baseline.jar", "artifacts/local/alpha-baseline.jar"):
+            with self.subTest(path=artifact_path):
+                dependencies = self.save_dependency(fileName="alpha-baseline.jar")
+                dependencies["entries"][0]["artifact"]["path"] = artifact_path
+                builder.write_json(self.root / self.plan["dependencyManifest"], dependencies)
+                with self.assertRaisesRegex(mods.ModError, "collides with inventory"):
+                    builder.load_plan(self.root)
+
+    def test_dependency_change_after_prepare_invalidates_run(self):
+        dependencies = self.save_dependency()
+        self.prepare()
+        dependencies["entries"][0]["version"] = "3.0"
+        builder.write_json(self.root / self.plan["dependencyManifest"], dependencies)
+        with self.assertRaisesRegex(mods.ModError, "changed during this run"):
+            self.build()
+
+    def test_plan_without_dependency_manifest_preserves_legacy_inventory(self):
+        manifest, plan = builder.load_plan(self.root)
+        self.assertEqual(manifest, self.manifest)
+        self.assertNotIn("dependencyManifest", plan)
+
     def test_plan_rejects_missing_and_duplicate_recipes(self):
         self.plan["entries"].pop()
         self.save_inputs()

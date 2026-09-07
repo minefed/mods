@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 1,
+  "minecraftVersion": "1.20.4",
+  "loader": "fabric",
+  "channel": "release",
+  "entries": [
+    {
+      "modId": "architectury",
+      "projectId": "lhGA9TYQ"
+    },
+    {
+      "modId": "botarium",
+      "projectId": "2u6LRnMa"
+    },
+    {
+      "modId": "fabric-api",
+      "projectId": "P7dR8mSH"
+    },
+    {
+      "modId": "lavender",
+      "projectId": "D5h9NKNI"
+    },
+    {
+      "modId": "owo",
+      "projectId": "ccKDOlHs"
+    },
+    {
+      "modId": "resourcefulconfig",
+      "projectId": "M1953qlQ"
+    },
+    {
+      "modId": "resourcefullib",
+      "projectId": "G1hIVOrD"
+    }
+  ]
+}

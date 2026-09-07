@@ -302,6 +302,10 @@ def select_files(root, manifest, provenance, paths, policy, work):
         if identity not in original:
             raise mods.ModError(f'Release mod missing from baseline: {identity}')
         entry = copy.deepcopy(original[identity] if decision['artifact'] == 'baseline' else built[identity])
+        if (decision['distribution'] == 'download' and decision['artifact'] == 'built'
+                and provenance[identity].get('mode') == 'binary'
+                and decision['downloadUrl'] != entry['artifact'].get('url')):
+            raise mods.ModError(f'Official binary download URL differs from selected artifact: {identity}')
         path = baseline_artifact(root, entry, decision, work) if decision['artifact'] == 'baseline' else paths[identity]
         metadata = checked_jar(root, path, entry)
         for side in ('client', 'server'):

@@ -175,6 +175,59 @@ class ReleaseTests(unittest.TestCase):
             self.assertEqual(self.alpha['sha256'], entry['sha256'])
             self.assertIn('Explicit policy replacement', client.read('overrides/LICENSES.md').decode())
 
+    def test_built_download_selects_updated_official_binary_and_preserves_notices(self):
+        updated = self.jar('gamma-2.0.jar', 'gamma', '2.0')
+        updated['sourceReference'] = {'url': 'https://github.com/example/gamma',
+                                      'ref': 'v2.0', 'commit': '3' * 40}
+        self.produced['entries'][2] = updated
+        self.provenance[2].update(version=updated['version'], sha256=updated['sha256'])
+        self.policy['entries'][2] = self.decision('gamma', distribution='download', artifact='built',
+                                                 downloadUrl=updated['artifact']['url'])
+        self.write('inventory/release-policy.json', self.policy)
+        self.input_zip()
+        notice_path = 'licenses/repository/inventory/licenses/upstream/gamma/provenance.json'
+        license_path = 'licenses/repository/inventory/licenses/upstream/gamma/LICENSE'
+        with zipfile.ZipFile(self.root / 'build/input.zip', 'a') as archive:
+            archive.writestr(notice_path, release.json_bytes(updated['sourceReference']))
+            archive.writestr(license_path, 'Gamma author MIT notice')
+        digest, size = mods.file_digest(self.root / 'build/input.zip')
+        summary = json.loads((self.root / 'build/latest.json').read_text())
+        self.write('build/latest.json', {**summary, 'sha256': digest, 'size': size})
+        manifest = self.run_release()
+        with zipfile.ZipFile(manifest.parent / 'client.mrpack') as client:
+            index = json.loads(client.read('modrinth.index.json'))
+            download = next(e for e in index['files'] if e['path'] == 'mods/gamma-2.0.jar')
+            self.assertEqual([updated['artifact']['url']], download['downloads'])
+            self.assertEqual(hashlib.sha512((self.root / updated['artifact']['path']).read_bytes()).hexdigest(),
+                             download['hashes']['sha512'])
+            record = next(e for e in json.loads(client.read('overrides/download-manifest.json'))['files']
+                          if e['modId'] == 'gamma')
+            self.assertEqual(('2.0', updated['sha256']), (record['version'], record['sha256']))
+            self.assertNotEqual(self.gamma['sha256'], record['sha256'])
+            self.assertIsNone(record['source'])
+            self.assertFalse(record['replacesBuiltArtifact'])
+            self.assertNotIn('overrides/mods/gamma.jar', client.namelist())
+            self.assertNotIn('overrides/mods/gamma-2.0.jar', client.namelist())
+            self.assertEqual(updated['sourceReference'], json.loads(client.read('overrides/' + notice_path)))
+            self.assertEqual(b'Gamma author MIT notice', client.read('overrides/' + license_path))
+        with zipfile.ZipFile(manifest.parent / 'server.zip') as server:
+            record = next(e for e in json.loads(server.read('download-manifest.json'))['files']
+                          if e['modId'] == 'gamma')
+            self.assertEqual(updated['artifact']['url'], record['downloadUrl'])
+            self.assertEqual(updated['sha256'], record['sha256'])
+            self.assertEqual(updated['sourceReference'], json.loads(server.read(notice_path)))
+
+    def test_built_binary_download_rejects_stale_policy_url_before_publication(self):
+        updated = self.jar('gamma-2.0.jar', 'gamma', '2.0')
+        self.produced['entries'][2] = updated
+        self.provenance[2].update(version=updated['version'], sha256=updated['sha256'])
+        self.policy['entries'][2]['artifact'] = 'built'
+        self.write('inventory/release-policy.json', self.policy)
+        self.input_zip()
+        with self.assertRaisesRegex(mods.ModError, 'Official binary download URL differs'):
+            self.run_release()
+        self.assertFalse((self.root / 'build/releases/20260907123456').exists())
+
     def test_zip_traversal_is_rejected_even_with_matching_outer_hash(self):
         self.input_zip('../escaped.txt')
         with self.assertRaisesRegex(mods.ModError, 'Unsafe'):

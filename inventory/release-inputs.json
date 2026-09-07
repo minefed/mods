@@ -11,13 +11,6 @@
       ]
     },
     {
-      "modId": "architectury",
-      "sourcePath": "architectury-api",
-      "releaseGlobs": [
-        "fabric/build/libs/architectury-*-fabric.jar"
-      ]
-    },
-    {
       "modId": "automobility-refueled",
       "sourcePath": "Automobility-Refueled",
       "releaseGlobs": [
@@ -29,13 +22,6 @@
       "sourcePath": "BlueMap",
       "releaseGlobs": [
         "build/release/BlueMap-*-fabric-1.20.jar"
-      ]
-    },
-    {
-      "modId": "botarium",
-      "sourcePath": "Common-Storage-Lib",
-      "releaseGlobs": [
-        "fabric/build/libs/botarium-fabric-1.20.4-*.jar"
       ]
     },
     {
@@ -95,13 +81,6 @@
       ]
     },
     {
-      "modId": "fabric-api",
-      "sourcePath": "fabric-api",
-      "releaseGlobs": [
-        "build/libs/fabric-api-*+1.20.4.jar"
-      ]
-    },
-    {
       "modId": "carpet",
       "sourcePath": "fabric-carpet",
       "releaseGlobs": [
@@ -155,13 +134,6 @@
       "sourcePath": "Handcrafted",
       "releaseGlobs": [
         "fabric/build/libs/handcrafted-fabric-1.20.4-*.jar"
-      ]
-    },
-    {
-      "modId": "lavender",
-      "sourcePath": "lavender",
-      "releaseGlobs": [
-        "build/libs/lavender-*+1.20.3.jar"
       ]
     },
     {
@@ -257,13 +229,6 @@
       ]
     },
     {
-      "modId": "owo",
-      "sourcePath": "owo-lib",
-      "releaseGlobs": [
-        "build/libs/owo-lib-*+1.20.3.jar"
-      ]
-    },
-    {
       "modId": "pfm",
       "sourcePath": "paladins-furniture",
       "releaseGlobs": [
@@ -289,20 +254,6 @@
       "sourcePath": "mc-realtime",
       "releaseGlobs": [
         "build/libs/realtime-*-1.20-1.21.1.jar"
-      ]
-    },
-    {
-      "modId": "resourcefulconfig",
-      "sourcePath": "Resourceful-Config",
-      "releaseGlobs": [
-        "fabric/build/libs/resourcefulconfig-fabric-1.20.4-*.jar"
-      ]
-    },
-    {
-      "modId": "resourcefullib",
-      "sourcePath": "ResourcefulLib",
-      "releaseGlobs": [
-        "fabric/build/libs/resourcefullib-fabric-1.20.4-*.jar"
       ]
     },
     {
@@ -447,16 +398,6 @@
       "licenseFiles": {
         "LICENSE": "a2010f343487d3f7618affe54f789f5487602331c0a8d03f49e9a7c547cf0499",
         "README.md": "9ce5c0f8c91729628a732d35ea7ea24dc15267adabe30c63e6e9e31f2713af0f"
-      },
-      "nestedGitlinks": {}
-    },
-    {
-      "path": "Common-Storage-Lib",
-      "kind": "mod",
-      "reviewedCommit": "ae864ea949064d734de8aed89297c5916637ed20",
-      "licenseFiles": {
-        "LICENSE.md": "965515d4b40fbbdef16cd0a78d559c0cf1e8a74d8acb8ee7b8ece092467c8d0f",
-        "README.md": "9c4645b335dc1b3e3df2e161489ff59ea87cfe132904fe169563ebd14eb2cb29"
       },
       "nestedGitlinks": {}
     },
@@ -653,28 +594,6 @@
       "nestedGitlinks": {}
     },
     {
-      "path": "Resourceful-Config",
-      "kind": "mod",
-      "reviewedCommit": "6f5fb83c6dc3b78e3a84589ada273a0cf38148e3",
-      "licenseFiles": {
-        "LICENSE.md": "a8e7410d85c405cab5d1a51e198e51495c2ca6447b509eec540cfaff80bba8ea",
-        "README.md": "c54ad78c920e599ffc45908a629d7981bde53d18c64b1abcafee831749ad2c92",
-        "templates/README.md.template": "9096b52c6fec37ee02c5ec89ab8c8f18d0b792ce5eea769b4666323e71e65703"
-      },
-      "nestedGitlinks": {}
-    },
-    {
-      "path": "ResourcefulLib",
-      "kind": "mod",
-      "reviewedCommit": "5404f9f6e68fb1bbf96c5c391ba6d7607ce289b4",
-      "licenseFiles": {
-        "LICENSE": "a8e7410d85c405cab5d1a51e198e51495c2ca6447b509eec540cfaff80bba8ea",
-        "README.md": "afad128d955dd91c7517b5f93206b13aaac1bef6d4da2f589ae161e4a506bc98",
-        "templates/README.md.template": "256cd84895dba712f5c89fd83c84d675040540b6a772781c6cd07640bc3705cc"
-      },
-      "nestedGitlinks": {}
-    },
-    {
       "path": "Starlight",
       "kind": "mod",
       "reviewedCommit": "c2b8391d83ddadbd8136d2abead7e1014da19a6d",
@@ -761,16 +680,6 @@
       "nestedGitlinks": {}
     },
     {
-      "path": "architectury-api",
-      "kind": "mod",
-      "reviewedCommit": "d97359747e8d05939f8a8fdc0d01fcf410d0bf6d",
-      "licenseFiles": {
-        "LICENSE.md": "1171d2933e66dbe4720bfe0ab30d5a519409c96adffca4358bc86f94ca59c654",
-        "README.md": "759e835d3074a351009eeface9038a4515fbcfa269e37e43d87100040da2a7b4"
-      },
-      "nestedGitlinks": {}
-    },
-    {
       "path": "diagonal-fences",
       "kind": "mod",
       "reviewedCommit": "52a8f8196ba52c51d663c44666ee2a7425fb8282",
@@ -800,21 +709,6 @@
         "LICENSE-ASSETS.md": "ca520b6211afd43cf740743746985f697047aca839fc325487d6fff97af57cec",
         "LICENSE.md": "1f256ecad192880510e84ad60474eab7589218784b9a50bc7ceee34c2b91f1d5",
         "README.md": "4faf6c36364ac6f4e4a9cb501f1978488226af20b05fee35c672956103d21a2f"
-      },
-      "nestedGitlinks": {}
-    },
-    {
-      "path": "fabric-api",
-      "kind": "mod",
-      "reviewedCommit": "b0291a8c46e79ec2018b26b5874a2796f6b54132",
-      "licenseFiles": {
-        "LICENSE": "b40930bbcf80744c86c46a12bc9da056641d722716c378f5659b9e555ef833e1",
-        "README.md": "bd3830fda8d7e6dced96e7796fd8ad0eae888d330097eb22ed4ad35dc5530e3b",
-        "fabric-api-lookup-api-v1/README.md": "837c75be8f2275a7b0bde1498cdaf6928ed29e8db0672912b284ff1a0874ada1",
-        "fabric-lifecycle-events-v1/README.md": "b869df8f1cff3229bed4f0cd0e38da9f6384ae312299b42518cf4c6a19d54a16",
-        "fabric-loot-api-v2/README.md": "70518a0b840405d44d29a645f043331584c93032e0dea85e88ec3ae2007db85c",
-        "fabric-transfer-api-v1/README.md": "b11d62877e197a3d956a49bee69b851b7827665bdf3b4eb3aae8bf8e1eba5108",
-        "fabric-transitive-access-wideners-v1/README.md": "aec83bd85f5ceefb8f4a772daf632281360f7263b76704516095081d29c04bb1"
       },
       "nestedGitlinks": {}
     },
@@ -873,16 +767,6 @@
       "nestedGitlinks": {}
     },
     {
-      "path": "lavender",
-      "kind": "mod",
-      "reviewedCommit": "cc99a048c3622880ae0496122da30a72f21c44bd",
-      "licenseFiles": {
-        "LICENSE": "089e801fd0cd8e0258a1e1fe226a1046bb2d702a5349a0ef5a0e232b39a29594",
-        "README.md": "9a03ce92ccf4549b136da65b826c0dee86d5eb01bb10a0a7221c1b4f7623ab71"
-      },
-      "nestedGitlinks": {}
-    },
-    {
       "path": "lithium",
       "kind": "mod",
       "reviewedCommit": "c40b7585606e8434b7a8f1e7ef15c20d99685f19",
@@ -932,16 +816,6 @@
       "licenseFiles": {
         "LICENSE": "70f62297c3a1c133cf9e24faa95e79cffe41b8053c32e3f95ea6a6bb386f77df",
         "README.md": "b61179862277ef27b65a26465c2d4bae6ee133ca31f2b249bf33e5c0dc668b79"
-      },
-      "nestedGitlinks": {}
-    },
-    {
-      "path": "owo-lib",
-      "kind": "mod",
-      "reviewedCommit": "715959e5f9b33d3789f18ead7a9ce388e55749b6",
-      "licenseFiles": {
-        "LICENSE": "4578db32a0c60dd839a6d005bd115ff4bab94f1dbb0b181aa2062b2f8dc6cc48",
-        "README.md": "2cec7eb2ae792de2a836310d7d589eb3f7d96ea17b365171aef60ba0b0fb4991"
       },
       "nestedGitlinks": {}
     },

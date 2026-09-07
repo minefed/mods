@@ -292,7 +292,7 @@ class RepositoryInputsTests(unittest.TestCase):
         recipes = {e['modId']: e for e in ri.read_json(root, 'inventory/build-recipes.json')['entries'] if e['mode'] == 'source'}
         entries = ri.read_json(root, ri.INPUTS)['entries']
         self.assertEqual(set(recipes), {e['modId'] for e in entries})
-        self.assertEqual(len(entries), 53)
+        self.assertEqual(len(entries), len(recipes))
         for entry in entries:
             recipe = recipes[entry['modId']]
             self.assertEqual(recipe['sourcePath'], entry['sourcePath'])

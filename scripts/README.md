@@ -4,6 +4,12 @@ Python 3.10 이상과 표준 라이브러리만 사용합니다. 소스 검증�
 저장소 루트에서 실행합니다. Python 실행 파일이 `python`으로 등록되지 않았다면 설치된
 Python 실행 파일의 전체 경로를 사용하세요.
 
+기반 라이브러리 빌드 pin은 `inventory/dependencies.lock.json`에 별도로 둡니다.
+`python scripts/check_dependencies.py`로 Minecraft 1.20.4/Fabric의 최신 안정 릴리즈를
+조회하며, `--id fabric-api`로 대상을 좁히거나 `--output build/dependency-updates.json`으로
+결과를 저장할 수 있습니다. 이 명령은 메타데이터만 조회하고 lock과 JAR를 바꾸지 않습니다.
+업데이트 절차와 운영 기준본과의 구분은 [의존성 관리 Q&A](../docs/DEPENDENCIES.md)를 참고하세요.
+
 ```powershell
 python scripts/mods.py verify
 python scripts/mods.py verify --sources

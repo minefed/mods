@@ -18,10 +18,6 @@
 	path = alloy-forgery
 	url = https://github.com/minefed/alloy-forgery
 	branch = minefed-1.20.4
-[submodule "architectury-api"]
-	path = architectury-api
-	url = https://github.com/minefed/architectury-api
-	branch = minefed-1.20.4
 [submodule "Automobility-Refueled"]
 	path = Automobility-Refueled
 	url = https://github.com/minefed/Automobility-Refueled
@@ -29,10 +25,6 @@
 [submodule "Chisels-and-Bits"]
 	path = Chisels-and-Bits
 	url = https://github.com/minefed/Chisels-and-Bits
-	branch = minefed-1.20.4
-[submodule "Common-Storage-Lib"]
-	path = Common-Storage-Lib
-	url = https://github.com/minefed/Common-Storage-Lib
 	branch = minefed-1.20.4
 [submodule "BlueMap"]
 	path = BlueMap
@@ -86,10 +78,6 @@
 	path = FerriteCore
 	url = https://github.com/minefed/FerriteCore
 	branch = minefed-1.20.4
-[submodule "fabric-api"]
-	path = fabric-api
-	url = https://github.com/minefed/fabric-api
-	branch = minefed-1.20.4
 [submodule "forge-config-api-port"]
 	path = forge-config-api-port
 	url = https://github.com/minefed/forge-config-api-port
@@ -101,10 +89,6 @@
 [submodule "geckolib"]
 	path = geckolib
 	url = https://github.com/minefed/geckolib
-	branch = minefed-1.20.4
-[submodule "lavender"]
-	path = lavender
-	url = https://github.com/minefed/lavender
 	branch = minefed-1.20.4
 [submodule "lithium"]
 	path = lithium
@@ -150,10 +134,6 @@
 	path = mishanguc
 	url = https://github.com/minefed/mishanguc
 	branch = minefed-1.20.4
-[submodule "owo-lib"]
-	path = owo-lib
-	url = https://github.com/minefed/owo-lib
-	branch = minefed-1.20.4
 [submodule "MTR-Station-Decoration-Addon"]
 	path = MTR-Station-Decoration-Addon
 	url = https://github.com/minefed/MTR-Station-Decoration-Addon
@@ -174,17 +154,9 @@
 	path = Patchouli
 	url = https://github.com/minefed/Patchouli
 	branch = minefed-1.20.4
-[submodule "Resourceful-Config"]
-	path = Resourceful-Config
-	url = https://github.com/minefed/Resourceful-Config
-	branch = minefed-1.20.4
 [submodule "paladins-furniture"]
 	path = paladins-furniture
 	url = https://github.com/minefed/paladins-furniture
-	branch = minefed-1.20.4
-[submodule "ResourcefulLib"]
-	path = ResourcefulLib
-	url = https://github.com/minefed/ResourcefulLib
 	branch = minefed-1.20.4
 [submodule "Starlight"]
 	path = Starlight

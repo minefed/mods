@@ -289,3 +289,12 @@ __pycache__/
 
 # Machine-specific Java/Python locations for the one-command build launcher.
 /build.local.json
+
+# Retired base-library checkouts remain local; official JARs are locked instead.
+/architectury-api/
+/Common-Storage-Lib/
+/fabric-api/
+/lavender/
+/owo-lib/
+/Resourceful-Config/
+/ResourcefulLib/

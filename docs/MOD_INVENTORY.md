@@ -2,7 +2,9 @@
 
 2026-09-06 FileZilla에서 서버 `mods` 폴더의 70개 파일(433,889,641바이트)을 확인하고 원본 JAR를 내려받아 SHA256을 기록했다. 기준 환경은 Minecraft 1.20.4 / Fabric이다. 운영 서버 파일은 변경하지 않았다.
 
-소스 관리 대상은 58개 JAR에 대응하는 57개 저장소이며, 바이너리 관리 대상은 12개다. 기존 Automobility는 운영 Refueled와 구분해 별도 보존한다. 공식 배포 파일과 해시가 일치한 항목은 64개다.
+소스 관리 대상은 51개 JAR에 대응하는 50개 저장소이며, 바이너리 관리 대상은 기반 라이브러리 7개와 기타 12개다. 기존 Automobility는 운영 Refueled와 구분해 별도 보존한다. 공식 배포 파일과 해시가 일치한 항목은 64개다.
+
+이 문서의 버전·해시는 **관측한 운영 기준본**이다. 기반 라이브러리의 현재 빌드 입력은 [dependencies.lock.json](../inventory/dependencies.lock.json)으로 별도 고정하며 [관리 Q&A](DEPENDENCIES.md)를 따른다. 이 7개의 과거 fork·브랜치·커밋은 운영 lock의 `sourceProvenance`에 남기고 활성 서브모듈에서 제외했다.
 
 [mods.lock.json](../inventory/mods.lock.json)에 전체 SHA256·크기·소스 원격/브랜치/전체 커밋·배포 URL·의존성·포함 여부를, [license-audit.json](../inventory/license-audit.json)에 라이선스 판단과 증거 URL을 보관한다. 표의 커밋은 하위 AGENTS.md를 포함한 관리 커밋의 축약이다. 원래 소스는 baselineRef/baselineCommit, 실제 gitlink는 ref/commit으로 구분하며 전체 40자리 해시를 기록한다. 모든 관리 커밋을 minefed 원격에서 확인했다.
 
@@ -24,11 +26,11 @@ JAR 재배포 분류는 허용 45개, 모드팩 한정 10개, 로컬 전용 15�
 | # | 운영 JAR | ID / 버전 | 관리 소스·커밋 | JAR 정책 | 서버팩 |
 | ---: | --- | --- | --- | --- | --- |
 | 1 | alloy-forgery-2.1.4+1.20.3.jar | alloy_forgery / 2.1.4+1.20.3 | alloy-forgery · badd26ba | 허용 | 포함 |
-| 2 | architectury-11.1.17-fabric.jar | architectury / 11.1.17 | architectury-api · d9735974 | 허용 | 포함 |
+| 2 | architectury-11.1.17-fabric.jar | architectury / 11.1.17 | 공식 JAR · 과거 소스는 sourceProvenance | 허용 | 포함 |
 | 3 | automobility-refueled-0.4.3.b+1.20.4-fabric.jar | automobility-refueled / 0.4.3.b+1.20.4-fabric | Automobility-Refueled · 13160075 | 허용 | 포함 |
 | 4 | Axiom-5.3.0-for-MC1.20.4.jar | axiom / 5.3.0 | 바이너리 | 로컬 전용 | 포함 |
 | 5 | BlueMap-5.3-fabric-1.20.jar | bluemap / 5.3 | BlueMap · 129769c0 | 허용 | 포함 |
-| 6 | botarium-fabric-1.20.4-3.2.2.jar | botarium / 3.2.2 | Common-Storage-Lib · ae864ea9 | 허용 | 포함 |
+| 6 | botarium-fabric-1.20.4-3.2.2.jar | botarium / 3.2.2 | 공식 JAR · 과거 소스는 sourceProvenance | 허용 | 포함 |
 | 7 | cc-tweaked-1.20.4-fabric-1.110.2.jar | computercraft / 1.110.2 | CC-Tweaked · c3264ade | 허용 | 포함 |
 | 8 | chisels-and-bits-fabric-1.5.10-FC.jar | chiselsandbits / 1.5.10-FC | Chisels-and-Bits · 2142e101 | 허용 | 포함 |
 | 9 | Chunky-1.3.146.jar | chunky / 1.3.146 | Chunky · e6aac5fe | 허용 | 포함 |
@@ -40,7 +42,7 @@ JAR 재배포 분류는 허용 45개, 모드팩 한정 10개, 로컬 전용 15�
 | 15 | DiagonalWindows-v20.4.1-1.20.4-Fabric.jar | diagonalwindows / 20.4.1 | diagonal-windows · 0dea1267 | 로컬 전용 | 포함 |
 | 16 | DustyDecoRefabricated-1.1-1.20.3+1.20.4.jar | dustydecorations / 1.1-1.20.3+1.20.4 | 바이너리 | 허용 | 포함 |
 | 17 | exlinefurniture-v2.7.2-fabric-1.20.4.jar | exlinefurniture / 2.7.2 | 바이너리 | 로컬 전용 | 포함 |
-| 18 | fabric-api-0.97.2+1.20.4.jar | fabric-api / 0.97.2+1.20.4 | fabric-api · b0291a8c | 허용 | 포함 |
+| 18 | fabric-api-0.97.2+1.20.4.jar | fabric-api / 0.97.2+1.20.4 | 공식 JAR · 과거 소스는 sourceProvenance | 허용 | 포함 |
 | 19 | fabric-carpet-1.20.3-1.4.128+v231205.jar | carpet / 1.4.128+v231205 | fabric-carpet · 9e4083fc | 허용 | 포함 |
 | 20 | fabric-seasons-2.4.2-BETA+1.20.4.jar | seasons / 2.4.2-BETA+1.20.4 | fabric-seasons · 8e7833a5 | 허용 | 포함 |
 | 21 | FabricProxy-Lite-2.7.0.jar | fabricproxy-lite / 2.7.0 | FabricProxy-Lite · 7391c126 | 허용 | 포함 |
@@ -52,7 +54,7 @@ JAR 재배포 분류는 허용 45개, 모드팩 한정 10개, 로컬 전용 15�
 | 27 | geckolib-fabric-1.20.4-4.4.4.jar | geckolib / 4.4.4 | geckolib · 0645b106 | 허용 | 포함 |
 | 28 | handcrafted-fabric-1.20.4-3.2.1.jar | handcrafted / 3.2.1 | Handcrafted · 7421fc23 | 로컬 전용 | 포함 |
 | 29 | JapanProps_1.20.1_0.0.3.3_Fabric.jar | jpp / 0.0.3.3 | 바이너리 | 로컬 전용 | 포함 |
-| 30 | lavender-0.1.9+1.20.3.jar | lavender / 0.1.9+1.20.3 | lavender · cc99a048 | 허용 | 포함 |
+| 30 | lavender-0.1.9+1.20.3.jar | lavender / 0.1.9+1.20.3 | 공식 JAR · 과거 소스는 sourceProvenance | 허용 | 포함 |
 | 31 | lithium-fabric-mc1.20.4-0.12.1.jar | lithium / 0.12.1 | lithium · 6bb7238e | 허용 | 포함 |
 | 32 | mcw-doors-1.1.2-mc1.20.4fabric.jar | mcwdoors / 1.1.2 | MacawsDoors · b07c8caa | 허용 | 포함 |
 | 33 | mcw-fences-1.2.0-1.20.4fabric.jar | mcwfences / 1.2.0 | Fences · c9821fbd | 허용 | 포함 |
@@ -71,15 +73,15 @@ JAR 재배포 분류는 허용 45개, 모드팩 한정 10개, 로컬 전용 15�
 | 46 | mythicmetals-decorations-0.6.1+1.20.3.jar | mythicmetals_decorations / 0.6.1+1.20.3 | MythicMetalsDecorations · c9326608 | 로컬 전용 | 포함 |
 | 47 | nicemod-1.4.1 - 1.20.jar | nicemod / 1.4.1 - 1.20 | NiceMod · c3447636 | 허용 | 포함 |
 | 48 | oritech-0.5.1+1.20.4.jar | oritech / 0.5.1+1.20.4 | Oritech · 1cf7cfe9 | 허용 | 포함 |
-| 49 | owo-lib-0.12.6+1.20.3.jar | owo / 0.12.6+1.20.3 | owo-lib · 715959e5 | 허용 | 포함 |
+| 49 | owo-lib-0.12.6+1.20.3.jar | owo / 0.12.6+1.20.3 | 공식 JAR · 과거 소스는 sourceProvenance | 허용 | 포함 |
 | 50 | paladin-furniture-mod-1.4.4-fabric-mc1.20.4.jar | pfm / 1.4.4 | paladins-furniture · 131ac50f | 허용 | 포함 |
 | 51 | Patchouli-1.20.4-85-FABRIC.jar | patchouli / 1.20.4-85-FABRIC | Patchouli · 9b18022c | 로컬 전용 | 포함 |
 | 52 | PTS-Deco-2.1.0-Fabric+Quilt1.20-1.20.4.jar | ptsdeco / 2.1.0 | 바이너리 | 모드팩 한정 | 포함 |
 | 53 | PuzzlesLib-v20.4.52-1.20.4-Fabric.jar | puzzleslib / 20.4.52 | puzzles-lib · 5d2f50b9 | 로컬 전용 | 포함 |
 | 54 | realtime-1.0.3-1.20-1.21.1.jar | realtime / 1.0.3-1.20-1.21.1 | mc-realtime · bd05e0fe | 허용 | 포함 |
 | 55 | rechiseled-1.2.1-fabric-mc1.20.4.jar | rechiseled / 1.2.1 | 바이너리 | 모드팩 한정 | 포함 |
-| 56 | resourcefulconfig-fabric-1.20.4-2.4.8.jar | resourcefulconfig / 2.4.8 | Resourceful-Config · 6f5fb83c | 허용 | 포함 |
-| 57 | resourcefullib-fabric-1.20.4-2.4.10.jar | resourcefullib / 2.4.10 | ResourcefulLib · 5404f9f6 | 허용 | 포함 |
+| 56 | resourcefulconfig-fabric-1.20.4-2.4.8.jar | resourcefulconfig / 2.4.8 | 공식 JAR · 과거 소스는 sourceProvenance | 허용 | 포함 |
+| 57 | resourcefullib-fabric-1.20.4-2.4.10.jar | resourcefullib / 2.4.10 | 공식 JAR · 과거 소스는 sourceProvenance | 허용 | 포함 |
 | 58 | starlight-1.1.3+fabric.f5dcd1a.jar | starlight / 1.1.3+fabric.f5dcd1a | Starlight · c2b8391d | 허용 | 포함 |
 | 59 | Stoneworks-v20.4.0-1.20.4-Fabric.jar | stoneworks / 20.4.0 | stoneworks · c9c0c785 | 로컬 전용 | 포함 |
 | 60 | supermartijn642configlib-1.1.8a-fabric-mc1.20.2.jar | supermartijn642configlib / 1.1.8+a | 바이너리 | 모드팩 한정 | 포함 |

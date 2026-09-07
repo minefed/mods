@@ -22,22 +22,9 @@
     },
     {
       "modId": "architectury",
-      "mode": "source",
-      "reason": "Fabric MC1.20.4; publication task includes shaded common code.",
-      "sourcePath": "architectury-api",
-      "java": 17,
-      "tasks": [
-        ":fabric:renameJarForPublication"
-      ],
-      "args": [],
-      "artifactGlobs": [
-        "fabric/build/libs/architectury-11.1.17-fabric.jar"
-      ],
-      "expectedVersion": "11.1.17",
-      "sourceWorkDir": ".",
-      "env": {
-        "GITHUB_RUN_NUMBER": "17"
-      }
+      "mode": "binary",
+      "reason": "Unmodified base library: use the official Fabric 1.20.4 JAR pinned in dependencies.lock.json; no Minefed source compilation.",
+      "dependency": true
     },
     {
       "modId": "automobility-refueled",
@@ -82,20 +69,9 @@
     },
     {
       "modId": "botarium",
-      "mode": "source",
-      "reason": "Historical Botarium3.2.2 source targets Fabric MC1.20.4; common source sets merged and teamreborn energy nested.",
-      "sourcePath": "Common-Storage-Lib",
-      "java": 17,
-      "tasks": [
-        ":fabric:remapJar"
-      ],
-      "args": [],
-      "artifactGlobs": [
-        "fabric/build/libs/botarium-fabric-1.20.4-3.2.2.jar"
-      ],
-      "expectedVersion": "3.2.2",
-      "sourceWorkDir": ".",
-      "env": {}
+      "mode": "binary",
+      "reason": "Unmodified base library: use the official Fabric 1.20.4 JAR pinned in dependencies.lock.json; no Minefed source compilation.",
+      "dependency": true
     },
     {
       "modId": "computercraft",
@@ -271,23 +247,9 @@
     },
     {
       "modId": "fabric-api",
-      "mode": "source",
-      "reason": "Root aggregate remapJar includes all published API module JARs; Fabric MC1.20.4 and Java17.",
-      "sourcePath": "fabric-api",
-      "java": 17,
-      "tasks": [
-        "remapJar"
-      ],
-      "args": [],
-      "artifactGlobs": [
-        "build/libs/fabric-api-0.97.2+1.20.4.jar"
-      ],
-      "expectedVersion": "0.97.2+1.20.4",
-      "sourceWorkDir": ".",
-      "env": {
-        "GITHUB_RUN_NUMBER": "1",
-        "GITHUB_REF": "refs/heads/1.20.4"
-      }
+      "mode": "binary",
+      "reason": "Unmodified base library: use the official Fabric 1.20.4 JAR pinned in dependencies.lock.json; no Minefed source compilation.",
+      "dependency": true
     },
     {
       "modId": "carpet",
@@ -451,18 +413,9 @@
     },
     {
       "modId": "lavender",
-      "mode": "source",
-      "reason": "Minecraft 빌드 대상은 1.20.4이며 버전 접미사만 공통 기준 1.20.3을 사용한다.",
-      "sourcePath": "lavender",
-      "java": 17,
-      "tasks": [
-        "remapJar"
-      ],
-      "args": [],
-      "artifactGlobs": [
-        "build/libs/lavender-0.1.9+1.20.3.jar"
-      ],
-      "expectedVersion": "0.1.9+1.20.3"
+      "mode": "binary",
+      "reason": "Unmodified base library: use the official Fabric 1.20.4 JAR pinned in dependencies.lock.json; no Minefed source compilation.",
+      "dependency": true
     },
     {
       "modId": "lithium",
@@ -704,21 +657,9 @@
     },
     {
       "modId": "owo",
-      "mode": "source",
-      "reason": "Root Fabric Loom 1.4 project with owo-sentinel subproject, Java 17, Gradle 8.5. Compiles for 1.20.3 and emits the same 0.12.6+1.20.3 supported baseline family used on 1.20.4; select root remapJar, not sentinel as a separate deployed mod.",
-      "sourcePath": "owo-lib",
-      "java": 17,
-      "tasks": [
-        ":remapJar"
-      ],
-      "args": [],
-      "artifactGlobs": [
-        "build/libs/owo-lib-0.12.6+1.20.3.jar"
-      ],
-      "expectedVersion": "0.12.6+1.20.3",
-      "env": {
-        "MAVEN_URL": "build/local-maven"
-      }
+      "mode": "binary",
+      "reason": "Unmodified base library: use the official Fabric 1.20.4 JAR pinned in dependencies.lock.json; no Minefed source compilation.",
+      "dependency": true
     },
     {
       "modId": "pfm",
@@ -802,35 +743,15 @@
     },
     {
       "modId": "resourcefulconfig",
-      "mode": "source",
-      "reason": "Architectury Fabric 1.20.4 path, Java release 17, Gradle 8.5. ResourcefulSettings reads version.properties as 2.4.8; fabric remapJar consumes shadowJar with fabric-1.20.4 appendix.",
-      "sourcePath": "Resourceful-Config",
-      "java": 17,
-      "tasks": [
-        ":fabric:remapJar"
-      ],
-      "args": [
-        "--stacktrace"
-      ],
-      "artifactGlobs": [
-        "fabric/build/libs/resourcefulconfig-fabric-1.20.4-2.4.8.jar"
-      ],
-      "expectedVersion": "2.4.8"
+      "mode": "binary",
+      "reason": "Unmodified base library: use the official Fabric 1.20.4 JAR pinned in dependencies.lock.json; no Minefed source compilation.",
+      "dependency": true
     },
     {
       "modId": "resourcefullib",
-      "mode": "source",
-      "reason": "Architectury Fabric 1.20.4 path, Java release 17, Gradle 8.3. ResourcefulSettings reads version.properties as 2.4.9, which differs from deployed 2.4.10. fabric remapJar includes yabn and bytecodecs and remaps shadowed common classes. Do not run updateModVersion, which mutates tracked version.properties.",
-      "sourcePath": "ResourcefulLib",
-      "java": 17,
-      "tasks": [
-        ":fabric:remapJar"
-      ],
-      "args": [],
-      "artifactGlobs": [
-        "fabric/build/libs/resourcefullib-fabric-1.20.4-2.4.9.jar"
-      ],
-      "expectedVersion": "2.4.9"
+      "mode": "binary",
+      "reason": "Unmodified base library: use the official Fabric 1.20.4 JAR pinned in dependencies.lock.json; no Minefed source compilation.",
+      "dependency": true
     },
     {
       "modId": "starlight",
@@ -1042,5 +963,6 @@
         ]
       ]
     }
-  ]
+  ],
+  "dependencyManifest": "inventory/dependencies.lock.json"
 }

@@ -23,9 +23,9 @@
     },
     {
       "modId": "architectury",
-      "distribution": "embed",
+      "distribution": "download",
       "artifact": "built",
-      "reason": "Distribute the reviewed built artifact under its original license with all copyright/license notices and corresponding-source obligations. LGPL-3.0-only",
+      "reason": "Use the official binary selected by dependencies.lock.json through the mixed build output; preserve upstream download origin, exact hashes and license notices. No Minefed source build.",
       "evidenceUrls": [
         "https://api.modrinth.com/v2/project/lhGA9TYQ",
         "https://api.modrinth.com/v2/version/kVjQWX0l",
@@ -36,7 +36,8 @@
         "https://github.com/minefed/architectury-api/archive/d97359747e8d05939f8a8fdc0d01fcf410d0bf6d.tar.gz"
       ],
       "client": true,
-      "server": true
+      "server": true,
+      "downloadUrl": "https://cdn.modrinth.com/data/lhGA9TYQ/versions/kVjQWX0l/architectury-11.1.17-fabric.jar"
     },
     {
       "modId": "automobility-refueled",
@@ -88,9 +89,9 @@
     },
     {
       "modId": "botarium",
-      "distribution": "embed",
+      "distribution": "download",
       "artifact": "built",
-      "reason": "Distribute the reviewed built artifact under its original license with all copyright/license notices and corresponding-source obligations. MIT",
+      "reason": "Use the official binary selected by dependencies.lock.json through the mixed build output; preserve upstream download origin, exact hashes and license notices. No Minefed source build.",
       "evidenceUrls": [
         "https://api.modrinth.com/v2/project/2u6LRnMa",
         "https://api.modrinth.com/v2/version/Eqw90l8p",
@@ -101,7 +102,8 @@
         "https://github.com/minefed/Common-Storage-Lib/archive/ae864ea949064d734de8aed89297c5916637ed20.tar.gz"
       ],
       "client": true,
-      "server": true
+      "server": true,
+      "downloadUrl": "https://cdn.modrinth.com/data/2u6LRnMa/versions/Eqw90l8p/botarium-fabric-1.20.4-3.2.2.jar"
     },
     {
       "modId": "computercraft",
@@ -287,9 +289,9 @@
     },
     {
       "modId": "fabric-api",
-      "distribution": "embed",
+      "distribution": "download",
       "artifact": "built",
-      "reason": "Distribute the reviewed built artifact under its original license with all copyright/license notices and corresponding-source obligations. Apache-2.0",
+      "reason": "Use the official binary selected by dependencies.lock.json through the mixed build output; preserve upstream download origin, exact hashes and license notices. No Minefed source build.",
       "evidenceUrls": [
         "https://api.modrinth.com/v2/project/P7dR8mSH",
         "https://api.modrinth.com/v2/version/QVBohPm2",
@@ -300,7 +302,8 @@
         "https://github.com/minefed/fabric-api/archive/b0291a8c46e79ec2018b26b5874a2796f6b54132.tar.gz"
       ],
       "client": true,
-      "server": true
+      "server": true,
+      "downloadUrl": "https://cdn.modrinth.com/data/P7dR8mSH/versions/QVBohPm2/fabric-api-0.97.2%2B1.20.4.jar"
     },
     {
       "modId": "carpet",
@@ -484,9 +487,9 @@
     },
     {
       "modId": "lavender",
-      "distribution": "embed",
+      "distribution": "download",
       "artifact": "built",
-      "reason": "Distribute the reviewed built artifact under its original license with all copyright/license notices and corresponding-source obligations. MIT",
+      "reason": "Use the official binary selected by dependencies.lock.json through the mixed build output; preserve upstream download origin, exact hashes and license notices. No Minefed source build.",
       "evidenceUrls": [
         "https://api.modrinth.com/v2/project/D5h9NKNI",
         "https://github.com/wisp-forest/lavender",
@@ -495,7 +498,8 @@
         "https://github.com/minefed/lavender/archive/cc99a048c3622880ae0496122da30a72f21c44bd.tar.gz"
       ],
       "client": true,
-      "server": true
+      "server": true,
+      "downloadUrl": "https://cdn.modrinth.com/data/D5h9NKNI/versions/7T1hNPCw/lavender-0.1.9%2B1.20.3.jar"
     },
     {
       "modId": "lithium",
@@ -753,9 +757,9 @@
     },
     {
       "modId": "owo",
-      "distribution": "embed",
+      "distribution": "download",
       "artifact": "built",
-      "reason": "Distribute the reviewed built artifact under its original license with all copyright/license notices and corresponding-source obligations. MIT",
+      "reason": "Use the official binary selected by dependencies.lock.json through the mixed build output; preserve upstream download origin, exact hashes and license notices. No Minefed source build.",
       "evidenceUrls": [
         "https://github.com/wisp-forest/owo-lib",
         "https://github.com/wisp-forest/owo-lib/blob/0.12.6+1.20.3/LICENSE",
@@ -763,7 +767,8 @@
         "https://github.com/minefed/owo-lib/archive/715959e5f9b33d3789f18ead7a9ce388e55749b6.tar.gz"
       ],
       "client": true,
-      "server": true
+      "server": true,
+      "downloadUrl": "https://cdn.modrinth.com/data/ccKDOlHs/versions/Her7Z3CG/owo-lib-0.12.6%2B1.20.3.jar"
     },
     {
       "modId": "pfm",
@@ -855,9 +860,9 @@
     },
     {
       "modId": "resourcefulconfig",
-      "distribution": "embed",
+      "distribution": "download",
       "artifact": "built",
-      "reason": "Distribute the reviewed built artifact under its original license with all copyright/license notices and corresponding-source obligations. MIT",
+      "reason": "Use the official binary selected by dependencies.lock.json through the mixed build output; preserve upstream download origin, exact hashes and license notices. No Minefed source build.",
       "evidenceUrls": [
         "https://github.com/Team-Resourceful/Resourceful-Config",
         "https://github.com/Team-Resourceful/Resourceful-Config/blob/1.20.4/LICENSE.md",
@@ -865,13 +870,14 @@
         "https://github.com/minefed/Resourceful-Config/archive/6f5fb83c6dc3b78e3a84589ada273a0cf38148e3.tar.gz"
       ],
       "client": true,
-      "server": true
+      "server": true,
+      "downloadUrl": "https://cdn.modrinth.com/data/M1953qlQ/versions/1yfzKLu6/resourcefulconfig-fabric-1.20.4-2.4.8.jar"
     },
     {
       "modId": "resourcefullib",
-      "distribution": "embed",
+      "distribution": "download",
       "artifact": "built",
-      "reason": "Distribute the reviewed built artifact under its original license with all copyright/license notices and corresponding-source obligations. MIT",
+      "reason": "Use the official binary selected by dependencies.lock.json through the mixed build output; preserve upstream download origin, exact hashes and license notices. No Minefed source build.",
       "evidenceUrls": [
         "https://github.com/Team-Resourceful/ResourcefulLib",
         "https://github.com/Team-Resourceful/ResourcefulLib/blob/v2.4.10/LICENSE",
@@ -879,7 +885,8 @@
         "https://github.com/minefed/ResourcefulLib/archive/5404f9f6e68fb1bbf96c5c391ba6d7607ce289b4.tar.gz"
       ],
       "client": true,
-      "server": true
+      "server": true,
+      "downloadUrl": "https://cdn.modrinth.com/data/G1hIVOrD/versions/TiIWVg2u/resourcefullib-fabric-1.20.4-2.4.10.jar"
     },
     {
       "modId": "starlight",

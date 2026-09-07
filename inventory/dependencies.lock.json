@@ -1,0 +1,499 @@
+{
+  "schemaVersion": 1,
+  "minecraftVersion": "1.20.4",
+  "loader": "fabric",
+  "purpose": "Official binary build dependencies; independent of the captured server baseline.",
+  "entries": [
+    {
+      "fileName": "architectury-11.1.17-fabric.jar",
+      "sha256": "0762da4c5697abe1f87997dbdd6f2823420b7cc6c05aa4768c08318252e04903",
+      "size": 587429,
+      "modId": "architectury",
+      "version": "11.1.17",
+      "environment": "*",
+      "management": "binary",
+      "artifact": {
+        "path": "artifacts/local/architectury-11.1.17-fabric.jar",
+        "redistribution": "allowed",
+        "url": "https://cdn.modrinth.com/data/lhGA9TYQ/versions/kVjQWX0l/architectury-11.1.17-fabric.jar",
+        "sha512": "294112b2db8b5cef2051fede57dfacfb00cc7fce737cbf7db3c2de8b81f0cd17bd29a3e2849c3e05bd9e801fbfa3d14e5a83b6531b3d37e5d7c650cff4714362",
+        "publishedHashMatch": true,
+        "verificationAlgorithm": "sha512",
+        "publishedRelease": {
+          "provider": "modrinth",
+          "versionId": "kVjQWX0l",
+          "projectId": "lhGA9TYQ",
+          "versionUrl": "https://modrinth.com/version/kVjQWX0l",
+          "gameVersions": [
+            "1.20.4"
+          ],
+          "loaders": [
+            "fabric"
+          ],
+          "officialFileName": "architectury-11.1.17-fabric.jar"
+        }
+      },
+      "included": true,
+      "exclusionReason": null,
+      "license": "LGPL-3.0-only",
+      "licenseUrl": "https://github.com/architectury/architectury-api/blob/327480e5490c2e7740ca117197a28b59dccb137d/LICENSE.md",
+      "licenseNoticesPath": null,
+      "notes": [
+        "Branch head was committed 2024-03-11 11:15 UTC, immediately before the matching 11.1.17 official release. Version suffix is CI-generated; preserve this historical branch.",
+        "Official binary dependency; the former Minefed checkout is historical provenance, not a build input. Release compatibility and hashes are pinned independently of the captured server baseline."
+      ],
+      "compatibility": {
+        "minecraft": "~1.20.3-",
+        "fabricLoader": ">=0.14.0",
+        "java": null,
+        "dependencies": {
+          "minecraft": "~1.20.3-",
+          "fabricloader": ">=0.14.0",
+          "fabric-api": ">=0.66.0"
+        }
+      },
+      "evidenceUrls": [
+        "https://api.modrinth.com/v2/project/lhGA9TYQ",
+        "https://api.modrinth.com/v2/version/kVjQWX0l",
+        "https://github.com/architectury/architectury-api",
+        "https://github.com/architectury/architectury-api/blob/327480e5490c2e7740ca117197a28b59dccb137d/LICENSE.md",
+        "https://github.com/architectury/architectury-api/commit/327480e5490c2e7740ca117197a28b59dccb137d"
+      ],
+      "sourceProvenance": {
+        "path": "architectury-api",
+        "url": "https://github.com/minefed/architectury-api",
+        "upstream": "https://github.com/architectury/architectury-api",
+        "ref": "minefed-1.20.4",
+        "commit": "d97359747e8d05939f8a8fdc0d01fcf410d0bf6d",
+        "trackingBranch": "minefed-1.20.4",
+        "baselineRef": "1.20.4",
+        "baselineCommit": "327480e5490c2e7740ca117197a28b59dccb137d"
+      },
+      "sourceReference": {
+        "url": "https://github.com/architectury/architectury-api",
+        "ref": "1.20.4",
+        "commit": "327480e5490c2e7740ca117197a28b59dccb137d"
+      }
+    },
+    {
+      "fileName": "botarium-fabric-1.20.4-3.2.2.jar",
+      "sha256": "7c85682c5d34dfce7005a1a61334c13687a3d117df454f505bf8be6ee3877483",
+      "size": 209117,
+      "modId": "botarium",
+      "version": "3.2.2",
+      "environment": "*",
+      "management": "binary",
+      "artifact": {
+        "path": "artifacts/local/botarium-fabric-1.20.4-3.2.2.jar",
+        "redistribution": "allowed",
+        "url": "https://cdn.modrinth.com/data/2u6LRnMa/versions/Eqw90l8p/botarium-fabric-1.20.4-3.2.2.jar",
+        "sha512": "e6aef66d86736fb83cfc5d829d11928a03a914d14bfc5153b56e9711ee658cf7bc792406ffaf93cc670ca018ed6da05a167114206be4f870bc9debd4aaa56271",
+        "publishedHashMatch": true,
+        "verificationAlgorithm": "sha512",
+        "publishedRelease": {
+          "provider": "modrinth",
+          "versionId": "Eqw90l8p",
+          "projectId": "2u6LRnMa",
+          "versionUrl": "https://modrinth.com/version/Eqw90l8p",
+          "gameVersions": [
+            "1.20.4"
+          ],
+          "loaders": [
+            "fabric"
+          ],
+          "officialFileName": "botarium-fabric-1.20.4-3.2.2.jar"
+        }
+      },
+      "included": true,
+      "exclusionReason": null,
+      "license": "MIT",
+      "licenseUrl": "https://github.com/terrarium-earth/Common-Storage-Lib/blob/225bae30d2f2d9d9c1de79136160b725ff15f543/LICENSE.md",
+      "licenseNoticesPath": null,
+      "notes": [
+        "Historical Botarium source at version3.2.2 / Minecraft1.20.4. Current1.20.4 branch declares3.2.4, so pin the release-era commit. Canonical repository renamed from terrarium-earth/Botarium.",
+        "Official binary dependency; the former Minefed checkout is historical provenance, not a build input. Release compatibility and hashes are pinned independently of the captured server baseline."
+      ],
+      "compatibility": {
+        "minecraft": ">=1.20",
+        "fabricLoader": null,
+        "java": null,
+        "dependencies": {
+          "fabric": "*",
+          "minecraft": ">=1.20"
+        }
+      },
+      "evidenceUrls": [
+        "https://api.modrinth.com/v2/project/2u6LRnMa",
+        "https://api.modrinth.com/v2/version/Eqw90l8p",
+        "https://github.com/terrarium-earth/Common-Storage-Lib",
+        "https://github.com/terrarium-earth/Common-Storage-Lib/blob/225bae30d2f2d9d9c1de79136160b725ff15f543/LICENSE.md",
+        "https://github.com/terrarium-earth/Common-Storage-Lib/commit/225bae30d2f2d9d9c1de79136160b725ff15f543"
+      ],
+      "sourceProvenance": {
+        "path": "Common-Storage-Lib",
+        "url": "https://github.com/minefed/Common-Storage-Lib",
+        "upstream": "https://github.com/terrarium-earth/Common-Storage-Lib",
+        "ref": "minefed-1.20.4",
+        "commit": "ae864ea949064d734de8aed89297c5916637ed20",
+        "trackingBranch": "minefed-1.20.4",
+        "baselineRef": "1.20.4",
+        "baselineCommit": "225bae30d2f2d9d9c1de79136160b725ff15f543"
+      },
+      "sourceReference": {
+        "url": "https://github.com/terrarium-earth/Common-Storage-Lib",
+        "ref": "1.20.4",
+        "commit": "225bae30d2f2d9d9c1de79136160b725ff15f543"
+      }
+    },
+    {
+      "fileName": "fabric-api-0.97.2+1.20.4.jar",
+      "sha256": "473b9278dc8e97cbde1d8d52e24af6ee3f296ae00d7b46d14967ebcbe16fb7a7",
+      "size": 2187410,
+      "modId": "fabric-api",
+      "version": "0.97.2+1.20.4",
+      "environment": "*",
+      "management": "binary",
+      "artifact": {
+        "path": "artifacts/local/fabric-api-0.97.2+1.20.4.jar",
+        "redistribution": "allowed",
+        "url": "https://cdn.modrinth.com/data/P7dR8mSH/versions/QVBohPm2/fabric-api-0.97.2%2B1.20.4.jar",
+        "sha512": "8f02bf562781a2f08294736eff784b7e7463be1595b1e3b4f53d4dcb57fc0643890078265141c3bce882dfec6e77553d2db252992fdfbd55cd7d32777adb9d78",
+        "publishedHashMatch": true,
+        "verificationAlgorithm": "sha512",
+        "publishedRelease": {
+          "provider": "modrinth",
+          "versionId": "QVBohPm2",
+          "projectId": "P7dR8mSH",
+          "versionUrl": "https://modrinth.com/version/QVBohPm2",
+          "gameVersions": [
+            "1.20.4"
+          ],
+          "loaders": [
+            "fabric"
+          ],
+          "officialFileName": "fabric-api-0.97.2+1.20.4.jar"
+        }
+      },
+      "included": true,
+      "exclusionReason": null,
+      "license": "Apache-2.0",
+      "licenseUrl": "https://github.com/FabricMC/fabric-api/blob/26460e8a3bf8fe181850b87815a39629551cef32/LICENSE",
+      "licenseNoticesPath": "inventory/notices/fabric-api-473b9278dc8e",
+      "notes": [
+        "Exact deployed release tag; repository canonical name redirected from FabricMC/fabric. Do not substitute latest0.97.3 without intentional runtime update.",
+        "Official binary dependency; the former Minefed checkout is historical provenance, not a build input. Release compatibility and hashes are pinned independently of the captured server baseline."
+      ],
+      "compatibility": {
+        "minecraft": ">=1.20.3- <1.20.5-",
+        "fabricLoader": ">=0.15.1",
+        "java": ">=17",
+        "dependencies": {
+          "fabricloader": ">=0.15.1",
+          "java": ">=17",
+          "minecraft": ">=1.20.3- <1.20.5-"
+        }
+      },
+      "evidenceUrls": [
+        "https://api.modrinth.com/v2/project/P7dR8mSH",
+        "https://api.modrinth.com/v2/version/QVBohPm2",
+        "https://github.com/FabricMC/fabric-api",
+        "https://github.com/FabricMC/fabric-api/blob/26460e8a3bf8fe181850b87815a39629551cef32/LICENSE",
+        "https://github.com/FabricMC/fabric-api/commit/26460e8a3bf8fe181850b87815a39629551cef32"
+      ],
+      "sourceProvenance": {
+        "path": "fabric-api",
+        "url": "https://github.com/minefed/fabric-api",
+        "upstream": "https://github.com/FabricMC/fabric-api",
+        "ref": "minefed-1.20.4",
+        "commit": "b0291a8c46e79ec2018b26b5874a2796f6b54132",
+        "trackingBranch": "minefed-1.20.4",
+        "baselineRef": "0.97.2+1.20.4",
+        "baselineCommit": "26460e8a3bf8fe181850b87815a39629551cef32"
+      },
+      "sourceReference": {
+        "url": "https://github.com/FabricMC/fabric-api",
+        "ref": "0.97.2+1.20.4",
+        "commit": "26460e8a3bf8fe181850b87815a39629551cef32"
+      }
+    },
+    {
+      "fileName": "lavender-0.1.9+1.20.3.jar",
+      "sha256": "e3da1be55cb3fc8d8d71e2cd85ba5c10d1768bf53225d4603032e3088ae5516d",
+      "size": 523925,
+      "modId": "lavender",
+      "version": "0.1.9+1.20.3",
+      "environment": "*",
+      "management": "binary",
+      "artifact": {
+        "path": "artifacts/local/lavender-0.1.9+1.20.3.jar",
+        "redistribution": "allowed",
+        "url": "https://cdn.modrinth.com/data/D5h9NKNI/versions/7T1hNPCw/lavender-0.1.9%2B1.20.3.jar",
+        "sha512": "6af4743f14188ec9909b8ef312169e661394d972945d5029c4a63317b2b999a809afe830c1812d12b3f37b7796cffc7048c296fde9607c193d32eb0924c3ed0c",
+        "publishedHashMatch": true,
+        "verificationAlgorithm": "sha512",
+        "publishedRelease": {
+          "provider": "modrinth",
+          "versionId": "7T1hNPCw",
+          "projectId": "D5h9NKNI",
+          "versionUrl": "https://modrinth.com/version/7T1hNPCw",
+          "gameVersions": [
+            "1.20.3",
+            "1.20.4"
+          ],
+          "loaders": [
+            "fabric",
+            "quilt"
+          ],
+          "officialFileName": "lavender-0.1.9+1.20.3.jar"
+        }
+      },
+      "included": true,
+      "exclusionReason": null,
+      "license": "MIT",
+      "licenseUrl": "https://github.com/wisp-forest/lavender/blob/0.1.9+1.20.3/LICENSE",
+      "licenseNoticesPath": "inventory/notices/lavender-e3da1be55cb3",
+      "notes": [
+        "Exact release tag, also 1.20.3 branch tip; deployed Minecraft dependency >=1.20.3 includes1.20.4.",
+        "Official binary dependency; the former Minefed checkout is historical provenance, not a build input. Release compatibility and hashes are pinned independently of the captured server baseline."
+      ],
+      "compatibility": {
+        "minecraft": ">=1.20.3",
+        "fabricLoader": ">=0.15.0",
+        "java": null,
+        "dependencies": {
+          "fabricloader": ">=0.15.0",
+          "fabric": "*",
+          "minecraft": ">=1.20.3",
+          "owo-lib": ">=0.12.0",
+          "lavender-md": ">=0.1.0",
+          "lavender-md-owo-ui": "*"
+        }
+      },
+      "evidenceUrls": [
+        "https://api.modrinth.com/v2/project/D5h9NKNI",
+        "https://github.com/wisp-forest/lavender",
+        "https://github.com/wisp-forest/lavender/blob/0.1.9+1.20.3/LICENSE"
+      ],
+      "sourceProvenance": {
+        "path": "lavender",
+        "url": "https://github.com/minefed/lavender",
+        "upstream": "https://github.com/wisp-forest/lavender",
+        "ref": "minefed-1.20.4",
+        "commit": "cc99a048c3622880ae0496122da30a72f21c44bd",
+        "trackingBranch": "minefed-1.20.4",
+        "baselineRef": "0.1.9+1.20.3",
+        "baselineCommit": "c40a0d26048779941e9f20d8cba0c87b8a687ab4"
+      },
+      "sourceReference": {
+        "url": "https://github.com/wisp-forest/lavender",
+        "ref": "0.1.9+1.20.3",
+        "commit": "c40a0d26048779941e9f20d8cba0c87b8a687ab4"
+      }
+    },
+    {
+      "fileName": "owo-lib-0.12.6+1.20.3.jar",
+      "sha256": "b7c1d03cb5bcfcb84ff2bd2d6a3b3a9ef2fa14ef9e53b7d3116c04838811f273",
+      "size": 1080159,
+      "modId": "owo",
+      "version": "0.12.6+1.20.3",
+      "environment": "*",
+      "management": "binary",
+      "artifact": {
+        "path": "artifacts/local/owo-lib-0.12.6+1.20.3.jar",
+        "redistribution": "allowed",
+        "url": "https://cdn.modrinth.com/data/ccKDOlHs/versions/Her7Z3CG/owo-lib-0.12.6%2B1.20.3.jar",
+        "sha512": "e47b9367ff84435c7043c21c58720c1e7049766dedaa305c6380a8cc6bab4f8ae49d781ecea533e00ebad9ba278372bc4cb8dd8d6eea7fd79244628aeba74e13",
+        "publishedHashMatch": true,
+        "verificationAlgorithm": "sha512",
+        "publishedRelease": {
+          "provider": "modrinth",
+          "versionId": "Her7Z3CG",
+          "projectId": "ccKDOlHs",
+          "versionUrl": "https://modrinth.com/version/Her7Z3CG",
+          "gameVersions": [
+            "1.20.3",
+            "1.20.4"
+          ],
+          "loaders": [
+            "fabric",
+            "quilt"
+          ],
+          "officialFileName": "owo-lib-0.12.6+1.20.3.jar"
+        }
+      },
+      "included": true,
+      "exclusionReason": null,
+      "license": "MIT",
+      "licenseUrl": "https://github.com/wisp-forest/owo-lib/blob/0.12.6+1.20.3/LICENSE",
+      "licenseNoticesPath": "inventory/notices/owo-b7c1d03cb5bc",
+      "notes": [
+        "Deployed tag source targets MC1.20.3; JAR declares Minecraft>=1.20.2 and includes Jankson. Preserve bundled notices.",
+        "Official binary dependency; the former Minefed checkout is historical provenance, not a build input. Release compatibility and hashes are pinned independently of the captured server baseline."
+      ],
+      "compatibility": {
+        "minecraft": ">=1.20.2",
+        "fabricLoader": ">=0.15.0",
+        "java": null,
+        "dependencies": {
+          "fabricloader": ">=0.15.0",
+          "fabric": ">=0.76",
+          "minecraft": ">=1.20.2"
+        }
+      },
+      "evidenceUrls": [
+        "https://github.com/wisp-forest/owo-lib",
+        "https://github.com/wisp-forest/owo-lib/blob/0.12.6+1.20.3/LICENSE"
+      ],
+      "sourceProvenance": {
+        "path": "owo-lib",
+        "url": "https://github.com/minefed/owo-lib",
+        "upstream": "https://github.com/wisp-forest/owo-lib",
+        "ref": "minefed-1.20.4",
+        "commit": "715959e5f9b33d3789f18ead7a9ce388e55749b6",
+        "trackingBranch": "minefed-1.20.4",
+        "baselineRef": "refs/tags/0.12.6+1.20.3",
+        "baselineCommit": "a06c4776d40248f2f897d86a94ea9b48187c603d"
+      },
+      "sourceReference": {
+        "url": "https://github.com/wisp-forest/owo-lib",
+        "ref": "refs/tags/0.12.6+1.20.3",
+        "commit": "a06c4776d40248f2f897d86a94ea9b48187c603d"
+      }
+    },
+    {
+      "fileName": "resourcefulconfig-fabric-1.20.4-2.4.8.jar",
+      "sha256": "1d82d48ec1f8e911f520a4dd07f74240e890db74209eecc8330ca6d5e016f104",
+      "size": 228662,
+      "modId": "resourcefulconfig",
+      "version": "2.4.8",
+      "environment": "*",
+      "management": "binary",
+      "artifact": {
+        "path": "artifacts/local/resourcefulconfig-fabric-1.20.4-2.4.8.jar",
+        "redistribution": "allowed",
+        "url": "https://cdn.modrinth.com/data/M1953qlQ/versions/1yfzKLu6/resourcefulconfig-fabric-1.20.4-2.4.8.jar",
+        "sha512": "6f619da3d59a3957cc55f2c20699cf1cf7c96040e428dc4c0917d4f975fac873eba478c79f7841a3a5bc3ffea2a4a18b258bdda418c07d3ec2f42f6b64803533",
+        "publishedHashMatch": true,
+        "verificationAlgorithm": "sha512",
+        "publishedRelease": {
+          "provider": "modrinth",
+          "versionId": "1yfzKLu6",
+          "projectId": "M1953qlQ",
+          "versionUrl": "https://modrinth.com/version/1yfzKLu6",
+          "gameVersions": [
+            "1.20.4"
+          ],
+          "loaders": [
+            "fabric",
+            "quilt"
+          ],
+          "officialFileName": "resourcefulconfig-fabric-1.20.4-2.4.8.jar"
+        }
+      },
+      "included": true,
+      "exclusionReason": null,
+      "license": "MIT",
+      "licenseUrl": "https://github.com/Team-Resourceful/Resourceful-Config/blob/1.20.4/LICENSE.md",
+      "licenseNoticesPath": null,
+      "notes": [
+        "Corrected misspelled source URL in deployed metadata (Resouceful-Config). Branch README references2.4.8 and gradle.properties targets1.20.4. v2.4.8 tag currently resolves to1.21.4 branch commit; select1.20.4 branch instead.",
+        "Official binary dependency; the former Minefed checkout is historical provenance, not a build input. Release compatibility and hashes are pinned independently of the captured server baseline."
+      ],
+      "compatibility": {
+        "minecraft": ">=1.20",
+        "fabricLoader": ">=0.14.21",
+        "java": null,
+        "dependencies": {
+          "fabricloader": ">=0.14.21",
+          "minecraft": ">=1.20"
+        }
+      },
+      "evidenceUrls": [
+        "https://github.com/Team-Resourceful/Resourceful-Config",
+        "https://github.com/Team-Resourceful/Resourceful-Config/blob/1.20.4/LICENSE.md"
+      ],
+      "sourceProvenance": {
+        "path": "Resourceful-Config",
+        "url": "https://github.com/minefed/Resourceful-Config",
+        "upstream": "https://github.com/Team-Resourceful/Resourceful-Config",
+        "ref": "minefed-1.20.4",
+        "commit": "6f5fb83c6dc3b78e3a84589ada273a0cf38148e3",
+        "trackingBranch": "minefed-1.20.4",
+        "baselineRef": "refs/heads/1.20.4",
+        "baselineCommit": "ce3cc42d9a27cacbd98f802c55dab1ea083a57d9"
+      },
+      "sourceReference": {
+        "url": "https://github.com/Team-Resourceful/Resourceful-Config",
+        "ref": "refs/heads/1.20.4",
+        "commit": "ce3cc42d9a27cacbd98f802c55dab1ea083a57d9"
+      }
+    },
+    {
+      "fileName": "resourcefullib-fabric-1.20.4-2.4.10.jar",
+      "sha256": "f79dadaa2db8c621a064e678c4ec6a01f42b4f48a582aa4794da5626d313806f",
+      "size": 440662,
+      "modId": "resourcefullib",
+      "version": "2.4.10",
+      "environment": "*",
+      "management": "binary",
+      "artifact": {
+        "path": "artifacts/local/resourcefullib-fabric-1.20.4-2.4.10.jar",
+        "redistribution": "allowed",
+        "url": "https://cdn.modrinth.com/data/G1hIVOrD/versions/TiIWVg2u/resourcefullib-fabric-1.20.4-2.4.10.jar",
+        "sha512": "fed65173b10510b46728c34e9b8dd85c171a5505d42e2e7e1d90ab34f27475c85ba9b3fc291fb3049ed74340dd45f788b23816446d4f60066cbe55d7faa716ed",
+        "publishedHashMatch": true,
+        "verificationAlgorithm": "sha512",
+        "publishedRelease": {
+          "provider": "modrinth",
+          "versionId": "TiIWVg2u",
+          "projectId": "G1hIVOrD",
+          "versionUrl": "https://modrinth.com/version/TiIWVg2u",
+          "gameVersions": [
+            "1.20.4"
+          ],
+          "loaders": [
+            "fabric"
+          ],
+          "officialFileName": "resourcefullib-fabric-1.20.4-2.4.10.jar"
+        }
+      },
+      "included": true,
+      "exclusionReason": null,
+      "license": "MIT",
+      "licenseUrl": "https://github.com/Team-Resourceful/ResourcefulLib/blob/v2.4.10/LICENSE",
+      "licenseNoticesPath": null,
+      "notes": [
+        "Exact deployed release tag targets1.20.4; bundled yabn1.0.3 and bytecodecs1.0.2 notices must remain.",
+        "Official binary dependency; the former Minefed checkout is historical provenance, not a build input. Release compatibility and hashes are pinned independently of the captured server baseline."
+      ],
+      "compatibility": {
+        "minecraft": ">=1.20",
+        "fabricLoader": null,
+        "java": null,
+        "dependencies": {
+          "fabric": "*",
+          "minecraft": ">=1.20"
+        }
+      },
+      "evidenceUrls": [
+        "https://github.com/Team-Resourceful/ResourcefulLib",
+        "https://github.com/Team-Resourceful/ResourcefulLib/blob/v2.4.10/LICENSE"
+      ],
+      "sourceProvenance": {
+        "path": "ResourcefulLib",
+        "url": "https://github.com/minefed/ResourcefulLib",
+        "upstream": "https://github.com/Team-Resourceful/ResourcefulLib",
+        "ref": "minefed-1.20.4",
+        "commit": "5404f9f6e68fb1bbf96c5c391ba6d7607ce289b4",
+        "trackingBranch": "minefed-1.20.4",
+        "baselineRef": "refs/tags/v2.4.10",
+        "baselineCommit": "0d6cec97dd8755370c6242d83c5ad6fb4310a147"
+      },
+      "sourceReference": {
+        "url": "https://github.com/Team-Resourceful/ResourcefulLib",
+        "ref": "refs/tags/v2.4.10",
+        "commit": "0d6cec97dd8755370c6242d83c5ad6fb4310a147"
+      }
+    }
+  ]
+}

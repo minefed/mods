@@ -2,7 +2,9 @@
 
 ## 원격 커밋과 운영 JAR
 
-서브모듈은 모두 minefed의 `minefed-1.20.4` 브랜치를 추적한다. 이 브랜치는 조사한 소스 기준 커밋 위에 하위 저장소용 `AGENTS.md`와 필요한 빌드·호환성 수정을 작은 커밋으로 관리한다. 원래 upstream/기존 fork 브랜치의 이력은 그대로 보존한다.
+모드 서브모듈은 minefed의 `minefed-1.20.4` 브랜치를 추적한다. 이 브랜치는 조사한 소스 기준 커밋 위에 하위 저장소용 `AGENTS.md`와 필요한 빌드·호환성 수정을 작은 커밋으로 관리한다. 원래 upstream/기존 fork 브랜치의 이력은 그대로 보존한다. 리소스팩은 `main`을 추적한다.
+
+자체 코드 변경 없이 `AGENTS.md`만 추가한 기반 라이브러리 7개는 공식 바이너리 의존성으로 전환했다. 해당 fork의 URL·브랜치·전체 커밋은 `sourceProvenance`에 보존하며 gitlink나 릴리즈 소스 감시 대상에 포함하지 않는다. 로컬 checkout과 원격 저장소는 보존했다. 활성 빌드 pin과 공식 소스 참조는 `inventory/dependencies.lock.json`, 업데이트 절차는 [의존성 관리](DEPENDENCIES.md)를 따른다.
 
 `inventory/mods.lock.json`의 각 `source`는 다음 값을 구분한다.
 
