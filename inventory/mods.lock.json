@@ -4278,7 +4278,7 @@
         "url": "https://github.com/minefed/WorldEdit",
         "upstream": "https://github.com/EngineHub/WorldEdit",
         "ref": "minefed-1.20.4",
-        "commit": "159482a229d8686a82641b871961acbb1833275a",
+        "commit": "bb4ca1d9223c420048fbbd591589716827162cc1",
         "trackingBranch": "minefed-1.20.4",
         "baselineRef": "refs/tags/7.3.0",
         "baselineCommit": "55745adbdb3fecbb2d5bac6d90655c511245a552"
