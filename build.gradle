@@ -76,3 +76,16 @@ tasks.register('verifyBaseline', Exec) {
     workingDir rootDir
     commandLine pythonExecutable, 'scripts/mods.py', 'verify', '--sources'
 }
+
+def releaseVersion = providers.gradleProperty('releaseVersion').getOrElse(
+        new Date().format('yyyyMMddHHmmss', TimeZone.getTimeZone('Asia/Seoul')))
+tasks.register('releasePacks', Exec) {
+    group = 'distribution'
+    description = 'Build and verify the public server pack, client pack and resource pack.'
+    dependsOn 'modpack', 'check'
+    workingDir rootDir
+    commandLine pythonExecutable, 'scripts/release_pack.py',
+            '--result-json', 'build/distributions/latest.json',
+            '--version', releaseVersion,
+            '--output', "build/releases/${releaseVersion}"
+}
