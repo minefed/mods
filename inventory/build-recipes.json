@@ -583,20 +583,22 @@
     {
       "modId": "modernfix",
       "mode": "source",
-      "reason": "Build the Minecraft 1.20.4 Fabric target with Java 17. The upstream version formula derives the beta distance and short hash from the managed Git commit. Keep unchanged KubeJS/Rhino compile dependencies in NeoForge, their only referencing loader, so the Fabric build does not resolve its retired Maven artifacts.",
+      "reason": "Build the Minecraft 1.20.4 Fabric target with Java 17. The upstream version formula derives the beta distance and short hash from the managed Git commit. Keep unchanged KubeJS/Rhino compile dependencies in their only referencing NeoForge loader. Opt into in-process compilation with preview enabled for the build-time annotation processor to avoid JDK 17 worker argfile failures in non-ASCII Windows paths; the mod bytecode target remains Java 17.",
       "sourcePath": "ModernFix",
       "java": 17,
       "tasks": [
         ":fabric:remapJar"
       ],
       "args": [
+        "--configure-on-demand",
         "-Penabled_platforms=fabric",
-        "--configure-on-demand"
+        "-PminefedInProcessCompiler=true",
+        "-Dorg.gradle.jvmargs=-Xmx1536m -Dfile.encoding=UTF-8 --enable-preview"
       ],
       "artifactGlobs": [
-        "fabric/build/libs/modernfix-fabric-5.17.1-beta.3+mc1.20.4.acce.jar"
+        "fabric/build/libs/modernfix-fabric-5.17.1-beta.4+mc1.20.4.4790.jar"
       ],
-      "expectedVersion": "5.17.1-beta.3+mc1.20.4.acce"
+      "expectedVersion": "5.17.1-beta.4+mc1.20.4.4790"
     },
     {
       "modId": "msd",

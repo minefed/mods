@@ -2591,7 +2591,7 @@
         "url": "https://github.com/minefed/ModernFix",
         "upstream": "https://github.com/embeddedt/ModernFix",
         "ref": "minefed-1.20.4",
-        "commit": "acce04941b8ec656c01763987c19bd45326fadd3",
+        "commit": "479096893321f5dc3e97791e5fa7dcf3ed58e15b",
         "trackingBranch": "minefed-1.20.4",
         "baselineRef": "5.17.0+1.20.4",
         "baselineCommit": "c8f9b1cd843e69035ed988baeee04dc46a06fd1b"
