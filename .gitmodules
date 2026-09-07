@@ -230,3 +230,7 @@
 	path = Modern-Lights
 	url = https://github.com/minefed/Modern-Lights
 	branch = minefed-1.20.4
+[submodule "resourcepack"]
+	path = resourcepack
+	url = https://github.com/minefed/resourcepack
+	branch = main

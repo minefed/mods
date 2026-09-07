@@ -28,6 +28,22 @@
       "baselineRef": "1.20.4-backport",
       "baselineCommit": "831011268f914a308bde4500ec510d7659de7398",
       "trackingBranch": "minefed-1.20.4"
+    },
+    {
+      "kind": "resourcepack",
+      "path": "resourcepack",
+      "url": "https://github.com/minefed/resourcepack",
+      "upstream": "https://github.com/minefed/resourcepack",
+      "ref": "main",
+      "commit": "82d0c13c888804e137d377ce25553de07b9b125a",
+      "baselineRef": "main",
+      "baselineCommit": "5565738520f8ef0632462198a426781f124ae382",
+      "trackingBranch": "main",
+      "notes": [
+        "Private Minefed resource repository; game files are independently described by inventory/resourcepacks.lock.json and are not mod JAR build inputs.",
+        "Existing committed vehicle work was preserved and fast-forwarded to private origin/main before registering this remotely available policy commit.",
+        "The owner authorized public release of resource_pack game files only; the private repository and design materials remain private."
+      ]
     }
   ],
   "entries": [
@@ -4468,7 +4484,7 @@
   ],
   "sourcePolicy": {
     "branch": "minefed-1.20.4",
-    "sourceRepositoryCount": 58,
+    "sourceRepositoryCount": 59,
     "guidanceFile": "AGENTS.md",
     "remoteCommitsVerified": true,
     "baselineCommitMeaning": "Audited source before the repository-local AGENTS.md policy commit",

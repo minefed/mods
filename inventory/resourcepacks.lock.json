@@ -1,0 +1,41 @@
+{
+  "schemaVersion": 1,
+  "minecraftVersion": "1.20.4",
+  "entries": [
+    {
+      "id": "minefed",
+      "sourcePath": "resourcepack",
+      "sourceDir": "resource_pack",
+      "commit": "82d0c13c888804e137d377ce25553de07b9b125a",
+      "ref": "main",
+      "url": "https://github.com/minefed/resourcepack",
+      "sourceVisibility": "private",
+      "baselineCommit": "5565738520f8ef0632462198a426781f124ae382",
+      "packFormat": 22,
+      "license": {
+        "summary": "compress.sh and pack.mcmeta are MIT; image copyrights belong to the Minefed team. No blanket open-source asset license is granted.",
+        "redistribution": "owner-authorized",
+        "scope": "game-files-only",
+        "noticeSource": "README.md",
+        "noticeSection": "Disclaimer",
+        "noticeText": [
+          "The compress.sh file and pack.mcmeta file are distributed under the MIT License.",
+          "All image files in this project are protected by copyright law, and all copyrights to the image files are held by the Minefed team."
+        ],
+        "authorization": "The owner explicitly authorized publishing resource_pack game files as a public GitHub Release resource pack; the source repository remains private.",
+        "excludedFromRelease": [
+          "design/",
+          ".agents/",
+          ".git/",
+          "resource_server/"
+        ]
+      },
+      "notes": [
+        "Package only sourceDir contents at the ZIP root, including pack.mcmeta, pack.png and assets/; retain the recorded copyright notice alongside the release.",
+        "Runtime assets are committed inputs. Vehicle generators, previews and tracked package reports must not be regenerated during release packaging.",
+        "Existing MTR signs, sounds and six MTR 4.0.5 vehicle registrations are retained. Design references and server speed-limit merge fragments are excluded.",
+        "File validation and packaging do not establish Minecraft client/server runtime validation."
+      ]
+    }
+  ]
+}
