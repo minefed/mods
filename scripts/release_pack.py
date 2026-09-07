@@ -324,7 +324,13 @@ def select_files(root, manifest, provenance, paths, policy, work):
                   'source': entry.get('source')}
         if record.get('source'):
             source = record['source']
-            record['sourceCommitUrl'] = source['url'].removesuffix('.git') + '/tree/' + source['commit']
+            repository_url = source['url'].removesuffix('.git')
+            record['sourceCommitUrl'] = repository_url + '/tree/' + source['commit']
+            if decision['artifact'] == 'built' and entry['artifact'].get('builtFromSource'):
+                record['sourceArchiveUrl'] = repository_url + '/archive/' + source['commit'] + '.zip'
+                record['sourceHistoryUrl'] = repository_url + '/commits/' + source['commit']
+                record['sourceCommitDate'] = mods.git(mods.safe_path(root, source['path']),
+                                                      'show', '-s', '--format=%cI', source['commit'])
         selected.append((record, path, entry))
     for side in ('client', 'server'):
         filenames = [r['path'].casefold() for r, _, _ in selected if r[side]]
@@ -371,10 +377,12 @@ def resource_pack(root: Path, lock_path: str, destination: Path) -> dict:
     return {'id': entry['id'], 'commit': entry['commit'], 'packFormat': 22, 'gameFileCount': len(files), 'runtimeValidated': False}
 
 
-def source_notices(records) -> str:
+def source_notices(records, version: str) -> str:
     lines = ['# License, source and modification notices', '',
              'These files retain their individual author licenses. No additional rights are granted.',
-             'Minecraft startup and mod interaction have not been validated.', '']
+             'Minecraft startup and mod interaction have not been validated.', '',
+             'Build instructions for this release: https://github.com/minefed/mods/tree/' + version + '/docs/BUILDING.md',
+             'Exact build recipes for this release: https://github.com/minefed/mods/tree/' + version + '/inventory/build-recipes.json', '']
     for record in records:
         lines += [f"## {record['modId']} {record['version']}", '', f"License: {record.get('license')}",
                   f"License evidence: {record.get('licenseUrl')}", f"Distribution: {record['distribution']} / {record['artifact']}",
@@ -383,6 +391,11 @@ def source_notices(records) -> str:
             if record['artifact'] == 'built':
                 lines += ['Managed source and build instructions: ' + record['sourceCommitUrl'],
                           'Minefed build/compatibility changes are recorded in this repository history at that exact commit.']
+                if record.get('sourceArchiveUrl'):
+                    lines += ['Corresponding source archive: ' + record['sourceArchiveUrl'],
+                              'Commit date: ' + record['sourceCommitDate'],
+                              'Modification history: ' + record['sourceHistoryUrl'],
+                              'Minefed modifications include the build and compatibility changes in this history; upstream copyright notices remain in the source and JAR.']
             else:
                 lines += ['Managed source reference (not asserted to produce this published binary): ' + record['sourceCommitUrl'],
                           'The original download and author license evidence identify the selected published artifact.']
@@ -405,7 +418,9 @@ def write_profile(root, destination, side, selected, notices, version, loader, r
                 archive.write(path, prefix + record['path'])
         archive.writestr(prefix + 'download-manifest.json', json_bytes({'schemaVersion': 1, 'version': version, 'side': side, 'files': records}))
         archive.writestr(prefix + 'install-mods.py', INSTALLER)
-        archive.writestr(prefix + 'LICENSES.md', source_notices(records))
+        source_text = source_notices(records, version)
+        archive.writestr(prefix + 'LICENSES.md', source_text)
+        archive.writestr(prefix + 'SOURCES.md', source_text)
         archive.writestr(prefix + 'MINEFED-RELEASE.json', json_bytes({'version': version, 'side': side, 'minecraft': '1.20.4',
                           'fabricLoader': loader, 'runtimeValidated': False, 'files': records}))
         for name, content in notices.items():

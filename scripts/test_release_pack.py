@@ -136,6 +136,19 @@ class ReleaseTests(unittest.TestCase):
             self.run_release()
         self.assertFalse((self.root / 'build/releases/20260907123456').exists())
 
+    def test_source_notices_identify_actual_commit_and_release_build_instructions(self):
+        record = {**self.decision('alpha'), 'version': '2.0', 'license': 'GPL-3.0', 'licenseUrl': 'https://example.com/LICENSE',
+                  'replacesBuiltArtifact': False, 'sourceCommitUrl': 'https://github.com/minefed/alpha/tree/' + '2' * 40,
+                  'sourceArchiveUrl': 'https://github.com/minefed/alpha/archive/' + '2' * 40 + '.zip',
+                  'sourceHistoryUrl': 'https://github.com/minefed/alpha/commits/' + '2' * 40,
+                  'sourceCommitDate': '2026-09-07T13:00:00+09:00'}
+        text = release.source_notices([record], '20260907123456')
+        self.assertIn(record['sourceArchiveUrl'], text)
+        self.assertIn(record['sourceHistoryUrl'], text)
+        self.assertIn(record['sourceCommitDate'], text)
+        self.assertIn('https://github.com/minefed/mods/tree/20260907123456/docs/BUILDING.md', text)
+        self.assertIn('https://github.com/minefed/mods/tree/20260907123456/inventory/build-recipes.json', text)
+
     def test_explicit_original_download_uses_baseline_bytes_and_discloses_replacement(self):
         self.produced['entries'][0]['artifact']['redistribution'] = 'local-only'
         self.policy['entries'][0] = self.decision('alpha', distribution='download', artifact='baseline', downloadUrl='https://cdn.modrinth.com/alpha.jar')
