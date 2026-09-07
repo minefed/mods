@@ -4,6 +4,12 @@ on:
   push:
     branches: [main]
   workflow_dispatch:
+    inputs:
+      force:
+        description: Rebuild and publish even when inputs are unchanged
+        type: boolean
+        required: false
+        default: false
   schedule:
     - cron: '7,22,37,52 * * * *'
 
@@ -75,12 +81,17 @@ jobs:
         id: plan
         env:
           GH_TOKEN: ${{ github.token }}
+          FORCE_RELEASE: ${{ github.event_name == 'workflow_dispatch' && inputs.force || false }}
           GIT_TERMINAL_PROMPT: '0'
           GIT_SSH_COMMAND: >-
             ssh -i "${{ runner.temp }}/minefed-resourcepack-access/key"
             -o IdentitiesOnly=yes -o BatchMode=yes -o StrictHostKeyChecking=yes
             -o UserKnownHostsFile="${{ runner.temp }}/minefed-resourcepack-access/known_hosts"
-        run: python scripts/release_control.py plan --output build/release-plan.json
+        run: |
+          set -euo pipefail
+          force_args=()
+          if [[ "$FORCE_RELEASE" = true ]]; then force_args+=(--force); fi
+          python scripts/release_control.py plan --output build/release-plan.json "${force_args[@]}"
 
       - name: Reserve disk space on the disposable hosted runner
         if: steps.plan.outputs.changed == 'true'
