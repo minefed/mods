@@ -146,42 +146,44 @@
       }
     },
     {
-      "fileName": "fabric-api-0.97.2+1.20.4.jar",
-      "sha256": "473b9278dc8e97cbde1d8d52e24af6ee3f296ae00d7b46d14967ebcbe16fb7a7",
-      "size": 2187410,
+      "fileName": "fabric-api-0.97.3+1.20.4.jar",
+      "sha256": "5c11c93b21e0fbcd83dd11c6059479143f3d422bceac4153c3e55806ba9371f1",
+      "size": 2187523,
       "modId": "fabric-api",
-      "version": "0.97.2+1.20.4",
+      "version": "0.97.3+1.20.4",
       "environment": "*",
       "management": "binary",
       "artifact": {
-        "path": "artifacts/local/fabric-api-0.97.2+1.20.4.jar",
+        "path": "artifacts/local/fabric-api-0.97.3+1.20.4.jar",
         "redistribution": "allowed",
-        "url": "https://cdn.modrinth.com/data/P7dR8mSH/versions/QVBohPm2/fabric-api-0.97.2%2B1.20.4.jar",
-        "sha512": "8f02bf562781a2f08294736eff784b7e7463be1595b1e3b4f53d4dcb57fc0643890078265141c3bce882dfec6e77553d2db252992fdfbd55cd7d32777adb9d78",
+        "url": "https://cdn.modrinth.com/data/P7dR8mSH/versions/BPX6fK06/fabric-api-0.97.3%2B1.20.4.jar",
+        "sha512": "ea1e47672a1e0fef7fa3fd7f7b396b5a8fb2c46e6ce33dbc4cc2b8d320bc7b775a0de42a478302419c8063c47fbc18bb2ad7551772f54af8059132ac2cb4f108",
         "publishedHashMatch": true,
         "verificationAlgorithm": "sha512",
         "publishedRelease": {
           "provider": "modrinth",
-          "versionId": "QVBohPm2",
+          "versionId": "BPX6fK06",
           "projectId": "P7dR8mSH",
-          "versionUrl": "https://modrinth.com/version/QVBohPm2",
+          "versionUrl": "https://modrinth.com/version/BPX6fK06",
           "gameVersions": [
             "1.20.4"
           ],
           "loaders": [
             "fabric"
           ],
-          "officialFileName": "fabric-api-0.97.2+1.20.4.jar"
+          "officialFileName": "fabric-api-0.97.3+1.20.4.jar",
+          "channel": "release",
+          "publishedAt": "2025-06-20T09:13:59.799615Z"
         }
       },
       "included": true,
       "exclusionReason": null,
       "license": "Apache-2.0",
-      "licenseUrl": "https://github.com/FabricMC/fabric-api/blob/26460e8a3bf8fe181850b87815a39629551cef32/LICENSE",
-      "licenseNoticesPath": "inventory/notices/fabric-api-473b9278dc8e",
+      "licenseUrl": "https://github.com/FabricMC/fabric-api/blob/cadc140c0c860ee9d5f65585694a85a36f084401/LICENSE",
+      "licenseNoticesPath": "inventory/notices/fabric-api-5c11c93b21e0",
       "notes": [
-        "Exact deployed release tag; repository canonical name redirected from FabricMC/fabric. Do not substitute latest0.97.3 without intentional runtime update.",
-        "Official binary dependency; the former Minefed checkout is historical provenance, not a build input. Release compatibility and hashes are pinned independently of the captured server baseline."
+        "Official Fabric 1.20.4 stable dependency updated from 0.97.2 to 0.97.3 after checking Modrinth release metadata, exact SHA-512/size, JAR metadata and unchanged Apache-2.0 source license. The operating baseline remains 0.97.2 in mods.lock.json.",
+        "sourceProvenance records the retired Minefed checkout for the old baseline; sourceReference identifies the official source for this dependency. Minecraft startup has not been validated."
       ],
       "compatibility": {
         "minecraft": ">=1.20.3- <1.20.5-",
@@ -195,10 +197,9 @@
       },
       "evidenceUrls": [
         "https://api.modrinth.com/v2/project/P7dR8mSH",
-        "https://api.modrinth.com/v2/version/QVBohPm2",
-        "https://github.com/FabricMC/fabric-api",
-        "https://github.com/FabricMC/fabric-api/blob/26460e8a3bf8fe181850b87815a39629551cef32/LICENSE",
-        "https://github.com/FabricMC/fabric-api/commit/26460e8a3bf8fe181850b87815a39629551cef32"
+        "https://api.modrinth.com/v2/version/BPX6fK06",
+        "https://github.com/FabricMC/fabric-api/blob/cadc140c0c860ee9d5f65585694a85a36f084401/LICENSE",
+        "https://github.com/FabricMC/fabric-api/commit/cadc140c0c860ee9d5f65585694a85a36f084401"
       ],
       "sourceProvenance": {
         "path": "fabric-api",
@@ -212,8 +213,17 @@
       },
       "sourceReference": {
         "url": "https://github.com/FabricMC/fabric-api",
-        "ref": "0.97.2+1.20.4",
-        "commit": "26460e8a3bf8fe181850b87815a39629551cef32"
+        "ref": "0.97.3+1.20.4",
+        "commit": "cadc140c0c860ee9d5f65585694a85a36f084401",
+        "trackingBranch": "1.20.4"
+      },
+      "licenseReview": {
+        "reviewedAt": "2026-09-07",
+        "sourceLicenseSha256": "b40930bbcf80744c86c46a12bc9da056641d722716c378f5659b9e555ef833e1",
+        "sourceLicenseTextUnchangedFromBaseline": true,
+        "embeddedNoticeSha256": {
+          "LICENSE-fabric-api": "b40930bbcf80744c86c46a12bc9da056641d722716c378f5659b9e555ef833e1"
+        }
       }
     },
     {

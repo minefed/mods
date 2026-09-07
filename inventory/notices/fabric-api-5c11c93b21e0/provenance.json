@@ -1,0 +1,8 @@
+{
+  "jar": "fabric-api-0.97.3+1.20.4.jar",
+  "sha256": "5c11c93b21e0fbcd83dd11c6059479143f3d422bceac4153c3e55806ba9371f1",
+  "entries": [
+    "LICENSE-fabric-api"
+  ],
+  "notice": "Original embedded notices from the official Fabric API release; see dependencies.lock.json for source and license review."
+}

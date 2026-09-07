@@ -294,16 +294,13 @@
       "reason": "Use the official binary selected by dependencies.lock.json through the mixed build output; preserve upstream download origin, exact hashes and license notices. No Minefed source build.",
       "evidenceUrls": [
         "https://api.modrinth.com/v2/project/P7dR8mSH",
-        "https://api.modrinth.com/v2/version/QVBohPm2",
-        "https://github.com/FabricMC/fabric-api",
-        "https://github.com/FabricMC/fabric-api/blob/26460e8a3bf8fe181850b87815a39629551cef32/LICENSE",
-        "https://github.com/FabricMC/fabric-api/commit/26460e8a3bf8fe181850b87815a39629551cef32",
-        "https://github.com/minefed/fabric-api/commit/b0291a8c46e79ec2018b26b5874a2796f6b54132",
-        "https://github.com/minefed/fabric-api/archive/b0291a8c46e79ec2018b26b5874a2796f6b54132.tar.gz"
+        "https://api.modrinth.com/v2/version/BPX6fK06",
+        "https://github.com/FabricMC/fabric-api/blob/cadc140c0c860ee9d5f65585694a85a36f084401/LICENSE",
+        "https://github.com/FabricMC/fabric-api/commit/cadc140c0c860ee9d5f65585694a85a36f084401"
       ],
       "client": true,
       "server": true,
-      "downloadUrl": "https://cdn.modrinth.com/data/P7dR8mSH/versions/QVBohPm2/fabric-api-0.97.2%2B1.20.4.jar"
+      "downloadUrl": "https://cdn.modrinth.com/data/P7dR8mSH/versions/BPX6fK06/fabric-api-0.97.3%2B1.20.4.jar"
     },
     {
       "modId": "carpet",

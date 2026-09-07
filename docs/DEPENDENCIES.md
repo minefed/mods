@@ -37,6 +37,29 @@ python -m unittest discover -s scripts -p 'test_*.py'
 
 모드팩의 서버·클라이언트 의존성 검사와 별도 테스트 환경에서의 기동 확인을 거친 뒤 배포한다. 검증한 단위마다 Conventional Commit을 남긴다. 조회 명령과 일반 빌드는 운영 서버 적용이나 자동 버전 상승을 수행하지 않는다.
 
+## Q. 이번에 어떤 버전을 선택했나요?
+
+2026-09-07 공식 Modrinth API의 Minecraft 1.20.4/Fabric 안정 릴리즈를 확인했다.
+
+| 라이브러리 | 빌드에 고정한 버전 | 운영 기준본과의 차이 |
+| --- | --- | --- |
+| Fabric API | `0.97.3+1.20.4` | `0.97.2`에서 갱신 |
+| Architectury | `11.1.17` | 동일 |
+| Botarium | `3.2.2` | 동일 |
+| Lavender | `0.1.9+1.20.3` | 동일 |
+| owo | `0.12.6+1.20.3` | 동일 |
+| Resourceful Config | `2.4.8` | 동일 |
+| ResourcefulLib | `2.4.10` | 동일 |
+
+Fabric API의 [공식 릴리즈 BPX6fK06](https://modrinth.com/version/BPX6fK06)은
+`fabric-api-0.97.3+1.20.4.jar`이며 SHA-256은
+`5c11c93b21e0fbcd83dd11c6059479143f3d422bceac4153c3e55806ba9371f1`이다.
+공식 소스 `1.20.4` 브랜치와 `0.97.3+1.20.4` 태그의 확인 커밋은
+`cadc140c0c860ee9d5f65585694a85a36f084401`이다. JAR는 Java `>=17`, Fabric Loader
+`>=0.15.1`, Minecraft `>=1.20.3- <1.20.5-`를 선언한다. 원본 Apache-2.0 고지를
+추출하고, 공식 소스 라이선스 본문이 기존 기준본과 같음을 확인했다. 기존 운영 JAR와
+그 해시는 `mods.lock.json`에 그대로 남아 있다.
+
 ## Q. 다른 기본 모드도 모두 전환하나요?
 
 공식 배포물로 충분한 라이브러리는 같은 방식으로 순차 전환할 수 있다. 이번에는 변경이 지침 파일뿐인 7개로 범위를 한정했다. GeckoLib·Forge Config API Port·Puzzles Lib 등은 빌드 수정과 라이선스 포장 이력이 있어, 공식 JAR와의 대응 및 고지 보존을 별도 단위로 검토한다. 기능 수정, 포트, 자체 모드가 필요한 경우에는 소스 관리를 유지한다.
