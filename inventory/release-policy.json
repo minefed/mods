@@ -1,0 +1,1066 @@
+{
+  "schemaVersion": 1,
+  "minecraftVersion": "1.20.4",
+  "fabricLoaderVersion": "0.18.0",
+  "timezone": "Asia/Seoul",
+  "entries": [
+    {
+      "modId": "alloy_forgery",
+      "distribution": "embed",
+      "artifact": "built",
+      "reason": "Distribute the reviewed built artifact under its original license with all copyright/license notices and corresponding-source obligations. MIT",
+      "evidenceUrls": [
+        "https://api.modrinth.com/v2/project/jhl28YkY",
+        "https://api.modrinth.com/v2/version/X1pKXaia",
+        "https://github.com/wisp-forest/alloy-forgery",
+        "https://github.com/wisp-forest/alloy-forgery/blob/f1b61a1b1c0dc7d483b9c44472237cc1c9cc8711/LICENSE",
+        "https://github.com/wisp-forest/alloy-forgery/commit/f1b61a1b1c0dc7d483b9c44472237cc1c9cc8711",
+        "https://github.com/minefed/alloy-forgery/commit/badd26ba735ffe18723f97db49c5f6c1d0c50ee9",
+        "https://github.com/minefed/alloy-forgery/archive/badd26ba735ffe18723f97db49c5f6c1d0c50ee9.tar.gz"
+      ],
+      "client": true,
+      "server": true
+    },
+    {
+      "modId": "architectury",
+      "distribution": "embed",
+      "artifact": "built",
+      "reason": "Distribute the reviewed built artifact under its original license with all copyright/license notices and corresponding-source obligations. LGPL-3.0-only",
+      "evidenceUrls": [
+        "https://api.modrinth.com/v2/project/lhGA9TYQ",
+        "https://api.modrinth.com/v2/version/kVjQWX0l",
+        "https://github.com/architectury/architectury-api",
+        "https://github.com/architectury/architectury-api/blob/327480e5490c2e7740ca117197a28b59dccb137d/LICENSE.md",
+        "https://github.com/architectury/architectury-api/commit/327480e5490c2e7740ca117197a28b59dccb137d",
+        "https://github.com/minefed/architectury-api/commit/d97359747e8d05939f8a8fdc0d01fcf410d0bf6d",
+        "https://github.com/minefed/architectury-api/archive/d97359747e8d05939f8a8fdc0d01fcf410d0bf6d.tar.gz"
+      ],
+      "client": true,
+      "server": true
+    },
+    {
+      "modId": "automobility-refueled",
+      "distribution": "embed",
+      "artifact": "built",
+      "reason": "Distribute the reviewed built artifact under its original license with all copyright/license notices and corresponding-source obligations. MIT",
+      "evidenceUrls": [
+        "https://github.com/codenobacon4u/Automobility",
+        "https://github.com/codenobacon4u/Automobility/blob/96a6369eed2e5528ba8d09c643e032cf7fa15c51/LICENSE",
+        "https://github.com/codenobacon4u/Automobility/commit/96a6369eed2e5528ba8d09c643e032cf7fa15c51",
+        "https://github.com/codenobacon4u/Automobility/releases/tag/v0.4.3.b%2B1.20.4",
+        "https://github.com/minefed/Automobility-Refueled/commit/13160075fb4be333fe2b425183c02f9dc2348184",
+        "https://github.com/minefed/Automobility-Refueled/archive/13160075fb4be333fe2b425183c02f9dc2348184.tar.gz"
+      ],
+      "client": true,
+      "server": true
+    },
+    {
+      "modId": "axiom",
+      "distribution": "download",
+      "artifact": "baseline",
+      "reason": "Modrinth modpack reference only: the exact original file is hosted on Modrinth and its official API SHA512 matches the baseline JAR. Preserve the original license and download directly from the official CDN; do not embed or rehost the locally rebuilt replacement.",
+      "evidenceUrls": [
+        "https://api.modrinth.com/v2/project/N6n5dqoA",
+        "https://api.modrinth.com/v2/version/o8M6jc3k",
+        "https://axiom.moulberry.com/eula",
+        "https://support.modrinth.com/en/articles/8797527-obtaining-modpack-permissions"
+      ],
+      "client": true,
+      "server": true,
+      "downloadUrl": "https://cdn.modrinth.com/data/N6n5dqoA/versions/o8M6jc3k/Axiom-5.3.0-for-MC1.20.4.jar"
+    },
+    {
+      "modId": "bluemap",
+      "distribution": "embed",
+      "artifact": "built",
+      "reason": "Distribute the reviewed built artifact under its original license with all copyright/license notices and corresponding-source obligations. MIT",
+      "evidenceUrls": [
+        "https://api.modrinth.com/v2/project/swbUV1cr",
+        "https://api.modrinth.com/v2/version/lHRktt6S",
+        "https://github.com/BlueMap-Minecraft/BlueMap",
+        "https://github.com/BlueMap-Minecraft/BlueMap/blob/eed8f79e68b053c119f88bbf358bed893a78d110/LICENSE",
+        "https://github.com/BlueMap-Minecraft/BlueMap/commit/eed8f79e68b053c119f88bbf358bed893a78d110",
+        "https://github.com/minefed/BlueMap/commit/dd63c74e1b8251cde574e1beca1025a840e6761c",
+        "https://github.com/minefed/BlueMap/archive/dd63c74e1b8251cde574e1beca1025a840e6761c.tar.gz"
+      ],
+      "client": true,
+      "server": true
+    },
+    {
+      "modId": "botarium",
+      "distribution": "embed",
+      "artifact": "built",
+      "reason": "Distribute the reviewed built artifact under its original license with all copyright/license notices and corresponding-source obligations. MIT",
+      "evidenceUrls": [
+        "https://api.modrinth.com/v2/project/2u6LRnMa",
+        "https://api.modrinth.com/v2/version/Eqw90l8p",
+        "https://github.com/terrarium-earth/Common-Storage-Lib",
+        "https://github.com/terrarium-earth/Common-Storage-Lib/blob/225bae30d2f2d9d9c1de79136160b725ff15f543/LICENSE.md",
+        "https://github.com/terrarium-earth/Common-Storage-Lib/commit/225bae30d2f2d9d9c1de79136160b725ff15f543",
+        "https://github.com/minefed/Common-Storage-Lib/commit/ae864ea949064d734de8aed89297c5916637ed20",
+        "https://github.com/minefed/Common-Storage-Lib/archive/ae864ea949064d734de8aed89297c5916637ed20.tar.gz"
+      ],
+      "client": true,
+      "server": true
+    },
+    {
+      "modId": "computercraft",
+      "distribution": "embed",
+      "artifact": "built",
+      "reason": "Distribute the reviewed built artifact under its original license with all copyright/license notices and corresponding-source obligations. LicenseRef-CCPL",
+      "evidenceUrls": [
+        "https://api.modrinth.com/v2/project/gu7yAYhd",
+        "https://api.modrinth.com/v2/version/afcOmjVN",
+        "https://github.com/cc-tweaked/CC-Tweaked",
+        "https://github.com/cc-tweaked/CC-Tweaked/blob/22bd5309babd469b95b7e0bfdc4c4929ded9ab5b/LICENSES/LicenseRef-CCPL.txt",
+        "https://github.com/cc-tweaked/CC-Tweaked/commit/22bd5309babd469b95b7e0bfdc4c4929ded9ab5b",
+        "https://github.com/minefed/CC-Tweaked/commit/c3264ade27b032f4b4b480169e67bcb08a01bc0a",
+        "https://github.com/minefed/CC-Tweaked/archive/c3264ade27b032f4b4b480169e67bcb08a01bc0a.tar.gz"
+      ],
+      "client": true,
+      "server": true
+    },
+    {
+      "modId": "chiselsandbits",
+      "distribution": "embed",
+      "artifact": "built",
+      "reason": "Distribute the reviewed built artifact under its original license with all copyright/license notices and corresponding-source obligations. MIT",
+      "evidenceUrls": [
+        "https://github.com/minefed/Chisels-and-Bits",
+        "https://github.com/minefed/Chisels-and-Bits/blob/f64db2d6124e004ae498cd1a1154909afd81a96d/LICENSE",
+        "https://github.com/minefed/Chisels-and-Bits/commit/f64db2d6124e004ae498cd1a1154909afd81a96d",
+        "https://github.com/minefed/Chisels-and-Bits/commit/12fd1d23b3e6fb929ccba01e034c46ae632acbe0",
+        "https://github.com/minefed/Chisels-and-Bits/archive/12fd1d23b3e6fb929ccba01e034c46ae632acbe0.tar.gz"
+      ],
+      "client": true,
+      "server": true
+    },
+    {
+      "modId": "chunky",
+      "distribution": "embed",
+      "artifact": "built",
+      "reason": "Distribute the reviewed built artifact under its original license with all copyright/license notices and corresponding-source obligations. GPL-3.0-only",
+      "evidenceUrls": [
+        "https://api.modrinth.com/v2/project/fALzjamp",
+        "https://api.modrinth.com/v2/version/NHWYq9at",
+        "https://github.com/pop4959/Chunky",
+        "https://github.com/pop4959/Chunky/blob/d3956d688b70c10ae598861dfbf901946f7cfabb/LICENSE",
+        "https://github.com/pop4959/Chunky/commit/d3956d688b70c10ae598861dfbf901946f7cfabb",
+        "https://github.com/minefed/Chunky/commit/1fe63d9331b5cbad47dac40b48aabd1b0085c000",
+        "https://github.com/minefed/Chunky/archive/1fe63d9331b5cbad47dac40b48aabd1b0085c000.tar.gz"
+      ],
+      "client": true,
+      "server": true
+    },
+    {
+      "modId": "citycraft",
+      "distribution": "embed",
+      "artifact": "built",
+      "reason": "Distribute the reviewed built artifact under its original license with all copyright/license notices and corresponding-source obligations. MIT (deployed JAR/project); CC0-1.0 (published source)",
+      "evidenceUrls": [
+        "https://api.modrinth.com/v2/project/NCASj2oY",
+        "https://api.modrinth.com/v2/version/qWRV8sfH",
+        "https://github.com/XiaoYao-MC/CityCraft",
+        "https://github.com/XiaoYao-MC/CityCraft/blob/9d38b13c11494f3aeb20fc98e2fbf8a80119eef5/LICENSE",
+        "https://github.com/XiaoYao-MC/CityCraft/commit/9d38b13c11494f3aeb20fc98e2fbf8a80119eef5",
+        "https://github.com/minefed/CityCraft/commit/32f4d36ff7865630f102e8f71302f483311aed39",
+        "https://github.com/minefed/CityCraft/archive/32f4d36ff7865630f102e8f71302f483311aed39.tar.gz"
+      ],
+      "client": true,
+      "server": true
+    },
+    {
+      "modId": "crossstitch",
+      "distribution": "embed",
+      "artifact": "built",
+      "reason": "Distribute the reviewed built artifact under its original license with all copyright/license notices and corresponding-source obligations. MIT",
+      "evidenceUrls": [
+        "https://api.modrinth.com/v2/project/YkOyn1Pn",
+        "https://api.modrinth.com/v2/version/dJioNlO8",
+        "https://github.com/VelocityPowered/CrossStitch",
+        "https://github.com/VelocityPowered/CrossStitch/blob/35a21ed5f402ce0957de5d39670e1804705f2247/LICENSE",
+        "https://github.com/VelocityPowered/CrossStitch/commit/35a21ed5f402ce0957de5d39670e1804705f2247",
+        "https://github.com/minefed/CrossStitch/commit/aa5545ce774566f3c09f2b34ac4ec0412274dec8",
+        "https://github.com/minefed/CrossStitch/archive/aa5545ce774566f3c09f2b34ac4ec0412274dec8.tar.gz"
+      ],
+      "client": false,
+      "server": true
+    },
+    {
+      "modId": "decorative_blocks",
+      "distribution": "embed",
+      "artifact": "built",
+      "reason": "Distribute the reviewed built artifact under its original license with all copyright/license notices and corresponding-source obligations. MIT",
+      "evidenceUrls": [
+        "https://api.modrinth.com/v2/project/t6BIRVZn",
+        "https://api.modrinth.com/v2/version/txbqjIbZ",
+        "https://github.com/lilypuree/Decorative-Blocks",
+        "https://github.com/lilypuree/Decorative-Blocks/blob/5775f8bb2c3fa57e041a2d40d377239e7c78d58d/LICENSE.txt",
+        "https://github.com/lilypuree/Decorative-Blocks/commit/5775f8bb2c3fa57e041a2d40d377239e7c78d58d",
+        "https://github.com/minefed/Decorative-Blocks/commit/d5f04025d811dd1310ce5a72a5ed9d40ad16c841",
+        "https://github.com/minefed/Decorative-Blocks/archive/d5f04025d811dd1310ce5a72a5ed9d40ad16c841.tar.gz"
+      ],
+      "client": true,
+      "server": true
+    },
+    {
+      "modId": "diagonalfences",
+      "distribution": "download",
+      "artifact": "baseline",
+      "reason": "Modrinth modpack reference only: the exact original file is hosted on Modrinth and its official API SHA512 matches the baseline JAR. Preserve the original license and download directly from the official CDN; do not embed or rehost the locally rebuilt replacement.",
+      "evidenceUrls": [
+        "https://api.modrinth.com/v2/project/IKARgflD",
+        "https://api.modrinth.com/v2/version/vRnCnKBa",
+        "https://github.com/Fuzss/diagonalfences",
+        "https://github.com/Fuzss/diagonalfences/blob/57e3bc3958e313c772cf68c2bfcb06a367fceb5d/LICENSE.md",
+        "https://github.com/Fuzss/diagonalfences/commit/57e3bc3958e313c772cf68c2bfcb06a367fceb5d",
+        "https://support.modrinth.com/en/articles/8797527-obtaining-modpack-permissions"
+      ],
+      "client": true,
+      "server": true,
+      "downloadUrl": "https://cdn.modrinth.com/data/IKARgflD/versions/vRnCnKBa/DiagonalFences-v20.4.1-1.20.4-Fabric.jar"
+    },
+    {
+      "modId": "diagonalwalls",
+      "distribution": "download",
+      "artifact": "baseline",
+      "reason": "Modrinth modpack reference only: the exact original file is hosted on Modrinth and its official API SHA512 matches the baseline JAR. Preserve the original license and download directly from the official CDN; do not embed or rehost the locally rebuilt replacement.",
+      "evidenceUrls": [
+        "https://api.modrinth.com/v2/project/FQgc8dib",
+        "https://api.modrinth.com/v2/version/lfD849Zm",
+        "https://github.com/Fuzss/diagonalwalls",
+        "https://github.com/Fuzss/diagonalwalls/blob/250c86bd48638d7f6979850a36e0240aed38fc85/LICENSE.md",
+        "https://github.com/Fuzss/diagonalwalls/commit/250c86bd48638d7f6979850a36e0240aed38fc85",
+        "https://support.modrinth.com/en/articles/8797527-obtaining-modpack-permissions"
+      ],
+      "client": true,
+      "server": true,
+      "downloadUrl": "https://cdn.modrinth.com/data/FQgc8dib/versions/lfD849Zm/DiagonalWalls-v20.4.1-1.20.4-Fabric.jar"
+    },
+    {
+      "modId": "diagonalwindows",
+      "distribution": "download",
+      "artifact": "baseline",
+      "reason": "Modrinth modpack reference only: the exact original file is hosted on Modrinth and its official API SHA512 matches the baseline JAR. Preserve the original license and download directly from the official CDN; do not embed or rehost the locally rebuilt replacement.",
+      "evidenceUrls": [
+        "https://api.modrinth.com/v2/project/oOi0CKes",
+        "https://api.modrinth.com/v2/version/1p2S1mYf",
+        "https://github.com/Fuzss/diagonalwindows",
+        "https://github.com/Fuzss/diagonalwindows/blob/4116d6bab254219ee1e78f25c8ecbd44ac42594b/LICENSE.md",
+        "https://github.com/Fuzss/diagonalwindows/commit/4116d6bab254219ee1e78f25c8ecbd44ac42594b",
+        "https://support.modrinth.com/en/articles/8797527-obtaining-modpack-permissions"
+      ],
+      "client": true,
+      "server": true,
+      "downloadUrl": "https://cdn.modrinth.com/data/oOi0CKes/versions/1p2S1mYf/DiagonalWindows-v20.4.1-1.20.4-Fabric.jar"
+    },
+    {
+      "modId": "dustydecorations",
+      "distribution": "embed",
+      "artifact": "built",
+      "reason": "Distribute the reviewed built artifact under its original license with all copyright/license notices and corresponding-source obligations. MIT",
+      "evidenceUrls": [
+        "https://api.modrinth.com/v2/project/KgFOuaiZ",
+        "https://api.modrinth.com/v2/version/DHsgxScD",
+        "https://github.com/TipMischiff/DustyDecorations_1.19.2",
+        "https://modrinth.com/mod/dusty-decorations",
+        "https://www.curseforge.com/minecraft/mc-mods/dusty-decorations/files/5892241"
+      ],
+      "client": true,
+      "server": true
+    },
+    {
+      "modId": "exlinefurniture",
+      "distribution": "download",
+      "artifact": "baseline",
+      "reason": "Modrinth modpack reference only: the exact original file is hosted on Modrinth and its official API SHA512 matches the baseline JAR. Preserve the original license and download directly from the official CDN; do not embed or rehost the locally rebuilt replacement.",
+      "evidenceUrls": [
+        "https://api.modrinth.com/v2/project/CQ7pGNKT",
+        "https://api.modrinth.com/v2/version/DfuDGYlp",
+        "https://modrinth.com/mod/exlines-furniture",
+        "https://www.curseforge.com/minecraft/mc-mods/exlines-furniture",
+        "https://support.modrinth.com/en/articles/8797527-obtaining-modpack-permissions"
+      ],
+      "client": true,
+      "server": true,
+      "downloadUrl": "https://cdn.modrinth.com/data/CQ7pGNKT/versions/DfuDGYlp/exlinefurniture-v2.7.2-fabric-1.20.4.jar"
+    },
+    {
+      "modId": "fabric-api",
+      "distribution": "embed",
+      "artifact": "built",
+      "reason": "Distribute the reviewed built artifact under its original license with all copyright/license notices and corresponding-source obligations. Apache-2.0",
+      "evidenceUrls": [
+        "https://api.modrinth.com/v2/project/P7dR8mSH",
+        "https://api.modrinth.com/v2/version/QVBohPm2",
+        "https://github.com/FabricMC/fabric-api",
+        "https://github.com/FabricMC/fabric-api/blob/26460e8a3bf8fe181850b87815a39629551cef32/LICENSE",
+        "https://github.com/FabricMC/fabric-api/commit/26460e8a3bf8fe181850b87815a39629551cef32",
+        "https://github.com/minefed/fabric-api/commit/b0291a8c46e79ec2018b26b5874a2796f6b54132",
+        "https://github.com/minefed/fabric-api/archive/b0291a8c46e79ec2018b26b5874a2796f6b54132.tar.gz"
+      ],
+      "client": true,
+      "server": true
+    },
+    {
+      "modId": "carpet",
+      "distribution": "embed",
+      "artifact": "built",
+      "reason": "Distribute the reviewed built artifact under its original license with all copyright/license notices and corresponding-source obligations. MIT",
+      "evidenceUrls": [
+        "https://api.modrinth.com/v2/project/TQTTVgYE",
+        "https://api.modrinth.com/v2/version/yYzR60Xd",
+        "https://github.com/gnembon/fabric-carpet",
+        "https://github.com/gnembon/fabric-carpet/blob/92176312d92bfc2595f0bad18b64475f3800921a/LICENSE",
+        "https://github.com/gnembon/fabric-carpet/commit/92176312d92bfc2595f0bad18b64475f3800921a",
+        "https://github.com/minefed/fabric-carpet/commit/72248bbebe61dc0b2b7316378aa7629955d0f91a",
+        "https://github.com/minefed/fabric-carpet/archive/72248bbebe61dc0b2b7316378aa7629955d0f91a.tar.gz"
+      ],
+      "client": true,
+      "server": true
+    },
+    {
+      "modId": "seasons",
+      "distribution": "embed",
+      "artifact": "built",
+      "reason": "Distribute the reviewed built artifact under its original license with all copyright/license notices and corresponding-source obligations. MPL-2.0",
+      "evidenceUrls": [
+        "https://api.modrinth.com/v2/project/KJe6y9Eu",
+        "https://api.modrinth.com/v2/version/kSoN9Hi9",
+        "https://github.com/lucaargolo/fabric-seasons",
+        "https://github.com/lucaargolo/fabric-seasons/blob/bccadddf4ea556fe0fcea95bb88360fd25b812e8/LICENSE",
+        "https://github.com/lucaargolo/fabric-seasons/commit/bccadddf4ea556fe0fcea95bb88360fd25b812e8",
+        "https://github.com/minefed/fabric-seasons/commit/8e7833a58f54180c6fc6a96a2fb08c63ace5a726",
+        "https://github.com/minefed/fabric-seasons/archive/8e7833a58f54180c6fc6a96a2fb08c63ace5a726.tar.gz"
+      ],
+      "client": true,
+      "server": true
+    },
+    {
+      "modId": "fabricproxy-lite",
+      "distribution": "embed",
+      "artifact": "built",
+      "reason": "Distribute the reviewed built artifact under its original license with all copyright/license notices and corresponding-source obligations. MIT",
+      "evidenceUrls": [
+        "https://api.modrinth.com/v2/project/8dI2tmqs",
+        "https://api.modrinth.com/v2/version/Mxw3Cbsk",
+        "https://github.com/OKTW-Network/FabricProxy-Lite",
+        "https://github.com/OKTW-Network/FabricProxy-Lite/blob/6a7e156c3b84c07adfb80fb99d1739a631ed341a/LICENSE",
+        "https://github.com/OKTW-Network/FabricProxy-Lite/commit/6a7e156c3b84c07adfb80fb99d1739a631ed341a",
+        "https://github.com/minefed/FabricProxy-Lite/commit/7391c12684820b14039a42c0e5ae2e9178bf4290",
+        "https://github.com/minefed/FabricProxy-Lite/archive/7391c12684820b14039a42c0e5ae2e9178bf4290.tar.gz"
+      ],
+      "client": false,
+      "server": true
+    },
+    {
+      "modId": "fallingtree",
+      "distribution": "embed",
+      "artifact": "built",
+      "reason": "Distribute the reviewed built artifact under its original license with all copyright/license notices and corresponding-source obligations. LGPL-3.0-only",
+      "evidenceUrls": [
+        "https://api.modrinth.com/v2/project/Fb4jn8m6",
+        "https://api.modrinth.com/v2/version/mb15RrXi",
+        "https://github.com/RakambdaOrg/FallingTree",
+        "https://github.com/RakambdaOrg/FallingTree/blob/6db0a7bface140865da07009c0bd679f684a3340/LICENSE.md",
+        "https://github.com/RakambdaOrg/FallingTree/commit/6db0a7bface140865da07009c0bd679f684a3340",
+        "https://github.com/minefed/FallingTree/commit/0a70a01d3d682a9069f12a00a5c9dbd96d53f2cb",
+        "https://github.com/minefed/FallingTree/archive/0a70a01d3d682a9069f12a00a5c9dbd96d53f2cb.tar.gz"
+      ],
+      "client": true,
+      "server": true
+    },
+    {
+      "modId": "ferritecore",
+      "distribution": "embed",
+      "artifact": "built",
+      "reason": "Distribute the reviewed built artifact under its original license with all copyright/license notices and corresponding-source obligations. MIT",
+      "evidenceUrls": [
+        "https://api.modrinth.com/v2/project/uXXizFIs",
+        "https://api.modrinth.com/v2/version/pguEMpy9",
+        "https://github.com/malte0811/FerriteCore",
+        "https://github.com/malte0811/FerriteCore/blob/a9a24d4f6945f4e41855f55660915b2f5b570dd7/LICENSE",
+        "https://github.com/malte0811/FerriteCore/commit/a9a24d4f6945f4e41855f55660915b2f5b570dd7",
+        "https://github.com/minefed/FerriteCore/commit/1df30b595e231bc0dc9a8eabe65d34cce542d3f9",
+        "https://github.com/minefed/FerriteCore/archive/1df30b595e231bc0dc9a8eabe65d34cce542d3f9.tar.gz"
+      ],
+      "client": true,
+      "server": true
+    },
+    {
+      "modId": "forgeconfigapiport",
+      "distribution": "download",
+      "artifact": "baseline",
+      "reason": "Modrinth modpack reference only: the exact original file is hosted on Modrinth and its official API SHA512 matches the baseline JAR. Preserve the original license and download directly from the official CDN; do not embed or rehost the locally rebuilt replacement.",
+      "evidenceUrls": [
+        "https://api.modrinth.com/v2/project/ohNO6lps",
+        "https://api.modrinth.com/v2/version/xbVGsTLe",
+        "https://github.com/Fuzss/forgeconfigapiport",
+        "https://github.com/Fuzss/forgeconfigapiport/blob/a99bf22e9242637d4a71a5f25f03c47d6ff2c2df/LICENSE.md",
+        "https://github.com/Fuzss/forgeconfigapiport/commit/a99bf22e9242637d4a71a5f25f03c47d6ff2c2df",
+        "https://support.modrinth.com/en/articles/8797527-obtaining-modpack-permissions"
+      ],
+      "client": true,
+      "server": true,
+      "downloadUrl": "https://cdn.modrinth.com/data/ohNO6lps/versions/xbVGsTLe/ForgeConfigAPIPort-v20.4.3-1.20.4-Fabric.jar"
+    },
+    {
+      "modId": "furnitureexpanded",
+      "distribution": "download",
+      "artifact": "baseline",
+      "reason": "Modrinth modpack reference only: the exact original file is hosted on Modrinth and its official API SHA512 matches the baseline JAR. Preserve the original license and download directly from the official CDN; do not embed or rehost the locally rebuilt replacement.",
+      "evidenceUrls": [
+        "https://api.modrinth.com/v2/project/U1ACi6eg",
+        "https://github.com/clumsyc/decoration-mod",
+        "https://www.curseforge.com/minecraft/mc-mods/furniture-expanded/license",
+        "https://support.modrinth.com/en/articles/8797527-obtaining-modpack-permissions",
+        "https://api.modrinth.com/v2/version/LJGCDWzS"
+      ],
+      "client": true,
+      "server": true,
+      "downloadUrl": "https://cdn.modrinth.com/data/U1ACi6eg/versions/LJGCDWzS/furnitureexpanded-1.1-1.20.4-FABRIC-EXP.jar"
+    },
+    {
+      "modId": "fusion",
+      "distribution": "download",
+      "artifact": "baseline",
+      "reason": "Modrinth modpack reference only: the exact original file is hosted on Modrinth and its official API SHA512 matches the baseline JAR. Preserve the original license and download directly from the official CDN; do not embed or rehost the locally rebuilt replacement.",
+      "evidenceUrls": [
+        "https://api.modrinth.com/v2/project/p19vrgc2",
+        "https://github.com/SuperMartijn642/Fusion",
+        "https://github.com/SuperMartijn642/Fusion/blob/forge-1.20/README.md",
+        "https://support.modrinth.com/en/articles/8797527-obtaining-modpack-permissions",
+        "https://api.modrinth.com/v2/version/yzXdYMdh"
+      ],
+      "client": true,
+      "server": true,
+      "downloadUrl": "https://cdn.modrinth.com/data/p19vrgc2/versions/yzXdYMdh/fusion-1.2.12-fabric-mc1.20.4.jar"
+    },
+    {
+      "modId": "geckolib",
+      "distribution": "embed",
+      "artifact": "built",
+      "reason": "Distribute the reviewed built artifact under its original license with all copyright/license notices and corresponding-source obligations. MIT",
+      "evidenceUrls": [
+        "https://api.modrinth.com/v2/project/8BmcQJ2H",
+        "https://github.com/bernie-g/geckolib",
+        "https://github.com/bernie-g/geckolib/blob/1.20.4/LICENSE",
+        "https://github.com/minefed/geckolib/commit/fb968c0379ef0f6ef5c0d6672a464b2f2712553f",
+        "https://github.com/minefed/geckolib/archive/fb968c0379ef0f6ef5c0d6672a464b2f2712553f.tar.gz"
+      ],
+      "client": true,
+      "server": true
+    },
+    {
+      "modId": "handcrafted",
+      "distribution": "download",
+      "artifact": "baseline",
+      "reason": "Modrinth modpack reference only: the exact original file is hosted on Modrinth and its official API SHA512 matches the baseline JAR. Preserve the original license and download directly from the official CDN; do not embed or rehost the locally rebuilt replacement.",
+      "evidenceUrls": [
+        "https://api.modrinth.com/v2/project/pJmCFF0p",
+        "https://github.com/terrarium-earth/Handcrafted",
+        "https://github.com/terrarium-earth/Handcrafted/blob/1.20.x/LICENSE",
+        "https://support.modrinth.com/en/articles/8797527-obtaining-modpack-permissions",
+        "https://api.modrinth.com/v2/version/K4jSQsxb"
+      ],
+      "client": true,
+      "server": true,
+      "downloadUrl": "https://cdn.modrinth.com/data/pJmCFF0p/versions/K4jSQsxb/handcrafted-fabric-1.20.4-3.2.1.jar"
+    },
+    {
+      "modId": "jpp",
+      "distribution": "download",
+      "artifact": "baseline",
+      "reason": "Modrinth modpack reference only: the exact original file is hosted on Modrinth and its official API SHA512 matches the baseline JAR. Preserve the original license and download directly from the official CDN; do not embed or rehost the locally rebuilt replacement.",
+      "evidenceUrls": [
+        "https://api.modrinth.com/v2/project/dbNTzFWE",
+        "https://www.curseforge.com/minecraft/mc-mods/japan-props/license",
+        "https://support.modrinth.com/en/articles/8797527-obtaining-modpack-permissions",
+        "https://api.modrinth.com/v2/version/hnS8fdTL"
+      ],
+      "client": true,
+      "server": true,
+      "downloadUrl": "https://cdn.modrinth.com/data/dbNTzFWE/versions/hnS8fdTL/JapanProps_1.20.1_0.0.3.3_Fabric.jar"
+    },
+    {
+      "modId": "lavender",
+      "distribution": "embed",
+      "artifact": "built",
+      "reason": "Distribute the reviewed built artifact under its original license with all copyright/license notices and corresponding-source obligations. MIT",
+      "evidenceUrls": [
+        "https://api.modrinth.com/v2/project/D5h9NKNI",
+        "https://github.com/wisp-forest/lavender",
+        "https://github.com/wisp-forest/lavender/blob/0.1.9+1.20.3/LICENSE",
+        "https://github.com/minefed/lavender/commit/cc99a048c3622880ae0496122da30a72f21c44bd",
+        "https://github.com/minefed/lavender/archive/cc99a048c3622880ae0496122da30a72f21c44bd.tar.gz"
+      ],
+      "client": true,
+      "server": true
+    },
+    {
+      "modId": "lithium",
+      "distribution": "embed",
+      "artifact": "built",
+      "reason": "Distribute the reviewed built artifact under its original license with all copyright/license notices and corresponding-source obligations. LGPL-3.0-only",
+      "evidenceUrls": [
+        "https://api.modrinth.com/v2/project/gvQqBUqZ",
+        "https://github.com/CaffeineMC/lithium",
+        "https://github.com/CaffeineMC/lithium/blob/mc1.20.4-0.12.1/LICENSE.txt",
+        "https://github.com/minefed/lithium/commit/c40b7585606e8434b7a8f1e7ef15c20d99685f19",
+        "https://github.com/minefed/lithium/archive/c40b7585606e8434b7a8f1e7ef15c20d99685f19.tar.gz"
+      ],
+      "client": true,
+      "server": true
+    },
+    {
+      "modId": "mcwdoors",
+      "distribution": "embed",
+      "artifact": "built",
+      "reason": "Distribute the reviewed built artifact under its original license with all copyright/license notices and corresponding-source obligations. MIT (source/project/JAR metadata); embedded CC0 template",
+      "evidenceUrls": [
+        "https://api.modrinth.com/v2/project/kNxa8z3e",
+        "https://github.com/sketchmacaw/MacawsDoors",
+        "https://github.com/sketchmacaw/MacawsDoors/blob/main/LICENSE",
+        "https://github.com/minefed/MacawsDoors/commit/b07c8caa4a45f0f9aac98d04a972fd359d7a84ca",
+        "https://github.com/minefed/MacawsDoors/archive/b07c8caa4a45f0f9aac98d04a972fd359d7a84ca.tar.gz"
+      ],
+      "client": true,
+      "server": true
+    },
+    {
+      "modId": "mcwfences",
+      "distribution": "embed",
+      "artifact": "built",
+      "reason": "Distribute the reviewed built artifact under its original license with all copyright/license notices and corresponding-source obligations. MIT (source/project/JAR metadata); embedded CC0 template",
+      "evidenceUrls": [
+        "https://api.modrinth.com/v2/project/GmwLse2I",
+        "https://github.com/sketchmacaw/Fences",
+        "https://github.com/sketchmacaw/Fences/blob/main/LICENSE.md",
+        "https://github.com/minefed/Fences/commit/c9821fbd10fe55cdb0cc9e91fefb19a5d6d6aa4b",
+        "https://github.com/minefed/Fences/archive/c9821fbd10fe55cdb0cc9e91fefb19a5d6d6aa4b.tar.gz"
+      ],
+      "client": true,
+      "server": true
+    },
+    {
+      "modId": "mcwroofs",
+      "distribution": "download",
+      "artifact": "baseline",
+      "reason": "Modrinth modpack reference only: the exact original file is hosted on Modrinth and its official API SHA512 matches the baseline JAR. Preserve the original license and download directly from the official CDN; do not embed or rehost the locally rebuilt replacement.",
+      "evidenceUrls": [
+        "https://api.modrinth.com/v2/project/B8jaH3P1",
+        "https://www.curseforge.com/minecraft/mc-mods/macaws-roofs/license",
+        "https://support.modrinth.com/en/articles/8797527-obtaining-modpack-permissions",
+        "https://api.modrinth.com/v2/version/rHJugAn6"
+      ],
+      "client": true,
+      "server": true,
+      "downloadUrl": "https://cdn.modrinth.com/data/B8jaH3P1/versions/rHJugAn6/mcw-roofs-2.3.2-mc1.20.4fabric.jar"
+    },
+    {
+      "modId": "mcwwindows",
+      "distribution": "download",
+      "artifact": "baseline",
+      "reason": "Modrinth modpack reference only: the exact original file is hosted on Modrinth and its official API SHA512 matches the baseline JAR. Preserve the original license and download directly from the official CDN; do not embed or rehost the locally rebuilt replacement.",
+      "evidenceUrls": [
+        "https://api.modrinth.com/v2/project/C7I0BCni",
+        "https://www.curseforge.com/minecraft/mc-mods/macaws-windows/license",
+        "https://support.modrinth.com/en/articles/8797527-obtaining-modpack-permissions",
+        "https://api.modrinth.com/v2/version/MPOPGLD0"
+      ],
+      "client": true,
+      "server": true,
+      "downloadUrl": "https://cdn.modrinth.com/data/C7I0BCni/versions/MPOPGLD0/mcw-windows-2.3.1-mc1.20.4fabric.jar"
+    },
+    {
+      "modId": "memoryleakfix",
+      "distribution": "embed",
+      "artifact": "built",
+      "reason": "Distribute the reviewed built artifact under its original license with all copyright/license notices and corresponding-source obligations. LGPL-2.1-only",
+      "evidenceUrls": [
+        "https://api.modrinth.com/v2/project/NRjRiSSD",
+        "https://github.com/FxMorin/MemoryLeakFix",
+        "https://github.com/FxMorin/MemoryLeakFix/blob/v1.1.5/LICENSE",
+        "https://github.com/minefed/MemoryLeakFix/commit/16ce1bffcd6a17231dc29fc178dbeca3b5ee5f2c",
+        "https://github.com/minefed/MemoryLeakFix/archive/16ce1bffcd6a17231dc29fc178dbeca3b5ee5f2c.tar.gz"
+      ],
+      "client": true,
+      "server": true
+    },
+    {
+      "modId": "minefed-display",
+      "distribution": "embed",
+      "artifact": "built",
+      "reason": "Distribute the reviewed built artifact under its original license with all copyright/license notices and corresponding-source obligations. MIT",
+      "evidenceUrls": [
+        "https://github.com/minefed/minefed-display",
+        "https://github.com/minefed/minefed-display/commit/869b976756be38f298105d4adf6be2d22e3a0b8c",
+        "https://github.com/minefed/minefed-display/archive/869b976756be38f298105d4adf6be2d22e3a0b8c.tar.gz"
+      ],
+      "client": true,
+      "server": true
+    },
+    {
+      "modId": "mishanguc",
+      "distribution": "embed",
+      "artifact": "built",
+      "reason": "Distribute the reviewed built artifact under its original license with all copyright/license notices and corresponding-source obligations. LGPL-3.0-only",
+      "evidenceUrls": [
+        "https://api.modrinth.com/v2/project/rItLmRo4",
+        "https://github.com/SolidBlock-cn/mishanguc",
+        "https://github.com/SolidBlock-cn/mishanguc/blob/1.20.4/LICENSE",
+        "https://github.com/minefed/mishanguc/commit/ed26012dc37d449fc8480a606319f7294fa9005a",
+        "https://github.com/minefed/mishanguc/archive/ed26012dc37d449fc8480a606319f7294fa9005a.tar.gz"
+      ],
+      "client": true,
+      "server": true
+    },
+    {
+      "modId": "modern_glass_doors",
+      "distribution": "embed",
+      "artifact": "built",
+      "reason": "Distribute the reviewed built artifact under its original license with all copyright/license notices and corresponding-source obligations. MIT",
+      "evidenceUrls": [
+        "https://api.modrinth.com/v2/project/zGSQY8dZ",
+        "https://github.com/ReviversMC/modern-glass-doors",
+        "https://github.com/ReviversMC/modern-glass-doors/blob/v5.3.0+1.20.3-and-later/LICENSE",
+        "https://github.com/minefed/modern-glass-doors/commit/155e732f78f5b5a9ce42478ef342e8d03266799b",
+        "https://github.com/minefed/modern-glass-doors/archive/155e732f78f5b5a9ce42478ef342e8d03266799b.tar.gz"
+      ],
+      "client": true,
+      "server": true
+    },
+    {
+      "modId": "modernlights",
+      "distribution": "download",
+      "artifact": "baseline",
+      "reason": "Modrinth modpack reference only: the exact original file is hosted on Modrinth and its official API SHA512 matches the baseline JAR. Preserve the original license and download directly from the official CDN; do not embed or rehost the locally rebuilt replacement. Uses original version 2.4.2 instead of local source output 2.5.0.",
+      "evidenceUrls": [
+        "https://api.modrinth.com/v2/project/K3oeBO7O",
+        "https://github.com/1-Jammy/Modern-Lights",
+        "https://github.com/1-Jammy/Modern-Lights/blob/1.20---1.20.4/LICENSE",
+        "https://support.modrinth.com/en/articles/8797527-obtaining-modpack-permissions",
+        "https://api.modrinth.com/v2/version/STZspzyZ"
+      ],
+      "client": true,
+      "server": true,
+      "downloadUrl": "https://cdn.modrinth.com/data/K3oeBO7O/versions/STZspzyZ/modern-lights-1.20%5B2.4.2%5D.jar"
+    },
+    {
+      "modId": "modernfix",
+      "distribution": "embed",
+      "artifact": "built",
+      "reason": "Distribute the reviewed built artifact under its original license with all copyright/license notices and corresponding-source obligations. LGPL-3.0-or-later (source grant; deployed metadata LGPL-3.0)",
+      "evidenceUrls": [
+        "https://api.modrinth.com/v2/project/nmDcB62a",
+        "https://github.com/embeddedt/ModernFix",
+        "https://github.com/embeddedt/ModernFix/blob/5.17.0+1.20.4/LICENSE",
+        "https://github.com/minefed/ModernFix/commit/479096893321f5dc3e97791e5fa7dcf3ed58e15b",
+        "https://github.com/minefed/ModernFix/archive/479096893321f5dc3e97791e5fa7dcf3ed58e15b.tar.gz"
+      ],
+      "client": true,
+      "server": true
+    },
+    {
+      "modId": "msd",
+      "distribution": "embed",
+      "artifact": "built",
+      "reason": "Distribute the reviewed built artifact under its original license with all copyright/license notices and corresponding-source obligations. MIT",
+      "evidenceUrls": [
+        "https://api.modrinth.com/v2/project/AM3NyLOZ",
+        "https://github.com/AIDA64S/MTR-Station-Decoration-Addon",
+        "https://github.com/AIDA64S/MTR-Station-Decoration-Addon/blob/c0221a39c4b7829a47478bce4303f1f29f84527e/LICENSE.txt",
+        "https://github.com/minefed/MTR-Station-Decoration-Addon/commit/4c1ce7298690b1036c8f58e30409799b57c11b6c",
+        "https://github.com/minefed/MTR-Station-Decoration-Addon/archive/4c1ce7298690b1036c8f58e30409799b57c11b6c.tar.gz"
+      ],
+      "client": true,
+      "server": true
+    },
+    {
+      "modId": "mtr",
+      "distribution": "embed",
+      "artifact": "built",
+      "reason": "Distribute the reviewed built artifact under its original license with all copyright/license notices and corresponding-source obligations. MIT",
+      "evidenceUrls": [
+        "https://github.com/jonafanho/Minecraft-Transit-Railway",
+        "https://github.com/minefed/Minecraft-Transit-Railway/commit/3cdeeeb2951dfd1d9f2ddfe28dd4844e0b732e0e",
+        "https://github.com/minefed/Minecraft-Transit-Railway/archive/3cdeeeb2951dfd1d9f2ddfe28dd4844e0b732e0e.tar.gz"
+      ],
+      "client": true,
+      "server": true
+    },
+    {
+      "modId": "mythicmetals",
+      "distribution": "download",
+      "artifact": "baseline",
+      "reason": "Modrinth modpack reference only: the exact original file is hosted on Modrinth and its official API SHA512 matches the baseline JAR. Preserve the original license and download directly from the official CDN; do not embed or rehost the locally rebuilt replacement.",
+      "evidenceUrls": [
+        "https://api.modrinth.com/v2/project/bAWzYNRd",
+        "https://github.com/Noaaan/MythicMetals",
+        "https://github.com/Noaaan/MythicMetals/blob/0.19.7+1.20.4/LICENSE",
+        "https://support.modrinth.com/en/articles/8797527-obtaining-modpack-permissions",
+        "https://api.modrinth.com/v2/version/SKfkZKbj"
+      ],
+      "client": true,
+      "server": true,
+      "downloadUrl": "https://cdn.modrinth.com/data/bAWzYNRd/versions/SKfkZKbj/mythicmetals-0.19.7%2B1.20.4.jar"
+    },
+    {
+      "modId": "mythicmetals_decorations",
+      "distribution": "download",
+      "artifact": "baseline",
+      "reason": "Modrinth modpack reference only: the exact original file is hosted on Modrinth and its official API SHA512 matches the baseline JAR. Preserve the original license and download directly from the official CDN; do not embed or rehost the locally rebuilt replacement.",
+      "evidenceUrls": [
+        "https://api.modrinth.com/v2/project/Wtv23AFN",
+        "https://github.com/Noaaan/MythicMetalsDecorations",
+        "https://github.com/Noaaan/MythicMetalsDecorations/blob/0.6.1+1.20.3/LICENSE",
+        "https://support.modrinth.com/en/articles/8797527-obtaining-modpack-permissions",
+        "https://api.modrinth.com/v2/version/L97C9D39"
+      ],
+      "client": true,
+      "server": true,
+      "downloadUrl": "https://cdn.modrinth.com/data/Wtv23AFN/versions/L97C9D39/mythicmetals-decorations-0.6.1%2B1.20.3.jar"
+    },
+    {
+      "modId": "nicemod",
+      "distribution": "embed",
+      "artifact": "built",
+      "reason": "Distribute the reviewed built artifact under its original license with all copyright/license notices and corresponding-source obligations. MIT",
+      "evidenceUrls": [
+        "https://api.modrinth.com/v2/project/QxAXhkEQ",
+        "https://github.com/MIUNO/NiceMod",
+        "https://github.com/MIUNO/NiceMod/blob/1.4.1/LICENSE",
+        "https://github.com/minefed/NiceMod/commit/c344763657eaa90d878d858a74c1cdb93cf9d66f",
+        "https://github.com/minefed/NiceMod/archive/c344763657eaa90d878d858a74c1cdb93cf9d66f.tar.gz"
+      ],
+      "client": true,
+      "server": true
+    },
+    {
+      "modId": "oritech",
+      "distribution": "embed",
+      "artifact": "built",
+      "reason": "Distribute the reviewed built artifact under its original license with all copyright/license notices and corresponding-source obligations. CC0-1.0 (deployed tag)",
+      "evidenceUrls": [
+        "https://api.modrinth.com/v2/project/4sYI62kA",
+        "https://github.com/Rearth/Oritech",
+        "https://github.com/Rearth/Oritech/blob/v0.5.1+1.20.4/LICENSE.md",
+        "https://github.com/minefed/Oritech/commit/1cf7cfe9aa3ed20cd904f9bc15eb979eb817a647",
+        "https://github.com/minefed/Oritech/archive/1cf7cfe9aa3ed20cd904f9bc15eb979eb817a647.tar.gz"
+      ],
+      "client": true,
+      "server": true
+    },
+    {
+      "modId": "owo",
+      "distribution": "embed",
+      "artifact": "built",
+      "reason": "Distribute the reviewed built artifact under its original license with all copyright/license notices and corresponding-source obligations. MIT",
+      "evidenceUrls": [
+        "https://github.com/wisp-forest/owo-lib",
+        "https://github.com/wisp-forest/owo-lib/blob/0.12.6+1.20.3/LICENSE",
+        "https://github.com/minefed/owo-lib/commit/715959e5f9b33d3789f18ead7a9ce388e55749b6",
+        "https://github.com/minefed/owo-lib/archive/715959e5f9b33d3789f18ead7a9ce388e55749b6.tar.gz"
+      ],
+      "client": true,
+      "server": true
+    },
+    {
+      "modId": "pfm",
+      "distribution": "download",
+      "artifact": "baseline",
+      "reason": "Modrinth modpack reference only: the exact original file is hosted on Modrinth and its official API SHA512 matches the baseline JAR. Preserve the original license and download directly from the official CDN; do not embed or rehost the locally rebuilt replacement. Uses original version 1.4.4 instead of local source output 1.5.0.",
+      "evidenceUrls": [
+        "https://github.com/UnlikePaladin/paladins-furniture",
+        "https://github.com/UnlikePaladin/paladins-furniture/blob/architectury-1.20.4/LICENSE.md",
+        "https://github.com/UnlikePaladin/paladins-furniture/blob/v1.20.4-v1.4.4/LICENSE",
+        "https://www.curseforge.com/minecraft/mc-mods/paladins-furniture",
+        "https://support.modrinth.com/en/articles/8797527-obtaining-modpack-permissions",
+        "https://api.modrinth.com/v2/version/kH3TdDSq"
+      ],
+      "client": true,
+      "server": true,
+      "downloadUrl": "https://cdn.modrinth.com/data/SISz7Qd3/versions/kH3TdDSq/paladin-furniture-mod-1.4.4-fabric-mc1.20.4.jar"
+    },
+    {
+      "modId": "patchouli",
+      "distribution": "download",
+      "artifact": "baseline",
+      "reason": "Modrinth modpack reference only: the exact original file is hosted on Modrinth and its official API SHA512 matches the baseline JAR. Preserve the original license and download directly from the official CDN; do not embed or rehost the locally rebuilt replacement.",
+      "evidenceUrls": [
+        "https://github.com/VazkiiMods/Patchouli",
+        "https://github.com/VazkiiMods/Patchouli/blob/release-1.20.4-85/LICENSE",
+        "https://support.modrinth.com/en/articles/8797527-obtaining-modpack-permissions",
+        "https://api.modrinth.com/v2/version/RRjoMz5N"
+      ],
+      "client": true,
+      "server": true,
+      "downloadUrl": "https://cdn.modrinth.com/data/nU0bVIaL/versions/RRjoMz5N/Patchouli-1.20.4-85-FABRIC.jar"
+    },
+    {
+      "modId": "ptsdeco",
+      "distribution": "embed",
+      "artifact": "baseline",
+      "reason": "The official PTS-Deco project expressly permits modpack inclusion. Embed only the exact unchanged baseline JAR inside the modpack, with project/creator attribution; no standalone mirror or guessed download URL.",
+      "evidenceUrls": [
+        "https://www.curseforge.com/minecraft/mc-mods/pts-deco"
+      ],
+      "client": true,
+      "server": true
+    },
+    {
+      "modId": "puzzleslib",
+      "distribution": "download",
+      "artifact": "baseline",
+      "reason": "Modrinth modpack reference only: the exact original file is hosted on Modrinth and its official API SHA512 matches the baseline JAR. Preserve the original license and download directly from the official CDN; do not embed or rehost the locally rebuilt replacement. Uses original version 20.4.52 instead of local source output 20.4.53.",
+      "evidenceUrls": [
+        "https://github.com/Fuzss/puzzleslib",
+        "https://github.com/Fuzss/puzzleslib/blob/1.20.4/LICENSE-ASSETS.md",
+        "https://github.com/Fuzss/puzzleslib/blob/1.20.4/LICENSE.md",
+        "https://support.modrinth.com/en/articles/8797527-obtaining-modpack-permissions",
+        "https://api.modrinth.com/v2/version/vGTq0Oye"
+      ],
+      "client": true,
+      "server": true,
+      "downloadUrl": "https://cdn.modrinth.com/data/QAGBst4M/versions/vGTq0Oye/PuzzlesLib-v20.4.52-1.20.4-Fabric.jar"
+    },
+    {
+      "modId": "realtime",
+      "distribution": "embed",
+      "artifact": "built",
+      "reason": "Distribute the reviewed built artifact under its original license with all copyright/license notices and corresponding-source obligations. MIT",
+      "evidenceUrls": [
+        "https://github.com/ttianeo/mc-realtime",
+        "https://github.com/ttianeo/mc-realtime/blob/1.20-1.21.1/src/main/resources/fabric.mod.json",
+        "https://github.com/minefed/mc-realtime/commit/bd05e0fe8ad18184354dff9453da4b0d8b4703b5",
+        "https://github.com/minefed/mc-realtime/archive/bd05e0fe8ad18184354dff9453da4b0d8b4703b5.tar.gz"
+      ],
+      "client": true,
+      "server": true
+    },
+    {
+      "modId": "rechiseled",
+      "distribution": "download",
+      "artifact": "baseline",
+      "reason": "Modrinth modpack reference only: the exact original file is hosted on Modrinth and its official API SHA512 matches the baseline JAR. Preserve the original license and download directly from the official CDN; do not embed or rehost the locally rebuilt replacement.",
+      "evidenceUrls": [
+        "https://github.com/SuperMartijn642/Rechiseled",
+        "https://github.com/SuperMartijn642/Rechiseled#faq",
+        "https://support.modrinth.com/en/articles/8797527-obtaining-modpack-permissions",
+        "https://api.modrinth.com/v2/version/kSW48y8B"
+      ],
+      "client": true,
+      "server": true,
+      "downloadUrl": "https://cdn.modrinth.com/data/B0g2vT6l/versions/kSW48y8B/rechiseled-1.2.1-fabric-mc1.20.4.jar"
+    },
+    {
+      "modId": "resourcefulconfig",
+      "distribution": "embed",
+      "artifact": "built",
+      "reason": "Distribute the reviewed built artifact under its original license with all copyright/license notices and corresponding-source obligations. MIT",
+      "evidenceUrls": [
+        "https://github.com/Team-Resourceful/Resourceful-Config",
+        "https://github.com/Team-Resourceful/Resourceful-Config/blob/1.20.4/LICENSE.md",
+        "https://github.com/minefed/Resourceful-Config/commit/6f5fb83c6dc3b78e3a84589ada273a0cf38148e3",
+        "https://github.com/minefed/Resourceful-Config/archive/6f5fb83c6dc3b78e3a84589ada273a0cf38148e3.tar.gz"
+      ],
+      "client": true,
+      "server": true
+    },
+    {
+      "modId": "resourcefullib",
+      "distribution": "embed",
+      "artifact": "built",
+      "reason": "Distribute the reviewed built artifact under its original license with all copyright/license notices and corresponding-source obligations. MIT",
+      "evidenceUrls": [
+        "https://github.com/Team-Resourceful/ResourcefulLib",
+        "https://github.com/Team-Resourceful/ResourcefulLib/blob/v2.4.10/LICENSE",
+        "https://github.com/minefed/ResourcefulLib/commit/5404f9f6e68fb1bbf96c5c391ba6d7607ce289b4",
+        "https://github.com/minefed/ResourcefulLib/archive/5404f9f6e68fb1bbf96c5c391ba6d7607ce289b4.tar.gz"
+      ],
+      "client": true,
+      "server": true
+    },
+    {
+      "modId": "starlight",
+      "distribution": "embed",
+      "artifact": "built",
+      "reason": "Distribute the reviewed built artifact under its original license with all copyright/license notices and corresponding-source obligations. LGPL-3.0-only",
+      "evidenceUrls": [
+        "https://github.com/PaperMC/Starlight",
+        "https://github.com/PaperMC/Starlight/blob/fabric/LICENSE",
+        "https://github.com/PaperMC/Starlight/commit/f5dcd1a4278aba0aceb92a64bb91d411154449f7",
+        "https://github.com/minefed/Starlight/commit/c2b8391d83ddadbd8136d2abead7e1014da19a6d",
+        "https://github.com/minefed/Starlight/archive/c2b8391d83ddadbd8136d2abead7e1014da19a6d.tar.gz"
+      ],
+      "client": true,
+      "server": true
+    },
+    {
+      "modId": "stoneworks",
+      "distribution": "download",
+      "artifact": "baseline",
+      "reason": "Modrinth modpack reference only: the exact original file is hosted on Modrinth and its official API SHA512 matches the baseline JAR. Preserve the original license and download directly from the official CDN; do not embed or rehost the locally rebuilt replacement.",
+      "evidenceUrls": [
+        "https://github.com/Fuzss/stoneworks",
+        "https://github.com/Fuzss/stoneworks/blob/1.20.4/LICENSE-ASSETS.md",
+        "https://github.com/Fuzss/stoneworks/blob/1.20.4/LICENSE.md",
+        "https://support.modrinth.com/en/articles/8797527-obtaining-modpack-permissions",
+        "https://api.modrinth.com/v2/version/iaCtNo4p"
+      ],
+      "client": true,
+      "server": true,
+      "downloadUrl": "https://cdn.modrinth.com/data/FzyTKtVF/versions/iaCtNo4p/Stoneworks-v20.4.0-1.20.4-Fabric.jar"
+    },
+    {
+      "modId": "supermartijn642configlib",
+      "distribution": "download",
+      "artifact": "baseline",
+      "reason": "Modrinth modpack reference only: the exact original file is hosted on Modrinth and its official API SHA512 matches the baseline JAR. Preserve the original license and download directly from the official CDN; do not embed or rehost the locally rebuilt replacement.",
+      "evidenceUrls": [
+        "https://github.com/SuperMartijn642/SuperMartijn642sConfigLib",
+        "https://github.com/SuperMartijn642/SuperMartijn642sConfigLib#faq",
+        "https://support.modrinth.com/en/articles/8797527-obtaining-modpack-permissions",
+        "https://api.modrinth.com/v2/version/cp6X3Hrn"
+      ],
+      "client": true,
+      "server": true,
+      "downloadUrl": "https://cdn.modrinth.com/data/LN9BxssP/versions/cp6X3Hrn/supermartijn642configlib-1.1.8a-fabric-mc1.20.2.jar"
+    },
+    {
+      "modId": "supermartijn642corelib",
+      "distribution": "download",
+      "artifact": "baseline",
+      "reason": "Modrinth modpack reference only: the exact original file is hosted on Modrinth and its official API SHA512 matches the baseline JAR. Preserve the original license and download directly from the official CDN; do not embed or rehost the locally rebuilt replacement.",
+      "evidenceUrls": [
+        "https://github.com/SuperMartijn642/SuperMartijn642sCoreLib",
+        "https://github.com/SuperMartijn642/SuperMartijn642sCoreLib#faq",
+        "https://support.modrinth.com/en/articles/8797527-obtaining-modpack-permissions",
+        "https://api.modrinth.com/v2/version/qDHc3dAl"
+      ],
+      "client": true,
+      "server": true,
+      "downloadUrl": "https://cdn.modrinth.com/data/rOUBggPv/versions/qDHc3dAl/supermartijn642corelib-1.1.20-fabric-mc1.20.4.jar"
+    },
+    {
+      "modId": "timeoutout",
+      "distribution": "embed",
+      "artifact": "built",
+      "reason": "Distribute the reviewed built artifact under its original license with all copyright/license notices and corresponding-source obligations. MIT",
+      "evidenceUrls": [
+        "https://github.com/PotatoPresident/TimeOutOut",
+        "https://github.com/PotatoPresident/TimeOutOut/blob/1.0.4/LICENSE",
+        "https://github.com/minefed/TimeOutOut/commit/0d27ca115902c93d132a2d062b166c5a544da0c7",
+        "https://github.com/minefed/TimeOutOut/archive/0d27ca115902c93d132a2d062b166c5a544da0c7.tar.gz"
+      ],
+      "client": true,
+      "server": true
+    },
+    {
+      "modId": "trafficcraft",
+      "distribution": "download",
+      "artifact": "baseline",
+      "reason": "Modrinth modpack reference only: the exact original file is hosted on Modrinth and its official API SHA512 matches the baseline JAR. Preserve the original license and download directly from the official CDN; do not embed or rehost the locally rebuilt replacement.",
+      "evidenceUrls": [
+        "https://github.com/MisterJulsen/TrafficCraft",
+        "https://github.com/MisterJulsen/TrafficCraft/blob/1.20.4-dev/LICENSE",
+        "https://support.modrinth.com/en/articles/8797527-obtaining-modpack-permissions",
+        "https://api.modrinth.com/v2/version/rzrY1Buf"
+      ],
+      "client": true,
+      "server": true,
+      "downloadUrl": "https://cdn.modrinth.com/data/Y1PXWvWn/versions/rzrY1Buf/trafficcraft-fabric-1.20.4-1.1.3.jar"
+    },
+    {
+      "modId": "webstreamer",
+      "distribution": "embed",
+      "artifact": "built",
+      "reason": "Distribute the reviewed built artifact under its original license with all copyright/license notices and corresponding-source obligations. LGPL-3.0",
+      "evidenceUrls": [
+        "https://github.com/mindstorm38/fabric-webstreamer",
+        "https://github.com/mindstorm38/fabric-webstreamer/blob/v1.5.0/LICENSE",
+        "https://github.com/minefed/fabric-webstreamer/commit/a952b941c37fe16f52a620de850884dceec7eab5",
+        "https://github.com/minefed/fabric-webstreamer/archive/a952b941c37fe16f52a620de850884dceec7eab5.tar.gz"
+      ],
+      "client": true,
+      "server": true
+    },
+    {
+      "modId": "wirelessredstone",
+      "distribution": "embed",
+      "artifact": "built",
+      "reason": "Distribute the reviewed built artifact under its original license with all copyright/license notices and corresponding-source obligations. GPL-3.0",
+      "evidenceUrls": [
+        "https://github.com/Razzokk/wireless-redstone",
+        "https://github.com/Razzokk/wireless-redstone/blob/v1.2.2+1.20.4/LICENSE",
+        "https://github.com/minefed/wireless-redstone/commit/85cd6b45cd660deeba6ac5cb58b8d5f82795dae0",
+        "https://github.com/minefed/wireless-redstone/archive/85cd6b45cd660deeba6ac5cb58b8d5f82795dae0.tar.gz"
+      ],
+      "client": true,
+      "server": true
+    },
+    {
+      "modId": "worldedithangfix",
+      "distribution": "embed",
+      "artifact": "built",
+      "reason": "Distribute the reviewed built artifact under its original license with all copyright/license notices and corresponding-source obligations. LGPL-3.0",
+      "evidenceUrls": [
+        "https://github.com/Fallen-Breath/worldedit-hang-fix",
+        "https://github.com/Fallen-Breath/worldedit-hang-fix/blob/v1.0.2/LICENSE",
+        "https://github.com/minefed/worldedit-hang-fix/commit/ae96bc02ab25322d7ee727125901fde785be7365",
+        "https://github.com/minefed/worldedit-hang-fix/archive/ae96bc02ab25322d7ee727125901fde785be7365.tar.gz"
+      ],
+      "client": true,
+      "server": true
+    },
+    {
+      "modId": "worldedit",
+      "distribution": "embed",
+      "artifact": "built",
+      "reason": "Distribute the reviewed built artifact under its original license with all copyright/license notices and corresponding-source obligations. GPL-3.0",
+      "evidenceUrls": [
+        "https://github.com/EngineHub/WorldEdit",
+        "https://github.com/EngineHub/WorldEdit/blob/7.3.0/LICENSE.txt",
+        "https://github.com/minefed/WorldEdit/commit/f2cdc4aa7816a0184adf3fcfaf3ff5712d8dfd68",
+        "https://github.com/minefed/WorldEdit/archive/f2cdc4aa7816a0184adf3fcfaf3ff5712d8dfd68.tar.gz"
+      ],
+      "client": true,
+      "server": true
+    },
+    {
+      "modId": "yuushya",
+      "distribution": "download",
+      "artifact": "baseline",
+      "reason": "Modrinth modpack reference only: the exact original file is hosted on Modrinth and its official API SHA512 matches the baseline JAR. Preserve the original license and download directly from the official CDN; do not embed or rehost the locally rebuilt replacement.",
+      "evidenceUrls": [
+        "https://gitee.com/yuushyatownscape/yuushya-townscape/tree/v2.2.3/",
+        "https://github.com/XiLaiTL/Yuushya-Townscape",
+        "https://github.com/XiLaiTL/Yuushya-Townscape/blob/master/LICENSE",
+        "https://github.com/XiLaiTL/Yuushya-Townscape/blob/master/Terms_yuushya_user.md",
+        "https://yuushya.com/townscape/",
+        "https://support.modrinth.com/en/articles/8797527-obtaining-modpack-permissions",
+        "https://api.modrinth.com/v2/version/g5TBlA52"
+      ],
+      "client": true,
+      "server": true,
+      "downloadUrl": "https://cdn.modrinth.com/data/lfVtagkm/versions/g5TBlA52/yuushya-1.20.4-fabric-2.2.3.jar"
+    },
+    {
+      "modId": "yuushya_modelling",
+      "distribution": "download",
+      "artifact": "baseline",
+      "reason": "Modrinth modpack reference only: the exact original file is hosted on Modrinth and its official API SHA512 matches the baseline JAR. Preserve the original license and download directly from the official CDN; do not embed or rehost the locally rebuilt replacement.",
+      "evidenceUrls": [
+        "https://github.com/XiLaiTL/Yuushya-Modelling",
+        "https://github.com/XiLaiTL/Yuushya-Modelling/blob/master/LICENSE",
+        "https://github.com/XiLaiTL/Yuushya-Townscape/blob/master/Terms_yuushya_user.md",
+        "https://yuushya.com/townscape/",
+        "https://support.modrinth.com/en/articles/8797527-obtaining-modpack-permissions",
+        "https://api.modrinth.com/v2/version/FQMpG8yv"
+      ],
+      "client": true,
+      "server": true,
+      "downloadUrl": "https://cdn.modrinth.com/data/RxVV6ldg/versions/FQMpG8yv/yuushya-modelling-1.20.4-fabric-2.2.0.jar"
+    }
+  ]
+}
