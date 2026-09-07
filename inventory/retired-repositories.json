@@ -1,0 +1,151 @@
+{
+  "schemaVersion": 1,
+  "minecraftVersion": "1.20.4",
+  "loader": "fabric",
+  "scope": "Historical repository identities and source commits. These are not active clone, build, or release inputs. Deletion status is updated only after the remote operation is verified.",
+  "entries": [
+    {
+      "repository": "minefed/Automobility",
+      "repositoryId": 1006965620,
+      "status": "pending-deletion",
+      "upstreamRepository": "FoundationGames/Automobility",
+      "sourceProvenance": {
+        "path": "Automobility",
+        "url": "https://github.com/minefed/Automobility",
+        "upstream": "https://github.com/FoundationGames/Automobility",
+        "ref": "minefed-1.20.4",
+        "commit": "d636cdaefa81933b6e73e435ef37b4b8e5846c96",
+        "included": false,
+        "reason": "기존 소스를 보존한다. 운영 automobility-refueled와 다른 모드이므로 모드팩 입력에 추가하지 않는다.",
+        "baselineRef": "1.20.4-backport",
+        "baselineCommit": "831011268f914a308bde4500ec510d7659de7398",
+        "trackingBranch": "minefed-1.20.4"
+      },
+      "reason": "User requested deletion: inactive legacy backport.",
+      "localBackup": {
+        "path": "build/retired-sources/Automobility-d636cda.bundle",
+        "sha256": "2778c809543b52694b6ce25cc283c8132dae39017cf490083880680bbcb7680a",
+        "tracked": false
+      }
+    },
+    {
+      "repository": "minefed/architectury-api",
+      "repositoryId": 1358642884,
+      "status": "pending-deletion",
+      "upstreamRepository": "architectury/architectury-api",
+      "sourceProvenance": {
+        "path": "architectury-api",
+        "url": "https://github.com/minefed/architectury-api",
+        "upstream": "https://github.com/architectury/architectury-api",
+        "ref": "minefed-1.20.4",
+        "commit": "d97359747e8d05939f8a8fdc0d01fcf410d0bf6d",
+        "trackingBranch": "minefed-1.20.4",
+        "baselineRef": "1.20.4",
+        "baselineCommit": "327480e5490c2e7740ca117197a28b59dccb137d"
+      },
+      "reason": "User requested deletion: unmodified base library now supplied by an official pinned JAR."
+    },
+    {
+      "repository": "minefed/Common-Storage-Lib",
+      "repositoryId": 1358643690,
+      "status": "pending-deletion",
+      "upstreamRepository": "terrarium-earth/Common-Storage-Lib",
+      "sourceProvenance": {
+        "path": "Common-Storage-Lib",
+        "url": "https://github.com/minefed/Common-Storage-Lib",
+        "upstream": "https://github.com/terrarium-earth/Common-Storage-Lib",
+        "ref": "minefed-1.20.4",
+        "commit": "ae864ea949064d734de8aed89297c5916637ed20",
+        "trackingBranch": "minefed-1.20.4",
+        "baselineRef": "1.20.4",
+        "baselineCommit": "225bae30d2f2d9d9c1de79136160b725ff15f543"
+      },
+      "reason": "User requested deletion: unmodified base library now supplied by an official pinned JAR."
+    },
+    {
+      "repository": "minefed/fabric-api",
+      "repositoryId": 1358641911,
+      "status": "pending-deletion",
+      "upstreamRepository": "FabricMC/fabric-api",
+      "sourceProvenance": {
+        "path": "fabric-api",
+        "url": "https://github.com/minefed/fabric-api",
+        "upstream": "https://github.com/FabricMC/fabric-api",
+        "ref": "minefed-1.20.4",
+        "commit": "b0291a8c46e79ec2018b26b5874a2796f6b54132",
+        "trackingBranch": "minefed-1.20.4",
+        "baselineRef": "0.97.2+1.20.4",
+        "baselineCommit": "26460e8a3bf8fe181850b87815a39629551cef32"
+      },
+      "reason": "User requested deletion: unmodified base library now supplied by an official pinned JAR."
+    },
+    {
+      "repository": "minefed/lavender",
+      "repositoryId": 1358647145,
+      "status": "pending-deletion",
+      "upstreamRepository": "wisp-forest/lavender",
+      "sourceProvenance": {
+        "path": "lavender",
+        "url": "https://github.com/minefed/lavender",
+        "upstream": "https://github.com/wisp-forest/lavender",
+        "ref": "minefed-1.20.4",
+        "commit": "cc99a048c3622880ae0496122da30a72f21c44bd",
+        "trackingBranch": "minefed-1.20.4",
+        "baselineRef": "0.1.9+1.20.3",
+        "baselineCommit": "c40a0d26048779941e9f20d8cba0c87b8a687ab4"
+      },
+      "reason": "User requested deletion: unmodified base library now supplied by an official pinned JAR."
+    },
+    {
+      "repository": "minefed/owo-lib",
+      "repositoryId": 1358647353,
+      "status": "pending-deletion",
+      "upstreamRepository": "wisp-forest/owo-lib",
+      "sourceProvenance": {
+        "path": "owo-lib",
+        "url": "https://github.com/minefed/owo-lib",
+        "upstream": "https://github.com/wisp-forest/owo-lib",
+        "ref": "minefed-1.20.4",
+        "commit": "715959e5f9b33d3789f18ead7a9ce388e55749b6",
+        "trackingBranch": "minefed-1.20.4",
+        "baselineRef": "refs/tags/0.12.6+1.20.3",
+        "baselineCommit": "a06c4776d40248f2f897d86a94ea9b48187c603d"
+      },
+      "reason": "User requested deletion: unmodified base library now supplied by an official pinned JAR."
+    },
+    {
+      "repository": "minefed/Resourceful-Config",
+      "repositoryId": 1358647409,
+      "status": "pending-deletion",
+      "upstreamRepository": "Team-Resourceful/Resourceful-Config",
+      "sourceProvenance": {
+        "path": "Resourceful-Config",
+        "url": "https://github.com/minefed/Resourceful-Config",
+        "upstream": "https://github.com/Team-Resourceful/Resourceful-Config",
+        "ref": "minefed-1.20.4",
+        "commit": "6f5fb83c6dc3b78e3a84589ada273a0cf38148e3",
+        "trackingBranch": "minefed-1.20.4",
+        "baselineRef": "refs/heads/1.20.4",
+        "baselineCommit": "ce3cc42d9a27cacbd98f802c55dab1ea083a57d9"
+      },
+      "reason": "User requested deletion: unmodified base library now supplied by an official pinned JAR."
+    },
+    {
+      "repository": "minefed/ResourcefulLib",
+      "repositoryId": 1358647424,
+      "status": "pending-deletion",
+      "upstreamRepository": "Team-Resourceful/ResourcefulLib",
+      "sourceProvenance": {
+        "path": "ResourcefulLib",
+        "url": "https://github.com/minefed/ResourcefulLib",
+        "upstream": "https://github.com/Team-Resourceful/ResourcefulLib",
+        "ref": "minefed-1.20.4",
+        "commit": "5404f9f6e68fb1bbf96c5c391ba6d7607ce289b4",
+        "trackingBranch": "minefed-1.20.4",
+        "baselineRef": "refs/tags/v2.4.10",
+        "baselineCommit": "0d6cec97dd8755370c6242d83c5ad6fb4310a147"
+      },
+      "reason": "User requested deletion: unmodified base library now supplied by an official pinned JAR."
+    }
+  ]
+}

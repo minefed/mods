@@ -2,11 +2,11 @@
 
 2026-09-06 FileZilla에서 서버 `mods` 폴더의 70개 파일(433,889,641바이트)을 확인하고 원본 JAR를 내려받아 SHA256을 기록했다. 기준 환경은 Minecraft 1.20.4 / Fabric이다. 운영 서버 파일은 변경하지 않았다.
 
-소스 관리 대상은 51개 JAR에 대응하는 50개 저장소이며, 바이너리 관리 대상은 기반 라이브러리 7개와 기타 12개다. 기존 Automobility는 운영 Refueled와 구분해 별도 보존한다. 공식 배포 파일과 해시가 일치한 항목은 64개다.
+소스 관리 대상은 51개 JAR에 대응하는 50개 저장소이며, 바이너리 관리 대상은 기반 라이브러리 7개와 기타 12개다. 기존 Automobility는 서브모듈에서 제거했고 운영 차량 모드인 Refueled만 관리한다. 공식 배포 파일과 해시가 일치한 항목은 64개다.
 
-이 문서의 버전·해시는 **관측한 운영 기준본**이다. 기반 라이브러리의 현재 빌드 입력은 [dependencies.lock.json](../inventory/dependencies.lock.json)으로 별도 고정하며 [관리 Q&A](DEPENDENCIES.md)를 따른다. 이 7개의 과거 fork·브랜치·커밋은 운영 lock의 `sourceProvenance`에 남기고 활성 서브모듈에서 제외했다.
+이 문서의 버전·해시는 **관측한 운영 기준본**이다. 기반 라이브러리의 현재 빌드 입력은 [dependencies.lock.json](../inventory/dependencies.lock.json)으로 별도 고정하며 [관리 Q&A](DEPENDENCIES.md)를 따른다. 이 7개의 과거 fork·브랜치·커밋은 운영 lock의 `sourceProvenance`에 남기고 활성 서브모듈에서 제외했다. 기존 Automobility와 이 7개의 Minefed 원격 fork는 제거 대상이며, 삭제 상태와 과거 소스 정보는 [종료 저장소 기록](../inventory/retired-repositories.json)을 따른다.
 
-[mods.lock.json](../inventory/mods.lock.json)에 전체 SHA256·크기·소스 원격/브랜치/전체 커밋·배포 URL·의존성·포함 여부를, [license-audit.json](../inventory/license-audit.json)에 라이선스 판단과 증거 URL을 보관한다. 표의 커밋은 하위 AGENTS.md를 포함한 관리 커밋의 축약이다. 원래 소스는 baselineRef/baselineCommit, 실제 gitlink는 ref/commit으로 구분하며 전체 40자리 해시를 기록한다. 모든 관리 커밋을 minefed 원격에서 확인했다.
+[mods.lock.json](../inventory/mods.lock.json)에 전체 SHA256·크기·소스 원격/브랜치/전체 커밋·배포 URL·의존성·포함 여부를, [license-audit.json](../inventory/license-audit.json)에 라이선스 판단과 증거 URL을 보관한다. 표의 커밋은 하위 AGENTS.md를 포함한 관리 커밋의 축약이다. 원래 소스는 baselineRef/baselineCommit, 실제 gitlink는 ref/commit으로 구분하며 전체 40자리 해시를 기록한다. 활성 서브모듈의 관리 커밋은 minefed 원격에서 확인한다. 종료 저장소의 과거 URL과 커밋은 현재 내려받을 수 있는 소스 경로를 뜻하지 않는다.
 
 소스 관리 모드의 운영 JAR는 `artifacts/local/`, 재배포 조건이 제한된 바이너리는 `vendor/local/`에 보존한다. 재배포 가능한 Dusty Decorations 원본 JAR는 `vendor/jars/`에 둔다. 앞의 두 로컬 폴더는 Git에서 제외한다. JAR에 포함된 원본 라이선스 고지는 [inventory/notices](../inventory/notices/)에 추출했다.
 

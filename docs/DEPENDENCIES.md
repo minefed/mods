@@ -4,7 +4,7 @@
 
 자체 수정이 없다면 공식 JAR 의존성으로 관리하는 편이 적절하다. Fabric API는 Fabric Loader에 내장된 파일이 아니라 별도로 설치하는 공통 라이브러리다. Fabric 공식 문서도 [Minecraft 버전과 로더에 맞는 JAR 설치](https://docs.fabricmc.net/players/installing-mods)를 안내한다. 다른 모드를 컴파일할 때 사용하는 Maven 의존성과 모드팩에 넣는 런타임 JAR도 서로 구분한다. Fabric API의 소스 checkout을 함께 빌드할 필요는 없다.
 
-이번 전환 대상은 Fabric API, Architectury, Botarium, Lavender, owo, Resourceful Config, ResourcefulLib다. 각 소스의 조사 기준 커밋과 Minefed 관리 커밋 사이 변경이 `AGENTS.md`뿐임을 확인했다. 7개 gitlink와 소스 빌드 recipe를 제거하고 공식 바이너리 recipe로 전환했다. 기존 로컬 checkout은 무시 경로로 남기며 원격 fork와 Git 이력을 보존한다. 모드팩 입력은 68개를 유지하고, 소스 빌드는 53개에서 46개로 줄었다.
+이번 전환 대상은 Fabric API, Architectury, Botarium, Lavender, owo, Resourceful Config, ResourcefulLib다. 각 소스의 조사 기준 커밋과 Minefed 관리 커밋 사이 변경이 `AGENTS.md`뿐임을 확인했다. 7개 gitlink와 소스 빌드 recipe를 제거하고 공식 바이너리 recipe로 전환했다. 후속 정리에서는 사용자 요청에 따라 이 7개의 Minefed 원격 fork도 제거 대상으로 정했다. 기존 로컬 checkout은 Git에서 무시하는 경로에 과거 이력으로 남기며, 빌드와 업데이트는 공식 배포본 및 원저자 소스를 사용한다. 원격 삭제 상태와 과거 fork의 URL·브랜치·전체 커밋은 [종료 저장소 기록](../inventory/retired-repositories.json)에 남긴다. 모드팩 입력은 68개를 유지하고, 소스 빌드는 53개에서 46개로 줄었다.
 
 소스 고지와 라이선스는 [inventory/licenses/upstream](../inventory/licenses/upstream/)에 출처·전체 커밋·파일 해시와 함께 보존한다. 원본 JAR 고지, 라이선스 조사, 과거 fork 정보도 유지한다. 공식 배포물을 사용한다는 이유로 라이선스 범위를 확대하지 않는다.
 

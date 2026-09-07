@@ -4,8 +4,9 @@ Minefed 서버의 모드 소스와 운영 JAR를 한 곳에서 관리한다. Min
 
 ## 관리 구조
 
-- **소스:** 운영 JAR 51개에 대응하는 minefed 저장소 50개를 Git 서브모듈로 관리한다. 기존 Automobility는 비활성 참고 소스로 별도 보존한다. 실제 차량 모드는 Refueled 하나이며 [분리 이유](docs/AUTOMOBILITY.md)를 문서화했다.
+- **소스:** 운영 JAR 51개에 대응하는 minefed 저장소 50개를 Git 서브모듈로 관리한다. 기존 Automobility는 서브모듈에서 제거했으며, 실제 차량 모드는 Refueled 하나다. [분리 이유와 정리 방침](docs/AUTOMOBILITY.md)을 문서화했다.
 - **기반 라이브러리:** Fabric API·Architectury·Botarium·Lavender·owo·Resourceful Config·ResourcefulLib 7개는 공식 JAR로 관리한다. 별도 fork 빌드 없이 [빌드 의존성 lock](inventory/dependencies.lock.json)의 버전·해시·출처를 사용한다. [관리 Q&A와 업데이트 절차](docs/DEPENDENCIES.md)를 참고한다.
+- **종료한 소스 관리:** 기존 Automobility와 기반 라이브러리 7개의 Minefed 원격 fork는 제거 대상이다. 과거 URL·브랜치·전체 커밋과 원격 삭제 상태는 [종료 저장소 기록](inventory/retired-repositories.json)에 남긴다.
 - **기타 바이너리:** 소스가 없거나 라이선스상 수정이 제한된 12개는 JAR로 관리한다. 재배포 가능한 Dusty Decorations는 `vendor/jars/`에 커밋하고, 나머지는 `vendor/local/`에 보관한다.
 - **운영 기준본:** 소스로 관리하는 모드도 실제 운영 JAR를 `artifacts/local/`에 보존한다. 소스 업데이트와 배포물 교체는 별도 작업이다.
 - **목록과 근거:** [전체 모드 목록](docs/MOD_INVENTORY.md), [고정 버전·해시 목록](inventory/mods.lock.json), [라이선스 조사](inventory/license-audit.json), [원본 고지](inventory/notices/)를 함께 관리한다.

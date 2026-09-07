@@ -18,18 +18,6 @@
   },
   "sourceRepositories": [
     {
-      "path": "Automobility",
-      "url": "https://github.com/minefed/Automobility",
-      "upstream": "https://github.com/FoundationGames/Automobility",
-      "ref": "minefed-1.20.4",
-      "commit": "d636cdaefa81933b6e73e435ef37b4b8e5846c96",
-      "included": false,
-      "reason": "기존 소스를 보존한다. 운영 automobility-refueled와 다른 모드이므로 모드팩 입력에 추가하지 않는다.",
-      "baselineRef": "1.20.4-backport",
-      "baselineCommit": "831011268f914a308bde4500ec510d7659de7398",
-      "trackingBranch": "minefed-1.20.4"
-    },
-    {
       "kind": "resourcepack",
       "path": "resourcepack",
       "url": "https://github.com/minefed/resourcepack",
@@ -176,7 +164,9 @@
         "commit": "d97359747e8d05939f8a8fdc0d01fcf410d0bf6d",
         "trackingBranch": "minefed-1.20.4",
         "baselineRef": "1.20.4",
-        "baselineCommit": "327480e5490c2e7740ca117197a28b59dccb137d"
+        "baselineCommit": "327480e5490c2e7740ca117197a28b59dccb137d",
+        "repositoryStatus": "retired",
+        "retirementRecord": "inventory/retired-repositories.json"
       }
     },
     {
@@ -419,7 +409,9 @@
         "commit": "ae864ea949064d734de8aed89297c5916637ed20",
         "trackingBranch": "minefed-1.20.4",
         "baselineRef": "1.20.4",
-        "baselineCommit": "225bae30d2f2d9d9c1de79136160b725ff15f543"
+        "baselineCommit": "225bae30d2f2d9d9c1de79136160b725ff15f543",
+        "repositoryStatus": "retired",
+        "retirementRecord": "inventory/retired-repositories.json"
       }
     },
     {
@@ -1206,7 +1198,9 @@
         "commit": "b0291a8c46e79ec2018b26b5874a2796f6b54132",
         "trackingBranch": "minefed-1.20.4",
         "baselineRef": "0.97.2+1.20.4",
-        "baselineCommit": "26460e8a3bf8fe181850b87815a39629551cef32"
+        "baselineCommit": "26460e8a3bf8fe181850b87815a39629551cef32",
+        "repositoryStatus": "retired",
+        "retirementRecord": "inventory/retired-repositories.json"
       }
     },
     {
@@ -1968,7 +1962,9 @@
         "commit": "cc99a048c3622880ae0496122da30a72f21c44bd",
         "trackingBranch": "minefed-1.20.4",
         "baselineRef": "0.1.9+1.20.3",
-        "baselineCommit": "c40a0d26048779941e9f20d8cba0c87b8a687ab4"
+        "baselineCommit": "c40a0d26048779941e9f20d8cba0c87b8a687ab4",
+        "repositoryStatus": "retired",
+        "retirementRecord": "inventory/retired-repositories.json"
       }
     },
     {
@@ -3144,7 +3140,9 @@
         "commit": "715959e5f9b33d3789f18ead7a9ce388e55749b6",
         "trackingBranch": "minefed-1.20.4",
         "baselineRef": "refs/tags/0.12.6+1.20.3",
-        "baselineCommit": "a06c4776d40248f2f897d86a94ea9b48187c603d"
+        "baselineCommit": "a06c4776d40248f2f897d86a94ea9b48187c603d",
+        "repositoryStatus": "retired",
+        "retirementRecord": "inventory/retired-repositories.json"
       }
     },
     {
@@ -3570,7 +3568,9 @@
         "commit": "6f5fb83c6dc3b78e3a84589ada273a0cf38148e3",
         "trackingBranch": "minefed-1.20.4",
         "baselineRef": "refs/heads/1.20.4",
-        "baselineCommit": "ce3cc42d9a27cacbd98f802c55dab1ea083a57d9"
+        "baselineCommit": "ce3cc42d9a27cacbd98f802c55dab1ea083a57d9",
+        "repositoryStatus": "retired",
+        "retirementRecord": "inventory/retired-repositories.json"
       }
     },
     {
@@ -3631,7 +3631,9 @@
         "commit": "5404f9f6e68fb1bbf96c5c391ba6d7607ce289b4",
         "trackingBranch": "minefed-1.20.4",
         "baselineRef": "refs/tags/v2.4.10",
-        "baselineCommit": "0d6cec97dd8755370c6242d83c5ad6fb4310a147"
+        "baselineCommit": "0d6cec97dd8755370c6242d83c5ad6fb4310a147",
+        "repositoryStatus": "retired",
+        "retirementRecord": "inventory/retired-repositories.json"
       }
     },
     {

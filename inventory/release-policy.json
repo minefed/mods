@@ -31,9 +31,7 @@
         "https://api.modrinth.com/v2/version/kVjQWX0l",
         "https://github.com/architectury/architectury-api",
         "https://github.com/architectury/architectury-api/blob/327480e5490c2e7740ca117197a28b59dccb137d/LICENSE.md",
-        "https://github.com/architectury/architectury-api/commit/327480e5490c2e7740ca117197a28b59dccb137d",
-        "https://github.com/minefed/architectury-api/commit/d97359747e8d05939f8a8fdc0d01fcf410d0bf6d",
-        "https://github.com/minefed/architectury-api/archive/d97359747e8d05939f8a8fdc0d01fcf410d0bf6d.tar.gz"
+        "https://github.com/architectury/architectury-api/commit/327480e5490c2e7740ca117197a28b59dccb137d"
       ],
       "client": true,
       "server": true,
@@ -97,9 +95,7 @@
         "https://api.modrinth.com/v2/version/Eqw90l8p",
         "https://github.com/terrarium-earth/Common-Storage-Lib",
         "https://github.com/terrarium-earth/Common-Storage-Lib/blob/225bae30d2f2d9d9c1de79136160b725ff15f543/LICENSE.md",
-        "https://github.com/terrarium-earth/Common-Storage-Lib/commit/225bae30d2f2d9d9c1de79136160b725ff15f543",
-        "https://github.com/minefed/Common-Storage-Lib/commit/ae864ea949064d734de8aed89297c5916637ed20",
-        "https://github.com/minefed/Common-Storage-Lib/archive/ae864ea949064d734de8aed89297c5916637ed20.tar.gz"
+        "https://github.com/terrarium-earth/Common-Storage-Lib/commit/225bae30d2f2d9d9c1de79136160b725ff15f543"
       ],
       "client": true,
       "server": true,
@@ -490,9 +486,7 @@
       "evidenceUrls": [
         "https://api.modrinth.com/v2/project/D5h9NKNI",
         "https://github.com/wisp-forest/lavender",
-        "https://github.com/wisp-forest/lavender/blob/0.1.9+1.20.3/LICENSE",
-        "https://github.com/minefed/lavender/commit/cc99a048c3622880ae0496122da30a72f21c44bd",
-        "https://github.com/minefed/lavender/archive/cc99a048c3622880ae0496122da30a72f21c44bd.tar.gz"
+        "https://github.com/wisp-forest/lavender/blob/0.1.9+1.20.3/LICENSE"
       ],
       "client": true,
       "server": true,
@@ -759,9 +753,7 @@
       "reason": "Use the official binary selected by dependencies.lock.json through the mixed build output; preserve upstream download origin, exact hashes and license notices. No Minefed source build.",
       "evidenceUrls": [
         "https://github.com/wisp-forest/owo-lib",
-        "https://github.com/wisp-forest/owo-lib/blob/0.12.6+1.20.3/LICENSE",
-        "https://github.com/minefed/owo-lib/commit/715959e5f9b33d3789f18ead7a9ce388e55749b6",
-        "https://github.com/minefed/owo-lib/archive/715959e5f9b33d3789f18ead7a9ce388e55749b6.tar.gz"
+        "https://github.com/wisp-forest/owo-lib/blob/0.12.6+1.20.3/LICENSE"
       ],
       "client": true,
       "server": true,
@@ -862,9 +854,7 @@
       "reason": "Use the official binary selected by dependencies.lock.json through the mixed build output; preserve upstream download origin, exact hashes and license notices. No Minefed source build.",
       "evidenceUrls": [
         "https://github.com/Team-Resourceful/Resourceful-Config",
-        "https://github.com/Team-Resourceful/Resourceful-Config/blob/1.20.4/LICENSE.md",
-        "https://github.com/minefed/Resourceful-Config/commit/6f5fb83c6dc3b78e3a84589ada273a0cf38148e3",
-        "https://github.com/minefed/Resourceful-Config/archive/6f5fb83c6dc3b78e3a84589ada273a0cf38148e3.tar.gz"
+        "https://github.com/Team-Resourceful/Resourceful-Config/blob/1.20.4/LICENSE.md"
       ],
       "client": true,
       "server": true,
@@ -877,9 +867,7 @@
       "reason": "Use the official binary selected by dependencies.lock.json through the mixed build output; preserve upstream download origin, exact hashes and license notices. No Minefed source build.",
       "evidenceUrls": [
         "https://github.com/Team-Resourceful/ResourcefulLib",
-        "https://github.com/Team-Resourceful/ResourcefulLib/blob/v2.4.10/LICENSE",
-        "https://github.com/minefed/ResourcefulLib/commit/5404f9f6e68fb1bbf96c5c391ba6d7607ce289b4",
-        "https://github.com/minefed/ResourcefulLib/archive/5404f9f6e68fb1bbf96c5c391ba6d7607ce289b4.tar.gz"
+        "https://github.com/Team-Resourceful/ResourcefulLib/blob/v2.4.10/LICENSE"
       ],
       "client": true,
       "server": true,
