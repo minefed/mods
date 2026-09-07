@@ -971,8 +971,8 @@
       "evidenceUrls": [
         "https://github.com/mindstorm38/fabric-webstreamer",
         "https://github.com/mindstorm38/fabric-webstreamer/blob/v1.5.0/LICENSE",
-        "https://github.com/minefed/fabric-webstreamer/commit/a952b941c37fe16f52a620de850884dceec7eab5",
-        "https://github.com/minefed/fabric-webstreamer/archive/a952b941c37fe16f52a620de850884dceec7eab5.tar.gz"
+        "https://github.com/minefed/fabric-webstreamer/commit/f9c03980c9cb31ca891e4429bc2529c6c0cce033",
+        "https://github.com/minefed/fabric-webstreamer/archive/f9c03980c9cb31ca891e4429bc2529c6c0cce033.tar.gz"
       ],
       "client": true,
       "server": true

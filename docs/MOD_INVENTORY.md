@@ -89,7 +89,7 @@ JAR 재배포 분류는 허용 45개, 모드팩 한정 10개, 로컬 전용 15�
 | 62 | TCPShield-2.8.1.jar | Fabric 메타데이터 없음 | RealIP · b0a19561 | 허용 | 제외 |
 | 63 | timeoutout-1.0.4+1.20.2.jar | timeoutout / 1.0.4+1.20.2 | TimeOutOut · 0d27ca11 | 허용 | 포함 |
 | 64 | trafficcraft-fabric-1.20.4-1.1.3.jar | trafficcraft / 1.20.4-1.1.3 | TrafficCraft · 40b94053 | 로컬 전용 | 포함 |
-| 65 | webstreamer-1.5.0.jar | webstreamer / 1.5.0 | fabric-webstreamer · a952b941 | 허용 | 포함 |
+| 65 | webstreamer-1.5.0.jar | webstreamer / 1.5.0 | fabric-webstreamer · f9c03980 | 허용 | 포함 |
 | 66 | wirelessredstone-fabric-1.2.2+1.20.4.jar | wirelessredstone / 1.2.2+1.20.4 | wireless-redstone · 85cd6b45 | 허용 | 포함 |
 | 67 | worldedit-hang-fix-v1.0.2-mc1.20.6-fabric.jar | worldedithangfix / 1.0.2 | worldedit-hang-fix · ae96bc02 | 허용 | 포함 |
 | 68 | worldedit-mod-7.3.0.jar | worldedit / 7.3.0+6678-55745ad | WorldEdit · 088da04a | 허용 | 포함 |

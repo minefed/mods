@@ -735,10 +735,10 @@
     {
       "path": "fabric-webstreamer",
       "kind": "mod",
-      "reviewedCommit": "a952b941c37fe16f52a620de850884dceec7eab5",
+      "reviewedCommit": "f9c03980c9cb31ca891e4429bc2529c6c0cce033",
       "licenseFiles": {
         "LICENSE": "e3a994d82e644b03a792a930f574002658412f62407f5fee083f2555c5f23118",
-        "README.md": "9a1d107e1bb00e1c13385c2e239daac2fb87da73c2b6b64e320d2bf855cabe7c"
+        "README.md": "8899d54bf9a0faf3bac8b3505e9e28ae9234b62317be6585481779d135656b83"
       },
       "nestedGitlinks": {}
     },

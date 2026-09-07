@@ -840,9 +840,9 @@
       ],
       "args": [],
       "artifactGlobs": [
-        "build/libs/webstreamer-1.5.0.jar"
+        "build/libs/webstreamer-1.5.0+minefed.1.jar"
       ],
-      "expectedVersion": "1.5.0",
+      "expectedVersion": "1.5.0+minefed.1",
       "sourceWorkDir": ".",
       "env": {},
       "wrapperFromRoot": true
