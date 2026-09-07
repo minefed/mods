@@ -1,0 +1,243 @@
+name: Publish Minefed packs
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+  schedule:
+    - cron: '7,22,37,52 * * * *'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: minefed-release
+  cancel-in-progress: false
+
+jobs:
+  build:
+    if: github.repository == 'minefed/mods' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 360
+    permissions:
+      contents: read
+    outputs:
+      changed: ${{ steps.plan.outputs.changed }}
+      version: ${{ steps.plan.outputs.version }}
+    defaults:
+      run:
+        shell: bash
+    steps:
+      - name: Check out release tools without persisted credentials
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 0
+          persist-credentials: false
+          submodules: false
+
+      - name: Set up Python
+        uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: '3.13'
+
+      - name: Prepare read-only access to the private resource pack
+        env:
+          MINEFED_RESOURCEPACK_SSH_KEY: ${{ secrets.MINEFED_RESOURCEPACK_SSH_KEY }}
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          test -n "$MINEFED_RESOURCEPACK_SSH_KEY"
+          access_dir="$RUNNER_TEMP/minefed-resourcepack-access"
+          install -d -m 700 "$access_dir"
+          printf '%s\n' "$MINEFED_RESOURCEPACK_SSH_KEY" > "$access_dir/key"
+          chmod 600 "$access_dir/key"
+          python - <<'PY'
+          import json, os, pathlib, urllib.request
+          request = urllib.request.Request('https://api.github.com/meta', headers={
+              'Accept': 'application/vnd.github+json',
+              'Authorization': 'Bearer ' + os.environ['GH_TOKEN'],
+              'User-Agent': 'minefed-release-host-keys',
+          })
+          with urllib.request.urlopen(request, timeout=30) as response:
+              keys = json.load(response)['ssh_keys']
+          if not keys or any('\n' in key or '\r' in key or not key.startswith(
+                  ('ssh-ed25519 ', 'ecdsa-sha2-nistp256 ', 'ssh-rsa ')) for key in keys):
+              raise SystemExit('Unexpected GitHub SSH host key metadata')
+          target = pathlib.Path(os.environ['RUNNER_TEMP']) / 'minefed-resourcepack-access/known_hosts'
+          target.write_text(''.join('github.com ' + key + '\n' for key in keys), encoding='utf-8')
+          PY
+          # Restrict HTTPS-to-SSH rewriting to this repository, not all GitHub URLs.
+          git config --global url."ssh://git@github.com/minefed/resourcepack".insteadOf \
+            https://github.com/minefed/resourcepack
+
+      - name: Detect changes in root and tracked source branches
+        id: plan
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GIT_TERMINAL_PROMPT: '0'
+          GIT_SSH_COMMAND: >-
+            ssh -i "${{ runner.temp }}/minefed-resourcepack-access/key"
+            -o IdentitiesOnly=yes -o BatchMode=yes -o StrictHostKeyChecking=yes
+            -o UserKnownHostsFile="${{ runner.temp }}/minefed-resourcepack-access/known_hosts"
+        run: python scripts/release_control.py plan --output build/release-plan.json
+
+      - name: Reserve disk space on the disposable hosted runner
+        if: steps.plan.outputs.changed == 'true'
+        env:
+          RELEASE_RUNNER_ENVIRONMENT: ${{ runner.environment }}
+        run: |
+          set -euo pipefail
+          test "$RELEASE_RUNNER_ENVIRONMENT" = github-hosted
+          test "$RUNNER_OS" = Linux
+          test "${ImageOS:-}" = ubuntu24
+          test "$RUNNER_TOOL_CACHE" = /opt/hostedtoolcache
+          # Paths come from actions/runner-images Ubuntu installers. Never run
+          # this cleanup on a developer machine or an arbitrary runner path.
+          for sdk in /usr/local/lib/android /usr/share/dotnet /usr/local/.ghcup /opt/hostedtoolcache/CodeQL; do
+            if [[ -e "$sdk" ]]; then
+              test "$(realpath -- "$sdk")" = "$sdk"
+              sudo rm -rf --one-file-system -- "$sdk"
+            fi
+          done
+          df -h "$GITHUB_WORKSPACE"
+          available=$(df --output=avail -B1 "$GITHUB_WORKSPACE" | tail -n 1 | tr -d ' ')
+          if (( available < 35 * 1024 * 1024 * 1024 )); then
+            echo 'At least 35 GiB free space is required before cloning and compiling the source mods.' >&2
+            exit 1
+          fi
+
+      - name: Materialize exact source commits and the release input patch
+        if: steps.plan.outputs.changed == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GIT_TERMINAL_PROMPT: '0'
+          GIT_SSH_COMMAND: >-
+            ssh -i "${{ runner.temp }}/minefed-resourcepack-access/key"
+            -o IdentitiesOnly=yes -o BatchMode=yes -o StrictHostKeyChecking=yes
+            -o UserKnownHostsFile="${{ runner.temp }}/minefed-resourcepack-access/known_hosts"
+        run: python scripts/release_control.py materialize --plan build/release-plan.json
+
+      - name: Remove private repository credentials before executing source builds
+        if: always()
+        run: |
+          set -euo pipefail
+          access_dir="$RUNNER_TEMP/minefed-resourcepack-access"
+          rm -f -- "$access_dir/key" "$access_dir/known_hosts"
+          if [[ -d "$access_dir" ]]; then rmdir -- "$access_dir"; fi
+          test ! -e "$access_dir/key"
+          git config --global --unset-all url."ssh://git@github.com/minefed/resourcepack".insteadOf || test "$?" -eq 5
+
+      - name: Restore approved binary build inputs from the public release
+        if: steps.plan.outputs.changed == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python scripts/release_control.py bootstrap --plan build/release-plan.json
+
+      - name: Set up build JDK 21
+        if: steps.plan.outputs.changed == 'true'
+        id: java21
+        uses: actions/setup-java@dd06d9cba3e5552c54d9f8ea23572deb30010f7c # v6.0.0
+        with:
+          distribution: temurin
+          java-version: '21'
+          cache-jdk: false
+
+      - name: Set up default JDK 17
+        if: steps.plan.outputs.changed == 'true'
+        id: java17
+        uses: actions/setup-java@dd06d9cba3e5552c54d9f8ea23572deb30010f7c # v6.0.0
+        with:
+          distribution: temurin
+          java-version: '17'
+          cache-jdk: false
+
+      - name: Set up Node for the MTR website
+        if: steps.plan.outputs.changed == 'true'
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: '22'
+          package-manager-cache: false
+
+      - name: Build all source mods and the verified mixed pack
+        if: steps.plan.outputs.changed == 'true'
+        env:
+          JAVA_HOME: ${{ steps.java17.outputs.path }}
+          MINEFED_JAVA17_HOME: ${{ steps.java17.outputs.path }}
+          MINEFED_JAVA21_HOME: ${{ steps.java21.outputs.path }}
+          MINEFED_PYTHON: python
+          PYTHONUTF8: '1'
+        run: |
+          set -euo pipefail
+          test ! -e "$RUNNER_TEMP/minefed-resourcepack-access/key"
+          env -u GH_TOKEN -u GITHUB_TOKEN -u MINEFED_RESOURCEPACK_SSH_KEY \
+            -u GIT_SSH_COMMAND -u SSH_AUTH_SOCK ./gradlew build
+
+      - name: Create the three public release files
+        if: steps.plan.outputs.changed == 'true'
+        env:
+          RELEASE_VERSION: ${{ steps.plan.outputs.version }}
+        run: |
+          python scripts/release_pack.py \
+            --result-json build/distributions/latest.json \
+            --version "$RELEASE_VERSION" \
+            --policy inventory/release-policy.json \
+            --output "build/releases/$RELEASE_VERSION"
+
+      - name: Transfer only public files and release metadata
+        if: steps.plan.outputs.changed == 'true'
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: minefed-release-${{ steps.plan.outputs.version }}
+          path: |
+            build/releases/${{ steps.plan.outputs.version }}/server.zip
+            build/releases/${{ steps.plan.outputs.version }}/client.mrpack
+            build/releases/${{ steps.plan.outputs.version }}/resourcepack.zip
+            build/releases/${{ steps.plan.outputs.version }}/release-assets.json
+            build/release-plan.json
+            build/release-inputs.patch
+          if-no-files-found: error
+          include-hidden-files: false
+          compression-level: 0
+          retention-days: 3
+
+  publish:
+    needs: build
+    if: needs.build.outputs.changed == 'true'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    permissions:
+      contents: write
+    defaults:
+      run:
+        shell: bash
+    steps:
+      - name: Check out trusted publishing tools without submodule code
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 0
+          persist-credentials: false
+          submodules: false
+
+      - name: Set up Python
+        uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: '3.13'
+
+      - name: Download this run's public assets and reviewed input patch
+        uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8.0.1
+        with:
+          name: minefed-release-${{ needs.build.outputs.version }}
+          path: build
+          digest-mismatch: error
+
+      - name: Publish the verified draft and its immutable input tag
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RELEASE_VERSION: ${{ needs.build.outputs.version }}
+        run: |
+          python scripts/release_control.py publish \
+            --assets "build/releases/$RELEASE_VERSION/release-assets.json" \
+            --plan build/release-plan.json \
+            --patch build/release-inputs.patch
