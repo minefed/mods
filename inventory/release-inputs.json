@@ -1,0 +1,1016 @@
+{
+  "schemaVersion": 1,
+  "minecraftVersion": "1.20.4",
+  "licensePolicy": "Compare canonical Git license/notice/terms/README blob SHA256 values and exact path sets. Code commits may advance; changed, added or removed license evidence requires manual license review before updating this policy. Whole README blobs are reviewed conservatively because they may contain modpack permissions. Runtime artifact selection still validates ID, Minecraft, Java and a unique JAR. Nested gitlink additions, changes or removals also require manual source/license review; nested contents are not silently treated as covered by the parent license.",
+  "entries": [
+    {
+      "modId": "alloy_forgery",
+      "sourcePath": "alloy-forgery",
+      "releaseGlobs": [
+        "build/libs/alloy-forgery-*+1.20.3.jar"
+      ]
+    },
+    {
+      "modId": "architectury",
+      "sourcePath": "architectury-api",
+      "releaseGlobs": [
+        "fabric/build/libs/architectury-*-fabric.jar"
+      ]
+    },
+    {
+      "modId": "automobility-refueled",
+      "sourcePath": "Automobility-Refueled",
+      "releaseGlobs": [
+        "fabric/build/libs/automobility-refueled-*+1.20.4-fabric.jar"
+      ]
+    },
+    {
+      "modId": "bluemap",
+      "sourcePath": "BlueMap",
+      "releaseGlobs": [
+        "build/release/BlueMap-*-fabric-1.20.jar"
+      ]
+    },
+    {
+      "modId": "botarium",
+      "sourcePath": "Common-Storage-Lib",
+      "releaseGlobs": [
+        "fabric/build/libs/botarium-fabric-1.20.4-*.jar"
+      ]
+    },
+    {
+      "modId": "computercraft",
+      "sourcePath": "CC-Tweaked",
+      "releaseGlobs": [
+        "projects/fabric/build/libs/cc-tweaked-1.20.4-fabric-*.jar"
+      ]
+    },
+    {
+      "modId": "chiselsandbits",
+      "sourcePath": "Chisels-and-Bits",
+      "releaseGlobs": [
+        "fabric/build/libs/chisels-and-bits-fabric-*-FC.jar"
+      ]
+    },
+    {
+      "modId": "chunky",
+      "sourcePath": "Chunky",
+      "releaseGlobs": [
+        "fabric/build/libs/Chunky-*.jar"
+      ]
+    },
+    {
+      "modId": "crossstitch",
+      "sourcePath": "CrossStitch",
+      "releaseGlobs": [
+        "build/libs/crossstitch-*.jar"
+      ]
+    },
+    {
+      "modId": "decorative_blocks",
+      "sourcePath": "Decorative-Blocks",
+      "releaseGlobs": [
+        "fabric/build/libs/Decorative Blocks-Fabric-1.20.4-*.jar"
+      ]
+    },
+    {
+      "modId": "diagonalfences",
+      "sourcePath": "diagonal-fences",
+      "releaseGlobs": [
+        "Fabric/build/libs/DiagonalFences-v*-1.20.4-Fabric.jar"
+      ]
+    },
+    {
+      "modId": "diagonalwalls",
+      "sourcePath": "diagonal-walls",
+      "releaseGlobs": [
+        "Fabric/build/libs/DiagonalWalls-v*-1.20.4-Fabric.jar"
+      ]
+    },
+    {
+      "modId": "diagonalwindows",
+      "sourcePath": "diagonal-windows",
+      "releaseGlobs": [
+        "Fabric/build/libs/DiagonalWindows-v*-1.20.4-Fabric.jar"
+      ]
+    },
+    {
+      "modId": "fabric-api",
+      "sourcePath": "fabric-api",
+      "releaseGlobs": [
+        "build/libs/fabric-api-*+1.20.4.jar"
+      ]
+    },
+    {
+      "modId": "carpet",
+      "sourcePath": "fabric-carpet",
+      "releaseGlobs": [
+        "build/libs/fabric-carpet-1.20.3-*+v231205.jar"
+      ]
+    },
+    {
+      "modId": "seasons",
+      "sourcePath": "fabric-seasons",
+      "releaseGlobs": [
+        "build/libs/fabric-seasons-*+1.20.4.jar"
+      ]
+    },
+    {
+      "modId": "fabricproxy-lite",
+      "sourcePath": "FabricProxy-Lite",
+      "releaseGlobs": [
+        "build/libs/FabricProxy-Lite-*.jar"
+      ]
+    },
+    {
+      "modId": "fallingtree",
+      "sourcePath": "FallingTree",
+      "releaseGlobs": [
+        "build/libs/FallingTree-1.20.4-*.jar"
+      ]
+    },
+    {
+      "modId": "ferritecore",
+      "sourcePath": "FerriteCore",
+      "releaseGlobs": [
+        "Fabric/build/libs/ferritecore-*-fabric.jar"
+      ]
+    },
+    {
+      "modId": "forgeconfigapiport",
+      "sourcePath": "forge-config-api-port",
+      "releaseGlobs": [
+        "Fabric/build/libs/ForgeConfigAPIPort-v*-1.20.4-Fabric.jar"
+      ]
+    },
+    {
+      "modId": "geckolib",
+      "sourcePath": "geckolib",
+      "releaseGlobs": [
+        "Fabric/build/libs/geckolib-fabric-1.20.4-*.jar"
+      ]
+    },
+    {
+      "modId": "handcrafted",
+      "sourcePath": "Handcrafted",
+      "releaseGlobs": [
+        "fabric/build/libs/handcrafted-fabric-1.20.4-*.jar"
+      ]
+    },
+    {
+      "modId": "lavender",
+      "sourcePath": "lavender",
+      "releaseGlobs": [
+        "build/libs/lavender-*+1.20.3.jar"
+      ]
+    },
+    {
+      "modId": "lithium",
+      "sourcePath": "lithium",
+      "releaseGlobs": [
+        "build/libs/lithium-fabric-mc1.20.4-*+git.*.jar"
+      ]
+    },
+    {
+      "modId": "memoryleakfix",
+      "sourcePath": "MemoryLeakFix",
+      "releaseGlobs": [
+        "fabric/build/libs/memoryleakfix-fabric-1.17+-*.jar"
+      ]
+    },
+    {
+      "modId": "minefed-display",
+      "sourcePath": "minefed-display",
+      "releaseGlobs": [
+        "build/libs/minefed-display-*.jar"
+      ]
+    },
+    {
+      "modId": "mishanguc",
+      "sourcePath": "mishanguc",
+      "releaseGlobs": [
+        "build/libs/mishanguc-*-1.20.4.jar"
+      ]
+    },
+    {
+      "modId": "modern_glass_doors",
+      "sourcePath": "modern-glass-doors",
+      "releaseGlobs": [
+        "build/libs/modern-glass-doors-*+1.20.3-and-later.jar"
+      ]
+    },
+    {
+      "modId": "modernlights",
+      "sourcePath": "Modern-Lights",
+      "releaseGlobs": [
+        "build/libs/modern-lights-*.jar"
+      ]
+    },
+    {
+      "modId": "modernfix",
+      "sourcePath": "ModernFix",
+      "releaseGlobs": [
+        "fabric/build/libs/modernfix-fabric-*+mc1.20.4.jar",
+        "fabric/build/libs/modernfix-fabric-*+mc1.20.4.*.jar"
+      ]
+    },
+    {
+      "modId": "msd",
+      "sourcePath": "MTR-Station-Decoration-Addon",
+      "releaseGlobs": [
+        "fabric/build/libs/fabric-*.jar"
+      ]
+    },
+    {
+      "modId": "mtr",
+      "sourcePath": "Minecraft-Transit-Railway",
+      "releaseGlobs": [
+        "fabric/build/libs/fabric-*.jar"
+      ]
+    },
+    {
+      "modId": "mythicmetals",
+      "sourcePath": "MythicMetals",
+      "releaseGlobs": [
+        "build/libs/mythicmetals-*+1.20.4.jar"
+      ]
+    },
+    {
+      "modId": "mythicmetals_decorations",
+      "sourcePath": "MythicMetalsDecorations",
+      "releaseGlobs": [
+        "build/libs/mythicmetals-decorations-*+1.20.3.jar"
+      ]
+    },
+    {
+      "modId": "nicemod",
+      "sourcePath": "NiceMod",
+      "releaseGlobs": [
+        "build/libs/nicemod-* - 1.20.jar"
+      ]
+    },
+    {
+      "modId": "oritech",
+      "sourcePath": "Oritech",
+      "releaseGlobs": [
+        "build/libs/oritech-*+1.20.4.jar"
+      ]
+    },
+    {
+      "modId": "owo",
+      "sourcePath": "owo-lib",
+      "releaseGlobs": [
+        "build/libs/owo-lib-*+1.20.3.jar"
+      ]
+    },
+    {
+      "modId": "pfm",
+      "sourcePath": "paladins-furniture",
+      "releaseGlobs": [
+        "fabric/build/libs/paladin-furniture-mod-*-fabric-mc1.20.4.jar"
+      ]
+    },
+    {
+      "modId": "patchouli",
+      "sourcePath": "Patchouli",
+      "releaseGlobs": [
+        "Fabric/build/libs/Patchouli-1.20.4-*-FABRIC.jar"
+      ]
+    },
+    {
+      "modId": "puzzleslib",
+      "sourcePath": "puzzles-lib",
+      "releaseGlobs": [
+        "Fabric/build/libs/PuzzlesLib-v*-1.20.4-Fabric.jar"
+      ]
+    },
+    {
+      "modId": "realtime",
+      "sourcePath": "mc-realtime",
+      "releaseGlobs": [
+        "build/libs/realtime-*-1.20-1.21.1.jar"
+      ]
+    },
+    {
+      "modId": "resourcefulconfig",
+      "sourcePath": "Resourceful-Config",
+      "releaseGlobs": [
+        "fabric/build/libs/resourcefulconfig-fabric-1.20.4-*.jar"
+      ]
+    },
+    {
+      "modId": "resourcefullib",
+      "sourcePath": "ResourcefulLib",
+      "releaseGlobs": [
+        "fabric/build/libs/resourcefullib-fabric-1.20.4-*.jar"
+      ]
+    },
+    {
+      "modId": "starlight",
+      "sourcePath": "Starlight",
+      "releaseGlobs": [
+        "build/libs/starlight-*+fabric.*.jar"
+      ]
+    },
+    {
+      "modId": "stoneworks",
+      "sourcePath": "stoneworks",
+      "releaseGlobs": [
+        "Fabric/build/libs/Stoneworks-v*-1.20.4-Fabric.jar"
+      ]
+    },
+    {
+      "modId": "timeoutout",
+      "sourcePath": "TimeOutOut",
+      "releaseGlobs": [
+        "build/libs/timeoutout-*+1.20.2.jar"
+      ]
+    },
+    {
+      "modId": "trafficcraft",
+      "sourcePath": "TrafficCraft",
+      "releaseGlobs": [
+        "fabric/build/libs/trafficcraft-fabric-1.20.4-*.jar"
+      ]
+    },
+    {
+      "modId": "webstreamer",
+      "sourcePath": "fabric-webstreamer",
+      "releaseGlobs": [
+        "build/libs/webstreamer-*.jar"
+      ]
+    },
+    {
+      "modId": "wirelessredstone",
+      "sourcePath": "wireless-redstone",
+      "releaseGlobs": [
+        "fabric/build/libs/wirelessredstone-fabric-*+1.20.4.jar"
+      ]
+    },
+    {
+      "modId": "worldedithangfix",
+      "sourcePath": "worldedit-hang-fix",
+      "releaseGlobs": [
+        "versions/1.20.6-fabric/build/libs/worldedit-hang-fix-v*-mc1.20.6-fabric.jar"
+      ]
+    },
+    {
+      "modId": "worldedit",
+      "sourcePath": "WorldEdit",
+      "releaseGlobs": [
+        "worldedit-fabric/build/libs/worldedit-fabric-mc1.20.4-*-dist.jar"
+      ]
+    },
+    {
+      "modId": "yuushya",
+      "sourcePath": "Yuushya-Townscape",
+      "releaseGlobs": [
+        "1.20.4/fabric/build/libs/yuushya-*.jar"
+      ]
+    },
+    {
+      "modId": "yuushya_modelling",
+      "sourcePath": "Yuushya-Modelling",
+      "releaseGlobs": [
+        "1.20.4/fabric/build/libs/yuushya-modelling-*.jar"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "path": "Automobility-Refueled",
+      "kind": "mod",
+      "reviewedCommit": "13160075fb4be333fe2b425183c02f9dc2348184",
+      "licenseFiles": {
+        "LICENSE": "21a2121221d2a35df2d8d333d00a61ed240446b6107092741ff996941acdc919",
+        "README.md": "4b4a910e7c7b27385a1352c53aaff310c2c30d0c5a2cd3ce828a5d079f20f3ff"
+      },
+      "nestedGitlinks": {}
+    },
+    {
+      "path": "BlueMap",
+      "kind": "mod",
+      "reviewedCommit": "dd63c74e1b8251cde574e1beca1025a840e6761c",
+      "licenseFiles": {
+        "BlueMapCommon/webapp/README.md": "3088eaed505f470f6432143af02f2d8dd4ef4cef16e9bec38479d94c29993d83",
+        "BlueMapCore/src/main/java/de/bluecolored/bluemap/core/util/CopyingPathVisitor.java": "21f00135dcbed7fc6fb614a6b9b161e27152be418209cba9a11b6db626ae587b",
+        "LICENSE": "f1c190d4a1ff29606cbed7a0d97fc7b7117cc2e1169e19caa753198957dbbfd6",
+        "README.md": "f7e62a92402dc7a75ffbca35487e4cb332020d1166d0df59c0ceca77dcb58c5d"
+      },
+      "nestedGitlinks": {
+        "BlueMapAPI": "ec977113495dacd6f2e24239015f4b94b305fc52"
+      }
+    },
+    {
+      "path": "CC-Tweaked",
+      "kind": "mod",
+      "reviewedCommit": "c3264ade27b032f4b4b480169e67bcb08a01bc0a",
+      "licenseFiles": {
+        "LICENSES/Apache-2.0.txt": "074e6e32c86a4c0ef8b3ed25b721ca23aca83df277cd88106ef7177c354615ff",
+        "LICENSES/CC-BY-3.0.txt": "d748955f9d8e7551cf0a0f23e4bd2d273092e2f942feb3f6fab800e5f6d20300",
+        "LICENSES/CC-BY-4.0.txt": "d557539df68e771cc1eedcc91d13f70fca930e508d11eedcafa4b15db49e3744",
+        "LICENSES/CC0-1.0.txt": "a2010f343487d3f7618affe54f789f5487602331c0a8d03f49e9a7c547cf0499",
+        "LICENSES/LicenseRef-CCPL.txt": "fab164eb0cf3ec453d7596829464976ccb66263be1f9c6c38eb2528f3c14c201",
+        "LICENSES/MIT.txt": "b85dcd3e453d05982552c52b5fc9e0bdd6d23c6f8e844b984a88af32570b0cc0",
+        "LICENSES/MPL-2.0.txt": "3f3d9e0024b1921b067d6f7f88deb4a60cbe7a78e76c64e3f1d7fc3b779b9d04",
+        "README.md": "4d0c7b9143438f3b1ffb4e055ff2aea6fb167aaa59e666f790d0ee262e07a76b",
+        "projects/core/src/test/resources/test-rom/data/json-parsing/LICENSE": "8bd0e0578be788c617ea01d18b2a8146e3746ae50bddadc65a5f9d3aad08ad49",
+        "projects/core/src/test/resources/test-rom/data/json-parsing/README.md": "f09efbb0aa6fb54f6426473c16a0b5a555bc1893c91c9c544d9b4758ab84a91e",
+        "projects/core/src/test/resources/test-rom/spec/lua/README.md": "bc6d841b4521a729053a9270a7dc5d5f2a73e5b2451a087315cdf73441c82e40"
+      },
+      "nestedGitlinks": {}
+    },
+    {
+      "path": "Chisels-and-Bits",
+      "kind": "mod",
+      "reviewedCommit": "12fd1d23b3e6fb929ccba01e034c46ae632acbe0",
+      "licenseFiles": {
+        "LICENSE": "340e9ed2e5c1c8b29ec59d7c797d9f292557bd23446f537fb763b85bf034f3d6",
+        "readme.md": "a292f5563a3af6766faae1502b2e767c1b1f9e2c06510aa5f03f3122d99bb805"
+      },
+      "nestedGitlinks": {}
+    },
+    {
+      "path": "Chunky",
+      "kind": "mod",
+      "reviewedCommit": "1fe63d9331b5cbad47dac40b48aabd1b0085c000",
+      "licenseFiles": {
+        "LICENSE": "f385c409793776ae61525458ef94f2d82e338b3553b27dceadc99e2164c01fd1",
+        "README.md": "582d5b73484bc510e9f8dfb5fcdc844d1f0dfd9cc62ee131122283915c645680"
+      },
+      "nestedGitlinks": {}
+    },
+    {
+      "path": "CityCraft",
+      "kind": "mod",
+      "reviewedCommit": "32f4d36ff7865630f102e8f71302f483311aed39",
+      "licenseFiles": {
+        "LICENSE": "a2010f343487d3f7618affe54f789f5487602331c0a8d03f49e9a7c547cf0499",
+        "README.md": "9ce5c0f8c91729628a732d35ea7ea24dc15267adabe30c63e6e9e31f2713af0f"
+      },
+      "nestedGitlinks": {}
+    },
+    {
+      "path": "Common-Storage-Lib",
+      "kind": "mod",
+      "reviewedCommit": "ae864ea949064d734de8aed89297c5916637ed20",
+      "licenseFiles": {
+        "LICENSE.md": "965515d4b40fbbdef16cd0a78d559c0cf1e8a74d8acb8ee7b8ece092467c8d0f",
+        "README.md": "9c4645b335dc1b3e3df2e161489ff59ea87cfe132904fe169563ebd14eb2cb29"
+      },
+      "nestedGitlinks": {}
+    },
+    {
+      "path": "CrossStitch",
+      "kind": "mod",
+      "reviewedCommit": "aa5545ce774566f3c09f2b34ac4ec0412274dec8",
+      "licenseFiles": {
+        "LICENSE": "2a7b72b1979ea50c83133d32442462ce6eabc2648cb79b37d28f15843dc935ef",
+        "README.md": "98ce8cdce3dc84047def9c7e6ed40b663ff6838cd779ff684b6ba1318dc9a25a"
+      },
+      "nestedGitlinks": {}
+    },
+    {
+      "path": "Decorative-Blocks",
+      "kind": "mod",
+      "reviewedCommit": "d5f04025d811dd1310ce5a72a5ed9d40ad16c841",
+      "licenseFiles": {
+        "LICENSE.txt": "e71851fa1bfb1e965c3ea2dd10b791225343928efbb3eaba98f0647be5929271",
+        "README.md": "37fb7419ceab5d9591c56ba217cc17af0c8d568be63d1d45b68683ed87489bfb"
+      },
+      "nestedGitlinks": {}
+    },
+    {
+      "path": "FabricProxy-Lite",
+      "kind": "mod",
+      "reviewedCommit": "7391c12684820b14039a42c0e5ae2e9178bf4290",
+      "licenseFiles": {
+        "LICENSE": "e057e658abf7a69b115b6c0191eca04f4f6252839cef44bd95979fbd1fb32023",
+        "README.md": "a27de0d1a0d03969afa9f79c3da02758b890593143c5aeebae7d386d151ccbb1"
+      },
+      "nestedGitlinks": {}
+    },
+    {
+      "path": "FallingTree",
+      "kind": "mod",
+      "reviewedCommit": "0a70a01d3d682a9069f12a00a5c9dbd96d53f2cb",
+      "licenseFiles": {
+        "LICENSE.md": "e3a994d82e644b03a792a930f574002658412f62407f5fee083f2555c5f23118",
+        "README.md": "a19b070e3233fd36ad7daf3c6be27a3c6dfb6b400db407cc0e1c31c4e21f0f78"
+      },
+      "nestedGitlinks": {}
+    },
+    {
+      "path": "Fences",
+      "kind": "mod",
+      "reviewedCommit": "c9821fbd10fe55cdb0cc9e91fefb19a5d6d6aa4b",
+      "licenseFiles": {
+        "LICENSE.md": "45efda7c62ef1147a8f449255512ec0525e0d544eccfbec981fd5a363c5cf985",
+        "README.md": "9a8c3e9cfd993041a98ae423c1d09b6694370b91919dafb314f16aad272a1351"
+      },
+      "nestedGitlinks": {}
+    },
+    {
+      "path": "FerriteCore",
+      "kind": "mod",
+      "reviewedCommit": "1df30b595e231bc0dc9a8eabe65d34cce542d3f9",
+      "licenseFiles": {
+        "LICENSE": "68ce5c5cd4969030dbba6b6fc922af8e50cbe5494ed641737b9db9d7c43f8cb1",
+        "README.md": "c43fcdfce4d3c82ca3ae08a249d1e471043c39fe5594010593e6fb3928681d20"
+      },
+      "nestedGitlinks": {}
+    },
+    {
+      "path": "Handcrafted",
+      "kind": "mod",
+      "reviewedCommit": "7b5501555b4683757800e9ca7df264d0850caad3",
+      "licenseFiles": {
+        "LICENSE": "56dded343dc7dace15563db99bc7dd4507e901d83bf63aceadd7687137a57128",
+        "README.md": "281b49b501d54bf01480054d3bf2a3aaafff35d445c24454de8e73ffdb483c38"
+      },
+      "nestedGitlinks": {}
+    },
+    {
+      "path": "MTR-Station-Decoration-Addon",
+      "kind": "mod",
+      "reviewedCommit": "4c1ce7298690b1036c8f58e30409799b57c11b6c",
+      "licenseFiles": {
+        "LICENSE.txt": "bfaf4fd2e0cb41e02554476bd760cb5d40f38ba8b10c34e9d73cb809c9f4ccb0",
+        "README.md": "5099d7e06fd13725efb74d3d32cf693f47b1d07b95e170b3108154985d042c6c"
+      },
+      "nestedGitlinks": {}
+    },
+    {
+      "path": "MacawsDoors",
+      "kind": "mod",
+      "reviewedCommit": "b07c8caa4a45f0f9aac98d04a972fd359d7a84ca",
+      "licenseFiles": {
+        "LICENSE": "78bc8792768cc749e2c176f49082713cba8e0450651d6db83cc5fa0a1208a419",
+        "README.md": "9a8c3e9cfd993041a98ae423c1d09b6694370b91919dafb314f16aad272a1351"
+      },
+      "nestedGitlinks": {}
+    },
+    {
+      "path": "MemoryLeakFix",
+      "kind": "mod",
+      "reviewedCommit": "16ce1bffcd6a17231dc29fc178dbeca3b5ee5f2c",
+      "licenseFiles": {
+        "LICENSE": "20c17d8b8c48a600800dfd14f95d5cb9ff47066a9641ddeab48dc54aec96e331",
+        "README.md": "fd5ed1bd27786f184f5a5d9539596f360c63e51ec824380a90d20848c332e4b6"
+      },
+      "nestedGitlinks": {}
+    },
+    {
+      "path": "Minecraft-Transit-Railway",
+      "kind": "mod",
+      "reviewedCommit": "3cdeeeb2951dfd1d9f2ddfe28dd4844e0b732e0e",
+      "licenseFiles": {
+        "LICENSE": "c4445a98dbe7fc73944796bcc54c5fefc659f3cacced0ad1cc9c6f794eea0b0e",
+        "LICENSE_ORIGINAL": "4d52d2934d6a874ccbb3ece33566801c6796c86d0c86f1b27989b2710f30644b",
+        "README.md": "a056039e5fbb97c84ed2dd3d503a9cd250598ceaecbf5dfd6cfa152739321022",
+        "patches/dependencies/README.md": "7ebe270326fb1c3b61e8f715b3e7ba3c687595936c63a9dcdab387e061099e07"
+      },
+      "nestedGitlinks": {}
+    },
+    {
+      "path": "Modern-Lights",
+      "kind": "mod",
+      "reviewedCommit": "6b04f156a3e24a778fa2e0697d98bfd3aeca0256",
+      "licenseFiles": {
+        "LICENSE": "18a36f6d51a2200b6d2b8493dde5a577bab99cf0236ffefe2dc4d5976f75494e",
+        "README.md": "b8ee929844866f25f23e3bc20e2452aea16b6c7bf000aee70e2979449eb7a642"
+      },
+      "nestedGitlinks": {}
+    },
+    {
+      "path": "ModernFix",
+      "kind": "mod",
+      "reviewedCommit": "479096893321f5dc3e97791e5fa7dcf3ed58e15b",
+      "licenseFiles": {
+        "LICENSE": "9494320d3a22caf27a3739e959eca6d779160f209708bacde04185669b0eeed2",
+        "README.md": "b6d6b7da68552e88981a7075f8464c0da646b9f60e59e0f42ecc2cc2f648df68"
+      },
+      "nestedGitlinks": {}
+    },
+    {
+      "path": "MythicMetals",
+      "kind": "mod",
+      "reviewedCommit": "cfa897b7e6b2ab856f08582c5e525e675633b33c",
+      "licenseFiles": {
+        "LICENSE": "6b4fdd3b287e1a7e17b5da4d5aefbd756ec9a818f86c4fa8124e7ccc436453f4",
+        "README.md": "2ae7d729b7e9d68311eb6b9d3143e829cd82fd964db2ca48a8f5044a027356c8"
+      },
+      "nestedGitlinks": {}
+    },
+    {
+      "path": "MythicMetalsDecorations",
+      "kind": "mod",
+      "reviewedCommit": "c9326608433cbd6210d1f4f0bcbc66ed0393546b",
+      "licenseFiles": {
+        "LICENSE": "5a9ef810c4bd623a3a0db194a36e9ca918424d341961eab44bd372432045c2e3"
+      },
+      "nestedGitlinks": {}
+    },
+    {
+      "path": "NiceMod",
+      "kind": "mod",
+      "reviewedCommit": "c344763657eaa90d878d858a74c1cdb93cf9d66f",
+      "licenseFiles": {
+        "LICENSE": "f9e97c9803a08db757123342ac84462880cf98c5506de76ef1fdab96cac0ee27",
+        "README.md": "47376850a9d5b0f30f08b9a35abcb2d71566e3c0e6936ba3dfb9f8512e6cf45b"
+      },
+      "nestedGitlinks": {}
+    },
+    {
+      "path": "Oritech",
+      "kind": "mod",
+      "reviewedCommit": "1cf7cfe9aa3ed20cd904f9bc15eb979eb817a647",
+      "licenseFiles": {
+        "LICENSE.md": "d504e681c66e5b9b23bd0ff751d2cd721da2f99f983b5a5fd0bb138135e4e8d9",
+        "README.md": "59467a3ae9286a8f97bdfc41262afa1feafd8b4887b2369e6644cf766877ac02"
+      },
+      "nestedGitlinks": {}
+    },
+    {
+      "path": "Patchouli",
+      "kind": "mod",
+      "reviewedCommit": "5bb9e96cd8256c0bcd2fa87eff2d65be0a7290d5",
+      "licenseFiles": {
+        "LICENSE": "c6648565ca4a7b22b2cd06e739dfec031313d2f5ce5f31c5c994f6aec9f3fe5e",
+        "README.md": "bf2351b20c360d4f01c004db37ee079df204d93879387ca0c94706075e46a933",
+        "web/README.md": "20e55b5bfb6630ca9d45b7818c04745baa0e88c40e86133ef724e353c59a492b"
+      },
+      "nestedGitlinks": {}
+    },
+    {
+      "path": "RealIP",
+      "kind": "mod",
+      "reviewedCommit": "b0a1956154fee51616ce396bf355a466001c6467",
+      "licenseFiles": {
+        "LICENSE": "7c809c89077dbb4e7705c57c35cf1766a606578e959e165fe1365bb0520951d8",
+        "README.md": "8d6621e97d83d97e2064a1f0e729b6a81c43ae88402efc8bbc4918fee90dbd23"
+      },
+      "nestedGitlinks": {}
+    },
+    {
+      "path": "Resourceful-Config",
+      "kind": "mod",
+      "reviewedCommit": "6f5fb83c6dc3b78e3a84589ada273a0cf38148e3",
+      "licenseFiles": {
+        "LICENSE.md": "a8e7410d85c405cab5d1a51e198e51495c2ca6447b509eec540cfaff80bba8ea",
+        "README.md": "c54ad78c920e599ffc45908a629d7981bde53d18c64b1abcafee831749ad2c92",
+        "templates/README.md.template": "9096b52c6fec37ee02c5ec89ab8c8f18d0b792ce5eea769b4666323e71e65703"
+      },
+      "nestedGitlinks": {}
+    },
+    {
+      "path": "ResourcefulLib",
+      "kind": "mod",
+      "reviewedCommit": "5404f9f6e68fb1bbf96c5c391ba6d7607ce289b4",
+      "licenseFiles": {
+        "LICENSE": "a8e7410d85c405cab5d1a51e198e51495c2ca6447b509eec540cfaff80bba8ea",
+        "README.md": "afad128d955dd91c7517b5f93206b13aaac1bef6d4da2f589ae161e4a506bc98",
+        "templates/README.md.template": "256cd84895dba712f5c89fd83c84d675040540b6a772781c6cd07640bc3705cc"
+      },
+      "nestedGitlinks": {}
+    },
+    {
+      "path": "Starlight",
+      "kind": "mod",
+      "reviewedCommit": "c2b8391d83ddadbd8136d2abead7e1014da19a6d",
+      "licenseFiles": {
+        "LICENSE": "8af96a10319f2139644b87d489ce5e4fd4a8043f0113b2e82bfead5f4355661a",
+        "README.md": "4a02604275c527ada82715322e55d6fe9e3efddcaf07913959d3ee9ffa201dfd"
+      },
+      "nestedGitlinks": {}
+    },
+    {
+      "path": "TimeOutOut",
+      "kind": "mod",
+      "reviewedCommit": "0d27ca115902c93d132a2d062b166c5a544da0c7",
+      "licenseFiles": {
+        "LICENSE": "064366eab501c3a628de6098c0545674f2b8d5bfd38d24b6b799324885b00fa6",
+        "README.md": "184d23a2c168ff6b043706e7f48981acf7ba093fdf3cc65b5547f6d28e1546bd"
+      },
+      "nestedGitlinks": {}
+    },
+    {
+      "path": "TrafficCraft",
+      "kind": "mod",
+      "reviewedCommit": "40b9405380f3baae0aa45e9e744e14efd9eecf6c",
+      "licenseFiles": {
+        "LICENSE": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986",
+        "README.md": "ef7eb236179e04ef0e859f290cab03c305797abb9af3207b94028f8e12b19eba"
+      },
+      "nestedGitlinks": {}
+    },
+    {
+      "path": "WorldEdit",
+      "kind": "mod",
+      "reviewedCommit": "f2cdc4aa7816a0184adf3fcfaf3ff5712d8dfd68",
+      "licenseFiles": {
+        "LICENSE.txt": "0183838b73c277c692e0850bbbbed05fa80303a68d9b81d55844c859b9b53a67",
+        "README.md": "a29706ae669eb9ec8d7d29ab1f73c6801644231d88f7f84869485135b0f7f9f6",
+        "buildSrc/src/main/kotlin/japicmp/accept/LICENSE.md": "6c5b748f76e7bef5156996611a49f55131893ebadc187b8074e8dba6ffab26c8",
+        "contrib/craftscripts/README.md": "26e16931afe790fc9dcae17f0e6f4cbe74a35b312001c1ad27af8b9b5683544f",
+        "worldedit-libs/README.md": "aa3c208351fd232cc5eb6aa583fb6e2778fad919726182d7bbc132cda509709b",
+        "worldedit-mod/README.md": "4425c5424e818cab232980cdd0a42ac11c0e2e91ef5931b52c1a9484804d8b28"
+      },
+      "nestedGitlinks": {}
+    },
+    {
+      "path": "Yuushya-Modelling",
+      "kind": "mod",
+      "reviewedCommit": "431d217b6663ba46c221e2bbb7ad9d3049d89565",
+      "licenseFiles": {
+        "LICENSE": "d9cf754697c72a797a18df81565cd25b9ebe42653afa60c227c2925af2d871e1",
+        "README.md": "7d5dd25729e467d37051707137535be59849a9dff91cdd2b40528461b6a9fb5c"
+      },
+      "nestedGitlinks": {}
+    },
+    {
+      "path": "Yuushya-Townscape",
+      "kind": "mod",
+      "reviewedCommit": "07dfb2768e6c9e316fc2d142172237ad7eeb9f8e",
+      "licenseFiles": {
+        "1.16.5/common/src/main/java/com/yuushya/entity/README.MD": "b350672b402c35e800cfd11a6526be3d9584f22dc77565cf0f6a6915ba60b720",
+        "1.18.2/common/src/main/java/com/yuushya/entity/README.MD": "b350672b402c35e800cfd11a6526be3d9584f22dc77565cf0f6a6915ba60b720",
+        "1.19.2/common/src/main/java/com/yuushya/entity/README.MD": "b350672b402c35e800cfd11a6526be3d9584f22dc77565cf0f6a6915ba60b720",
+        "1.19.4/common/src/main/java/com/yuushya/entity/README.MD": "b350672b402c35e800cfd11a6526be3d9584f22dc77565cf0f6a6915ba60b720",
+        "1.20.1/common/src/main/java/com/yuushya/entity/README.MD": "b350672b402c35e800cfd11a6526be3d9584f22dc77565cf0f6a6915ba60b720",
+        "1.20.4/common/src/main/java/com/yuushya/entity/README.MD": "b350672b402c35e800cfd11a6526be3d9584f22dc77565cf0f6a6915ba60b720",
+        "1.20.6/common/src/main/java/com/yuushya/entity/README.MD": "b350672b402c35e800cfd11a6526be3d9584f22dc77565cf0f6a6915ba60b720",
+        "1.21.0/common/src/main/java/com/yuushya/entity/README.MD": "b350672b402c35e800cfd11a6526be3d9584f22dc77565cf0f6a6915ba60b720",
+        "LICENSE": "d9cf754697c72a797a18df81565cd25b9ebe42653afa60c227c2925af2d871e1",
+        "README.md": "5179db6fe186423ca83651ef740cb10a1b89bca1760de45d52b6df957811a875",
+        "Terms_yuushya_user.md": "74d8b21d2396257c068786a3f0c6114afa222b637c23c9f09531eacc601c42e5",
+        "buildSrc/src/main/java/net/querz/LICENSE": "130aafeba06845bd9b9007d60aa7aafb668cc163374ce5306ea1adfe6f80ebc4",
+        "common/src/main/resources/assets/yuushya/models/extra_building_material/button_sign/notice.json": "bb96a6e6d3eab94e3514c999e46bf0af2c1d758d3a074a8a3831c0bf91377397",
+        "common/src/main/resources/assets/yuushya/textures/0extra_building_material/preview/button_sign/notice.png": "ab7fc5e5a7a87c96d91a13340567f7d35c0e0c4ea338e053ce2e744dd74af9c8"
+      },
+      "nestedGitlinks": {}
+    },
+    {
+      "path": "alloy-forgery",
+      "kind": "mod",
+      "reviewedCommit": "badd26ba735ffe18723f97db49c5f6c1d0c50ee9",
+      "licenseFiles": {
+        "LICENSE": "4578db32a0c60dd839a6d005bd115ff4bab94f1dbb0b181aa2062b2f8dc6cc48",
+        "README.md": "d6d8317726efd51a5066f6899cc8abf4e0cf8a125c428daea434d4bb2dba1f77"
+      },
+      "nestedGitlinks": {}
+    },
+    {
+      "path": "architectury-api",
+      "kind": "mod",
+      "reviewedCommit": "d97359747e8d05939f8a8fdc0d01fcf410d0bf6d",
+      "licenseFiles": {
+        "LICENSE.md": "1171d2933e66dbe4720bfe0ab30d5a519409c96adffca4358bc86f94ca59c654",
+        "README.md": "759e835d3074a351009eeface9038a4515fbcfa269e37e43d87100040da2a7b4"
+      },
+      "nestedGitlinks": {}
+    },
+    {
+      "path": "diagonal-fences",
+      "kind": "mod",
+      "reviewedCommit": "52a8f8196ba52c51d663c44666ee2a7425fb8282",
+      "licenseFiles": {
+        "LICENSE-ASSETS.md": "ca520b6211afd43cf740743746985f697047aca839fc325487d6fff97af57cec",
+        "LICENSE.md": "1f256ecad192880510e84ad60474eab7589218784b9a50bc7ceee34c2b91f1d5",
+        "README.md": "1d095d8a722ce8db3ef7936e27c57a7adfbd02e4e045e8980a525183e169d18e"
+      },
+      "nestedGitlinks": {}
+    },
+    {
+      "path": "diagonal-walls",
+      "kind": "mod",
+      "reviewedCommit": "452eb0a4a633ee2d0908f166b0e17315ee99d197",
+      "licenseFiles": {
+        "LICENSE-ASSETS.md": "ca520b6211afd43cf740743746985f697047aca839fc325487d6fff97af57cec",
+        "LICENSE.md": "1f256ecad192880510e84ad60474eab7589218784b9a50bc7ceee34c2b91f1d5",
+        "README.md": "4e75c3b5fcff65fdab794ac970400553751c279f0ef5f4665db3e0919da50d89"
+      },
+      "nestedGitlinks": {}
+    },
+    {
+      "path": "diagonal-windows",
+      "kind": "mod",
+      "reviewedCommit": "7209c6ea3cb2b05157eeae3ddced087556889bb9",
+      "licenseFiles": {
+        "LICENSE-ASSETS.md": "ca520b6211afd43cf740743746985f697047aca839fc325487d6fff97af57cec",
+        "LICENSE.md": "1f256ecad192880510e84ad60474eab7589218784b9a50bc7ceee34c2b91f1d5",
+        "README.md": "4faf6c36364ac6f4e4a9cb501f1978488226af20b05fee35c672956103d21a2f"
+      },
+      "nestedGitlinks": {}
+    },
+    {
+      "path": "fabric-api",
+      "kind": "mod",
+      "reviewedCommit": "b0291a8c46e79ec2018b26b5874a2796f6b54132",
+      "licenseFiles": {
+        "LICENSE": "b40930bbcf80744c86c46a12bc9da056641d722716c378f5659b9e555ef833e1",
+        "README.md": "bd3830fda8d7e6dced96e7796fd8ad0eae888d330097eb22ed4ad35dc5530e3b",
+        "fabric-api-lookup-api-v1/README.md": "837c75be8f2275a7b0bde1498cdaf6928ed29e8db0672912b284ff1a0874ada1",
+        "fabric-lifecycle-events-v1/README.md": "b869df8f1cff3229bed4f0cd0e38da9f6384ae312299b42518cf4c6a19d54a16",
+        "fabric-loot-api-v2/README.md": "70518a0b840405d44d29a645f043331584c93032e0dea85e88ec3ae2007db85c",
+        "fabric-transfer-api-v1/README.md": "b11d62877e197a3d956a49bee69b851b7827665bdf3b4eb3aae8bf8e1eba5108",
+        "fabric-transitive-access-wideners-v1/README.md": "aec83bd85f5ceefb8f4a772daf632281360f7263b76704516095081d29c04bb1"
+      },
+      "nestedGitlinks": {}
+    },
+    {
+      "path": "fabric-carpet",
+      "kind": "mod",
+      "reviewedCommit": "72248bbebe61dc0b2b7316378aa7629955d0f91a",
+      "licenseFiles": {
+        "LICENSE": "635057f78a9e41f90e2a53aba1fbff5d77afe1735b17f6cd5bdc078667114319",
+        "README.md": "0ad32d33011aab822eda13002a655ba03338b7818c27ceb2f4571dddd033aa67"
+      },
+      "nestedGitlinks": {}
+    },
+    {
+      "path": "fabric-seasons",
+      "kind": "mod",
+      "reviewedCommit": "8e7833a58f54180c6fc6a96a2fb08c63ace5a726",
+      "licenseFiles": {
+        "LICENSE": "1f256ecad192880510e84ad60474eab7589218784b9a50bc7ceee34c2b91f1d5",
+        "README.md": "4d18308fc3a1933c9b3c8f0377286300aca5ee0657d81ad9f028b7ba3ad527e6"
+      },
+      "nestedGitlinks": {}
+    },
+    {
+      "path": "fabric-webstreamer",
+      "kind": "mod",
+      "reviewedCommit": "a952b941c37fe16f52a620de850884dceec7eab5",
+      "licenseFiles": {
+        "LICENSE": "e3a994d82e644b03a792a930f574002658412f62407f5fee083f2555c5f23118",
+        "README.md": "9a1d107e1bb00e1c13385c2e239daac2fb87da73c2b6b64e320d2bf855cabe7c"
+      },
+      "nestedGitlinks": {}
+    },
+    {
+      "path": "forge-config-api-port",
+      "kind": "mod",
+      "reviewedCommit": "b102873873cd9d0bd70685cd7bec524666e2d190",
+      "licenseFiles": {
+        "LICENSE-ASSETS.md": "3ef7cd6bc252acfaa311bf79ba17fd1eaa491c90b9982714453782ae7ad61ceb",
+        "LICENSE-FORGE.md": "c70e51c25a307f6b9b664c30ceaa3fee8fe0c6427d258a19edd564e622f4bc8b",
+        "LICENSE-NIGHT-CONFIG.md": "ea8af5e789cb2d4e9b10bce3874982ade163b749b6bfbdb32e2df21c4d106de1",
+        "LICENSE.md": "1f256ecad192880510e84ad60474eab7589218784b9a50bc7ceee34c2b91f1d5",
+        "README.md": "d8d27991b1902f742da59f043c0c73e48f8cc9651e3e1b11be6b3157b988cbb5"
+      },
+      "nestedGitlinks": {}
+    },
+    {
+      "path": "geckolib",
+      "kind": "mod",
+      "reviewedCommit": "fb968c0379ef0f6ef5c0d6672a464b2f2712553f",
+      "licenseFiles": {
+        "LICENSE": "80343d98f6fc340c0700b1844689c2fd42c70f48ea0b363dcd2477cc98e91dd6",
+        "README.md": "065c652ecf0befce999baee05d34c79cd08ce9bd1f5b95374f6a62d207cab5bd",
+        "core/LICENSE": "bad79c8040c9a61a5438d8f9a7df7a99577f17c621689da5730837bb5574e30c"
+      },
+      "nestedGitlinks": {}
+    },
+    {
+      "path": "lavender",
+      "kind": "mod",
+      "reviewedCommit": "cc99a048c3622880ae0496122da30a72f21c44bd",
+      "licenseFiles": {
+        "LICENSE": "089e801fd0cd8e0258a1e1fe226a1046bb2d702a5349a0ef5a0e232b39a29594",
+        "README.md": "9a03ce92ccf4549b136da65b826c0dee86d5eb01bb10a0a7221c1b4f7623ab71"
+      },
+      "nestedGitlinks": {}
+    },
+    {
+      "path": "lithium",
+      "kind": "mod",
+      "reviewedCommit": "c40b7585606e8434b7a8f1e7ef15c20d99685f19",
+      "licenseFiles": {
+        "LICENSE.txt": "e3a994d82e644b03a792a930f574002658412f62407f5fee083f2555c5f23118",
+        "README.md": "8599148a11eff8975dca81ad2f1a30acf441d79d03582a458eb600f3c398f278",
+        "src/main/java/me/jellysquid/mods/lithium/mixin/block/hopper/README.md": "5fd3ca54f22cf7b6d116b1989fe552f1059228e064263e0d581d47ab8ab285cc",
+        "src/main/java/me/jellysquid/mods/lithium/mixin/entity/collisions/unpushable_cramming/README.md": "f634b17bb962a59c20cda5f5f2182adf6168b4ddf87cb712eacde3952428aad4"
+      },
+      "nestedGitlinks": {}
+    },
+    {
+      "path": "mc-realtime",
+      "kind": "mod",
+      "reviewedCommit": "bd05e0fe8ad18184354dff9453da4b0d8b4703b5",
+      "licenseFiles": {
+        "LICENSE.txt": "cada308e2c9c9e896450e55fbda545d29fe43f48b69550e821a9b7505253e8d3",
+        "README.md": "f8887562a9414a7f92172f9cfa8832e0ac88229c5cdab7bf8f2f1a0ba9856987"
+      },
+      "nestedGitlinks": {}
+    },
+    {
+      "path": "minefed-display",
+      "kind": "mod",
+      "reviewedCommit": "869b976756be38f298105d4adf6be2d22e3a0b8c",
+      "licenseFiles": {
+        "LICENSE": "df91ea5ffd7b7ef2859e0add9b7aa5bde9790ef51df4cccef63c4607a36e3268",
+        "README.md": "36cda14021b463aa8294cf16a20780a3369c039c16490f2e663bb362ae2d3aee"
+      },
+      "nestedGitlinks": {}
+    },
+    {
+      "path": "mishanguc",
+      "kind": "mod",
+      "reviewedCommit": "ed26012dc37d449fc8480a606319f7294fa9005a",
+      "licenseFiles": {
+        "LICENSE": "7d3a95e5e06978064ed3f8e2b7c8f845e7fd8a405294727cc708f94cb83b8059",
+        "README-en.md": "133d2a1f414f0626d40eaf45eb9c2818ec75c60c23d45d20bdeea1a1862b9f3a",
+        "README.md": "621937ad924ebe9b449805c5b7a910b859ece388f3328c53113f2df011779b3f"
+      },
+      "nestedGitlinks": {}
+    },
+    {
+      "path": "modern-glass-doors",
+      "kind": "mod",
+      "reviewedCommit": "155e732f78f5b5a9ce42478ef342e8d03266799b",
+      "licenseFiles": {
+        "LICENSE": "70f62297c3a1c133cf9e24faa95e79cffe41b8053c32e3f95ea6a6bb386f77df",
+        "README.md": "b61179862277ef27b65a26465c2d4bae6ee133ca31f2b249bf33e5c0dc668b79"
+      },
+      "nestedGitlinks": {}
+    },
+    {
+      "path": "owo-lib",
+      "kind": "mod",
+      "reviewedCommit": "715959e5f9b33d3789f18ead7a9ce388e55749b6",
+      "licenseFiles": {
+        "LICENSE": "4578db32a0c60dd839a6d005bd115ff4bab94f1dbb0b181aa2062b2f8dc6cc48",
+        "README.md": "2cec7eb2ae792de2a836310d7d589eb3f7d96ea17b365171aef60ba0b0fb4991"
+      },
+      "nestedGitlinks": {}
+    },
+    {
+      "path": "paladins-furniture",
+      "kind": "mod",
+      "reviewedCommit": "131ac50fa74b0896f0a6d4b56c003076e036b318",
+      "licenseFiles": {
+        "LICENSE-CODE": "a5681bf9b05db14d86776930017c647ad9e6e56ff6bbcfdf21e5848288dfaf1b",
+        "LICENSE.md": "6d816bb253389098cfa4afcd8b84e0debba145e8dab0db65f34be8877d6677f8",
+        "README.md": "b0a13bd56d470a3ce4d6c88dd51a34c4263a6bc8cfce3d49137cd91e41ddbed3",
+        "common/src/main/resources/assets/pfm/LICENSE-ASSETS.md": "499a05f279bc61ec396c0eb6fe5fa41d394545f5878b30efc85bad36fab924fe"
+      },
+      "nestedGitlinks": {}
+    },
+    {
+      "path": "puzzles-lib",
+      "kind": "mod",
+      "reviewedCommit": "1dc5d1305d9d93527d09b84c826d30216bb5d468",
+      "licenseFiles": {
+        "LICENSE-ASSETS.md": "3ef7cd6bc252acfaa311bf79ba17fd1eaa491c90b9982714453782ae7ad61ceb",
+        "LICENSE.md": "1f256ecad192880510e84ad60474eab7589218784b9a50bc7ceee34c2b91f1d5",
+        "README.md": "c7eb29ac0f70bdaada239feabe6848eb37f8844b6cde03343847698624827660"
+      },
+      "nestedGitlinks": {}
+    },
+    {
+      "path": "resourcepack",
+      "kind": "resourcepack",
+      "reviewedCommit": "82d0c13c888804e137d377ce25553de07b9b125a",
+      "licenseFiles": {
+        "README.md": "5074cbc1e1399c5e50e26cb92c5df5c22e5d7a6f6efacb9409350958a63411b1",
+        "design/vehicles/mxr_a1000/source/README.md": "11649f04fe4b93f0c0ede8f3f12f84c4b781adc268cfe377d8073d76cdba3672",
+        "design/vehicles/mxr_mistilteinn/branding/README.md": "e5e7fd249e504d922be0be1918c29f636441777818356c8e07ef572e22ec61df",
+        "design/vehicles/mxr_mistilteinn/references/sp1900/README.md": "0aacd38887bb0beec392553a0a860d88430bd0253c858427983b82154b456d77",
+        "design/vehicles/mxr_mistilteinn/source/README.md": "78352da6bc41c5cd18ac1383b13d14e79a8e047d41040641efb80918bd1dabaf"
+      },
+      "nestedGitlinks": {}
+    },
+    {
+      "path": "stoneworks",
+      "kind": "mod",
+      "reviewedCommit": "6f492401ca95bec909e0f0f634c58780fa67793a",
+      "licenseFiles": {
+        "LICENSE-ASSETS.md": "3ef7cd6bc252acfaa311bf79ba17fd1eaa491c90b9982714453782ae7ad61ceb",
+        "LICENSE.md": "1f256ecad192880510e84ad60474eab7589218784b9a50bc7ceee34c2b91f1d5",
+        "README.md": "09fb24e872b9fb717cd5d32069b4f019e066b4f9e6f25820a509a8e2db6e79d0"
+      },
+      "nestedGitlinks": {}
+    },
+    {
+      "path": "wireless-redstone",
+      "kind": "mod",
+      "reviewedCommit": "85cd6b45cd660deeba6ac5cb58b8d5f82795dae0",
+      "licenseFiles": {
+        "LICENSE": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986",
+        "README.md": "83c472f8286635ede50c4693fe1f9b99d225111275de49777b116fd5493560d5"
+      },
+      "nestedGitlinks": {}
+    },
+    {
+      "path": "worldedit-hang-fix",
+      "kind": "mod",
+      "reviewedCommit": "ae96bc02ab25322d7ee727125901fde785be7365",
+      "licenseFiles": {
+        "LICENSE": "e3a994d82e644b03a792a930f574002658412f62407f5fee083f2555c5f23118",
+        "README.md": "f93908c1e1b2f67d58db31b74334d62e280cc4c403cb744c74c5a61b469ead6c"
+      },
+      "nestedGitlinks": {}
+    }
+  ]
+}
