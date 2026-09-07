@@ -1,6 +1,7 @@
 """Public packaging policy and exact-byte checks; no Gradle or network."""
 import copy
 import hashlib
+import io
 import json
 from pathlib import Path
 import subprocess
@@ -222,6 +223,44 @@ class ReleaseTests(unittest.TestCase):
         result = subprocess.run(command, capture_output=True, text=True)
         self.assertNotEqual(0, result.returncode)
         self.assertFalse((self.root / 'outside.jar').exists())
+
+    def test_installer_download_checks_bytes_and_rejects_insecure_redirects(self):
+        installation = self.root / 'download-installation'
+        installation.mkdir()
+        namespace = {'__name__': 'installer_test', '__file__': str(installation / 'install-mods.py')}
+        exec(compile(release.INSTALLER, 'install-mods.py', 'exec'), namespace)
+        contents = b'reviewed original download'
+        record = {'path': 'mods/original.jar', 'sha256': hashlib.sha256(contents).hexdigest(),
+                  'size': len(contents), 'downloadUrl': 'https://cdn.modrinth.com/original.jar'}
+        self.write('download-installation/download-manifest.json', {'files': [record]})
+        class Opener:
+            payload = contents
+            calls = 0
+            def open(self, *_args, **_kwargs):
+                self.calls += 1
+                response = io.BytesIO(self.payload)
+                response.url = record['downloadUrl']
+                return response
+        opener = Opener()
+        namespace['build_opener'] = lambda _handler: opener
+        with patch.object(sys, 'argv', ['install-mods.py']), patch('sys.stdout', new_callable=io.StringIO):
+            namespace['main']()
+            namespace['main']()
+        self.assertEqual(1, opener.calls)
+        target = installation / record['path']
+        self.assertEqual(contents, target.read_bytes())
+        target.unlink()
+        opener.payload = b'corrupt'
+        with patch.object(sys, 'argv', ['install-mods.py']):
+            with self.assertRaisesRegex(ValueError, 'corrupt'):
+                namespace['main']()
+        self.assertFalse(target.exists())
+        self.assertEqual([], list(target.parent.glob('*.part')))
+        with self.assertRaisesRegex(ValueError, 'HTTPS'):
+            namespace['HTTPSOnly']().redirect_request(None, None, 302, '', {}, 'http://example.com/file.jar')
+        for invalid in ('mods/a\x01.jar', 'mods/CON.jar', 'mods/a\\b.jar'):
+            with self.assertRaises(ValueError):
+                namespace['target'](installation, invalid)
 
 
 if __name__ == '__main__':
