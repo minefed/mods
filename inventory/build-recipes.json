@@ -583,7 +583,7 @@
     {
       "modId": "modernfix",
       "mode": "source",
-      "reason": "Minecraft 1.20.4 Fabric/Java 17. AGENTS 커밋이 태그 이후 1개이므로 소스 빌드는 upstream 규칙에 따라 5.17.1-beta.1로 버전이 표기된다.",
+      "reason": "Build the Minecraft 1.20.4 Fabric target with Java 17. The upstream version formula derives the beta distance and short hash from the managed Git commit. Keep unchanged KubeJS/Rhino compile dependencies in NeoForge, their only referencing loader, so the Fabric build does not resolve its retired Maven artifacts.",
       "sourcePath": "ModernFix",
       "java": 17,
       "tasks": [
@@ -594,9 +594,9 @@
         "--configure-on-demand"
       ],
       "artifactGlobs": [
-        "fabric/build/libs/modernfix-fabric-5.17.1-beta.2+mc1.20.4.3f88.jar"
+        "fabric/build/libs/modernfix-fabric-5.17.1-beta.3+mc1.20.4.acce.jar"
       ],
-      "expectedVersion": "5.17.1-beta.2+mc1.20.4.3f88"
+      "expectedVersion": "5.17.1-beta.3+mc1.20.4.acce"
     },
     {
       "modId": "msd",
