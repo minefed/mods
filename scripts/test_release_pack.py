@@ -17,6 +17,11 @@ import release_pack as release
 
 class ReleaseTests(unittest.TestCase):
     def setUp(self):
+        # Packaging tests remain offline/JDK-free. The dependency checker has
+        # separate fixture tests and an explicitly enabled real-Java integration.
+        checker = patch.object(release.release_dependencies, 'check_selected', return_value={'scope': 'mocked packaging fixture', 'runtimeValidated': False})
+        checker.start()
+        self.addCleanup(checker.stop)
         self.temporary = tempfile.TemporaryDirectory(prefix='minefed-release-test-')
         self.addCleanup(self.temporary.cleanup)
         self.root = Path(self.temporary.name).resolve()
@@ -133,6 +138,12 @@ class ReleaseTests(unittest.TestCase):
         self.produced['entries'][0]['artifact']['redistribution'] = 'local-only'
         self.input_zip()
         with self.assertRaisesRegex(mods.ModError, 'local-only'):
+            self.run_release()
+        self.assertFalse((self.root / 'build/releases/20260907123456').exists())
+
+    def test_dependency_failure_prevents_all_public_assets(self):
+        release.release_dependencies.check_selected.side_effect = mods.ModError('selected dependency missing')
+        with self.assertRaisesRegex(mods.ModError, 'dependency missing'):
             self.run_release()
         self.assertFalse((self.root / 'build/releases/20260907123456').exists())
 

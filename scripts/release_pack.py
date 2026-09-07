@@ -19,6 +19,7 @@ import zipfile
 
 import build_modpack as builder
 import mods
+import release_dependencies
 
 ROOT = Path(__file__).resolve().parents[1]
 MRPACK_HOSTS = {'cdn.modrinth.com', 'github.com', 'raw.githubusercontent.com', 'gitlab.com'}
@@ -388,7 +389,7 @@ def source_notices(records, version: str) -> str:
                   f"License evidence: {record.get('licenseUrl')}", f"Distribution: {record['distribution']} / {record['artifact']}",
                   f"Decision: {record['reason']}", *record['evidenceUrls']]
         if record.get('sourceCommitUrl'):
-            if record['artifact'] == 'built':
+            if record.get('sourceArchiveUrl'):
                 lines += ['Managed source and build instructions: ' + record['sourceCommitUrl'],
                           'Minefed build/compatibility changes are recorded in this repository history at that exact commit.']
                 if record.get('sourceArchiveUrl'):
@@ -406,7 +407,7 @@ def source_notices(records, version: str) -> str:
     return '\n'.join(lines)
 
 
-def write_profile(root, destination, side, selected, notices, version, loader, resource):
+def write_profile(root, destination, side, selected, notices, version, loader, resource, dependency_check):
     chosen = [(r, p, e) for r, p, e in selected if r[side]]
     records = [r for r, _, _ in chosen]
     prefix = 'overrides/' if side == 'client' else ''
@@ -421,6 +422,7 @@ def write_profile(root, destination, side, selected, notices, version, loader, r
         source_text = source_notices(records, version)
         archive.writestr(prefix + 'LICENSES.md', source_text)
         archive.writestr(prefix + 'SOURCES.md', source_text)
+        archive.writestr(prefix + 'DEPENDENCIES.json', json_bytes(dependency_check))
         archive.writestr(prefix + 'MINEFED-RELEASE.json', json_bytes({'version': version, 'side': side, 'minecraft': '1.20.4',
                           'fabricLoader': loader, 'runtimeValidated': False, 'files': records}))
         for name, content in notices.items():
@@ -479,6 +481,7 @@ def release(root: Path, result_json: str, version: str, policy_path: str = 'inve
         summary, manifest, recipes, provenance, paths, notices = input_build(root, result_json, work)
         policy = load_policy(root, policy_path, set(paths))
         selected = select_files(root, manifest, provenance, paths, policy, work)
+        dependency_check = release_dependencies.check_selected(root, selected, policy['fabricLoaderVersion'])
         publication = work / 'publication'
         publication.mkdir()
         resource = publication / 'resourcepack.zip'
@@ -490,7 +493,7 @@ def release(root: Path, result_json: str, version: str, policy_path: str = 'inve
         profiles = {}
         for side, name in [('server', 'server.zip'), ('client', 'client.mrpack')]:
             profiles[side] = write_profile(root, publication / name, side, selected, notices, version,
-                                          policy['fabricLoaderVersion'], resource)
+                                          policy['fabricLoaderVersion'], resource, dependency_check)
         assets = []
         for kind, name, media in [('server', 'server.zip', 'application/zip'), ('client', 'client.mrpack', 'application/x-modrinth-modpack+zip'), ('resourcepack', 'resourcepack.zip', 'application/zip')]:
             digest, size = mods.file_digest(publication / name)
@@ -499,6 +502,7 @@ def release(root: Path, result_json: str, version: str, policy_path: str = 'inve
                   'inputBuild': summary, 'sourceInputZip': summary['path'], 'runtimeValidated': False,
                   'policySha256': mods.file_digest(mods.safe_path(root, policy_path))[0], 'assets': assets,
                   'profiles': profiles, 'resourcePack': resource_info, 'files': [r for r, _, _ in selected]}
+        result['dependencyCheck'] = dependency_check
         (publication / 'release-assets.json').write_bytes(json_bytes(result))
         # Publish the complete directory in one rename. Failed preparation exposes
         # none of the three assets. Cooperating publishers share a short OS lock.
