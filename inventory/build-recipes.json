@@ -967,7 +967,7 @@
     {
       "modId": "worldedit",
       "mode": "source",
-      "reason": "Build worldedit-fabric for Minecraft 1.20.4 with Java 17 and Gradle 8.5. Select its six required projects with minefedPlatform=fabric so unused Bukkit adapters do not resolve retired Paper development bundles; the upstream default project list is preserved. remapShadowJar produces the standalone Fabric distribution with nested Fabric modules. Metadata appends the current short Git commit to version 7.3.0; worldedit-mod:jar combines Fabric and Forge and is not selected.",
+      "reason": "Build worldedit-fabric for Minecraft 1.20.4 with Java 17 and Gradle 8.5. Select its six required projects with minefedPlatform=fabric so unused Bukkit adapters do not resolve retired Paper development bundles; the upstream default project list is preserved. remapShadowJar produces the standalone Fabric distribution with nested Fabric modules. Metadata appends the current short Git commit to version 7.3.0; worldedit-mod:jar combines Fabric and Forge and is not selected. Opt into Java 21 only for ANTLR generation to avoid the Gradle 8.5 worker bootstrap failure on non-ASCII Windows paths; Gradle and mod compilation remain on Java 17.",
       "sourcePath": "WorldEdit",
       "java": 17,
       "tasks": [
@@ -975,12 +975,13 @@
       ],
       "args": [
         "--no-parallel",
-        "-PminefedPlatform=fabric"
+        "-PminefedPlatform=fabric",
+        "-PminefedAntlrJava21=true"
       ],
       "artifactGlobs": [
         "worldedit-fabric/build/libs/worldedit-fabric-mc1.20.4-7.3.0-dist.jar"
       ],
-      "expectedVersion": "7.3.0+bb4ca1d"
+      "expectedVersion": "7.3.0+f2cdc4a"
     },
     {
       "modId": "yuushya",
