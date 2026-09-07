@@ -70,7 +70,9 @@ python scripts/release_control.py bootstrap --plan build/release-plan.json
 키와 임시 Git URL 설정은 이 단계 직후 제거하며 실패한 경우에도 정리를 실행한다.
 그 뒤 모드 소스를 실행하는 환경에는 리소스팩 키나 게시 토큰을 전달하지 않는다.
 
-JDK 17·21과 Node.js 22를 준비한 후 CI는 `./gradlew build -PsourceBuildWorkers=2`를 실행한다.
+JDK 17·21과 Node.js 22를 준비한 후 CI는 `./gradlew check assemble -PsourceBuildWorkers=2`를 실행한다.
+`build`와 같은 검사·조립 태스크를 실행하되 도구 회귀 검사와 저장소 정책 검사를 먼저 끝낸다.
+Linux에서만 실행하는 프로세스 취소 검사도 긴 소스 컴파일 전에 통과해야 한다.
 루트 Gradle은 JDK 17을 사용하고, 모드 53개는 각자의 wrapper로 최대 두 개씩 빌드한다. 두 작업자는
 서로 다른 `GRADLE_USER_HOME`을 사용해 Loom의 Minecraft 캐시 충돌을 막으며, 각 작업자 안에서는
 모드를 직렬 빌드한다. 준비·최종 무결성 검사·패키징은 기존 단일 실행 경로를 사용한다.

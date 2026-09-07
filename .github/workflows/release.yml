@@ -182,7 +182,7 @@ jobs:
           set -euo pipefail
           test ! -e "$RUNNER_TEMP/minefed-resourcepack-access/key"
           env -u GH_TOKEN -u GITHUB_TOKEN -u MINEFED_RESOURCEPACK_SSH_KEY \
-            -u GIT_SSH_COMMAND -u SSH_AUTH_SOCK ./gradlew build -PsourceBuildWorkers=2
+            -u GIT_SSH_COMMAND -u SSH_AUTH_SOCK ./gradlew check assemble -PsourceBuildWorkers=2
 
       - name: Create the three public release files
         if: steps.plan.outputs.changed == 'true'
