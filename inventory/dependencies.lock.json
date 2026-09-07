@@ -68,7 +68,7 @@
         "trackingBranch": "minefed-1.20.4",
         "baselineRef": "1.20.4",
         "baselineCommit": "327480e5490c2e7740ca117197a28b59dccb137d",
-        "repositoryStatus": "retired",
+        "repositoryStatus": "deleted",
         "retirementRecord": "inventory/retired-repositories.json"
       },
       "sourceReference": {
@@ -140,7 +140,7 @@
         "trackingBranch": "minefed-1.20.4",
         "baselineRef": "1.20.4",
         "baselineCommit": "225bae30d2f2d9d9c1de79136160b725ff15f543",
-        "repositoryStatus": "retired",
+        "repositoryStatus": "deleted",
         "retirementRecord": "inventory/retired-repositories.json"
       },
       "sourceReference": {
@@ -214,7 +214,7 @@
         "trackingBranch": "minefed-1.20.4",
         "baselineRef": "0.97.2+1.20.4",
         "baselineCommit": "26460e8a3bf8fe181850b87815a39629551cef32",
-        "repositoryStatus": "retired",
+        "repositoryStatus": "deleted",
         "retirementRecord": "inventory/retired-repositories.json"
       },
       "sourceReference": {
@@ -299,7 +299,7 @@
         "trackingBranch": "minefed-1.20.4",
         "baselineRef": "0.1.9+1.20.3",
         "baselineCommit": "c40a0d26048779941e9f20d8cba0c87b8a687ab4",
-        "repositoryStatus": "retired",
+        "repositoryStatus": "deleted",
         "retirementRecord": "inventory/retired-repositories.json"
       },
       "sourceReference": {
@@ -371,7 +371,7 @@
         "trackingBranch": "minefed-1.20.4",
         "baselineRef": "refs/tags/0.12.6+1.20.3",
         "baselineCommit": "a06c4776d40248f2f897d86a94ea9b48187c603d",
-        "repositoryStatus": "retired",
+        "repositoryStatus": "deleted",
         "retirementRecord": "inventory/retired-repositories.json"
       },
       "sourceReference": {
@@ -441,7 +441,7 @@
         "trackingBranch": "minefed-1.20.4",
         "baselineRef": "refs/heads/1.20.4",
         "baselineCommit": "ce3cc42d9a27cacbd98f802c55dab1ea083a57d9",
-        "repositoryStatus": "retired",
+        "repositoryStatus": "deleted",
         "retirementRecord": "inventory/retired-repositories.json"
       },
       "sourceReference": {
@@ -510,7 +510,7 @@
         "trackingBranch": "minefed-1.20.4",
         "baselineRef": "refs/tags/v2.4.10",
         "baselineCommit": "0d6cec97dd8755370c6242d83c5ad6fb4310a147",
-        "repositoryStatus": "retired",
+        "repositoryStatus": "deleted",
         "retirementRecord": "inventory/retired-repositories.json"
       },
       "sourceReference": {

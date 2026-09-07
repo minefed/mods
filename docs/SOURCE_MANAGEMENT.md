@@ -4,7 +4,7 @@
 
 활성 모드 서브모듈은 minefed의 `minefed-1.20.4` 브랜치를 추적한다. 이 브랜치는 조사한 소스 기준 커밋 위에 하위 저장소용 `AGENTS.md`와 필요한 빌드·호환성 수정을 작은 커밋으로 관리한다. 활성 저장소의 원래 upstream/기존 fork 브랜치 이력은 그대로 보존한다. 리소스팩은 `main`을 추적한다.
 
-자체 코드 변경 없이 `AGENTS.md`만 추가한 기반 라이브러리 7개는 공식 바이너리 의존성으로 전환했다. 해당 fork의 URL·브랜치·전체 커밋은 `sourceProvenance`에 보존하며 gitlink나 릴리즈 소스 감시 대상에 포함하지 않는다. 기존 로컬 checkout은 Git에서 무시하는 경로에 남기고, 원격 fork는 사용자 요청에 따른 제거 대상이다. 활성 빌드 pin과 공식 소스 참조는 `inventory/dependencies.lock.json`, 업데이트 절차는 [의존성 관리](DEPENDENCIES.md)를 따른다.
+자체 코드 변경 없이 `AGENTS.md`만 추가한 기반 라이브러리 7개는 공식 바이너리 의존성으로 전환했다. 해당 fork의 URL·브랜치·전체 커밋은 `sourceProvenance`에 보존하며 gitlink나 릴리즈 소스 감시 대상에 포함하지 않는다. 기존 로컬 checkout은 Git에서 무시하는 경로에 남기고, 원격 fork는 사용자 요청에 따라 삭제했다. 활성 빌드 pin과 공식 소스 참조는 `inventory/dependencies.lock.json`, 업데이트 절차는 [의존성 관리](DEPENDENCIES.md)를 따른다.
 
 기존 Automobility도 서브모듈과 활성 소스 목록에서 제거했다. 이 저장소와 기반 라이브러리 7개의 과거 소스 정보 및 원격 삭제 상태는 [종료 저장소 기록](../inventory/retired-repositories.json)에 남긴다. 종료 저장소에 기록된 과거 URL은 현재 다운로드 위치가 아니다. 상위 Git의 이전 등록 이력은 재작성하지 않는다.
 

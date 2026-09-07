@@ -4,7 +4,7 @@
 
 **기존 백포트 작업의 소스를 보존하면서, 실제 운영 JAR에 대응하는 Refueled 소스를 별도로 등록했기 때문이다.** 두 모드가 함께 필요한 구조는 아니다.
 
-후속 정리에서는 사용자 요청에 따라 기존 `Automobility`를 서브모듈과 활성 소스 목록에서 제거했다. `minefed/Automobility` 원격 fork도 제거 대상이며, 진행 상태와 과거 URL·브랜치·전체 커밋은 [종료 저장소 기록](../inventory/retired-repositories.json)에 남긴다. `Automobility-Refueled`는 계속 관리한다. 아래 비교는 제거 전에 조사한 소스 기준이다.
+후속 정리에서는 사용자 요청에 따라 기존 `Automobility`를 서브모듈과 활성 소스 목록에서 제거했다. `minefed/Automobility` 원격 fork도 삭제했으며, 확인 결과와 과거 URL·브랜치·전체 커밋은 [종료 저장소 기록](../inventory/retired-repositories.json)에 남긴다. `Automobility-Refueled`는 계속 관리한다. 아래 비교는 제거 전에 조사한 소스 기준이다.
 
 | 구분 | Automobility | Automobility-Refueled |
 | --- | --- | --- |
@@ -57,6 +57,6 @@ Refueled의 [1.20.4 배포 페이지](https://github.com/codenobacon4u/Automobil
 ## Q. 앞으로 무엇을 기준으로 관리하나요?
 
 - **활성 차량 모드:** `Automobility-Refueled` 하나를 현재 1.20.4 빌드·배포 입력으로 사용한다.
-- **종료한 소스 관리:** 기존 `Automobility`는 서브모듈에서 제거했고 Minefed 원격 fork도 제거 대상으로 정했다. 과거 소스 정보와 원격 삭제 상태는 종료 저장소 기록에 남긴다.
+- **종료한 소스 관리:** 기존 `Automobility`는 서브모듈에서 제거했고 Minefed 원격 fork도 삭제했다. 과거 소스 정보와 원격 삭제 상태는 종료 저장소 기록에 남긴다.
 - **외부 공통 라이브러리:** Fabric API처럼 자체 수정이 필요하지 않은 의존성은 호환되는 공식 배포물을 버전·해시·출처로 고정할 수 있다. 이 선택은 차량 모드 소스 관리와 별개다.
 - **변경 검증:** 소스 변경, 빌드 결과 검증, 게임 실행 확인과 운영 서버 적용을 구분한다. 운영 서버 파일 변경·업로드·재시작은 별도 요청이 있을 때 수행한다.
