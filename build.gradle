@@ -14,6 +14,11 @@ if (providers.gradleProperty('rebuildSources').getOrElse('false').toBoolean()) {
 def recipes = new JsonSlurper().parse(file('inventory/build-recipes.json'))
 def pythonExecutable = providers.gradleProperty('pythonExecutable')
         .orElse(providers.environmentVariable('MINEFED_PYTHON')).getOrElse('python')
+
+def sourceBuildWorkers = providers.gradleProperty('sourceBuildWorkers').getOrElse('1')
+if (!(sourceBuildWorkers in ['1', '2'])) {
+    throw new GradleException('sourceBuildWorkers must be 1 or 2')
+}
 def runId = new Date().format('yyyyMMdd-HHmmss', TimeZone.getTimeZone('UTC')) + '-' + UUID.randomUUID().toString().take(8)
 def runner = { List<String> arguments ->
     [pythonExecutable, file('scripts/build_modpack.py').absolutePath] + arguments
@@ -41,10 +46,21 @@ recipes.entries.findAll { it.mode == 'source' }.each { recipe ->
     sourceTasks.add(sourceTask)
 }
 
+def parallelSources = tasks.register('buildSourcesParallel', Exec) {
+    group = 'mod sources'
+    description = 'Build source mods with two workers using separate Gradle caches.'
+    dependsOn prepare
+    mustRunAfter sourceTasks
+    workingDir rootDir
+    commandLine pythonExecutable, file('scripts/build_sources_parallel.py').absolutePath,
+            '--run', runId, '--workers', '2'
+}
+
 tasks.register('modpack', Exec) {
     group = 'build'
     description = 'Build source mods and package them with pinned binary-only JARs.'
-    dependsOn prepare, sourceTasks
+    dependsOn prepare
+    dependsOn sourceBuildWorkers == '2' ? parallelSources : sourceTasks
     workingDir rootDir
     commandLine runner(['assemble', '--run', runId])
 }

@@ -113,8 +113,8 @@ jobs:
           done
           df -h "$GITHUB_WORKSPACE"
           available=$(df --output=avail -B1 "$GITHUB_WORKSPACE" | tail -n 1 | tr -d ' ')
-          if (( available < 35 * 1024 * 1024 * 1024 )); then
-            echo 'At least 35 GiB free space is required before cloning and compiling the source mods.' >&2
+          if (( available < 55 * 1024 * 1024 * 1024 )); then
+            echo 'At least 55 GiB free space is required before cloning and compiling the source mods.' >&2
             exit 1
           fi
 
@@ -182,7 +182,7 @@ jobs:
           set -euo pipefail
           test ! -e "$RUNNER_TEMP/minefed-resourcepack-access/key"
           env -u GH_TOKEN -u GITHUB_TOKEN -u MINEFED_RESOURCEPACK_SSH_KEY \
-            -u GIT_SSH_COMMAND -u SSH_AUTH_SOCK ./gradlew build
+            -u GIT_SSH_COMMAND -u SSH_AUTH_SOCK ./gradlew build -PsourceBuildWorkers=2
 
       - name: Create the three public release files
         if: steps.plan.outputs.changed == 'true'

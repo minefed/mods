@@ -70,9 +70,14 @@ python scripts/release_control.py bootstrap --plan build/release-plan.json
 키와 임시 Git URL 설정은 이 단계 직후 제거하며 실패한 경우에도 정리를 실행한다.
 그 뒤 모드 소스를 실행하는 환경에는 리소스팩 키나 게시 토큰을 전달하지 않는다.
 
-JDK 17·21과 Node.js 22를 준비한 후 `./gradlew build`를 실행한다. 루트 Gradle은 JDK 17을
-사용한다. 모드 53개는 각자의 wrapper로 직렬 빌드하며 같은 job 안의 Gradle 캐시를 공유한다.
-개인 PC의 공유 캐시나 다른 작업 공간을 삭제하지 않는다.
+JDK 17·21과 Node.js 22를 준비한 후 CI는 `./gradlew build -PsourceBuildWorkers=2`를 실행한다.
+루트 Gradle은 JDK 17을 사용하고, 모드 53개는 각자의 wrapper로 최대 두 개씩 빌드한다. 두 작업자는
+서로 다른 `GRADLE_USER_HOME`을 사용해 Loom의 Minecraft 캐시 충돌을 막으며, 각 작업자 안에서는
+모드를 직렬 빌드한다. 준비·최종 무결성 검사·패키징은 기존 단일 실행 경로를 사용한다.
+
+`sourceBuildWorkers`는 `1` 또는 `2`만 허용하며 생략한 로컬 `./gradlew build`는 기존처럼 직렬로
+실행한다. 병렬 모드는 사용자 Gradle 설정이나 init script가 있으면 직렬 모드 사용을 안내하고
+중단한다. 개인 PC의 공유 캐시나 다른 작업 공간을 삭제하지 않는다.
 
 ```sh
 python scripts/release_pack.py \
@@ -104,13 +109,14 @@ python scripts/release_control.py publish \
 ## 실행 환경과 한계
 
 공개 저장소의 `ubuntu-24.04` hosted runner에서 실행한다. 많은 소스를 처음 빌드하면 Minecraft,
-Gradle 및 플러그인 다운로드로 시간이 오래 걸릴 수 있다. job 간 빌드 캐시를 업로드하지 않으므로
+Gradle 및 플러그인 다운로드로 수 시간이 걸릴 수 있다. job 간 빌드 캐시를 업로드하지 않으므로
 다음 변경의 빌드는 새 runner에서 다시 시작하며, 한 build job의 제한 시간은 6시간이다.
 
 디스크 확보는 이 임시 GitHub hosted Ubuntu 이미지에만 적용한다. 공식 이미지 설치 경로인
 `/usr/local/lib/android`, `/usr/share/dotnet`, `/usr/local/.ghcup`,
 `/opt/hostedtoolcache/CodeQL`이 실제로 같은 절대 경로인지 확인한 뒤 사용하지 않는 SDK를 지운다.
-소스 checkout 전에 35 GiB 이상 남아 있는지 확인한다. 이 값은 초기 하한이며 전체 빌드 용량을
+두 작업자의 독립 캐시 공간을 위해 소스 checkout 전에 55 GiB 이상 남아 있는지 확인한다.
+이 값은 초기 하한이며 전체 빌드 용량을
 보증하지 않는다. 디스크나 시간 한도를 넘으면 runner 용량·빌드 구성을 검토해야 한다.
 
 GitHub Action은 확인한 공식 릴리스의 전체 커밋 SHA로 고정한다. 버전을 갱신할 때는 공식
