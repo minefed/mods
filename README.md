@@ -10,6 +10,7 @@ Minefed 서버의 모드 소스와 운영 JAR를 한 곳에서 관리한다. Min
 - **기타 바이너리:** 소스가 없거나 라이선스상 수정이 제한된 12개는 JAR로 관리한다. 재배포 가능한 Dusty Decorations는 `vendor/jars/`에 커밋하고, 나머지는 `vendor/local/`에 보관한다.
 - **운영 기준본:** 소스로 관리하는 모드도 실제 운영 JAR를 `artifacts/local/`에 보존한다. 소스 업데이트와 배포물 교체는 별도 작업이다.
 - **목록과 근거:** [전체 모드 목록](docs/MOD_INVENTORY.md), [고정 버전·해시 목록](inventory/mods.lock.json), [라이선스 조사](inventory/license-audit.json), [원본 고지](inventory/notices/)를 함께 관리한다.
+- **업데이트 조사:** [2026-09-12 업데이트 전수 조사](docs/MOD_UPDATE_AUDIT_2026-09-12.md)에 Minecraft 1.20.4/Fabric의 후속 버전, 누적 변경사항, 미배포 소스 후보와 운영·빌드·공개팩 버전 차이를 정리했다.
 
 로컬 전용 JAR는 Git에 포함하지 않는다. 각 JAR의 파일명, SHA-256, 크기, 공식 다운로드 URL, 소스 커밋과 라이선스 조건은 lock 파일에 고정한다. 모드팩 포함 허용은 독립 JAR 미러링 허용과 다를 수 있다.
 

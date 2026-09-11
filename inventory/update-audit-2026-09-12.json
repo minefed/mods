@@ -1,0 +1,4278 @@
+{
+  "schemaVersion": 1,
+  "checkedAt": "2026-09-11T20:42:53.053874+00:00",
+  "asOfDate": "2026-09-12",
+  "baselineCapturedAt": "2026-09-06",
+  "repositoryCommit": "2f096b98f25ea920c0d84124e570e837e59e3112",
+  "minecraftVersion": "1.20.4",
+  "loader": "fabric",
+  "configuredPublicPackLoaderVersion": "0.18.0",
+  "scope": "공식 호환 배포 전수 및 관련 같은 MC 소스 브랜치 조사. 전 개발 브랜치 감사/실서버 재조회/런타임 검증 아님.",
+  "counts": {
+    "observedJars": 70,
+    "includedUniqueMods": 68,
+    "newerVersionListings": 15,
+    "executableReleaseCandidates": 14,
+    "stableExecutableReleaseCandidates": 13,
+    "betaExecutableReleaseCandidates": 1,
+    "sourceArtifactHold": 1,
+    "unreleasedSourceCandidates": 5,
+    "preparedMinefedDeploymentChecks": 2
+  },
+  "entries": [
+    {
+      "modId": "alloy_forgery",
+      "name": "Alloy Forgery",
+      "baselineVersion": "2.1.4+1.20.3",
+      "baselineSha256": "f1aa20a0a51e332008c988ec8651b43b1ba6ed6516143f7f5454ba2479715a95",
+      "baselineFileName": "alloy-forgery-2.1.4+1.20.3.jar",
+      "buildVersion": "2.1.4+1.20.3",
+      "publicPackSelectedVersion": "2.1.4+1.20.3",
+      "publicPackArtifact": "built",
+      "status": "current_compatible_release",
+      "latestCompatibleRelease": {
+        "id": "X1pKXaia",
+        "version_number": "2.1.4+1.20.3",
+        "version_type": "release",
+        "date_published": "2024-04-16T18:29:08.062803Z",
+        "game_versions": [
+          "1.20.3",
+          "1.20.4"
+        ],
+        "loaders": [
+          "fabric"
+        ],
+        "url": "https://modrinth.com/version/X1pKXaia",
+        "files": [
+          {
+            "filename": "alloy-forgery-2.1.4+1.20.3.jar",
+            "url": "https://cdn.modrinth.com/data/jhl28YkY/versions/X1pKXaia/alloy-forgery-2.1.4%2B1.20.3.jar",
+            "primary": true,
+            "size": 278168,
+            "hashes": {
+              "sha1": "963fd7bda2846e30c7233c175189f8f387494c52",
+              "sha512": "b509976e286bb4971fbd029c799ca4500c54a480eab7753896f1d1826a4e2b336d56686d83f84a7bd9d40b05b81e3ebb5134044be3f6422a87666e93d8dcf3d0"
+            }
+          }
+        ]
+      },
+      "source": {
+        "path": "alloy-forgery",
+        "url": "https://github.com/minefed/alloy-forgery",
+        "upstream": "https://github.com/wisp-forest/alloy-forgery",
+        "ref": "minefed-1.20.4",
+        "commit": "badd26ba735ffe18723f97db49c5f6c1d0c50ee9",
+        "trackingBranch": "minefed-1.20.4",
+        "baselineRef": "2.1.4+1.20.3",
+        "baselineCommit": "f1b61a1b1c0dc7d483b9c44472237cc1c9cc8711"
+      },
+      "runtimeValidated": false
+    },
+    {
+      "modId": "architectury",
+      "name": "Architectury API",
+      "baselineVersion": "11.1.17",
+      "baselineSha256": "0762da4c5697abe1f87997dbdd6f2823420b7cc6c05aa4768c08318252e04903",
+      "baselineFileName": "architectury-11.1.17-fabric.jar",
+      "buildVersion": "11.1.17",
+      "publicPackSelectedVersion": "11.1.17",
+      "publicPackArtifact": "built",
+      "status": "current_compatible_release",
+      "latestCompatibleRelease": {
+        "id": "kVjQWX0l",
+        "version_number": "11.1.17+fabric",
+        "version_type": "release",
+        "date_published": "2024-03-11T11:27:04.119806Z",
+        "game_versions": [
+          "1.20.4"
+        ],
+        "loaders": [
+          "fabric"
+        ],
+        "url": "https://modrinth.com/version/kVjQWX0l",
+        "files": [
+          {
+            "filename": "architectury-11.1.17-fabric.jar",
+            "url": "https://cdn.modrinth.com/data/lhGA9TYQ/versions/kVjQWX0l/architectury-11.1.17-fabric.jar",
+            "primary": true,
+            "size": 587429,
+            "hashes": {
+              "sha1": "578b95d1c3631e614739fa4ac1ca773836950540",
+              "sha512": "294112b2db8b5cef2051fede57dfacfb00cc7fce737cbf7db3c2de8b81f0cd17bd29a3e2849c3e05bd9e801fbfa3d14e5a83b6531b3d37e5d7c650cff4714362"
+            }
+          }
+        ]
+      },
+      "source": null,
+      "runtimeValidated": false
+    },
+    {
+      "modId": "automobility-refueled",
+      "name": "Automobility Refueled",
+      "baselineVersion": "0.4.3.b+1.20.4-fabric",
+      "baselineSha256": "917f092ef96b825a2abfc6ef85e897f326898a06ac4a5fe1e8ae16ce5bf84949",
+      "baselineFileName": "automobility-refueled-0.4.3.b+1.20.4-fabric.jar",
+      "buildVersion": "0.4.3.b+1.20.4-fabric",
+      "publicPackSelectedVersion": "0.4.3.b+1.20.4-fabric",
+      "publicPackArtifact": "built",
+      "status": "current_compatible_release",
+      "latestCompatibleRelease": null,
+      "source": {
+        "path": "Automobility-Refueled",
+        "url": "https://github.com/minefed/Automobility-Refueled",
+        "upstream": "https://github.com/codenobacon4u/Automobility",
+        "ref": "minefed-1.20.4",
+        "commit": "13160075fb4be333fe2b425183c02f9dc2348184",
+        "trackingBranch": "minefed-1.20.4",
+        "baselineRef": "v0.4.3.b+1.20.4",
+        "baselineCommit": "96a6369eed2e5528ba8d09c643e032cf7fa15c51"
+      },
+      "runtimeValidated": false,
+      "externalEvidence": "https://github.com/codenobacon4u/Automobility/releases/tag/v0.4.3.b%2B1.20.4"
+    },
+    {
+      "modId": "axiom",
+      "name": "Axiom",
+      "baselineVersion": "5.3.0",
+      "baselineSha256": "4462d9f369dcaa86bbf2d05a52b0bdeae9272e7d5d53a54cf7ca48fe6088d716",
+      "baselineFileName": "Axiom-5.3.0-for-MC1.20.4.jar",
+      "buildVersion": "5.3.0",
+      "publicPackSelectedVersion": "5.3.0",
+      "publicPackArtifact": "baseline",
+      "status": "release_candidate",
+      "latestCompatibleRelease": {
+        "id": "yt1TxRll",
+        "version_number": "5.4.2",
+        "version_type": "release",
+        "date_published": "2026-05-04T03:12:20.962741Z",
+        "game_versions": [
+          "1.20.3",
+          "1.20.4"
+        ],
+        "loaders": [
+          "fabric"
+        ],
+        "url": "https://modrinth.com/version/yt1TxRll",
+        "files": [
+          {
+            "filename": "Axiom-5.4.2-for-MC1.20.4.jar",
+            "url": "https://cdn.modrinth.com/data/N6n5dqoA/versions/yt1TxRll/Axiom-5.4.2-for-MC1.20.4.jar",
+            "primary": true,
+            "size": 47033208,
+            "hashes": {
+              "sha512": "acb23dcafe708a3dbe510d2df3963a02fee2775a6f740e46cca0613f183d5168b3f245888feb4e1aa24c97152bf3254d3f30883d69aafaef760419fcc07bb21b",
+              "sha1": "850cdb39c0edf7fc1773b4e893d7abada205f430"
+            }
+          }
+        ]
+      },
+      "source": null,
+      "runtimeValidated": false,
+      "candidateArtifactInspection": {
+        "modId": "axiom",
+        "releaseId": "yt1TxRll",
+        "releaseVersion": "5.4.2",
+        "publishedAt": "2026-05-04T03:12:20.962741Z",
+        "versionType": "release",
+        "gameVersions": [
+          "1.20.3",
+          "1.20.4"
+        ],
+        "loaders": [
+          "fabric"
+        ],
+        "fileName": "Axiom-5.4.2-for-MC1.20.4.jar",
+        "url": "https://cdn.modrinth.com/data/N6n5dqoA/versions/yt1TxRll/Axiom-5.4.2-for-MC1.20.4.jar",
+        "sha256": "5994deabcb1da485aaa6994c2f0332a4eea817e33020ad783230a4e0aa642b0b",
+        "sha512": "acb23dcafe708a3dbe510d2df3963a02fee2775a6f740e46cca0613f183d5168b3f245888feb4e1aa24c97152bf3254d3f30883d69aafaef760419fcc07bb21b",
+        "fabricMetadata": {
+          "schemaVersion": 1,
+          "id": "axiom",
+          "version": "5.4.2",
+          "name": "Axiom",
+          "description": "Client-side building utility mod",
+          "authors": [
+            "Moulberry"
+          ],
+          "license": "All Rights Reserved",
+          "icon": "assets/axiom/icon.png",
+          "environment": "*",
+          "entrypoints": {
+            "fabric-datagen": [
+              "com.moulberry.axiom.datagen.DataGeneration"
+            ],
+            "main": [
+              "com.moulberry.axiom.Axiom"
+            ],
+            "preLaunch": [
+              "com.moulberry.axiom.utils.PreLaunch"
+            ]
+          },
+          "mixins": [
+            "axiom.mixins.json"
+          ],
+          "accessWidener": "axiom.accesswidener",
+          "depends": {
+            "fabricloader": ">=0.14.21",
+            "fabric-api": "*",
+            "minecraft": ">=1.20.3 <1.20.5",
+            "java": ">=17"
+          },
+          "breaks": {
+            "sodium": "<=0.5.0",
+            "optifabric": "*",
+            "immersive_portals": "<=6.0.6"
+          },
+          "jars": [
+            {
+              "file": "META-INF/jars/axiomclientapi.jar"
+            },
+            {
+              "file": "META-INF/jars/lattice-1.3.0.jar"
+            },
+            {
+              "file": "META-INF/jars/mixinconstraints-1.0.9.jar"
+            },
+            {
+              "file": "META-INF/jars/mixinextras-fabric-0.3.5.jar"
+            }
+          ]
+        },
+        "classFileCount": 5466,
+        "javaSourceCount": 0
+      }
+    },
+    {
+      "modId": "bluemap",
+      "name": "BlueMap",
+      "baselineVersion": "5.3",
+      "baselineSha256": "bd23d5bc5cf185e888ff061d127251d2baaad5a28ea2b87ad197f06535a7381c",
+      "baselineFileName": "BlueMap-5.3-fabric-1.20.jar",
+      "buildVersion": "5.3",
+      "publicPackSelectedVersion": "5.3",
+      "publicPackArtifact": "built",
+      "status": "current_compatible_release",
+      "latestCompatibleRelease": {
+        "id": "lHRktt6S",
+        "version_number": "5.3-fabric-1.20",
+        "version_type": "release",
+        "date_published": "2024-07-22T22:36:11.195177Z",
+        "game_versions": [
+          "1.20",
+          "1.20.1",
+          "1.20.2",
+          "1.20.3",
+          "1.20.4"
+        ],
+        "loaders": [
+          "fabric"
+        ],
+        "url": "https://modrinth.com/version/lHRktt6S",
+        "files": [
+          {
+            "filename": "BlueMap-5.3-fabric-1.20.jar",
+            "url": "https://cdn.modrinth.com/data/swbUV1cr/versions/lHRktt6S/BlueMap-5.3-fabric-1.20.jar",
+            "primary": true,
+            "size": 4829808,
+            "hashes": {
+              "sha1": "4f4af6f912a89df94a4c5fbddc288ab3d17d05a1",
+              "sha512": "d3a3173cd3f6d19f5a868562d25a902a3f8936246d8a21613fe57b14497c81b989f094fa899eb6f879ffd8d0768ed354e6d8e6e6c750b4254edef8e9a2b727bc"
+            }
+          }
+        ]
+      },
+      "source": {
+        "path": "BlueMap",
+        "url": "https://github.com/minefed/BlueMap",
+        "upstream": "https://github.com/BlueMap-Minecraft/BlueMap",
+        "ref": "minefed-1.20.4",
+        "commit": "dd63c74e1b8251cde574e1beca1025a840e6761c",
+        "trackingBranch": "minefed-1.20.4",
+        "baselineRef": "v5.3",
+        "baselineCommit": "eed8f79e68b053c119f88bbf358bed893a78d110"
+      },
+      "runtimeValidated": false
+    },
+    {
+      "modId": "botarium",
+      "name": "Botarium",
+      "baselineVersion": "3.2.2",
+      "baselineSha256": "7c85682c5d34dfce7005a1a61334c13687a3d117df454f505bf8be6ee3877483",
+      "baselineFileName": "botarium-fabric-1.20.4-3.2.2.jar",
+      "buildVersion": "3.2.2",
+      "publicPackSelectedVersion": "3.2.2",
+      "publicPackArtifact": "built",
+      "status": "current_compatible_release",
+      "latestCompatibleRelease": {
+        "id": "Eqw90l8p",
+        "version_number": "3.2.2",
+        "version_type": "release",
+        "date_published": "2024-03-26T00:17:08.671334Z",
+        "game_versions": [
+          "1.20.4"
+        ],
+        "loaders": [
+          "fabric"
+        ],
+        "url": "https://modrinth.com/version/Eqw90l8p",
+        "files": [
+          {
+            "filename": "botarium-fabric-1.20.4-3.2.2.jar",
+            "url": "https://cdn.modrinth.com/data/2u6LRnMa/versions/Eqw90l8p/botarium-fabric-1.20.4-3.2.2.jar",
+            "primary": true,
+            "size": 209117,
+            "hashes": {
+              "sha512": "e6aef66d86736fb83cfc5d829d11928a03a914d14bfc5153b56e9711ee658cf7bc792406ffaf93cc670ca018ed6da05a167114206be4f870bc9debd4aaa56271",
+              "sha1": "4755770f92b9897913e23c488548315c204c3127"
+            }
+          }
+        ]
+      },
+      "source": null,
+      "runtimeValidated": false
+    },
+    {
+      "modId": "computercraft",
+      "name": "CC: Tweaked",
+      "baselineVersion": "1.110.2",
+      "baselineSha256": "544b974507e0337a00472c828a643b88f34702dac2124297f4d017eca338fca5",
+      "baselineFileName": "cc-tweaked-1.20.4-fabric-1.110.2.jar",
+      "buildVersion": "1.110.2",
+      "publicPackSelectedVersion": "1.110.2",
+      "publicPackArtifact": "built",
+      "status": "current_compatible_release",
+      "latestCompatibleRelease": {
+        "id": "afcOmjVN",
+        "version_number": "1.110.2",
+        "version_type": "alpha",
+        "date_published": "2024-04-07T21:08:34.695102Z",
+        "game_versions": [
+          "1.20.4"
+        ],
+        "loaders": [
+          "fabric"
+        ],
+        "url": "https://modrinth.com/version/afcOmjVN",
+        "files": [
+          {
+            "filename": "cc-tweaked-1.20.4-fabric-1.110.2.jar",
+            "url": "https://cdn.modrinth.com/data/gu7yAYhd/versions/afcOmjVN/cc-tweaked-1.20.4-fabric-1.110.2.jar",
+            "primary": true,
+            "size": 3385744,
+            "hashes": {
+              "sha512": "f85bd3a095f0b1e6db51a274bd055a62e2cc949abd1740504314f5d893db1b14d2ad2f809d9e0b596cb1c050331414947d6efdfd8fdd947e4bce9cbeeba3ce95",
+              "sha1": "707997dfdce361fc4fbb43567d422b91dac18c98"
+            }
+          }
+        ]
+      },
+      "source": {
+        "path": "CC-Tweaked",
+        "url": "https://github.com/minefed/CC-Tweaked",
+        "upstream": "https://github.com/cc-tweaked/CC-Tweaked",
+        "ref": "minefed-1.20.4",
+        "commit": "c3264ade27b032f4b4b480169e67bcb08a01bc0a",
+        "trackingBranch": "minefed-1.20.4",
+        "baselineRef": "v1.20.4-1.110.2",
+        "baselineCommit": "22bd5309babd469b95b7e0bfdc4c4929ded9ab5b"
+      },
+      "runtimeValidated": false
+    },
+    {
+      "modId": "chiselsandbits",
+      "name": "Chisels & Bits",
+      "baselineVersion": "1.5.10-FC",
+      "baselineSha256": "f6d7248ee18cbac5b0232097fe5c6369a29f0bafa4818d6f295363d084c82d13",
+      "baselineFileName": "chisels-and-bits-fabric-1.5.10-FC.jar",
+      "buildVersion": "1.5.10-FC",
+      "publicPackSelectedVersion": "1.5.10-FC",
+      "publicPackArtifact": "built",
+      "status": "current_compatible_release",
+      "latestCompatibleRelease": null,
+      "source": {
+        "path": "Chisels-and-Bits",
+        "url": "https://github.com/minefed/Chisels-and-Bits",
+        "upstream": "https://github.com/ChiselsAndBits/Chisels-and-Bits",
+        "ref": "minefed-1.20.4",
+        "commit": "12fd1d23b3e6fb929ccba01e034c46ae632acbe0",
+        "trackingBranch": "minefed-1.20.4",
+        "baselineRef": "version/1.20.4",
+        "baselineCommit": "f64db2d6124e004ae498cd1a1154909afd81a96d"
+      },
+      "runtimeValidated": false,
+      "externalEvidence": "https://www.curseforge.com/minecraft/mc-mods/chisels-bits-for-fabric/files/all?page=1&pageSize=20&version=1.20.4",
+      "note": "공식1.4.157보다 높은 Minefed1.5.10-FC는 자체 패치판; 원본으로 교체하지 않음"
+    },
+    {
+      "modId": "chunky",
+      "name": "Chunky",
+      "baselineVersion": "1.3.146",
+      "baselineSha256": "ae7fb9d35a3a9d9d4f2104aeae7b31a901c5e5842891e2edd9ddcc42c2646a38",
+      "baselineFileName": "Chunky-1.3.146.jar",
+      "buildVersion": "1.3.146",
+      "publicPackSelectedVersion": "1.3.146",
+      "publicPackArtifact": "built",
+      "status": "current_compatible_release",
+      "latestCompatibleRelease": {
+        "id": "NHWYq9at",
+        "version_number": "1.3.146",
+        "version_type": "release",
+        "date_published": "2024-05-06T07:32:31.222951Z",
+        "game_versions": [
+          "1.20",
+          "1.20.1",
+          "1.20.2",
+          "1.20.3",
+          "1.20.4"
+        ],
+        "loaders": [
+          "fabric"
+        ],
+        "url": "https://modrinth.com/version/NHWYq9at",
+        "files": [
+          {
+            "filename": "Chunky-1.3.146.jar",
+            "url": "https://cdn.modrinth.com/data/fALzjamp/versions/NHWYq9at/Chunky-1.3.146.jar",
+            "primary": true,
+            "size": 344004,
+            "hashes": {
+              "sha1": "b5672d69dc2b210ab2165a27afc03a424fa2b46a",
+              "sha512": "9dbb82993302a8dfbe6ce1f46a051d72b5ada924424f4e23674ce660d209257584159a33248fa9247793e9ba03d3a117299ce1ff6685f06a7fb87c96504459aa"
+            }
+          }
+        ]
+      },
+      "source": {
+        "path": "Chunky",
+        "url": "https://github.com/minefed/Chunky",
+        "upstream": "https://github.com/pop4959/Chunky",
+        "ref": "minefed-1.20.4",
+        "commit": "1fe63d9331b5cbad47dac40b48aabd1b0085c000",
+        "trackingBranch": "minefed-1.20.4",
+        "baselineRef": "d3956d688b70c10ae598861dfbf901946f7cfabb",
+        "baselineCommit": "d3956d688b70c10ae598861dfbf901946f7cfabb"
+      },
+      "runtimeValidated": false
+    },
+    {
+      "modId": "citycraft",
+      "name": "CityCraft",
+      "baselineVersion": "2.0.0",
+      "baselineSha256": "eacb5f0cc6d748ee3c15244932b1c3f4fb218602bdcfcdaf6df4301708425cc1",
+      "baselineFileName": "City Craft-2.0.0-Fabric-1.20.x(ex.5.6).jar",
+      "buildVersion": "2.0.0",
+      "publicPackSelectedVersion": "2.0.0",
+      "publicPackArtifact": "built",
+      "status": "release_candidate",
+      "latestCompatibleRelease": {
+        "id": "gRav2TDu",
+        "version_number": "2.1.1",
+        "version_type": "release",
+        "date_published": "2025-08-09T10:22:04.368952Z",
+        "game_versions": [
+          "1.20",
+          "1.20.1",
+          "1.20.2",
+          "1.20.3",
+          "1.20.4"
+        ],
+        "loaders": [
+          "fabric"
+        ],
+        "url": "https://modrinth.com/version/gRav2TDu",
+        "files": [
+          {
+            "filename": "City Craft-2.1.1-Fabric-1.20.x(ex.5.6).jar",
+            "url": "https://cdn.modrinth.com/data/NCASj2oY/versions/gRav2TDu/City%20Craft-2.1.1-Fabric-1.20.x%28ex.5.6%29.jar",
+            "primary": true,
+            "size": 2120060,
+            "hashes": {
+              "sha512": "0751913c0a5e509b59bc27d1ab08877fb80717eb8dff344bd8c625070587c4e24f4b16b9f495408f7a8ae2127204b1c5b52057daed38c4a7c85afde7661ddcae",
+              "sha1": "e9fcfdbc9a635a0f112cd9a330d1356859f36f35"
+            }
+          }
+        ]
+      },
+      "source": {
+        "path": "CityCraft",
+        "url": "https://github.com/minefed/CityCraft",
+        "upstream": "https://github.com/XiaoYao-MC/CityCraft",
+        "ref": "minefed-1.20.4",
+        "commit": "32f4d36ff7865630f102e8f71302f483311aed39",
+        "trackingBranch": "minefed-1.20.4",
+        "baselineRef": "1.19.3-1.19.4",
+        "baselineCommit": "9d38b13c11494f3aeb20fc98e2fbf8a80119eef5"
+      },
+      "runtimeValidated": false,
+      "candidateArtifactInspection": {
+        "modId": "citycraft",
+        "releaseId": "gRav2TDu",
+        "releaseVersion": "2.1.1",
+        "publishedAt": "2025-08-09T10:22:04.368952Z",
+        "versionType": "release",
+        "gameVersions": [
+          "1.20",
+          "1.20.1",
+          "1.20.2",
+          "1.20.3",
+          "1.20.4"
+        ],
+        "loaders": [
+          "fabric"
+        ],
+        "fileName": "City Craft-2.1.1-Fabric-1.20.x(ex.5.6).jar",
+        "url": "https://cdn.modrinth.com/data/NCASj2oY/versions/gRav2TDu/City%20Craft-2.1.1-Fabric-1.20.x%28ex.5.6%29.jar",
+        "sha256": "ac9cee9f7bc2a0bdce0acd08f03d3ae682085fb65aafc6efa62e2f201646456d",
+        "sha512": "0751913c0a5e509b59bc27d1ab08877fb80717eb8dff344bd8c625070587c4e24f4b16b9f495408f7a8ae2127204b1c5b52057daed38c4a7c85afde7661ddcae",
+        "fabricMetadata": {
+          "schemaVersion": 1,
+          "id": "citycraft",
+          "version": "2.1.1",
+          "name": "City Craft",
+          "description": "Help you to build cities easily!",
+          "authors": [
+            "Xiao Yao , PDpg233 , BH0721 & mxy333"
+          ],
+          "contact": {
+            "homepage": "https://modrinth.com/mod/citycraft",
+            "sources": "https://github.com/XiaoYao-MC/CityCraft"
+          },
+          "license": "MIT",
+          "icon": "assets/citycraft/icon.png",
+          "environment": "*",
+          "entrypoints": {
+            "main": [
+              "net.citycraft.CitycraftMod"
+            ],
+            "client": [
+              "net.citycraft.ClientInit"
+            ]
+          },
+          "depends": {
+            "fabric": "*",
+            "minecraft": "~1.20",
+            "java": ">=17"
+          }
+        },
+        "classFileCount": 103,
+        "javaSourceCount": 0
+      }
+    },
+    {
+      "modId": "crossstitch",
+      "name": "CrossStitch",
+      "baselineVersion": "0.1.6",
+      "baselineSha256": "cf5aac5c5579b1ceb1b2bd25a15f1e2dcc9226f57670163ad1f841b2f905b82e",
+      "baselineFileName": "crossstitch-0.1.6.jar",
+      "buildVersion": "0.1.6",
+      "publicPackSelectedVersion": "0.1.6",
+      "publicPackArtifact": "built",
+      "status": "current_compatible_release",
+      "latestCompatibleRelease": {
+        "id": "dJioNlO8",
+        "version_number": "0.1.6",
+        "version_type": "release",
+        "date_published": "2022-12-26T19:55:48.871996Z",
+        "game_versions": [
+          "1.19.3",
+          "1.19.4",
+          "1.20",
+          "1.20.1",
+          "1.20.2",
+          "1.20.3",
+          "1.20.4",
+          "1.20.5",
+          "1.20.6",
+          "1.21",
+          "1.21.1",
+          "1.21.2",
+          "1.21.3",
+          "1.21.4",
+          "1.21.5",
+          "1.21.6",
+          "1.21.7"
+        ],
+        "loaders": [
+          "fabric"
+        ],
+        "url": "https://modrinth.com/version/dJioNlO8",
+        "files": [
+          {
+            "filename": "crossstitch-0.1.6.jar",
+            "url": "https://cdn.modrinth.com/data/YkOyn1Pn/versions/dJioNlO8/crossstitch-0.1.6.jar",
+            "primary": true,
+            "size": 5321,
+            "hashes": {
+              "sha1": "aba735301c683ed43d5f3361f532bf38f28116f2",
+              "sha512": "434396c8a939eefe1b502d796dcc7fb6758c0664159da9f423bcf9103ee30e6ce4e4e1ef54924d65644d4c3f3873331786b87aa7d5fa8b206acdbb3551e7ecaf"
+            }
+          }
+        ]
+      },
+      "source": {
+        "path": "CrossStitch",
+        "url": "https://github.com/minefed/CrossStitch",
+        "upstream": "https://github.com/PaperMC/CrossStitch",
+        "ref": "minefed-1.20.4",
+        "commit": "aa5545ce774566f3c09f2b34ac4ec0412274dec8",
+        "trackingBranch": "minefed-1.20.4",
+        "baselineRef": "0.1.6",
+        "baselineCommit": "35a21ed5f402ce0957de5d39670e1804705f2247"
+      },
+      "runtimeValidated": false
+    },
+    {
+      "modId": "decorative_blocks",
+      "name": "Decorative Blocks",
+      "baselineVersion": "5.0.2",
+      "baselineSha256": "fed1a24bb2ad5fb53edc7661bd1bafccdd230f7ba54ca86369ad913a222a31c0",
+      "baselineFileName": "Decorative Blocks-Fabric-1.20.4-5.0.2.jar",
+      "buildVersion": "5.0.2",
+      "publicPackSelectedVersion": "5.0.2",
+      "publicPackArtifact": "built",
+      "status": "current_compatible_release",
+      "latestCompatibleRelease": {
+        "id": "txbqjIbZ",
+        "version_number": "5.0.2+fabric",
+        "version_type": "release",
+        "date_published": "2024-02-08T12:03:58.011029Z",
+        "game_versions": [
+          "1.20.4"
+        ],
+        "loaders": [
+          "fabric"
+        ],
+        "url": "https://modrinth.com/version/txbqjIbZ",
+        "files": [
+          {
+            "filename": "Decorative Blocks-Fabric-1.20.4-5.0.2.jar",
+            "url": "https://cdn.modrinth.com/data/t6BIRVZn/versions/txbqjIbZ/Decorative%20Blocks-Fabric-1.20.4-5.0.2.jar",
+            "primary": true,
+            "size": 479159,
+            "hashes": {
+              "sha1": "b7fe1c2b48af6a7d7d234c1d62d5f006749d9e5c",
+              "sha512": "52ad0ff54307cca7763f9581efd4020bed22c0b5541dbe9ca880faf23997ce81fa753b6b806df463e5e5786509e020bced95bd98e2e3cbef6f076327860471ee"
+            }
+          },
+          {
+            "filename": "Decorative Blocks-Fabric-1.20.4-5.0.2-sources.jar",
+            "url": "https://cdn.modrinth.com/data/t6BIRVZn/versions/txbqjIbZ/Decorative%20Blocks-Fabric-1.20.4-5.0.2-sources.jar",
+            "primary": false,
+            "size": 436446,
+            "hashes": {
+              "sha1": "1be346abd8881a8722fc1752d7593393f20674fd",
+              "sha512": "591d835b466982fc597a4903d9635c3b4cf1a4387faffcec294889f7788879416142fb3a74aab76a1078eaaeab707e8c260b389d96aef7fa80592b76d6cf7da9"
+            }
+          }
+        ]
+      },
+      "source": {
+        "path": "Decorative-Blocks",
+        "url": "https://github.com/minefed/Decorative-Blocks",
+        "upstream": "https://github.com/lilypuree/Decorative-Blocks",
+        "ref": "minefed-1.20.4",
+        "commit": "d5f04025d811dd1310ce5a72a5ed9d40ad16c841",
+        "trackingBranch": "minefed-1.20.4",
+        "baselineRef": "main",
+        "baselineCommit": "5775f8bb2c3fa57e041a2d40d377239e7c78d58d"
+      },
+      "runtimeValidated": false
+    },
+    {
+      "modId": "diagonalfences",
+      "name": "Diagonal Fences",
+      "baselineVersion": "20.4.1",
+      "baselineSha256": "ae42cd2bdb3c748c42345f3b8f92c3659ac93c06086e99360d0f35167bdcc838",
+      "baselineFileName": "DiagonalFences-v20.4.1-1.20.4-Fabric.jar",
+      "buildVersion": "20.4.1",
+      "publicPackSelectedVersion": "20.4.1",
+      "publicPackArtifact": "baseline",
+      "status": "current_compatible_release",
+      "latestCompatibleRelease": {
+        "id": "vRnCnKBa",
+        "version_number": "v20.4.1-1.20.4-Fabric",
+        "version_type": "release",
+        "date_published": "2024-03-29T12:43:01.430619Z",
+        "game_versions": [
+          "1.20.4"
+        ],
+        "loaders": [
+          "fabric"
+        ],
+        "url": "https://modrinth.com/version/vRnCnKBa",
+        "files": [
+          {
+            "filename": "DiagonalFences-v20.4.1-1.20.4-Fabric.jar",
+            "url": "https://cdn.modrinth.com/data/IKARgflD/versions/vRnCnKBa/DiagonalFences-v20.4.1-1.20.4-Fabric.jar",
+            "primary": true,
+            "size": 163915,
+            "hashes": {
+              "sha512": "ce26f6ac19aca1c1925dd49051a62d9cd74a018528614876108505c03067a4837b59e0b472b1185cf60453fb7845dc404800ccbeeff8198fe4a6b5df18640ad6",
+              "sha1": "09e7b11c57475e0279035a8fc326a6f2172e4f53"
+            }
+          }
+        ]
+      },
+      "source": {
+        "path": "diagonal-fences",
+        "url": "https://github.com/minefed/diagonal-fences",
+        "upstream": "https://github.com/Fuzss/diagonal-fences",
+        "ref": "minefed-1.20.4",
+        "commit": "52a8f8196ba52c51d663c44666ee2a7425fb8282",
+        "trackingBranch": "minefed-1.20.4",
+        "baselineRef": "1.20.4",
+        "baselineCommit": "57e3bc3958e313c772cf68c2bfcb06a367fceb5d"
+      },
+      "runtimeValidated": false
+    },
+    {
+      "modId": "diagonalwalls",
+      "name": "Diagonal Walls",
+      "baselineVersion": "20.4.1",
+      "baselineSha256": "1ebdd486ed7b337bf28f92a869bb53b587f1e26027597b9048602f4fe13d60d5",
+      "baselineFileName": "DiagonalWalls-v20.4.1-1.20.4-Fabric.jar",
+      "buildVersion": "20.4.1",
+      "publicPackSelectedVersion": "20.4.1",
+      "publicPackArtifact": "baseline",
+      "status": "current_compatible_release",
+      "latestCompatibleRelease": {
+        "id": "lfD849Zm",
+        "version_number": "v20.4.1-1.20.4-Fabric",
+        "version_type": "release",
+        "date_published": "2024-03-29T12:43:52.607579Z",
+        "game_versions": [
+          "1.20.4"
+        ],
+        "loaders": [
+          "fabric"
+        ],
+        "url": "https://modrinth.com/version/lfD849Zm",
+        "files": [
+          {
+            "filename": "DiagonalWalls-v20.4.1-1.20.4-Fabric.jar",
+            "url": "https://cdn.modrinth.com/data/FQgc8dib/versions/lfD849Zm/DiagonalWalls-v20.4.1-1.20.4-Fabric.jar",
+            "primary": true,
+            "size": 160129,
+            "hashes": {
+              "sha1": "2fcec50586414f9edc2f3f0ba43ddd0b5095c6a9",
+              "sha512": "4b1df53440634d453e6417ba357750db9e18c906aee24274f0aa9c7806a90d17e936127b92affe99f79adaae7c47497e06cd7d97feaeb73004b2342e9e77522e"
+            }
+          }
+        ]
+      },
+      "source": {
+        "path": "diagonal-walls",
+        "url": "https://github.com/minefed/diagonal-walls",
+        "upstream": "https://github.com/Fuzss/diagonal-walls",
+        "ref": "minefed-1.20.4",
+        "commit": "452eb0a4a633ee2d0908f166b0e17315ee99d197",
+        "trackingBranch": "minefed-1.20.4",
+        "baselineRef": "1.20.4",
+        "baselineCommit": "250c86bd48638d7f6979850a36e0240aed38fc85"
+      },
+      "runtimeValidated": false
+    },
+    {
+      "modId": "diagonalwindows",
+      "name": "Diagonal Windows",
+      "baselineVersion": "20.4.1",
+      "baselineSha256": "569c9abb705252cd4f10663ea3b9b78e93d72c3443ad6e22636da26c027a3bc1",
+      "baselineFileName": "DiagonalWindows-v20.4.1-1.20.4-Fabric.jar",
+      "buildVersion": "20.4.1",
+      "publicPackSelectedVersion": "20.4.1",
+      "publicPackArtifact": "baseline",
+      "status": "current_compatible_release",
+      "latestCompatibleRelease": {
+        "id": "1p2S1mYf",
+        "version_number": "v20.4.1-1.20.4-Fabric",
+        "version_type": "release",
+        "date_published": "2024-03-29T12:44:33.060930Z",
+        "game_versions": [
+          "1.20.4"
+        ],
+        "loaders": [
+          "fabric"
+        ],
+        "url": "https://modrinth.com/version/1p2S1mYf",
+        "files": [
+          {
+            "filename": "DiagonalWindows-v20.4.1-1.20.4-Fabric.jar",
+            "url": "https://cdn.modrinth.com/data/oOi0CKes/versions/1p2S1mYf/DiagonalWindows-v20.4.1-1.20.4-Fabric.jar",
+            "primary": true,
+            "size": 164520,
+            "hashes": {
+              "sha1": "27a784bdddb145d31b7525e84b5899e41ba84e49",
+              "sha512": "85b02ee45ed591325558544ec509d606579b9a2f69fca2bc26deb285599ae6b6a9e1d2fc8f419b2bd59af3965e05e02102aed9175f0321966bec82fac31b53bf"
+            }
+          }
+        ]
+      },
+      "source": {
+        "path": "diagonal-windows",
+        "url": "https://github.com/minefed/diagonal-windows",
+        "upstream": "https://github.com/Fuzss/diagonal-windows",
+        "ref": "minefed-1.20.4",
+        "commit": "7209c6ea3cb2b05157eeae3ddced087556889bb9",
+        "trackingBranch": "minefed-1.20.4",
+        "baselineRef": "1.20.4",
+        "baselineCommit": "4116d6bab254219ee1e78f25c8ecbd44ac42594b"
+      },
+      "runtimeValidated": false
+    },
+    {
+      "modId": "dustydecorations",
+      "name": "Dusty Decorations Refabricated",
+      "baselineVersion": "1.1-1.20.3+1.20.4",
+      "baselineSha256": "762e412dabfe680713984b5cf8662931cf13067c15d62b5526ee0c5d9cba37f3",
+      "baselineFileName": "DustyDecoRefabricated-1.1-1.20.3+1.20.4.jar",
+      "buildVersion": "1.1-1.20.3+1.20.4",
+      "publicPackSelectedVersion": "1.1-1.20.3+1.20.4",
+      "publicPackArtifact": "built",
+      "status": "current_compatible_release",
+      "latestCompatibleRelease": {
+        "id": "DHsgxScD",
+        "version_number": "1.1",
+        "version_type": "release",
+        "date_published": "2024-11-10T21:28:52.650423Z",
+        "game_versions": [
+          "1.20.3",
+          "1.20.4"
+        ],
+        "loaders": [
+          "fabric"
+        ],
+        "url": "https://modrinth.com/version/DHsgxScD",
+        "files": [
+          {
+            "filename": "DustyDecoRefabricated-1.1-1.20.3+1.20.4.jar",
+            "url": "https://cdn.modrinth.com/data/KgFOuaiZ/versions/DHsgxScD/DustyDecoRefabricated-1.1-1.20.3%2B1.20.4.jar",
+            "primary": true,
+            "size": 459565,
+            "hashes": {
+              "sha512": "534fda0e88d635fdd4ea112afe995ce70c05d5d7eb2e438893c47e667d9e5ef024c96dbf2c8748ef47746a5f88d648ad026849c914931d527c395736c7526ce7",
+              "sha1": "b6c8930c92361176c1fe4d1c8588f908c3197d6f"
+            }
+          }
+        ]
+      },
+      "source": null,
+      "runtimeValidated": false
+    },
+    {
+      "modId": "exlinefurniture",
+      "name": "Exline Furniture",
+      "baselineVersion": "2.7.2",
+      "baselineSha256": "bbe6c4ea2e9703f7b908515c70f081ababa7f1388610ace31f11f915e72bcfac",
+      "baselineFileName": "exlinefurniture-v2.7.2-fabric-1.20.4.jar",
+      "buildVersion": "2.7.2",
+      "publicPackSelectedVersion": "2.7.2",
+      "publicPackArtifact": "baseline",
+      "status": "current_compatible_release",
+      "latestCompatibleRelease": {
+        "id": "DfuDGYlp",
+        "version_number": "2.7.2",
+        "version_type": "release",
+        "date_published": "2024-03-05T06:23:56.966183Z",
+        "game_versions": [
+          "1.20.4"
+        ],
+        "loaders": [
+          "fabric"
+        ],
+        "url": "https://modrinth.com/version/DfuDGYlp",
+        "files": [
+          {
+            "filename": "exlinefurniture-v2.7.2-fabric-1.20.4.jar",
+            "url": "https://cdn.modrinth.com/data/CQ7pGNKT/versions/DfuDGYlp/exlinefurniture-v2.7.2-fabric-1.20.4.jar",
+            "primary": true,
+            "size": 2237364,
+            "hashes": {
+              "sha1": "e0ac2c4d83cd6dc027bfac7bf63cb65b8635c74e",
+              "sha512": "2f6f9bc134e44109c01d82b7d3623e4a7a6a2f9a3a4c80a35afe52e137d869dfd58065c9fd48aba61192d7c9b683e3f3699c6cac03190448122567c68676293d"
+            }
+          }
+        ]
+      },
+      "source": null,
+      "runtimeValidated": false
+    },
+    {
+      "modId": "fabric-api",
+      "name": "Fabric API",
+      "baselineVersion": "0.97.2+1.20.4",
+      "baselineSha256": "473b9278dc8e97cbde1d8d52e24af6ee3f296ae00d7b46d14967ebcbe16fb7a7",
+      "baselineFileName": "fabric-api-0.97.2+1.20.4.jar",
+      "buildVersion": "0.97.3+1.20.4",
+      "publicPackSelectedVersion": "0.97.3+1.20.4",
+      "publicPackArtifact": "built",
+      "status": "already_selected_release",
+      "latestCompatibleRelease": {
+        "id": "BPX6fK06",
+        "version_number": "0.97.3+1.20.4",
+        "version_type": "release",
+        "date_published": "2025-06-20T09:13:59.799615Z",
+        "game_versions": [
+          "1.20.4"
+        ],
+        "loaders": [
+          "fabric"
+        ],
+        "url": "https://modrinth.com/version/BPX6fK06",
+        "files": [
+          {
+            "filename": "fabric-api-0.97.3+1.20.4.jar",
+            "url": "https://cdn.modrinth.com/data/P7dR8mSH/versions/BPX6fK06/fabric-api-0.97.3%2B1.20.4.jar",
+            "primary": true,
+            "size": 2187523,
+            "hashes": {
+              "sha1": "a21f3c7e700b9fc3a28e896979a07ec489507143",
+              "sha512": "ea1e47672a1e0fef7fa3fd7f7b396b5a8fb2c46e6ce33dbc4cc2b8d320bc7b775a0de42a478302419c8063c47fbc18bb2ad7551772f54af8059132ac2cb4f108"
+            }
+          }
+        ]
+      },
+      "source": null,
+      "runtimeValidated": false,
+      "candidateArtifactInspection": {
+        "modId": "fabric-api",
+        "releaseId": "BPX6fK06",
+        "releaseVersion": "0.97.3+1.20.4",
+        "publishedAt": "2025-06-20T09:13:59.799615Z",
+        "versionType": "release",
+        "gameVersions": [
+          "1.20.4"
+        ],
+        "loaders": [
+          "fabric"
+        ],
+        "fileName": "fabric-api-0.97.3+1.20.4.jar",
+        "url": "https://cdn.modrinth.com/data/P7dR8mSH/versions/BPX6fK06/fabric-api-0.97.3%2B1.20.4.jar",
+        "sha256": "5c11c93b21e0fbcd83dd11c6059479143f3d422bceac4153c3e55806ba9371f1",
+        "sha512": "ea1e47672a1e0fef7fa3fd7f7b396b5a8fb2c46e6ce33dbc4cc2b8d320bc7b775a0de42a478302419c8063c47fbc18bb2ad7551772f54af8059132ac2cb4f108",
+        "fabricMetadata": {
+          "schemaVersion": 1,
+          "id": "fabric-api",
+          "provides": [
+            "fabric"
+          ],
+          "name": "Fabric API",
+          "version": "0.97.3+1.20.4",
+          "environment": "*",
+          "license": "Apache-2.0",
+          "icon": "assets/fabric/icon.png",
+          "contact": {
+            "homepage": "https://fabricmc.net",
+            "irc": "irc://irc.esper.net:6667/fabric",
+            "issues": "https://github.com/FabricMC/fabric/issues",
+            "sources": "https://github.com/FabricMC/fabric"
+          },
+          "authors": [
+            "FabricMC"
+          ],
+          "depends": {
+            "fabricloader": ">=0.15.1",
+            "java": ">=17",
+            "minecraft": ">=1.20.3- <1.20.5-"
+          },
+          "description": "Core API module providing key hooks and intercompatibility features.",
+          "jars": [
+            {
+              "file": "META-INF/jars/fabric-api-base-0.97.3.jar"
+            },
+            {
+              "file": "META-INF/jars/fabric-api-lookup-api-v1-0.97.3.jar"
+            },
+            {
+              "file": "META-INF/jars/fabric-biome-api-v1-0.97.3.jar"
+            },
+            {
+              "file": "META-INF/jars/fabric-block-api-v1-0.97.3.jar"
+            },
+            {
+              "file": "META-INF/jars/fabric-block-view-api-v2-0.97.3.jar"
+            },
+            {
+              "file": "META-INF/jars/fabric-blockrenderlayer-v1-0.97.3.jar"
+            },
+            {
+              "file": "META-INF/jars/fabric-client-tags-api-v1-0.97.3.jar"
+            },
+            {
+              "file": "META-INF/jars/fabric-command-api-v2-0.97.3.jar"
+            },
+            {
+              "file": "META-INF/jars/fabric-content-registries-v0-0.97.3.jar"
+            },
+            {
+              "file": "META-INF/jars/fabric-convention-tags-v1-0.97.3.jar"
+            },
+            {
+              "file": "META-INF/jars/fabric-crash-report-info-v1-0.97.3.jar"
+            },
+            {
+              "file": "META-INF/jars/fabric-data-attachment-api-v1-0.97.3.jar"
+            },
+            {
+              "file": "META-INF/jars/fabric-data-generation-api-v1-0.97.3.jar"
+            },
+            {
+              "file": "META-INF/jars/fabric-dimensions-v1-0.97.3.jar"
+            },
+            {
+              "file": "META-INF/jars/fabric-entity-events-v1-0.97.3.jar"
+            },
+            {
+              "file": "META-INF/jars/fabric-events-interaction-v0-0.97.3.jar"
+            },
+            {
+              "file": "META-INF/jars/fabric-game-rule-api-v1-0.97.3.jar"
+            },
+            {
+              "file": "META-INF/jars/fabric-item-api-v1-0.97.3.jar"
+            },
+            {
+              "file": "META-INF/jars/fabric-item-group-api-v1-0.97.3.jar"
+            },
+            {
+              "file": "META-INF/jars/fabric-key-binding-api-v1-0.97.3.jar"
+            },
+            {
+              "file": "META-INF/jars/fabric-lifecycle-events-v1-0.97.3.jar"
+            },
+            {
+              "file": "META-INF/jars/fabric-loot-api-v2-0.97.3.jar"
+            },
+            {
+              "file": "META-INF/jars/fabric-message-api-v1-0.97.3.jar"
+            },
+            {
+              "file": "META-INF/jars/fabric-mining-level-api-v1-0.97.3.jar"
+            },
+            {
+              "file": "META-INF/jars/fabric-model-loading-api-v1-0.97.3.jar"
+            },
+            {
+              "file": "META-INF/jars/fabric-networking-api-v1-0.97.3.jar"
+            },
+            {
+              "file": "META-INF/jars/fabric-object-builder-api-v1-0.97.3.jar"
+            },
+            {
+              "file": "META-INF/jars/fabric-particles-v1-0.97.3.jar"
+            },
+            {
+              "file": "META-INF/jars/fabric-recipe-api-v1-0.97.3.jar"
+            },
+            {
+              "file": "META-INF/jars/fabric-registry-sync-v0-0.97.3.jar"
+            },
+            {
+              "file": "META-INF/jars/fabric-renderer-api-v1-0.97.3.jar"
+            },
+            {
+              "file": "META-INF/jars/fabric-renderer-indigo-0.97.3.jar"
+            },
+            {
+              "file": "META-INF/jars/fabric-rendering-fluids-v1-0.97.3.jar"
+            },
+            {
+              "file": "META-INF/jars/fabric-rendering-v1-0.97.3.jar"
+            },
+            {
+              "file": "META-INF/jars/fabric-resource-conditions-api-v1-0.97.3.jar"
+            },
+            {
+              "file": "META-INF/jars/fabric-resource-loader-v0-0.97.3.jar"
+            },
+            {
+              "file": "META-INF/jars/fabric-screen-api-v1-0.97.3.jar"
+            },
+            {
+              "file": "META-INF/jars/fabric-screen-handler-api-v1-0.97.3.jar"
+            },
+            {
+              "file": "META-INF/jars/fabric-sound-api-v1-0.97.3.jar"
+            },
+            {
+              "file": "META-INF/jars/fabric-transfer-api-v1-0.97.3.jar"
+            },
+            {
+              "file": "META-INF/jars/fabric-transitive-access-wideners-v1-0.97.3.jar"
+            },
+            {
+              "file": "META-INF/jars/fabric-command-api-v1-0.97.3.jar"
+            },
+            {
+              "file": "META-INF/jars/fabric-commands-v0-0.97.3.jar"
+            },
+            {
+              "file": "META-INF/jars/fabric-containers-v0-0.97.3.jar"
+            },
+            {
+              "file": "META-INF/jars/fabric-events-lifecycle-v0-0.97.3.jar"
+            },
+            {
+              "file": "META-INF/jars/fabric-keybindings-v0-0.97.3.jar"
+            },
+            {
+              "file": "META-INF/jars/fabric-models-v0-0.97.3.jar"
+            },
+            {
+              "file": "META-INF/jars/fabric-renderer-registries-v1-0.97.3.jar"
+            },
+            {
+              "file": "META-INF/jars/fabric-rendering-data-attachment-v1-0.97.3.jar"
+            },
+            {
+              "file": "META-INF/jars/fabric-rendering-v0-0.97.3.jar"
+            }
+          ]
+        },
+        "classFileCount": 0,
+        "javaSourceCount": 0
+      }
+    },
+    {
+      "modId": "carpet",
+      "name": "Carpet",
+      "baselineVersion": "1.4.128+v231205",
+      "baselineSha256": "d8e5cf2184848fd78d482f23554ed814db2094acd37fab62d8ce7379d3ba02ca",
+      "baselineFileName": "fabric-carpet-1.20.3-1.4.128+v231205.jar",
+      "buildVersion": "1.4.128+v231205",
+      "publicPackSelectedVersion": "1.4.128+v231205",
+      "publicPackArtifact": "built",
+      "status": "current_compatible_release",
+      "latestCompatibleRelease": {
+        "id": "yYzR60Xd",
+        "version_number": "1.4.128",
+        "version_type": "release",
+        "date_published": "2023-12-11T16:59:42.634207Z",
+        "game_versions": [
+          "1.20.3",
+          "1.20.4"
+        ],
+        "loaders": [
+          "fabric"
+        ],
+        "url": "https://modrinth.com/version/yYzR60Xd",
+        "files": [
+          {
+            "filename": "fabric-carpet-1.20.3-1.4.128+v231205.jar",
+            "url": "https://cdn.modrinth.com/data/TQTTVgYE/versions/yYzR60Xd/fabric-carpet-1.20.3-1.4.128%2Bv231205.jar",
+            "primary": true,
+            "size": 1555727,
+            "hashes": {
+              "sha512": "6ca0bd328a76b7c3c10eb0253cb57eba8791087775467fbe2217c7f938c0064700bdca4cbf358e7f2f3427ae50a6d63f520f2b1a549cb36da1cc718812f86375",
+              "sha1": "53ee95647e15097f369061e372d8c9411635b4a7"
+            }
+          }
+        ]
+      },
+      "source": {
+        "path": "fabric-carpet",
+        "url": "https://github.com/minefed/fabric-carpet",
+        "upstream": "https://github.com/gnembon/fabric-carpet",
+        "ref": "minefed-1.20.4",
+        "commit": "72248bbebe61dc0b2b7316378aa7629955d0f91a",
+        "trackingBranch": "minefed-1.20.4",
+        "baselineRef": "1.4.128",
+        "baselineCommit": "92176312d92bfc2595f0bad18b64475f3800921a"
+      },
+      "runtimeValidated": false
+    },
+    {
+      "modId": "seasons",
+      "name": "Fabric Seasons",
+      "baselineVersion": "2.4.2-BETA+1.20.4",
+      "baselineSha256": "97be54d700cd3537899f52aad75ded51a17308c9585221967e7ea70ef02a432d",
+      "baselineFileName": "fabric-seasons-2.4.2-BETA+1.20.4.jar",
+      "buildVersion": "2.4.2-BETA+1.20.4",
+      "publicPackSelectedVersion": "2.4.2-BETA+1.20.4",
+      "publicPackArtifact": "built",
+      "status": "current_compatible_release",
+      "latestCompatibleRelease": {
+        "id": "kSoN9Hi9",
+        "version_number": "2.4.2-BETA+1.20.4",
+        "version_type": "beta",
+        "date_published": "2024-10-06T21:05:44.632725Z",
+        "game_versions": [
+          "1.20.4"
+        ],
+        "loaders": [
+          "fabric"
+        ],
+        "url": "https://modrinth.com/version/kSoN9Hi9",
+        "files": [
+          {
+            "filename": "fabric-seasons-2.4.2-BETA+1.20.4.jar",
+            "url": "https://cdn.modrinth.com/data/KJe6y9Eu/versions/kSoN9Hi9/fabric-seasons-2.4.2-BETA%2B1.20.4.jar",
+            "primary": true,
+            "size": 429604,
+            "hashes": {
+              "sha1": "77110dfa41d0fd6265a144d6d55ef352a1adc0bb",
+              "sha512": "57d11459a526de72ccf0da93c3324bcf70a6e090bdad8b521b4dd95372f039cd70ce28c2045d583622ea50ff58755bc049c4d185c3576ff76803ef60277df78f"
+            }
+          }
+        ]
+      },
+      "source": {
+        "path": "fabric-seasons",
+        "url": "https://github.com/minefed/fabric-seasons",
+        "upstream": "https://github.com/lucaargolo/fabric-seasons",
+        "ref": "minefed-1.20.4",
+        "commit": "8e7833a58f54180c6fc6a96a2fb08c63ace5a726",
+        "trackingBranch": "minefed-1.20.4",
+        "baselineRef": "2.4.2-BETA+1.20.4",
+        "baselineCommit": "bccadddf4ea556fe0fcea95bb88360fd25b812e8"
+      },
+      "runtimeValidated": false
+    },
+    {
+      "modId": "fabricproxy-lite",
+      "name": "FabricProxy-Lite",
+      "baselineVersion": "2.7.0",
+      "baselineSha256": "4c8b1ffeb433ac6d076168068089a4c32a5a1f38eb5f4534ba2f2e1c692a4d4f",
+      "baselineFileName": "FabricProxy-Lite-2.7.0.jar",
+      "buildVersion": "2.7.0",
+      "publicPackSelectedVersion": "2.7.0",
+      "publicPackArtifact": "built",
+      "status": "current_compatible_release",
+      "latestCompatibleRelease": {
+        "id": "Mxw3Cbsk",
+        "version_number": "v2.7.0",
+        "version_type": "release",
+        "date_published": "2023-10-28T12:09:49.265507Z",
+        "game_versions": [
+          "1.20.2",
+          "1.20.3",
+          "1.20.4"
+        ],
+        "loaders": [
+          "fabric"
+        ],
+        "url": "https://modrinth.com/version/Mxw3Cbsk",
+        "files": [
+          {
+            "filename": "FabricProxy-Lite-2.7.0.jar",
+            "url": "https://cdn.modrinth.com/data/8dI2tmqs/versions/Mxw3Cbsk/FabricProxy-Lite-2.7.0.jar",
+            "primary": true,
+            "size": 273059,
+            "hashes": {
+              "sha1": "e6347ca3365edcc2fa0b2b04c69f5f673a47a1b7",
+              "sha512": "48e04635d979cbd9a442823738b6814395d36aeb85ad261bdd4d002f663146f6b4f3196f69326560f63ca580d765660ee3a518d440c1ad6f41ae7240dbc40def"
+            }
+          }
+        ]
+      },
+      "source": {
+        "path": "FabricProxy-Lite",
+        "url": "https://github.com/minefed/FabricProxy-Lite",
+        "upstream": "https://github.com/OKTW-Network/FabricProxy-Lite",
+        "ref": "minefed-1.20.4",
+        "commit": "7391c12684820b14039a42c0e5ae2e9178bf4290",
+        "trackingBranch": "minefed-1.20.4",
+        "baselineRef": "v2.7.0",
+        "baselineCommit": "6a7e156c3b84c07adfb80fb99d1739a631ed341a"
+      },
+      "runtimeValidated": false
+    },
+    {
+      "modId": "fallingtree",
+      "name": "FallingTree",
+      "baselineVersion": "1.20.4.3",
+      "baselineSha256": "1757f8b8a102615ac60341b855857014fe39ca49301e2f95c7805e14d8b2ba24",
+      "baselineFileName": "FallingTree-1.20.4-1.20.4.3.jar",
+      "buildVersion": "1.20.4.3",
+      "publicPackSelectedVersion": "1.20.4.3",
+      "publicPackArtifact": "built",
+      "status": "current_compatible_release",
+      "latestCompatibleRelease": {
+        "id": "mb15RrXi",
+        "version_number": "1.20.4-1.20.4.3",
+        "version_type": "release",
+        "date_published": "2024-01-05T22:12:27.623798Z",
+        "game_versions": [
+          "1.20.4"
+        ],
+        "loaders": [
+          "fabric",
+          "forge"
+        ],
+        "url": "https://modrinth.com/version/mb15RrXi",
+        "files": [
+          {
+            "filename": "FallingTree-1.20.4-1.20.4.3.jar",
+            "url": "https://cdn.modrinth.com/data/Fb4jn8m6/versions/mb15RrXi/FallingTree-1.20.4-1.20.4.3.jar",
+            "primary": true,
+            "size": 399949,
+            "hashes": {
+              "sha1": "ca13eb4798f4bb8b9a4f55f3733959857a867b5d",
+              "sha512": "ac55e89111aaeabe4b7919e962bf3c31fb3632ab23a4fc18206f441228fc4ccdc1d95716c8fee46cd4d6c3f915515ef44271ea05dcb9509e6ed4c0525f79267e"
+            }
+          }
+        ]
+      },
+      "source": {
+        "path": "FallingTree",
+        "url": "https://github.com/minefed/FallingTree",
+        "upstream": "https://github.com/RakambdaOrg/FallingTree",
+        "ref": "minefed-1.20.4",
+        "commit": "0a70a01d3d682a9069f12a00a5c9dbd96d53f2cb",
+        "trackingBranch": "minefed-1.20.4",
+        "baselineRef": "1.20.4.3",
+        "baselineCommit": "6db0a7bface140865da07009c0bd679f684a3340"
+      },
+      "runtimeValidated": false
+    },
+    {
+      "modId": "ferritecore",
+      "name": "FerriteCore",
+      "baselineVersion": "6.0.3",
+      "baselineSha256": "66984ee95c4ab05a83c437b0dd04568a4a2c8e7f219b7498604e25952c4cc125",
+      "baselineFileName": "ferritecore-6.0.3-fabric.jar",
+      "buildVersion": "6.0.3",
+      "publicPackSelectedVersion": "6.0.3",
+      "publicPackArtifact": "built",
+      "status": "current_compatible_release",
+      "latestCompatibleRelease": {
+        "id": "pguEMpy9",
+        "version_number": "6.0.3-fabric",
+        "version_type": "release",
+        "date_published": "2023-12-13T09:52:24.527613Z",
+        "game_versions": [
+          "1.20.4"
+        ],
+        "loaders": [
+          "fabric",
+          "quilt"
+        ],
+        "url": "https://modrinth.com/version/pguEMpy9",
+        "files": [
+          {
+            "filename": "ferritecore-6.0.3-fabric.jar",
+            "url": "https://cdn.modrinth.com/data/uXXizFIs/versions/pguEMpy9/ferritecore-6.0.3-fabric.jar",
+            "primary": true,
+            "size": 125100,
+            "hashes": {
+              "sha512": "709ab6362dd1dcc432edd1e6c33aafba6f2d12be701bc14911107340f8ac2466779c4e57d8a303f0350c46478f23008e6eeca78e4eadedd0bdee63d4ae72ed9a",
+              "sha1": "f2bbb773f4213d36201b76820f206e2a6f213c0c"
+            }
+          }
+        ]
+      },
+      "source": {
+        "path": "FerriteCore",
+        "url": "https://github.com/minefed/FerriteCore",
+        "upstream": "https://github.com/malte0811/FerriteCore",
+        "ref": "minefed-1.20.4",
+        "commit": "1df30b595e231bc0dc9a8eabe65d34cce542d3f9",
+        "trackingBranch": "minefed-1.20.4",
+        "baselineRef": "build-6.0.3",
+        "baselineCommit": "a9a24d4f6945f4e41855f55660915b2f5b570dd7"
+      },
+      "runtimeValidated": false
+    },
+    {
+      "modId": "forgeconfigapiport",
+      "name": "Forge Config API Port",
+      "baselineVersion": "20.4.3",
+      "baselineSha256": "837665e2db855a5072f75964a7b30f12c59fddc92274db21c9b07cce172288b2",
+      "baselineFileName": "ForgeConfigAPIPort-v20.4.3-1.20.4-Fabric.jar",
+      "buildVersion": "20.4.3",
+      "publicPackSelectedVersion": "20.4.3",
+      "publicPackArtifact": "baseline",
+      "status": "current_compatible_release",
+      "latestCompatibleRelease": {
+        "id": "xbVGsTLe",
+        "version_number": "v20.4.3-1.20.4-Fabric",
+        "version_type": "release",
+        "date_published": "2024-01-22T08:35:26.290283Z",
+        "game_versions": [
+          "1.20.4"
+        ],
+        "loaders": [
+          "fabric"
+        ],
+        "url": "https://modrinth.com/version/xbVGsTLe",
+        "files": [
+          {
+            "filename": "ForgeConfigAPIPort-v20.4.3-1.20.4-Fabric.jar",
+            "url": "https://cdn.modrinth.com/data/ohNO6lps/versions/xbVGsTLe/ForgeConfigAPIPort-v20.4.3-1.20.4-Fabric.jar",
+            "primary": true,
+            "size": 444627,
+            "hashes": {
+              "sha1": "d868c7cc72c0d3dc933baa4ef99eb63662a70c90",
+              "sha512": "d1eb1bc1aad0bcd3d97deee3d8f3b3eeaa43c332697be043260b7af132c7ee3da6c8b35f635ef7e4a431a95fa6f13dd4a796badeba91bba2b67eff6dc855d8e5"
+            }
+          }
+        ]
+      },
+      "source": {
+        "path": "forge-config-api-port",
+        "url": "https://github.com/minefed/forge-config-api-port",
+        "upstream": "https://github.com/Fuzss/forge-config-api-port",
+        "ref": "minefed-1.20.4",
+        "commit": "b102873873cd9d0bd70685cd7bec524666e2d190",
+        "trackingBranch": "minefed-1.20.4",
+        "baselineRef": "1.20.4",
+        "baselineCommit": "a99bf22e9242637d4a71a5f25f03c47d6ff2c2df"
+      },
+      "runtimeValidated": false
+    },
+    {
+      "modId": "furnitureexpanded",
+      "name": "Furniture Expanded",
+      "baselineVersion": "1.1-1.20.4",
+      "baselineSha256": "03029806014138224b9862295f6682e4b9ce8683e342685d15e622209b91f418",
+      "baselineFileName": "furnitureexpanded-1.1-1.20.4-FABRIC-EXP.jar",
+      "buildVersion": "1.1-1.20.4",
+      "publicPackSelectedVersion": "1.1-1.20.4",
+      "publicPackArtifact": "baseline",
+      "status": "current_compatible_release",
+      "latestCompatibleRelease": {
+        "id": "LJGCDWzS",
+        "version_number": "1.1-1.20.4",
+        "version_type": "beta",
+        "date_published": "2024-04-03T17:30:03.259051Z",
+        "game_versions": [
+          "1.20.4"
+        ],
+        "loaders": [
+          "fabric"
+        ],
+        "url": "https://modrinth.com/version/LJGCDWzS",
+        "files": [
+          {
+            "filename": "furnitureexpanded-1.1-1.20.4-FABRIC-EXP.jar",
+            "url": "https://cdn.modrinth.com/data/U1ACi6eg/versions/LJGCDWzS/furnitureexpanded-1.1-1.20.4-FABRIC-EXP.jar",
+            "primary": true,
+            "size": 254984,
+            "hashes": {
+              "sha512": "83e1799c7981875e6a83cadcda9b5970899a2175f1468871bfdfafe4b1586a92b368837a57c9c5d374f015e77767ace386928aa9efea511eadc9002abb770367",
+              "sha1": "39fe2d77a1ecd3132429a78904d1b928143f16ca"
+            }
+          }
+        ]
+      },
+      "source": null,
+      "runtimeValidated": false
+    },
+    {
+      "modId": "fusion",
+      "name": "Fusion",
+      "baselineVersion": "1.2.12",
+      "baselineSha256": "23aa16b5f60dc609c66bc6098e82ce22c59f694b469114f4dada4f8aa2c00bff",
+      "baselineFileName": "fusion-1.2.12-fabric-mc1.20.4.jar",
+      "buildVersion": "1.2.12",
+      "publicPackSelectedVersion": "1.2.12",
+      "publicPackArtifact": "baseline",
+      "status": "release_candidate",
+      "latestCompatibleRelease": {
+        "id": "Qyr4qxvT",
+        "version_number": "1.3.15a-fabric-mc1.20.4",
+        "version_type": "release",
+        "date_published": "2026-09-06T12:57:12.678125Z",
+        "game_versions": [
+          "1.20.4"
+        ],
+        "loaders": [
+          "fabric",
+          "quilt"
+        ],
+        "url": "https://modrinth.com/version/Qyr4qxvT",
+        "files": [
+          {
+            "filename": "fusion-1.3.15a-fabric-mc1.20.4.jar",
+            "url": "https://cdn.modrinth.com/data/p19vrgc2/versions/Qyr4qxvT/fusion-1.3.15a-fabric-mc1.20.4.jar",
+            "primary": true,
+            "size": 921058,
+            "hashes": {
+              "sha1": "766635ed6a1114d2a5971e7090bf51b2ebe7f6a1",
+              "sha512": "782fe9ef76383fb0fdaa79be5c48048656fb3d57e109390b207613a41475b7f6432d1fc123c20193b149c1e43034b9cf61524599b0d55f247a3c390e708605f9"
+            }
+          }
+        ]
+      },
+      "source": null,
+      "runtimeValidated": false,
+      "candidateArtifactInspection": {
+        "modId": "fusion",
+        "releaseId": "Qyr4qxvT",
+        "releaseVersion": "1.3.15a-fabric-mc1.20.4",
+        "publishedAt": "2026-09-06T12:57:12.678125Z",
+        "versionType": "release",
+        "gameVersions": [
+          "1.20.4"
+        ],
+        "loaders": [
+          "fabric",
+          "quilt"
+        ],
+        "fileName": "fusion-1.3.15a-fabric-mc1.20.4.jar",
+        "url": "https://cdn.modrinth.com/data/p19vrgc2/versions/Qyr4qxvT/fusion-1.3.15a-fabric-mc1.20.4.jar",
+        "sha256": "a05c49c1ae324e6a96aeef5e0b0bec20c2f740b354bb6529bf27e052c9f02dd8",
+        "sha512": "782fe9ef76383fb0fdaa79be5c48048656fb3d57e109390b207613a41475b7f6432d1fc123c20193b149c1e43034b9cf61524599b0d55f247a3c390e708605f9",
+        "fabricMetadata": {
+          "schemaVersion": 1,
+          "id": "fusion",
+          "version": "1.3.15+a",
+          "name": "Fusion",
+          "description": "Fusion allows resource packs to use additional texture and model types such as connected textures!",
+          "authors": [
+            "SuperMartijn642"
+          ],
+          "contact": {
+            "homepage": "https://www.curseforge.com/minecraft/mc-mods/fusion-connected-textures",
+            "sources": "https://github.com/SuperMartijn642/Fusion"
+          },
+          "license": "All rights reserved",
+          "icon": "fusion.png",
+          "environment": "*",
+          "entrypoints": {
+            "main": [
+              "com.supermartijn642.fusion.Fusion"
+            ],
+            "client": [
+              "com.supermartijn642.fusion.FusionClient"
+            ]
+          },
+          "mixins": [
+            "fusion.mixins.json"
+          ],
+          "accessWidener": "fusion.accesswidener",
+          "depends": {
+            "fabricloader": ">=0.16.1",
+            "fabric": ">=0.97.3",
+            "minecraft": ">=1.20.4 <1.20.5",
+            "java": ">=17"
+          }
+        },
+        "classFileCount": 465,
+        "javaSourceCount": 0
+      }
+    },
+    {
+      "modId": "geckolib",
+      "name": "GeckoLib",
+      "baselineVersion": "4.4.4",
+      "baselineSha256": "8c11f943399fec3790d63686a7233cbb5731ccbcf60f490090c700b5dce819d0",
+      "baselineFileName": "geckolib-fabric-1.20.4-4.4.4.jar",
+      "buildVersion": "4.4.4",
+      "publicPackSelectedVersion": "4.4.4",
+      "publicPackArtifact": "built",
+      "status": "current_compatible_release",
+      "latestCompatibleRelease": {
+        "id": "9xn1SoTo",
+        "version_number": "4.4.4",
+        "version_type": "release",
+        "date_published": "2024-03-17T02:14:38.193683Z",
+        "game_versions": [
+          "1.20.4"
+        ],
+        "loaders": [
+          "fabric"
+        ],
+        "url": "https://modrinth.com/version/9xn1SoTo",
+        "files": [
+          {
+            "filename": "geckolib-fabric-1.20.4-4.4.4.jar",
+            "url": "https://cdn.modrinth.com/data/8BmcQJ2H/versions/9xn1SoTo/geckolib-fabric-1.20.4-4.4.4.jar",
+            "primary": true,
+            "size": 1017746,
+            "hashes": {
+              "sha512": "6b4a56e58019fd59e2b63cfd703525d837e21f82657a5c81e27f2900db5ef624f1938a33032ec4157e3e87083847f62c0f37e0dd21aec676953b577db0ac2568",
+              "sha1": "aafc8faff836f5d834be584e945a3d0ae9307d7f"
+            }
+          }
+        ]
+      },
+      "source": {
+        "path": "geckolib",
+        "url": "https://github.com/minefed/geckolib",
+        "upstream": "https://github.com/bernie-g/geckolib",
+        "ref": "minefed-1.20.4",
+        "commit": "fb968c0379ef0f6ef5c0d6672a464b2f2712553f",
+        "trackingBranch": "minefed-1.20.4",
+        "baselineRef": "1.20.4",
+        "baselineCommit": "d0b06fe3386e1be3242298e9373c54e5af0c65d1"
+      },
+      "runtimeValidated": false
+    },
+    {
+      "modId": "handcrafted",
+      "name": "Handcrafted",
+      "baselineVersion": "3.2.1",
+      "baselineSha256": "c18a198c84a27a1168a258114065e5398cb97e34756cc90faa7c11b34fc2bcdc",
+      "baselineFileName": "handcrafted-fabric-1.20.4-3.2.1.jar",
+      "buildVersion": "3.2.1",
+      "publicPackSelectedVersion": "3.2.1",
+      "publicPackArtifact": "baseline",
+      "status": "current_compatible_release",
+      "latestCompatibleRelease": {
+        "id": "K4jSQsxb",
+        "version_number": "3.2.1",
+        "version_type": "release",
+        "date_published": "2024-02-18T23:48:56.484307Z",
+        "game_versions": [
+          "1.20.4"
+        ],
+        "loaders": [
+          "fabric"
+        ],
+        "url": "https://modrinth.com/version/K4jSQsxb",
+        "files": [
+          {
+            "filename": "handcrafted-fabric-1.20.4-3.2.1.jar",
+            "url": "https://cdn.modrinth.com/data/pJmCFF0p/versions/K4jSQsxb/handcrafted-fabric-1.20.4-3.2.1.jar",
+            "primary": true,
+            "size": 7104588,
+            "hashes": {
+              "sha512": "0a860ddd0992ae902b352b62ad52c624c306420b328f31e1bb6d712fae2511cd67c0760b163e106ea0882c22b22ddf4e6e104b8d06d32c90f3066bd3406d1b07",
+              "sha1": "38155528650c81f98d9e4795153fe36bb42027c2"
+            }
+          }
+        ]
+      },
+      "source": {
+        "path": "Handcrafted",
+        "url": "https://github.com/minefed/Handcrafted",
+        "upstream": "https://github.com/terrarium-earth/Handcrafted",
+        "ref": "minefed-1.20.4",
+        "commit": "7b5501555b4683757800e9ca7df264d0850caad3",
+        "trackingBranch": "minefed-1.20.4",
+        "baselineRef": "1.20.x",
+        "baselineCommit": "5d3260b2882ebe5de1aa7a4ca4aa2336a593f31d"
+      },
+      "runtimeValidated": false
+    },
+    {
+      "modId": "jpp",
+      "name": "Japan Props",
+      "baselineVersion": "0.0.3.3",
+      "baselineSha256": "8f0839064ac3867b3414b4483c7bc33609e1a878a44b0f643fcb1a34c142e990",
+      "baselineFileName": "JapanProps_1.20.1_0.0.3.3_Fabric.jar",
+      "buildVersion": "0.0.3.3",
+      "publicPackSelectedVersion": "0.0.3.3",
+      "publicPackArtifact": "baseline",
+      "status": "current_compatible_release",
+      "latestCompatibleRelease": {
+        "id": "hnS8fdTL",
+        "version_number": "0.0.3.3",
+        "version_type": "release",
+        "date_published": "2024-08-22T07:43:08.878971Z",
+        "game_versions": [
+          "1.20",
+          "1.20.1",
+          "1.20.2",
+          "1.20.3",
+          "1.20.4"
+        ],
+        "loaders": [
+          "fabric",
+          "quilt"
+        ],
+        "url": "https://modrinth.com/version/hnS8fdTL",
+        "files": [
+          {
+            "filename": "JapanProps_1.20.1_0.0.3.3_Fabric.jar",
+            "url": "https://cdn.modrinth.com/data/dbNTzFWE/versions/hnS8fdTL/JapanProps_1.20.1_0.0.3.3_Fabric.jar",
+            "primary": true,
+            "size": 6762437,
+            "hashes": {
+              "sha1": "086d4719ee2fad81235dfe81849d79b6b919a38a",
+              "sha512": "aadef61dc9f6c1e946996e632418d884144ee3512c74ea8b8691608f4f8e808df7e70c7098c20f5c716f8fa43293f5572a13dbb3647cad51e939b1d609ea3cd2"
+            }
+          }
+        ]
+      },
+      "source": null,
+      "runtimeValidated": false
+    },
+    {
+      "modId": "lavender",
+      "name": "Lavender",
+      "baselineVersion": "0.1.9+1.20.3",
+      "baselineSha256": "e3da1be55cb3fc8d8d71e2cd85ba5c10d1768bf53225d4603032e3088ae5516d",
+      "baselineFileName": "lavender-0.1.9+1.20.3.jar",
+      "buildVersion": "0.1.9+1.20.3",
+      "publicPackSelectedVersion": "0.1.9+1.20.3",
+      "publicPackArtifact": "built",
+      "status": "current_compatible_release",
+      "latestCompatibleRelease": {
+        "id": "7T1hNPCw",
+        "version_number": "0.1.9+1.20.3",
+        "version_type": "release",
+        "date_published": "2024-05-18T15:08:25.194859Z",
+        "game_versions": [
+          "1.20.3",
+          "1.20.4"
+        ],
+        "loaders": [
+          "fabric",
+          "quilt"
+        ],
+        "url": "https://modrinth.com/version/7T1hNPCw",
+        "files": [
+          {
+            "filename": "lavender-0.1.9+1.20.3.jar",
+            "url": "https://cdn.modrinth.com/data/D5h9NKNI/versions/7T1hNPCw/lavender-0.1.9%2B1.20.3.jar",
+            "primary": true,
+            "size": 523925,
+            "hashes": {
+              "sha1": "d1957e0533e85ec6873089a2a1924478a53fce9b",
+              "sha512": "6af4743f14188ec9909b8ef312169e661394d972945d5029c4a63317b2b999a809afe830c1812d12b3f37b7796cffc7048c296fde9607c193d32eb0924c3ed0c"
+            }
+          },
+          {
+            "filename": "lavender-0.1.9+1.20.3-sources.jar",
+            "url": "https://cdn.modrinth.com/data/D5h9NKNI/versions/7T1hNPCw/lavender-0.1.9%2B1.20.3-sources.jar",
+            "primary": false,
+            "size": 296225,
+            "hashes": {
+              "sha512": "ce988f7ea9a7dae982a87964cbeafbb4e3520a5513df3128c4a027c28d43647bd5712252f5812cebcdc528b5908a70b5ae3c78367952d77d7a5ecc3c2f301f0e",
+              "sha1": "800f58de32cceae00345eae7742828764bea11ab"
+            }
+          }
+        ]
+      },
+      "source": null,
+      "runtimeValidated": false
+    },
+    {
+      "modId": "lithium",
+      "name": "Lithium",
+      "baselineVersion": "0.12.1",
+      "baselineSha256": "6acd49595ee69e1264cfc79898f569452e41bd66985467fcb38d2804191af3cd",
+      "baselineFileName": "lithium-fabric-mc1.20.4-0.12.1.jar",
+      "buildVersion": "0.12.1+git.c40b758",
+      "publicPackSelectedVersion": "0.12.1+git.c40b758",
+      "publicPackArtifact": "built",
+      "status": "current_compatible_release",
+      "latestCompatibleRelease": {
+        "id": "nMhjKWVE",
+        "version_number": "mc1.20.4-0.12.1",
+        "version_type": "release",
+        "date_published": "2023-12-20T22:19:35.442632Z",
+        "game_versions": [
+          "1.20.4"
+        ],
+        "loaders": [
+          "fabric",
+          "quilt"
+        ],
+        "url": "https://modrinth.com/version/nMhjKWVE",
+        "files": [
+          {
+            "filename": "lithium-fabric-mc1.20.4-0.12.1.jar",
+            "url": "https://cdn.modrinth.com/data/gvQqBUqZ/versions/nMhjKWVE/lithium-fabric-mc1.20.4-0.12.1.jar",
+            "primary": true,
+            "size": 716022,
+            "hashes": {
+              "sha512": "70bea154eaafb2e4b5cb755cdb12c55d50f9296ab4c2855399da548f72d6d24c0a9f77e3da2b2ea5f47fa91d1258df4d08c6c6f24a25da887ed71cea93502508",
+              "sha1": "4a0744beb2246d93cb475d21a5a53faa556956e0"
+            }
+          }
+        ]
+      },
+      "source": {
+        "path": "lithium",
+        "url": "https://github.com/minefed/lithium",
+        "upstream": "https://github.com/CaffeineMC/lithium",
+        "ref": "minefed-1.20.4",
+        "commit": "c40b7585606e8434b7a8f1e7ef15c20d99685f19",
+        "trackingBranch": "minefed-1.20.4",
+        "baselineRef": "mc1.20.4-0.12.1",
+        "baselineCommit": "b8f2818899bfcdae1bbf34991f2d3351e72c2f6c"
+      },
+      "runtimeValidated": false
+    },
+    {
+      "modId": "mcwdoors",
+      "name": "Macaw’s Doors",
+      "baselineVersion": "1.1.2",
+      "baselineSha256": "6ec6bc0c8ca80f65a1ebbbe0075a0bbbc4ea19a726d5c9fc1be57f80bc3ab22a",
+      "baselineFileName": "mcw-doors-1.1.2-mc1.20.4fabric.jar",
+      "buildVersion": "1.1.2",
+      "publicPackSelectedVersion": "1.1.2",
+      "publicPackArtifact": "built",
+      "status": "release_candidate",
+      "latestCompatibleRelease": {
+        "id": "8l41DNKc",
+        "version_number": "1.1.5",
+        "version_type": "release",
+        "date_published": "2026-02-13T14:15:24.307189Z",
+        "game_versions": [
+          "1.20.4"
+        ],
+        "loaders": [
+          "fabric"
+        ],
+        "url": "https://modrinth.com/version/8l41DNKc",
+        "files": [
+          {
+            "filename": "mcw-doors-1.1.5-mc1.20.4fabric.jar",
+            "url": "https://cdn.modrinth.com/data/kNxa8z3e/versions/8l41DNKc/mcw-doors-1.1.5-mc1.20.4fabric.jar",
+            "primary": true,
+            "size": 1226802,
+            "hashes": {
+              "sha512": "0de8ce9b12f7fe5c27a4d40a314e47f03dd2cabeebc9b2391cafcd6cc26d091f01dbecb0a411dbdc71c354c0bcc99a613551a9085922a254864ce5fb922d70ba",
+              "sha1": "48bea605d489a5530100219a36bf40b4d1f41255"
+            }
+          }
+        ]
+      },
+      "source": {
+        "path": "MacawsDoors",
+        "url": "https://github.com/minefed/MacawsDoors",
+        "upstream": "https://github.com/sketchmacaw/MacawsDoors",
+        "ref": "minefed-1.20.4",
+        "commit": "b07c8caa4a45f0f9aac98d04a972fd359d7a84ca",
+        "trackingBranch": "minefed-1.20.4",
+        "baselineRef": "main",
+        "baselineCommit": "24b5b4ae1a93c60774f63bd620c53f009e0be7ae"
+      },
+      "runtimeValidated": false,
+      "candidateArtifactInspection": {
+        "modId": "mcwdoors",
+        "releaseId": "8l41DNKc",
+        "releaseVersion": "1.1.5",
+        "publishedAt": "2026-02-13T14:15:24.307189Z",
+        "versionType": "release",
+        "gameVersions": [
+          "1.20.4"
+        ],
+        "loaders": [
+          "fabric"
+        ],
+        "fileName": "mcw-doors-1.1.5-mc1.20.4fabric.jar",
+        "url": "https://cdn.modrinth.com/data/kNxa8z3e/versions/8l41DNKc/mcw-doors-1.1.5-mc1.20.4fabric.jar",
+        "sha256": "0afd76357fd5799122a27807b909ebf5d882029c0e6ebf583ea111508383f195",
+        "sha512": "0de8ce9b12f7fe5c27a4d40a314e47f03dd2cabeebc9b2391cafcd6cc26d091f01dbecb0a411dbdc71c354c0bcc99a613551a9085922a254864ce5fb922d70ba",
+        "fabricMetadata": {
+          "schemaVersion": 1,
+          "id": "mcwdoors",
+          "version": "1.1.5",
+          "name": "Macaw's Doors",
+          "description": "Adds a lot of new Doors! With vanila and unique styles.",
+          "authors": [
+            "Sketch Macaw & Peachy Macaw"
+          ],
+          "contact": {
+            "homepage": "https://www.curseforge.com/minecraft/mc-mods/macaws-doors",
+            "sources": ""
+          },
+          "license": "MIT",
+          "icon": "assets/mcwdoors/icon.png",
+          "environment": "*",
+          "entrypoints": {
+            "main": [
+              "net.kikoz.mcwdoors.MacawsDoors"
+            ],
+            "client": [
+              "net.kikoz.mcwdoors.util.ClientEventBusSubscriber"
+            ]
+          },
+          "depends": {
+            "fabricloader": ">=0.16.10",
+            "minecraft": "~1.20.4",
+            "java": ">=17",
+            "fabric-api": "*"
+          },
+          "suggests": {
+            "another-mod": "*"
+          }
+        },
+        "classFileCount": 14,
+        "javaSourceCount": 0
+      }
+    },
+    {
+      "modId": "mcwfences",
+      "name": "Macaw’s Fences & Walls",
+      "baselineVersion": "1.2.0",
+      "baselineSha256": "77b10cfcfc53ae7289838570f83e170accd0143e2245438d8c3b14da1e527025",
+      "baselineFileName": "mcw-fences-1.2.0-1.20.4fabric.jar",
+      "buildVersion": "1.2.0",
+      "publicPackSelectedVersion": "1.2.0",
+      "publicPackArtifact": "built",
+      "status": "release_candidate",
+      "latestCompatibleRelease": {
+        "id": "UjYIrEaO",
+        "version_number": "1.2.1",
+        "version_type": "release",
+        "date_published": "2025-12-08T16:24:19.590306Z",
+        "game_versions": [
+          "1.20.4"
+        ],
+        "loaders": [
+          "fabric"
+        ],
+        "url": "https://modrinth.com/version/UjYIrEaO",
+        "files": [
+          {
+            "filename": "mcw-mcwfences-1.2.1-mc1.20.4fabric.jar",
+            "url": "https://cdn.modrinth.com/data/GmwLse2I/versions/UjYIrEaO/mcw-mcwfences-1.2.1-mc1.20.4fabric.jar",
+            "primary": true,
+            "size": 655933,
+            "hashes": {
+              "sha1": "5d2b0a54edaf260160bc10981dced74179b3d51f",
+              "sha512": "a94807ba13960e265bab8100c66a53af5261266df8c4aaf0f4b92ec30d04a7d1703aa9426541322f696c52822a15cfa2b46fdaf66c9db8b0970de84f3f0e7037"
+            }
+          }
+        ]
+      },
+      "source": {
+        "path": "Fences",
+        "url": "https://github.com/minefed/Fences",
+        "upstream": "https://github.com/sketchmacaw/Fences",
+        "ref": "minefed-1.20.4",
+        "commit": "c9821fbd10fe55cdb0cc9e91fefb19a5d6d6aa4b",
+        "trackingBranch": "minefed-1.20.4",
+        "baselineRef": "main",
+        "baselineCommit": "8c4e6d498d344115b7356ca68cdb724cbfc89cb3"
+      },
+      "runtimeValidated": false,
+      "candidateArtifactInspection": {
+        "modId": "mcwfences",
+        "releaseId": "UjYIrEaO",
+        "releaseVersion": "1.2.1",
+        "publishedAt": "2025-12-08T16:24:19.590306Z",
+        "versionType": "release",
+        "gameVersions": [
+          "1.20.4"
+        ],
+        "loaders": [
+          "fabric"
+        ],
+        "fileName": "mcw-mcwfences-1.2.1-mc1.20.4fabric.jar",
+        "url": "https://cdn.modrinth.com/data/GmwLse2I/versions/UjYIrEaO/mcw-mcwfences-1.2.1-mc1.20.4fabric.jar",
+        "sha256": "b5f14d6096051e2a6f45fc0901ce62ccba8219227ebabf574446b66eb0ed7ad5",
+        "sha512": "a94807ba13960e265bab8100c66a53af5261266df8c4aaf0f4b92ec30d04a7d1703aa9426541322f696c52822a15cfa2b46fdaf66c9db8b0970de84f3f0e7037",
+        "fabricMetadata": {
+          "schemaVersion": 1,
+          "id": "mcwfences",
+          "version": "1.2.1",
+          "name": "Macaw's Fences and Walls",
+          "description": "Adds new vanila styled fences, walls and gates!",
+          "authors": [
+            "SketchMacaw"
+          ],
+          "contact": {
+            "homepage": "https://www.curseforge.com/minecraft/mc-mods/macaws-fences-and-walls",
+            "sources": ""
+          },
+          "license": "MIT",
+          "icon": "assets/mcwfences/icon.png",
+          "environment": "*",
+          "entrypoints": {
+            "main": [
+              "net.kikoz.mcwfences.MacawsFences"
+            ],
+            "client": [
+              "net.kikoz.mcwfences.util.ClientEventBusSubscriber"
+            ]
+          },
+          "depends": {
+            "fabricloader": ">=0.15.0",
+            "minecraft": "~1.20.4",
+            "java": ">=17",
+            "fabric-api": "*"
+          },
+          "suggests": {
+            "another-mod": "*"
+          }
+        },
+        "classFileCount": 16,
+        "javaSourceCount": 0
+      }
+    },
+    {
+      "modId": "mcwroofs",
+      "name": "Macaw’s Roofs",
+      "baselineVersion": "2.3.2",
+      "baselineSha256": "00ad7d7f98f3ef0ddd459053c64f3b1f989d147eccc0178a765d0fad700e2f9d",
+      "baselineFileName": "mcw-roofs-2.3.2-mc1.20.4fabric.jar",
+      "buildVersion": "2.3.2",
+      "publicPackSelectedVersion": "2.3.2",
+      "publicPackArtifact": "baseline",
+      "status": "current_compatible_release",
+      "latestCompatibleRelease": {
+        "id": "rHJugAn6",
+        "version_number": "2.3.2",
+        "version_type": "release",
+        "date_published": "2025-05-04T09:58:49.865018Z",
+        "game_versions": [
+          "1.20.4"
+        ],
+        "loaders": [
+          "fabric"
+        ],
+        "url": "https://modrinth.com/version/rHJugAn6",
+        "files": [
+          {
+            "filename": "mcw-roofs-2.3.2-mc1.20.4fabric.jar",
+            "url": "https://cdn.modrinth.com/data/B8jaH3P1/versions/rHJugAn6/mcw-roofs-2.3.2-mc1.20.4fabric.jar",
+            "primary": true,
+            "size": 1796112,
+            "hashes": {
+              "sha1": "e8ea584ef554ccacea0d96ac296292b5abfabf48",
+              "sha512": "3ed590a2c726e2bd350f56904b91a719fa595f2d40285a74b07f9af682f94db3e26def8cf944bca3cdb9c77d05f1527f878533f78afdcdff733a536b27c597be"
+            }
+          }
+        ]
+      },
+      "source": null,
+      "runtimeValidated": false
+    },
+    {
+      "modId": "mcwwindows",
+      "name": "Macaw’s Windows",
+      "baselineVersion": "2.3.1",
+      "baselineSha256": "dcbb008a7a647cc120fd2cc93374291e7773be8b73c4d082772ed479e2074a73",
+      "baselineFileName": "mcw-windows-2.3.1-mc1.20.4fabric.jar",
+      "buildVersion": "2.3.1",
+      "publicPackSelectedVersion": "2.3.1",
+      "publicPackArtifact": "baseline",
+      "status": "release_candidate",
+      "latestCompatibleRelease": {
+        "id": "DbNK4q5P",
+        "version_number": "2.4.2",
+        "version_type": "release",
+        "date_published": "2025-12-10T21:48:35.135674Z",
+        "game_versions": [
+          "1.20.4"
+        ],
+        "loaders": [
+          "fabric"
+        ],
+        "url": "https://modrinth.com/version/DbNK4q5P",
+        "files": [
+          {
+            "filename": "mcw-mcwwindows-2.4.2-mc1.20.4fabric.jar",
+            "url": "https://cdn.modrinth.com/data/C7I0BCni/versions/DbNK4q5P/mcw-mcwwindows-2.4.2-mc1.20.4fabric.jar",
+            "primary": true,
+            "size": 1274041,
+            "hashes": {
+              "sha1": "45fc232c9b062e609d9b00f1b4744b8cca01755f",
+              "sha512": "fb2527f910288efd423f4964df61022957c1deaa692e4b7a05a8fb0463698d6eaa757d6e8af3d6261e03601b6079f07eb2162727a6076b81a9d911931263209f"
+            }
+          }
+        ]
+      },
+      "source": null,
+      "runtimeValidated": false,
+      "candidateArtifactInspection": {
+        "modId": "mcwwindows",
+        "releaseId": "DbNK4q5P",
+        "releaseVersion": "2.4.2",
+        "publishedAt": "2025-12-10T21:48:35.135674Z",
+        "versionType": "release",
+        "gameVersions": [
+          "1.20.4"
+        ],
+        "loaders": [
+          "fabric"
+        ],
+        "fileName": "mcw-mcwwindows-2.4.2-mc1.20.4fabric.jar",
+        "url": "https://cdn.modrinth.com/data/C7I0BCni/versions/DbNK4q5P/mcw-mcwwindows-2.4.2-mc1.20.4fabric.jar",
+        "sha256": "ee605c1349ee7d8d929db9500306b73b0a3edb4a724b3fd34cdeb454ac25400d",
+        "sha512": "fb2527f910288efd423f4964df61022957c1deaa692e4b7a05a8fb0463698d6eaa757d6e8af3d6261e03601b6079f07eb2162727a6076b81a9d911931263209f",
+        "fabricMetadata": {
+          "schemaVersion": 1,
+          "id": "mcwwindows",
+          "version": "2.4.2",
+          "name": "Macaw's Windows",
+          "description": "Adds lots of Windows, Mosaic Glass, Blinds, Arrow Slits and more..!",
+          "authors": [
+            "SketchMacaw"
+          ],
+          "contact": {
+            "homepage": "https://www.curseforge.com/minecraft/mc-mods/macaws-windows",
+            "sources": ""
+          },
+          "license": "All Rights Reserved",
+          "icon": "assets/mcwwindows/icon.png",
+          "environment": "*",
+          "entrypoints": {
+            "main": [
+              "net.kikoz.mcwwindows.MacawsWindows"
+            ],
+            "client": [
+              "net.kikoz.mcwwindows.util.ClientEventBusSubscriber"
+            ]
+          },
+          "depends": {
+            "fabricloader": ">=0.16.10",
+            "minecraft": "~1.20.4",
+            "java": ">=17",
+            "fabric-api": "*"
+          },
+          "suggests": {
+            "another-mod": "*"
+          }
+        },
+        "classFileCount": 38,
+        "javaSourceCount": 0
+      }
+    },
+    {
+      "modId": "memoryleakfix",
+      "name": "MemoryLeakFix",
+      "baselineVersion": "1.1.5",
+      "baselineSha256": "b8ac33d7262e019710dd25e454116616bc9ed1f714ed910594b28a4c1da5adde",
+      "baselineFileName": "memoryleakfix-fabric-1.17+-1.1.5.jar",
+      "buildVersion": "1.1.5",
+      "publicPackSelectedVersion": "1.1.5",
+      "publicPackArtifact": "built",
+      "status": "current_compatible_release",
+      "latestCompatibleRelease": {
+        "id": "5xvCCRjJ",
+        "version_number": "v1.1.5",
+        "version_type": "release",
+        "date_published": "2024-01-06T15:23:21.815114Z",
+        "game_versions": [
+          "1.17",
+          "1.17.1",
+          "1.18",
+          "1.18.1",
+          "1.18.2",
+          "1.19",
+          "1.19.1",
+          "1.19.2",
+          "1.19.3",
+          "1.19.4",
+          "1.20",
+          "1.20.1",
+          "1.20.2",
+          "1.20.3",
+          "1.20.4"
+        ],
+        "loaders": [
+          "fabric",
+          "quilt"
+        ],
+        "url": "https://modrinth.com/version/5xvCCRjJ",
+        "files": [
+          {
+            "filename": "memoryleakfix-fabric-1.17+-1.1.5.jar",
+            "url": "https://cdn.modrinth.com/data/NRjRiSSD/versions/5xvCCRjJ/memoryleakfix-fabric-1.17%2B-1.1.5.jar",
+            "primary": true,
+            "size": 49334,
+            "hashes": {
+              "sha1": "784bbbe9c64ac9d3d4ad19786c02291e607fcf4e",
+              "sha512": "a7bf7429340d076f4b30602bc714280c3f5cb8e814e76e89296c8155e3355b33304a148e9218378a3383127e95b7ba47402506c687f1d58609704fe8cc60ab93"
+            }
+          },
+          {
+            "filename": "memoryleakfix-fabric-1.17+-1.1.5-dev-shadow.jar",
+            "url": "https://cdn.modrinth.com/data/NRjRiSSD/versions/5xvCCRjJ/memoryleakfix-fabric-1.17%2B-1.1.5-dev-shadow.jar",
+            "primary": false,
+            "size": 46909,
+            "hashes": {
+              "sha1": "bc9b4aa150c26f51597c98171a2b713fea7915f5",
+              "sha512": "cbcddcecdbdb0877fb62899fdf0e2ea0ad601f2d5cf0819c76c5bb53777120aeb3e489c9a753435d66f516ce1cc542c749f0f9a342468a2edc1abe65d86e98d4"
+            }
+          },
+          {
+            "filename": "memoryleakfix-fabric-1.17+-1.1.5-sources.jar",
+            "url": "https://cdn.modrinth.com/data/NRjRiSSD/versions/5xvCCRjJ/memoryleakfix-fabric-1.17%2B-1.1.5-sources.jar",
+            "primary": false,
+            "size": 28011,
+            "hashes": {
+              "sha1": "d596cc4b459e1e6f2b735cb38a401666406feb7a",
+              "sha512": "3eb703232a8bbb5c634fe6e1524628e8c2ae01a3032076821057cfa79b4a5ae85226c08be2dc2126167b8d2123f199e6c5b548894918b5af700be10624fb316e"
+            }
+          }
+        ]
+      },
+      "source": {
+        "path": "MemoryLeakFix",
+        "url": "https://github.com/minefed/MemoryLeakFix",
+        "upstream": "https://github.com/FxMorin/MemoryLeakFix",
+        "ref": "minefed-1.20.4",
+        "commit": "16ce1bffcd6a17231dc29fc178dbeca3b5ee5f2c",
+        "trackingBranch": "minefed-1.20.4",
+        "baselineRef": "v1.1.5",
+        "baselineCommit": "f5e4087566740e9df661c5acf38e345f72068c90"
+      },
+      "runtimeValidated": false
+    },
+    {
+      "modId": "minefed-display",
+      "name": "Minefed Display",
+      "baselineVersion": "1.0.0",
+      "baselineSha256": "4d87f76f9ba4f00c7dd9d92daf97d9b6cdce40c54f984cd48f1b3b3f3a9b7dd4",
+      "baselineFileName": "minefed-display-1.0.0.jar",
+      "buildVersion": "1.0.0",
+      "publicPackSelectedVersion": "1.0.0",
+      "publicPackArtifact": "built",
+      "status": "managed_source_deployment_check",
+      "latestCompatibleRelease": null,
+      "source": {
+        "path": "minefed-display",
+        "url": "https://github.com/minefed/minefed-display",
+        "upstream": "https://github.com/minefed/minefed-display",
+        "ref": "minefed-1.20.4",
+        "commit": "869b976756be38f298105d4adf6be2d22e3a0b8c",
+        "trackingBranch": "minefed-1.20.4",
+        "baselineRef": "main",
+        "baselineCommit": "79708da179682295df0dfc379320a0759c25a97d"
+      },
+      "runtimeValidated": false,
+      "preparedMinefedChange": "1.0.0 유지: MCEF 선택적 로딩; 버전이 같아도 JAR/커밋으로 구별"
+    },
+    {
+      "modId": "mishanguc",
+      "name": "Mishang Urban Construction",
+      "baselineVersion": "1.5.3",
+      "baselineSha256": "0b83023c51817e2ab9081fec62b97f3695d37821152c2a161e3a89dd908ecb07",
+      "baselineFileName": "mishanguc-1.5.3-1.20.4.jar",
+      "buildVersion": "1.5.3",
+      "publicPackSelectedVersion": "1.5.3",
+      "publicPackArtifact": "built",
+      "status": "current_compatible_release",
+      "latestCompatibleRelease": {
+        "id": "558v19j3",
+        "version_number": "1.5.3-1.20.4",
+        "version_type": "release",
+        "date_published": "2025-07-26T18:02:37.058420Z",
+        "game_versions": [
+          "1.20.3",
+          "1.20.4"
+        ],
+        "loaders": [
+          "fabric"
+        ],
+        "url": "https://modrinth.com/version/558v19j3",
+        "files": [
+          {
+            "filename": "mishanguc-1.5.3-1.20.4.jar",
+            "url": "https://cdn.modrinth.com/data/rItLmRo4/versions/558v19j3/mishanguc-1.5.3-1.20.4.jar",
+            "primary": true,
+            "size": 6205768,
+            "hashes": {
+              "sha1": "9edff7a2b5ae35f6218b0e8a2e2d8069ae5ad871",
+              "sha512": "2357658e061483a5fe55ccef0f8c15182f6a6252fcdf7e3c2faf302602c4cf461cff3f4cc2be3c36275f513afbcbc7dee5cc41bf08c48702dfb9ed3ab32d28c8"
+            }
+          }
+        ]
+      },
+      "source": {
+        "path": "mishanguc",
+        "url": "https://github.com/minefed/mishanguc",
+        "upstream": "https://github.com/SolidBlock-cn/mishanguc",
+        "ref": "minefed-1.20.4",
+        "commit": "ed26012dc37d449fc8480a606319f7294fa9005a",
+        "trackingBranch": "minefed-1.20.4",
+        "baselineRef": "1.20.4",
+        "baselineCommit": "ff9925d49a8e9512bfd0160038421b829c5ff68e"
+      },
+      "runtimeValidated": false
+    },
+    {
+      "modId": "modern_glass_doors",
+      "name": "Modern Glass Doors",
+      "baselineVersion": "5.3.0+1.20.3-and-later",
+      "baselineSha256": "2915d5da4994ef0b589434afcd15417f087754b6126aa2ed9c680498c8779ab9",
+      "baselineFileName": "modern-glass-doors-5.3.0+1.20.3-and-later.jar",
+      "buildVersion": "5.3.0+1.20.3-and-later",
+      "publicPackSelectedVersion": "5.3.0+1.20.3-and-later",
+      "publicPackArtifact": "built",
+      "status": "current_compatible_release",
+      "latestCompatibleRelease": {
+        "id": "8LNbqvAF",
+        "version_number": "5.3.0+1.20.3-and-later",
+        "version_type": "release",
+        "date_published": "2024-01-02T20:49:50.043579Z",
+        "game_versions": [
+          "1.20.3",
+          "1.20.4-rc1",
+          "1.20.4"
+        ],
+        "loaders": [
+          "fabric"
+        ],
+        "url": "https://modrinth.com/version/8LNbqvAF",
+        "files": [
+          {
+            "filename": "modern-glass-doors-5.3.0+1.20.3-and-later.jar",
+            "url": "https://cdn.modrinth.com/data/zGSQY8dZ/versions/8LNbqvAF/modern-glass-doors-5.3.0%2B1.20.3-and-later.jar",
+            "primary": true,
+            "size": 199908,
+            "hashes": {
+              "sha1": "157e424e5a5a4299fd6a3d8c7f91ec1e7e064e4c",
+              "sha512": "b3385ebd36abd10630ffe93242f9f4ff913cfde5929fbcf0ef183e4f69c2bc7240b1642448f8d8c1117bd1fe4b186cc1e7110ddc14fec4cc987acc19439980b8"
+            }
+          }
+        ]
+      },
+      "source": {
+        "path": "modern-glass-doors",
+        "url": "https://github.com/minefed/modern-glass-doors",
+        "upstream": "https://github.com/ReviversMC/modern-glass-doors",
+        "ref": "minefed-1.20.4",
+        "commit": "155e732f78f5b5a9ce42478ef342e8d03266799b",
+        "trackingBranch": "minefed-1.20.4",
+        "baselineRef": "v5.3.0+1.20.3-and-later",
+        "baselineCommit": "bf38d4feb851041357c81caa696450498cda0048"
+      },
+      "runtimeValidated": false
+    },
+    {
+      "modId": "modernlights",
+      "name": "Modern Lights",
+      "baselineVersion": "2.4.2",
+      "baselineSha256": "362bb8dadd6e771ec3c90a9e38af18bd9433de626862d233aac15a79ad0987e5",
+      "baselineFileName": "modern-lights-1.20[2.4.2].jar",
+      "buildVersion": "2.5.0",
+      "publicPackSelectedVersion": "2.4.2",
+      "publicPackArtifact": "baseline",
+      "status": "source_artifact_hold",
+      "latestCompatibleRelease": {
+        "id": "chMskrKw",
+        "version_number": "2.5.0",
+        "version_type": "release",
+        "date_published": "2025-06-17T16:14:53.336035Z",
+        "game_versions": [
+          "1.20",
+          "1.20.1",
+          "1.20.2",
+          "1.20.3",
+          "1.20.4"
+        ],
+        "loaders": [
+          "fabric"
+        ],
+        "url": "https://modrinth.com/version/chMskrKw",
+        "files": [
+          {
+            "filename": "modern-lights-2.5.0+[1.20-1.20.4]-sources.jar",
+            "url": "https://cdn.modrinth.com/data/K3oeBO7O/versions/chMskrKw/modern-lights-2.5.0%2B%5B1.20-1.20.4%5D-sources.jar",
+            "primary": true,
+            "size": 1396513,
+            "hashes": {
+              "sha512": "e5fa4b84eb07ea326e19cab04de0b256aab73c72359dec11cfb0be2ba86611566e89dcfea8a38cd262280d3b384ad524adf72fda5b41053a67f449c2696081e5",
+              "sha1": "dc095bfe304424714a648f7a3607da5f86154e26"
+            }
+          }
+        ]
+      },
+      "source": {
+        "path": "Modern-Lights",
+        "url": "https://github.com/minefed/Modern-Lights",
+        "upstream": "https://github.com/aka-jammy/Modern-Lights",
+        "ref": "minefed-1.20.4",
+        "commit": "6b04f156a3e24a778fa2e0697d98bfd3aeca0256",
+        "trackingBranch": "minefed-1.20.4",
+        "baselineRef": "1.20---1.20.4",
+        "baselineCommit": "5df1c7567ac7f4dd8d40118000187585e5e9b725"
+      },
+      "runtimeValidated": false,
+      "candidateArtifactInspection": {
+        "modId": "modernlights",
+        "releaseId": "chMskrKw",
+        "releaseVersion": "2.5.0",
+        "publishedAt": "2025-06-17T16:14:53.336035Z",
+        "versionType": "release",
+        "gameVersions": [
+          "1.20",
+          "1.20.1",
+          "1.20.2",
+          "1.20.3",
+          "1.20.4"
+        ],
+        "loaders": [
+          "fabric"
+        ],
+        "fileName": "modern-lights-2.5.0+[1.20-1.20.4]-sources.jar",
+        "url": "https://cdn.modrinth.com/data/K3oeBO7O/versions/chMskrKw/modern-lights-2.5.0%2B%5B1.20-1.20.4%5D-sources.jar",
+        "sha256": "8520092e893f7878577bc0a9f26f0fa9b0fca31468bbda576b50e97c96b23916",
+        "sha512": "e5fa4b84eb07ea326e19cab04de0b256aab73c72359dec11cfb0be2ba86611566e89dcfea8a38cd262280d3b384ad524adf72fda5b41053a67f449c2696081e5",
+        "fabricMetadata": {
+          "schemaVersion": 1,
+          "id": "modernlights",
+          "version": "${version}",
+          "name": "Modern Lights",
+          "description": "Adds simple and modern looking light blocks to Minecraft",
+          "authors": [
+            "1_Jammy"
+          ],
+          "contact": {
+            "homepage": "https://modrinth.com/mod/modern-lights"
+          },
+          "license": "CC BY-NC-SA 4.0",
+          "icon": "assets/modernlights/icon.png",
+          "environment": "*",
+          "entrypoints": {
+            "main": [
+              "com.jammy1.modernlights.ModernLights"
+            ],
+            "fabric-datagen": [
+              "com.jammy1.modernlights.ModernLightsDataGenerator"
+            ]
+          },
+          "depends": {
+            "fabricloader": ">=0.16.14",
+            "minecraft": ">=1.20 <=1.20.4",
+            "java": ">=17",
+            "fabric-api": "*"
+          },
+          "suggests": {
+            "another-mod": "*"
+          }
+        },
+        "classFileCount": 0,
+        "javaSourceCount": 24
+      }
+    },
+    {
+      "modId": "modernfix",
+      "name": "ModernFix",
+      "baselineVersion": "5.17.0+mc1.20.4",
+      "baselineSha256": "af842acbf99eb94b55f40be4d51549ebd8ffd563f0bbc67e9b3529b4bdbb7f69",
+      "baselineFileName": "modernfix-fabric-5.17.0+mc1.20.4.jar",
+      "buildVersion": "5.17.1-beta.4+mc1.20.4.4790",
+      "publicPackSelectedVersion": "5.17.1-beta.4+mc1.20.4.4790",
+      "publicPackArtifact": "built",
+      "status": "current_compatible_release",
+      "latestCompatibleRelease": {
+        "id": "CV2Vtn5m",
+        "version_number": "5.17.0+mc1.20.4",
+        "version_type": "release",
+        "date_published": "2024-04-24T16:23:03.455682Z",
+        "game_versions": [
+          "1.20.4"
+        ],
+        "loaders": [
+          "fabric"
+        ],
+        "url": "https://modrinth.com/version/CV2Vtn5m",
+        "files": [
+          {
+            "filename": "modernfix-fabric-5.17.0+mc1.20.4.jar",
+            "url": "https://cdn.modrinth.com/data/nmDcB62a/versions/CV2Vtn5m/modernfix-fabric-5.17.0%2Bmc1.20.4.jar",
+            "primary": true,
+            "size": 458056,
+            "hashes": {
+              "sha512": "8404bc285100746ac76467094b2b4feb132e046272780c4c8a6d4bd4336fad70073734438e9f37bf7e46ffa65dbf2f06ab10232b09c3911c08215dfcf71fca0e",
+              "sha1": "cf5f1f0db74b0385c2738c6fbf8347e7e68100d6"
+            }
+          }
+        ]
+      },
+      "source": {
+        "path": "ModernFix",
+        "url": "https://github.com/minefed/ModernFix",
+        "upstream": "https://github.com/embeddedt/ModernFix",
+        "ref": "minefed-1.20.4",
+        "commit": "479096893321f5dc3e97791e5fa7dcf3ed58e15b",
+        "trackingBranch": "minefed-1.20.4",
+        "baselineRef": "5.17.0+1.20.4",
+        "baselineCommit": "c8f9b1cd843e69035ed988baeee04dc46a06fd1b"
+      },
+      "runtimeValidated": false
+    },
+    {
+      "modId": "msd",
+      "name": "MTR Station Decoration Addon (MSD)",
+      "baselineVersion": "1.3.15",
+      "baselineSha256": "0ba17e1245cc8b375a129bde80562c1be083b58e8ea495088e24d7ee515ce375",
+      "baselineFileName": "MSD-fabric-1.20.4-4.0.0-beta.14-1.3.15.jar",
+      "buildVersion": "1.3.15",
+      "publicPackSelectedVersion": "1.3.15",
+      "publicPackArtifact": "built",
+      "status": "beta_release_candidate",
+      "latestCompatibleRelease": {
+        "id": "nMixopsa",
+        "version_number": "4.0.5-1.4.5",
+        "version_type": "beta",
+        "date_published": "2026-06-23T15:38:36.784075Z",
+        "game_versions": [
+          "1.20.4"
+        ],
+        "loaders": [
+          "fabric"
+        ],
+        "url": "https://modrinth.com/version/nMixopsa",
+        "files": [
+          {
+            "filename": "MSD-fabric-1.20.4-4.0.5-1.4.5.jar",
+            "url": "https://cdn.modrinth.com/data/AM3NyLOZ/versions/nMixopsa/MSD-fabric-1.20.4-4.0.5-1.4.5.jar",
+            "primary": true,
+            "size": 7996896,
+            "hashes": {
+              "sha512": "7d1e276f0c1fdca8c9ab0a7e133a76fde0c4b7b4845b5b945058565debaa8a4c85cb556bb226f7bc81ce3fa0300a48ff1237203c069cb78e1dbfe0e211a3171e",
+              "sha1": "4dfdbc74837d397fa3bc3881d9c00585fa84ae3c"
+            }
+          }
+        ]
+      },
+      "source": {
+        "path": "MTR-Station-Decoration-Addon",
+        "url": "https://github.com/minefed/MTR-Station-Decoration-Addon",
+        "upstream": "https://github.com/AIDA64S/MTR-Station-Decoration-Addon",
+        "ref": "minefed-1.20.4",
+        "commit": "4c1ce7298690b1036c8f58e30409799b57c11b6c",
+        "trackingBranch": "minefed-1.20.4",
+        "baselineRef": "4.0.0",
+        "baselineCommit": "c0221a39c4b7829a47478bce4303f1f29f84527e"
+      },
+      "runtimeValidated": false,
+      "candidateArtifactInspection": {
+        "modId": "msd",
+        "releaseId": "nMixopsa",
+        "releaseVersion": "4.0.5-1.4.5",
+        "publishedAt": "2026-06-23T15:38:36.784075Z",
+        "versionType": "beta",
+        "gameVersions": [
+          "1.20.4"
+        ],
+        "loaders": [
+          "fabric"
+        ],
+        "fileName": "MSD-fabric-1.20.4-4.0.5-1.4.5.jar",
+        "url": "https://cdn.modrinth.com/data/AM3NyLOZ/versions/nMixopsa/MSD-fabric-1.20.4-4.0.5-1.4.5.jar",
+        "sha256": "f9819a9960b50d092764e4097e81035f9df5c806dfdf09277011db1ad0ea66ac",
+        "sha512": "7d1e276f0c1fdca8c9ab0a7e133a76fde0c4b7b4845b5b945058565debaa8a4c85cb556bb226f7bc81ce3fa0300a48ff1237203c069cb78e1dbfe0e211a3171e",
+        "fabricMetadata": {
+          "schemaVersion": 1,
+          "id": "msd",
+          "version": "1.4.5",
+          "name": "MTR Station Decoration Addon",
+          "description": "A Station Decoration Addon for the Minecraft Transit Railway Mod",
+          "authors": [
+            "AIDA64S",
+            "Santorsia",
+            "Zbx1425"
+          ],
+          "contact": {
+            "homepage": "https://modrinth.com/mod/station-decoration",
+            "sources": "https://github.com/AIDA64S/MTR-Station-Decoration-Addon"
+          },
+          "license": "MIT",
+          "icon": "icon.png",
+          "environment": "*",
+          "entrypoints": {
+            "main": [
+              "top.mcmtr.init.MSD"
+            ],
+            "client": [
+              "top.mcmtr.init.MSDClient"
+            ],
+            "modmenu": [
+              "top.mcmtr.init.ModMenuConfig"
+            ]
+          },
+          "mixins": [
+            "msd.mixins.json"
+          ],
+          "depends": {
+            "fabric": "*",
+            "minecraft": "1.20.4",
+            "mtr": ">=4.0.0-beta.14 <4.1"
+          }
+        },
+        "classFileCount": 152,
+        "javaSourceCount": 0
+      }
+    },
+    {
+      "modId": "mtr",
+      "name": "Minecraft Transit Railway (MTR)",
+      "baselineVersion": "4.0.5",
+      "baselineSha256": "974fec15c7b2c1e5d3f6ab8e45a6f5c959a40acbaa3ff90997191085ccadda0f",
+      "baselineFileName": "MTR-fabric-4.0.5+1.20.4.jar",
+      "buildVersion": "4.0.5",
+      "publicPackSelectedVersion": "4.0.5",
+      "publicPackArtifact": "built",
+      "status": "unreleased_source_candidate",
+      "latestCompatibleRelease": {
+        "id": "Xurz5xWy",
+        "version_number": "FABRIC-4.0.5+1.20.4",
+        "version_type": "release",
+        "date_published": "2026-06-14T00:33:28.996318Z",
+        "game_versions": [
+          "1.20.4"
+        ],
+        "loaders": [
+          "fabric"
+        ],
+        "url": "https://modrinth.com/version/Xurz5xWy",
+        "files": [
+          {
+            "filename": "MTR-fabric-4.0.5+1.20.4.jar",
+            "url": "https://cdn.modrinth.com/data/XKPAmI6u/versions/Xurz5xWy/MTR-fabric-4.0.5%2B1.20.4.jar",
+            "primary": true,
+            "size": 84781413,
+            "hashes": {
+              "sha512": "a88a39094d5a95f426bd555818ae6d21f669da2f83a95d30b272c61449f90a0da730b39dd83547feac2fe280cdc3afbd85381d394e0ff394e5a1456dba2a16be",
+              "sha1": "7750dd8e08f174d36c94f00b0afc46efdb623404"
+            }
+          }
+        ]
+      },
+      "source": {
+        "path": "Minecraft-Transit-Railway",
+        "url": "https://github.com/minefed/Minecraft-Transit-Railway",
+        "upstream": "https://github.com/Minecraft-Transit-Railway/Minecraft-Transit-Railway",
+        "ref": "minefed-1.20.4",
+        "commit": "3cdeeeb2951dfd1d9f2ddfe28dd4844e0b732e0e",
+        "trackingBranch": "minefed-1.20.4",
+        "baselineRef": "main",
+        "baselineCommit": "53cdc36ebef57c42bdc8633957be1b0e923c40b5"
+      },
+      "runtimeValidated": false,
+      "unreleasedSourceCandidate": {
+        "branch": "4.0.6",
+        "head": "240524a18d59edeb75cf8040cb209b91b428b5d7",
+        "version": "4.0.5 (4.0.6 개발 브랜치)",
+        "comparisonBase": "739dba4488fd17aaee9a601276387e315876f39e",
+        "summary": "MQO 변환·BVE 음원·차량 보간 수정, 문 막아 열어두기 일시 비활성화"
+      }
+    },
+    {
+      "modId": "mythicmetals",
+      "name": "Mythic Metals",
+      "baselineVersion": "0.19.7+1.20.4",
+      "baselineSha256": "f82f5dea1d6facd930abf8f30762c75546eb16c8ee68773d9d1049bf7de7f0aa",
+      "baselineFileName": "mythicmetals-0.19.7+1.20.4.jar",
+      "buildVersion": "0.19.7+1.20.4",
+      "publicPackSelectedVersion": "0.19.7+1.20.4",
+      "publicPackArtifact": "baseline",
+      "status": "unreleased_source_candidate",
+      "latestCompatibleRelease": {
+        "id": "SKfkZKbj",
+        "version_number": "0.19.7+1.20.4",
+        "version_type": "beta",
+        "date_published": "2024-04-27T14:58:56.490903Z",
+        "game_versions": [
+          "1.20.3",
+          "1.20.4"
+        ],
+        "loaders": [
+          "fabric"
+        ],
+        "url": "https://modrinth.com/version/SKfkZKbj",
+        "files": [
+          {
+            "filename": "mythicmetals-0.19.7+1.20.4.jar",
+            "url": "https://cdn.modrinth.com/data/bAWzYNRd/versions/SKfkZKbj/mythicmetals-0.19.7%2B1.20.4.jar",
+            "primary": true,
+            "size": 2988807,
+            "hashes": {
+              "sha1": "c48abe023d5d1bfbbf87887600d4ff84a8dfcbc9",
+              "sha512": "abdd2f93a425184421b8fdfad287cfe449f9166703159034b43fafe337811afdd8dd7a626805c41aa159bf3740a14c30ecd8746d892c32da58d63612f5c8a712"
+            }
+          },
+          {
+            "filename": "mythicmetals-0.19.7+1.20.4-sources.jar",
+            "url": "https://cdn.modrinth.com/data/bAWzYNRd/versions/SKfkZKbj/mythicmetals-0.19.7%2B1.20.4-sources.jar",
+            "primary": false,
+            "size": 2581633,
+            "hashes": {
+              "sha512": "9b796b29f8c3e651d8665b103394d2329107498ad6e4bc286010f99a9d8319f1d8d43d4f91df6a2a74a132f0504e80d5c53aa8cf50c13f46332012e69aa7f4bc",
+              "sha1": "8ba6e0bbecffef6554bfae7a0a492c66d3672e10"
+            }
+          }
+        ]
+      },
+      "source": {
+        "path": "MythicMetals",
+        "url": "https://github.com/minefed/MythicMetals",
+        "upstream": "https://github.com/Noaaan/MythicMetals",
+        "ref": "minefed-1.20.4",
+        "commit": "cfa897b7e6b2ab856f08582c5e525e675633b33c",
+        "trackingBranch": "minefed-1.20.4",
+        "baselineRef": "0.19.7+1.20.4",
+        "baselineCommit": "4f61b8a7d01c0edbc57fd3e14f9d2a413e0e62cf"
+      },
+      "runtimeValidated": false,
+      "unreleasedSourceCandidate": {
+        "branch": "1.20.4",
+        "head": "38d245cdd3b8b81529d09a1b09b4dc2ef5588edc",
+        "version": "0.19.7 이후 미출시",
+        "comparisonBase": "4f61b8a7d01c0edbc57fd3e14f9d2a413e0e62cf",
+        "summary": "운영자용 광석 위키 내보내기 명령과 출력 수정; 생성 규칙 변화 없음"
+      }
+    },
+    {
+      "modId": "mythicmetals_decorations",
+      "name": "Mythic Metals Decorations",
+      "baselineVersion": "0.6.1+1.20.3",
+      "baselineSha256": "b714e2098a0af1daaee7a9b35cb7c4e9347a2982800fc116961328354cedf077",
+      "baselineFileName": "mythicmetals-decorations-0.6.1+1.20.3.jar",
+      "buildVersion": "0.6.1+1.20.3",
+      "publicPackSelectedVersion": "0.6.1+1.20.3",
+      "publicPackArtifact": "baseline",
+      "status": "current_compatible_release",
+      "latestCompatibleRelease": {
+        "id": "L97C9D39",
+        "version_number": "0.6.1+1.20.3",
+        "version_type": "beta",
+        "date_published": "2024-03-17T18:07:29.720623Z",
+        "game_versions": [
+          "1.20.3",
+          "1.20.4"
+        ],
+        "loaders": [
+          "fabric"
+        ],
+        "url": "https://modrinth.com/version/L97C9D39",
+        "files": [
+          {
+            "filename": "mythicmetals-decorations-0.6.1+1.20.3.jar",
+            "url": "https://cdn.modrinth.com/data/Wtv23AFN/versions/L97C9D39/mythicmetals-decorations-0.6.1%2B1.20.3.jar",
+            "primary": true,
+            "size": 538487,
+            "hashes": {
+              "sha512": "378dce7a68919fb539539dd3ee3dcc0ff806d28af7f8e193ec97ac89329ea24ef0f804de008b470396e52a6713c511b80e6e29d9a8064dfacb8e647349141950",
+              "sha1": "4e5caf47f1bc0f05b3820cd01e5fac4c84172c89"
+            }
+          },
+          {
+            "filename": "mythicmetals-decorations-0.6.1+1.20.3-sources.jar",
+            "url": "https://cdn.modrinth.com/data/Wtv23AFN/versions/L97C9D39/mythicmetals-decorations-0.6.1%2B1.20.3-sources.jar",
+            "primary": false,
+            "size": 514115,
+            "hashes": {
+              "sha512": "09da5f11009b6be2dae78998db22db2d0fb5300bf6130918239696f1dc85f77783657454c356dfaae5230cc8847c23df2838f7d479dff087ed03f1db35d9f08f",
+              "sha1": "6b0e25bcb4f7f48863971b50152399349ce684b0"
+            }
+          }
+        ]
+      },
+      "source": {
+        "path": "MythicMetalsDecorations",
+        "url": "https://github.com/minefed/MythicMetalsDecorations",
+        "upstream": "https://github.com/Noaaan/MythicMetalsDecorations",
+        "ref": "minefed-1.20.4",
+        "commit": "c9326608433cbd6210d1f4f0bcbc66ed0393546b",
+        "trackingBranch": "minefed-1.20.4",
+        "baselineRef": "0.6.1+1.20.3",
+        "baselineCommit": "e31a9c7c4ffcdd6b38370a38519593c34f0b92f2"
+      },
+      "runtimeValidated": false
+    },
+    {
+      "modId": "nicemod",
+      "name": "NiceMod",
+      "baselineVersion": "1.4.1 - 1.20",
+      "baselineSha256": "a6dd69de56fd474e599571ab0c906e3ca971cdd3a5cd715a10acf9f3205fd69b",
+      "baselineFileName": "nicemod-1.4.1 - 1.20.jar",
+      "buildVersion": "1.4.1 - 1.20",
+      "publicPackSelectedVersion": "1.4.1 - 1.20",
+      "publicPackArtifact": "built",
+      "status": "current_compatible_release",
+      "latestCompatibleRelease": {
+        "id": "2dlfm8yY",
+        "version_number": "1.4.1",
+        "version_type": "release",
+        "date_published": "2024-02-19T11:19:46.593869Z",
+        "game_versions": [
+          "1.20",
+          "1.20.1",
+          "1.20.2",
+          "1.20.3",
+          "1.20.4"
+        ],
+        "loaders": [
+          "fabric"
+        ],
+        "url": "https://modrinth.com/version/2dlfm8yY",
+        "files": [
+          {
+            "filename": "nicemod-1.4.1 - 1.20.jar",
+            "url": "https://cdn.modrinth.com/data/QxAXhkEQ/versions/2dlfm8yY/nicemod-1.4.1%20-%201.20.jar",
+            "primary": true,
+            "size": 544045,
+            "hashes": {
+              "sha512": "eaa7e0add2ec303155eedd27ef53434017294bbc233ec603845708605b7417aa89ad49373ea42cfa38b3a06f60d7d94d41108fa562fa4ba215d0676dff92de32",
+              "sha1": "16039ed77e9cadc4cf187d304f59cd588fcbec66"
+            }
+          }
+        ]
+      },
+      "source": {
+        "path": "NiceMod",
+        "url": "https://github.com/minefed/NiceMod",
+        "upstream": "https://github.com/MIUNO/NiceMod",
+        "ref": "minefed-1.20.4",
+        "commit": "c344763657eaa90d878d858a74c1cdb93cf9d66f",
+        "trackingBranch": "minefed-1.20.4",
+        "baselineRef": "1.4.1",
+        "baselineCommit": "417dd6a481312298456cebb6e5201c56f0afb45a"
+      },
+      "runtimeValidated": false
+    },
+    {
+      "modId": "oritech",
+      "name": "Oritech",
+      "baselineVersion": "0.5.1+1.20.4",
+      "baselineSha256": "2dde3dcbe82124ec512ca7b05ef4fb4eb782694cbc33e576702cef87b6f02d7d",
+      "baselineFileName": "oritech-0.5.1+1.20.4.jar",
+      "buildVersion": "0.5.1+1.20.4",
+      "publicPackSelectedVersion": "0.5.1+1.20.4",
+      "publicPackArtifact": "built",
+      "status": "current_compatible_release",
+      "latestCompatibleRelease": {
+        "id": "Fz5w3V0S",
+        "version_number": "0.5.1+1.20.4",
+        "version_type": "beta",
+        "date_published": "2024-06-30T17:42:34.171902Z",
+        "game_versions": [
+          "1.20.4"
+        ],
+        "loaders": [
+          "fabric"
+        ],
+        "url": "https://modrinth.com/version/Fz5w3V0S",
+        "files": [
+          {
+            "filename": "oritech-0.5.1+1.20.4.jar",
+            "url": "https://cdn.modrinth.com/data/4sYI62kA/versions/Fz5w3V0S/oritech-0.5.1%2B1.20.4.jar",
+            "primary": true,
+            "size": 2885074,
+            "hashes": {
+              "sha1": "ef63acaba846079dfe71a2575c0239bbfb1023d9",
+              "sha512": "ce56296f58d7d25b947a0e334fd646ce51221a8518be4bdd6db5e998233a72da262a22897ec2c507b7dae6d4c2c4dccae47649dab60450e382f1d156c986e0b0"
+            }
+          }
+        ]
+      },
+      "source": {
+        "path": "Oritech",
+        "url": "https://github.com/minefed/Oritech",
+        "upstream": "https://github.com/Rearth/Oritech",
+        "ref": "minefed-1.20.4",
+        "commit": "1cf7cfe9aa3ed20cd904f9bc15eb979eb817a647",
+        "trackingBranch": "minefed-1.20.4",
+        "baselineRef": "v0.5.1+1.20.4",
+        "baselineCommit": "83ba099a700478e4fd7e85548ced4f5d7227d114"
+      },
+      "runtimeValidated": false
+    },
+    {
+      "modId": "owo",
+      "name": "owo-lib",
+      "baselineVersion": "0.12.6+1.20.3",
+      "baselineSha256": "b7c1d03cb5bcfcb84ff2bd2d6a3b3a9ef2fa14ef9e53b7d3116c04838811f273",
+      "baselineFileName": "owo-lib-0.12.6+1.20.3.jar",
+      "buildVersion": "0.12.6+1.20.3",
+      "publicPackSelectedVersion": "0.12.6+1.20.3",
+      "publicPackArtifact": "built",
+      "status": "current_compatible_release",
+      "latestCompatibleRelease": {
+        "id": "Her7Z3CG",
+        "version_number": "0.12.6+1.20.3",
+        "version_type": "release",
+        "date_published": "2024-04-03T22:39:30.075133Z",
+        "game_versions": [
+          "1.20.3",
+          "1.20.4"
+        ],
+        "loaders": [
+          "fabric",
+          "quilt"
+        ],
+        "url": "https://modrinth.com/version/Her7Z3CG",
+        "files": [
+          {
+            "filename": "owo-lib-0.12.6+1.20.3.jar",
+            "url": "https://cdn.modrinth.com/data/ccKDOlHs/versions/Her7Z3CG/owo-lib-0.12.6%2B1.20.3.jar",
+            "primary": true,
+            "size": 1080159,
+            "hashes": {
+              "sha1": "abf097faf0fc485dcd8566a120a8de254d417d5b",
+              "sha512": "e47b9367ff84435c7043c21c58720c1e7049766dedaa305c6380a8cc6bab4f8ae49d781ecea533e00ebad9ba278372bc4cb8dd8d6eea7fd79244628aeba74e13"
+            }
+          },
+          {
+            "filename": "owo-lib-0.12.6+1.20.3-sources.jar",
+            "url": "https://cdn.modrinth.com/data/ccKDOlHs/versions/Her7Z3CG/owo-lib-0.12.6%2B1.20.3-sources.jar",
+            "primary": false,
+            "size": 453064,
+            "hashes": {
+              "sha1": "c0f73a96535519c15cc957e6de0cf1c3a74226fb",
+              "sha512": "a204d9bebfe37f5f0ec2c2f89de119a32693f842f9c5ba48cd54f4b8d346fdfaef18e9258276543eb6df74c0044127bc5e4badada05051b044e003d0d72c24bc"
+            }
+          }
+        ]
+      },
+      "source": null,
+      "runtimeValidated": false
+    },
+    {
+      "modId": "pfm",
+      "name": "Paladin’s Furniture",
+      "baselineVersion": "1.4.4",
+      "baselineSha256": "7df89e7f0146495dd634724c15ffb5e0b184192dc9468cfa221f4ff9aa5ff08f",
+      "baselineFileName": "paladin-furniture-mod-1.4.4-fabric-mc1.20.4.jar",
+      "buildVersion": "1.5.0",
+      "publicPackSelectedVersion": "1.4.4",
+      "publicPackArtifact": "baseline",
+      "status": "source_prepared_release_candidate",
+      "latestCompatibleRelease": {
+        "id": "CFrrGcF0",
+        "version_number": "1.20.4-v1.5.0-fabric",
+        "version_type": "release",
+        "date_published": "2026-08-10T07:01:33.826582Z",
+        "game_versions": [
+          "1.20.3",
+          "1.20.4"
+        ],
+        "loaders": [
+          "fabric"
+        ],
+        "url": "https://modrinth.com/version/CFrrGcF0",
+        "files": [
+          {
+            "filename": "paladin-furniture-mod-1.5.0-fabric-mc1.20.4.jar",
+            "url": "https://cdn.modrinth.com/data/SISz7Qd3/versions/CFrrGcF0/paladin-furniture-mod-1.5.0-fabric-mc1.20.4.jar",
+            "primary": true,
+            "size": 6156933,
+            "hashes": {
+              "sha512": "83d78402147bcc301eb9325b431227223348dbd9b36088c442a5b383b4806c77b334fd0321651eef3443571522983beda07c67e8e37e8220e016efdc0b10d725",
+              "sha1": "5a8b33e0ab2a300a84025ff287ef40609763d4b3"
+            }
+          }
+        ]
+      },
+      "source": {
+        "path": "paladins-furniture",
+        "url": "https://github.com/minefed/paladins-furniture",
+        "upstream": "https://github.com/UnlikePaladin/paladins-furniture",
+        "ref": "minefed-1.20.4",
+        "commit": "131ac50fa74b0896f0a6d4b56c003076e036b318",
+        "trackingBranch": "minefed-1.20.4",
+        "baselineRef": "refs/heads/architectury-1.20.4",
+        "baselineCommit": "0921e7cdd2684061f2372088bdedd37a9dce838d"
+      },
+      "runtimeValidated": false,
+      "candidateArtifactInspection": {
+        "modId": "pfm",
+        "releaseId": "CFrrGcF0",
+        "releaseVersion": "1.20.4-v1.5.0-fabric",
+        "publishedAt": "2026-08-10T07:01:33.826582Z",
+        "versionType": "release",
+        "gameVersions": [
+          "1.20.3",
+          "1.20.4"
+        ],
+        "loaders": [
+          "fabric"
+        ],
+        "fileName": "paladin-furniture-mod-1.5.0-fabric-mc1.20.4.jar",
+        "url": "https://cdn.modrinth.com/data/SISz7Qd3/versions/CFrrGcF0/paladin-furniture-mod-1.5.0-fabric-mc1.20.4.jar",
+        "sha256": "35c0dfdfa11f022b340f429f509f3bbd238134cf4224c8f11ab6e9c8f2e04fbf",
+        "sha512": "83d78402147bcc301eb9325b431227223348dbd9b36088c442a5b383b4806c77b334fd0321651eef3443571522983beda07c67e8e37e8220e016efdc0b10d725",
+        "fabricMetadata": {
+          "schemaVersion": 1,
+          "id": "pfm",
+          "version": "1.5.0",
+          "name": "Paladin's Furniture",
+          "description": "A Brand-New Furniture mod for Modern Minecraft where things are functional!",
+          "authors": [
+            "UnlikePaladin"
+          ],
+          "contact": {
+            "homepage": "https://www.curseforge.com/minecraft/mc-mods/paladins-furniture",
+            "sources": "https://github.com/UnlikePaladin/paladins-furniture",
+            "issues": "https://github.com/UnlikePaladin/paladins-furniture/issues"
+          },
+          "contributors": [
+            "lzyzl6",
+            "MIHONO",
+            "WrenXing",
+            "j-tap"
+          ],
+          "license": "LGPL-3.0-only",
+          "icon": "assets/pfm/icon.png",
+          "environment": "*",
+          "entrypoints": {
+            "main": [
+              "com.unlikepaladin.pfm.fabric.PaladinFurnitureModFabric"
+            ],
+            "client": [
+              "com.unlikepaladin.pfm.client.fabric.PaladinFurnitureModClientFabric"
+            ],
+            "modmenu": [
+              "com.unlikepaladin.pfm.compat.modmenu.PaladinFurnitureModMenu"
+            ],
+            "jei_mod_plugin": [
+              "com.unlikepaladin.pfm.compat.jei.fabric.PaladinFurnitureModJEIPlugin"
+            ],
+            "rei_client": [
+              "com.unlikepaladin.pfm.compat.rei.fabric.PaladinFurnitureModREIPlugin"
+            ],
+            "emi": [
+              "com.unlikepaladin.pfm.compat.emi.PaladinFurnitureModEMIPlugin"
+            ],
+            "server": [
+              "com.unlikepaladin.pfm.fabric.PaladinFurnitureModFabric"
+            ]
+          },
+          "mixins": [
+            "pfm-common.mixins.json",
+            "pfm.mixins.json"
+          ],
+          "depends": {
+            "fabric-api": "*",
+            "minecraft": ">=1.20.3 <1.20.5"
+          },
+          "suggests": {
+            "patchouli": "*"
+          },
+          "custom": {
+            "modmenu": {
+              "links": {
+                "modmenu.discord": "https://discord.gg/zbMDUPB",
+                "modmenu.kofi": "https://ko-fi.com/unlikepaladin",
+                "modmenu.modrinth": "https://modrinth.com/mod/paladins-furniture/",
+                "modmenu.wiki": "https://github.com/UnlikePaladin/paladins-furniture/wiki"
+              }
+            }
+          },
+          "accessWidener": "pfm.accesswidener",
+          "jars": [
+            {
+              "file": "META-INF/jars/color-thief-java-v1.1.2.jar"
+            },
+            {
+              "file": "META-INF/jars/mixinextras-fabric-0.4.1.jar"
+            }
+          ]
+        },
+        "classFileCount": 744,
+        "javaSourceCount": 0
+      }
+    },
+    {
+      "modId": "patchouli",
+      "name": "Patchouli",
+      "baselineVersion": "1.20.4-85-FABRIC",
+      "baselineSha256": "bad24b0918e88cdf84c64dbe928cbf391c7920558022e3f1d5167d0af5878eca",
+      "baselineFileName": "Patchouli-1.20.4-85-FABRIC.jar",
+      "buildVersion": "1.20.4-85-FABRIC",
+      "publicPackSelectedVersion": "1.20.4-85-FABRIC",
+      "publicPackArtifact": "baseline",
+      "status": "unreleased_source_candidate",
+      "latestCompatibleRelease": {
+        "id": "RRjoMz5N",
+        "version_number": "1.20.4-85-fabric",
+        "version_type": "release",
+        "date_published": "2024-04-06T11:53:50.851361Z",
+        "game_versions": [
+          "1.20.4"
+        ],
+        "loaders": [
+          "fabric",
+          "quilt"
+        ],
+        "url": "https://modrinth.com/version/RRjoMz5N",
+        "files": [
+          {
+            "filename": "Patchouli-1.20.4-85-FABRIC.jar",
+            "url": "https://cdn.modrinth.com/data/nU0bVIaL/versions/RRjoMz5N/Patchouli-1.20.4-85-FABRIC.jar",
+            "primary": true,
+            "size": 860953,
+            "hashes": {
+              "sha1": "611baaa80a48a2dcf30e280246868232670a8733",
+              "sha512": "756d96bdc7a2b41983a4e66cf3dc6b405208af66ab129304229f151e13494b43ae8df398fd67fccb401b98eecfb5a2ad48d3eec7379670aa1d3c95f73c21fed9"
+            }
+          }
+        ]
+      },
+      "source": {
+        "path": "Patchouli",
+        "url": "https://github.com/minefed/Patchouli",
+        "upstream": "https://github.com/VazkiiMods/Patchouli",
+        "ref": "minefed-1.20.4",
+        "commit": "5bb9e96cd8256c0bcd2fa87eff2d65be0a7290d5",
+        "trackingBranch": "minefed-1.20.4",
+        "baselineRef": "refs/tags/release-1.20.4-85",
+        "baselineCommit": "4522fbb3e42b5a31688c7c7666cf13c12c0fdb83"
+      },
+      "runtimeValidated": false,
+      "unreleasedSourceCandidate": {
+        "branch": "1.20.4",
+        "head": "b9173fb4654818bb606d41501f1a841acc5f8384",
+        "version": "85 이후 미출시",
+        "comparisonBase": "4522fbb3e42b5a31688c7c7666cf13c12c0fdb83",
+        "summary": "책/항목/페이지 열기에 따른 발전과제 트리거, 위키 링크 수정"
+      }
+    },
+    {
+      "modId": "ptsdeco",
+      "name": "PTS Deco",
+      "baselineVersion": "2.1.0",
+      "baselineSha256": "3b9f18e36755fe087a6b7c5d9501be6b92ee8039c27e207bd2d1f4263dbe02b5",
+      "baselineFileName": "PTS-Deco-2.1.0-Fabric+Quilt1.20-1.20.4.jar",
+      "buildVersion": "2.1.0",
+      "publicPackSelectedVersion": "2.1.0",
+      "publicPackArtifact": "baseline",
+      "status": "release_candidate",
+      "latestCompatibleRelease": {
+        "id": "etl5lvBR",
+        "version_number": "4.0.0-fabric1.20.4",
+        "version_type": "release",
+        "date_published": "2025-11-09T19:21:03.661826Z",
+        "game_versions": [
+          "1.20.4"
+        ],
+        "loaders": [
+          "fabric"
+        ],
+        "url": "https://modrinth.com/version/etl5lvBR",
+        "files": [
+          {
+            "filename": "PTS-Deco-4.0.0-Fabric1.20.4.jar",
+            "url": "https://cdn.modrinth.com/data/VIkNIHtW/versions/etl5lvBR/PTS-Deco-4.0.0-Fabric1.20.4.jar",
+            "primary": true,
+            "size": 3476524,
+            "hashes": {
+              "sha1": "153b429fbe0d408c5cef27c2b5df2d0d44cd972b",
+              "sha512": "b777bc4c65f9690624196d7d04e32d28576621cad6e2e575fe625608f12405b3f252cfb38ac1c030c54f4250d7007af966f1e634a0a3f6f252060c8ca845c499"
+            }
+          }
+        ]
+      },
+      "source": null,
+      "runtimeValidated": false,
+      "candidateArtifactInspection": {
+        "modId": "ptsdeco",
+        "releaseId": "etl5lvBR",
+        "releaseVersion": "4.0.0-fabric1.20.4",
+        "publishedAt": "2025-11-09T19:21:03.661826Z",
+        "versionType": "release",
+        "gameVersions": [
+          "1.20.4"
+        ],
+        "loaders": [
+          "fabric"
+        ],
+        "fileName": "PTS-Deco-4.0.0-Fabric1.20.4.jar",
+        "url": "https://cdn.modrinth.com/data/VIkNIHtW/versions/etl5lvBR/PTS-Deco-4.0.0-Fabric1.20.4.jar",
+        "sha256": "aa75d6e205c34a063fead0dc5cbd564fcbca640172db718e22ac17ebdcc64919",
+        "sha512": "b777bc4c65f9690624196d7d04e32d28576621cad6e2e575fe625608f12405b3f252cfb38ac1c030c54f4250d7007af966f1e634a0a3f6f252060c8ca845c499",
+        "fabricMetadata": {
+          "schemaVersion": 1,
+          "id": "ptsdeco",
+          "version": "4.0.0",
+          "name": "PTS-Deco",
+          "description": "New Generation of PTS-Deco, write from the Ground up new, new Models, new Textures, new Functions, Decorate your World with over 1500 Models",
+          "authors": [
+            "Nik123123555, KatzeJuli123"
+          ],
+          "contact": {
+            "issues": "https://github.com/Nik123123555/PTS-Deco/issues"
+          },
+          "license": "PTS-License",
+          "environment": "*",
+          "accessWidener": "ptsdeco.accesswidener",
+          "entrypoints": {
+            "main": [
+              "com.nik123123555.ptsdeco.PTSDecoFabric"
+            ],
+            "client": [
+              "com.nik123123555.ptsdeco.client.ClientDecoFabric"
+            ],
+            "fabric-datagen": [
+              "com.nik123123555.ptsdeco.PTSDecoFabric"
+            ]
+          },
+          "depends": {
+            "fabricloader": ">=0.15.11",
+            "fabric-api": ">=0.97.1+1.20.4",
+            "minecraft": "1.20.4",
+            "java": ">=17"
+          },
+          "mixins": [
+            "ptsdeco.common.mixins.json",
+            "ptsdeco.fabric.mixins.json"
+          ],
+          "custom": {
+            "loom:injected_interfaces": {
+              "net/minecraft/class_793": [
+                "com/nik123123555/ptsdeco/client/model/extensions/BlockModelExtensions"
+              ]
+            }
+          }
+        },
+        "classFileCount": 118,
+        "javaSourceCount": 0
+      }
+    },
+    {
+      "modId": "puzzleslib",
+      "name": "Puzzles Lib",
+      "baselineVersion": "20.4.52",
+      "baselineSha256": "cfa2fc847681e69d31a4169ce22c3d57d2d080e4bcd7a878525e3400296c0770",
+      "baselineFileName": "PuzzlesLib-v20.4.52-1.20.4-Fabric.jar",
+      "buildVersion": "20.4.53",
+      "publicPackSelectedVersion": "20.4.52",
+      "publicPackArtifact": "baseline",
+      "status": "source_prepared_release_candidate",
+      "latestCompatibleRelease": {
+        "id": "PYkg1A3a",
+        "version_number": "v20.4.53-1.20.4-Fabric",
+        "version_type": "release",
+        "date_published": "2025-10-23T08:56:08.510163Z",
+        "game_versions": [
+          "1.20.4"
+        ],
+        "loaders": [
+          "fabric"
+        ],
+        "url": "https://modrinth.com/version/PYkg1A3a",
+        "files": [
+          {
+            "filename": "PuzzlesLib-v20.4.53-1.20.4-Fabric.jar",
+            "url": "https://cdn.modrinth.com/data/QAGBst4M/versions/PYkg1A3a/PuzzlesLib-v20.4.53-1.20.4-Fabric.jar",
+            "primary": true,
+            "size": 1029646,
+            "hashes": {
+              "sha1": "1ef887450a238e66faec6e5d60fb1043a35632a8",
+              "sha512": "ba2a759a547fe860d73de79b9be6098fc7ac5720a5aabd668c5d9f38994435cc1af6d8084a703802f5f687b59d5bcac2e1214d0999af282de8452d79e9bbc895"
+            }
+          }
+        ]
+      },
+      "source": {
+        "path": "puzzles-lib",
+        "url": "https://github.com/minefed/puzzles-lib",
+        "upstream": "https://github.com/Fuzss/puzzles-lib",
+        "ref": "minefed-1.20.4",
+        "commit": "1dc5d1305d9d93527d09b84c826d30216bb5d468",
+        "trackingBranch": "minefed-1.20.4",
+        "baselineRef": "refs/heads/1.20.4",
+        "baselineCommit": "dff8529b28db23e197c34f47792839ae305571e5"
+      },
+      "runtimeValidated": false,
+      "candidateArtifactInspection": {
+        "modId": "puzzleslib",
+        "releaseId": "PYkg1A3a",
+        "releaseVersion": "v20.4.53-1.20.4-Fabric",
+        "publishedAt": "2025-10-23T08:56:08.510163Z",
+        "versionType": "release",
+        "gameVersions": [
+          "1.20.4"
+        ],
+        "loaders": [
+          "fabric"
+        ],
+        "fileName": "PuzzlesLib-v20.4.53-1.20.4-Fabric.jar",
+        "url": "https://cdn.modrinth.com/data/QAGBst4M/versions/PYkg1A3a/PuzzlesLib-v20.4.53-1.20.4-Fabric.jar",
+        "sha256": "22d833f9e9c84e97538ede7a7d8378a9744476a7c03ff639cd2fd1d92bcc3ea4",
+        "sha512": "ba2a759a547fe860d73de79b9be6098fc7ac5720a5aabd668c5d9f38994435cc1af6d8084a703802f5f687b59d5bcac2e1214d0999af282de8452d79e9bbc895",
+        "fabricMetadata": {
+          "schemaVersion": 1,
+          "id": "puzzleslib",
+          "version": "20.4.53",
+          "name": "Puzzles Lib",
+          "description": "Why's it called Puzzles you ask? That's the puzzle!",
+          "authors": [
+            "Fuzs"
+          ],
+          "contact": {
+            "homepage": "https://github.com/Fuzss/puzzleslib",
+            "issues": "https://github.com/Fuzss/puzzleslib/issues",
+            "sources": "https://github.com/Fuzss/puzzleslib"
+          },
+          "license": "MPL-2.0",
+          "icon": "mod_logo.png",
+          "environment": "*",
+          "entrypoints": {
+            "main": [
+              "fuzs.puzzleslib.fabric.impl.PuzzlesLibFabric"
+            ],
+            "client": [
+              "fuzs.puzzleslib.fabric.impl.client.PuzzlesLibFabricClient"
+            ]
+          },
+          "mixins": [
+            "puzzleslib.common.mixins.json",
+            "puzzleslib.fabric.mixins.json"
+          ],
+          "depends": {
+            "fabricloader": ">=0.15.0",
+            "fabric-api": ">=0.96.0",
+            "forgeconfigapiport": "*",
+            "minecraft": "1.20.4",
+            "java": ">=17"
+          },
+          "custom": {
+            "modmenu": {
+              "badges": [
+                "library"
+              ]
+            }
+          },
+          "accessWidener": "puzzleslib.accesswidener"
+        },
+        "classFileCount": 768,
+        "javaSourceCount": 0
+      }
+    },
+    {
+      "modId": "realtime",
+      "name": "Realtime",
+      "baselineVersion": "1.0.3-1.20-1.21.1",
+      "baselineSha256": "d4e65606ac1bc7e9dedd476ff08fb7e96d958ede60f002946a503d86ecf7f319",
+      "baselineFileName": "realtime-1.0.3-1.20-1.21.1.jar",
+      "buildVersion": "1.0.3-1.20-1.21.1",
+      "publicPackSelectedVersion": "1.0.3-1.20-1.21.1",
+      "publicPackArtifact": "built",
+      "status": "current_compatible_release",
+      "latestCompatibleRelease": {
+        "id": "3JUK9zwP",
+        "version_number": "1.0.3-1.20-1.21.1",
+        "version_type": "release",
+        "date_published": "2025-01-26T12:47:14.893361Z",
+        "game_versions": [
+          "1.20",
+          "1.20.1",
+          "1.20.2",
+          "1.20.3",
+          "1.20.4",
+          "1.20.5",
+          "1.20.6",
+          "1.21",
+          "1.21.1"
+        ],
+        "loaders": [
+          "fabric"
+        ],
+        "url": "https://modrinth.com/version/3JUK9zwP",
+        "files": [
+          {
+            "filename": "realtime-1.0.3-1.20-1.21.1.jar",
+            "url": "https://cdn.modrinth.com/data/DrirDBlI/versions/3JUK9zwP/realtime-1.0.3-1.20-1.21.1.jar",
+            "primary": true,
+            "size": 11172,
+            "hashes": {
+              "sha1": "469bcc1b3d5f4b43d1cba10498b8fb01eb6da77a",
+              "sha512": "d7a5a61e0d2748c97c140ce49d3590112238bb41579c676186ecf0163c10e0437b9d3df75f9d2c6a284d9eb62746601e3eb28735db372add72bc5aba8e2cf902"
+            }
+          }
+        ]
+      },
+      "source": {
+        "path": "mc-realtime",
+        "url": "https://github.com/minefed/mc-realtime",
+        "upstream": "https://github.com/ttianeo/mc-realtime",
+        "ref": "minefed-1.20.4",
+        "commit": "bd05e0fe8ad18184354dff9453da4b0d8b4703b5",
+        "trackingBranch": "minefed-1.20.4",
+        "baselineRef": "refs/heads/1.20-1.21.1",
+        "baselineCommit": "467b5728786dbfd260df9aced99770343b732267"
+      },
+      "runtimeValidated": false
+    },
+    {
+      "modId": "rechiseled",
+      "name": "Rechiseled",
+      "baselineVersion": "1.2.1",
+      "baselineSha256": "5e3745c4699964403fe25eb316312e5340d5d506f4d7af9336ea80922fdae90c",
+      "baselineFileName": "rechiseled-1.2.1-fabric-mc1.20.4.jar",
+      "buildVersion": "1.2.1",
+      "publicPackSelectedVersion": "1.2.1",
+      "publicPackArtifact": "baseline",
+      "status": "release_candidate",
+      "latestCompatibleRelease": {
+        "id": "H4YTGQ1N",
+        "version_number": "1.2.5-fabric-mc1.20.4",
+        "version_type": "release",
+        "date_published": "2026-06-22T17:18:08.448319Z",
+        "game_versions": [
+          "1.20.2",
+          "1.20.3",
+          "1.20.4"
+        ],
+        "loaders": [
+          "fabric",
+          "quilt"
+        ],
+        "url": "https://modrinth.com/version/H4YTGQ1N",
+        "files": [
+          {
+            "filename": "rechiseled-1.2.5-fabric-mc1.20.4.jar",
+            "url": "https://cdn.modrinth.com/data/B0g2vT6l/versions/H4YTGQ1N/rechiseled-1.2.5-fabric-mc1.20.4.jar",
+            "primary": true,
+            "size": 11932928,
+            "hashes": {
+              "sha512": "dec2b3b49726d63e513e34f0d2c87580112dbe387bcdaf7bb2db60fe6707d345beccfe00318b3bc88274f95c57fef7769c0ad32578908a23393704186985fff0",
+              "sha1": "01571d7e874331018df78d02200e3c866e9b3d56"
+            }
+          }
+        ]
+      },
+      "source": null,
+      "runtimeValidated": false,
+      "candidateArtifactInspection": {
+        "modId": "rechiseled",
+        "releaseId": "H4YTGQ1N",
+        "releaseVersion": "1.2.5-fabric-mc1.20.4",
+        "publishedAt": "2026-06-22T17:18:08.448319Z",
+        "versionType": "release",
+        "gameVersions": [
+          "1.20.2",
+          "1.20.3",
+          "1.20.4"
+        ],
+        "loaders": [
+          "fabric",
+          "quilt"
+        ],
+        "fileName": "rechiseled-1.2.5-fabric-mc1.20.4.jar",
+        "url": "https://cdn.modrinth.com/data/B0g2vT6l/versions/H4YTGQ1N/rechiseled-1.2.5-fabric-mc1.20.4.jar",
+        "sha256": "d4ad010ce1f73f078b45e56fb14b16f2ec8eaa7af2fa8cfd2c49d940ae05e7ea",
+        "sha512": "dec2b3b49726d63e513e34f0d2c87580112dbe387bcdaf7bb2db60fe6707d345beccfe00318b3bc88274f95c57fef7769c0ad32578908a23393704186985fff0",
+        "fabricMetadata": {
+          "schemaVersion": 1,
+          "id": "rechiseled",
+          "version": "1.2.5",
+          "name": "Rechiseled",
+          "description": "Rechiseled allows you to exchange between various decorative blocks!",
+          "authors": [
+            "SuperMartijn642"
+          ],
+          "contact": {
+            "homepage": "https://www.curseforge.com/minecraft/mc-mods/rechiseled",
+            "sources": "https://github.com/SuperMartijn642/Rechiseled"
+          },
+          "license": "All rights reserved",
+          "icon": "rechiseled.png",
+          "environment": "*",
+          "entrypoints": {
+            "main": [
+              "com.supermartijn642.rechiseled.Rechiseled"
+            ],
+            "client": [
+              "com.supermartijn642.rechiseled.RechiseledClient"
+            ],
+            "jei_mod_plugin": [
+              "com.supermartijn642.rechiseled.compat.jei.ChiselingJEIPlugin"
+            ],
+            "rei_client": [
+              "com.supermartijn642.rechiseled.compat.rei.ChiselingREIPlugin"
+            ]
+          },
+          "mixins": [
+            "rechiseled.mixins.json"
+          ],
+          "accessWidener": "rechiseled.accesswidener",
+          "depends": {
+            "fabricloader": ">=0.18.0",
+            "fabric": "*",
+            "minecraft": ">=1.20.2 <1.20.5",
+            "java": ">=17",
+            "supermartijn642corelib": ">=1.1.20 <1.2.0",
+            "supermartijn642configlib": ">=1.1.6",
+            "fusion": ">=1.2.12"
+          }
+        },
+        "classFileCount": 122,
+        "javaSourceCount": 0
+      }
+    },
+    {
+      "modId": "resourcefulconfig",
+      "name": "Resourceful Config",
+      "baselineVersion": "2.4.8",
+      "baselineSha256": "1d82d48ec1f8e911f520a4dd07f74240e890db74209eecc8330ca6d5e016f104",
+      "baselineFileName": "resourcefulconfig-fabric-1.20.4-2.4.8.jar",
+      "buildVersion": "2.4.8",
+      "publicPackSelectedVersion": "2.4.8",
+      "publicPackArtifact": "built",
+      "status": "current_compatible_release",
+      "latestCompatibleRelease": {
+        "id": "1yfzKLu6",
+        "version_number": "2.4.8",
+        "version_type": "release",
+        "date_published": "2025-02-23T03:13:59.426740Z",
+        "game_versions": [
+          "1.20.4"
+        ],
+        "loaders": [
+          "fabric",
+          "quilt"
+        ],
+        "url": "https://modrinth.com/version/1yfzKLu6",
+        "files": [
+          {
+            "filename": "resourcefulconfig-fabric-1.20.4-2.4.8.jar",
+            "url": "https://cdn.modrinth.com/data/M1953qlQ/versions/1yfzKLu6/resourcefulconfig-fabric-1.20.4-2.4.8.jar",
+            "primary": true,
+            "size": 228662,
+            "hashes": {
+              "sha512": "6f619da3d59a3957cc55f2c20699cf1cf7c96040e428dc4c0917d4f975fac873eba478c79f7841a3a5bc3ffea2a4a18b258bdda418c07d3ec2f42f6b64803533",
+              "sha1": "c0ab10230d7d6a99c0a4b443e4fc6106f58fa52b"
+            }
+          }
+        ]
+      },
+      "source": null,
+      "runtimeValidated": false
+    },
+    {
+      "modId": "resourcefullib",
+      "name": "ResourcefulLib",
+      "baselineVersion": "2.4.10",
+      "baselineSha256": "f79dadaa2db8c621a064e678c4ec6a01f42b4f48a582aa4794da5626d313806f",
+      "baselineFileName": "resourcefullib-fabric-1.20.4-2.4.10.jar",
+      "buildVersion": "2.4.10",
+      "publicPackSelectedVersion": "2.4.10",
+      "publicPackArtifact": "built",
+      "status": "current_compatible_release",
+      "latestCompatibleRelease": {
+        "id": "TiIWVg2u",
+        "version_number": "2.4.10",
+        "version_type": "release",
+        "date_published": "2024-03-14T02:16:32.422017Z",
+        "game_versions": [
+          "1.20.4"
+        ],
+        "loaders": [
+          "fabric"
+        ],
+        "url": "https://modrinth.com/version/TiIWVg2u",
+        "files": [
+          {
+            "filename": "resourcefullib-fabric-1.20.4-2.4.10.jar",
+            "url": "https://cdn.modrinth.com/data/G1hIVOrD/versions/TiIWVg2u/resourcefullib-fabric-1.20.4-2.4.10.jar",
+            "primary": true,
+            "size": 440662,
+            "hashes": {
+              "sha512": "fed65173b10510b46728c34e9b8dd85c171a5505d42e2e7e1d90ab34f27475c85ba9b3fc291fb3049ed74340dd45f788b23816446d4f60066cbe55d7faa716ed",
+              "sha1": "f6e47cd60ad0f7ab4228fee01f73c8984c8a1783"
+            }
+          }
+        ]
+      },
+      "source": null,
+      "runtimeValidated": false
+    },
+    {
+      "modId": "starlight",
+      "name": "Starlight",
+      "baselineVersion": "1.1.3+fabric.f5dcd1a",
+      "baselineSha256": "bdf3a3f1c470894d8d24726c12e89eb309c7c46d86ff8527490c5ce5bb67b989",
+      "baselineFileName": "starlight-1.1.3+fabric.f5dcd1a.jar",
+      "buildVersion": "1.1.3+fabric.c2b8391",
+      "publicPackSelectedVersion": "1.1.3+fabric.c2b8391",
+      "publicPackArtifact": "built",
+      "status": "current_compatible_release",
+      "latestCompatibleRelease": {
+        "id": "HZYU0kdg",
+        "version_number": "1.1.3+1.20.4",
+        "version_type": "release",
+        "date_published": "2023-12-10T20:27:20.093181Z",
+        "game_versions": [
+          "1.20.4"
+        ],
+        "loaders": [
+          "fabric"
+        ],
+        "url": "https://modrinth.com/version/HZYU0kdg",
+        "files": [
+          {
+            "filename": "starlight-1.1.3+fabric.f5dcd1a.jar",
+            "url": "https://cdn.modrinth.com/data/H8CaAYZC/versions/HZYU0kdg/starlight-1.1.3%2Bfabric.f5dcd1a.jar",
+            "primary": true,
+            "size": 126410,
+            "hashes": {
+              "sha512": "6bc9e4582f6e28dada721cd5a3eea5b817e3445883a3717c1927c558ee991dc327239c62afd4ce9215fa7735c3afa6e870f287826dc4c2d773a524903a7b8fb4",
+              "sha1": "6c1dfb43aa2873ecf474b3278d42348457fbca0f"
+            }
+          }
+        ]
+      },
+      "source": {
+        "path": "Starlight",
+        "url": "https://github.com/minefed/Starlight",
+        "upstream": "https://github.com/PaperMC/Starlight",
+        "ref": "minefed-1.20.4",
+        "commit": "c2b8391d83ddadbd8136d2abead7e1014da19a6d",
+        "trackingBranch": "minefed-1.20.4",
+        "baselineRef": "f5dcd1a4278aba0aceb92a64bb91d411154449f7",
+        "baselineCommit": "f5dcd1a4278aba0aceb92a64bb91d411154449f7"
+      },
+      "runtimeValidated": false
+    },
+    {
+      "modId": "stoneworks",
+      "name": "Stoneworks",
+      "baselineVersion": "20.4.0",
+      "baselineSha256": "8eec1130afc17125a0295fd142741e5f242f5255046f9b0a3d61a6d8b9ca8150",
+      "baselineFileName": "Stoneworks-v20.4.0-1.20.4-Fabric.jar",
+      "buildVersion": "20.4.0",
+      "publicPackSelectedVersion": "20.4.0",
+      "publicPackArtifact": "baseline",
+      "status": "current_compatible_release",
+      "latestCompatibleRelease": {
+        "id": "iaCtNo4p",
+        "version_number": "v20.4.0-1.20.4-Fabric",
+        "version_type": "release",
+        "date_published": "2024-01-21T18:55:22.463799Z",
+        "game_versions": [
+          "1.20.4"
+        ],
+        "loaders": [
+          "fabric"
+        ],
+        "url": "https://modrinth.com/version/iaCtNo4p",
+        "files": [
+          {
+            "filename": "Stoneworks-v20.4.0-1.20.4-Fabric.jar",
+            "url": "https://cdn.modrinth.com/data/FzyTKtVF/versions/iaCtNo4p/Stoneworks-v20.4.0-1.20.4-Fabric.jar",
+            "primary": true,
+            "size": 2340696,
+            "hashes": {
+              "sha1": "307459a4c2522182c8eef50c84026d60c07c7d66",
+              "sha512": "e9664c5e968094d5b8d42d008b6c3d3057e7363c5e724d5050071f631fd48be873df126bde154e210d94d7131ebf23780db80296d92191bfdb54fd954d3ce533"
+            }
+          }
+        ]
+      },
+      "source": {
+        "path": "stoneworks",
+        "url": "https://github.com/minefed/stoneworks",
+        "upstream": "https://github.com/Fuzss/stoneworks",
+        "ref": "minefed-1.20.4",
+        "commit": "6f492401ca95bec909e0f0f634c58780fa67793a",
+        "trackingBranch": "minefed-1.20.4",
+        "baselineRef": "refs/heads/1.20.4",
+        "baselineCommit": "fc6ff7702dcf3bc203a4466039a2abe9c55b560f"
+      },
+      "runtimeValidated": false
+    },
+    {
+      "modId": "supermartijn642configlib",
+      "name": "SuperMartijn642 Config Lib",
+      "baselineVersion": "1.1.8+a",
+      "baselineSha256": "b3a48fdee5415c614ba4e9360b8b904315996fafd2a907f666771fb09ea97eac",
+      "baselineFileName": "supermartijn642configlib-1.1.8a-fabric-mc1.20.2.jar",
+      "buildVersion": "1.1.8+a",
+      "publicPackSelectedVersion": "1.1.8+a",
+      "publicPackArtifact": "baseline",
+      "status": "current_compatible_release",
+      "latestCompatibleRelease": {
+        "id": "cp6X3Hrn",
+        "version_number": "1.1.8a-fabric-mc1.20.2",
+        "version_type": "release",
+        "date_published": "2023-10-07T09:56:23.293612Z",
+        "game_versions": [
+          "1.20.2",
+          "1.20.3",
+          "1.20.4"
+        ],
+        "loaders": [
+          "fabric",
+          "quilt"
+        ],
+        "url": "https://modrinth.com/version/cp6X3Hrn",
+        "files": [
+          {
+            "filename": "supermartijn642configlib-1.1.8a-fabric-mc1.20.2.jar",
+            "url": "https://cdn.modrinth.com/data/LN9BxssP/versions/cp6X3Hrn/supermartijn642configlib-1.1.8a-fabric-mc1.20.2.jar",
+            "primary": true,
+            "size": 205413,
+            "hashes": {
+              "sha512": "032b9524bdecf2297e4bb3961d3a9661a8be8cc246c12d49f037bf2681b21fa6c71def682f40c329d25e800d2b6a6d1fe461fd2fa50432a719b3184b1ed8dbe9",
+              "sha1": "e0f54767aa7814e07e9f4cf78ca36eddffecffa6"
+            }
+          }
+        ]
+      },
+      "source": null,
+      "runtimeValidated": false
+    },
+    {
+      "modId": "supermartijn642corelib",
+      "name": "SuperMartijn642 Core Lib",
+      "baselineVersion": "1.1.20",
+      "baselineSha256": "79d7a9f469aaf5a9e0a2e4d974aeb30c6ee27cff004c61044dae224e1cd9339b",
+      "baselineFileName": "supermartijn642corelib-1.1.20-fabric-mc1.20.4.jar",
+      "buildVersion": "1.1.20",
+      "publicPackSelectedVersion": "1.1.20",
+      "publicPackArtifact": "baseline",
+      "status": "release_candidate",
+      "latestCompatibleRelease": {
+        "id": "3bdJYmjw",
+        "version_number": "1.1.24-fabric-mc1.20.4",
+        "version_type": "release",
+        "date_published": "2026-08-11T12:27:41.005399Z",
+        "game_versions": [
+          "1.20.4"
+        ],
+        "loaders": [
+          "fabric",
+          "quilt"
+        ],
+        "url": "https://modrinth.com/version/3bdJYmjw",
+        "files": [
+          {
+            "filename": "supermartijn642corelib-1.1.24-fabric-mc1.20.4.jar",
+            "url": "https://cdn.modrinth.com/data/rOUBggPv/versions/3bdJYmjw/supermartijn642corelib-1.1.24-fabric-mc1.20.4.jar",
+            "primary": true,
+            "size": 610937,
+            "hashes": {
+              "sha512": "9addd6cebf5c3e2c18a965e7a291e86d071dbc7b31caa0ea7af18b1820eca5cc990c3715d55989addf355087f368942e099efb2dc3b3ae8b8f7edf708b706c59",
+              "sha1": "19f94491526722d97481ff92018d96de8e20fc19"
+            }
+          }
+        ]
+      },
+      "source": null,
+      "runtimeValidated": false,
+      "candidateArtifactInspection": {
+        "modId": "supermartijn642corelib",
+        "releaseId": "3bdJYmjw",
+        "releaseVersion": "1.1.24-fabric-mc1.20.4",
+        "publishedAt": "2026-08-11T12:27:41.005399Z",
+        "versionType": "release",
+        "gameVersions": [
+          "1.20.4"
+        ],
+        "loaders": [
+          "fabric",
+          "quilt"
+        ],
+        "fileName": "supermartijn642corelib-1.1.24-fabric-mc1.20.4.jar",
+        "url": "https://cdn.modrinth.com/data/rOUBggPv/versions/3bdJYmjw/supermartijn642corelib-1.1.24-fabric-mc1.20.4.jar",
+        "sha256": "7c9912584f3eeca0b3100f7e61db25a2fe6f565755f362da59049bdc38b08c68",
+        "sha512": "9addd6cebf5c3e2c18a965e7a291e86d071dbc7b31caa0ea7af18b1820eca5cc990c3715d55989addf355087f368942e099efb2dc3b3ae8b8f7edf708b706c59",
+        "fabricMetadata": {
+          "schemaVersion": 1,
+          "id": "supermartijn642corelib",
+          "version": "1.1.24",
+          "name": "SuperMartijn642's Core Lib",
+          "description": "SuperMartijn642's Core Lib adds lots of basic implementations for guis that allow for similar code between Minecraft 1.12, 1.14, 1.15, and 1.16!",
+          "authors": [
+            "SuperMartijn642"
+          ],
+          "contact": {
+            "homepage": "https://www.curseforge.com/minecraft/mc-mods/supermartijn642s-core-lib",
+            "sources": "https://github.com/SuperMartijn642/SuperMartijn642sCoreLib"
+          },
+          "license": "All rights reserved",
+          "icon": "supermartijn642corelib.png",
+          "environment": "*",
+          "entrypoints": {
+            "main": [
+              "com.supermartijn642.core.CoreLib"
+            ],
+            "preLaunch": [
+              "com.supermartijn642.core.CoreLibPreLaunch"
+            ]
+          },
+          "mixins": [
+            "supermartijn642corelib.mixins.json"
+          ],
+          "accessWidener": "supermartijn642corelib.accesswidener",
+          "depends": {
+            "fabricloader": ">=0.14.0",
+            "fabric": ">=0.95.3",
+            "minecraft": ">=1.20.4 <1.20.5",
+            "java": ">=17"
+          },
+          "custom": {
+            "modmenu": {
+              "badges": [
+                "library"
+              ]
+            }
+          }
+        },
+        "classFileCount": 208,
+        "javaSourceCount": 0
+      }
+    },
+    {
+      "modId": "timeoutout",
+      "name": "TimeOutOut",
+      "baselineVersion": "1.0.4+1.20.2",
+      "baselineSha256": "acb1be1b9b88aaee5d780199d407e5b6b04883c5d93a7f9a17e8f8d9eddfccba",
+      "baselineFileName": "timeoutout-1.0.4+1.20.2.jar",
+      "buildVersion": "1.0.4+1.20.2",
+      "publicPackSelectedVersion": "1.0.4+1.20.2",
+      "publicPackArtifact": "built",
+      "status": "current_compatible_release",
+      "latestCompatibleRelease": {
+        "id": "VAYNN78f",
+        "version_number": "1.0.4",
+        "version_type": "release",
+        "date_published": "2023-10-07T17:38:10.773525Z",
+        "game_versions": [
+          "1.20.2",
+          "1.20.3",
+          "1.20.4",
+          "1.20.5",
+          "1.20.6",
+          "1.21",
+          "1.21.1",
+          "1.21.2",
+          "1.21.3",
+          "1.21.4",
+          "1.21.5",
+          "1.21.6",
+          "1.21.7",
+          "1.21.8"
+        ],
+        "loaders": [
+          "fabric",
+          "quilt"
+        ],
+        "url": "https://modrinth.com/version/VAYNN78f",
+        "files": [
+          {
+            "filename": "timeoutout-1.0.4+1.20.2.jar",
+            "url": "https://cdn.modrinth.com/data/7cFX55fD/versions/VAYNN78f/timeoutout-1.0.4%2B1.20.2.jar",
+            "primary": true,
+            "size": 9342,
+            "hashes": {
+              "sha512": "616a29f085fb7e151f02a7209ffd80d4d74e7341a9a23fa1a897d3221a00cb990fe4d7ebc0892b0a8c2a9eeac84fffd888076519d65529bcb34be53410928eda",
+              "sha1": "1ad6937d4c590dfa14247295fe47f8ddf0643b07"
+            }
+          }
+        ]
+      },
+      "source": {
+        "path": "TimeOutOut",
+        "url": "https://github.com/minefed/TimeOutOut",
+        "upstream": "https://github.com/PotatoPresident/TimeOutOut",
+        "ref": "minefed-1.20.4",
+        "commit": "0d27ca115902c93d132a2d062b166c5a544da0c7",
+        "trackingBranch": "minefed-1.20.4",
+        "baselineRef": "refs/tags/1.0.4",
+        "baselineCommit": "14c126ab3dba59399d658bf52c198e2fdcdb8010"
+      },
+      "runtimeValidated": false
+    },
+    {
+      "modId": "trafficcraft",
+      "name": "TrafficCraft",
+      "baselineVersion": "1.20.4-1.1.3",
+      "baselineSha256": "ddf1d434be7eee0ab7ff67ba4712cb213900bc10c43776cc52dddc40697a0a58",
+      "baselineFileName": "trafficcraft-fabric-1.20.4-1.1.3.jar",
+      "buildVersion": "1.20.4-1.1.3",
+      "publicPackSelectedVersion": "1.20.4-1.1.3",
+      "publicPackArtifact": "baseline",
+      "status": "current_compatible_release",
+      "latestCompatibleRelease": {
+        "id": "rzrY1Buf",
+        "version_number": "1.20.4-1.1.3",
+        "version_type": "release",
+        "date_published": "2025-01-04T20:19:04.061928Z",
+        "game_versions": [
+          "1.20.4"
+        ],
+        "loaders": [
+          "fabric"
+        ],
+        "url": "https://modrinth.com/version/rzrY1Buf",
+        "files": [
+          {
+            "filename": "trafficcraft-fabric-1.20.4-1.1.3.jar",
+            "url": "https://cdn.modrinth.com/data/Y1PXWvWn/versions/rzrY1Buf/trafficcraft-fabric-1.20.4-1.1.3.jar",
+            "primary": true,
+            "size": 6602857,
+            "hashes": {
+              "sha512": "1040282280a87c6a4005692e20586480c4618d7b1bf244667a2057fb1c0223689b1db68801e108ce917c2d1c534f7184aba1c2a838b55d0bca369b0282cae7a3",
+              "sha1": "f96e14caeb864ef424ae417591106c072365dac4"
+            }
+          }
+        ]
+      },
+      "source": {
+        "path": "TrafficCraft",
+        "url": "https://github.com/minefed/TrafficCraft",
+        "upstream": "https://github.com/MisterJulsen/TrafficCraft",
+        "ref": "minefed-1.20.4",
+        "commit": "40b9405380f3baae0aa45e9e744e14efd9eecf6c",
+        "trackingBranch": "minefed-1.20.4",
+        "baselineRef": "refs/heads/1.20.4-dev",
+        "baselineCommit": "c6c7092df4c1f77e438e507756255eb47e7a3585"
+      },
+      "runtimeValidated": false
+    },
+    {
+      "modId": "webstreamer",
+      "name": "Webstreamer",
+      "baselineVersion": "1.5.0",
+      "baselineSha256": "e8efce988e65abd58f6b6371c33bdf7a2ea61aee209a53dc5fc3b6415f118041",
+      "baselineFileName": "webstreamer-1.5.0.jar",
+      "buildVersion": "1.5.0+minefed.1",
+      "publicPackSelectedVersion": "1.5.0+minefed.1",
+      "publicPackArtifact": "built",
+      "status": "managed_source_deployment_check",
+      "latestCompatibleRelease": {
+        "id": "ondpQ8lg",
+        "version_number": "1.5.0",
+        "version_type": "release",
+        "date_published": "2024-03-09T11:46:45.631309Z",
+        "game_versions": [
+          "1.20.3",
+          "1.20.4"
+        ],
+        "loaders": [
+          "fabric"
+        ],
+        "url": "https://modrinth.com/version/ondpQ8lg",
+        "files": [
+          {
+            "filename": "webstreamer-1.5.0.jar",
+            "url": "https://cdn.modrinth.com/data/IdNyYbFO/versions/ondpQ8lg/webstreamer-1.5.0.jar",
+            "primary": true,
+            "size": 77463525,
+            "hashes": {
+              "sha512": "05d94aeae2e9f1beebfde98d69ab9f5732654437181a3666a142a89ca40dfbaa22a61c0e1d6605c086449ddf5eb580566876cc84fe370f98f6a60c95ae75155a",
+              "sha1": "88b9f673e336756fd09252d9dc7ea833fc79e936"
+            }
+          }
+        ]
+      },
+      "source": {
+        "path": "fabric-webstreamer",
+        "url": "https://github.com/minefed/fabric-webstreamer",
+        "upstream": "https://github.com/theorzr/fabric-webstreamer",
+        "ref": "minefed-1.20.4",
+        "commit": "f9c03980c9cb31ca891e4429bc2529c6c0cce033",
+        "trackingBranch": "minefed-1.20.4",
+        "baselineRef": "master",
+        "baselineCommit": "ff3796b835d7a61055f218cdddb718429507a1c4"
+      },
+      "runtimeValidated": false,
+      "preparedMinefedChange": "1.5.0+minefed.1: 실제 청크 표시 거리를 사용하는 화면 렌더링 수정"
+    },
+    {
+      "modId": "wirelessredstone",
+      "name": "Wireless Redstone",
+      "baselineVersion": "1.2.2+1.20.4",
+      "baselineSha256": "c974ea1ce01c64f614d15227575640399475a0f44b8e36ca4fb1932b452612bd",
+      "baselineFileName": "wirelessredstone-fabric-1.2.2+1.20.4.jar",
+      "buildVersion": "1.2.2+1.20.4",
+      "publicPackSelectedVersion": "1.2.2+1.20.4",
+      "publicPackArtifact": "built",
+      "status": "unreleased_source_candidate",
+      "latestCompatibleRelease": {
+        "id": "fgUwUN3e",
+        "version_number": "1.2.2+1.20.4-fabric",
+        "version_type": "release",
+        "date_published": "2025-09-30T15:01:37.948258Z",
+        "game_versions": [
+          "1.20.4"
+        ],
+        "loaders": [
+          "fabric"
+        ],
+        "url": "https://modrinth.com/version/fgUwUN3e",
+        "files": [
+          {
+            "filename": "wirelessredstone-fabric-1.2.2+1.20.4.jar",
+            "url": "https://cdn.modrinth.com/data/2mBYHHZ5/versions/fgUwUN3e/wirelessredstone-fabric-1.2.2%2B1.20.4.jar",
+            "primary": true,
+            "size": 233838,
+            "hashes": {
+              "sha1": "97bd3bda7eef16aef3a8e011c709221c41e8cd6e",
+              "sha512": "cfa2da6d89b43f61e98c1b53dc3f61b8ae5d9fec7dee1722b2dd499ca93b1ccb062a0c0ba96889ded69816ca194207647f09eaaa7c7ee0b030f0ef638e0b080d"
+            }
+          }
+        ]
+      },
+      "source": {
+        "path": "wireless-redstone",
+        "url": "https://github.com/minefed/wireless-redstone",
+        "upstream": "https://github.com/Razzokk/wireless-redstone",
+        "ref": "minefed-1.20.4",
+        "commit": "85cd6b45cd660deeba6ac5cb58b8d5f82795dae0",
+        "trackingBranch": "minefed-1.20.4",
+        "baselineRef": "refs/tags/v1.2.2+1.20.4",
+        "baselineCommit": "3a7b4d614bb3cc45cd90a809052f0eefb2ae1201"
+      },
+      "runtimeValidated": false,
+      "unreleasedSourceCandidate": {
+        "branch": "1.20.4",
+        "head": "90957d561c3922fde76935614b4ab609c62777c9",
+        "version": "1.3.0 Unreleased",
+        "comparisonBase": "3a7b4d614bb3cc45cd90a809052f0eefb2ae1201",
+        "summary": "부착형 송수신기, 즉시 신호 반영, P2P·리모컨·표시 수정, NBT 저장 형식 변경"
+      }
+    },
+    {
+      "modId": "worldedithangfix",
+      "name": "WorldEdit Hang Fix",
+      "baselineVersion": "1.0.2",
+      "baselineSha256": "0d375f10e18bee8dd2c00c683f0a9b9caf7f8b0b77ac0416bab6cfddee94b063",
+      "baselineFileName": "worldedit-hang-fix-v1.0.2-mc1.20.6-fabric.jar",
+      "buildVersion": "1.0.2",
+      "publicPackSelectedVersion": "1.0.2",
+      "publicPackArtifact": "built",
+      "status": "release_candidate",
+      "latestCompatibleRelease": {
+        "id": "CcLdaS7o",
+        "version_number": "v1.0.5-mc1.18.2-fabric",
+        "version_type": "release",
+        "date_published": "2026-04-17T19:23:29.841323Z",
+        "game_versions": [
+          "1.18.1",
+          "1.18.2",
+          "1.19",
+          "1.19.1",
+          "1.19.2",
+          "1.19.3",
+          "1.19.4",
+          "1.20",
+          "1.20.1",
+          "1.20.2",
+          "1.20.3",
+          "1.20.4"
+        ],
+        "loaders": [
+          "fabric"
+        ],
+        "url": "https://modrinth.com/version/CcLdaS7o",
+        "files": [
+          {
+            "filename": "worldedit-hang-fix-v1.0.5-mc1.18.2-fabric.jar",
+            "url": "https://cdn.modrinth.com/data/uz1wuff3/versions/CcLdaS7o/worldedit-hang-fix-v1.0.5-mc1.18.2-fabric.jar",
+            "primary": true,
+            "size": 39515,
+            "hashes": {
+              "sha512": "6a38de2c09a0b3375725de93812d97d041e91b1a7f9fe9241af561b4322537649bdb525c0c842ca7b230284ebbefea1abba1f9b588f95afc9091660d5e6fe1f1",
+              "sha1": "10aa5569f7e18ac875848d0c9f97aff3eba64f7e"
+            }
+          }
+        ]
+      },
+      "source": {
+        "path": "worldedit-hang-fix",
+        "url": "https://github.com/minefed/worldedit-hang-fix",
+        "upstream": "https://github.com/Fallen-Breath/worldedit-hang-fix",
+        "ref": "minefed-1.20.4",
+        "commit": "ae96bc02ab25322d7ee727125901fde785be7365",
+        "trackingBranch": "minefed-1.20.4",
+        "baselineRef": "refs/tags/v1.0.2",
+        "baselineCommit": "a68f1feda94d3cc2fa496726e3983d440bad2466"
+      },
+      "runtimeValidated": false,
+      "candidateArtifactInspection": {
+        "modId": "worldedithangfix",
+        "releaseId": "CcLdaS7o",
+        "releaseVersion": "v1.0.5-mc1.18.2-fabric",
+        "publishedAt": "2026-04-17T19:23:29.841323Z",
+        "versionType": "release",
+        "gameVersions": [
+          "1.18.1",
+          "1.18.2",
+          "1.19",
+          "1.19.1",
+          "1.19.2",
+          "1.19.3",
+          "1.19.4",
+          "1.20",
+          "1.20.1",
+          "1.20.2",
+          "1.20.3",
+          "1.20.4"
+        ],
+        "loaders": [
+          "fabric"
+        ],
+        "fileName": "worldedit-hang-fix-v1.0.5-mc1.18.2-fabric.jar",
+        "url": "https://cdn.modrinth.com/data/uz1wuff3/versions/CcLdaS7o/worldedit-hang-fix-v1.0.5-mc1.18.2-fabric.jar",
+        "sha256": "7f15d0a4a3defabcaa278665b927b8f9c38aa56ecb9b8ab97bb918d7c40072d3",
+        "sha512": "6a38de2c09a0b3375725de93812d97d041e91b1a7f9fe9241af561b4322537649bdb525c0c842ca7b230284ebbefea1abba1f9b588f95afc9091660d5e6fe1f1",
+        "fabricMetadata": {
+          "schemaVersion": 1,
+          "id": "worldedithangfix",
+          "version": "1.0.5",
+          "name": "worldedit-hang-fix",
+          "description": "A simple mod that prevents WorldEdit from hanging the Minecraft server when the server is stopping",
+          "authors": [
+            "Fallen_Breath"
+          ],
+          "contact": {
+            "homepage": "https://github.com/Fallen-Breath/worldedit-hang-fix",
+            "sources": "https://github.com/Fallen-Breath/worldedit-hang-fix"
+          },
+          "license": "LGPL-3.0",
+          "icon": "icon.png",
+          "environment": "*",
+          "entrypoints": {
+            "main": []
+          },
+          "mixins": [
+            "worldedithangfix.mixins.json"
+          ],
+          "depends": {
+            "fabricloader": ">=0.11.4",
+            "worldedit": "*",
+            "minecraft": ">=1.18 <1.20.5"
+          }
+        },
+        "classFileCount": 4,
+        "javaSourceCount": 0
+      }
+    },
+    {
+      "modId": "worldedit",
+      "name": "WorldEdit",
+      "baselineVersion": "7.3.0+6678-55745ad",
+      "baselineSha256": "c9deee4bdd58338585433df92475c43b11a0693706a5665506a3ac087d4c47e4",
+      "baselineFileName": "worldedit-mod-7.3.0.jar",
+      "buildVersion": "7.3.0+f2cdc4a",
+      "publicPackSelectedVersion": "7.3.0+f2cdc4a",
+      "publicPackArtifact": "built",
+      "status": "current_compatible_release",
+      "latestCompatibleRelease": {
+        "id": "ZOhVauWn",
+        "version_number": "7.3.0",
+        "version_type": "release",
+        "date_published": "2024-03-09T08:41:04.471200Z",
+        "game_versions": [
+          "1.20.4"
+        ],
+        "loaders": [
+          "fabric",
+          "forge"
+        ],
+        "url": "https://modrinth.com/version/ZOhVauWn",
+        "files": [
+          {
+            "filename": "worldedit-mod-7.3.0.jar",
+            "url": "https://cdn.modrinth.com/data/1u6JkXh5/versions/ZOhVauWn/worldedit-mod-7.3.0.jar",
+            "primary": true,
+            "size": 6122896,
+            "hashes": {
+              "sha512": "0b58ba7d59cb01b7e594da28bbcf6f97624549bb427a3e8c64108f21b49892c6732c068604cabba6ee5aa4ebaf317f94219a4108a37d74c0de2a114e4e0a5812",
+              "sha1": "4c20c0ea621a0004ce1750005653d200ff9a1351"
+            }
+          }
+        ]
+      },
+      "source": {
+        "path": "WorldEdit",
+        "url": "https://github.com/minefed/WorldEdit",
+        "upstream": "https://github.com/EngineHub/WorldEdit",
+        "ref": "minefed-1.20.4",
+        "commit": "f2cdc4aa7816a0184adf3fcfaf3ff5712d8dfd68",
+        "trackingBranch": "minefed-1.20.4",
+        "baselineRef": "refs/tags/7.3.0",
+        "baselineCommit": "55745adbdb3fecbb2d5bac6d90655c511245a552"
+      },
+      "runtimeValidated": false
+    },
+    {
+      "modId": "yuushya",
+      "name": "Yuushya Townscape",
+      "baselineVersion": "2.2.3",
+      "baselineSha256": "cd738522891f31f3d26fe753f53d1c2e44c4055e49d6678c0088624316d4a445",
+      "baselineFileName": "yuushya-1.20.4-fabric-2.2.3.jar",
+      "buildVersion": "2.2.3",
+      "publicPackSelectedVersion": "2.2.3",
+      "publicPackArtifact": "baseline",
+      "status": "unreleased_source_candidate",
+      "latestCompatibleRelease": {
+        "id": "g5TBlA52",
+        "version_number": "2.2.3",
+        "version_type": "release",
+        "date_published": "2025-04-07T02:23:40.155651Z",
+        "game_versions": [
+          "1.20.4"
+        ],
+        "loaders": [
+          "fabric"
+        ],
+        "url": "https://modrinth.com/version/g5TBlA52",
+        "files": [
+          {
+            "filename": "yuushya-1.20.4-fabric-2.2.3.jar",
+            "url": "https://cdn.modrinth.com/data/lfVtagkm/versions/g5TBlA52/yuushya-1.20.4-fabric-2.2.3.jar",
+            "primary": true,
+            "size": 23408150,
+            "hashes": {
+              "sha512": "d1863e563f439b9ea63b157841938cbd1cd4d18a32d54b42ab76039dca1b017ce79008cb4e24d2d89fca8a03a7ce366713408e91cbbcee1b043a357b22b52c47",
+              "sha1": "c46980c78dcbcbda0637cde0af29ef41b1ce09f0"
+            }
+          }
+        ]
+      },
+      "source": {
+        "path": "Yuushya-Townscape",
+        "url": "https://github.com/minefed/Yuushya-Townscape",
+        "upstream": "https://gitee.com/yuushyatownscape/yuushya-townscape",
+        "ref": "minefed-1.20.4",
+        "commit": "07dfb2768e6c9e316fc2d142172237ad7eeb9f8e",
+        "trackingBranch": "minefed-1.20.4",
+        "baselineRef": "refs/tags/v2.2.3",
+        "baselineCommit": "e76ea8ac5454ec424771f593ce05ee0082e4b278"
+      },
+      "runtimeValidated": false,
+      "unreleasedSourceCandidate": {
+        "branch": "master",
+        "head": "4453f228d22d476f5228e367458ec75fda0f717b",
+        "version": "2.3.0 소스, 1.20.4 미배포",
+        "comparisonBase": "e76ea8ac5454ec424771f593ce05ee0082e4b278",
+        "summary": "애드온 경로·Fusion 자원·제작법 수정, 포스터/구조물 확장; 1.20.4 빌드·실행 미검증"
+      }
+    },
+    {
+      "modId": "yuushya_modelling",
+      "name": "Yuushya Modelling",
+      "baselineVersion": "2.2.0",
+      "baselineSha256": "76051599bbc7dacd4779528d116bdd87f2edbf89f8bb0ace8b20f0c29c82ce8c",
+      "baselineFileName": "yuushya-modelling-1.20.4-fabric-2.2.0.jar",
+      "buildVersion": "2.2.0",
+      "publicPackSelectedVersion": "2.2.0",
+      "publicPackArtifact": "baseline",
+      "status": "current_compatible_release",
+      "latestCompatibleRelease": {
+        "id": "FQMpG8yv",
+        "version_number": "2.2.0",
+        "version_type": "release",
+        "date_published": "2024-09-20T06:29:04.640363Z",
+        "game_versions": [
+          "1.20.4"
+        ],
+        "loaders": [
+          "fabric"
+        ],
+        "url": "https://modrinth.com/version/FQMpG8yv",
+        "files": [
+          {
+            "filename": "yuushya-modelling-1.20.4-fabric-2.2.0.jar",
+            "url": "https://cdn.modrinth.com/data/RxVV6ldg/versions/FQMpG8yv/yuushya-modelling-1.20.4-fabric-2.2.0.jar",
+            "primary": true,
+            "size": 376483,
+            "hashes": {
+              "sha512": "a9cf712f4b28adddbd32de4e7dd0c148047dbb49adb05aa198373a1d4c35837e5070417ea05775dcce03ef3ccf7acbb50ae2ecfb1855c5129786226bd88b71bb",
+              "sha1": "c1041fbc505a1a65eb4253079e274654944e7f15"
+            }
+          }
+        ]
+      },
+      "source": {
+        "path": "Yuushya-Modelling",
+        "url": "https://github.com/minefed/Yuushya-Modelling",
+        "upstream": "https://github.com/XiLaiTL/Yuushya-Modelling",
+        "ref": "minefed-1.20.4",
+        "commit": "431d217b6663ba46c221e2bbb7ad9d3049d89565",
+        "trackingBranch": "minefed-1.20.4",
+        "baselineRef": "refs/heads/master",
+        "baselineCommit": "3e36b9f66c0ae10202379f7287f88f7906976163"
+      },
+      "runtimeValidated": false
+    }
+  ],
+  "excluded": [
+    {
+      "fileName": "MTR-fabric-4.0.3+1.20.4.jar",
+      "reason": "MTR 4.0.5와 modId=mtr가 중복되어 이전 4.0.3은 보관만 한다."
+    },
+    {
+      "fileName": "TCPShield-2.8.1.jar",
+      "reason": "Fabric 메타데이터가 없는 Bukkit/Bungee/Velocity 플러그인으로 Fabric 모드팩에서 제외한다."
+    }
+  ]
+}
