@@ -45,8 +45,29 @@ Minecraft **1.20.4 / Fabric**을 유지하여 공식 후속 버전 14종을 선�
 - 빈 캐시에서 현재 binary 21개와 공개 선택 2개, 총 23개를 공식 URL로 복원하고 해시와 메타데이터를 재검증했다.
 - 도구 회귀 검사 136개: 오류 없음, 환경별 4개 건너뜀.
 - MSD와 Hang Fix 새 소스의 개별 빌드 및 Java 17 바이트코드·원본 고지 일치를 확인했다. 두 원격 브랜치의 전체 커밋 해시도 확인했다.
-- 최종 전체 빌드와 팩 검증 결과는 이 문서 하단에 기록한다.
+- 전체 소스 46개와 공식 바이너리 21개로 67개 모드의 혼합 ZIP을 생성했다. 최종 팩의 CRC·JAR 해시·버전·Axiom 부재·고지 보존 검사가 통과했다.
+- 최종 실제 JAR를 대상으로 서버·클라이언트의 필수 의존성 누락·버전 충돌·차단 조건을 검사했고 오류가 없었다. 실제 Minecraft 기동은 수행하지 않았다.
 
 Fabric Loader 정책은 0.18.0을 유지한다. Rechiseled 1.2.5가 `>=0.18.0`, Fusion이 Fabric API `>=0.97.3`을 요구하므로 실제 설치에도 이 조건이 필요하다. 메타데이터 검사는 Minecraft 기동, Mixin·클래스 연결 및 실제 플레이 검증을 대신하지 않는다. **PTS Decoration 4.0.0의 블록 ID 변경에 대한 기존 월드 마이그레이션은 검증하지 않았다.**
 
 공식 후속 릴리스가 없는 개발 소스 후보 MTR 4.0.6, Wireless Redstone, Patchouli, Mythic Metals, Yuushya Townscape의 추가 변경은 이번 공식 버전 적용에 포함하지 않았다.
+
+
+## 최종 로컬 산출물
+
+빌드 실행 `20260912-023109-c1a1a771`. 로컬 팩 버전 `20260912124625`. 원격 Release 게시와 운영 서버 적용은 하지 않았다.
+
+| 산출물 | 로컬 경로 | 크기(bytes) | SHA-256 |
+| --- | --- | ---: | --- |
+| 비공개 혼합 ZIP | `build/distributions/minefed-1.20.4-20260912-023109-c1a1a771.zip` | 254844055 | `f901781c85394070d77093af86ea0b225a77746bdd87888af624e50464bbe77f` |
+| server.zip | `build/releases/20260912124625/server.zip` | 200138973 | `ad44d477e70f64373ae96cb776a8f591539c188a6e9abc7de270f6bd81f5de0f` |
+| client.mrpack | `build/releases/20260912124625/client.mrpack` | 200898752 | `e12585e6a7b88d1f424cb94d89a09d00bde8c9ba54000a36dec2effd32873a2a` |
+| resourcepack.zip | `build/releases/20260912124625/resourcepack.zip` | 1058344 | `1df46328e8fbfa004c7aaf745c1994745c21bf251cc46000d3b8fd229e5cd75e` |
+
+서버팩은 67개(내장 36·다운로드 30·수동 1), 클라이언트팩은 65개다. 공개 Modern Lights 항목은 정확한 2.5.0 빌드 해시와 필수 수동 복원 안내를 포함한다. 소스 JAR를 실행 파일로 채택하지 않았다. 최종 PFM 자산 고지·Sven Woltmann의 Java 포트 크레딧·Macaw 저작자와 공식 페이지 링크 보존을 확인했다.
+
+상세 로컬 증거: `build/mod-update-apply-20260912/final-pack-verification.json`, `python-tests.log`, `repository-policy.log`, `baseline-verification.log`, `cold-artifact-verification.json`. 최종 배포 선택과 의존성 보고서는 각 팩의 `download-manifest.json`, `DEPENDENCIES.json`, `LICENSES.md` 및 로컬 `release-assets.json`에도 들어 있다.
+
+선택한 14종과 선언된 중첩 런타임 JAR의 클래스 헤더가 Java 17 기준 검사를 통과했다. Java 17에서 사용하는 클래스는 major 61 이하이며 preview 클래스는 없었다. 더 높은 Java용 멀티릴리스 항목은 별도로 구분했다. 실제 클래스 로딩과 Minecraft 기동 검증은 수행하지 않았다.
+
+기존 Yuushya Townscape의 리소스 생성 중 `yuushya:template/slab_cube_yellow_wool` 모델을 읽지 못했다는 로그가 3회 있었으나 생성 작업과 실행 JAR 빌드는 성공했다. 이 모델의 게임 내 표현은 확인하지 않았다. 관련 로그는 `build/modpack-work/20260912-023109-c1a1a771/sources/yuushya/gradle-1.log`에 보존했다.

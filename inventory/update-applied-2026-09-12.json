@@ -26,7 +26,23 @@
       "fileName": "City Craft-2.1.1-Fabric-1.20.x(ex.5.6).jar",
       "url": "https://cdn.modrinth.com/data/NCASj2oY/versions/gRav2TDu/City%20Craft-2.1.1-Fabric-1.20.x%28ex.5.6%29.jar",
       "license": "MIT (official project/JAR metadata); embedded CC0-1.0",
-      "sourceReference": null
+      "sourceReference": null,
+      "buildArtifact": {
+        "fileName": "City Craft-2.1.1-Fabric-1.20.x(ex.5.6).jar",
+        "version": "2.1.1",
+        "sha256": "ac9cee9f7bc2a0bdce0acd08f03d3ae682085fb65aafc6efa62e2f201646456d",
+        "size": 2120060
+      },
+      "publicationArtifact": {
+        "path": "mods/City Craft-2.1.1-Fabric-1.20.x(ex.5.6).jar",
+        "version": "2.1.1",
+        "sha256": "ac9cee9f7bc2a0bdce0acd08f03d3ae682085fb65aafc6efa62e2f201646456d",
+        "size": 2120060,
+        "license": "MIT (official project/JAR metadata); embedded CC0-1.0",
+        "distribution": "embed",
+        "artifact": "built",
+        "sha512": "0751913c0a5e509b59bc27d1ab08877fb80717eb8dff344bd8c625070587c4e24f4b16b9f495408f7a8ae2127204b1c5b52057daed38c4a7c85afde7661ddcae"
+      }
     },
     {
       "modId": "fabric-api",
@@ -47,6 +63,22 @@
         "ref": "0.97.3+1.20.4",
         "commit": "cadc140c0c860ee9d5f65585694a85a36f084401",
         "trackingBranch": "1.20.4"
+      },
+      "buildArtifact": {
+        "fileName": "fabric-api-0.97.3+1.20.4.jar",
+        "version": "0.97.3+1.20.4",
+        "sha256": "5c11c93b21e0fbcd83dd11c6059479143f3d422bceac4153c3e55806ba9371f1",
+        "size": 2187523
+      },
+      "publicationArtifact": {
+        "path": "mods/fabric-api-0.97.3+1.20.4.jar",
+        "version": "0.97.3+1.20.4",
+        "sha256": "5c11c93b21e0fbcd83dd11c6059479143f3d422bceac4153c3e55806ba9371f1",
+        "size": 2187523,
+        "license": "Apache-2.0",
+        "distribution": "download",
+        "artifact": "built",
+        "sha512": "ea1e47672a1e0fef7fa3fd7f7b396b5a8fb2c46e6ce33dbc4cc2b8d320bc7b775a0de42a478302419c8063c47fbc18bb2ad7551772f54af8059132ac2cb4f108"
       }
     },
     {
@@ -67,6 +99,22 @@
         "url": "https://github.com/SuperMartijn642/Fusion",
         "ref": "fabric-1.20.4",
         "commit": "57a1001562ebd33b9d3cd56717b57b1ae2829858"
+      },
+      "buildArtifact": {
+        "fileName": "fusion-1.3.15a-fabric-mc1.20.4.jar",
+        "version": "1.3.15+a",
+        "sha256": "a05c49c1ae324e6a96aeef5e0b0bec20c2f740b354bb6529bf27e052c9f02dd8",
+        "size": 921058
+      },
+      "publicationArtifact": {
+        "path": "mods/fusion-1.3.15a-fabric-mc1.20.4.jar",
+        "version": "1.3.15+a",
+        "sha256": "a05c49c1ae324e6a96aeef5e0b0bec20c2f740b354bb6529bf27e052c9f02dd8",
+        "size": 921058,
+        "license": "LicenseRef-All-Rights-Reserved",
+        "distribution": "download",
+        "artifact": "built",
+        "sha512": "782fe9ef76383fb0fdaa79be5c48048656fb3d57e109390b207613a41475b7f6432d1fc123c20193b149c1e43034b9cf61524599b0d55f247a3c390e708605f9"
       }
     },
     {
@@ -83,7 +131,23 @@
       "fileName": "mcw-doors-1.1.5-mc1.20.4fabric.jar",
       "url": "https://cdn.modrinth.com/data/kNxa8z3e/versions/8l41DNKc/mcw-doors-1.1.5-mc1.20.4fabric.jar",
       "license": "MIT (official project/JAR metadata); embedded CC0-1.0",
-      "sourceReference": null
+      "sourceReference": null,
+      "buildArtifact": {
+        "fileName": "mcw-doors-1.1.5-mc1.20.4fabric.jar",
+        "version": "1.1.5",
+        "sha256": "0afd76357fd5799122a27807b909ebf5d882029c0e6ebf583ea111508383f195",
+        "size": 1226802
+      },
+      "publicationArtifact": {
+        "path": "mods/mcw-doors-1.1.5-mc1.20.4fabric.jar",
+        "version": "1.1.5",
+        "sha256": "0afd76357fd5799122a27807b909ebf5d882029c0e6ebf583ea111508383f195",
+        "size": 1226802,
+        "license": "MIT (official project/JAR metadata); embedded CC0-1.0",
+        "distribution": "embed",
+        "artifact": "built",
+        "sha512": "0de8ce9b12f7fe5c27a4d40a314e47f03dd2cabeebc9b2391cafcd6cc26d091f01dbecb0a411dbdc71c354c0bcc99a613551a9085922a254864ce5fb922d70ba"
+      }
     },
     {
       "modId": "mcwfences",
@@ -99,7 +163,23 @@
       "fileName": "mcw-mcwfences-1.2.1-mc1.20.4fabric.jar",
       "url": "https://cdn.modrinth.com/data/GmwLse2I/versions/UjYIrEaO/mcw-mcwfences-1.2.1-mc1.20.4fabric.jar",
       "license": "MIT (official project/JAR metadata); embedded CC0-1.0",
-      "sourceReference": null
+      "sourceReference": null,
+      "buildArtifact": {
+        "fileName": "mcw-mcwfences-1.2.1-mc1.20.4fabric.jar",
+        "version": "1.2.1",
+        "sha256": "b5f14d6096051e2a6f45fc0901ce62ccba8219227ebabf574446b66eb0ed7ad5",
+        "size": 655933
+      },
+      "publicationArtifact": {
+        "path": "mods/mcw-mcwfences-1.2.1-mc1.20.4fabric.jar",
+        "version": "1.2.1",
+        "sha256": "b5f14d6096051e2a6f45fc0901ce62ccba8219227ebabf574446b66eb0ed7ad5",
+        "size": 655933,
+        "license": "MIT (official project/JAR metadata); embedded CC0-1.0",
+        "distribution": "embed",
+        "artifact": "built",
+        "sha512": "a94807ba13960e265bab8100c66a53af5261266df8c4aaf0f4b92ec30d04a7d1703aa9426541322f696c52822a15cfa2b46fdaf66c9db8b0970de84f3f0e7037"
+      }
     },
     {
       "modId": "mcwwindows",
@@ -115,7 +195,23 @@
       "fileName": "mcw-mcwwindows-2.4.2-mc1.20.4fabric.jar",
       "url": "https://cdn.modrinth.com/data/C7I0BCni/versions/DbNK4q5P/mcw-mcwwindows-2.4.2-mc1.20.4fabric.jar",
       "license": "LicenseRef-All-Rights-Reserved; embedded CC0-1.0 template",
-      "sourceReference": null
+      "sourceReference": null,
+      "buildArtifact": {
+        "fileName": "mcw-mcwwindows-2.4.2-mc1.20.4fabric.jar",
+        "version": "2.4.2",
+        "sha256": "ee605c1349ee7d8d929db9500306b73b0a3edb4a724b3fd34cdeb454ac25400d",
+        "size": 1274041
+      },
+      "publicationArtifact": {
+        "path": "mods/mcw-mcwwindows-2.4.2-mc1.20.4fabric.jar",
+        "version": "2.4.2",
+        "sha256": "ee605c1349ee7d8d929db9500306b73b0a3edb4a724b3fd34cdeb454ac25400d",
+        "size": 1274041,
+        "license": "LicenseRef-All-Rights-Reserved; embedded CC0-1.0 template",
+        "distribution": "download",
+        "artifact": "built",
+        "sha512": "fb2527f910288efd423f4964df61022957c1deaa692e4b7a05a8fb0463698d6eaa757d6e8af3d6261e03601b6079f07eb2162727a6076b81a9d911931263209f"
+      }
     },
     {
       "modId": "modernlights",
@@ -141,7 +237,23 @@
       ],
       "license": "CC-BY-NC-SA-4.0 (source-built 2.5.0)",
       "capturedLicense": "CC-BY-NC-SA-4.0 (source/project/JAR metadata); embedded MIT",
-      "licenseUrl": "https://github.com/aka-jammy/Modern-Lights/blob/5df1c7567ac7f4dd8d40118000187585e5e9b725/LICENSE"
+      "licenseUrl": "https://github.com/aka-jammy/Modern-Lights/blob/5df1c7567ac7f4dd8d40118000187585e5e9b725/LICENSE",
+      "buildArtifact": {
+        "fileName": "modern-lights-2.5.0.jar",
+        "version": "2.5.0",
+        "sha256": "9fe39ca5984584b660ad8068bd5e5e37c37538b367118f04f121bb6a6f46ccde",
+        "size": 1255745
+      },
+      "publicationArtifact": {
+        "path": "mods/modern-lights-2.5.0.jar",
+        "version": "2.5.0",
+        "sha256": "9fe39ca5984584b660ad8068bd5e5e37c37538b367118f04f121bb6a6f46ccde",
+        "size": 1255745,
+        "license": "CC-BY-NC-SA-4.0 (source-built 2.5.0)",
+        "distribution": "manual",
+        "artifact": "built",
+        "sha512": "80bd4b5c5ea0e40d6bec969609fcaeae43ffa731606d205c0ea6f2cf325e324e9ee90360adefbc075c3ef2db7f97a052e450c70cd8ca5ebe3a1c710dbe0e6557"
+      }
     },
     {
       "modId": "msd",
@@ -165,7 +277,23 @@
       "artifactGlobs": [
         "fabric/build/libs/fabric-1.4.5.jar"
       ],
-      "license": "MIT"
+      "license": "MIT",
+      "buildArtifact": {
+        "fileName": "fabric-1.4.5.jar",
+        "version": "1.4.5",
+        "sha256": "3518c920191e4b0c784accca28830937ab1f1cbdf87d237d72ecf59ff34b392f",
+        "size": 8016640
+      },
+      "publicationArtifact": {
+        "path": "mods/fabric-1.4.5.jar",
+        "version": "1.4.5",
+        "sha256": "3518c920191e4b0c784accca28830937ab1f1cbdf87d237d72ecf59ff34b392f",
+        "size": 8016640,
+        "license": "MIT",
+        "distribution": "embed",
+        "artifact": "built",
+        "sha512": "86ea3a7b7219dd52d0b25463910e8e7c7e1fc12c98241f14341112870681e9029d6cf2a1a6e3230b4e922e6866294a09f9d5bdfeb1f3024dff86361fed9436d0"
+      }
     },
     {
       "modId": "pfm",
@@ -181,7 +309,23 @@
       "fileName": "paladin-furniture-mod-1.5.0-fabric-mc1.20.4.jar",
       "url": "https://cdn.modrinth.com/data/SISz7Qd3/versions/CFrrGcF0/paladin-furniture-mod-1.5.0-fabric-mc1.20.4.jar",
       "license": "LGPL-3.0-only code; PolyForm-Shield-1.0.0 assets",
-      "sourceReference": null
+      "sourceReference": null,
+      "buildArtifact": {
+        "fileName": "paladin-furniture-mod-1.5.0-fabric-mc1.20.4.jar",
+        "version": "1.5.0",
+        "sha256": "6a2d0bf10ff0899bf064720c3729ad683db9bce0fb34edfd67570448d5f8ff26",
+        "size": 6161844
+      },
+      "publicationArtifact": {
+        "path": "mods/paladin-furniture-mod-1.5.0-fabric-mc1.20.4.jar",
+        "version": "1.5.0",
+        "sha256": "35c0dfdfa11f022b340f429f509f3bbd238134cf4224c8f11ab6e9c8f2e04fbf",
+        "size": 6156933,
+        "license": "LGPL-3.0-only code; PolyForm-Shield-1.0.0 assets",
+        "distribution": "download",
+        "artifact": "published",
+        "sha512": "83d78402147bcc301eb9325b431227223348dbd9b36088c442a5b383b4806c77b334fd0321651eef3443571522983beda07c67e8e37e8220e016efdc0b10d725"
+      }
     },
     {
       "modId": "ptsdeco",
@@ -197,7 +341,23 @@
       "fileName": "PTS-Deco-4.0.0-Fabric1.20.4.jar",
       "url": "https://cdn.modrinth.com/data/VIkNIHtW/versions/etl5lvBR/PTS-Deco-4.0.0-Fabric1.20.4.jar",
       "license": "LicenseRef-All-Rights-Reserved",
-      "sourceReference": null
+      "sourceReference": null,
+      "buildArtifact": {
+        "fileName": "PTS-Deco-4.0.0-Fabric1.20.4.jar",
+        "version": "4.0.0",
+        "sha256": "aa75d6e205c34a063fead0dc5cbd564fcbca640172db718e22ac17ebdcc64919",
+        "size": 3476524
+      },
+      "publicationArtifact": {
+        "path": "mods/PTS-Deco-4.0.0-Fabric1.20.4.jar",
+        "version": "4.0.0",
+        "sha256": "aa75d6e205c34a063fead0dc5cbd564fcbca640172db718e22ac17ebdcc64919",
+        "size": 3476524,
+        "license": "LicenseRef-All-Rights-Reserved",
+        "distribution": "embed",
+        "artifact": "built",
+        "sha512": "b777bc4c65f9690624196d7d04e32d28576621cad6e2e575fe625608f12405b3f252cfb38ac1c030c54f4250d7007af966f1e634a0a3f6f252060c8ca845c499"
+      }
     },
     {
       "modId": "puzzleslib",
@@ -213,7 +373,23 @@
       "fileName": "PuzzlesLib-v20.4.53-1.20.4-Fabric.jar",
       "url": "https://cdn.modrinth.com/data/QAGBst4M/versions/PYkg1A3a/PuzzlesLib-v20.4.53-1.20.4-Fabric.jar",
       "license": "MPL-2.0 code; All Rights Reserved assets",
-      "sourceReference": null
+      "sourceReference": null,
+      "buildArtifact": {
+        "fileName": "PuzzlesLib-v20.4.53-1.20.4-Fabric.jar",
+        "version": "20.4.53",
+        "sha256": "01d039e2845aa5db678962f0c2f36cb87b481576c9e18066a387b7540c8425b9",
+        "size": 1029750
+      },
+      "publicationArtifact": {
+        "path": "mods/PuzzlesLib-v20.4.53-1.20.4-Fabric.jar",
+        "version": "20.4.53",
+        "sha256": "22d833f9e9c84e97538ede7a7d8378a9744476a7c03ff639cd2fd1d92bcc3ea4",
+        "size": 1029646,
+        "license": "MPL-2.0 code; All Rights Reserved assets",
+        "distribution": "download",
+        "artifact": "published",
+        "sha512": "ba2a759a547fe860d73de79b9be6098fc7ac5720a5aabd668c5d9f38994435cc1af6d8084a703802f5f687b59d5bcac2e1214d0999af282de8452d79e9bbc895"
+      }
     },
     {
       "modId": "rechiseled",
@@ -233,6 +409,22 @@
         "url": "https://github.com/SuperMartijn642/Rechiseled",
         "ref": "fabric-1.20.2",
         "commit": "5e52607e0ffaed32ecadd3eeba3915a708d1acfb"
+      },
+      "buildArtifact": {
+        "fileName": "rechiseled-1.2.5-fabric-mc1.20.4.jar",
+        "version": "1.2.5",
+        "sha256": "d4ad010ce1f73f078b45e56fb14b16f2ec8eaa7af2fa8cfd2c49d940ae05e7ea",
+        "size": 11932928
+      },
+      "publicationArtifact": {
+        "path": "mods/rechiseled-1.2.5-fabric-mc1.20.4.jar",
+        "version": "1.2.5",
+        "sha256": "d4ad010ce1f73f078b45e56fb14b16f2ec8eaa7af2fa8cfd2c49d940ae05e7ea",
+        "size": 11932928,
+        "license": "LicenseRef-All-Rights-Reserved",
+        "distribution": "download",
+        "artifact": "built",
+        "sha512": "dec2b3b49726d63e513e34f0d2c87580112dbe387bcdaf7bb2db60fe6707d345beccfe00318b3bc88274f95c57fef7769c0ad32578908a23393704186985fff0"
       }
     },
     {
@@ -253,6 +445,22 @@
         "url": "https://github.com/SuperMartijn642/SuperMartijn642sCoreLib",
         "ref": "fabric-1.20.4",
         "commit": "3bda5e30921683a11a4c5a3cbebe6e48cec2c90a"
+      },
+      "buildArtifact": {
+        "fileName": "supermartijn642corelib-1.1.24-fabric-mc1.20.4.jar",
+        "version": "1.1.24",
+        "sha256": "7c9912584f3eeca0b3100f7e61db25a2fe6f565755f362da59049bdc38b08c68",
+        "size": 610937
+      },
+      "publicationArtifact": {
+        "path": "mods/supermartijn642corelib-1.1.24-fabric-mc1.20.4.jar",
+        "version": "1.1.24",
+        "sha256": "7c9912584f3eeca0b3100f7e61db25a2fe6f565755f362da59049bdc38b08c68",
+        "size": 610937,
+        "license": "LicenseRef-All-Rights-Reserved",
+        "distribution": "download",
+        "artifact": "built",
+        "sha512": "9addd6cebf5c3e2c18a965e7a291e86d071dbc7b31caa0ea7af18b1820eca5cc990c3715d55989addf355087f368942e099efb2dc3b3ae8b8f7edf708b706c59"
       }
     },
     {
@@ -277,10 +485,157 @@
       "artifactGlobs": [
         "versions/1.18.2-fabric/build/libs/worldedit-hang-fix-v1.0.5-mc1.18.2-fabric.jar"
       ],
-      "license": "LGPL-3.0"
+      "license": "LGPL-3.0",
+      "buildArtifact": {
+        "fileName": "worldedit-hang-fix-v1.0.5-mc1.18.2-fabric.jar",
+        "version": "1.0.5",
+        "sha256": "da826a2b1a0653741c6feed3ab3a750968e25404cdde450682afe8d509fe2598",
+        "size": 39559
+      },
+      "publicationArtifact": {
+        "path": "mods/worldedit-hang-fix-v1.0.5-mc1.18.2-fabric.jar",
+        "version": "1.0.5",
+        "sha256": "da826a2b1a0653741c6feed3ab3a750968e25404cdde450682afe8d509fe2598",
+        "size": 39559,
+        "license": "LGPL-3.0",
+        "distribution": "embed",
+        "artifact": "built",
+        "sha512": "412710273b9b277311dcf5b6c33b2da45f74b1bb1f883f99dd9a0cd11eb6e447f40f379c0c90d74530ff9dedb87407463473d9801d0862f1d4b4a45220540a24"
+      }
     }
   ],
   "runtimeValidated": false,
   "operatingServerModified": false,
-  "rootPublished": false
+  "rootPublished": false,
+  "validation": {
+    "build": {
+      "run": "20260912-023109-c1a1a771",
+      "sourceCompilation": true,
+      "runtimeValidated": false,
+      "sourceCount": 46,
+      "binaryCount": 21,
+      "path": "build/distributions/minefed-1.20.4-20260912-023109-c1a1a771.zip",
+      "sha256": "f901781c85394070d77093af86ea0b225a77746bdd87888af624e50464bbe77f",
+      "size": 254844055,
+      "artifactCount": 67,
+      "private": true
+    },
+    "releaseDirectory": "build/releases/20260912124625",
+    "releaseVersion": "20260912124625",
+    "profiles": {
+      "server": {
+        "modCount": 67,
+        "embeddedCount": 36,
+        "downloadCount": 30,
+        "manualCount": 1,
+        "excludedModIds": []
+      },
+      "client": {
+        "modCount": 65,
+        "embeddedCount": 34,
+        "downloadCount": 30,
+        "manualCount": 1,
+        "excludedModIds": [
+          "crossstitch",
+          "fabricproxy-lite"
+        ]
+      }
+    },
+    "assets": [
+      {
+        "kind": "server",
+        "name": "server.zip",
+        "path": "build/releases/20260912124625/server.zip",
+        "sha256": "ad44d477e70f64373ae96cb776a8f591539c188a6e9abc7de270f6bd81f5de0f",
+        "size": 200138973,
+        "mediaType": "application/zip"
+      },
+      {
+        "kind": "client",
+        "name": "client.mrpack",
+        "path": "build/releases/20260912124625/client.mrpack",
+        "sha256": "e12585e6a7b88d1f424cb94d89a09d00bde8c9ba54000a36dec2effd32873a2a",
+        "size": 200898752,
+        "mediaType": "application/x-modrinth-modpack+zip"
+      },
+      {
+        "kind": "resourcepack",
+        "name": "resourcepack.zip",
+        "path": "build/releases/20260912124625/resourcepack.zip",
+        "sha256": "1df46328e8fbfa004c7aaf745c1994745c21bf251cc46000d3b8fd229e5cd75e",
+        "size": 1058344,
+        "mediaType": "application/zip"
+      }
+    ],
+    "dependencyCheck": {
+      "scope": "Actual selected top-level/nested Fabric metadata; depends, breaks and candidate intersections. Not a full SAT resolution, Java class linkage check or Minecraft startup.",
+      "runtimeValidated": false,
+      "runtimeFabricLoader": "0.18.0",
+      "predicateLibraryVersion": "0.18.4",
+      "predicateLibrarySha256": "ea300b841949a290641db8c137e3da205462a089a7472d8f1657179fd23bcf4a",
+      "metadataRecordCount": 203,
+      "environments": {
+        "server": {
+          "missingOrIncompatibleDependencies": [],
+          "environmentDisabledDependenciesSoftened": [
+            {
+              "from": "modern_glass_doors",
+              "origin": "mods/modern-glass-doors-5.3.0+1.20.3-and-later.jar",
+              "to": "fabric-blockrenderlayer-v1",
+              "predicate": "*"
+            }
+          ],
+          "unavoidableBreaks": [],
+          "candidateVersionIntersectionEmpty": [],
+          "activeMetadataCount": 193
+        },
+        "client": {
+          "missingOrIncompatibleDependencies": [],
+          "environmentDisabledDependenciesSoftened": [],
+          "unavoidableBreaks": [],
+          "candidateVersionIntersectionEmpty": [],
+          "activeMetadataCount": 201
+        }
+      }
+    },
+    "checks": [
+      "Full Python suite: 136 tests, OK, 4 environment-specific skips; subsequent targeted release tests passed",
+      "Official binary cold-cache restoration: 23/23",
+      "Baseline JARs and source pins: 70 verified",
+      "Fabric repository routing: offline fixture passed",
+      "Final archive versions, hashes, Axiom exclusion and selected license notices verified",
+      "Java 17 class-header checks passed for all 14 selected updates and declared nested runtime JARs; no preview classes found"
+    ],
+    "runtimeValidated": false,
+    "operatingServerModified": false,
+    "githubReleasePublished": false,
+    "finalArchiveCheck": {
+      "status": "passed",
+      "checkedAt": "2026-09-12T03:47:20.168144+00:00",
+      "updatedModCount": 14,
+      "bytecodeValidation": {
+        "gatedModIds": [
+          "citycraft",
+          "fabric-api",
+          "fusion",
+          "mcwdoors",
+          "mcwfences",
+          "mcwwindows",
+          "modernlights",
+          "msd",
+          "pfm",
+          "ptsdeco",
+          "puzzleslib",
+          "rechiseled",
+          "supermartijn642corelib",
+          "worldedithangfix"
+        ],
+        "maximumJava17ClassMajor": 61,
+        "scope": "Updated top-level JARs and their declared nested Fabric/runtime JARs. Class magic and 8-byte headers checked; base and META-INF/versions/N with N <= 17 require major <= 61.",
+        "optionalMultiReleasePolicy": "META-INF/versions/N with N > 17 are counted separately; their higher class major is not a Java 17 failure. Header magic is still checked.",
+        "previewMinorPolicy": "Minor version 65535 is counted separately; preview enablement and actual loading are not validated.",
+        "fullClassVerification": false
+      }
+    }
+  }
 }
