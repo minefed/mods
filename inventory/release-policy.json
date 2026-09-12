@@ -906,17 +906,18 @@
     {
       "modId": "supermartijn642corelib",
       "distribution": "download",
-      "artifact": "baseline",
-      "reason": "Modrinth modpack reference only: the exact original file is hosted on Modrinth and its official API SHA512 matches the baseline JAR. Preserve the original license and download directly from the official CDN; do not embed or rehost the locally rebuilt replacement.",
+      "artifact": "built",
+      "reason": "Use the exact reviewed official runtime successor; preserve original bytes and all license notices. LicenseRef-All-Rights-Reserved",
       "evidenceUrls": [
-        "https://github.com/SuperMartijn642/SuperMartijn642sCoreLib",
-        "https://github.com/SuperMartijn642/SuperMartijn642sCoreLib#faq",
-        "https://support.modrinth.com/en/articles/8797527-obtaining-modpack-permissions",
-        "https://api.modrinth.com/v2/version/qDHc3dAl"
+        "https://api.modrinth.com/v2/project/rOUBggPv",
+        "https://api.modrinth.com/v2/version/3bdJYmjw",
+        "https://modrinth.com/version/3bdJYmjw",
+        "https://raw.githubusercontent.com/SuperMartijn642/SuperMartijn642sCoreLib/3bda5e30921683a11a4c5a3cbebe6e48cec2c90a/README.md",
+        "https://raw.githubusercontent.com/SuperMartijn642/SuperMartijn642sCoreLib/3bda5e30921683a11a4c5a3cbebe6e48cec2c90a/gradle.properties"
       ],
       "client": true,
       "server": true,
-      "downloadUrl": "https://cdn.modrinth.com/data/rOUBggPv/versions/qDHc3dAl/supermartijn642corelib-1.1.20-fabric-mc1.20.4.jar"
+      "downloadUrl": "https://cdn.modrinth.com/data/rOUBggPv/versions/3bdJYmjw/supermartijn642corelib-1.1.24-fabric-mc1.20.4.jar"
     },
     {
       "modId": "timeoutout",

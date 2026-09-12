@@ -688,6 +688,96 @@
         "ref": "refs/tags/v2.4.10",
         "commit": "0d6cec97dd8755370c6242d83c5ad6fb4310a147"
       }
+    },
+    {
+      "fileName": "supermartijn642corelib-1.1.24-fabric-mc1.20.4.jar",
+      "sha256": "7c9912584f3eeca0b3100f7e61db25a2fe6f565755f362da59049bdc38b08c68",
+      "size": 610937,
+      "modId": "supermartijn642corelib",
+      "version": "1.1.24",
+      "environment": "*",
+      "management": "binary",
+      "source": null,
+      "artifact": {
+        "path": "artifacts/local/supermartijn642corelib-1.1.24-fabric-mc1.20.4.jar",
+        "redistribution": "modpack-only",
+        "url": "https://cdn.modrinth.com/data/rOUBggPv/versions/3bdJYmjw/supermartijn642corelib-1.1.24-fabric-mc1.20.4.jar",
+        "sha512": "9addd6cebf5c3e2c18a965e7a291e86d071dbc7b31caa0ea7af18b1820eca5cc990c3715d55989addf355087f368942e099efb2dc3b3ae8b8f7edf708b706c59",
+        "publishedHashMatch": true,
+        "verificationAlgorithm": "sha512",
+        "publishedRelease": {
+          "provider": "modrinth",
+          "versionId": "3bdJYmjw",
+          "projectId": "rOUBggPv",
+          "versionUrl": "https://modrinth.com/version/3bdJYmjw",
+          "gameVersions": [
+            "1.20.4"
+          ],
+          "loaders": [
+            "fabric",
+            "quilt"
+          ],
+          "officialFileName": "supermartijn642corelib-1.1.24-fabric-mc1.20.4.jar",
+          "versionType": "release",
+          "publishedAt": "2026-08-11T12:27:41.005399Z"
+        }
+      },
+      "included": true,
+      "exclusionReason": null,
+      "license": "LicenseRef-All-Rights-Reserved",
+      "licenseUrl": "https://modrinth.com/mod/supermartijn642s-core-lib",
+      "licenseNoticesPath": null,
+      "notes": [
+        "Official Fabric runtime successor reviewed 2026-09-12. Exact bytes, embedded metadata and copyright notices verified. The captured server baseline remains historical.",
+        "Reviewed upstream branch declares this release version. All rights reserved; official project FAQ permits modpack use. Preserve the original JAR and do not distribute it as a standalone mirror."
+      ],
+      "compatibility": {
+        "minecraft": ">=1.20.4 <1.20.5",
+        "fabricLoader": ">=0.14.0",
+        "java": ">=17",
+        "dependencies": {
+          "fabricloader": ">=0.14.0",
+          "fabric": ">=0.95.3",
+          "minecraft": ">=1.20.4 <1.20.5",
+          "java": ">=17"
+        }
+      },
+      "evidenceUrls": [
+        "https://api.modrinth.com/v2/project/rOUBggPv",
+        "https://api.modrinth.com/v2/version/3bdJYmjw",
+        "https://modrinth.com/version/3bdJYmjw",
+        "https://raw.githubusercontent.com/SuperMartijn642/SuperMartijn642sCoreLib/3bda5e30921683a11a4c5a3cbebe6e48cec2c90a/README.md",
+        "https://raw.githubusercontent.com/SuperMartijn642/SuperMartijn642sCoreLib/3bda5e30921683a11a4c5a3cbebe6e48cec2c90a/gradle.properties"
+      ],
+      "authors": [
+        "SuperMartijn642"
+      ],
+      "sourceReference": {
+        "url": "https://github.com/SuperMartijn642/SuperMartijn642sCoreLib",
+        "ref": "fabric-1.20.4",
+        "commit": "3bda5e30921683a11a4c5a3cbebe6e48cec2c90a"
+      },
+      "licenseReview": {
+        "reviewedAt": "2026-09-12",
+        "projectLicense": {
+          "id": "LicenseRef-All-Rights-Reserved",
+          "name": "",
+          "url": null
+        },
+        "documents": [
+          {
+            "path": "README.md",
+            "url": "https://raw.githubusercontent.com/SuperMartijn642/SuperMartijn642sCoreLib/3bda5e30921683a11a4c5a3cbebe6e48cec2c90a/README.md",
+            "sha256": "f8684f2b0bd4172b974a4efc8d51993f0f84347760a8d9ff412ca6f027f82087"
+          },
+          {
+            "path": "gradle.properties",
+            "url": "https://raw.githubusercontent.com/SuperMartijn642/SuperMartijn642sCoreLib/3bda5e30921683a11a4c5a3cbebe6e48cec2c90a/gradle.properties",
+            "sha256": "716946da7a316a7f54831a317f60fbb0628bdbf516bf8426b6dbf20da6975404"
+          }
+        ]
+      },
+      "embeddedNotices": []
     }
   ]
 }
