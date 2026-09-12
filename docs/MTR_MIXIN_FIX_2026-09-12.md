@@ -16,6 +16,7 @@ Codex의 **서버 RX TX와 FPS 최적화 찾기** 작업에서 이 문제를 수
 ## 변경
 
 - MTR의 컴파일용 Fabric Loader를 0.18.4로 고정하고 최신 버전 자동 조회를 제거한다.
+- 서버팩과 mrpack의 Loader 선언도 실제 변환 검사를 통과한 0.18.4로 맞춘다.
 - 속도 제한 기능을 유지하면서 `@Redirect.at`의 호환 가능한 형식으로 컴파일한다.
 - 모드팩의 MTR 빌드가 `:fabric:verifyMixinCompatibility`를 실행하도록 한다.
   이 작업은 `remapJar`에 의존하며, 완성된 배포 JAR에서 모든 등록 mixin의 어노테이션
