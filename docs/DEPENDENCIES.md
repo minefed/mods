@@ -16,7 +16,7 @@
 - [dependencies.lock.json](../inventory/dependencies.lock.json): 기반 라이브러리 7개와 공식 후속 바이너리 8개, 총 15개의 실제 빌드 pin. 공식 배포 ID·URL·SHA-256·SHA-512·크기·호환성·라이선스·`sourceReference`를 기록한다. `dependency: true`인 recipe와 정확히 대응해야 하며 누락 시 빌드를 중단한다.
 - [published-artifacts.lock.json](../inventory/published-artifacts.lock.json): 소스 빌드를 유지하는 PFM 1.5.0과 Puzzles Lib 20.4.53의 공개팩용 공식 JAR pin. 공개 정책의 `artifact: published` 항목과 정확히 대응한다.
 - [dependency-policy.json](../inventory/dependency-policy.json): 최신 버전 조회 대상의 공식 Modrinth 프로젝트 ID와 게임·로더·안정 채널.
-- [release-policy.json](../inventory/release-policy.json): 각 모드의 내장·공식 다운로드·수동 복원 방식을 지정한다. 기반 라이브러리 7개는 Modrinth 다운로드 참조로 배포한다. 이 항목의 `artifact: built`는 혼합 빌드 결과를 선택한다는 뜻이며, 해당 recipe는 `binary`다.
+- [release-policy.json](../inventory/release-policy.json): 각 모드의 파일 선택·배포 판단 이력과 실제 아카이브 구성을 지정한다. `archiveMode: bundled`에서 기반 라이브러리 7개도 공식 JAR를 팩에 직접 포함하며 Modrinth 원본 URL·해시는 보존한다. 이 항목의 `artifact: built`는 혼합 빌드 결과를 선택한다는 뜻이며, 해당 recipe는 `binary`다.
 
 ## Q. 업데이트는 어떻게 진행하나요?
 

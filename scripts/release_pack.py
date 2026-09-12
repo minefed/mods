@@ -247,6 +247,8 @@ def load_policy(root: Path, value: str, identities: set) -> dict:
     policy = builder.read_json(mods.safe_path(root, value))
     if policy.get('schemaVersion') != 1 or policy.get('minecraftVersion') != '1.20.4' or policy.get('timezone', 'Asia/Seoul') != 'Asia/Seoul':
         raise mods.ModError('Unsupported release policy schema/target/timezone')
+    if policy.get('archiveMode', 'selective') not in ('selective', 'bundled'):
+        raise mods.ModError('Release archiveMode must be selective or bundled')
     loader = policy.get('fabricLoaderVersion')
     if not isinstance(loader, str) or not re.fullmatch(r'\d+\.\d+\.\d+', loader) or not builder.version_satisfies(loader, '>=0.18.0'):
         raise mods.ModError('Release policy requires an exact Fabric Loader version >= 0.18.0')
@@ -373,8 +375,12 @@ def select_files(root, manifest, provenance, paths, policy, work, published=None
         for side in ('client', 'server'):
             if decision[side] and metadata.get('environment', '*') not in ('*', side):
                 raise mods.ModError(f'Release side conflicts with Fabric metadata: {identity} / {side}')
-        if decision['distribution'] == 'embed':
-            if entry['artifact']['redistribution'] not in ('allowed', 'modpack-only'):
+        bundled = policy.get('archiveMode') == 'bundled'
+        if bundled or decision['distribution'] == 'embed':
+            # The explicit bundle layout includes every selected runtime. Keep
+            # the original license/redistribution decision in the audit record;
+            # requesting this layout does not grant additional copyright rights.
+            if not bundled and entry['artifact']['redistribution'] not in ('allowed', 'modpack-only'):
                 raise mods.ModError(f'Public embedding blocked by local-only artifact: {identity}')
             if decision['artifact'] == 'built' and provenance[identity].get('source', {}).get('workingTreeStatus'):
                 raise mods.ModError(f'Public source link cannot represent a dirty build: {identity}')
@@ -388,6 +394,8 @@ def select_files(root, manifest, provenance, paths, policy, work, published=None
         record = {'modId': identity, 'path': 'mods/' + entry['fileName'], 'version': entry['version'],
                   'sha256': entry['sha256'], 'size': entry['size'], 'hashes': {k: h.hexdigest() for k, h in hashes.items()},
                   **copy.deepcopy(decision), 'license': entry.get('license'), 'licenseUrl': entry.get('licenseUrl'),
+                  'archiveIncluded': bundled or decision['distribution'] == 'embed',
+                  'artifactRedistribution': entry['artifact']['redistribution'],
                   'inputBuild': {'version': built[identity]['version'], 'sha256': built[identity]['sha256']},
                   'replacesBuiltArtifact': entry['sha256'] != built[identity]['sha256'],
                   'source': entry.get('source')}
@@ -427,11 +435,9 @@ def select_files(root, manifest, provenance, paths, policy, work, published=None
 
 
 def published_notices(root: Path, selected, notices: dict) -> dict:
-    """Preserve selected official JAR notices even when the input ZIP built source."""
+    """Preserve every selected JAR's notices alongside the input build notices."""
     result = dict(notices)
     for record, path, entry in selected:
-        if record['artifact'] != 'published':
-            continue
         mods.check_bytes(path, entry)
         with zipfile.ZipFile(path) as archive:
             members = zip_members(root, archive)
@@ -442,7 +448,8 @@ def published_notices(root: Path, selected, notices: dict) -> dict:
                     raise mods.ModError('Oversized published JAR notice: ' + name)
                 # Source builds can have the same filename and different legal
                 # packaging. Retain their notices separately from the official JAR.
-                target = 'licenses/published-jars/' + entry['fileName'] + '/' + name
+                category = 'published-jars' if record['artifact'] == 'published' else 'selected-jars'
+                target = 'licenses/' + category + '/' + entry['fileName'] + '/' + name
                 content = archive.read(info)
                 if target in result and result[target] != content:
                     raise mods.ModError('Conflicting published JAR notice: ' + target)
@@ -507,8 +514,10 @@ def source_notices(records, version: str) -> str:
              'Exact build recipes for this release: https://github.com/minefed/mods/tree/' + version + '/inventory/build-recipes.json', '']
     for record in records:
         lines += [f"## {record['modId']} {record['version']}", '', f"License: {record.get('license')}",
-                  f"License evidence: {record.get('licenseUrl')}", f"Distribution: {record['distribution']} / {record['artifact']}",
-                  f"Decision: {record['reason']}", *record['evidenceUrls']]
+                  f"License evidence: {record.get('licenseUrl')}", f"Recorded distribution decision: {record['distribution']} / {record['artifact']}",
+                  f"Recorded decision rationale: {record['reason']}", *record['evidenceUrls']]
+        lines += [f"Included in this archive: {archive_included(record)}",
+                  f"Recorded artifact redistribution classification: {record.get('artifactRedistribution', 'not recorded')}"]
         if 'capturedLicense' in record:
             lines += [f"Captured baseline license (historical JAR {record.get('capturedVersion', 'unknown')}): {record['capturedLicense']}",
                       f"Captured baseline license evidence: {record.get('capturedLicenseUrl')}",
@@ -545,13 +554,17 @@ def source_notices(records, version: str) -> str:
     return '\n'.join(lines)
 
 
+def archive_included(record: dict) -> bool:
+    return record.get('archiveIncluded', record['distribution'] == 'embed')
+
+
 def write_profile(root, destination, side, selected, notices, version, loader, resource, dependency_check):
     chosen = [(r, p, e) for r, p, e in selected if r[side]]
     records = [r for r, _, _ in chosen]
     prefix = 'overrides/' if side == 'client' else ''
     with zipfile.ZipFile(destination, 'x', compression=zipfile.ZIP_DEFLATED) as archive:
         for record, path, entry in chosen:
-            if record['distribution'] == 'embed':
+            if archive_included(record):
                 # Recheck bytes immediately before writing, then validate outputs below.
                 mods.check_bytes(path, entry)
                 archive.write(path, prefix + record['path'])
@@ -565,10 +578,13 @@ def write_profile(root, destination, side, selected, notices, version, loader, r
                           'fabricLoader': loader, 'runtimeValidated': False, 'files': records}))
         for name, content in notices.items():
             archive.writestr(prefix + name, content)
-        manual = [r for r in records if r['distribution'] == 'manual']
+        manual = [r for r in records if r['distribution'] == 'manual' and not archive_included(r)]
+        complete_bundle = all(archive_included(r) for r in records)
         instructions = [f'Minefed {version} ({side})', '', 'Target: Minecraft 1.20.4, Java 17, Fabric Loader ' + loader,
-                        'Run: python install-mods.py',
-                        'The installer restores official downloads and verifies every required mod. Existing modified files are preserved.',
+                        'All required mod JARs are included in this archive.' if complete_bundle else 'Run: python install-mods.py',
+                        'Optional verification: python install-mods.py (no downloads needed for an intact installation).'
+                        if complete_bundle else 'The installer restores official downloads and verifies every required mod.',
+                        'Existing modified files are preserved.',
                         'A successful ZIP build does not verify Minecraft startup. Configure your own server; no EULA is accepted by this tool.', '']
         if manual:
             instructions += ['INSTALLATION IS INCOMPLETE UNTIL THESE REQUIRED FILES ARE INSTALLED:',
@@ -576,11 +592,11 @@ def write_profile(root, destination, side, selected, notices, version, loader, r
         if side == 'client':
             instructions += ['Import this .mrpack in a Modrinth-compatible launcher.',
                              'Enable the included Minefed resource pack in Minecraft resource-pack settings.',
-                             'Run install-mods.py from the imported instance to verify all required files.']
+                             'You may run install-mods.py from the imported instance to verify all required files.']
             archive.write(resource, f'overrides/resourcepacks/minefed-{version}.zip')
             downloads = [{'path': r['path'], 'hashes': r['hashes'], 'env': {'client': 'required', 'server': 'unsupported'},
                           'downloads': [r['downloadUrl']], 'fileSize': r['size']}
-                         for r in records if r['distribution'] == 'download']
+                         for r in records if r['distribution'] == 'download' and not archive_included(r)]
             archive.writestr('modrinth.index.json', json_bytes({'formatVersion': 1, 'game': 'minecraft', 'versionId': version,
                               'name': 'Minefed', 'files': downloads,
                               'dependencies': {'minecraft': '1.20.4', 'fabric-loader': loader}}))
@@ -590,15 +606,15 @@ def write_profile(root, destination, side, selected, notices, version, loader, r
         if archive.testzip() is not None:
             raise mods.ModError(f'{side} output failed ZIP CRC validation')
         for record in records:
-            if record['distribution'] == 'embed':
+            if archive_included(record):
                 digest = hashlib.sha256()
                 with archive.open(prefix + record['path']) as stream:
                     while block := stream.read(mods.CHUNK_SIZE):
                         digest.update(block)
                 if digest.hexdigest() != record['sha256']:
                     raise mods.ModError(f'Embedded output bytes changed: {record["modId"]}')
-    return {'modCount': len(records), 'embeddedCount': sum(r['distribution'] == 'embed' for r in records),
-            'downloadCount': sum(r['distribution'] == 'download' for r in records), 'manualCount': len(manual),
+    return {'modCount': len(records), 'embeddedCount': sum(archive_included(r) for r in records),
+            'downloadCount': sum(r['distribution'] == 'download' and not archive_included(r) for r in records), 'manualCount': len(manual),
             'excludedModIds': [r['modId'] for r, _, _ in selected if not r[side]]}
 
 
@@ -639,6 +655,7 @@ def release(root: Path, result_json: str, version: str, policy_path: str = 'inve
             digest, size = mods.file_digest(publication / name)
             assets.append({'kind': kind, 'name': name, 'path': (destination / name).relative_to(root).as_posix(), 'sha256': digest, 'size': size, 'mediaType': media})
         result = {'schemaVersion': 1, 'version': version, 'createdAt': timestamp.isoformat(), 'timezone': 'Asia/Seoul',
+                  'archiveMode': policy.get('archiveMode', 'selective'),
                   'inputBuild': summary, 'sourceInputZip': summary['path'], 'runtimeValidated': False,
                   'policySha256': mods.file_digest(mods.safe_path(root, policy_path))[0], 'assets': assets,
                   'profiles': profiles, 'resourcePack': resource_info, 'files': [r for r, _, _ in selected]}

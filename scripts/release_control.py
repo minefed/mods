@@ -271,12 +271,14 @@ def release_body(manifest: dict, plan: dict, commit: str) -> str:
              'version': plan['version'], 'sources': plan['sources']}
     encoded = base64.b64encode(json.dumps(state, separators=(',', ':')).encode()).decode()
     profiles = manifest['profiles']
+    bundled = manifest.get('archiveMode') == 'bundled'
     lines = [f"Minefed {plan['version']} (Asia/Seoul)", '',
              'Minecraft 1.20.4 · Fabric Loader 0.18.0 이상 · Java 17', '',
-             f"- 서버팩: {profiles['server']['modCount']}개 모드, 공식 다운로드 설치기 포함",
+             f"- 서버팩: {profiles['server']['modCount']}개 모드, " + ('모든 모드 JAR 내장' if bundled else '공식 다운로드 설치기 포함'),
              f"- 클라이언트팩: {profiles['client']['modCount']}개 모드, Modrinth/Prism Launcher에서 client.mrpack 가져오기",
              '- 리소스팩: resourcepack.zip; 클라이언트팩에도 동일 파일 포함',
-             '- 공개 배포 정책에 따라 일부 자체 빌드 결과는 검토된 공식 원본의 다운로드 참조로 제공됩니다.',
+             '- 공식 배포 파일과 Modern Lights 실행 JAR도 팩에 포함되며, 추가 모드 다운로드·수동 복원이 필요 없습니다.'
+             if bundled else '- 공개 배포 정책에 따라 일부 자체 빌드 결과는 검토된 공식 원본의 다운로드 참조로 제공됩니다.',
              '- 실제 서버/클라이언트 기동은 미검증입니다.', '',
              f"고정한 빌드 입력: https://github.com/{REPOSITORY}/commit/{commit}",
              '모드별 대응 소스, 빌드 방침, 저작권 고지와 원본 참조 버전은 각 팩의 기록을 확인하세요.', '',

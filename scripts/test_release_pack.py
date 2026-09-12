@@ -141,6 +141,60 @@ class ReleaseTests(unittest.TestCase):
             self.run_release()
         self.assertFalse((self.root / 'build/releases/20260907123456').exists())
 
+    def test_bundled_archives_include_download_and_manual_bytes_with_original_audit(self):
+        self.policy['archiveMode'] = 'bundled'
+        self.policy['entries'][0]['distribution'] = 'manual'
+        self.produced['entries'][0]['artifact']['redistribution'] = 'local-only'
+        self.baseline['entries'][2]['artifact']['redistribution'] = 'local-only'
+        self.write('inventory/mods.lock.json', self.baseline)
+        self.write('inventory/release-policy.json', self.policy)
+        self.input_zip()
+        manifest = self.run_release()
+        report = json.loads(manifest.read_text())
+        self.assertEqual('bundled', report['archiveMode'])
+        for name, side, prefix, count in [('server.zip', 'server', '', 3),
+                                           ('client.mrpack', 'client', 'overrides/', 2)]:
+            profile = report['profiles'][side]
+            self.assertEqual((count, count, 0, 0),
+                             tuple(profile[k] for k in ('modCount', 'embeddedCount', 'downloadCount', 'manualCount')))
+            with zipfile.ZipFile(manifest.parent / name) as archive:
+                records = json.loads(archive.read(prefix + 'download-manifest.json'))['files']
+                for record in records:
+                    self.assertTrue(record['archiveIncluded'])
+                    self.assertEqual(record['sha256'], hashlib.sha256(archive.read(prefix + record['path'])).hexdigest())
+                alpha = next(r for r in records if r['modId'] == 'alpha')
+                gamma = next(r for r in records if r['modId'] == 'gamma')
+                self.assertEqual(('manual', 'local-only'), (alpha['distribution'], alpha['artifactRedistribution']))
+                self.assertEqual(('download', 'local-only', 'https://cdn.modrinth.com/gamma.jar'),
+                                 (gamma['distribution'], gamma['artifactRedistribution'], gamma['downloadUrl']))
+                self.assertIn(prefix + 'licenses/selected-jars/gamma.jar/LICENSE', archive.namelist())
+                self.assertNotIn('INSTALLATION IS INCOMPLETE', archive.read(prefix + 'INSTALL.txt').decode())
+                self.assertIn('All required mod JARs are included', archive.read(prefix + 'INSTALL.txt').decode())
+                if side == 'client':
+                    self.assertEqual([], json.loads(archive.read('modrinth.index.json'))['files'])
+                    self.assertNotIn('overrides/mods/beta.jar', archive.namelist())
+                else:
+                    installation = self.root / 'bundled-installation'
+                    archive.extractall(installation)
+        result = subprocess.run([sys.executable, str(installation / 'install-mods.py')], capture_output=True, text=True)
+        self.assertEqual(0, result.returncode, result.stderr)
+        self.assertIn('All required mod files verified', result.stdout)
+
+    def test_bundled_layout_still_rejects_dirty_source_builds(self):
+        self.policy['archiveMode'] = 'bundled'
+        self.policy['entries'][0]['distribution'] = 'manual'
+        self.provenance[0]['source']['workingTreeStatus'] = ' M src/Changed.java'
+        self.write('inventory/release-policy.json', self.policy)
+        self.input_zip()
+        with self.assertRaisesRegex(mods.ModError, 'dirty build'):
+            self.run_release()
+
+    def test_unknown_archive_layout_is_rejected(self):
+        self.policy['archiveMode'] = 'unknown'
+        self.write('inventory/release-policy.json', self.policy)
+        with self.assertRaisesRegex(mods.ModError, 'archiveMode'):
+            self.run_release()
+
     def test_dependency_failure_prevents_all_public_assets(self):
         release.release_dependencies.check_selected.side_effect = mods.ModError('selected dependency missing')
         with self.assertRaisesRegex(mods.ModError, 'dependency missing'):

@@ -3,6 +3,7 @@
   "minecraftVersion": "1.20.4",
   "fabricLoaderVersion": "0.18.0",
   "timezone": "Asia/Seoul",
+  "archiveMode": "bundled",
   "entries": [
     {
       "modId": "alloy_forgery",
@@ -612,7 +613,7 @@
       "modId": "modernlights",
       "distribution": "manual",
       "artifact": "built",
-      "reason": "Select the existing verified 2.5.0 source-built runtime. Official release chMskrKw contains only a sources JAR, so it cannot be an installer runtime download. CC-BY-NC-SA-4.0 conditions have not been established for public redistribution: keep the runtime local-only and require manual restoration of the exact built artifact for public pack installation.",
+      "reason": "Select the verified 2.5.0 source-built runtime for both server and client. The requested bundled archive layout includes this runtime directly; the historical manual distribution and local-only classification remain recorded without granting additional rights. Official release chMskrKw contains only a sources JAR and must not replace this runtime. Preserve CC-BY-NC-SA-4.0 and corresponding source/modification notices.",
       "evidenceUrls": [
         "https://modrinth.com/version/chMskrKw",
         "https://api.modrinth.com/v2/version/chMskrKw",

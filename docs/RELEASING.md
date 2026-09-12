@@ -6,18 +6,27 @@
 
 | 파일 | 용도 |
 | --- | --- |
-| `server.zip` | 서버용 모드와 설치 안내·공식 다운로드 정보 |
+| `server.zip` | 전체 서버용 모드 JAR와 설치 안내·출처 정보 |
 | `client.mrpack` | Modrinth 형식을 지원하는 런처에서 가져오는 클라이언트팩 |
 | `resourcepack.zip` | ZIP 루트의 `pack.mcmeta`·`assets/`를 사용하는 게임용 리소스팩 |
 
-모드별 포함 환경과 공개 배포 방식은 `inventory/release-policy.json`에 기록한다.
-직접 포함 가능한 파일은 고지와 함께 넣고, 공식 다운로드로 배포하는 모드는 원본 URL과
-해시를 기록한다. 일반 소스 빌드의 비공개 운영 기준 ZIP을 그대로 공개하지 않는다.
+모드별 포함 환경과 배포 기록은 `inventory/release-policy.json`에 기록한다.
+`archiveMode: bundled`는 선택한 실행 JAR를 모두 서버팩 `mods/` 및 클라이언트팩
+`overrides/mods/`에 직접 포함한다. 공식 바이너리는 기존 `built`/`baseline`/`published`
+선택과 원본 URL·해시를 유지한다. MRPACK의 `modrinth.index.json.files`는 비워
+런처가 같은 JAR를 다시 다운로드하지 않게 한다.
 
-2026-09-12 구성은 서버 67개/클라이언트 65개다. 서버팩 기준 내장 36개·공식 다운로드
-30개·수동 복원 1개다. Modern Lights 2.5.0은 정상 소스 빌드를 선택하지만 현재 공개된
-공식 파일은 sources JAR뿐이므로 `manual/built`로 기록한다. 수동 복원 전에는 설치가
-완료되지 않는다. 비공개 혼합 빌드 ZIP에는 정상 2.5.0 실행 JAR가 포함된다.
+2026-09-12 전체 포함 요청을 반영한 구성은 서버 모드 67개/클라이언트 모드 65개이며
+각 팩에 전부 내장된다. 이전 구성의 내장 36개·공식 다운로드 30개·수동 복원 1개는
+배포 판단 이력으로 유지한다. Modern Lights는 공식 sources JAR 대신 검증된
+2.5.0 소스 빌드 실행 JAR를 서버·클라이언트 모두에 포함한다.
+
+동봉 manifest의 `archiveIncluded`는 실제 파일 포함 여부, `distribution`은 기존 배포
+방식 기록, `artifactRedistribution`은 선택한 JAR의 기존 재배포 분류다. 전체 포함 요청은
+원저자 라이선스나 재배포 권한을 변경하지 않으며, `local-only`를 `allowed`로 바꾸지 않는다.
+현재 실행 파일과 과거 운영 JAR의 라이선스 차이, 원저자 고지 및 대응 소스 링크를 보존한다.
+JAR는 Git에 추가하지 않는다. `install-mods.py`는 정상적으로 압축 해제한 팩에서 다운로드
+없이 모든 모드의 해시를 검사하는 선택적 검증 도구다.
 
 PFM/Puzzles Lib는 소스 빌드를 유지하면서 `artifact: published`로 공식 JAR를 선택한다.
 `publishedManifest`가 지정한 `inventory/published-artifacts.lock.json`은 해당 두 항목과
