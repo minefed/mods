@@ -610,19 +610,18 @@
     },
     {
       "modId": "modernlights",
-      "distribution": "download",
-      "artifact": "baseline",
-      "reason": "Modrinth modpack reference only: the exact original file is hosted on Modrinth and its official API SHA512 matches the baseline JAR. Preserve the original license and download directly from the official CDN; do not embed or rehost the locally rebuilt replacement. Uses original version 2.4.2 instead of local source output 2.5.0.",
+      "distribution": "manual",
+      "artifact": "built",
+      "reason": "Select the existing verified 2.5.0 source-built runtime. Official release chMskrKw contains only a sources JAR, so it cannot be an installer runtime download. CC-BY-NC-SA-4.0 conditions have not been established for public redistribution: keep the runtime local-only and require manual restoration of the exact built artifact for public pack installation.",
       "evidenceUrls": [
-        "https://api.modrinth.com/v2/project/K3oeBO7O",
-        "https://github.com/1-Jammy/Modern-Lights",
-        "https://github.com/1-Jammy/Modern-Lights/blob/1.20---1.20.4/LICENSE",
-        "https://support.modrinth.com/en/articles/8797527-obtaining-modpack-permissions",
-        "https://api.modrinth.com/v2/version/STZspzyZ"
+        "https://modrinth.com/version/chMskrKw",
+        "https://api.modrinth.com/v2/version/chMskrKw",
+        "https://github.com/minefed/Modern-Lights/commit/6b04f156a3e24a778fa2e0697d98bfd3aeca0256",
+        "https://github.com/aka-jammy/Modern-Lights/blob/5df1c7567ac7f4dd8d40118000187585e5e9b725/LICENSE",
+        "https://creativecommons.org/licenses/by-nc-sa/4.0/"
       ],
       "client": true,
-      "server": true,
-      "downloadUrl": "https://cdn.modrinth.com/data/K3oeBO7O/versions/STZspzyZ/modern-lights-1.20%5B2.4.2%5D.jar"
+      "server": true
     },
     {
       "modId": "modernfix",
