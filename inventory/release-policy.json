@@ -745,19 +745,18 @@
     {
       "modId": "pfm",
       "distribution": "download",
-      "artifact": "baseline",
-      "reason": "Modrinth modpack reference only: the exact original file is hosted on Modrinth and its official API SHA512 matches the baseline JAR. Preserve the original license and download directly from the official CDN; do not embed or rehost the locally rebuilt replacement. Uses original version 1.4.4 instead of local source output 1.5.0.",
+      "artifact": "published",
+      "reason": "Use the exact reviewed official runtime successor; preserve original bytes and all license notices. LGPL-3.0-only code; PolyForm-Shield-1.0.0 assets",
       "evidenceUrls": [
-        "https://github.com/UnlikePaladin/paladins-furniture",
-        "https://github.com/UnlikePaladin/paladins-furniture/blob/architectury-1.20.4/LICENSE.md",
-        "https://github.com/UnlikePaladin/paladins-furniture/blob/v1.20.4-v1.4.4/LICENSE",
-        "https://www.curseforge.com/minecraft/mc-mods/paladins-furniture",
-        "https://support.modrinth.com/en/articles/8797527-obtaining-modpack-permissions",
-        "https://api.modrinth.com/v2/version/kH3TdDSq"
+        "https://api.modrinth.com/v2/project/SISz7Qd3",
+        "https://api.modrinth.com/v2/version/CFrrGcF0",
+        "https://modrinth.com/version/CFrrGcF0",
+        "https://github.com/SvenWoltmann/color-thief-java/blob/v1.1.2/README.md",
+        "https://polyformproject.org/licenses/shield/1.0.0"
       ],
       "client": true,
       "server": true,
-      "downloadUrl": "https://cdn.modrinth.com/data/SISz7Qd3/versions/kH3TdDSq/paladin-furniture-mod-1.4.4-fabric-mc1.20.4.jar"
+      "downloadUrl": "https://cdn.modrinth.com/data/SISz7Qd3/versions/CFrrGcF0/paladin-furniture-mod-1.5.0-fabric-mc1.20.4.jar"
     },
     {
       "modId": "patchouli",
@@ -1042,5 +1041,6 @@
       "server": true,
       "downloadUrl": "https://cdn.modrinth.com/data/RxVV6ldg/versions/FQMpG8yv/yuushya-modelling-1.20.4-fabric-2.2.0.jar"
     }
-  ]
+  ],
+  "publishedManifest": "inventory/published-artifacts.lock.json"
 }

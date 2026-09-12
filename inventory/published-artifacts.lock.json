@@ -1,0 +1,89 @@
+{
+  "schemaVersion": 1,
+  "minecraftVersion": "1.20.4",
+  "loader": "fabric",
+  "purpose": "Official publication artifacts for source-built mods; independent of captured server baseline and source recipes.",
+  "entries": [
+    {
+      "fileName": "paladin-furniture-mod-1.5.0-fabric-mc1.20.4.jar",
+      "sha256": "35c0dfdfa11f022b340f429f509f3bbd238134cf4224c8f11ab6e9c8f2e04fbf",
+      "size": 6156933,
+      "modId": "pfm",
+      "version": "1.5.0",
+      "environment": "*",
+      "management": "binary",
+      "source": null,
+      "artifact": {
+        "path": "artifacts/local/paladin-furniture-mod-1.5.0-fabric-mc1.20.4.jar",
+        "redistribution": "local-only",
+        "url": "https://cdn.modrinth.com/data/SISz7Qd3/versions/CFrrGcF0/paladin-furniture-mod-1.5.0-fabric-mc1.20.4.jar",
+        "sha512": "83d78402147bcc301eb9325b431227223348dbd9b36088c442a5b383b4806c77b334fd0321651eef3443571522983beda07c67e8e37e8220e016efdc0b10d725",
+        "publishedHashMatch": true,
+        "verificationAlgorithm": "sha512",
+        "publishedRelease": {
+          "provider": "modrinth",
+          "versionId": "CFrrGcF0",
+          "projectId": "SISz7Qd3",
+          "versionUrl": "https://modrinth.com/version/CFrrGcF0",
+          "gameVersions": [
+            "1.20.3",
+            "1.20.4"
+          ],
+          "loaders": [
+            "fabric"
+          ],
+          "officialFileName": "paladin-furniture-mod-1.5.0-fabric-mc1.20.4.jar",
+          "versionType": "release",
+          "publishedAt": "2026-08-10T07:01:33.826582Z"
+        }
+      },
+      "included": true,
+      "exclusionReason": null,
+      "license": "LGPL-3.0-only code; PolyForm-Shield-1.0.0 assets",
+      "licenseUrl": "https://github.com/UnlikePaladin/paladins-furniture/blob/architectury-1.20.4/LICENSE.md",
+      "licenseNoticesPath": "inventory/notices/pfm-35c0dfdfa11f",
+      "notes": [
+        "Official Fabric runtime successor reviewed 2026-09-12. Exact bytes, embedded metadata and copyright notices verified. The captured server baseline remains historical.",
+        "sourceProvenance records the existing Minefed checkout, not proof that it produces this official binary.",
+        "Keep LGPL code, PolyForm Shield asset terms and nested dependency notices; use the unmodified official binary download. Minefed source build remains separately managed.",
+        "Nested color-thief-java v1.1.2: Sven Woltmann, https://github.com/SvenWoltmann/color-thief-java, CC-BY-2.5. Retain attribution and license link https://creativecommons.org/licenses/by/2.5/. Nested MixinExtras retains its MIT notice."
+      ],
+      "compatibility": {
+        "minecraft": ">=1.20.3 <1.20.5",
+        "fabricLoader": null,
+        "java": null,
+        "dependencies": {
+          "fabric-api": "*",
+          "minecraft": ">=1.20.3 <1.20.5"
+        }
+      },
+      "evidenceUrls": [
+        "https://api.modrinth.com/v2/project/SISz7Qd3",
+        "https://api.modrinth.com/v2/version/CFrrGcF0",
+        "https://modrinth.com/version/CFrrGcF0",
+        "https://github.com/SvenWoltmann/color-thief-java/blob/v1.1.2/README.md",
+        "https://polyformproject.org/licenses/shield/1.0.0"
+      ],
+      "sourceProvenance": {
+        "path": "paladins-furniture",
+        "url": "https://github.com/minefed/paladins-furniture",
+        "upstream": "https://github.com/UnlikePaladin/paladins-furniture",
+        "ref": "minefed-1.20.4",
+        "commit": "131ac50fa74b0896f0a6d4b56c003076e036b318",
+        "trackingBranch": "minefed-1.20.4",
+        "baselineRef": "refs/heads/architectury-1.20.4",
+        "baselineCommit": "0921e7cdd2684061f2372088bdedd37a9dce838d"
+      },
+      "authors": [
+        "UnlikePaladin"
+      ],
+      "embeddedNotices": [
+        {
+          "jarPath": "assets/pfm/LICENSE-ASSETS.md",
+          "sha256": "499a05f279bc61ec396c0eb6fe5fa41d394545f5878b30efc85bad36fab924fe",
+          "size": 5995
+        }
+      ]
+    }
+  ]
+}
