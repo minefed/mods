@@ -177,6 +177,9 @@ class ReleaseTests(unittest.TestCase):
 
     def test_built_download_selects_updated_official_binary_and_preserves_notices(self):
         updated = self.jar('gamma-2.0.jar', 'gamma', '2.0')
+        updated['authors'] = ['Sketch Macaw', 'Peachy Macaw']
+        updated['notes'] = ['Retain Sketch Macaw and Peachy Macaw credit in modpacks.',
+                            'Official project: https://www.curseforge.com/minecraft/mc-mods/macaws-doors']
         updated['sourceReference'] = {'url': 'https://github.com/example/gamma',
                                       'ref': 'v2.0', 'commit': '3' * 40}
         self.produced['entries'][2] = updated
@@ -206,6 +209,12 @@ class ReleaseTests(unittest.TestCase):
             self.assertNotEqual(self.gamma['sha256'], record['sha256'])
             self.assertIsNone(record['source'])
             self.assertFalse(record['replacesBuiltArtifact'])
+            self.assertEqual(updated['authors'], record['authors'])
+            self.assertEqual(updated['notes'], record['notes'])
+            legal = client.read('overrides/LICENSES.md').decode()
+            self.assertIn('Authors: Sketch Macaw, Peachy Macaw', legal)
+            for note in updated['notes']:
+                self.assertIn(note, legal)
             self.assertNotIn('overrides/mods/gamma.jar', client.namelist())
             self.assertNotIn('overrides/mods/gamma-2.0.jar', client.namelist())
             self.assertEqual(updated['sourceReference'], json.loads(client.read('overrides/' + notice_path)))
@@ -216,6 +225,10 @@ class ReleaseTests(unittest.TestCase):
             self.assertEqual(updated['artifact']['url'], record['downloadUrl'])
             self.assertEqual(updated['sha256'], record['sha256'])
             self.assertEqual(updated['sourceReference'], json.loads(server.read(notice_path)))
+            legal = server.read('LICENSES.md').decode()
+            self.assertIn('Authors: Sketch Macaw, Peachy Macaw', legal)
+            for note in updated['notes']:
+                self.assertIn(note, legal)
 
     def test_built_binary_download_rejects_stale_policy_url_before_publication(self):
         updated = self.jar('gamma-2.0.jar', 'gamma', '2.0')
@@ -242,6 +255,9 @@ class ReleaseTests(unittest.TestCase):
 
     def test_published_override_preserves_source_build_and_selects_official_bytes_and_notices(self):
         entry = self.published_fixture()
+        entry['authors'] = 'Official Author'
+        entry['notes'] = 'Preserve official asset terms and the author project link https://example.com/alpha.'
+        self.write(self.policy['publishedManifest'], self.manifest([entry]))
         baseline_before = (self.root / 'inventory/mods.lock.json').read_bytes()
         input_before = (self.root / 'build/input.zip').read_bytes()
         manifest = self.run_release()
@@ -261,6 +277,11 @@ class ReleaseTests(unittest.TestCase):
                 self.assertIsNone(record['source'])
                 self.assertEqual(entry['sourceReference'], record['sourceReference'])
                 self.assertEqual(entry['artifact']['publishedRelease'], record['publishedRelease'])
+                self.assertEqual(entry['authors'], record['authors'])
+                self.assertEqual(entry['notes'], record['notes'])
+                legal = archive.read(prefix + 'LICENSES.md').decode()
+                self.assertIn('Authors: Official Author', legal)
+                self.assertIn(entry['notes'], legal)
                 self.assertEqual(b'Fixture MIT author notice', archive.read(prefix + 'licenses/published-jars/alpha-official.jar/LICENSE'))
                 self.assertIn('/tree/' + '3' * 40, archive.read(prefix + 'SOURCES.md').decode())
                 self.assertNotIn(prefix + 'mods/alpha-built.jar', archive.namelist())

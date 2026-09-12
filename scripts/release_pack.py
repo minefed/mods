@@ -383,6 +383,9 @@ def select_files(root, manifest, provenance, paths, policy, work, published=None
                   'inputBuild': {'version': built[identity]['version'], 'sha256': built[identity]['sha256']},
                   'replacesBuiltArtifact': entry['sha256'] != built[identity]['sha256'],
                   'source': entry.get('source')}
+        for field in ('authors', 'notes'):
+            if field in entry:
+                record[field] = copy.deepcopy(entry[field])
         if decision['artifact'] == 'published':
             if entry.get('sourceReference'):
                 record['sourceReference'] = copy.deepcopy(entry['sourceReference'])
@@ -469,6 +472,17 @@ def resource_pack(root: Path, lock_path: str, destination: Path) -> dict:
     return {'id': entry['id'], 'commit': entry['commit'], 'packFormat': 22, 'gameFileCount': len(files), 'runtimeValidated': False}
 
 
+def notice_text(record: dict, field: str) -> list[str]:
+    value = record.get(field)
+    if value is None:
+        return []
+    if isinstance(value, str):
+        return [value]
+    if isinstance(value, list) and all(isinstance(item, str) for item in value):
+        return value
+    raise mods.ModError(f'Artifact {field} must be text or a list of text: {record["modId"]}')
+
+
 def source_notices(records, version: str) -> str:
     lines = ['# License, source and modification notices', '',
              'These files retain their individual author licenses. No additional rights are granted.',
@@ -479,6 +493,12 @@ def source_notices(records, version: str) -> str:
         lines += [f"## {record['modId']} {record['version']}", '', f"License: {record.get('license')}",
                   f"License evidence: {record.get('licenseUrl')}", f"Distribution: {record['distribution']} / {record['artifact']}",
                   f"Decision: {record['reason']}", *record['evidenceUrls']]
+        authors = notice_text(record, 'authors')
+        if authors:
+            lines += ['Authors: ' + ', '.join(authors)]
+        notes = notice_text(record, 'notes')
+        if notes:
+            lines += ['', 'Artifact notes:', '', *['- ' + note for note in notes]]
         if record.get('sourceCommitUrl'):
             if record.get('sourceArchiveUrl'):
                 lines += ['Managed source and build instructions: ' + record['sourceCommitUrl'],
