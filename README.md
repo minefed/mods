@@ -7,7 +7,7 @@ Minefed 서버의 모드 소스와 운영 JAR를 한 곳에서 관리한다. Min
 - **소스:** 운영 JAR 51개에 대응하는 minefed 저장소 50개를 Git 서브모듈로 관리한다. 기존 Automobility는 서브모듈에서 제거했으며, 실제 차량 모드는 Refueled 하나다. [분리 이유와 정리 방침](docs/AUTOMOBILITY.md)을 문서화했다.
 - **기반 라이브러리:** Fabric API·Architectury·Botarium·Lavender·owo·Resourceful Config·ResourcefulLib 7개는 공식 JAR로 관리한다. 별도 fork 빌드 없이 [빌드 의존성 lock](inventory/dependencies.lock.json)의 버전·해시·출처를 사용한다. [관리 Q&A와 업데이트 절차](docs/DEPENDENCIES.md)를 참고한다.
 - **종료한 소스 관리:** 기존 Automobility와 기반 라이브러리 7개의 Minefed 원격 fork는 삭제했다. 과거 URL·브랜치·전체 커밋과 원격 삭제 상태는 [종료 저장소 기록](inventory/retired-repositories.json)에 남긴다.
-- **기타 바이너리:** 소스가 없거나 라이선스상 수정이 제한된 12개는 JAR로 관리한다. 재배포 가능한 Dusty Decorations는 `vendor/jars/`에 커밋하고, 나머지는 `vendor/local/`에 보관한다.
+- **기타 바이너리:** 소스가 없거나 라이선스상 수정이 제한된 활성 모드 11개는 JAR로 관리한다. Axiom은 사용자 요청으로 팩에서 제외하고 과거 운영 기록만 보존한다. 재배포 가능한 Dusty Decorations는 `vendor/jars/`에 커밋하고, 나머지는 `vendor/local/`에 보관한다.
 - **운영 기준본:** 소스로 관리하는 모드도 실제 운영 JAR를 `artifacts/local/`에 보존한다. 소스 업데이트와 배포물 교체는 별도 작업이다.
 - **목록과 근거:** [전체 모드 목록](docs/MOD_INVENTORY.md), [고정 버전·해시 목록](inventory/mods.lock.json), [라이선스 조사](inventory/license-audit.json), [원본 고지](inventory/notices/)를 함께 관리한다.
 - **업데이트 조사:** [2026-09-12 업데이트 전수 조사](docs/MOD_UPDATE_AUDIT_2026-09-12.md)에 Minecraft 1.20.4/Fabric의 후속 버전, 누적 변경사항, 미배포 소스 후보와 운영·빌드·공개팩 버전 차이를 정리했다.
@@ -38,7 +38,7 @@ Gradle 직접 실행은 `gradlew.bat build` 또는 `./gradlew build`다. JDK 17�
 MTR 웹 UI용 Node.js 22/npm이 필요하다. 이 작업 공간의 도구 경로는 Git에서 제외한
 `build.local.json`에 설정되어 있다.
 
-`inventory/build-recipes.json`은 소스 빌드 46개와 JAR 사용 22개를 구분한다. 기반 라이브러리
+`inventory/build-recipes.json`은 소스 빌드 46개와 JAR 사용 21개를 구분한다. 기반 라이브러리
 7개는 `dependencies.lock.json`을 사용하므로 운영 기준본과 빌드 의존성 버전을 별도로 관리한다. 기존 소스 중
 CityCraft와 Macaw Doors/Fences는 현재 Fabric 1.20.4용 빌드 입력이 아니므로 운영 JAR를 사용한다.
 각 소스는 전용 wrapper/JDK로 빌드하며 실패 시 운영 JAR로 자동 대체하지 않는다.
@@ -65,8 +65,8 @@ CityCraft와 Macaw Doors/Fences는 현재 Fabric 1.20.4용 빌드 입력이 아�
 GitHub Actions는 `mods/main` 변경과 하위 배포 대상 브랜치의 변경을 감지해 세 파일을
 [GitHub Releases](https://github.com/minefed/mods/releases)에 공개한다. 하위 브랜치는
 15분 간격으로 확인하며, 동일 입력의 중복 릴리즈는 건너뛴다.
-공개 팩에는 검토된 36개 JAR를 포함하고 32개는 버전·해시를 고정한 공식 Modrinth
-다운로드 참조로 제공한다. 클라이언트에는 서버 전용 2개를 제외한 66개, 서버에는 68개가
+공개 팩에는 검토된 36개 JAR를 포함하고 31개는 버전·해시를 고정한 공식 Modrinth
+다운로드 참조로 제공한다. 클라이언트에는 서버 전용 2개를 제외한 65개, 서버에는 67개가
 포함된다. 정책에 따른 원본 선택과 자체 빌드 결과의 차이는 팩 안의 기록에 명시한다.
 자동화와 최초 릴리즈, 설치 방법은 [릴리즈 안내](docs/RELEASING.md)를 참고한다.
 
@@ -77,7 +77,7 @@ python scripts/mods.py stage
 python scripts/mods.py pack --private
 ```
 
-`stage`는 `build/staged-mods/`에 68개 JAR를 모으고, `pack --private`는 `build/minefed-baseline.zip`에 JAR와 출처·라이선스 기록을 넣는다. 동일 모드 ID가 겹치는 MTR 4.0.3과 Fabric 모드가 아닌 TCPShield는 패키지에서 제외하되 원본 목록에는 보존한다.
+`stage`는 `build/staged-mods/`에 67개 JAR를 모으고, `pack --private`는 `build/minefed-baseline.zip`에 JAR와 출처·라이선스 기록을 넣는다. 동일 모드 ID가 겹치는 MTR 4.0.3, Fabric 모드가 아닌 TCPShield, 사용자 요청으로 제거한 Axiom은 패키지에서 제외하되 원본 목록에는 보존한다.
 
 이 ZIP은 로컬 검토용 운영 바이너리 기준본이다. 공개 재배포 권한이 확인되지 않은 파일을 포함하므로 `--private` 없이 전체 ZIP을 생성하면 실패한다. 공개 배포에는 lock 파일의 라이선스 조건과 대응 소스 제공 의무를 별도로 충족해야 한다.
 

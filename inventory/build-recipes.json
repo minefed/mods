@@ -44,11 +44,6 @@
       "env": {}
     },
     {
-      "modId": "axiom",
-      "mode": "binary",
-      "reason": "운영 Fabric JAR만 사용하는 모드. 라이선스와 원본 SHA-256은 mods.lock.json을 따른다."
-    },
-    {
       "modId": "bluemap",
       "mode": "source",
       "reason": "Legacy fabric-1.20 implementation explicitly supports 1.20 through 1.20.4; run this implementation directly to avoid modern loaders. Explicit releaseVersion preserves deployed version after policy commits.",

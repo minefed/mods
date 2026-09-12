@@ -54,21 +54,6 @@
       "server": true
     },
     {
-      "modId": "axiom",
-      "distribution": "download",
-      "artifact": "baseline",
-      "reason": "Modrinth modpack reference only: the exact original file is hosted on Modrinth and its official API SHA512 matches the baseline JAR. Preserve the original license and download directly from the official CDN; do not embed or rehost the locally rebuilt replacement.",
-      "evidenceUrls": [
-        "https://api.modrinth.com/v2/project/N6n5dqoA",
-        "https://api.modrinth.com/v2/version/o8M6jc3k",
-        "https://axiom.moulberry.com/eula",
-        "https://support.modrinth.com/en/articles/8797527-obtaining-modpack-permissions"
-      ],
-      "client": true,
-      "server": true,
-      "downloadUrl": "https://cdn.modrinth.com/data/N6n5dqoA/versions/o8M6jc3k/Axiom-5.3.0-for-MC1.20.4.jar"
-    },
-    {
       "modId": "bluemap",
       "distribution": "embed",
       "artifact": "built",

@@ -253,8 +253,8 @@
           "officialFileName": "Axiom-5.3.0-for-MC1.20.4.jar"
         }
       },
-      "included": true,
-      "exclusionReason": null,
+      "included": false,
+      "exclusionReason": "2026-09-12 사용자 요청으로 활성 모드와 서버/클라이언트 팩에서 제거했다. 2026-09-06 관측 JAR와 해시는 과거 기록으로만 보존한다.",
       "license": "LicenseRef-All-Rights-Reserved",
       "licenseUrl": "https://axiom.moulberry.com/eula",
       "licenseNoticesPath": "inventory/notices/axiom-4462d9f369dc",

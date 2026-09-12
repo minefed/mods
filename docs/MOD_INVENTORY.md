@@ -12,7 +12,7 @@
 
 JAR 재배포 분류는 허용 45개, 모드팩 한정 10개, 로컬 전용 15개다. ‘허용’도 원본 고지와 해당되는 대응 소스 제공 의무를 지켜야 한다. ‘모드팩 한정’은 원본 JAR의 모드팩 포함에 대한 허용이며 독립 파일 미러링이나 자산 재사용 허용을 뜻하지 않는다. ‘로컬 전용’ JAR는 Git에 추가하지 않는다.
 
-현재 서버 모드팩 입력은 68개다. MTR 4.0.3은 동일 ID의 4.0.5가 있어 제외하고, TCPShield는 Fabric 모드가 아닌 Bukkit/Bungee/Velocity 플러그인이라 제외한다. 두 파일 모두 원본 인벤토리에 보존한다. 이 목록은 서버가 실제로 모든 모드를 성공적으로 로드했다는 기록이 아니다.
+현재 서버 모드팩 입력은 67개다. Axiom은 2026-09-12 사용자 요청으로 서버·클라이언트 팩과 빌드 목록에서 제거했다. MTR 4.0.3은 동일 ID의 4.0.5가 있어 제외하고, TCPShield는 Fabric 모드가 아닌 Bukkit/Bungee/Velocity 플러그인이라 제외한다. 제외한 세 파일 모두 원본 인벤토리에 보존한다. 이 목록은 서버가 실제로 모든 모드를 성공적으로 로드했다는 기록이 아니다.
 
 소스 관리와 일괄 빌드 준비 시 다음 차이를 유지해야 한다.
 
@@ -28,7 +28,7 @@ JAR 재배포 분류는 허용 45개, 모드팩 한정 10개, 로컬 전용 15�
 | 1 | alloy-forgery-2.1.4+1.20.3.jar | alloy_forgery / 2.1.4+1.20.3 | alloy-forgery · badd26ba | 허용 | 포함 |
 | 2 | architectury-11.1.17-fabric.jar | architectury / 11.1.17 | 공식 JAR · 과거 소스는 sourceProvenance | 허용 | 포함 |
 | 3 | automobility-refueled-0.4.3.b+1.20.4-fabric.jar | automobility-refueled / 0.4.3.b+1.20.4-fabric | Automobility-Refueled · 13160075 | 허용 | 포함 |
-| 4 | Axiom-5.3.0-for-MC1.20.4.jar | axiom / 5.3.0 | 바이너리 | 로컬 전용 | 포함 |
+| 4 | Axiom-5.3.0-for-MC1.20.4.jar | axiom / 5.3.0 | 보관 전용 | 로컬 전용 | 제외 |
 | 5 | BlueMap-5.3-fabric-1.20.jar | bluemap / 5.3 | BlueMap · 129769c0 | 허용 | 포함 |
 | 6 | botarium-fabric-1.20.4-3.2.2.jar | botarium / 3.2.2 | 공식 JAR · 과거 소스는 sourceProvenance | 허용 | 포함 |
 | 7 | cc-tweaked-1.20.4-fabric-1.110.2.jar | computercraft / 1.110.2 | CC-Tweaked · c3264ade | 허용 | 포함 |

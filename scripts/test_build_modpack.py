@@ -21,12 +21,13 @@ import mods
 
 
 class RepositoryRecipeTests(unittest.TestCase):
-    def test_recipes_cover_all_68_included_inventory_mods_once(self):
+    def test_recipes_cover_all_67_active_mods_without_axiom(self):
         manifest, plan = builder.load_plan(Path(__file__).resolve().parents[1])
         expected = {entry["modId"] for entry in manifest["entries"] if entry["included"]}
         actual = [recipe["modId"] for recipe in plan["entries"]]
-        self.assertEqual(len(expected), 68)
-        self.assertEqual(len(actual), 68)
+        self.assertEqual(len(expected), 67)
+        self.assertNotIn("axiom", actual)
+        self.assertEqual(len(actual), 67)
         self.assertEqual(set(actual), expected)
         self.assertEqual({recipe["mode"] for recipe in plan["entries"]}, {"source", "binary"})
 
