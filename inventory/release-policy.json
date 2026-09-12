@@ -621,7 +621,9 @@
         "https://creativecommons.org/licenses/by-nc-sa/4.0/"
       ],
       "client": true,
-      "server": true
+      "server": true,
+      "artifactLicense": "CC-BY-NC-SA-4.0 (source-built 2.5.0)",
+      "artifactLicenseUrl": "https://github.com/aka-jammy/Modern-Lights/blob/5df1c7567ac7f4dd8d40118000187585e5e9b725/LICENSE"
     },
     {
       "modId": "modernfix",

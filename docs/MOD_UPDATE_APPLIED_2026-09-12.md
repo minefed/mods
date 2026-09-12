@@ -25,6 +25,8 @@ Minecraft **1.20.4 / Fabric**을 유지하여 공식 후속 버전 14종을 선�
 
 `built`는 혼합 빌드의 결과를 선택한다는 뜻이다. binary recipe인 모드는 공식 JAR를 그대로 사용한다. `published`는 기존 소스 빌드와 별도로 검토한 공식 배포 파일을 선택한다. `manual` 파일은 공개팩에 직접 넣거나 자동 다운로드하지 않으며 안내된 정확한 JAR를 복원해야 설치가 완료된다.
 
+비공개 혼합 ZIP의 소스 빌드 항목은 기존 도구 계약에 따라 운영 기준본의 `license` 판정과 과거 고지를 함께 보존한다. Modern Lights의 `embedded MIT` 기록은 관측한 2.4.2 JAR에 해당하며, 실제 2.5.0 실행 JAR의 `fabric.mod.json`과 `LICENSE_modern-lights`는 CC-BY-NC-SA-4.0이다. 아래 적용 JSON과 공개팩 기록·고지는 현재 실행 파일의 라이선스를 명시하고 과거 판정을 구분한다.
+
 버전별 전체 누적 변경사항과 공식 릴리스 링크는 [사전 전수 조사](MOD_UPDATE_AUDIT_2026-09-12.md)에 있다. 현재 선택·출처·전체 해시는 [적용 기록 JSON](../inventory/update-applied-2026-09-12.json), [공식 바이너리 15개](../inventory/dependencies.lock.json), [공개 배포 선택 2개](../inventory/published-artifacts.lock.json), [소스 빌드 recipe](../inventory/build-recipes.json)에 고정했다.
 
 ## 소스와 라이선스
