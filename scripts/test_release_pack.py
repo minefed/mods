@@ -67,13 +67,13 @@ class ReleaseTests(unittest.TestCase):
         target.parent.mkdir(parents=True, exist_ok=True)
         target.write_bytes(release.json_bytes(value))
 
-    def jar(self, filename, identity, version, environment='*'):
+    def jar(self, filename, identity, version, environment='*', license_text='Fixture MIT author notice'):
         path = self.root / 'artifacts/local' / filename
         path.parent.mkdir(parents=True, exist_ok=True)
         with zipfile.ZipFile(path, 'w') as archive:
             archive.writestr('fabric.mod.json', json.dumps({'schemaVersion': 1, 'id': identity, 'version': version,
                 'environment': environment, 'depends': {'minecraft': '~1.20.4', 'java': '>=17'}}))
-            archive.writestr('LICENSE', 'Fixture MIT author notice')
+            archive.writestr('LICENSE', license_text)
             archive.writestr('payload.bin', (identity + version).encode())
         digest, size = mods.file_digest(path)
         return {'modId': identity, 'fileName': filename, 'sha256': digest, 'size': size, 'version': version,
@@ -328,6 +328,67 @@ class ReleaseTests(unittest.TestCase):
             self.assertNotIn('mods/alpha-built.jar', archive.namelist())
             self.assertIn('mods/alpha-built.jar', archive.read('INSTALL.txt').decode())
             self.assertIn('INSTALLATION IS INCOMPLETE', archive.read('INSTALL.txt').decode())
+
+    def test_source_built_manual_license_correction_preserves_historical_license_and_restrictions(self):
+        historical = 'CC-BY-NC-SA-4.0 (source/project/JAR metadata); embedded MIT'
+        current = 'CC-BY-NC-SA-4.0 (source-built 2.5.0)'
+        current_url = 'https://github.com/example/alpha/blob/' + '3' * 40 + '/LICENSE'
+        self.built = self.jar('alpha-built.jar', 'alpha', '2.5.0', license_text='CC-BY-NC-SA-4.0 source license')
+        self.built['artifact']['builtFromSource'] = True
+        self.produced['entries'][0] = self.built
+        self.provenance[0]['sha256'] = self.built['sha256']
+        self.baseline['entries'][0]['license'] = historical
+        self.write('inventory/mods.lock.json', self.baseline)
+        self.produced['entries'][0]['license'] = historical
+        self.produced['entries'][0]['artifact']['redistribution'] = 'local-only'
+        self.input_zip()
+        baseline_before = (self.root / 'inventory/mods.lock.json').read_bytes()
+        build_before = (self.root / 'build/input.zip').read_bytes()
+        self.policy['entries'][0] = self.decision('alpha', artifact='built', distribution='manual',
+                                                 artifactLicense=current, artifactLicenseUrl=current_url)
+        self.write('inventory/release-policy.json', self.policy)
+        manifest = self.run_release()
+        for name, prefix in (('server.zip', ''), ('client.mrpack', 'overrides/')):
+            with zipfile.ZipFile(manifest.parent / name) as archive:
+                record = next(e for e in json.loads(archive.read(prefix + 'download-manifest.json'))['files'] if e['modId'] == 'alpha')
+                self.assertEqual('2.5.0', record['version'])
+                self.assertEqual((current, current_url), (record['license'], record['licenseUrl']))
+                self.assertEqual((historical, self.alpha['licenseUrl']), (record['capturedLicense'], record['capturedLicenseUrl']))
+                self.assertIn('historical captured JAR, not this build', record['notes'][-1])
+                legal = archive.read(prefix + 'LICENSES.md').decode()
+                self.assertIn('License: ' + current + '\n', legal)
+                self.assertIn('Captured baseline license (historical JAR): ' + historical, legal)
+                self.assertIn(current_url, legal)
+                self.assertNotIn(prefix + 'mods/alpha-built.jar', archive.namelist())
+        self.assertEqual(baseline_before, (self.root / 'inventory/mods.lock.json').read_bytes())
+        self.assertEqual(build_before, (self.root / 'build/input.zip').read_bytes())
+        self.policy['entries'][0]['distribution'] = 'embed'
+        self.policy['entries'][0]['artifactLicense'] = 'MIT'
+        self.write('inventory/release-policy.json', self.policy)
+        with self.assertRaisesRegex(mods.ModError, 'local-only artifact'):
+            self.run_release(version='20260907123457')
+
+    def test_license_correction_rejects_invalid_pairs_and_non_source_selections(self):
+        valid = {'artifactLicense': 'Reviewed source license', 'artifactLicenseUrl': 'https://example.com/LICENSE'}
+        for changes in ({'artifactLicense': ''}, {'artifactLicense': ' '}, {'artifactLicense': []},
+                        {'artifactLicenseUrl': None}, {'artifactLicenseUrl': 'http://example.com/LICENSE'},
+                        {'artifact': 'baseline'}, {'artifact': 'published'}):
+            with self.subTest(changes=changes):
+                self.policy['entries'][0] = self.decision('alpha', **{**valid, **changes})
+                self.write('inventory/release-policy.json', self.policy)
+                with self.assertRaises(mods.ModError):
+                    release.load_policy(self.root, 'inventory/release-policy.json', {'alpha', 'beta', 'gamma'})
+        for field in ('artifactLicense', 'artifactLicenseUrl'):
+            self.policy['entries'][0] = self.decision('alpha', **{field: valid[field]})
+            self.write('inventory/release-policy.json', self.policy)
+            with self.assertRaises(mods.ModError):
+                release.load_policy(self.root, 'inventory/release-policy.json', {'alpha', 'beta', 'gamma'})
+        self.policy['entries'][0] = self.decision('alpha')
+        self.policy['entries'][2] = self.decision('gamma', **valid)
+        self.write('inventory/release-policy.json', self.policy)
+        with self.assertRaisesRegex(mods.ModError, 'source build provenance'):
+            self.run_release()
+        self.assertFalse((self.root / 'build/releases/20260907123456').exists())
 
     def test_published_manifest_requires_exact_coverage_and_valid_binary_records(self):
         entry = self.published_fixture()

@@ -264,6 +264,10 @@ def load_policy(root: Path, value: str, identities: set) -> dict:
             raise mods.ModError('Release side selections must be explicit booleans')
         if entry['distribution'] == 'download':
             https_url(entry.get('downloadUrl'), mrpack=entry['client'])
+        if 'artifactLicense' in entry or 'artifactLicenseUrl' in entry:
+            if entry['artifact'] != 'built' or not isinstance(entry.get('artifactLicense'), str) or not entry['artifactLicense'].strip():
+                raise mods.ModError('Artifact license override requires a built artifact and nonempty license text')
+            https_url(entry.get('artifactLicenseUrl'))
     for side in ('server', 'client'):
         if not any(e[side] for e in entries):
             raise mods.ModError(f'Release {side} profile has zero mods')
@@ -353,6 +357,10 @@ def select_files(root, manifest, provenance, paths, policy, work, published=None
             entry = copy.deepcopy(published[identity])
         else:
             entry = copy.deepcopy(original[identity] if decision['artifact'] == 'baseline' else built[identity])
+        if ('artifactLicense' in decision and
+                (decision['artifact'] != 'built' or provenance[identity].get('mode') != 'source'
+                 or not entry['artifact'].get('builtFromSource'))):
+            raise mods.ModError('Artifact license override requires verified source build provenance: ' + identity)
         if (decision['distribution'] == 'download' and decision['artifact'] == 'built'
                 and provenance[identity].get('mode') == 'binary'
                 and decision['downloadUrl'] != entry['artifact'].get('url')):
@@ -386,6 +394,13 @@ def select_files(root, manifest, provenance, paths, policy, work, published=None
         for field in ('authors', 'notes'):
             if field in entry:
                 record[field] = copy.deepcopy(entry[field])
+        if 'artifactLicense' in decision:
+            record.update(license=decision['artifactLicense'], licenseUrl=decision['artifactLicenseUrl'],
+                          capturedLicense=original[identity].get('license'),
+                          capturedLicenseUrl=original[identity].get('licenseUrl'))
+            record['notes'] = notice_text(record, 'notes') + [
+                'The selected source-built artifact uses the reviewed artifactLicense and artifactLicenseUrl. '
+                'capturedLicense and capturedLicenseUrl describe the historical captured JAR, not this build.']
         if decision['artifact'] == 'published':
             if entry.get('sourceReference'):
                 record['sourceReference'] = copy.deepcopy(entry['sourceReference'])
@@ -493,12 +508,17 @@ def source_notices(records, version: str) -> str:
         lines += [f"## {record['modId']} {record['version']}", '', f"License: {record.get('license')}",
                   f"License evidence: {record.get('licenseUrl')}", f"Distribution: {record['distribution']} / {record['artifact']}",
                   f"Decision: {record['reason']}", *record['evidenceUrls']]
+        if 'capturedLicense' in record:
+            lines += [f"Captured baseline license (historical JAR): {record['capturedLicense']}",
+                      f"Captured baseline license evidence: {record.get('capturedLicenseUrl')}",
+                      'The License and License evidence fields above describe the selected source-built artifact.']
         authors = notice_text(record, 'authors')
         if authors:
             lines += ['Authors: ' + ', '.join(authors)]
         notes = notice_text(record, 'notes')
         if notes:
-            lines += ['', 'Artifact notes:', '', *['- ' + note for note in notes]]
+            heading = 'Inherited inventory notes and current license correction:' if 'capturedLicense' in record else 'Artifact notes:'
+            lines += ['', heading, '', *['- ' + note for note in notes]]
         if record.get('sourceCommitUrl'):
             if record.get('sourceArchiveUrl'):
                 lines += ['Managed source and build instructions: ' + record['sourceCommitUrl'],
