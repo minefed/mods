@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "minecraftVersion": "1.20.4",
   "loader": "fabric",
-  "purpose": "Official binary build dependencies; independent of the captured server baseline.",
+  "purpose": "Reviewed official Fabric runtime binaries; independent of the captured server baseline.",
   "entries": [
     {
       "fileName": "architectury-11.1.17-fabric.jar",
@@ -231,6 +231,87 @@
           "LICENSE-fabric-api": "b40930bbcf80744c86c46a12bc9da056641d722716c378f5659b9e555ef833e1"
         }
       }
+    },
+    {
+      "fileName": "fusion-1.3.15a-fabric-mc1.20.4.jar",
+      "sha256": "a05c49c1ae324e6a96aeef5e0b0bec20c2f740b354bb6529bf27e052c9f02dd8",
+      "size": 921058,
+      "modId": "fusion",
+      "version": "1.3.15+a",
+      "environment": "*",
+      "management": "binary",
+      "source": null,
+      "artifact": {
+        "path": "artifacts/local/fusion-1.3.15a-fabric-mc1.20.4.jar",
+        "redistribution": "modpack-only",
+        "url": "https://cdn.modrinth.com/data/p19vrgc2/versions/Qyr4qxvT/fusion-1.3.15a-fabric-mc1.20.4.jar",
+        "sha512": "782fe9ef76383fb0fdaa79be5c48048656fb3d57e109390b207613a41475b7f6432d1fc123c20193b149c1e43034b9cf61524599b0d55f247a3c390e708605f9",
+        "publishedHashMatch": true,
+        "verificationAlgorithm": "sha512",
+        "publishedRelease": {
+          "provider": "modrinth",
+          "versionId": "Qyr4qxvT",
+          "projectId": "p19vrgc2",
+          "versionUrl": "https://modrinth.com/version/Qyr4qxvT",
+          "gameVersions": [
+            "1.20.4"
+          ],
+          "loaders": [
+            "fabric",
+            "quilt"
+          ],
+          "officialFileName": "fusion-1.3.15a-fabric-mc1.20.4.jar",
+          "versionType": "release",
+          "publishedAt": "2026-09-06T12:57:12.678125Z"
+        }
+      },
+      "included": true,
+      "exclusionReason": null,
+      "license": "LicenseRef-All-Rights-Reserved",
+      "licenseUrl": "https://modrinth.com/mod/fusion-connected-textures",
+      "licenseNoticesPath": null,
+      "notes": [
+        "Official Fabric runtime successor reviewed 2026-09-12. Exact bytes, embedded metadata and copyright notices verified. The captured server baseline remains historical.",
+        "Reviewed upstream branch declares this release version. All rights reserved; official project FAQ permits modpack use. Preserve the original JAR and do not distribute it as a standalone mirror."
+      ],
+      "compatibility": {
+        "minecraft": ">=1.20.4 <1.20.5",
+        "fabricLoader": ">=0.16.1",
+        "java": ">=17",
+        "dependencies": {
+          "fabricloader": ">=0.16.1",
+          "fabric": ">=0.97.3",
+          "minecraft": ">=1.20.4 <1.20.5",
+          "java": ">=17"
+        }
+      },
+      "evidenceUrls": [
+        "https://api.modrinth.com/v2/project/p19vrgc2",
+        "https://api.modrinth.com/v2/version/Qyr4qxvT",
+        "https://modrinth.com/version/Qyr4qxvT",
+        "https://raw.githubusercontent.com/SuperMartijn642/Fusion/57a1001562ebd33b9d3cd56717b57b1ae2829858/gradle.properties"
+      ],
+      "sourceReference": {
+        "url": "https://github.com/SuperMartijn642/Fusion",
+        "ref": "fabric-1.20.4",
+        "commit": "57a1001562ebd33b9d3cd56717b57b1ae2829858"
+      },
+      "licenseReview": {
+        "reviewedAt": "2026-09-12",
+        "projectLicense": {
+          "id": "LicenseRef-All-Rights-Reserved",
+          "name": "",
+          "url": null
+        },
+        "documents": [
+          {
+            "path": "gradle.properties",
+            "url": "https://raw.githubusercontent.com/SuperMartijn642/Fusion/57a1001562ebd33b9d3cd56717b57b1ae2829858/gradle.properties",
+            "sha256": "52e1cd069298487f0f1d7e5d2b0185f14909d35a291df4f3f525bc6d7eeb5cb0"
+          }
+        ]
+      },
+      "embeddedNotices": []
     },
     {
       "fileName": "lavender-0.1.9+1.20.3.jar",

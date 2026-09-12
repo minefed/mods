@@ -404,18 +404,17 @@
     {
       "modId": "fusion",
       "distribution": "download",
-      "artifact": "baseline",
-      "reason": "Modrinth modpack reference only: the exact original file is hosted on Modrinth and its official API SHA512 matches the baseline JAR. Preserve the original license and download directly from the official CDN; do not embed or rehost the locally rebuilt replacement.",
+      "artifact": "built",
+      "reason": "Use the exact reviewed official runtime successor; preserve original bytes and all license notices. LicenseRef-All-Rights-Reserved",
       "evidenceUrls": [
         "https://api.modrinth.com/v2/project/p19vrgc2",
-        "https://github.com/SuperMartijn642/Fusion",
-        "https://github.com/SuperMartijn642/Fusion/blob/forge-1.20/README.md",
-        "https://support.modrinth.com/en/articles/8797527-obtaining-modpack-permissions",
-        "https://api.modrinth.com/v2/version/yzXdYMdh"
+        "https://api.modrinth.com/v2/version/Qyr4qxvT",
+        "https://modrinth.com/version/Qyr4qxvT",
+        "https://raw.githubusercontent.com/SuperMartijn642/Fusion/57a1001562ebd33b9d3cd56717b57b1ae2829858/gradle.properties"
       ],
       "client": true,
       "server": true,
-      "downloadUrl": "https://cdn.modrinth.com/data/p19vrgc2/versions/yzXdYMdh/fusion-1.2.12-fabric-mc1.20.4.jar"
+      "downloadUrl": "https://cdn.modrinth.com/data/p19vrgc2/versions/Qyr4qxvT/fusion-1.3.15a-fabric-mc1.20.4.jar"
     },
     {
       "modId": "geckolib",
