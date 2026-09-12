@@ -10,6 +10,7 @@ Minefed 서버의 모드 소스와 운영 JAR를 한 곳에서 관리한다. Min
 - **기타 바이너리:** 소스가 없거나 라이선스상 수정이 제한된 활성 모드 11개는 JAR로 관리한다. Axiom은 사용자 요청으로 팩에서 제외하고 과거 운영 기록만 보존한다. 재배포 가능한 Dusty Decorations는 `vendor/jars/`에 커밋하고, 나머지는 `vendor/local/`에 보관한다.
 - **운영 기준본:** 소스로 관리하는 모드도 실제 운영 JAR를 `artifacts/local/`에 보존한다. 소스 업데이트와 배포물 교체는 별도 작업이다.
 - **목록과 근거:** [전체 모드 목록](docs/MOD_INVENTORY.md), [고정 버전·해시 목록](inventory/mods.lock.json), [라이선스 조사](inventory/license-audit.json), [원본 고지](inventory/notices/)를 함께 관리한다.
+- **업데이트 적용:** [2026-09-12 공식 후속 버전 적용 기록](docs/MOD_UPDATE_APPLIED_2026-09-12.md)에 Axiom 제외, 실제 선택 버전, 소스 커밋과 검증 결과를 정리했다.
 - **업데이트 조사:** [2026-09-12 업데이트 전수 조사](docs/MOD_UPDATE_AUDIT_2026-09-12.md)에 Minecraft 1.20.4/Fabric의 후속 버전, 누적 변경사항, 미배포 소스 후보와 운영·빌드·공개팩 버전 차이를 정리했다.
 
 로컬 전용 JAR는 Git에 포함하지 않는다. 각 JAR의 파일명, SHA-256, 크기, 공식 다운로드 URL, 소스 커밋과 라이선스 조건은 lock 파일에 고정한다. 모드팩 포함 허용은 독립 JAR 미러링 허용과 다를 수 있다.
@@ -39,8 +40,9 @@ MTR 웹 UI용 Node.js 22/npm이 필요하다. 이 작업 공간의 도구 경로
 `build.local.json`에 설정되어 있다.
 
 `inventory/build-recipes.json`은 소스 빌드 46개와 JAR 사용 21개를 구분한다. 기반 라이브러리
-7개는 `dependencies.lock.json`을 사용하므로 운영 기준본과 빌드 의존성 버전을 별도로 관리한다. 기존 소스 중
-CityCraft와 Macaw Doors/Fences는 현재 Fabric 1.20.4용 빌드 입력이 아니므로 운영 JAR를 사용한다.
+7개와 공식 후속 바이너리 8개는 `dependencies.lock.json`의 총 15개 pin을 사용한다. 기존 소스 중
+CityCraft와 Macaw Doors/Fences는 공개된 Fabric 1.20.4용 공식 JAR를 사용한다. PFM과 Puzzles Lib의
+소스 빌드는 유지하고 공개팩에는 `published-artifacts.lock.json`의 공식 배포본 2개를 선택한다.
 각 소스는 전용 wrapper/JDK로 빌드하며 실패 시 운영 JAR로 자동 대체하지 않는다.
 
 완성 ZIP과 SHA-256은 `build/distributions/`, 최근 성공 결과 경로는 `latest.json`에 기록된다.
@@ -65,8 +67,9 @@ CityCraft와 Macaw Doors/Fences는 현재 Fabric 1.20.4용 빌드 입력이 아�
 GitHub Actions는 `mods/main` 변경과 하위 배포 대상 브랜치의 변경을 감지해 세 파일을
 [GitHub Releases](https://github.com/minefed/mods/releases)에 공개한다. 하위 브랜치는
 15분 간격으로 확인하며, 동일 입력의 중복 릴리즈는 건너뛴다.
-공개 팩에는 검토된 36개 JAR를 포함하고 31개는 버전·해시를 고정한 공식 Modrinth
-다운로드 참조로 제공한다. 클라이언트에는 서버 전용 2개를 제외한 65개, 서버에는 67개가
+공개 서버팩 구성은 내장 JAR 36개, 버전·해시를 고정한 공식 Modrinth 다운로드 30개,
+Modern Lights 2.5.0 수동 복원 1개다. Modern Lights의 공개 2.5.0 업로드는 소스 전용이라
+실행 파일로 사용하지 않는다. 공개팩 설치를 완료하려면 안내된 정상 소스 빌드 파일을 복원해야 한다. 클라이언트에는 서버 전용 2개를 제외한 65개, 서버에는 67개가
 포함된다. 정책에 따른 원본 선택과 자체 빌드 결과의 차이는 팩 안의 기록에 명시한다.
 자동화와 최초 릴리즈, 설치 방법은 [릴리즈 안내](docs/RELEASING.md)를 참고한다.
 

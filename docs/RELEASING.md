@@ -13,6 +13,17 @@
 모드별 포함 환경과 공개 배포 방식은 `inventory/release-policy.json`에 기록한다.
 직접 포함 가능한 파일은 고지와 함께 넣고, 공식 다운로드로 배포하는 모드는 원본 URL과
 해시를 기록한다. 일반 소스 빌드의 비공개 운영 기준 ZIP을 그대로 공개하지 않는다.
+
+2026-09-12 구성은 서버 67개/클라이언트 65개다. 서버팩 기준 내장 36개·공식 다운로드
+30개·수동 복원 1개다. Modern Lights 2.5.0은 정상 소스 빌드를 선택하지만 현재 공개된
+공식 파일은 sources JAR뿐이므로 `manual/built`로 기록한다. 수동 복원 전에는 설치가
+완료되지 않는다. 비공개 혼합 빌드 ZIP에는 정상 2.5.0 실행 JAR가 포함된다.
+
+PFM/Puzzles Lib는 소스 빌드를 유지하면서 `artifact: published`로 공식 JAR를 선택한다.
+`publishedManifest`가 지정한 `inventory/published-artifacts.lock.json`은 해당 두 항목과
+정확히 대응하며 URL·SHA-256·SHA-512·실제 Fabric 메타데이터를 검증한다. 공식 파일의
+고지를 별도로 보존하고 자체 빌드와의 차이를 기록한다. lock 파일 해시도 패키징 및
+게시 전에 검사한다. 새 작업 공간에서는 공식 파일을 임시 패키징 폴더로 복원한다.
 리소스팩은 `inventory/resourcepacks.lock.json`의 `resource_pack/` 게임용 파일만 공개한다.
 비공개 `minefed/resourcepack` 저장소와 `design/`의 제작 자료는 공개하지 않는다.
 

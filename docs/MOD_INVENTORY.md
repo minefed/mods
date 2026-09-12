@@ -4,7 +4,7 @@
 
 소스 관리 대상은 51개 JAR에 대응하는 50개 저장소이며, 바이너리 관리 대상은 기반 라이브러리 7개와 기타 12개다. 기존 Automobility는 서브모듈에서 제거했고 운영 차량 모드인 Refueled만 관리한다. 공식 배포 파일과 해시가 일치한 항목은 64개다.
 
-이 문서의 버전·해시는 **관측한 운영 기준본**이다. 기반 라이브러리의 현재 빌드 입력은 [dependencies.lock.json](../inventory/dependencies.lock.json)으로 별도 고정하며 [관리 Q&A](DEPENDENCIES.md)를 따른다. 이 7개의 과거 fork·브랜치·커밋은 운영 lock의 `sourceProvenance`에 남기고 활성 서브모듈에서 제외했다. 기존 Automobility와 이 7개의 Minefed 원격 fork는 삭제했으며, 삭제 상태와 과거 소스 정보는 [종료 저장소 기록](../inventory/retired-repositories.json)을 따른다.
+이 문서의 버전·해시는 **관측한 운영 기준본**이다. 현재 실제 빌드·공개팩 버전은 [2026-09-12 적용 기록](MOD_UPDATE_APPLIED_2026-09-12.md), `dependencies.lock.json`, `build-recipes.json`, `published-artifacts.lock.json`을 함께 확인한다. 기반 라이브러리의 현재 빌드 입력은 [dependencies.lock.json](../inventory/dependencies.lock.json)으로 별도 고정하며 [관리 Q&A](DEPENDENCIES.md)를 따른다. 이 7개의 과거 fork·브랜치·커밋은 운영 lock의 `sourceProvenance`에 남기고 활성 서브모듈에서 제외했다. 기존 Automobility와 이 7개의 Minefed 원격 fork는 삭제했으며, 삭제 상태와 과거 소스 정보는 [종료 저장소 기록](../inventory/retired-repositories.json)을 따른다.
 
 [mods.lock.json](../inventory/mods.lock.json)에 전체 SHA256·크기·소스 원격/브랜치/전체 커밋·배포 URL·의존성·포함 여부를, [license-audit.json](../inventory/license-audit.json)에 라이선스 판단과 증거 URL을 보관한다. 표의 커밋은 하위 AGENTS.md를 포함한 관리 커밋의 축약이다. 원래 소스는 baselineRef/baselineCommit, 실제 gitlink는 ref/commit으로 구분하며 전체 40자리 해시를 기록한다. 활성 서브모듈의 관리 커밋은 minefed 원격에서 확인한다. 종료 저장소의 과거 URL과 커밋은 현재 내려받을 수 있는 소스 경로를 뜻하지 않는다.
 
@@ -66,7 +66,7 @@ JAR 재배포 분류는 허용 45개, 모드팩 한정 10개, 로컬 전용 15�
 | 39 | modern-glass-doors-5.3.0+1.20.3-and-later.jar | modern_glass_doors / 5.3.0+1.20.3-and-later | modern-glass-doors · 155e732f | 허용 | 포함 |
 | 40 | modern-lights-1.20[2.4.2].jar | modernlights / 2.4.2 | Modern-Lights · 6b04f156 | 로컬 전용 | 포함 |
 | 41 | modernfix-fabric-5.17.0+mc1.20.4.jar | modernfix / 5.17.0+mc1.20.4 | ModernFix · 2856e289 | 허용 | 포함 |
-| 42 | MSD-fabric-1.20.4-4.0.0-beta.14-1.3.15.jar | msd / 1.3.15 | MTR-Station-Decoration-Addon · d59160ac | 허용 | 포함 |
+| 42 | MSD-fabric-1.20.4-4.0.0-beta.14-1.3.15.jar | msd / 1.3.15 | MTR-Station-Decoration-Addon · b06fc072 | 허용 | 포함 |
 | 43 | MTR-fabric-4.0.3+1.20.4.jar | mtr / 4.0.3 | Minecraft-Transit-Railway · 34a4a8db | 허용 | 제외 |
 | 44 | MTR-fabric-4.0.5+1.20.4.jar | mtr / 4.0.5 | Minecraft-Transit-Railway · 34a4a8db | 허용 | 포함 |
 | 45 | mythicmetals-0.19.7+1.20.4.jar | mythicmetals / 0.19.7+1.20.4 | MythicMetals · cfa897b7 | 모드팩 한정 | 포함 |
@@ -91,7 +91,7 @@ JAR 재배포 분류는 허용 45개, 모드팩 한정 10개, 로컬 전용 15�
 | 64 | trafficcraft-fabric-1.20.4-1.1.3.jar | trafficcraft / 1.20.4-1.1.3 | TrafficCraft · 40b94053 | 로컬 전용 | 포함 |
 | 65 | webstreamer-1.5.0.jar | webstreamer / 1.5.0 | fabric-webstreamer · f9c03980 | 허용 | 포함 |
 | 66 | wirelessredstone-fabric-1.2.2+1.20.4.jar | wirelessredstone / 1.2.2+1.20.4 | wireless-redstone · 85cd6b45 | 허용 | 포함 |
-| 67 | worldedit-hang-fix-v1.0.2-mc1.20.6-fabric.jar | worldedithangfix / 1.0.2 | worldedit-hang-fix · ae96bc02 | 허용 | 포함 |
+| 67 | worldedit-hang-fix-v1.0.2-mc1.20.6-fabric.jar | worldedithangfix / 1.0.2 | worldedit-hang-fix · 45c74411 | 허용 | 포함 |
 | 68 | worldedit-mod-7.3.0.jar | worldedit / 7.3.0+6678-55745ad | WorldEdit · 088da04a | 허용 | 포함 |
 | 69 | yuushya-1.20.4-fabric-2.2.3.jar | yuushya / 2.2.3 | Yuushya-Townscape · 67dc8719 | 모드팩 한정 | 포함 |
 | 70 | yuushya-modelling-1.20.4-fabric-2.2.0.jar | yuushya_modelling / 2.2.0 | Yuushya-Modelling · d7302257 | 모드팩 한정 | 포함 |
