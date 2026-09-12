@@ -84,6 +84,91 @@
           "size": 5995
         }
       ]
+    },
+    {
+      "fileName": "PuzzlesLib-v20.4.53-1.20.4-Fabric.jar",
+      "sha256": "22d833f9e9c84e97538ede7a7d8378a9744476a7c03ff639cd2fd1d92bcc3ea4",
+      "size": 1029646,
+      "modId": "puzzleslib",
+      "version": "20.4.53",
+      "environment": "*",
+      "management": "binary",
+      "source": null,
+      "artifact": {
+        "path": "artifacts/local/PuzzlesLib-v20.4.53-1.20.4-Fabric.jar",
+        "redistribution": "local-only",
+        "url": "https://cdn.modrinth.com/data/QAGBst4M/versions/PYkg1A3a/PuzzlesLib-v20.4.53-1.20.4-Fabric.jar",
+        "sha512": "ba2a759a547fe860d73de79b9be6098fc7ac5720a5aabd668c5d9f38994435cc1af6d8084a703802f5f687b59d5bcac2e1214d0999af282de8452d79e9bbc895",
+        "publishedHashMatch": true,
+        "verificationAlgorithm": "sha512",
+        "publishedRelease": {
+          "provider": "modrinth",
+          "versionId": "PYkg1A3a",
+          "projectId": "QAGBst4M",
+          "versionUrl": "https://modrinth.com/version/PYkg1A3a",
+          "gameVersions": [
+            "1.20.4"
+          ],
+          "loaders": [
+            "fabric"
+          ],
+          "officialFileName": "PuzzlesLib-v20.4.53-1.20.4-Fabric.jar",
+          "versionType": "release",
+          "publishedAt": "2025-10-23T08:56:08.510163Z"
+        }
+      },
+      "included": true,
+      "exclusionReason": null,
+      "license": "MPL-2.0 code; All Rights Reserved assets",
+      "licenseUrl": "https://github.com/Fuzss/puzzleslib/blob/1.20.4/LICENSE.md",
+      "licenseNoticesPath": "inventory/notices/puzzleslib-22d833f9e9c8",
+      "notes": [
+        "Official Fabric runtime successor reviewed 2026-09-12. Exact bytes, embedded metadata and copyright notices verified. The captured server baseline remains historical.",
+        "sourceProvenance records the existing Minefed checkout, not proof that it produces this official binary.",
+        "Use the official download with updated 2023-2025 asset copyright notice. Minefed source build remains separately managed."
+      ],
+      "compatibility": {
+        "minecraft": "1.20.4",
+        "fabricLoader": ">=0.15.0",
+        "java": ">=17",
+        "dependencies": {
+          "fabricloader": ">=0.15.0",
+          "fabric-api": ">=0.96.0",
+          "forgeconfigapiport": "*",
+          "minecraft": "1.20.4",
+          "java": ">=17"
+        }
+      },
+      "evidenceUrls": [
+        "https://api.modrinth.com/v2/project/QAGBst4M",
+        "https://api.modrinth.com/v2/version/PYkg1A3a",
+        "https://modrinth.com/version/PYkg1A3a"
+      ],
+      "sourceProvenance": {
+        "path": "puzzles-lib",
+        "url": "https://github.com/minefed/puzzles-lib",
+        "upstream": "https://github.com/Fuzss/puzzles-lib",
+        "ref": "minefed-1.20.4",
+        "commit": "1dc5d1305d9d93527d09b84c826d30216bb5d468",
+        "trackingBranch": "minefed-1.20.4",
+        "baselineRef": "refs/heads/1.20.4",
+        "baselineCommit": "dff8529b28db23e197c34f47792839ae305571e5"
+      },
+      "authors": [
+        "Fuzs"
+      ],
+      "embeddedNotices": [
+        {
+          "jarPath": "LICENSE-ASSETS.md",
+          "sha256": "90a94f9891c91f0eaa321dd52e88cd5ec705112989d5f1842d155decd5dba7a6",
+          "size": 58
+        },
+        {
+          "jarPath": "LICENSE.md",
+          "sha256": "1f256ecad192880510e84ad60474eab7589218784b9a50bc7ceee34c2b91f1d5",
+          "size": 16725
+        }
+      ]
     }
   ]
 }

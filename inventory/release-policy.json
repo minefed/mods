@@ -791,18 +791,16 @@
     {
       "modId": "puzzleslib",
       "distribution": "download",
-      "artifact": "baseline",
-      "reason": "Modrinth modpack reference only: the exact original file is hosted on Modrinth and its official API SHA512 matches the baseline JAR. Preserve the original license and download directly from the official CDN; do not embed or rehost the locally rebuilt replacement. Uses original version 20.4.52 instead of local source output 20.4.53.",
+      "artifact": "published",
+      "reason": "Use the exact reviewed official runtime successor; preserve original bytes and all license notices. MPL-2.0 code; All Rights Reserved assets",
       "evidenceUrls": [
-        "https://github.com/Fuzss/puzzleslib",
-        "https://github.com/Fuzss/puzzleslib/blob/1.20.4/LICENSE-ASSETS.md",
-        "https://github.com/Fuzss/puzzleslib/blob/1.20.4/LICENSE.md",
-        "https://support.modrinth.com/en/articles/8797527-obtaining-modpack-permissions",
-        "https://api.modrinth.com/v2/version/vGTq0Oye"
+        "https://api.modrinth.com/v2/project/QAGBst4M",
+        "https://api.modrinth.com/v2/version/PYkg1A3a",
+        "https://modrinth.com/version/PYkg1A3a"
       ],
       "client": true,
       "server": true,
-      "downloadUrl": "https://cdn.modrinth.com/data/QAGBst4M/versions/vGTq0Oye/PuzzlesLib-v20.4.52-1.20.4-Fabric.jar"
+      "downloadUrl": "https://cdn.modrinth.com/data/QAGBst4M/versions/PYkg1A3a/PuzzlesLib-v20.4.53-1.20.4-Fabric.jar"
     },
     {
       "modId": "realtime",
