@@ -150,6 +150,90 @@
       }
     },
     {
+      "fileName": "City Craft-2.1.1-Fabric-1.20.x(ex.5.6).jar",
+      "sha256": "ac9cee9f7bc2a0bdce0acd08f03d3ae682085fb65aafc6efa62e2f201646456d",
+      "size": 2120060,
+      "modId": "citycraft",
+      "version": "2.1.1",
+      "environment": "*",
+      "management": "binary",
+      "source": null,
+      "artifact": {
+        "path": "artifacts/local/City Craft-2.1.1-Fabric-1.20.x(ex.5.6).jar",
+        "redistribution": "allowed",
+        "url": "https://cdn.modrinth.com/data/NCASj2oY/versions/gRav2TDu/City%20Craft-2.1.1-Fabric-1.20.x%28ex.5.6%29.jar",
+        "sha512": "0751913c0a5e509b59bc27d1ab08877fb80717eb8dff344bd8c625070587c4e24f4b16b9f495408f7a8ae2127204b1c5b52057daed38c4a7c85afde7661ddcae",
+        "publishedHashMatch": true,
+        "verificationAlgorithm": "sha512",
+        "publishedRelease": {
+          "provider": "modrinth",
+          "versionId": "gRav2TDu",
+          "projectId": "NCASj2oY",
+          "versionUrl": "https://modrinth.com/version/gRav2TDu",
+          "gameVersions": [
+            "1.20",
+            "1.20.1",
+            "1.20.2",
+            "1.20.3",
+            "1.20.4"
+          ],
+          "loaders": [
+            "fabric"
+          ],
+          "officialFileName": "City Craft-2.1.1-Fabric-1.20.x(ex.5.6).jar",
+          "versionType": "release",
+          "publishedAt": "2025-08-09T10:22:04.368952Z"
+        }
+      },
+      "included": true,
+      "exclusionReason": null,
+      "license": "MIT (official project/JAR metadata); embedded CC0-1.0",
+      "licenseUrl": "https://github.com/XiaoYao-MC/CityCraft/blob/9d38b13c11494f3aeb20fc98e2fbf8a80119eef5/LICENSE",
+      "licenseNoticesPath": "inventory/notices/citycraft-ac9cee9f7bc2",
+      "notes": [
+        "Official Fabric runtime successor reviewed 2026-09-12. Exact bytes, embedded metadata and copyright notices verified. The captured server baseline remains historical.",
+        "sourceProvenance records the existing Minefed checkout, not proof that it produces this official binary.",
+        "Official Fabric source for 2.1.1 is not verified; retain renamed LICENSE_citycraft CC0 notice and obtain original binary."
+      ],
+      "compatibility": {
+        "minecraft": "~1.20",
+        "fabricLoader": null,
+        "java": ">=17",
+        "dependencies": {
+          "fabric": "*",
+          "minecraft": "~1.20",
+          "java": ">=17"
+        }
+      },
+      "evidenceUrls": [
+        "https://api.modrinth.com/v2/project/NCASj2oY",
+        "https://api.modrinth.com/v2/version/gRav2TDu",
+        "https://modrinth.com/version/gRav2TDu",
+        "https://modrinth.com/mod/NCASj2oY",
+        "https://www.curseforge.com/minecraft/mc-mods/citycraft"
+      ],
+      "sourceProvenance": {
+        "path": "CityCraft",
+        "url": "https://github.com/minefed/CityCraft",
+        "upstream": "https://github.com/XiaoYao-MC/CityCraft",
+        "ref": "minefed-1.20.4",
+        "commit": "32f4d36ff7865630f102e8f71302f483311aed39",
+        "trackingBranch": "minefed-1.20.4",
+        "baselineRef": "1.19.3-1.19.4",
+        "baselineCommit": "9d38b13c11494f3aeb20fc98e2fbf8a80119eef5"
+      },
+      "authors": [
+        "Xiao Yao , PDpg233 , BH0721 & mxy333"
+      ],
+      "embeddedNotices": [
+        {
+          "jarPath": "LICENSE_citycraft",
+          "sha256": "a2010f343487d3f7618affe54f789f5487602331c0a8d03f49e9a7c547cf0499",
+          "size": 7048
+        }
+      ]
+    },
+    {
       "fileName": "fabric-api-0.97.3+1.20.4.jar",
       "sha256": "5c11c93b21e0fbcd83dd11c6059479143f3d422bceac4153c3e55806ba9371f1",
       "size": 2187523,

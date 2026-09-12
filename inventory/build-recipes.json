@@ -126,9 +126,10 @@
     {
       "modId": "citycraft",
       "mode": "binary",
-      "reason": "The public repository has no matching Fabric 1.20.4 release source: its full published branch/history set targets at most Minecraft 1.19.4, while its Gradle and embedded metadata versions also disagree. Preserve the deployed 2.0.0 JAR and its recorded license/hash.",
+      "reason": "Use the official Fabric 1.20.4 runtime successor pinned in dependencies.lock.json; original bytes and license notices preserved.",
       "sourcePath": "CityCraft",
-      "env": {}
+      "env": {},
+      "dependency": true
     },
     {
       "modId": "crossstitch",

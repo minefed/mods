@@ -139,15 +139,13 @@
       "modId": "citycraft",
       "distribution": "embed",
       "artifact": "built",
-      "reason": "Distribute the reviewed built artifact under its original license with all copyright/license notices and corresponding-source obligations. MIT (deployed JAR/project); CC0-1.0 (published source)",
+      "reason": "Use the exact reviewed official runtime successor; preserve original bytes and all license notices. MIT (official project/JAR metadata); embedded CC0-1.0",
       "evidenceUrls": [
         "https://api.modrinth.com/v2/project/NCASj2oY",
-        "https://api.modrinth.com/v2/version/qWRV8sfH",
-        "https://github.com/XiaoYao-MC/CityCraft",
-        "https://github.com/XiaoYao-MC/CityCraft/blob/9d38b13c11494f3aeb20fc98e2fbf8a80119eef5/LICENSE",
-        "https://github.com/XiaoYao-MC/CityCraft/commit/9d38b13c11494f3aeb20fc98e2fbf8a80119eef5",
-        "https://github.com/minefed/CityCraft/commit/32f4d36ff7865630f102e8f71302f483311aed39",
-        "https://github.com/minefed/CityCraft/archive/32f4d36ff7865630f102e8f71302f483311aed39.tar.gz"
+        "https://api.modrinth.com/v2/version/gRav2TDu",
+        "https://modrinth.com/version/gRav2TDu",
+        "https://modrinth.com/mod/NCASj2oY",
+        "https://www.curseforge.com/minecraft/mc-mods/citycraft"
       ],
       "client": true,
       "server": true
