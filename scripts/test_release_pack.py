@@ -333,6 +333,8 @@ class ReleaseTests(unittest.TestCase):
         historical = 'CC-BY-NC-SA-4.0 (source/project/JAR metadata); embedded MIT'
         current = 'CC-BY-NC-SA-4.0 (source-built 2.5.0)'
         current_url = 'https://github.com/example/alpha/blob/' + '3' * 40 + '/LICENSE'
+        self.alpha = self.jar('alpha-original.jar', 'alpha', '2.4.2')
+        self.baseline['entries'][0] = self.alpha
         self.built = self.jar('alpha-built.jar', 'alpha', '2.5.0', license_text='CC-BY-NC-SA-4.0 source license')
         self.built['artifact']['builtFromSource'] = True
         self.produced['entries'][0] = self.built
@@ -352,12 +354,13 @@ class ReleaseTests(unittest.TestCase):
             with zipfile.ZipFile(manifest.parent / name) as archive:
                 record = next(e for e in json.loads(archive.read(prefix + 'download-manifest.json'))['files'] if e['modId'] == 'alpha')
                 self.assertEqual('2.5.0', record['version'])
+                self.assertEqual('2.4.2', record['capturedVersion'])
                 self.assertEqual((current, current_url), (record['license'], record['licenseUrl']))
                 self.assertEqual((historical, self.alpha['licenseUrl']), (record['capturedLicense'], record['capturedLicenseUrl']))
                 self.assertIn('historical captured JAR, not this build', record['notes'][-1])
                 legal = archive.read(prefix + 'LICENSES.md').decode()
                 self.assertIn('License: ' + current + '\n', legal)
-                self.assertIn('Captured baseline license (historical JAR): ' + historical, legal)
+                self.assertIn('Captured baseline license (historical JAR 2.4.2): ' + historical, legal)
                 self.assertIn(current_url, legal)
                 self.assertNotIn(prefix + 'mods/alpha-built.jar', archive.namelist())
         self.assertEqual(baseline_before, (self.root / 'inventory/mods.lock.json').read_bytes())

@@ -396,6 +396,7 @@ def select_files(root, manifest, provenance, paths, policy, work, published=None
                 record[field] = copy.deepcopy(entry[field])
         if 'artifactLicense' in decision:
             record.update(license=decision['artifactLicense'], licenseUrl=decision['artifactLicenseUrl'],
+                          capturedVersion=original[identity]['version'],
                           capturedLicense=original[identity].get('license'),
                           capturedLicenseUrl=original[identity].get('licenseUrl'))
             record['notes'] = notice_text(record, 'notes') + [
@@ -509,7 +510,7 @@ def source_notices(records, version: str) -> str:
                   f"License evidence: {record.get('licenseUrl')}", f"Distribution: {record['distribution']} / {record['artifact']}",
                   f"Decision: {record['reason']}", *record['evidenceUrls']]
         if 'capturedLicense' in record:
-            lines += [f"Captured baseline license (historical JAR): {record['capturedLicense']}",
+            lines += [f"Captured baseline license (historical JAR {record.get('capturedVersion', 'unknown')}): {record['capturedLicense']}",
                       f"Captured baseline license evidence: {record.get('capturedLicenseUrl')}",
                       'The License and License evidence fields above describe the selected source-built artifact.']
         authors = notice_text(record, 'authors')
