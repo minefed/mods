@@ -697,7 +697,8 @@
     {
       "modId": "ptsdeco",
       "mode": "binary",
-      "reason": "운영 Fabric JAR만 사용하는 모드. 라이선스와 원본 SHA-256은 mods.lock.json을 따른다."
+      "reason": "Use the official Fabric 1.20.4 runtime successor pinned in dependencies.lock.json; original bytes and license notices preserved.",
+      "dependency": true
     },
     {
       "modId": "puzzleslib",

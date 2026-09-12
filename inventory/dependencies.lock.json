@@ -781,6 +781,70 @@
       }
     },
     {
+      "fileName": "PTS-Deco-4.0.0-Fabric1.20.4.jar",
+      "sha256": "aa75d6e205c34a063fead0dc5cbd564fcbca640172db718e22ac17ebdcc64919",
+      "size": 3476524,
+      "modId": "ptsdeco",
+      "version": "4.0.0",
+      "environment": "*",
+      "management": "binary",
+      "source": null,
+      "artifact": {
+        "path": "artifacts/local/PTS-Deco-4.0.0-Fabric1.20.4.jar",
+        "redistribution": "modpack-only",
+        "url": "https://cdn.modrinth.com/data/VIkNIHtW/versions/etl5lvBR/PTS-Deco-4.0.0-Fabric1.20.4.jar",
+        "sha512": "b777bc4c65f9690624196d7d04e32d28576621cad6e2e575fe625608f12405b3f252cfb38ac1c030c54f4250d7007af966f1e634a0a3f6f252060c8ca845c499",
+        "publishedHashMatch": true,
+        "verificationAlgorithm": "sha512",
+        "publishedRelease": {
+          "provider": "modrinth",
+          "versionId": "etl5lvBR",
+          "projectId": "VIkNIHtW",
+          "versionUrl": "https://modrinth.com/version/etl5lvBR",
+          "gameVersions": [
+            "1.20.4"
+          ],
+          "loaders": [
+            "fabric"
+          ],
+          "officialFileName": "PTS-Deco-4.0.0-Fabric1.20.4.jar",
+          "versionType": "release",
+          "publishedAt": "2025-11-09T19:21:03.661826Z"
+        }
+      },
+      "included": true,
+      "exclusionReason": null,
+      "license": "LicenseRef-All-Rights-Reserved",
+      "licenseUrl": "https://www.curseforge.com/minecraft/mc-mods/pts-deco",
+      "licenseNoticesPath": null,
+      "notes": [
+        "Official Fabric runtime successor reviewed 2026-09-12. Exact bytes, embedded metadata and copyright notices verified. The captured server baseline remains historical.",
+        "Official project permits use in modpacks; no corresponding source repository is published. Version 4.0.0 changes many registry IDs: test a world backup before server deployment."
+      ],
+      "compatibility": {
+        "minecraft": "1.20.4",
+        "fabricLoader": ">=0.15.11",
+        "java": ">=17",
+        "dependencies": {
+          "fabricloader": ">=0.15.11",
+          "fabric-api": ">=0.97.1+1.20.4",
+          "minecraft": "1.20.4",
+          "java": ">=17"
+        }
+      },
+      "evidenceUrls": [
+        "https://api.modrinth.com/v2/project/VIkNIHtW",
+        "https://api.modrinth.com/v2/version/etl5lvBR",
+        "https://modrinth.com/version/etl5lvBR",
+        "https://modrinth.com/mod/VIkNIHtW",
+        "https://www.curseforge.com/minecraft/mc-mods/pts-deco"
+      ],
+      "authors": [
+        "Nik123123555, KatzeJuli123"
+      ],
+      "embeddedNotices": []
+    },
+    {
       "fileName": "rechiseled-1.2.5-fabric-mc1.20.4.jar",
       "sha256": "d4ad010ce1f73f078b45e56fb14b16f2ec8eaa7af2fa8cfd2c49d940ae05e7ea",
       "size": 11932928,

@@ -777,9 +777,13 @@
     {
       "modId": "ptsdeco",
       "distribution": "embed",
-      "artifact": "baseline",
-      "reason": "The official PTS-Deco project expressly permits modpack inclusion. Embed only the exact unchanged baseline JAR inside the modpack, with project/creator attribution; no standalone mirror or guessed download URL.",
+      "artifact": "built",
+      "reason": "Use the exact reviewed official runtime successor; preserve original bytes and all license notices. LicenseRef-All-Rights-Reserved",
       "evidenceUrls": [
+        "https://api.modrinth.com/v2/project/VIkNIHtW",
+        "https://api.modrinth.com/v2/version/etl5lvBR",
+        "https://modrinth.com/version/etl5lvBR",
+        "https://modrinth.com/mod/VIkNIHtW",
         "https://www.curseforge.com/minecraft/mc-mods/pts-deco"
       ],
       "client": true,
