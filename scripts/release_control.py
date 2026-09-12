@@ -274,7 +274,8 @@ def release_body(manifest: dict, plan: dict, commit: str) -> str:
     bundled = manifest.get('archiveMode') == 'bundled'
     lines = [f"Minefed {plan['version']} (Asia/Seoul)", '',
              'Minecraft 1.20.4 · Fabric Loader 0.18.0 이상 · Java 17', '',
-             f"- 서버팩: {profiles['server']['modCount']}개 모드, " + ('모든 모드 JAR 내장' if bundled else '공식 다운로드 설치기 포함'),
+             f"- 서버팩: {profiles['server']['modCount']}개 모드, " + ('모든 모드 JAR 내장' if bundled else '공식 다운로드 설치기 포함')
+             + (f", 서버 플러그인 {profiles['server']['pluginCount']}개는 plugins/에 포함" if profiles['server'].get('pluginCount') else ''),
              f"- 클라이언트팩: {profiles['client']['modCount']}개 모드, Modrinth/Prism Launcher에서 client.mrpack 가져오기",
              '- 리소스팩: resourcepack.zip; 클라이언트팩에도 동일 파일 포함',
              '- 공식 배포 파일과 Modern Lights 실행 JAR도 팩에 포함되며, 추가 모드 다운로드·수동 복원이 필요 없습니다.'

@@ -64,10 +64,12 @@ class ReleaseControlTests(unittest.TestCase):
 
     def test_bundled_release_description_does_not_require_missing_downloads(self):
         self.manifest['archiveMode'] = 'bundled'
+        self.manifest['profiles']['server']['pluginCount'] = 1
         body = control.release_body(self.manifest, self.plan, 'c' * 40)
         self.assertIn('모든 모드 JAR 내장', body)
         self.assertIn('추가 모드 다운로드·수동 복원이 필요 없습니다', body)
         self.assertNotIn('다운로드 참조로 제공', body)
+        self.assertIn('서버 플러그인 1개는 plugins/에 포함', body)
 
     def test_published_manifest_change_or_missing_snapshot_blocks_upload(self):
         relative = 'inventory/published-artifacts.lock.json'

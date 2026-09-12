@@ -4,6 +4,18 @@
   "fabricLoaderVersion": "0.18.0",
   "timezone": "Asia/Seoul",
   "archiveMode": "bundled",
+  "serverPlugins": [
+    {
+      "fileName": "TCPShield-2.8.1.jar",
+      "reason": "Include the recorded official TCPShield 2.8.1 plugin in server.zip/plugins as requested. It supports Bukkit/Bungee/Velocity and is not a Fabric mod; keep it outside the Fabric mod inventory and dependency graph.",
+      "evidenceUrls": [
+        "https://github.com/TCPShield/RealIP/releases/tag/2.8.1",
+        "https://github.com/TCPShield/RealIP/blob/2.8.1/LICENSE",
+        "https://github.com/TCPShield/RealIP/blob/2.8.1/README.md"
+      ],
+      "noticePaths": ["RealIP/LICENSE"]
+    }
+  ],
   "entries": [
     {
       "modId": "alloy_forgery",

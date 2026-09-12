@@ -6,7 +6,7 @@
 
 | 파일 | 용도 |
 | --- | --- |
-| `server.zip` | 전체 서버용 모드 JAR와 설치 안내·출처 정보 |
+| `server.zip` | 전체 서버용 모드 JAR, TCPShield 플러그인과 설치 안내·출처 정보 |
 | `client.mrpack` | Modrinth 형식을 지원하는 런처에서 가져오는 클라이언트팩 |
 | `resourcepack.zip` | ZIP 루트의 `pack.mcmeta`·`assets/`를 사용하는 게임용 리소스팩 |
 
@@ -27,6 +27,14 @@
 현재 실행 파일과 과거 운영 JAR의 라이선스 차이, 원저자 고지 및 대응 소스 링크를 보존한다.
 JAR는 Git에 추가하지 않는다. `install-mods.py`는 정상적으로 압축 해제한 팩에서 다운로드
 없이 모든 모드의 해시를 검사하는 선택적 검증 도구다.
+
+`serverPlugins`로 지정한 TCPShield 2.8.1은 서버팩 `plugins/TCPShield-2.8.1.jar`에
+추가된다. 서버팩은 `mods/`의 Fabric 모드 67개와 `plugins/`의 플러그인 1개, 총 JAR
+68개다. TCPShield는 Bukkit/Bungee/Velocity용으로 Fabric Loader가 실행하지 않는다.
+해당 플랫폼의 플러그인 폴더에 사용하는 파일이며 클라이언트 MRPACK에는 포함하지 않는다.
+공식 원본의 URL·크기·SHA-256·플러그인 메타데이터와 MIT 고지를 검증·보존한다.
+기존 운영 인벤토리의 Fabric 빌드 제외 표시는 유지하고, 릴리즈 기록의 `plugins`와
+`pluginCount`로 별도 추적한다. `install-mods.py`는 동봉 플러그인의 해시도 검사한다.
 
 PFM/Puzzles Lib는 소스 빌드를 유지하면서 `artifact: published`로 공식 JAR를 선택한다.
 `publishedManifest`가 지정한 `inventory/published-artifacts.lock.json`은 해당 두 항목과

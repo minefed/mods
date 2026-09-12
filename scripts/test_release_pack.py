@@ -195,6 +195,54 @@ class ReleaseTests(unittest.TestCase):
         with self.assertRaisesRegex(mods.ModError, 'archiveMode'):
             self.run_release()
 
+    def test_server_plugin_is_bundled_separately_and_verified_without_client_installation(self):
+        self.policy['archiveMode'] = 'bundled'
+        plugin_path = self.root / 'artifacts/local/TCPShield-2.8.1.jar'
+        with zipfile.ZipFile(plugin_path, 'w') as jar:
+            jar.writestr('plugin.yml', 'name: TCPShield\nversion: 2.8.1\nmain: example.Plugin\n')
+        digest, size = mods.file_digest(plugin_path)
+        plugin = {**copy.deepcopy(self.beta), 'fileName': plugin_path.name, 'modId': None, 'version': None,
+                  'included': False, 'exclusionReason': 'Non-Fabric plugin',
+                  'sha256': digest, 'size': size}
+        plugin['artifact']['path'] = plugin_path.relative_to(self.root).as_posix()
+        self.baseline['entries'].append(plugin)
+        self.write('inventory/mods.lock.json', self.baseline)
+        notice = self.root / 'inventory/notices/TCPShield/LICENSE'
+        notice.parent.mkdir(parents=True)
+        notice.write_text('MIT License\nCopyright TCPShield\n')
+        self.policy['serverPlugins'] = [{'fileName': plugin_path.name, 'reason': 'Include server plugin',
+                                        'evidenceUrls': [plugin['licenseUrl']],
+                                        'noticePaths': [notice.relative_to(self.root).as_posix()]}]
+        self.write('inventory/release-policy.json', self.policy)
+        manifest = self.run_release()
+        report = json.loads(manifest.read_text())
+        self.assertEqual((3, 1, 4), tuple(report['profiles']['server'][k] for k in ('modCount', 'pluginCount', 'totalJarCount')))
+        self.assertEqual((2, 0, 2), tuple(report['profiles']['client'][k] for k in ('modCount', 'pluginCount', 'totalJarCount')))
+        self.assertEqual(3, len(release.release_dependencies.check_selected.call_args.args[1]))
+        installation = self.root / 'plugin-installation'
+        with zipfile.ZipFile(manifest.parent / 'server.zip') as archive:
+            self.assertEqual(plugin_path.read_bytes(), archive.read('plugins/' + plugin_path.name))
+            self.assertNotIn('mods/' + plugin_path.name, archive.namelist())
+            metadata = json.loads(archive.read('MINEFED-RELEASE.json'))
+            self.assertEqual(3, len(metadata['files']))
+            self.assertEqual(report['plugins'], metadata['plugins'])
+            self.assertEqual('2.8.1', metadata['plugins'][0]['version'])
+            self.assertEqual(notice.read_bytes(), archive.read(metadata['plugins'][0]['noticePaths'][0]))
+            self.assertIn('Fabric Loader does not load plugins/', archive.read('INSTALL.txt').decode())
+            self.assertIn('Server plugin: TCPShield', archive.read('LICENSES.md').decode())
+            archive.extractall(installation)
+        with zipfile.ZipFile(manifest.parent / 'client.mrpack') as archive:
+            self.assertFalse(any('TCPShield' in name for name in archive.namelist()))
+            self.assertEqual([], json.loads(archive.read('overrides/download-manifest.json'))['plugins'])
+        result = subprocess.run([sys.executable, str(installation / 'install-mods.py')], capture_output=True, text=True)
+        self.assertEqual(0, result.returncode, result.stderr)
+        self.assertIn('server plugin files verified', result.stdout)
+        installed_plugin = installation / 'plugins' / plugin_path.name
+        installed_plugin.write_bytes(b'user modification')
+        result = subprocess.run([sys.executable, str(installation / 'install-mods.py')], capture_output=True, text=True)
+        self.assertNotEqual(0, result.returncode)
+        self.assertEqual(b'user modification', installed_plugin.read_bytes())
+
     def test_dependency_failure_prevents_all_public_assets(self):
         release.release_dependencies.check_selected.side_effect = mods.ModError('selected dependency missing')
         with self.assertRaisesRegex(mods.ModError, 'dependency missing'):

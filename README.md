@@ -73,6 +73,8 @@ Modern Lights는 소스 전용 공식 업로드 대신 검증된 2.5.0 실행 JA
 정상적으로 압축 해제하거나 MRPACK을 가져오면 추가 모드 다운로드·수동 복원이 필요 없다.
 선택적 `install-mods.py` 실행으로 모든 모드의 해시를 검사할 수 있다. 정책에 따른 원본
 선택과 자체 빌드 결과의 차이, 기존 재배포 분류와 라이선스는 팩 안의 기록에 보존한다.
+서버팩은 TCPShield 2.8.1을 `plugins/`에 별도 포함하여 총 JAR 68개다. TCPShield는
+Bukkit/Bungee/Velocity용 플러그인이며 Fabric Loader가 실행하는 모드가 아니다.
 자동화와 최초 릴리즈, 설치 방법은 [릴리즈 안내](docs/RELEASING.md)를 참고한다.
 
 ## 운영 JAR 기준본 패키징
