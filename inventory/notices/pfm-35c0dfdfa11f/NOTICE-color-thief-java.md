@@ -1,5 +1,11 @@
 # Color Thief - A Fast Java Implementation
 
+Java port: Sven Woltmann — https://github.com/SvenWoltmann/color-thief-java (v1.1.2).
+License: Creative Commons Attribution 2.5 (CC BY 2.5), https://creativecommons.org/licenses/by/2.5/.
+Original version notice: https://github.com/SvenWoltmann/color-thief-java/blob/v1.1.2/README.md.
+
+The upstream README notice follows unchanged.
+
 Grabs the dominant color or a representative color palette from an image.
 
 A very fast Java port of Lokesh Dhakar's JavaScript version (http://lokeshdhakar.com/projects/color-thief/).
