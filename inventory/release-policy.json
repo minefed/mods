@@ -819,17 +819,17 @@
     {
       "modId": "rechiseled",
       "distribution": "download",
-      "artifact": "baseline",
-      "reason": "Modrinth modpack reference only: the exact original file is hosted on Modrinth and its official API SHA512 matches the baseline JAR. Preserve the original license and download directly from the official CDN; do not embed or rehost the locally rebuilt replacement.",
+      "artifact": "built",
+      "reason": "Use the exact reviewed official runtime successor; preserve original bytes and all license notices. LicenseRef-All-Rights-Reserved",
       "evidenceUrls": [
-        "https://github.com/SuperMartijn642/Rechiseled",
-        "https://github.com/SuperMartijn642/Rechiseled#faq",
-        "https://support.modrinth.com/en/articles/8797527-obtaining-modpack-permissions",
-        "https://api.modrinth.com/v2/version/kSW48y8B"
+        "https://api.modrinth.com/v2/project/B0g2vT6l",
+        "https://api.modrinth.com/v2/version/H4YTGQ1N",
+        "https://modrinth.com/version/H4YTGQ1N",
+        "https://raw.githubusercontent.com/SuperMartijn642/Rechiseled/5e52607e0ffaed32ecadd3eeba3915a708d1acfb/gradle.properties"
       ],
       "client": true,
       "server": true,
-      "downloadUrl": "https://cdn.modrinth.com/data/B0g2vT6l/versions/kSW48y8B/rechiseled-1.2.1-fabric-mc1.20.4.jar"
+      "downloadUrl": "https://cdn.modrinth.com/data/B0g2vT6l/versions/H4YTGQ1N/rechiseled-1.2.5-fabric-mc1.20.4.jar"
     },
     {
       "modId": "resourcefulconfig",

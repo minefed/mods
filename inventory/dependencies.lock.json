@@ -462,6 +462,95 @@
       }
     },
     {
+      "fileName": "rechiseled-1.2.5-fabric-mc1.20.4.jar",
+      "sha256": "d4ad010ce1f73f078b45e56fb14b16f2ec8eaa7af2fa8cfd2c49d940ae05e7ea",
+      "size": 11932928,
+      "modId": "rechiseled",
+      "version": "1.2.5",
+      "environment": "*",
+      "management": "binary",
+      "source": null,
+      "artifact": {
+        "path": "artifacts/local/rechiseled-1.2.5-fabric-mc1.20.4.jar",
+        "redistribution": "modpack-only",
+        "url": "https://cdn.modrinth.com/data/B0g2vT6l/versions/H4YTGQ1N/rechiseled-1.2.5-fabric-mc1.20.4.jar",
+        "sha512": "dec2b3b49726d63e513e34f0d2c87580112dbe387bcdaf7bb2db60fe6707d345beccfe00318b3bc88274f95c57fef7769c0ad32578908a23393704186985fff0",
+        "publishedHashMatch": true,
+        "verificationAlgorithm": "sha512",
+        "publishedRelease": {
+          "provider": "modrinth",
+          "versionId": "H4YTGQ1N",
+          "projectId": "B0g2vT6l",
+          "versionUrl": "https://modrinth.com/version/H4YTGQ1N",
+          "gameVersions": [
+            "1.20.2",
+            "1.20.3",
+            "1.20.4"
+          ],
+          "loaders": [
+            "fabric",
+            "quilt"
+          ],
+          "officialFileName": "rechiseled-1.2.5-fabric-mc1.20.4.jar",
+          "versionType": "release",
+          "publishedAt": "2026-06-22T17:18:08.448319Z"
+        }
+      },
+      "included": true,
+      "exclusionReason": null,
+      "license": "LicenseRef-All-Rights-Reserved",
+      "licenseUrl": "https://modrinth.com/mod/rechiseled",
+      "licenseNoticesPath": null,
+      "notes": [
+        "Official Fabric runtime successor reviewed 2026-09-12. Exact bytes, embedded metadata and copyright notices verified. The captured server baseline remains historical.",
+        "Reviewed upstream branch declares this release version. All rights reserved; official project FAQ permits modpack use. Preserve the original JAR and do not distribute it as a standalone mirror."
+      ],
+      "compatibility": {
+        "minecraft": ">=1.20.2 <1.20.5",
+        "fabricLoader": ">=0.18.0",
+        "java": ">=17",
+        "dependencies": {
+          "fabricloader": ">=0.18.0",
+          "fabric": "*",
+          "minecraft": ">=1.20.2 <1.20.5",
+          "java": ">=17",
+          "supermartijn642corelib": ">=1.1.20 <1.2.0",
+          "supermartijn642configlib": ">=1.1.6",
+          "fusion": ">=1.2.12"
+        }
+      },
+      "evidenceUrls": [
+        "https://api.modrinth.com/v2/project/B0g2vT6l",
+        "https://api.modrinth.com/v2/version/H4YTGQ1N",
+        "https://modrinth.com/version/H4YTGQ1N",
+        "https://raw.githubusercontent.com/SuperMartijn642/Rechiseled/5e52607e0ffaed32ecadd3eeba3915a708d1acfb/gradle.properties"
+      ],
+      "authors": [
+        "SuperMartijn642"
+      ],
+      "sourceReference": {
+        "url": "https://github.com/SuperMartijn642/Rechiseled",
+        "ref": "fabric-1.20.2",
+        "commit": "5e52607e0ffaed32ecadd3eeba3915a708d1acfb"
+      },
+      "licenseReview": {
+        "reviewedAt": "2026-09-12",
+        "projectLicense": {
+          "id": "LicenseRef-All-Rights-Reserved",
+          "name": "",
+          "url": null
+        },
+        "documents": [
+          {
+            "path": "gradle.properties",
+            "url": "https://raw.githubusercontent.com/SuperMartijn642/Rechiseled/5e52607e0ffaed32ecadd3eeba3915a708d1acfb/gradle.properties",
+            "sha256": "f52ba6aa4fe5bc8f49ac32bb92b6c4b94de1452657c1e7ce5d4094026a576b0d"
+          }
+        ]
+      },
+      "embeddedNotices": []
+    },
+    {
       "fileName": "resourcefulconfig-fabric-1.20.4-2.4.8.jar",
       "sha256": "1d82d48ec1f8e911f520a4dd07f74240e890db74209eecc8330ca6d5e016f104",
       "size": 228662,
