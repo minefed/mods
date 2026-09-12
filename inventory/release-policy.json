@@ -537,17 +537,18 @@
     {
       "modId": "mcwwindows",
       "distribution": "download",
-      "artifact": "baseline",
-      "reason": "Modrinth modpack reference only: the exact original file is hosted on Modrinth and its official API SHA512 matches the baseline JAR. Preserve the original license and download directly from the official CDN; do not embed or rehost the locally rebuilt replacement.",
+      "artifact": "built",
+      "reason": "Use the exact reviewed official runtime successor; preserve original bytes and all license notices. LicenseRef-All-Rights-Reserved; embedded CC0-1.0 template",
       "evidenceUrls": [
         "https://api.modrinth.com/v2/project/C7I0BCni",
-        "https://www.curseforge.com/minecraft/mc-mods/macaws-windows/license",
-        "https://support.modrinth.com/en/articles/8797527-obtaining-modpack-permissions",
-        "https://api.modrinth.com/v2/version/MPOPGLD0"
+        "https://api.modrinth.com/v2/version/DbNK4q5P",
+        "https://modrinth.com/version/DbNK4q5P",
+        "https://modrinth.com/mod/C7I0BCni",
+        "https://www.curseforge.com/minecraft/mc-mods/macaws-windows"
       ],
       "client": true,
       "server": true,
-      "downloadUrl": "https://cdn.modrinth.com/data/C7I0BCni/versions/MPOPGLD0/mcw-windows-2.3.1-mc1.20.4fabric.jar"
+      "downloadUrl": "https://cdn.modrinth.com/data/C7I0BCni/versions/DbNK4q5P/mcw-mcwwindows-2.4.2-mc1.20.4fabric.jar"
     },
     {
       "modId": "memoryleakfix",
