@@ -302,7 +302,7 @@
       "modId": "worldedithangfix",
       "sourcePath": "worldedit-hang-fix",
       "releaseGlobs": [
-        "versions/1.20.6-fabric/build/libs/worldedit-hang-fix-v*-mc1.20.6-fabric.jar"
+        "versions/1.18.2-fabric/build/libs/worldedit-hang-fix-v*-mc1.18.2-fabric.jar"
       ]
     },
     {
@@ -879,10 +879,10 @@
     {
       "path": "worldedit-hang-fix",
       "kind": "mod",
-      "reviewedCommit": "ae96bc02ab25322d7ee727125901fde785be7365",
+      "reviewedCommit": "45c744113850a55f844c7195d5e074b6845d28eb",
       "licenseFiles": {
         "LICENSE": "e3a994d82e644b03a792a930f574002658412f62407f5fee083f2555c5f23118",
-        "README.md": "f93908c1e1b2f67d58db31b74334d62e280cc4c403cb744c74c5a61b469ead6c"
+        "README.md": "0fc9b3d2b97c9af3562f42b444a3d886ed2c1b4d9ee610ebafd5d2e7f3751270"
       },
       "nestedGitlinks": {}
     }

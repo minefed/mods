@@ -4193,11 +4193,11 @@
         "path": "worldedit-hang-fix",
         "url": "https://github.com/minefed/worldedit-hang-fix",
         "upstream": "https://github.com/Fallen-Breath/worldedit-hang-fix",
-        "ref": "minefed-1.20.4",
-        "commit": "ae96bc02ab25322d7ee727125901fde785be7365",
-        "trackingBranch": "minefed-1.20.4",
-        "baselineRef": "refs/tags/v1.0.2",
-        "baselineCommit": "a68f1feda94d3cc2fa496726e3983d440bad2466"
+        "ref": "codex/update-worldedit-hang-fix-1.0.5",
+        "commit": "45c744113850a55f844c7195d5e074b6845d28eb",
+        "trackingBranch": "codex/update-worldedit-hang-fix-1.0.5",
+        "baselineRef": "refs/tags/v1.0.5",
+        "baselineCommit": "583c7ceab5031d0864bf85a5934662a8def870e2"
       },
       "artifact": {
         "path": "artifacts/local/worldedit-hang-fix-v1.0.2-mc1.20.6-fabric.jar",
@@ -4268,7 +4268,8 @@
       "licenseUrl": "https://github.com/Fallen-Breath/worldedit-hang-fix/blob/v1.0.2/LICENSE",
       "licenseNoticesPath": "inventory/notices/worldedithangfix-0d375f10e18b",
       "notes": [
-        "Filename says mc1.20.6 but deployed metadata declaresMinecraft>=1.14 and depends on WorldEdit. Exact1.0.2 source tag verified; runtime compatibility still should be validated before deployment."
+        "Filename says mc1.20.6 but deployed metadata declaresMinecraft>=1.14 and depends on WorldEdit. Exact1.0.2 source tag verified; runtime compatibility still should be validated before deployment.",
+        "2026-09-12: official successor 1.0.5 merged into remotely available codex/update-worldedit-hang-fix-1.0.5; original operating JAR version/hash remain historical. See docs/MOD_UPDATE_APPLIED_2026-09-12.md."
       ],
       "compatibility": {
         "minecraft": ">=1.14",

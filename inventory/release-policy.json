@@ -977,12 +977,11 @@
       "modId": "worldedithangfix",
       "distribution": "embed",
       "artifact": "built",
-      "reason": "Distribute the reviewed built artifact under its original license with all copyright/license notices and corresponding-source obligations. LGPL-3.0",
+      "reason": "Distribute the verified Minefed build of official successor 1.0.5 with preserved original license notices. LGPL-3.0",
       "evidenceUrls": [
-        "https://github.com/Fallen-Breath/worldedit-hang-fix",
-        "https://github.com/Fallen-Breath/worldedit-hang-fix/blob/v1.0.2/LICENSE",
-        "https://github.com/minefed/worldedit-hang-fix/commit/ae96bc02ab25322d7ee727125901fde785be7365",
-        "https://github.com/minefed/worldedit-hang-fix/archive/ae96bc02ab25322d7ee727125901fde785be7365.tar.gz"
+        "https://github.com/Fallen-Breath/worldedit-hang-fix/commit/583c7ceab5031d0864bf85a5934662a8def870e2",
+        "https://github.com/minefed/worldedit-hang-fix/commit/45c744113850a55f844c7195d5e074b6845d28eb",
+        "https://github.com/minefed/worldedit-hang-fix/archive/45c744113850a55f844c7195d5e074b6845d28eb.tar.gz"
       ],
       "client": true,
       "server": true
