@@ -73,7 +73,7 @@ tasks.register('testModpackTools', Exec) {
 }
 tasks.register('verifySourceRepositories', Exec) {
     group = 'verification'
-    description = 'Check Fabric repository routing with an offline upstream-policy fixture.'
+    description = 'Check Fabric routing and keep Loom remapped dependencies in local repositories.'
     workingDir rootDir
     commandLine pythonExecutable, 'scripts/verify_source_repositories.py'
 }

@@ -1,5 +1,15 @@
 // Prefer Fabric's canonical repository while honoring upstream exclusive policies.
 allprojects {
+    repositories.all { repository ->
+        if (repository instanceof org.gradle.api.artifacts.repositories.MavenArtifactRepository &&
+                repository.url?.scheme in ['http', 'https']) {
+            // Loom remaps dependencies into a generated local Maven group. A
+            // remote server error must not prevent reaching that local cache.
+            repository.content {
+                excludeGroupByRegex('loom_mappings_.*')
+            }
+        }
+    }
     repositories {
         def minefedFabric = maven {
             name = 'MinefedFabric'

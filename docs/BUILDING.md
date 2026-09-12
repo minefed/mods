@@ -42,9 +42,16 @@ Linux/macOS에서는 `JAVA_HOME`, `MINEFED_JAVA17_HOME`, `MINEFED_JAVA21_HOME` �
 
 - `testModpackTools`: JAR 무결성, 캐시·잠금, 실제 자식 프로세스 취소 등을 검사하는 Python unittest.
   심볼릭 링크를 만들 수 없는 환경에서는 해당 검사만 건너뛴다. 모드 컴파일이나 게임 실행은 하지 않는다.
-- `verifySourceRepositories`: 로컬 테스트 저장소와 실제 Gradle의 `--offline` 실행으로
-  Fabric 저장소 우선순위와 하위 프로젝트의 전용 저장소 정책이 함께 동작하는지 검사한다.
-  모드 소스나 Minecraft는 빌드하지 않는다. 루트 Gradle 배포판이 준비된 뒤에는 네트워크가 필요 없다.
+- `verifySourceRepositories`: 실제 Gradle의 `--offline` 실행으로 Fabric 저장소 우선순위와
+  하위 프로젝트의 전용 저장소 정책을 검사한다. 별도 fixture는 HTTP 500을 반환하는
+  localhost Maven 서버를 앞에 두고, Loom의 `loom_mappings_*` 의존성이 HTTP 요청 없이
+  로컬 Maven 저장소에서 해결되는지 검사한다. 모드 소스나 Minecraft는 빌드하지 않으며,
+  루트 Gradle 배포판이 준비된 뒤에는 외부 네트워크가 필요 없다.
+
+하위 빌드에 적용하는 `scripts/source-repositories.gradle`은 `loom_mappings_*` 그룹을
+HTTP/HTTPS Maven 저장소에서 제외한다. 이 그룹은 Loom이 매핑된 의존성에 부여하는 로컬
+좌표이므로, 외부 저장소의 오류가 로컬 캐시 탐색을 중단하지 않도록 한다. `file:` 저장소와
+일반 Fabric 의존성 및 하위 프로젝트의 전용 저장소 정책은 유지한다.
 
 첫 실행에는 Gradle, Minecraft 및 모드 의존성 다운로드가 필요하다. 같은 `GRADLE_USER_HOME`
 (미설정 시 사용자 홈의 `.gradle`)을 사용하는 이 도구의 실제 하위 Gradle 호출은 OS 파일 잠금으로
