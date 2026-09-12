@@ -154,10 +154,14 @@ def https_url(value: str, *, mrpack: bool = False) -> None:
         raise mods.ModError(f'Modrinth does not support this download host: {parsed.hostname}; review a supported URL or use manual installation')
 
 
-def zip_members(root: Path, archive: zipfile.ZipFile) -> dict:
+def zip_members(root: Path, archive: zipfile.ZipFile, *, notices_only: bool = False) -> dict:
     result = {}
     folded = set()
     for info in archive.infolist():
+        # A pinned JAR remains opaque apart from the legal notices we export.
+        # Avoid filesystem resolution of every class/resource in large mod JARs.
+        if notices_only and (info.is_dir() or not mods.is_notice(info.filename)):
+            continue
         name = info.filename.rstrip('/') if info.is_dir() else info.filename
         mods.safe_path(root, name)
         if name.casefold() in folded or (info.external_attr >> 16) & 0o170000 == 0o120000:
@@ -443,7 +447,7 @@ def published_notices(root: Path, selected, notices: dict) -> dict:
     for record, path, entry in selected:
         mods.check_bytes(path, entry)
         with zipfile.ZipFile(path) as archive:
-            members = zip_members(root, archive)
+            members = zip_members(root, archive, notices_only=True)
             for name, info in members.items():
                 if info.is_dir() or not mods.is_notice(name):
                     continue

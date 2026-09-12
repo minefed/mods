@@ -585,6 +585,23 @@ class ReleaseTests(unittest.TestCase):
             self.run_release()
         self.assertFalse((self.root / 'escaped.txt').exists())
 
+    def test_selected_jar_notice_paths_and_links_remain_checked(self):
+        path = self.root / self.built['artifact']['path']
+        record = self.decision('alpha')
+        for name, linked in [('../LICENSE', False), ('COPYING', True), ('license', False)]:
+            with self.subTest(name=name):
+                original = path.read_bytes()
+                info = zipfile.ZipInfo(name)
+                if linked:
+                    info.external_attr = 0o120777 << 16
+                with zipfile.ZipFile(path, 'a') as archive:
+                    archive.writestr(info, 'Invalid selected notice')
+                entry = copy.deepcopy(self.built)
+                entry['sha256'], entry['size'] = mods.file_digest(path)
+                with self.assertRaises(mods.ModError):
+                    release.published_notices(self.root, [(record, path, entry)], {})
+                path.write_bytes(original)
+
     def test_wrong_built_hash_and_unsupported_mrpack_host_are_rejected(self):
         self.produced['entries'][0]['sha256'] = '0' * 64
         self.input_zip()
