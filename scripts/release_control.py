@@ -88,8 +88,10 @@ def restore_embedded(root: Path, archive: Path, entries: list[dict]) -> None:
 
 
 def bootstrap(root: Path) -> None:
-    manifest = mods.load_manifest(root)
-    recipes = read_json(root / 'inventory/build-recipes.json')
+    from build_modpack import load_plan
+    # Bootstrap only the selected build inputs. A historical URL-less binary
+    # can now be replaced by a reviewed, downloadable dependency artifact.
+    manifest, recipes = load_plan(root)
     binaries = {e['modId'] for e in recipes['entries'] if e['mode'] == 'binary'}
     entries = [e for e in manifest['entries'] if e['included'] and e['modId'] in binaries
                and not e['artifact'].get('url') and not mods.safe_path(root, e['artifact']['path']).exists()]

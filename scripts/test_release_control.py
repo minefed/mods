@@ -102,6 +102,49 @@ class ReleaseControlTests(unittest.TestCase):
             control.restore_embedded(self.root, pack, [entry])
         self.assertEqual(b'local edits', (self.root / entry['artifact']['path']).read_bytes())
 
+    def bootstrap_fixture(self, override=True):
+        entry = {'modId': 'ptsdeco', 'fileName': 'historical.jar', 'version': '1.0', 'environment': '*',
+                 'sha256': '1' * 64, 'size': 1, 'included': True, 'management': 'binary', 'source': None,
+                 'artifact': {'path': 'artifacts/local/historical.jar', 'url': None, 'redistribution': 'allowed'}}
+        manifest = {'schemaVersion': 1, 'minecraftVersion': '1.20.4', 'loader': 'fabric', 'entries': [entry]}
+        recipes = {'schemaVersion': 1, 'minecraftVersion': '1.20.4', 'loader': 'fabric',
+                   'entries': [{'modId': 'ptsdeco', 'mode': 'binary', 'reason': 'Reviewed runtime input'}]}
+        (self.root / 'inventory/mods.lock.json').write_text(json.dumps(manifest))
+        if override:
+            recipes['dependencyManifest'] = 'inventory/dependencies.lock.json'
+            recipes['entries'][0]['dependency'] = True
+            updated = {**entry, 'fileName': 'official.jar', 'version': '2.0',
+                       'artifact': {'path': 'artifacts/local/official.jar', 'redistribution': 'allowed',
+                                    'url': 'https://cdn.modrinth.com/official.jar'}}
+            (self.root / recipes['dependencyManifest']).write_text(json.dumps({**manifest, 'entries': [updated]}))
+        (self.root / 'inventory/build-recipes.json').write_text(json.dumps(recipes))
+        policy = {'entries': [{'modId': 'ptsdeco', 'distribution': 'embed', 'artifact': 'built' if override else 'baseline'}]}
+        (self.root / 'inventory/release-policy.json').write_text(json.dumps(policy))
+
+    def test_bootstrap_skips_unavailable_baseline_replaced_by_downloadable_dependency(self):
+        self.bootstrap_fixture()
+        original = (self.root / 'inventory/mods.lock.json').read_bytes()
+        with patch.object(control, 'github') as github, patch.object(mods, 'download') as download, \
+                contextlib.redirect_stdout(io.StringIO()):
+            control.bootstrap(self.root)
+        github.assert_not_called()
+        download.assert_not_called()  # The build prepare phase hydrates this official JAR.
+        self.assertEqual(original, (self.root / 'inventory/mods.lock.json').read_bytes())
+        self.assertFalse((self.root / 'artifacts/local/historical.jar').exists())
+
+    def test_bootstrap_keeps_manual_original_requirement_and_rejects_missing_override(self):
+        self.bootstrap_fixture(override=False)
+        with patch.object(control, 'github', side_effect=HTTPError('fixture', 404, 'not found', {}, None)) as github:
+            with self.assertRaisesRegex(mods.ModError, 'first release must be built from the local verified JAR'):
+                control.bootstrap(self.root)
+        github.assert_called_once()
+        self.bootstrap_fixture()
+        (self.root / 'inventory/dependencies.lock.json').unlink()
+        with patch.object(control, 'github') as github:
+            with self.assertRaisesRegex(mods.ModError, 'Cannot read manifest'):
+                control.bootstrap(self.root)
+        github.assert_not_called()
+
     def remote_asset(self, asset):
         return {'name': asset['name'], 'state': 'uploaded', 'size': asset['size'], 'digest': 'sha256:' + asset['sha256']}
 
