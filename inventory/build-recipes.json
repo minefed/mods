@@ -577,15 +577,16 @@
     {
       "modId": "mtr",
       "mode": "source",
-      "reason": "Build Fabric 1.20.4 and embedded website using locked npm dependencies, JDK 21 compiler with Java 17 bytecode, then remap the complete runtime JAR and preserve license notices.",
+      "reason": "Build Fabric 1.20.4 with the pinned Loader 0.18.4 compile API, embedded website, and Java 17 bytecode; verify the remapped JAR's Mixin compatibility before packaging and preserve license notices.",
       "sourcePath": "Minecraft-Transit-Railway",
       "java": 21,
       "tasks": [
-        ":fabric:remapJar"
+        ":fabric:verifyMixinCompatibility"
       ],
       "args": [
         "-PminecraftVersion=1.20.4",
         "-PexcludeAssets=false",
+        "-Dorg.gradle.jvmargs=-Xmx1536m -Dfile.encoding=COMPAT",
         "--configure-on-demand"
       ],
       "artifactGlobs": [

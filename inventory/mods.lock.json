@@ -2728,9 +2728,9 @@
         "path": "Minecraft-Transit-Railway",
         "url": "https://github.com/minefed/Minecraft-Transit-Railway",
         "upstream": "https://github.com/Minecraft-Transit-Railway/Minecraft-Transit-Railway",
-        "ref": "minefed-1.20.4",
-        "commit": "3cdeeeb2951dfd1d9f2ddfe28dd4844e0b732e0e",
-        "trackingBranch": "minefed-1.20.4",
+        "ref": "codex/fix-mixin-loader-compatibility",
+        "commit": "139b0170d9065673767d7caa988847505c310ca0",
+        "trackingBranch": "codex/fix-mixin-loader-compatibility",
         "baselineRef": "main",
         "baselineCommit": "53cdc36ebef57c42bdc8633957be1b0e923c40b5"
       },
@@ -2777,9 +2777,9 @@
         "path": "Minecraft-Transit-Railway",
         "url": "https://github.com/minefed/Minecraft-Transit-Railway",
         "upstream": "https://github.com/Minecraft-Transit-Railway/Minecraft-Transit-Railway",
-        "ref": "minefed-1.20.4",
-        "commit": "3cdeeeb2951dfd1d9f2ddfe28dd4844e0b732e0e",
-        "trackingBranch": "minefed-1.20.4",
+        "ref": "codex/fix-mixin-loader-compatibility",
+        "commit": "139b0170d9065673767d7caa988847505c310ca0",
+        "trackingBranch": "codex/fix-mixin-loader-compatibility",
         "baselineRef": "main",
         "baselineCommit": "53cdc36ebef57c42bdc8633957be1b0e923c40b5"
       },
@@ -2799,7 +2799,8 @@
       "licenseNoticesPath": "inventory/notices/mtr-974fec15c7b2",
       "notes": [
         "Deployed metadata id=mtr version4.0.5 requires MC1.20.4/Fabric. Duplicate id with4.0.3 in server folder; root agent resolves newest existing minefed source ref.",
-        "기존 minefed 저장소의 확인된 최신 원격 커밋을 소스 pin으로 사용한다. 운영 JAR와 소스 빌드의 바이트 동일성을 의미하지 않는다."
+        "기존 minefed 저장소의 확인된 최신 원격 커밋을 소스 pin으로 사용한다. 운영 JAR와 소스 빌드의 바이트 동일성을 의미하지 않는다.",
+        "2026-09-12: Minecraft 1.20.4 / Fabric / Java 17 bytecode. Compile Loader pinned to 0.18.4 to preserve Redirect annotation compatibility with MixinExtras 0.5.0; remapped runtime JAR verification is required by the build recipe. See docs/MTR_MIXIN_FIX_2026-09-12.md. Captured operating JAR hashes are unchanged."
       ],
       "compatibility": {
         "minecraft": "1.20.4",
