@@ -166,6 +166,14 @@ def validate_assets(root: Path, manifest: dict, plan: dict) -> list[tuple[dict, 
         result.append((asset, path))
     if manifest.get('policySha256') != mods.file_digest(root / 'inventory/release-policy.json')[0]:
         raise mods.ModError('Release policy changed after packaging')
+    policy = read_json(root / 'inventory/release-policy.json')
+    published_path = policy.get('publishedManifest')
+    published_snapshot = manifest.get('publishedManifest')
+    if published_path is not None or published_snapshot is not None:
+        if not isinstance(published_snapshot, dict) or published_snapshot.get('path') != published_path:
+            raise mods.ModError('Published artifact manifest reference differs from release policy')
+        if mods.file_digest(mods.safe_path(root, published_path))[0] != published_snapshot.get('sha256'):
+            raise mods.ModError('Published artifact manifest changed after packaging')
     planned = {s['path']: s['commit'] for s in plan['sources']}
     for record in manifest.get('files', []):
         source = record.get('source')

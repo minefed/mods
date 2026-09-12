@@ -228,6 +228,170 @@ class ReleaseTests(unittest.TestCase):
             self.run_release()
         self.assertFalse((self.root / 'build/releases/20260907123456').exists())
 
+    def published_fixture(self):
+        entry = self.jar('alpha-official.jar', 'alpha', '3.0')
+        entry['artifact']['sha512'] = hashlib.sha512((self.root / entry['artifact']['path']).read_bytes()).hexdigest()
+        entry['artifact']['publishedRelease'] = {'provider': 'modrinth', 'projectId': 'fixture', 'versionId': 'release3'}
+        entry['sourceReference'] = {'url': 'https://github.com/example/alpha', 'ref': 'v3.0', 'commit': '3' * 40}
+        self.policy['publishedManifest'] = 'inventory/published-artifacts.lock.json'
+        self.policy['entries'][0] = self.decision('alpha', artifact='published', distribution='download',
+                                                 downloadUrl=entry['artifact']['url'])
+        self.write('inventory/release-policy.json', self.policy)
+        self.write(self.policy['publishedManifest'], self.manifest([entry]))
+        return entry
+
+    def test_published_override_preserves_source_build_and_selects_official_bytes_and_notices(self):
+        entry = self.published_fixture()
+        baseline_before = (self.root / 'inventory/mods.lock.json').read_bytes()
+        input_before = (self.root / 'build/input.zip').read_bytes()
+        manifest = self.run_release()
+        report = json.loads(manifest.read_text())
+        self.assertEqual({'path': self.policy['publishedManifest'],
+                          'sha256': mods.file_digest(self.root / self.policy['publishedManifest'])[0]},
+                         report['publishedManifest'])
+        self.assertEqual(1, report['inputBuild']['sourceCount'])
+        selected = next(e for e in release.release_dependencies.check_selected.call_args.args[1] if e[0]['modId'] == 'alpha')
+        self.assertEqual(entry['sha256'], selected[2]['sha256'])
+        for name, prefix in (('server.zip', ''), ('client.mrpack', 'overrides/')):
+            with zipfile.ZipFile(manifest.parent / name) as archive:
+                record = next(e for e in json.loads(archive.read(prefix + 'download-manifest.json'))['files'] if e['modId'] == 'alpha')
+                self.assertEqual(('3.0', entry['sha256'], 'published'), (record['version'], record['sha256'], record['artifact']))
+                self.assertEqual({'version': '2.0', 'sha256': self.built['sha256']}, record['inputBuild'])
+                self.assertTrue(record['replacesBuiltArtifact'])
+                self.assertIsNone(record['source'])
+                self.assertEqual(entry['sourceReference'], record['sourceReference'])
+                self.assertEqual(entry['artifact']['publishedRelease'], record['publishedRelease'])
+                self.assertEqual(b'Fixture MIT author notice', archive.read(prefix + 'licenses/published-jars/alpha-official.jar/LICENSE'))
+                self.assertIn('/tree/' + '3' * 40, archive.read(prefix + 'SOURCES.md').decode())
+                self.assertNotIn(prefix + 'mods/alpha-built.jar', archive.namelist())
+        self.assertEqual(baseline_before, (self.root / 'inventory/mods.lock.json').read_bytes())
+        self.assertEqual(input_before, (self.root / 'build/input.zip').read_bytes())
+
+    def test_same_filename_published_and_source_build_notices_are_both_preserved(self):
+        entry = self.published_fixture()
+        entry['fileName'] = 'alpha-built.jar'
+        original_path = self.root / entry['artifact']['path']
+        entry['artifact']['path'] = 'artifacts/local/published/alpha-built.jar'
+        path = self.root / entry['artifact']['path']
+        path.parent.mkdir()
+        path.write_bytes(original_path.read_bytes())
+        self.write(self.policy['publishedManifest'], self.manifest([entry]))
+        manifest = self.run_release()
+        with zipfile.ZipFile(manifest.parent / 'server.zip') as archive:
+            self.assertEqual(b'Fixture MIT author notice', archive.read('licenses/published-jars/alpha-built.jar/LICENSE'))
+            self.assertEqual(b'Preserved build author notice', archive.read('licenses/jars/alpha-built.jar/LICENSE'))
+
+    def test_published_filename_collision_with_another_selected_mod_is_rejected(self):
+        entry = self.published_fixture()
+        original_path = self.root / entry['artifact']['path']
+        entry['fileName'] = 'beta.jar'
+        entry['artifact']['path'] = 'artifacts/local/published/beta.jar'
+        path = self.root / entry['artifact']['path']
+        path.parent.mkdir()
+        path.write_bytes(original_path.read_bytes())
+        self.write(self.policy['publishedManifest'], self.manifest([entry]))
+        with self.assertRaisesRegex(mods.ModError, 'Colliding filenames'):
+            self.run_release()
+        self.assertFalse((self.root / 'build/releases/20260907123456').exists())
+
+    def test_manual_built_source_keeps_required_installation_record_and_counts(self):
+        self.policy['entries'][0] = self.decision('alpha', artifact='built', distribution='manual')
+        self.write('inventory/release-policy.json', self.policy)
+        manifest = self.run_release()
+        report = json.loads(manifest.read_text())
+        self.assertEqual(1, report['profiles']['server']['manualCount'])
+        self.assertEqual(1, report['profiles']['server']['downloadCount'])
+        with zipfile.ZipFile(manifest.parent / 'server.zip') as archive:
+            record = next(e for e in json.loads(archive.read('download-manifest.json'))['files'] if e['modId'] == 'alpha')
+            self.assertEqual(('built', 'manual', self.built['sha256']), (record['artifact'], record['distribution'], record['sha256']))
+            self.assertNotIn('mods/alpha-built.jar', archive.namelist())
+            self.assertIn('mods/alpha-built.jar', archive.read('INSTALL.txt').decode())
+            self.assertIn('INSTALLATION IS INCOMPLETE', archive.read('INSTALL.txt').decode())
+
+    def test_published_manifest_requires_exact_coverage_and_valid_binary_records(self):
+        entry = self.published_fixture()
+        original = self.manifest([entry])
+        cases = [lambda m: m.update(schemaVersion=2), lambda m: m.update(minecraftVersion='1.21'),
+                 lambda m: m.update(loader='forge'), lambda m: m['entries'].clear(),
+                 lambda m: m['entries'].append(copy.deepcopy(self.gamma)),
+                 lambda m: m['entries'][0].update(included=False, exclusionReason='excluded'),
+                 lambda m: m['entries'][0].update(management='submodule'),
+                 lambda m: m['entries'][0].update(source={}),
+                 lambda m: m['entries'][0]['artifact'].update(builtFromSource=True),
+                 lambda m: m['entries'][0]['artifact'].update(sha512='bad'),
+                 lambda m: m['entries'][0]['artifact'].update(url='http://example.com/alpha.jar'),
+                 lambda m: m['entries'][0].update(modId='beta'),
+                 lambda m: m['entries'][0]['sourceReference'].update(commit='short')]
+        for change in cases:
+            with self.subTest(change=cases.index(change)):
+                value = copy.deepcopy(original)
+                change(value)
+                self.write(self.policy['publishedManifest'], value)
+                with self.assertRaises(mods.ModError):
+                    release.published_artifacts(self.root, self.policy)
+        duplicate = self.jar('alpha-duplicate.jar', 'alpha', '3.0')
+        duplicate['artifact']['sha512'] = entry['artifact']['sha512']
+        self.write(self.policy['publishedManifest'], self.manifest([entry, duplicate]))
+        with self.assertRaisesRegex(mods.ModError, 'Duplicate published artifact modId'):
+            release.published_artifacts(self.root, self.policy)
+
+    def test_published_manifest_is_required_and_cannot_be_unused(self):
+        self.published_fixture()
+        del self.policy['publishedManifest']
+        with self.assertRaisesRegex(mods.ModError, 'require'):
+            release.published_artifacts(self.root, self.policy)
+        self.policy['publishedManifest'] = 'inventory/missing.json'
+        with self.assertRaisesRegex(mods.ModError, 'missing'):
+            release.published_artifacts(self.root, self.policy)
+        self.policy['entries'][0]['artifact'] = 'built'
+        with self.assertRaisesRegex(mods.ModError, 'require'):
+            release.published_artifacts(self.root, self.policy)
+
+    def test_published_url_and_checksum_mismatches_prevent_outputs(self):
+        entry = self.published_fixture()
+        self.policy['entries'][0]['downloadUrl'] = 'https://cdn.modrinth.com/stale.jar'
+        self.write('inventory/release-policy.json', self.policy)
+        with self.assertRaisesRegex(mods.ModError, 'Published download URL differs'):
+            self.run_release()
+        self.policy['entries'][0]['downloadUrl'] = entry['artifact']['url']
+        self.write('inventory/release-policy.json', self.policy)
+        entry['artifact']['sha512'] = '0' * 128
+        self.write(self.policy['publishedManifest'], self.manifest([entry]))
+        with self.assertRaisesRegex(mods.ModError, 'SHA-512 mismatch'):
+            self.run_release()
+        path = self.root / entry['artifact']['path']
+        path.write_bytes(b'local modification')
+        with self.assertRaisesRegex(mods.ModError, 'SHA-256 mismatch'):
+            self.run_release()
+        self.assertEqual(b'local modification', path.read_bytes())
+        self.assertFalse((self.root / 'build/releases/20260907123456').exists())
+
+    def test_published_missing_file_downloads_verified_bytes_without_overwriting_baseline(self):
+        entry = self.published_fixture()
+        path = self.root / entry['artifact']['path']
+        payload = path.read_bytes()
+        path.unlink()
+        response = io.BytesIO(payload)
+        response.url = entry['artifact']['url']
+        with patch.object(mods, 'download', return_value=response) as download:
+            manifest = self.run_release()
+        download.assert_called_once_with(entry['artifact']['url'])
+        self.assertFalse(path.exists())  # Release-only downloads live in temporary work.
+        self.assertTrue(manifest.exists())
+        mods.check_artifact(self.root, self.alpha)
+
+    def test_published_lock_change_during_packaging_publishes_no_assets(self):
+        self.published_fixture()
+        original = release.write_profile
+        def change_lock(*args, **kwargs):
+            result = original(*args, **kwargs)
+            (self.root / self.policy['publishedManifest']).write_text('{}')
+            return result
+        with patch.object(release, 'write_profile', side_effect=change_lock):
+            with self.assertRaisesRegex(mods.ModError, 'manifest changed'):
+                self.run_release()
+        self.assertFalse((self.root / 'build/releases/20260907123456').exists())
+
     def test_zip_traversal_is_rejected_even_with_matching_outer_hash(self):
         self.input_zip('../escaped.txt')
         with self.assertRaisesRegex(mods.ModError, 'Unsafe'):

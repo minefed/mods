@@ -254,7 +254,7 @@ def load_policy(root: Path, value: str, identities: set) -> dict:
     if {e.get('modId') for e in entries} != identities or len(entries) != len(identities):
         raise mods.ModError('Release policy must cover every input mod exactly once')
     for entry in entries:
-        if entry.get('distribution') not in ('embed', 'download', 'manual') or entry.get('artifact') not in ('built', 'baseline'):
+        if entry.get('distribution') not in ('embed', 'download', 'manual') or entry.get('artifact') not in ('built', 'baseline', 'published'):
             raise mods.ModError(f'Invalid distribution/artifact selection: {entry.get("modId")}')
         if not entry.get('reason') or not isinstance(entry.get('evidenceUrls'), list) or not entry['evidenceUrls']:
             raise mods.ModError('Each release decision requires a reason and evidence URLs')
@@ -268,6 +268,51 @@ def load_policy(root: Path, value: str, identities: set) -> dict:
         if not any(e[side] for e in entries):
             raise mods.ModError(f'Release {side} profile has zero mods')
     return policy
+
+
+def published_artifacts(root: Path, policy: dict) -> tuple[dict, dict | None]:
+    """Load release-only official binaries without changing source build inputs."""
+    wanted = {e['modId'] for e in policy['entries'] if e['artifact'] == 'published'}
+    relative = policy.get('publishedManifest')
+    if not wanted and relative is None:
+        return {}, None
+    if not wanted or relative is None:
+        raise mods.ModError('Published selections require exactly one publishedManifest with matching entries')
+    path = mods.safe_path(root, relative)
+    if not path.is_file():
+        raise mods.ModError('Published artifact manifest is missing: ' + relative)
+    digest = mods.file_digest(path)[0]
+    manifest = mods.load_manifest(root, relative)
+    if digest != mods.file_digest(path)[0]:
+        raise mods.ModError('Published artifact manifest changed while reading')
+    if manifest.get('sourceRepositories'):
+        raise mods.ModError('Published artifact manifest cannot manage source repositories')
+    entries = {}
+    for entry in manifest['entries']:
+        identity = entry.get('modId')
+        if not isinstance(identity, str) or not re.fullmatch(r'[a-z][a-z0-9_-]*', identity):
+            raise mods.ModError('Invalid published artifact modId')
+        if identity in entries:
+            raise mods.ModError('Duplicate published artifact modId: ' + identity)
+        if entry['management'] != 'binary' or not entry['included'] or entry.get('source') is not None or entry['artifact'].get('builtFromSource'):
+            raise mods.ModError('Published artifacts must be included binaries without managed source: ' + identity)
+        https_url(entry['artifact'].get('url'))
+        if not re.fullmatch(r'[0-9a-fA-F]{128}', str(entry['artifact'].get('sha512', ''))):
+            raise mods.ModError('Published artifact requires a pinned SHA-512: ' + identity)
+        reference = entry.get('sourceReference')
+        if reference is not None:
+            if not isinstance(reference, dict) or not re.fullmatch(r'[0-9a-f]{40}', str(reference.get('commit', ''))):
+                raise mods.ModError('Published source reference requires a full commit: ' + identity)
+            https_url(reference.get('url'))
+        entries[identity] = entry
+    if set(entries) != wanted:
+        raise mods.ModError('Published artifact manifest must cover published selections exactly')
+    return entries, {'path': relative, 'sha256': digest}
+
+
+def check_published_manifest(root: Path, snapshot: dict | None) -> None:
+    if snapshot and mods.file_digest(mods.safe_path(root, snapshot['path']))[0] != snapshot['sha256']:
+        raise mods.ModError('Published artifact manifest changed after selection')
 
 
 def baseline_artifact(root: Path, entry: dict, decision: dict, work: Path) -> Path:
@@ -291,22 +336,31 @@ def baseline_artifact(root: Path, entry: dict, decision: dict, work: Path) -> Pa
     return target
 
 
-def select_files(root, manifest, provenance, paths, policy, work):
+def select_files(root, manifest, provenance, paths, policy, work, published=None):
     original = {e['modId']: e for e in mods.load_manifest(root)['entries'] if e['included']}
     built = {e['modId']: e for e in manifest['entries']}
     if set(original) != set(built):
         raise mods.ModError('Input build must cover every included baseline mod exactly once')
     selected = []
+    published = published or {}
     for decision in policy['entries']:
         identity = decision['modId']
         if identity not in original:
             raise mods.ModError(f'Release mod missing from baseline: {identity}')
-        entry = copy.deepcopy(original[identity] if decision['artifact'] == 'baseline' else built[identity])
+        if decision['artifact'] == 'published':
+            if identity not in published:
+                raise mods.ModError('Missing reviewed published artifact: ' + identity)
+            entry = copy.deepcopy(published[identity])
+        else:
+            entry = copy.deepcopy(original[identity] if decision['artifact'] == 'baseline' else built[identity])
         if (decision['distribution'] == 'download' and decision['artifact'] == 'built'
                 and provenance[identity].get('mode') == 'binary'
                 and decision['downloadUrl'] != entry['artifact'].get('url')):
             raise mods.ModError(f'Official binary download URL differs from selected artifact: {identity}')
-        path = baseline_artifact(root, entry, decision, work) if decision['artifact'] == 'baseline' else paths[identity]
+        if (decision['artifact'] == 'published' and decision['distribution'] == 'download'
+                and decision['downloadUrl'] != entry['artifact']['url']):
+            raise mods.ModError('Published download URL differs from selected artifact: ' + identity)
+        path = baseline_artifact(root, entry, decision, work) if decision['artifact'] in ('baseline', 'published') else paths[identity]
         metadata = checked_jar(root, path, entry)
         for side in ('client', 'server'):
             if decision[side] and metadata.get('environment', '*') not in ('*', side):
@@ -321,12 +375,21 @@ def select_files(root, manifest, provenance, paths, policy, work):
             while block := stream.read(mods.CHUNK_SIZE):
                 for digest in hashes.values():
                     digest.update(block)
+        if decision['artifact'] == 'published' and hashes['sha512'].hexdigest() != entry['artifact']['sha512'].lower():
+            raise mods.ModError('Published artifact SHA-512 mismatch: ' + identity)
         record = {'modId': identity, 'path': 'mods/' + entry['fileName'], 'version': entry['version'],
                   'sha256': entry['sha256'], 'size': entry['size'], 'hashes': {k: h.hexdigest() for k, h in hashes.items()},
                   **copy.deepcopy(decision), 'license': entry.get('license'), 'licenseUrl': entry.get('licenseUrl'),
                   'inputBuild': {'version': built[identity]['version'], 'sha256': built[identity]['sha256']},
                   'replacesBuiltArtifact': entry['sha256'] != built[identity]['sha256'],
                   'source': entry.get('source')}
+        if decision['artifact'] == 'published':
+            if entry.get('sourceReference'):
+                record['sourceReference'] = copy.deepcopy(entry['sourceReference'])
+            if entry.get('evidenceUrls'):
+                record['artifactEvidenceUrls'] = copy.deepcopy(entry['evidenceUrls'])
+            if entry['artifact'].get('publishedRelease'):
+                record['publishedRelease'] = copy.deepcopy(entry['artifact']['publishedRelease'])
         if record.get('source'):
             source = record['source']
             repository_url = source['url'].removesuffix('.git')
@@ -342,6 +405,30 @@ def select_files(root, manifest, provenance, paths, policy, work):
         if len(filenames) != len(set(filenames)):
             raise mods.ModError(f'Colliding filenames in {side} profile')
     return selected
+
+
+def published_notices(root: Path, selected, notices: dict) -> dict:
+    """Preserve selected official JAR notices even when the input ZIP built source."""
+    result = dict(notices)
+    for record, path, entry in selected:
+        if record['artifact'] != 'published':
+            continue
+        mods.check_bytes(path, entry)
+        with zipfile.ZipFile(path) as archive:
+            members = zip_members(root, archive)
+            for name, info in members.items():
+                if info.is_dir() or not mods.is_notice(name):
+                    continue
+                if info.file_size > 20 * mods.CHUNK_SIZE:
+                    raise mods.ModError('Oversized published JAR notice: ' + name)
+                # Source builds can have the same filename and different legal
+                # packaging. Retain their notices separately from the official JAR.
+                target = 'licenses/published-jars/' + entry['fileName'] + '/' + name
+                content = archive.read(info)
+                if target in result and result[target] != content:
+                    raise mods.ModError('Conflicting published JAR notice: ' + target)
+                result[target] = content
+    return result
 
 
 def resource_pack(root: Path, lock_path: str, destination: Path) -> dict:
@@ -407,6 +494,12 @@ def source_notices(records, version: str) -> str:
         if record['replacesBuiltArtifact']:
             lines += [f"Explicit policy replacement: built {record['inputBuild']['version']} ({record['inputBuild']['sha256']})",
                       f"is replaced by the original published {record['version']} ({record['sha256']})."]
+        if record.get('sourceReference'):
+            reference = record['sourceReference']
+            lines += ['Official source reference (not a claim of reproducible binary equivalence): ' +
+                      reference['url'].removesuffix('.git') + '/tree/' + reference['commit']]
+        if record.get('publishedRelease'):
+            lines += ['Official release provenance: ' + json.dumps(record['publishedRelease'], ensure_ascii=False)]
         lines.append('')
     return '\n'.join(lines)
 
@@ -484,7 +577,9 @@ def release(root: Path, result_json: str, version: str, policy_path: str = 'inve
         work = Path(temporary)
         summary, manifest, recipes, provenance, paths, notices = input_build(root, result_json, work)
         policy = load_policy(root, policy_path, set(paths))
-        selected = select_files(root, manifest, provenance, paths, policy, work)
+        published, published_snapshot = published_artifacts(root, policy)
+        selected = select_files(root, manifest, provenance, paths, policy, work, published)
+        notices = published_notices(root, selected, notices)
         dependency_check = release_dependencies.check_selected(root, selected, policy['fabricLoaderVersion'])
         publication = work / 'publication'
         publication.mkdir()
@@ -507,10 +602,13 @@ def release(root: Path, result_json: str, version: str, policy_path: str = 'inve
                   'policySha256': mods.file_digest(mods.safe_path(root, policy_path))[0], 'assets': assets,
                   'profiles': profiles, 'resourcePack': resource_info, 'files': [r for r, _, _ in selected]}
         result['dependencyCheck'] = dependency_check
+        if published_snapshot:
+            result['publishedManifest'] = published_snapshot
         (publication / 'release-assets.json').write_bytes(json_bytes(result))
         # Publish the complete directory in one rename. Failed preparation exposes
         # none of the three assets. Cooperating publishers share a short OS lock.
         with builder._file_lock(destination.parent / '.release-publication.lock', 'Waiting for another release publication'):
+            check_published_manifest(root, published_snapshot)
             if destination.exists():
                 raise mods.ModError(f'Release output exists; left unchanged: {destination}')
             os.rename(publication, destination)

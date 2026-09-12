@@ -62,6 +62,26 @@ class ReleaseControlTests(unittest.TestCase):
         with self.assertRaisesRegex(mods.ModError, 'policy changed'):
             control.validate_assets(self.root, self.manifest, self.plan)
 
+    def test_published_manifest_change_or_missing_snapshot_blocks_upload(self):
+        relative = 'inventory/published-artifacts.lock.json'
+        lock = self.root / relative
+        lock.write_text('{"reviewed":"official binaries"}\n')
+        policy = self.root / 'inventory/release-policy.json'
+        policy.write_text(json.dumps({'publishedManifest': relative}))
+        self.manifest['policySha256'] = mods.file_digest(policy)[0]
+        self.manifest['publishedManifest'] = {'path': relative, 'sha256': mods.file_digest(lock)[0]}
+        self.assertEqual(3, len(control.validate_assets(self.root, self.manifest, self.plan)))
+        snapshot = self.manifest.pop('publishedManifest')
+        with self.assertRaisesRegex(mods.ModError, 'manifest reference differs'):
+            control.validate_assets(self.root, self.manifest, self.plan)
+        self.manifest['publishedManifest'] = {**snapshot, 'path': 'inventory/wrong.json'}
+        with self.assertRaisesRegex(mods.ModError, 'manifest reference differs'):
+            control.validate_assets(self.root, self.manifest, self.plan)
+        self.manifest['publishedManifest'] = snapshot
+        lock.write_text('{"changed":true}')
+        with self.assertRaisesRegex(mods.ModError, 'manifest changed'):
+            control.validate_assets(self.root, self.manifest, self.plan)
+
     def test_bootstrap_restores_only_exact_hashed_original(self):
         meta = {'schemaVersion': 1, 'id': 'example', 'version': '1.0', 'environment': '*'}
         jar = self.root / 'original.jar'
