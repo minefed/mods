@@ -493,13 +493,13 @@
       "modId": "mcwdoors",
       "distribution": "embed",
       "artifact": "built",
-      "reason": "Distribute the reviewed built artifact under its original license with all copyright/license notices and corresponding-source obligations. MIT (source/project/JAR metadata); embedded CC0 template",
+      "reason": "Use the exact reviewed official runtime successor; preserve original bytes and all license notices. MIT (official project/JAR metadata); embedded CC0-1.0",
       "evidenceUrls": [
         "https://api.modrinth.com/v2/project/kNxa8z3e",
-        "https://github.com/sketchmacaw/MacawsDoors",
-        "https://github.com/sketchmacaw/MacawsDoors/blob/main/LICENSE",
-        "https://github.com/minefed/MacawsDoors/commit/b07c8caa4a45f0f9aac98d04a972fd359d7a84ca",
-        "https://github.com/minefed/MacawsDoors/archive/b07c8caa4a45f0f9aac98d04a972fd359d7a84ca.tar.gz"
+        "https://api.modrinth.com/v2/version/8l41DNKc",
+        "https://modrinth.com/version/8l41DNKc",
+        "https://modrinth.com/mod/kNxa8z3e",
+        "https://www.curseforge.com/minecraft/mc-mods/macaws-doors"
       ],
       "client": true,
       "server": true
