@@ -190,7 +190,7 @@
       "modId": "msd",
       "sourcePath": "MTR-Station-Decoration-Addon",
       "releaseGlobs": [
-        "fabric/build/libs/fabric-*.jar"
+        "fabric/build/libs/fabric-1.4.5.jar"
       ]
     },
     {
@@ -474,7 +474,7 @@
     {
       "path": "MTR-Station-Decoration-Addon",
       "kind": "mod",
-      "reviewedCommit": "4c1ce7298690b1036c8f58e30409799b57c11b6c",
+      "reviewedCommit": "b06fc0725b20a5b7a6c72bdacd20814dd8d8aabf",
       "licenseFiles": {
         "LICENSE.txt": "bfaf4fd2e0cb41e02554476bd760cb5d40f38ba8b10c34e9d73cb809c9f4ccb0",
         "README.md": "5099d7e06fd13725efb74d3d32cf693f47b1d07b95e170b3108154985d042c6c"

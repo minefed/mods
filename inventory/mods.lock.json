@@ -2664,11 +2664,11 @@
         "path": "MTR-Station-Decoration-Addon",
         "url": "https://github.com/minefed/MTR-Station-Decoration-Addon",
         "upstream": "https://github.com/AIDA64S/MTR-Station-Decoration-Addon",
-        "ref": "minefed-1.20.4",
-        "commit": "4c1ce7298690b1036c8f58e30409799b57c11b6c",
-        "trackingBranch": "minefed-1.20.4",
+        "ref": "codex/update-msd-1.4.5",
+        "commit": "b06fc0725b20a5b7a6c72bdacd20814dd8d8aabf",
+        "trackingBranch": "codex/update-msd-1.4.5",
         "baselineRef": "4.0.0",
-        "baselineCommit": "c0221a39c4b7829a47478bce4303f1f29f84527e"
+        "baselineCommit": "14b0a8c9687bdbbfd755f282bbfab4030a92f3d3"
       },
       "artifact": {
         "path": "artifacts/local/MSD-fabric-1.20.4-4.0.0-beta.14-1.3.15.jar",
@@ -2697,7 +2697,8 @@
       "licenseUrl": "https://github.com/AIDA64S/MTR-Station-Decoration-Addon/blob/c0221a39c4b7829a47478bce4303f1f29f84527e/LICENSE.txt",
       "licenseNoticesPath": null,
       "notes": [
-        "Last source state before bump to1.3.16; gradle.properties explicitly Minecraft1.20.4, MTR4.0.0-beta.14, version1.3.15. No deployed release tag exists; build equivalence not proven. Current4.0.0 branch tip14b0a8c9687bdbbfd755f282bbfab4030a92f3d3 is1.4.5/MTR4.0.5."
+        "Last source state before bump to1.3.16; gradle.properties explicitly Minecraft1.20.4, MTR4.0.0-beta.14, version1.3.15. No deployed release tag exists; build equivalence not proven. Current4.0.0 branch tip14b0a8c9687bdbbfd755f282bbfab4030a92f3d3 is1.4.5/MTR4.0.5.",
+        "2026-09-12: official successor 1.4.5 merged into remotely available codex/update-msd-1.4.5; original operating JAR version/hash remain historical. See docs/MOD_UPDATE_APPLIED_2026-09-12.md."
       ],
       "compatibility": {
         "minecraft": "1.20.4",

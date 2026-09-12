@@ -133,7 +133,7 @@
 [submodule "MTR-Station-Decoration-Addon"]
 	path = MTR-Station-Decoration-Addon
 	url = https://github.com/minefed/MTR-Station-Decoration-Addon
-	branch = minefed-1.20.4
+	branch = codex/update-msd-1.4.5
 [submodule "Oritech"]
 	path = Oritech
 	url = https://github.com/minefed/Oritech

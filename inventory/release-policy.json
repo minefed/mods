@@ -642,13 +642,11 @@
       "modId": "msd",
       "distribution": "embed",
       "artifact": "built",
-      "reason": "Distribute the reviewed built artifact under its original license with all copyright/license notices and corresponding-source obligations. MIT",
+      "reason": "Distribute the verified Minefed build of official successor 1.4.5 with preserved original license notices. MIT",
       "evidenceUrls": [
-        "https://api.modrinth.com/v2/project/AM3NyLOZ",
-        "https://github.com/AIDA64S/MTR-Station-Decoration-Addon",
-        "https://github.com/AIDA64S/MTR-Station-Decoration-Addon/blob/c0221a39c4b7829a47478bce4303f1f29f84527e/LICENSE.txt",
-        "https://github.com/minefed/MTR-Station-Decoration-Addon/commit/4c1ce7298690b1036c8f58e30409799b57c11b6c",
-        "https://github.com/minefed/MTR-Station-Decoration-Addon/archive/4c1ce7298690b1036c8f58e30409799b57c11b6c.tar.gz"
+        "https://github.com/AIDA64S/MTR-Station-Decoration-Addon/commit/14b0a8c9687bdbbfd755f282bbfab4030a92f3d3",
+        "https://github.com/minefed/MTR-Station-Decoration-Addon/commit/b06fc0725b20a5b7a6c72bdacd20814dd8d8aabf",
+        "https://github.com/minefed/MTR-Station-Decoration-Addon/archive/b06fc0725b20a5b7a6c72bdacd20814dd8d8aabf.tar.gz"
       ],
       "client": true,
       "server": true
