@@ -439,8 +439,9 @@
     {
       "modId": "mcwfences",
       "mode": "binary",
-      "reason": "고정 저장소에는 버전별 Forge 소스만 있고 Fabric 모듈 및 Gradle 빌드 프로젝트가 없다.",
-      "sourcePath": "Fences"
+      "reason": "Use the official Fabric 1.20.4 runtime successor pinned in dependencies.lock.json; original bytes and license notices preserved.",
+      "sourcePath": "Fences",
+      "dependency": true
     },
     {
       "modId": "mcwroofs",

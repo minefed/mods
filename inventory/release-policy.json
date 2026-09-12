@@ -508,13 +508,13 @@
       "modId": "mcwfences",
       "distribution": "embed",
       "artifact": "built",
-      "reason": "Distribute the reviewed built artifact under its original license with all copyright/license notices and corresponding-source obligations. MIT (source/project/JAR metadata); embedded CC0 template",
+      "reason": "Use the exact reviewed official runtime successor; preserve original bytes and all license notices. MIT (official project/JAR metadata); embedded CC0-1.0",
       "evidenceUrls": [
         "https://api.modrinth.com/v2/project/GmwLse2I",
-        "https://github.com/sketchmacaw/Fences",
-        "https://github.com/sketchmacaw/Fences/blob/main/LICENSE.md",
-        "https://github.com/minefed/Fences/commit/c9821fbd10fe55cdb0cc9e91fefb19a5d6d6aa4b",
-        "https://github.com/minefed/Fences/archive/c9821fbd10fe55cdb0cc9e91fefb19a5d6d6aa4b.tar.gz"
+        "https://api.modrinth.com/v2/version/UjYIrEaO",
+        "https://modrinth.com/version/UjYIrEaO",
+        "https://modrinth.com/mod/GmwLse2I",
+        "https://www.curseforge.com/minecraft/mc-mods/macaws-fences-and-walls"
       ],
       "client": true,
       "server": true

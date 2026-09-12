@@ -556,6 +556,88 @@
       ]
     },
     {
+      "fileName": "mcw-mcwfences-1.2.1-mc1.20.4fabric.jar",
+      "sha256": "b5f14d6096051e2a6f45fc0901ce62ccba8219227ebabf574446b66eb0ed7ad5",
+      "size": 655933,
+      "modId": "mcwfences",
+      "version": "1.2.1",
+      "environment": "*",
+      "management": "binary",
+      "source": null,
+      "artifact": {
+        "path": "artifacts/local/mcw-mcwfences-1.2.1-mc1.20.4fabric.jar",
+        "redistribution": "allowed",
+        "url": "https://cdn.modrinth.com/data/GmwLse2I/versions/UjYIrEaO/mcw-mcwfences-1.2.1-mc1.20.4fabric.jar",
+        "sha512": "a94807ba13960e265bab8100c66a53af5261266df8c4aaf0f4b92ec30d04a7d1703aa9426541322f696c52822a15cfa2b46fdaf66c9db8b0970de84f3f0e7037",
+        "publishedHashMatch": true,
+        "verificationAlgorithm": "sha512",
+        "publishedRelease": {
+          "provider": "modrinth",
+          "versionId": "UjYIrEaO",
+          "projectId": "GmwLse2I",
+          "versionUrl": "https://modrinth.com/version/UjYIrEaO",
+          "gameVersions": [
+            "1.20.4"
+          ],
+          "loaders": [
+            "fabric"
+          ],
+          "officialFileName": "mcw-mcwfences-1.2.1-mc1.20.4fabric.jar",
+          "versionType": "release",
+          "publishedAt": "2025-12-08T16:24:19.590306Z"
+        }
+      },
+      "included": true,
+      "exclusionReason": null,
+      "license": "MIT (official project/JAR metadata); embedded CC0-1.0",
+      "licenseUrl": "https://github.com/sketchmacaw/Fences/blob/main/LICENSE.md",
+      "licenseNoticesPath": "inventory/notices/mcwfences-b5f14d609605",
+      "notes": [
+        "Official Fabric runtime successor reviewed 2026-09-12. Exact bytes, embedded metadata and copyright notices verified. The captured server baseline remains historical.",
+        "sourceProvenance records the existing Minefed checkout, not proof that it produces this official binary.",
+        "Original JAR with CC0 template notice retained; public repository is historical provenance.",
+        "Credit Sketch Macaw / Peachy Macaw and retain links to the official Modrinth and CurseForge project pages as requested by the modpack permission FAQ."
+      ],
+      "compatibility": {
+        "minecraft": "~1.20.4",
+        "fabricLoader": ">=0.15.0",
+        "java": ">=17",
+        "dependencies": {
+          "fabricloader": ">=0.15.0",
+          "minecraft": "~1.20.4",
+          "java": ">=17",
+          "fabric-api": "*"
+        }
+      },
+      "evidenceUrls": [
+        "https://api.modrinth.com/v2/project/GmwLse2I",
+        "https://api.modrinth.com/v2/version/UjYIrEaO",
+        "https://modrinth.com/version/UjYIrEaO",
+        "https://modrinth.com/mod/GmwLse2I",
+        "https://www.curseforge.com/minecraft/mc-mods/macaws-fences-and-walls"
+      ],
+      "sourceProvenance": {
+        "path": "Fences",
+        "url": "https://github.com/minefed/Fences",
+        "upstream": "https://github.com/sketchmacaw/Fences",
+        "ref": "minefed-1.20.4",
+        "commit": "c9821fbd10fe55cdb0cc9e91fefb19a5d6d6aa4b",
+        "trackingBranch": "minefed-1.20.4",
+        "baselineRef": "main",
+        "baselineCommit": "8c4e6d498d344115b7356ca68cdb724cbfc89cb3"
+      },
+      "authors": [
+        "SketchMacaw"
+      ],
+      "embeddedNotices": [
+        {
+          "jarPath": "LICENSE_mcwfences",
+          "sha256": "6d489af6292662d9e36d34ce49423784984a5f6e41d7b58f49b01264df59fa03",
+          "size": 7047
+        }
+      ]
+    },
+    {
       "fileName": "owo-lib-0.12.6+1.20.3.jar",
       "sha256": "b7c1d03cb5bcfcb84ff2bd2d6a3b3a9ef2fa14ef9e53b7d3116c04838811f273",
       "size": 1080159,
