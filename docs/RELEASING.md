@@ -33,6 +33,10 @@ Yuushya의 다른 선택 팩 `fusion_combine`·`ctm_support`는 기본 선택하
 `licenses/client-resourcepacks/`에도 기록된다. `install-mods.py`는 이 ZIP의 해시도 확인하며
 사용자가 수정한 기존 파일을 덮어쓰지 않는다. 패키징 후 리소스팩 잠금 파일이 바뀌면 게시 검증이 실패한다.
 
+재사용 빌드에서 누적된 과거 고지는 Windows 압축 해제를 위해 `licenses/inherited/`의
+짧은 해시 경로에 보존한다. `INDEX-*.json`에 원래 경로·배포 경로·전체 SHA-256을 기록하며,
+동일한 고지 바이트는 공유하되 서로 다른 원본 경로는 모두 인덱스에 유지한다.
+
 모드별 포함 환경과 배포 기록은 `inventory/release-policy.json`에 기록한다.
 `archiveMode: bundled`는 선택한 실행 JAR를 모두 서버팩 `mods/` 및 클라이언트팩
 `overrides/mods/`에 직접 포함한다. 공식 바이너리는 기존 `built`/`baseline`/`published`

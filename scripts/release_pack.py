@@ -462,7 +462,24 @@ def select_files(root, manifest, provenance, paths, policy, work, published=None
 
 def published_notices(root: Path, selected, notices: dict) -> dict:
     """Preserve every selected JAR's notices alongside the input build notices."""
-    result = dict(notices)
+    result, inherited = {}, []
+    for name, content in notices.items():
+        target = name
+        if name.startswith('licenses/base-distribution/'):
+            # Carry-forward builds can accumulate nested provenance directories.
+            # Keep their bytes and original paths without growing Windows paths.
+            digest = hashlib.sha256(content).hexdigest()
+            target = 'licenses/inherited/' + digest[:16] + '/' + PurePosixPath(name).name[:80]
+            inherited.append({'originalPath': name, 'path': target, 'sha256': digest})
+        if target in result and result[target] != content:
+            raise mods.ModError('Conflicting inherited legal notice: ' + target)
+        result[target] = content
+    if inherited:
+        index = json_bytes({'schemaVersion': 1, 'notices': sorted(inherited, key=lambda item: item['originalPath'])})
+        target = 'licenses/inherited/INDEX-' + hashlib.sha256(index).hexdigest()[:16] + '.json'
+        if target in result and result[target] != index:
+            raise mods.ModError('Conflicting inherited notice index')
+        result[target] = index
     for record, path, entry in selected:
         mods.check_bytes(path, entry)
         with zipfile.ZipFile(path) as archive:

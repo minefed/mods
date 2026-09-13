@@ -469,6 +469,19 @@ class ReleaseTests(unittest.TestCase):
         with zipfile.ZipFile(manifest.parent / 'client.mrpack') as archive:
             self.assertIn('alpha:feature', archive.read('overrides/options.txt').decode())
 
+    def test_inherited_notices_keep_original_bytes_and_paths_without_nested_windows_paths(self):
+        old = 'licenses/' + 'base-distribution/0123456789abcdef/' * 6 + 'source/LICENSE'
+        another = old.replace('0123456789abcdef', 'fedcba9876543210')
+        result = release.published_notices(self.root, [], {old: b'Original author copyright', another: b'Original author copyright'})
+        index_path = next(path for path in result if '/INDEX-' in path)
+        rows = json.loads(result[index_path])['notices']
+        self.assertEqual({old, another}, {row['originalPath'] for row in rows})
+        self.assertEqual(2, len(result))
+        for row in rows:
+            self.assertEqual(b'Original author copyright', result[row['path']])
+            self.assertEqual(hashlib.sha256(result[row['path']]).hexdigest(), row['sha256'])
+            self.assertLess(len(row['path']), 140)
+
     def published_fixture(self):
         entry = self.jar('alpha-official.jar', 'alpha', '3.0')
         entry['artifact']['sha512'] = hashlib.sha512((self.root / entry['artifact']['path']).read_bytes()).hexdigest()
