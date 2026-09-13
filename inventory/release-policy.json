@@ -519,6 +519,23 @@
       "server": true
     },
     {
+      "modId": "mcef",
+      "distribution": "download",
+      "artifact": "built",
+      "reason": "Include the unmodified official MCEF LGPL 2.1 binary and bundled Java-CEF BSD-3-Clause notices, copyright attribution and complete corresponding-source references. Officially client-only; CEF native runtime remains an upstream-managed per-platform download.",
+      "evidenceUrls": [
+        "https://api.modrinth.com/v2/project/TObQ0HxZ",
+        "https://api.modrinth.com/v2/version/3koDiBl0",
+        "https://github.com/CinemaMod/mcef/blob/bb85d521e79662592fa72a67fadcbd622c664ce8/LICENSE",
+        "https://github.com/CinemaMod/java-cef/blob/a78e832f9f13c2c688caea3d04d8b84fcd238d94/LICENSE.txt",
+        "https://github.com/CinemaMod/mcef/tree/bb85d521e79662592fa72a67fadcbd622c664ce8",
+        "https://github.com/CinemaMod/mcef/blob/bb85d521e79662592fa72a67fadcbd622c664ce8/gradle.properties"
+      ],
+      "client": true,
+      "server": false,
+      "downloadUrl": "https://cdn.modrinth.com/data/TObQ0HxZ/versions/3koDiBl0/mcef-fabric-2.1.6-1.20.4.jar"
+    },
+    {
       "modId": "mcwdoors",
       "distribution": "embed",
       "artifact": "built",

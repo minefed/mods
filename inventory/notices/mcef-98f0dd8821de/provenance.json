@@ -1,0 +1,54 @@
+{
+  "fileName": "mcef-fabric-2.1.6-1.20.4.jar",
+  "sha256": "98f0dd8821dee74d7430ac82089ed7abbaf77d578c99e624940792d0f729c5f1",
+  "sha512": "6aad9438bee5deb8133fd9c76b08651ec94e163c123c067391d50924b648d56a14c02b48d57178d0592100ae9af3cb8f57a6a5b34d2e60a62b2df3507261e4ef",
+  "size": 221800,
+  "modId": "mcef",
+  "version": "2.1.6-1.20.4",
+  "license": "LGPL-2.1-only; bundled Java-CEF: BSD-3-Clause",
+  "authors": [
+    "CinemaMod Group"
+  ],
+  "reviewedAt": "2026-09-13",
+  "sourceReference": {
+    "url": "https://github.com/CinemaMod/mcef",
+    "ref": "2.1.6-1.20.4",
+    "commit": "bb85d521e79662592fa72a67fadcbd622c664ce8",
+    "trackingBranch": "1.20.4"
+  },
+  "javaCefSourceReference": {
+    "url": "https://github.com/CinemaMod/java-cef",
+    "commit": "a78e832f9f13c2c688caea3d04d8b84fcd238d94"
+  },
+  "correspondingSourceArchives": [
+    {
+      "component": "mcef",
+      "url": "https://github.com/CinemaMod/mcef/archive/bb85d521e79662592fa72a67fadcbd622c664ce8.zip",
+      "commit": "bb85d521e79662592fa72a67fadcbd622c664ce8",
+      "sha256": "d42c9f836792092a1e5a2655b837ee75c3d8e89374cf034dd9827b817f778cee",
+      "sha512": "c6894d01fcad9700e29209c000375965d28dce0dd03826520191b64e752d94011806101600cdeb15820bf11458067358bcb98cb26349f940204ff684e2fc1f3a",
+      "size": 122261
+    },
+    {
+      "component": "java-cef",
+      "url": "https://github.com/CinemaMod/java-cef/archive/a78e832f9f13c2c688caea3d04d8b84fcd238d94.zip",
+      "commit": "a78e832f9f13c2c688caea3d04d8b84fcd238d94",
+      "sha256": "3c37afb0d114d54dfc325e8018dcc49ee25dbaa7bac8894c3a5e8da34daccfe8",
+      "sha512": "ca61da75c53ed9e94ba863905ad0bd0fb07ec30de4ac2cdcffd438dd1a16a2e985ff99a3a4d7ae149a0d85e9acc07138f7a548014ec3d61f47b47f230334f0d0",
+      "size": 7930212
+    }
+  ],
+  "licenseFiles": [
+    {
+      "path": "LICENSE-MCEF-LGPL-2.1.txt",
+      "sourceUrl": "https://github.com/CinemaMod/mcef/blob/bb85d521e79662592fa72a67fadcbd622c664ce8/LICENSE",
+      "sha256": "20c17d8b8c48a600800dfd14f95d5cb9ff47066a9641ddeab48dc54aec96e331"
+    },
+    {
+      "path": "LICENSE-Java-CEF-BSD-3-Clause.txt",
+      "sourceUrl": "https://github.com/CinemaMod/java-cef/blob/a78e832f9f13c2c688caea3d04d8b84fcd238d94/LICENSE.txt",
+      "sha256": "849c3bfa9a98853b3988fa0a1d0112cc96c85cfee1a1526642144ddc2953d4ca"
+    }
+  ],
+  "notice": "Unmodified official binary. MCEF copyright (C) 2023 CinemaMod Group; source licensed under LGPL 2.1 or later, distributed here using LGPL 2.1 as declared by the official project. Bundled Java-CEF copyright (c) 2008-2013 Marshall A. Greenblatt and portions (c) 2006-2009 Google Inc., BSD-3-Clause. The complete upstream MCEF source archive must be used together with the pinned Java-CEF submodule archive; the small Maven fabric sources JAR is incomplete. Separate CEF native runtime downloads retain their own third-party licenses and are not part of this JAR pin."
+}

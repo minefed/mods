@@ -4,7 +4,7 @@
 빌드 대상과 JAR 전용 대상은 `inventory/build-recipes.json`에 명시한다. `mods.lock.json`은
 원래 서버의 바이너리 목록과 소스 커밋을 보존하며, 소스를 컴파일했다고 원본 JAR 해시를 바꾸지 않는다.
 
-현재 구성은 소스 빌드 46개와 바이너리 22개다. 기반 라이브러리 7개, 공식 후속 바이너리 8개와 Continuity, 총 16개는 recipe의
+현재 구성은 소스 빌드 46개와 바이너리 23개다. 기반 라이브러리 7개, 공식 후속 바이너리 8개와 Continuity·MCEF, 총 17개는 recipe의
 `dependencyManifest`가 지정한 `inventory/dependencies.lock.json`을 사용한다. 이 목록은
 기존 binary recipe를 대체하거나 명시적인 `dependency: true` recipe와 함께 새 모드를 추가한다.
 운영 기준본은 그대로 보존하며, 과거 제외 항목을 신규 의존성으로 다시 활성화하지 않는다. 의존성 JAR는 빌드 중
@@ -74,9 +74,10 @@ HTTP/HTTPS Maven 저장소에서 제외한다. 이 그룹은 Loom이 매핑된 �
 - Node.js 22와 npm. MTR의 웹 UI 생성에 사용하며 잠긴 `package-lock.json`으로 설치한다.
 - 실행할 Minecraft 환경은 1.20.4 / Fabric Loader 0.18.0 이상을 준비한다.
 
-minefed-display의 브라우저 화면을 렌더링하는 클라이언트에는 MCEF 2.1.6-1.20.4 이상이
-추가로 필요하다. 서버에는 필수 의존성으로 두지 않으며, MCEF가 없는 클라이언트에서는
-브라우저 렌더러를 활성화하지 않고 블록·URL 설정 UI는 유지한다.
+minefed-display의 브라우저 화면을 위해 공식 MCEF `2.1.6-1.20.4` Fabric JAR를
+클라이언트 의존성에 고정하고 서버팩에서는 제외한다. Chromium/CEF 네이티브 파일은
+첫 실행에서 MCEF의 공식 다운로드 서버를 통해 별도로 준비한다([MCEF 구성](MCEF.md)).
+MCEF가 없는 클라이언트에서는 브라우저 렌더러를 활성화하지 않고 블록·URL 설정 UI는 유지한다.
 
 Windows 실행기는 Git에 포함하지 않는 `build.local.json`의 도구 경로를 사용할 수 있다.
 이 작업 공간에는 설치된 도구를 가리키는 로컬 설정이 준비되어 있다. 다른 PC에서는 예를 들어 다음과 같이 설정한다.

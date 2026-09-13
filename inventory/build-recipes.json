@@ -436,6 +436,12 @@
       "expectedVersion": "0.12.1+git.c40b758"
     },
     {
+      "modId": "mcef",
+      "mode": "binary",
+      "reason": "Add the official MCEF 2.1.6 Minecraft 1.20.4 Fabric runtime for Minefed Display browser rendering, pinned in dependencies.lock.json and limited to clients by release policy.",
+      "dependency": true
+    },
+    {
       "modId": "mcwdoors",
       "mode": "binary",
       "reason": "Use the official Fabric 1.20.4 runtime successor pinned in dependencies.lock.json; original bytes and license notices preserved.",

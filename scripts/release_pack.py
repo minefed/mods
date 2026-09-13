@@ -671,6 +671,9 @@ def write_profile(root, destination, side, selected, notices, version, loader, r
             instructions += ['Import this .mrpack in a Modrinth-compatible launcher.',
                              'Enable the included Minefed resource pack in Minecraft resource-pack settings.',
                              'You may run install-mods.py from the imported instance to verify all required files.']
+            if any(record['modId'] == 'mcef' for record in records):
+                instructions += ['The MCEF mod JAR is included. On first launch, MCEF separately prepares the platform-specific Chromium/CEF native runtime from https://mcef-download.cinemamod.com.',
+                                 'Allow that download and initialization to finish before using Minefed Display web screens; native files retain their own license notices.']
             archive.write(resource, f'overrides/resourcepacks/minefed-{version}.zip')
             if resource_records or builtin_packs:
                 archive.writestr('overrides/options.txt', release_resources.options(resource_records, version, list(builtin_packs)))

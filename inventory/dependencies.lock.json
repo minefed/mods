@@ -543,6 +543,93 @@
       }
     },
     {
+      "fileName": "mcef-fabric-2.1.6-1.20.4.jar",
+      "sha256": "98f0dd8821dee74d7430ac82089ed7abbaf77d578c99e624940792d0f729c5f1",
+      "size": 221800,
+      "modId": "mcef",
+      "version": "2.1.6-1.20.4",
+      "environment": "*",
+      "management": "binary",
+      "artifact": {
+        "path": "artifacts/local/mcef-fabric-2.1.6-1.20.4.jar",
+        "redistribution": "allowed",
+        "url": "https://cdn.modrinth.com/data/TObQ0HxZ/versions/3koDiBl0/mcef-fabric-2.1.6-1.20.4.jar",
+        "sha512": "6aad9438bee5deb8133fd9c76b08651ec94e163c123c067391d50924b648d56a14c02b48d57178d0592100ae9af3cb8f57a6a5b34d2e60a62b2df3507261e4ef",
+        "publishedHashMatch": true,
+        "verificationAlgorithm": "sha512",
+        "publishedRelease": {
+          "provider": "modrinth",
+          "versionId": "3koDiBl0",
+          "projectId": "TObQ0HxZ",
+          "versionUrl": "https://modrinth.com/version/3koDiBl0",
+          "gameVersions": [
+            "1.20.4"
+          ],
+          "loaders": [
+            "fabric"
+          ],
+          "officialFileName": "mcef-fabric-2.1.6-1.20.4.jar"
+        }
+      },
+      "included": true,
+      "exclusionReason": null,
+      "license": "LGPL-2.1-only; bundled Java-CEF: BSD-3-Clause",
+      "licenseUrl": "https://github.com/CinemaMod/mcef/blob/bb85d521e79662592fa72a67fadcbd622c664ce8/LICENSE",
+      "licenseNoticesPath": "inventory/notices/mcef-98f0dd8821de",
+      "authors": [
+        "CinemaMod Group"
+      ],
+      "notes": [
+        "Official MCEF 2.1.6 for Minecraft 1.20.4 / Fabric enables Minefed Display web rendering. New client runtime dependency; the captured server baseline is unchanged.",
+        "The JAR declares environment *, but the official project declares client required and server unsupported. Release policy explicitly includes it only on clients.",
+        "Unmodified official binary; preserve LGPL 2.1 and bundled Java-CEF BSD-3-Clause notices. Project metadata says LGPL-2.1-only; source headers permit LGPL-2.1-or-later. This distribution uses the shared LGPL 2.1 terms.",
+        "The official JAR has no standalone license files. Exact upstream license texts, copyright attribution and complete source archive references are retained in inventory/notices/mcef-98f0dd8821de.",
+        "The Maven fabric sources JAR omits common code and Java-CEF. Complete source consists of MCEF commit bb85d521e79662592fa72a67fadcbd622c664ce8 plus its Java-CEF submodule a78e832f9f13c2c688caea3d04d8b84fcd238d94; both archive hashes are recorded in the notice provenance.",
+        "Chromium/CEF native binaries are separate per-platform downloads managed by MCEF from https://mcef-download.cinemamod.com. They are not bundled or relicensed by this dependency pin; preserve their own notices in any offline installation."
+      ],
+      "compatibility": {
+        "minecraft": [
+          "1.20.4"
+        ],
+        "fabricLoader": ">=0.14.25",
+        "java": ">=17",
+        "dependencies": {
+          "fabricloader": ">=0.14.25",
+          "minecraft": [
+            "1.20.4"
+          ],
+          "java": ">=17"
+        },
+        "breaks": {
+          "fabric-api": "<0.91.1+1.20.4"
+        }
+      },
+      "evidenceUrls": [
+        "https://api.modrinth.com/v2/project/TObQ0HxZ",
+        "https://api.modrinth.com/v2/version/3koDiBl0",
+        "https://github.com/CinemaMod/mcef/blob/bb85d521e79662592fa72a67fadcbd622c664ce8/LICENSE",
+        "https://github.com/CinemaMod/java-cef/blob/a78e832f9f13c2c688caea3d04d8b84fcd238d94/LICENSE.txt",
+        "https://github.com/CinemaMod/mcef/tree/bb85d521e79662592fa72a67fadcbd622c664ce8",
+        "https://github.com/CinemaMod/mcef/blob/bb85d521e79662592fa72a67fadcbd622c664ce8/gradle.properties"
+      ],
+      "sourceReference": {
+        "url": "https://github.com/CinemaMod/mcef",
+        "ref": "2.1.6-1.20.4",
+        "commit": "bb85d521e79662592fa72a67fadcbd622c664ce8",
+        "trackingBranch": "1.20.4"
+      },
+      "licenseReview": {
+        "reviewedAt": "2026-09-13",
+        "projectLicense": "LGPL-2.1-only",
+        "sourceHeaderLicense": "LGPL-2.1-or-later",
+        "bundledJavaCefLicense": "BSD-3-Clause",
+        "bundledJavaCefSource": {
+          "url": "https://github.com/CinemaMod/java-cef",
+          "commit": "a78e832f9f13c2c688caea3d04d8b84fcd238d94"
+        }
+      }
+    },
+    {
       "fileName": "mcw-doors-1.1.5-mc1.20.4fabric.jar",
       "sha256": "0afd76357fd5799122a27807b909ebf5d882029c0e6ebf583ea111508383f195",
       "size": 1226802,
