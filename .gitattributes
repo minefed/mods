@@ -1,2 +1,3 @@
 # Preserve the bytes hashed in upstream legal-notice provenance on every platform.
 inventory/licenses/** text eol=lf
+inventory/notices/continuity-0fa002f7c67b/** text eol=lf

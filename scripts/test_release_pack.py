@@ -343,6 +343,53 @@ class ReleaseTests(unittest.TestCase):
             self.run_release()
         self.assertFalse((self.root / 'build/releases/20260907123456').exists())
 
+    def additive_binary_fixture(self):
+        entry = self.jar('delta.jar', 'delta', '1.0', environment='client')
+        entry['artifact']['sha512'] = hashlib.sha512((self.root / entry['artifact']['path']).read_bytes()).hexdigest()
+        entry['sourceReference'] = {'url': 'https://github.com/example/delta', 'ref': 'v1.0', 'commit': '4' * 40}
+        self.write('inventory/dependencies.lock.json', self.manifest([entry]))
+        plan = {'schemaVersion': 1, 'minecraftVersion': '1.20.4', 'loader': 'fabric',
+                'dependencyManifest': 'inventory/dependencies.lock.json',
+                'entries': [{'modId': identity, 'mode': 'binary', 'reason': 'Fixture binary'}
+                            for identity in ('alpha', 'beta', 'gamma')] +
+                           [{'modId': 'delta', 'mode': 'binary', 'dependency': True, 'reason': 'Client addition'}]}
+        self.write('inventory/build-recipes.json', plan)
+        self.produced['entries'].append(entry)
+        self.produced['build']['binaryCount'] += 1
+        self.recipes['entries'].append(plan['entries'][-1])
+        self.provenance.append({'modId': 'delta', 'mode': 'binary'})
+        self.policy['entries'].append(self.decision('delta', server=False))
+        self.write('inventory/release-policy.json', self.policy)
+        self.input_zip()
+        summary = json.loads((self.root / 'build/latest.json').read_text())
+        self.write('build/latest.json', {**summary, 'artifactCount': 4})
+        return entry
+
+    def test_new_pinned_binary_is_client_only_and_preserves_baseline_and_source_reference(self):
+        baseline = (self.root / 'inventory/mods.lock.json').read_bytes()
+        entry = self.additive_binary_fixture()
+        manifest = self.run_release()
+        with zipfile.ZipFile(manifest.parent / 'client.mrpack') as archive:
+            self.assertEqual((self.root / entry['artifact']['path']).read_bytes(), archive.read('overrides/mods/delta.jar'))
+            record = next(e for e in json.loads(archive.read('overrides/download-manifest.json'))['files'] if e['modId'] == 'delta')
+            self.assertEqual(entry['sourceReference'], record['sourceReference'])
+        with zipfile.ZipFile(manifest.parent / 'server.zip') as archive:
+            self.assertNotIn('mods/delta.jar', archive.namelist())
+        self.assertEqual(baseline, (self.root / 'inventory/mods.lock.json').read_bytes())
+
+    def test_new_binary_rejects_changed_current_pin_and_baseline_selection(self):
+        entry = self.additive_binary_fixture()
+        entry['version'] = '2.0'
+        self.write('inventory/dependencies.lock.json', self.manifest([entry]))
+        with self.assertRaisesRegex(mods.ModError, 'current dependency pin'):
+            self.run_release()
+        entry['version'] = '1.0'
+        self.write('inventory/dependencies.lock.json', self.manifest([entry]))
+        self.policy['entries'][-1]['artifact'] = 'baseline'
+        self.write('inventory/release-policy.json', self.policy)
+        with self.assertRaisesRegex(mods.ModError, 'verified built input'):
+            self.run_release()
+
     def published_fixture(self):
         entry = self.jar('alpha-official.jar', 'alpha', '3.0')
         entry['artifact']['sha512'] = hashlib.sha512((self.root / entry['artifact']['path']).read_bytes()).hexdigest()

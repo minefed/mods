@@ -352,20 +352,36 @@ def baseline_artifact(root: Path, entry: dict, decision: dict, work: Path) -> Pa
 def select_files(root, manifest, provenance, paths, policy, work, published=None):
     original = {e['modId']: e for e in mods.load_manifest(root)['entries'] if e['included']}
     built = {e['modId']: e for e in manifest['entries']}
-    if set(original) != set(built):
+    if set(original) - set(built):
         raise mods.ModError('Input build must cover every included baseline mod exactly once')
+    additions = {}
+    if set(built) - set(original):
+        current, plan = builder.load_plan(root)
+        expected = {e['modId']: e for e in current['entries'] if e['included']}
+        recipes = {r['modId']: r for r in plan['entries']}
+        if set(expected) != set(built):
+            raise mods.ModError('Input build differs from the reviewed runtime inventory')
+        for identity in set(built) - set(original):
+            if (recipes[identity].get('dependency') is not True or recipes[identity]['mode'] != 'binary'
+                    or provenance[identity].get('mode') != 'binary'):
+                raise mods.ModError('New release mods require reviewed binary dependencies: ' + identity)
+            entry = expected[identity]
+            if any(built[identity].get(key) != entry.get(key) for key in ('fileName', 'version', 'sha256', 'size')):
+                raise mods.ModError('New binary differs from its current dependency pin: ' + identity)
+            additions[identity] = entry
     selected = []
     published = published or {}
     for decision in policy['entries']:
         identity = decision['modId']
-        if identity not in original:
-            raise mods.ModError(f'Release mod missing from baseline: {identity}')
+        if identity in additions and decision['artifact'] != 'built':
+            raise mods.ModError('New binary dependency must select its verified built input: ' + identity)
         if decision['artifact'] == 'published':
             if identity not in published:
                 raise mods.ModError('Missing reviewed published artifact: ' + identity)
             entry = copy.deepcopy(published[identity])
         else:
-            entry = copy.deepcopy(original[identity] if decision['artifact'] == 'baseline' else built[identity])
+            entry = copy.deepcopy(original[identity] if decision['artifact'] == 'baseline'
+                                  else additions.get(identity, built[identity]))
         if ('artifactLicense' in decision and
                 (decision['artifact'] != 'built' or provenance[identity].get('mode') != 'source'
                  or not entry['artifact'].get('builtFromSource'))):
@@ -417,7 +433,7 @@ def select_files(root, manifest, provenance, paths, policy, work, published=None
             record['notes'] = notice_text(record, 'notes') + [
                 'The selected source-built artifact uses the reviewed artifactLicense and artifactLicenseUrl. '
                 'capturedLicense and capturedLicenseUrl describe the historical captured JAR, not this build.']
-        if decision['artifact'] == 'published':
+        if decision['artifact'] == 'published' or (decision['artifact'] == 'built' and provenance[identity].get('mode') == 'binary'):
             if entry.get('sourceReference'):
                 record['sourceReference'] = copy.deepcopy(entry['sourceReference'])
             if entry.get('evidenceUrls'):
