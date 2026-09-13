@@ -234,6 +234,75 @@
       ]
     },
     {
+      "fileName": "continuity-3.0.0+1.20.2.jar",
+      "sha256": "0fa002f7c67b800e50038e64d8fae4fb0e7386cd2841287cd47046f2b18fe1e3",
+      "size": 1016209,
+      "modId": "continuity",
+      "version": "3.0.0+1.20.2",
+      "environment": "client",
+      "management": "binary",
+      "artifact": {
+        "path": "artifacts/local/continuity-3.0.0+1.20.2.jar",
+        "redistribution": "allowed",
+        "url": "https://cdn.modrinth.com/data/1IjD5062/versions/WMwDkIY8/continuity-3.0.0%2B1.20.2.jar",
+        "sha512": "99e5e88a6bdbed440d6971a2718f2178efb7f7c1b1e2bf7166f2d7a7edf4f659683c7f9105a90b77b16fd4bc67e4b6330bf5a6e3e7befc5235eb9cd937d174c3",
+        "publishedHashMatch": true,
+        "verificationAlgorithm": "sha512",
+        "publishedRelease": {
+          "provider": "modrinth",
+          "versionId": "WMwDkIY8",
+          "projectId": "1IjD5062",
+          "versionUrl": "https://modrinth.com/version/WMwDkIY8",
+          "gameVersions": [
+            "1.20.2",
+            "1.20.3",
+            "1.20.4"
+          ],
+          "loaders": [
+            "fabric",
+            "quilt"
+          ],
+          "officialFileName": "continuity-3.0.0+1.20.2.jar"
+        }
+      },
+      "included": true,
+      "exclusionReason": null,
+      "license": "LGPL-3.0-only",
+      "licenseUrl": "https://github.com/PepperCode1/Continuity/blob/7deaa8c3f8005bf002a63a7ae97fb0227e381236/LICENSE",
+      "licenseNoticesPath": "inventory/notices/continuity-0fa002f7c67b",
+      "authors": [
+        "PepperCode1"
+      ],
+      "notes": [
+        "Added client-only official runtime dependency for Yuushya OptiFine-format connected textures; not part of the captured server baseline.",
+        "Unmodified official LGPL-3.0-only binary; preserve embedded license, upstream source reference and corresponding-source download alongside the pack.",
+        "Corresponding source: https://cdn.modrinth.com/data/1IjD5062/versions/WMwDkIY8/continuity-3.0.0%2B1.20.2-sources.jar"
+      ],
+      "compatibility": {
+        "minecraft": ">=1.20.2 <=1.20.4",
+        "fabricLoader": ">=0.15.0",
+        "java": null,
+        "dependencies": {
+          "minecraft": ">=1.20.2 <=1.20.4",
+          "fabricloader": ">=0.15.0",
+          "fabric-api": ">=0.89.0"
+        }
+      },
+      "evidenceUrls": [
+        "https://api.modrinth.com/v2/project/1IjD5062",
+        "https://api.modrinth.com/v2/version/WMwDkIY8",
+        "https://github.com/PepperCode1/Continuity/blob/7deaa8c3f8005bf002a63a7ae97fb0227e381236/LICENSE",
+        "https://github.com/PepperCode1/Continuity/commit/7deaa8c3f8005bf002a63a7ae97fb0227e381236",
+        "https://github.com/PepperCode1/Continuity/releases/tag/v3.0.0%2B1.20.2"
+      ],
+      "sourceReference": {
+        "url": "https://github.com/PepperCode1/Continuity",
+        "ref": "v3.0.0+1.20.2",
+        "commit": "7deaa8c3f8005bf002a63a7ae97fb0227e381236",
+        "trackingBranch": "1.20.2/dev"
+      }
+    },
+    {
       "fileName": "fabric-api-0.97.3+1.20.4.jar",
       "sha256": "5c11c93b21e0fbcd83dd11c6059479143f3d422bceac4153c3e55806ba9371f1",
       "size": 2187523,

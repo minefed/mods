@@ -1,0 +1,38 @@
+{
+  "fileName": "continuity-3.0.0+1.20.2.jar",
+  "sha256": "0fa002f7c67b800e50038e64d8fae4fb0e7386cd2841287cd47046f2b18fe1e3",
+  "modId": "continuity",
+  "version": "3.0.0+1.20.2",
+  "license": "LGPL-3.0-only",
+  "authors": [
+    "PepperCode1"
+  ],
+  "sourceReference": {
+    "url": "https://github.com/PepperCode1/Continuity",
+    "ref": "v3.0.0+1.20.2",
+    "commit": "7deaa8c3f8005bf002a63a7ae97fb0227e381236",
+    "trackingBranch": "1.20.2/dev"
+  },
+  "licenseUrl": "https://github.com/PepperCode1/Continuity/blob/7deaa8c3f8005bf002a63a7ae97fb0227e381236/LICENSE",
+  "sourceArchiveUrl": "https://github.com/PepperCode1/Continuity/archive/7deaa8c3f8005bf002a63a7ae97fb0227e381236.zip",
+  "correspondingSource": {
+    "url": "https://cdn.modrinth.com/data/1IjD5062/versions/WMwDkIY8/continuity-3.0.0%2B1.20.2-sources.jar",
+    "fileName": "continuity-3.0.0+1.20.2-sources.jar",
+    "sha256": "327a445b11627f2899a7c8039cb8a4755a3fde4a338b8761d0433c954f522639",
+    "sha512": "e7cdb88870b68968ee74733f0a28054693c0c221c4f4e14ad1d0b1ff35981448dfe40da5ea320adbe095b869ea921df53f16c44f832da3029b0d1d10d44d28ac",
+    "size": 996289
+  },
+  "licenseFiles": [
+    {
+      "path": "LICENSE_continuity",
+      "sourceUrl": "https://github.com/PepperCode1/Continuity/blob/7deaa8c3f8005bf002a63a7ae97fb0227e381236/LICENSE",
+      "sha256": "e3a994d82e644b03a792a930f574002658412f62407f5fee083f2555c5f23118"
+    },
+    {
+      "path": "COPYING-GPL-3.0.txt",
+      "sourceUrl": "https://www.gnu.org/licenses/gpl-3.0.txt",
+      "sha256": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986"
+    }
+  ],
+  "notice": "Unmodified official Continuity binary and corresponding source by PepperCode1, both under LGPL-3.0-only. Preserve these notices and upstream license terms with the modpack."
+}

@@ -132,6 +132,12 @@
       "dependency": true
     },
     {
+      "modId": "continuity",
+      "mode": "binary",
+      "reason": "Add the official client-only Continuity runtime for Yuushya connected textures, pinned independently of the captured server baseline in dependencies.lock.json.",
+      "dependency": true
+    },
+    {
       "modId": "crossstitch",
       "mode": "source",
       "sourcePath": "CrossStitch",

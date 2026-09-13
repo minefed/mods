@@ -164,6 +164,22 @@
       "server": true
     },
     {
+      "modId": "continuity",
+      "distribution": "download",
+      "artifact": "built",
+      "reason": "Include the unmodified official LGPL-3.0-only Continuity binary for client connected textures; preserve official URL, exact hashes, copyright/license notices and corresponding source. This mod is unsupported on dedicated servers.",
+      "evidenceUrls": [
+        "https://api.modrinth.com/v2/project/1IjD5062",
+        "https://api.modrinth.com/v2/version/WMwDkIY8",
+        "https://github.com/PepperCode1/Continuity/blob/7deaa8c3f8005bf002a63a7ae97fb0227e381236/LICENSE",
+        "https://github.com/PepperCode1/Continuity/commit/7deaa8c3f8005bf002a63a7ae97fb0227e381236",
+        "https://github.com/PepperCode1/Continuity/releases/tag/v3.0.0%2B1.20.2"
+      ],
+      "client": true,
+      "server": false,
+      "downloadUrl": "https://cdn.modrinth.com/data/1IjD5062/versions/WMwDkIY8/continuity-3.0.0%2B1.20.2.jar"
+    },
+    {
       "modId": "crossstitch",
       "distribution": "embed",
       "artifact": "built",
