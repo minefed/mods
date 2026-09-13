@@ -390,6 +390,85 @@ class ReleaseTests(unittest.TestCase):
         with self.assertRaisesRegex(mods.ModError, 'verified built input'):
             self.run_release()
 
+    def client_resource_fixture(self):
+        path = self.root / 'artifacts/local/Yuushya Foliage Addon 1.3.zip'
+        with zipfile.ZipFile(path, 'w') as archive:
+            archive.writestr('pack.mcmeta', json.dumps({'pack': {'pack_format': 8, 'description': 'Original fixture'}}))
+            archive.writestr('assets/minecraft/models/block/leaves.json', '{}')
+        digest, size = mods.file_digest(path)
+        entry = {'id': 'foliage', 'fileName': path.name, 'version': '1.3', 'size': size, 'sha256': digest,
+                 'sha512': hashlib.sha512(path.read_bytes()).hexdigest(), 'authors': ['Fixture Author'],
+                 'artifact': {'path': path.relative_to(self.root).as_posix(), 'url': 'https://example.com/foliage.zip'},
+                 'gameVersions': ['1.20.4'], 'packFormat': 8, 'allowIncompatibleFormat': True, 'enabledByDefault': True,
+                 'license': {'id': 'CC-BY-NC-SA-4.0', 'redistribution': 'modpack-only',
+                             'url': 'https://example.com/terms', 'noticeText': ['Retain author credit.']},
+                 'evidenceUrls': ['https://example.com/release-1.3']}
+        self.resource_lock['clientPacks'] = [entry]
+        self.write('inventory/resourcepacks.lock.json', self.resource_lock)
+        return entry
+
+    def test_client_resource_pack_preserves_bytes_activates_and_is_verified_by_installer(self):
+        entry = self.client_resource_fixture()
+        self.policy['archiveMode'] = 'bundled'
+        self.write('inventory/release-policy.json', self.policy)
+        manifest = self.run_release()
+        with zipfile.ZipFile(manifest.parent / 'client.mrpack') as archive:
+            resource_path = 'overrides/resourcepacks/' + entry['fileName']
+            self.assertEqual((self.root / entry['artifact']['path']).read_bytes(), archive.read(resource_path))
+            options = dict(line.split(':', 1) for line in archive.read('overrides/options.txt').decode().splitlines())
+            self.assertEqual(['vanilla', 'fabric', 'file/' + entry['fileName'], 'file/minefed-20260907123456.zip'],
+                             json.loads(options['resourcePacks']))
+            self.assertEqual(['file/' + entry['fileName']], json.loads(options['incompatibleResourcePacks']))
+            self.assertIn('Fixture Author', archive.read('overrides/LICENSES.md').decode())
+            self.assertEqual([], json.loads(archive.read('modrinth.index.json'))['files'])
+            instance = self.root / 'instance'
+            archive.extractall(instance)
+        result = subprocess.run([sys.executable, str(instance / 'overrides/install-mods.py')], capture_output=True, text=True)
+        self.assertEqual(0, result.returncode, result.stderr)
+        self.assertIn('client resource pack files verified', result.stdout)
+        target = instance / resource_path
+        target.write_bytes(b'changed by player')
+        result = subprocess.run([sys.executable, str(instance / 'overrides/install-mods.py')], capture_output=True, text=True)
+        self.assertNotEqual(0, result.returncode)
+        self.assertEqual(b'changed by player', target.read_bytes())
+        with zipfile.ZipFile(manifest.parent / 'server.zip') as archive:
+            self.assertFalse(any(name.startswith('resourcepacks/') for name in archive.namelist()))
+            self.assertNotIn('options.txt', archive.namelist())
+        self.assertEqual(1, json.loads(manifest.read_text())['profiles']['client']['additionalResourcePackCount'])
+
+    def test_client_resource_pack_requires_exact_bytes_permission_and_format_review(self):
+        entry = self.client_resource_fixture()
+        for field, replacement, error in [('sha256', '0' * 64, 'SHA-256'),
+                                           ('sha512', '0' * 128, 'SHA-512'),
+                                           ('allowIncompatibleFormat', False, 'compatibility review')]:
+            original = entry[field]
+            entry[field] = replacement
+            self.write('inventory/resourcepacks.lock.json', self.resource_lock)
+            with self.subTest(field=field), self.assertRaisesRegex(mods.ModError, error):
+                self.run_release()
+            entry[field] = original
+        entry['license']['redistribution'] = 'local-only'
+        self.write('inventory/resourcepacks.lock.json', self.resource_lock)
+        with self.assertRaisesRegex(mods.ModError, 'redistribution permission'):
+            self.run_release()
+
+    def test_client_builtin_defaults_require_real_pack_in_selected_client_jar(self):
+        self.client_resource_fixture()
+        self.resource_lock['clientDefaults'] = {'builtInResourcePacks': ['alpha:feature']}
+        self.write('inventory/resourcepacks.lock.json', self.resource_lock)
+        with self.assertRaisesRegex(mods.ModError, 'absent from the selected JAR'):
+            self.run_release()
+        path = self.root / self.built['artifact']['path']
+        with zipfile.ZipFile(path, 'a') as archive:
+            archive.writestr('resourcepacks/feature/pack.mcmeta', '{"pack":{"pack_format":22}}')
+        digest, size = mods.file_digest(path)
+        self.produced['entries'][0].update(sha256=digest, size=size)
+        self.provenance[0]['sha256'] = digest
+        self.input_zip()
+        manifest = self.run_release()
+        with zipfile.ZipFile(manifest.parent / 'client.mrpack') as archive:
+            self.assertIn('alpha:feature', archive.read('overrides/options.txt').decode())
+
     def published_fixture(self):
         entry = self.jar('alpha-official.jar', 'alpha', '3.0')
         entry['artifact']['sha512'] = hashlib.sha512((self.root / entry['artifact']['path']).read_bytes()).hexdigest()

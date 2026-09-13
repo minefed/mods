@@ -21,6 +21,7 @@ import build_modpack as builder
 import mods
 import release_dependencies
 import release_plugins
+import release_resources
 
 ROOT = Path(__file__).resolve().parents[1]
 MRPACK_HOSTS = {'cdn.modrinth.com', 'github.com', 'raw.githubusercontent.com', 'gitlab.com'}
@@ -41,8 +42,8 @@ from urllib.request import HTTPRedirectHandler, Request, build_opener
 
 def target(root, value):
     parts = value.split('/') if isinstance(value, str) else []
-    if len(parts) != 2 or parts[0] not in ('mods', 'plugins'):
-        raise ValueError('Expected mods/<filename> or plugins/<filename>: ' + str(value))
+    if len(parts) != 2 or parts[0] not in ('mods', 'plugins', 'resourcepacks'):
+        raise ValueError('Expected mods/, plugins/ or resourcepacks/ with a plain filename: ' + str(value))
     if PureWindowsPath(value).drive or any(p in ('', '.', '..') or re.search(r'[<>:"|?*\\\x00-\x1f]', p) or p.endswith((' ', '.')) for p in parts):
         raise ValueError('Unsafe mod path: ' + value)
     path = root
@@ -81,7 +82,7 @@ def main():
     args = parser.parse_args()
     root = args.directory.resolve()
     manifest = json.loads((Path(__file__).resolve().parent / 'download-manifest.json').read_text(encoding='utf-8'))
-    items = manifest['files'] + manifest.get('plugins', [])
+    items = manifest['files'] + manifest.get('plugins', []) + manifest.get('resourcePacks', [])
     if not items:
         raise ValueError('Installation manifest contains no required mods')
     seen, pending = set(), []
@@ -131,6 +132,8 @@ def main():
     print('All required mod files verified. Minecraft/Fabric startup has not been validated.')
     if manifest.get('plugins'):
         print('All included server plugin files verified. Plugin runtime has not been validated.')
+    if manifest.get('resourcePacks'):
+        print('All included client resource pack files verified. Rendering has not been validated.')
 
 if __name__ == '__main__':
     try:
@@ -582,11 +585,13 @@ def archive_included(record: dict) -> bool:
 
 
 def write_profile(root, destination, side, selected, notices, version, loader, resource, dependency_check,
-                  plugins=(), plugin_notices=None):
+                  plugins=(), plugin_notices=None, client_packs=(), resource_notices=None, builtin_packs=()):
     chosen = [(r, p, e) for r, p, e in selected if r[side]]
     records = [r for r, _, _ in chosen]
     chosen_plugins = list(plugins) if side == 'server' else []
     plugin_records = [r for r, _, _ in chosen_plugins]
+    chosen_packs = list(client_packs) if side == 'client' else []
+    resource_records = [r for r, _, _ in chosen_packs]
     prefix = 'overrides/' if side == 'client' else ''
     with zipfile.ZipFile(destination, 'x', compression=zipfile.ZIP_DEFLATED) as archive:
         for record, path, entry in chosen:
@@ -597,8 +602,12 @@ def write_profile(root, destination, side, selected, notices, version, loader, r
         for record, path, entry in chosen_plugins:
             mods.check_bytes(path, entry)
             archive.write(path, record['path'])
+        for record, path, entry in chosen_packs:
+            mods.check_bytes(path, entry)
+            archive.write(path, prefix + record['path'])
         archive.writestr(prefix + 'download-manifest.json', json_bytes({'schemaVersion': 1, 'version': version, 'side': side,
-                                                                     'files': records, 'plugins': plugin_records}))
+                                                                     'files': records, 'plugins': plugin_records,
+                                                                     'resourcePacks': resource_records}))
         archive.writestr(prefix + 'install-mods.py', INSTALLER)
         source_text = source_notices(records, version)
         for record in plugin_records:
@@ -607,16 +616,26 @@ def write_profile(root, destination, side, selected, notices, version, loader, r
                                       'License: ' + record['license'], 'License evidence: ' + record['licenseUrl'],
                                       'Original download: ' + record['artifactUrl'],
                                       'Decision: ' + record['reason'], *record['evidenceUrls'], ''])
+        for record in resource_records:
+            source_text += '\n'.join(['', '## Client resource pack: ' + record['id'], '',
+                                      'Version: ' + record['version'], 'Authors: ' + ', '.join(record['authors']),
+                                      'Original download: ' + record['downloadUrl'],
+                                      'License: ' + record['license']['id'], *record['license']['noticeText'],
+                                      *record['evidenceUrls'], ''])
         archive.writestr(prefix + 'LICENSES.md', source_text)
         archive.writestr(prefix + 'SOURCES.md', source_text)
         archive.writestr(prefix + 'DEPENDENCIES.json', json_bytes(dependency_check))
         archive.writestr(prefix + 'MINEFED-RELEASE.json', json_bytes({'version': version, 'side': side, 'minecraft': '1.20.4',
-                          'fabricLoader': loader, 'runtimeValidated': False, 'files': records, 'plugins': plugin_records}))
+                          'fabricLoader': loader, 'runtimeValidated': False, 'files': records, 'plugins': plugin_records,
+                          'resourcePacks': resource_records}))
         for name, content in notices.items():
             archive.writestr(prefix + name, content)
         if chosen_plugins:
             for name, content in (plugin_notices or {}).items():
                 archive.writestr(name, content)
+        if chosen_packs:
+            for name, content in (resource_notices or {}).items():
+                archive.writestr(prefix + name, content)
         manual = [r for r in records if r['distribution'] == 'manual' and not archive_included(r)]
         complete_bundle = all(archive_included(r) for r in records)
         instructions = [f'Minefed {version} ({side})', '', 'Target: Minecraft 1.20.4, Java 17, Fabric Loader ' + loader,
@@ -636,6 +655,13 @@ def write_profile(root, destination, side, selected, notices, version, loader, r
                              'Enable the included Minefed resource pack in Minecraft resource-pack settings.',
                              'You may run install-mods.py from the imported instance to verify all required files.']
             archive.write(resource, f'overrides/resourcepacks/minefed-{version}.zip')
+            if resource_records or builtin_packs:
+                archive.writestr('overrides/options.txt', release_resources.options(resource_records, version, list(builtin_packs)))
+                instructions += ['New instances preselect the included resource packs and reviewed built-in packs.',
+                                 'When updating an existing instance, retain personal options and enable these packs manually:',
+                                 *list(builtin_packs), *['file/' + r['fileName'] for r in resource_records if r['enabledByDefault']],
+                                 f'file/minefed-{version}.zip (highest priority)',
+                                 'The Foliage Addon retains its original older pack_format; its publisher supports 1.20.4.']
             downloads = [{'path': r['path'], 'hashes': r['hashes'], 'env': {'client': 'required', 'server': 'unsupported'},
                           'downloads': [r['downloadUrl']], 'fileSize': r['size']}
                          for r in records if r['distribution'] == 'download' and not archive_included(r)]
@@ -658,8 +684,12 @@ def write_profile(root, destination, side, selected, notices, version, loader, r
         for record in plugin_records:
             if hashlib.sha256(archive.read(record['path'])).hexdigest() != record['sha256']:
                 raise mods.ModError('Embedded server plugin bytes changed: ' + record['id'])
+        for record in resource_records:
+            if hashlib.sha256(archive.read(prefix + record['path'])).hexdigest() != record['sha256']:
+                raise mods.ModError('Embedded client resource pack bytes changed: ' + record['id'])
     return {'modCount': len(records), 'embeddedCount': sum(archive_included(r) for r in records),
             'pluginCount': len(plugin_records), 'totalJarCount': sum(archive_included(r) for r in records) + len(plugin_records),
+            'additionalResourcePackCount': len(resource_records),
             'downloadCount': sum(r['distribution'] == 'download' and not archive_included(r) for r in records), 'manualCount': len(manual),
             'excludedModIds': [r['modId'] for r, _, _ in selected if not r[side]]}
 
@@ -683,6 +713,7 @@ def release(root: Path, result_json: str, version: str, policy_path: str = 'inve
         published, published_snapshot = published_artifacts(root, policy)
         selected = select_files(root, manifest, provenance, paths, policy, work, published)
         plugins, plugin_notices = release_plugins.prepare(root, policy, work)
+        client_packs, resource_notices, resource_snapshot = release_resources.prepare(root, resource_lock, work, selected)
         notices = published_notices(root, selected, notices)
         dependency_check = release_dependencies.check_selected(root, selected, policy['fabricLoaderVersion'])
         publication = work / 'publication'
@@ -696,7 +727,8 @@ def release(root: Path, result_json: str, version: str, policy_path: str = 'inve
         profiles = {}
         for side, name in [('server', 'server.zip'), ('client', 'client.mrpack')]:
             profiles[side] = write_profile(root, publication / name, side, selected, notices, version,
-                                          policy['fabricLoaderVersion'], resource, dependency_check, plugins, plugin_notices)
+                                          policy['fabricLoaderVersion'], resource, dependency_check, plugins, plugin_notices,
+                                          client_packs, resource_notices, resource_snapshot['builtInResourcePacks'])
         assets = []
         for kind, name, media in [('server', 'server.zip', 'application/zip'), ('client', 'client.mrpack', 'application/x-modrinth-modpack+zip'), ('resourcepack', 'resourcepack.zip', 'application/zip')]:
             digest, size = mods.file_digest(publication / name)
@@ -707,6 +739,8 @@ def release(root: Path, result_json: str, version: str, policy_path: str = 'inve
                   'policySha256': mods.file_digest(mods.safe_path(root, policy_path))[0], 'assets': assets,
                   'profiles': profiles, 'resourcePack': resource_info, 'files': [r for r, _, _ in selected],
                   'plugins': [r for r, _, _ in plugins]}
+        result['clientResourcePacks'] = [r for r, _, _ in client_packs]
+        result['resourcePackManifest'] = resource_snapshot
         result['dependencyCheck'] = dependency_check
         if published_snapshot:
             result['publishedManifest'] = published_snapshot
@@ -715,6 +749,7 @@ def release(root: Path, result_json: str, version: str, policy_path: str = 'inve
         # none of the three assets. Cooperating publishers share a short OS lock.
         with builder._file_lock(destination.parent / '.release-publication.lock', 'Waiting for another release publication'):
             check_published_manifest(root, published_snapshot)
+            check_published_manifest(root, resource_snapshot)
             if destination.exists():
                 raise mods.ModError(f'Release output exists; left unchanged: {destination}')
             os.rename(publication, destination)

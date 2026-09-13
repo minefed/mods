@@ -62,6 +62,16 @@ class ReleaseControlTests(unittest.TestCase):
         with self.assertRaisesRegex(mods.ModError, 'policy changed'):
             control.validate_assets(self.root, self.manifest, self.plan)
 
+    def test_resource_pack_lock_change_blocks_upload(self):
+        lock = self.root / 'inventory/resourcepacks.lock.json'
+        lock.write_text('{"clientPacks":[]}')
+        self.manifest['resourcePackManifest'] = {'path': 'inventory/resourcepacks.lock.json',
+                                                'sha256': mods.file_digest(lock)[0]}
+        self.assertEqual(3, len(control.validate_assets(self.root, self.manifest, self.plan)))
+        lock.write_text('{"clientPacks":[{"changed":true}]}')
+        with self.assertRaisesRegex(mods.ModError, 'Resource pack manifest changed'):
+            control.validate_assets(self.root, self.manifest, self.plan)
+
     def test_bundled_release_description_does_not_require_missing_downloads(self):
         self.manifest['archiveMode'] = 'bundled'
         self.manifest['profiles']['server']['pluginCount'] = 1

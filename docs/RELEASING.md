@@ -10,6 +10,29 @@
 | `client.mrpack` | Modrinth 형식을 지원하는 런처에서 가져오는 클라이언트팩 |
 | `resourcepack.zip` | ZIP 루트의 `pack.mcmeta`·`assets/`를 사용하는 게임용 리소스팩 |
 
+2026-09-13 클라이언트 시각 효과 구성을 추가했다. 현재 서버 모드는 67개,
+클라이언트 모드는 66개다. 클라이언트에는 Continuity `3.0.0+1.20.2` 공식 JAR와
+Yuushya Foliage Addon `1.3` 원본 ZIP이 내장된다. 두 파일의 원본 URL·해시·출처·고지를
+유지하며, 추가 리소스팩은 `inventory/resourcepacks.lock.json`의 `clientPacks`로 관리한다.
+서버팩 및 독립 `resourcepack.zip`의 게임 파일에는 클라이언트 추가물이 들어가지 않는다.
+
+새로 가져온 인스턴스의 `options.txt`에는 아래 리소스팩이 낮은 우선순위부터 활성화된다.
+
+1. `vanilla`, `fabric`
+2. `yuushya:mcpatcher_feature` — Yuushya 내장 연결 텍스처 정의
+3. `file/Yuushya Foliage Addon 1.3.zip`
+4. `file/minefed-<version>.zip`
+
+Foliage 1.3은 배포자가 1.20.4 지원을 명시했으나 원본 `pack_format`은 8이다.
+ZIP을 수정하지 않고 해당 파일만 `incompatibleResourcePacks`에도 등록하여 선택을 유지한다.
+기존 인스턴스를 갱신할 때는 개인 `options.txt`를 보존하고 게임 설정에서 같은 팩을 활성화한다.
+Yuushya의 다른 선택 팩 `fusion_combine`·`ctm_support`는 기본 선택하지 않는다.
+별도 Yuushya 16x 기본팩은 Foliage의 필수 의존성이 아니다.
+
+추가팩은 클라이언트의 `download-manifest.json`, `MINEFED-RELEASE.json`, `LICENSES.md`와
+`licenses/client-resourcepacks/`에도 기록된다. `install-mods.py`는 이 ZIP의 해시도 확인하며
+사용자가 수정한 기존 파일을 덮어쓰지 않는다. 패키징 후 리소스팩 잠금 파일이 바뀌면 게시 검증이 실패한다.
+
 모드별 포함 환경과 배포 기록은 `inventory/release-policy.json`에 기록한다.
 `archiveMode: bundled`는 선택한 실행 JAR를 모두 서버팩 `mods/` 및 클라이언트팩
 `overrides/mods/`에 직접 포함한다. 공식 바이너리는 기존 `built`/`baseline`/`published`

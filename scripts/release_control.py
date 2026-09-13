@@ -177,6 +177,11 @@ def validate_assets(root: Path, manifest: dict, plan: dict) -> list[tuple[dict, 
         if mods.file_digest(mods.safe_path(root, published_path))[0] != published_snapshot.get('sha256'):
             raise mods.ModError('Published artifact manifest changed after packaging')
     planned = {s['path']: s['commit'] for s in plan['sources']}
+    resource_snapshot = manifest.get('resourcePackManifest')
+    if resource_snapshot is not None:
+        if (not isinstance(resource_snapshot, dict) or resource_snapshot.get('path') != 'inventory/resourcepacks.lock.json'
+                or mods.file_digest(root / resource_snapshot['path'])[0] != resource_snapshot.get('sha256')):
+            raise mods.ModError('Resource pack manifest changed after packaging')
     for record in manifest.get('files', []):
         source = record.get('source')
         if source and record.get('artifact') == 'built' and planned.get(source['path']) != source['commit']:
