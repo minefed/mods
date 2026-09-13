@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "verifiedAt": "2026-09-13",
+  "name": "Yuushya Foliage Addon",
+  "version": "1.3",
+  "author": "Coco / coco_fish and the Yuushya creators",
+  "projectUrl": "https://www.curseforge.com/minecraft/texture-packs/yuushya-foliage-addon",
+  "releaseUrl": "https://www.curseforge.com/minecraft/texture-packs/yuushya-foliage-addon/files/5084380",
+  "projectId": 971385,
+  "fileId": 5084380,
+  "publishedAt": "2024-02-06",
+  "downloadUrl": "https://mediafilez.forgecdn.net/files/5084/380/Yuushya%20Foliage%20Addon%201.3.zip",
+  "fileName": "Yuushya Foliage Addon 1.3.zip",
+  "fileSize": 35229,
+  "hashes": {
+    "sha1": "fba9f4835fb08d24ff442ab4dc359066179fa202",
+    "sha256": "0a612f147a560acafe029307a4428193e8da39d1ef7414c7f96194ec1d3fbfac",
+    "sha512": "77a9b7e2eb6a9032b604746a05453c97e4760663253b3ee97ecbc264acbca27e942b296c91c65cc8aba9764c14a3bb6c7f0fd66ebe4ec6b1cf03d8a1befb0ff7"
+  },
+  "sourceUrl": null,
+  "sourceRef": null,
+  "sourceCommit": null,
+  "sourceNote": "Official binary resource-pack release; no source repository or source commit is advertised for this asset. Pin the immutable CurseForge file ID and downloaded archive hashes, not a Yuushya Townscape code commit.",
+  "minecraftVersion": "1.20.4",
+  "loader": "resourcepack (client only; loader-independent)",
+  "packFormat": 8,
+  "supportedFormats": null,
+  "compatibilityEvidence": "The author's file page explicitly lists Minecraft 1.20.4. The original archive declares pack_format 8, so preserve its bytes and record the selected pack in incompatibleResourcePacks rather than changing upstream metadata.",
+  "dependencyEvidence": "The author's project description explicitly says Yuushya Foliage Addon does not require Yuushya 16x. Its archive contains vanilla leaf models, blockstates and textures. No additional mod dependency is declared.",
+  "license": {
+    "artifactLicense": "CC-BY-NC-SA-4.0 with Yuushya author terms",
+    "projectBadge": "MIT",
+    "termsUrl": "https://yuushya.com/townscape/term-of-use-en.html",
+    "termsSnapshotSha256": "eb785299158b19a94836ea96cdb2aaf6bb94b4fb8d251aa46bc1776e8dbfab58",
+    "licenseUrl": "https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode.en",
+    "redistribution": "Permitted in modpacks with creator-page attribution, work title, noncommercial/share-alike asset conditions and the Yuushya component free of charge.",
+    "embeddedNotices": [],
+    "modifications": "None. Upstream ZIP bytes and metadata are preserved. Client resource-pack selection is configured outside the ZIP."
+  },
+  "evidenceUrls": [
+    "https://www.curseforge.com/minecraft/texture-packs/yuushya-foliage-addon",
+    "https://www.curseforge.com/minecraft/texture-packs/yuushya-foliage-addon/files/5084380",
+    "https://yuushya.com/townscape/download-en.html",
+    "https://yuushya.com/townscape/term-of-use-en.html"
+  ]
+}
