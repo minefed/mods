@@ -41,6 +41,48 @@ common/fabric clean 빌드와 상위 recipe의 `:fabric:verifyMixinRefmap` 실�
 기존 불량 JAR의 SHA-256:
 `cc681cbc0b7c136573d3faee333009c83cbe503e8db2869e5ac4d76556714ea1`.
 
+## 실제 클래스 변환 검증
+
+Java 17 / Fabric Loader 0.18.4 / Mixin 0.8.7 / MixinExtras 0.5.0의 실제
+Knot CLIENT에서 클라이언트 모드 65개(중첩 포함 로딩 164개)를 함께 검사했다.
+동일한 검사 실행기로 기존 JAR는 사용자 로그와 같은 예외로 실패했고,
+최종 JAR는 `class_310`, `class_1959` 변환과 아래 주입 3개를 모두 통과했다.
+
+- `hugeScreenshotLeak`: 스크린샷 버퍼 회수
+- `targetEntityLeak`: 클라이언트 대상 초기화
+- `biomeTemperatureLeak`: biome 온도 ThreadLocal 처리
+
+Fabric의 표준 Minecraft 바이트코드 패치도 적용한 환경이다. 게임 main과 모드
+entrypoint 초기화, 화면 생성, 로그인, 월드 로딩을 실행한 검증은 아니므로
+`runtimeValidated`는 `false`를 유지한다.
+
+기존 클래스 28개는 모두 바이트가 같다. 이름을 바꾼 common refmap의 매핑 내용도
+같고, common Mixin 설정 2개에 `refmap` 참조가 추가됐다. 독립 clean 빌드 JAR와
+상위 recipe 빌드 JAR의 해시 차이는 ZIP 시간 정보이며 각 항목의 내용은 같다.
+로컬 상세 결과는 `build/memoryleakfix-crash-20260913/knot-results.json`과
+`final-client-all-mods/smoke.log`에 보존한다.
+
+수정팩은 이전에 검증한 distribution에서 다른 66개 JAR를 그대로 승계하고
+MemoryLeakFix만 새로 컴파일한 JAR로 교체한다. 승계 JAR의 소스 상태와 recipe를
+대조하고 원래 컴파일 실행 ID·도구·기준 ZIP 해시를 `ASSEMBLY-PROVENANCE.json`과
+`BUILD-PROVENANCE.json`에 남긴다. 소스 receipt와 이전 distribution은 덮어쓰지 않는다.
+
+## 수정팩
+
+로컬 결과물은 `build/releases/20260913124905/`에 생성했다.
+
+| 파일 | SHA-256 |
+| --- | --- |
+| `client.mrpack` | `d07016f83f41a8ad9c1167d24d4a9e928b7589944492eadfe01649b567911ff3` |
+| `server.zip` | `f2b2910f3d64f4a37351302145d3023a084d954f20da3d97b0bf7fc7de55f737` |
+| `resourcepack.zip` | `25a4bbe70479eba94462540d92edd3a05482d9d94915581a6c886454bf68e83e` |
+
+서버 모드 67개, 클라이언트 모드 65개의 JAR 해시와 오프라인 설치 검사,
+두 팩에 포함된 수정 refmap을 확인한다. 이전 팩과 다른 모드 JAR는 MemoryLeakFix
+하나이며 플러그인과 리소스팩의 내용은 유지한다. Windows에서 보존된 고지 경로까지
+압축 해제하는 검사는 확장 길이 경로(`\\?\`)를 사용한다.
+공개 릴리즈 게시와 운영 서버 변경은 수행하지 않는다.
+
 ## 적용
 
 수정된 `client.mrpack`을 새 프로필로 가져오거나, 기존 프로필을 종료한 뒤
