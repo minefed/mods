@@ -51,11 +51,14 @@ def resolve_binary_dependencies(root: Path, manifest: dict, plan: dict) -> dict:
         raise mods.ModError("Dependency manifest cannot contain active source repositories")
     binary_ids = {r["modId"] for r in plan["entries"] if r["mode"] == "binary"}
     selected_ids = {e["modId"] for e in manifest["entries"] if e["included"]}
+    historical_ids = {e["modId"] for e in manifest["entries"]}
     replacements = {}
     for entry in dependencies["entries"]:
         identity = entry.get("modId")
-        if not isinstance(identity, str) or identity not in selected_ids or identity not in binary_ids:
-            raise mods.ModError(f"Dependency must replace an included binary recipe: {identity}")
+        if not isinstance(identity, str) or identity not in binary_ids:
+            raise mods.ModError(f"Dependency must match an included binary recipe: {identity}")
+        if identity in historical_ids and identity not in selected_ids:
+            raise mods.ModError(f"Dependency must not reactivate an excluded historical mod: {identity}")
         if identity in replacements:
             raise mods.ModError(f"Duplicate dependency modId: {identity}")
         if not entry["included"] or entry["management"] != "binary" or entry.get("source") is not None:
@@ -69,6 +72,8 @@ def resolve_binary_dependencies(root: Path, manifest: dict, plan: dict) -> dict:
     resolved["entries"] = [copy.deepcopy(replacements[e["modId"]])
                            if e["included"] and e["modId"] in replacements else e
                            for e in resolved["entries"]]
+    resolved["entries"].extend(copy.deepcopy(entry) for identity, entry in replacements.items()
+                              if identity not in selected_ids)
     # Each input manifest has already passed mods.load_manifest. Check collisions
     # introduced by merging them, including excluded historical inventory entries.
     names, paths = set(), set()
@@ -88,23 +93,29 @@ def load_plan(root: Path) -> tuple[dict, dict]:
     if plan.get("schemaVersion") != 1 or plan.get("minecraftVersion") != manifest["minecraftVersion"] or plan.get("loader") != "fabric":
         raise mods.ModError("Build recipes must match the inventory schema and Minecraft version")
     selected = {e["modId"]: e for e in manifest["entries"] if e["included"]}
+    historical_ids = {e["modId"] for e in manifest["entries"]}
     if len(selected) != sum(e["included"] for e in manifest["entries"]):
         raise mods.ModError("Duplicate included mod ID in baseline")
     recipes = plan.get("entries")
-    if not isinstance(recipes, list) or len(recipes) != len(selected):
+    if not isinstance(recipes, list):
         raise mods.ModError("Build recipes must cover every included inventory entry exactly once")
     ids = set()
     for recipe in recipes:
         identity = recipe.get("modId")
-        if not isinstance(identity, str) or not re.fullmatch(r"[a-z][a-z0-9_-]{1,63}", identity) or identity not in selected or identity in ids:
+        if not isinstance(identity, str) or not re.fullmatch(r"[a-z][a-z0-9_-]{1,63}", identity) or identity in ids:
             raise mods.ModError(f"Unknown or duplicate recipe: {identity}")
         ids.add(identity)
-        entry = selected[identity]
         if recipe.get("mode") not in ("source", "binary") or not recipe.get("reason"):
             raise mods.ModError(f"Recipe needs an explicit source/binary choice and reason: {identity}")
         if "dependency" in recipe and (type(recipe["dependency"]) is not bool or recipe["mode"] != "binary"):
             raise mods.ModError(f"Dependency flag must be a boolean on a binary recipe: {identity}")
+        if identity not in selected:
+            if identity in historical_ids:
+                raise mods.ModError(f"Recipe must not reactivate an excluded historical mod: {identity}")
+            if recipe.get("dependency") is not True:
+                raise mods.ModError(f"Unknown recipe must declare a reviewed binary dependency: {identity}")
         if recipe["mode"] == "source":
+            entry = selected[identity]
             if not entry.get("source") or recipe.get("sourcePath") != entry["source"]["path"]:
                 raise mods.ModError(f"Source recipe differs from the locked submodule: {identity}")
             if recipe.get("java") not in (8, 17, 21):
@@ -127,6 +138,8 @@ def load_plan(root: Path) -> tuple[dict, dict]:
             if not isinstance(recipe.get("env", {}), dict) or any(not isinstance(k, str) or not isinstance(v, str)
                                                                 for k, v in recipe.get("env", {}).items()):
                 raise mods.ModError(f"Invalid recipe environment: {identity}")
+    if not set(selected).issubset(ids):
+        raise mods.ModError("Build recipes must cover every included inventory entry exactly once")
     return resolve_binary_dependencies(root, manifest, plan), plan
 
 

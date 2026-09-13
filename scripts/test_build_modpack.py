@@ -21,13 +21,19 @@ import mods
 
 
 class RepositoryRecipeTests(unittest.TestCase):
-    def test_recipes_cover_all_67_active_mods_without_axiom(self):
-        manifest, plan = builder.load_plan(Path(__file__).resolve().parents[1])
+    def test_recipes_cover_captured_mods_and_reviewed_dependencies_without_axiom(self):
+        root = Path(__file__).resolve().parents[1]
+        baseline = mods.load_manifest(root)
+        manifest, plan = builder.load_plan(root)
+        captured = {entry["modId"] for entry in baseline["entries"] if entry["included"]}
+        dependencies = mods.load_manifest(root, plan["dependencyManifest"])
+        reviewed = {entry["modId"] for entry in dependencies["entries"]}
         expected = {entry["modId"] for entry in manifest["entries"] if entry["included"]}
         actual = [recipe["modId"] for recipe in plan["entries"]]
-        self.assertEqual(len(expected), 67)
+        self.assertEqual(len(captured), 67)
+        self.assertEqual(expected, captured | reviewed)
         self.assertNotIn("axiom", actual)
-        self.assertEqual(len(actual), 67)
+        self.assertEqual(len(actual), len(expected))
         self.assertEqual(set(actual), expected)
         self.assertEqual({recipe["mode"] for recipe in plan["entries"]}, {"source", "binary"})
 
@@ -418,6 +424,96 @@ class MixedBuildTests(unittest.TestCase):
         self.assertEqual(sum(e["included"] for e in manifest["entries"]), 2)
         self.assertEqual(next(e for e in manifest["entries"] if e["modId"] == "beta" and e["included"]),
                          dependencies["entries"][0])
+
+    def save_additional_dependency(self):
+        dependencies = self.save_dependency()
+        entry = self.baseline("gamma.jar", "gamma")
+        dependencies["entries"].append(entry)
+        self.plan["entries"].append({"modId": "gamma", "mode": "binary", "dependency": True,
+                                     "reason": "Reviewed new client dependency"})
+        self.save_inputs()
+        builder.write_json(self.root / self.plan["dependencyManifest"], dependencies)
+        return dependencies
+
+    def test_new_dependency_is_prepared_and_packaged_without_changing_captured_inventory(self):
+        dependencies = self.save_additional_dependency()
+        baseline_path = self.root / "inventory/mods.lock.json"
+        baseline_bytes = baseline_path.read_bytes()
+        with patch.object(mods, "hydrate", wraps=mods.hydrate) as hydrate:
+            self.prepare()
+        self.assertEqual(hydrate.call_args.args[1]["entries"], dependencies["entries"])
+        self.build()
+        artifact = builder.assemble(self.root, "test-run")
+        with zipfile.ZipFile(artifact) as archive:
+            new_entry = dependencies["entries"][-1]
+            self.assertEqual(archive.read("mods/gamma.jar"),
+                             (self.root / new_entry["artifact"]["path"]).read_bytes())
+            entries = json.loads(archive.read("inventory/mods.lock.json"))["entries"]
+            self.assertEqual({entry["modId"] for entry in entries}, {"alpha", "beta", "gamma"})
+            self.assertEqual(next(entry for entry in entries if entry["modId"] == "gamma"), new_entry)
+            provenance = json.loads(archive.read("BUILD-PROVENANCE.json"))
+            self.assertEqual(next(item for item in provenance if item["modId"] == "gamma")["sha256"],
+                             new_entry["sha256"])
+        self.assertEqual(baseline_path.read_bytes(), baseline_bytes)
+
+    def test_new_dependency_requires_recipe_and_exact_manifest_coverage(self):
+        dependencies = self.save_additional_dependency()
+        self.plan["entries"].pop()
+        self.save_inputs()
+        with self.assertRaisesRegex(mods.ModError, "Dependency must match.*gamma"):
+            builder.load_plan(self.root)
+        self.plan["entries"].append({"modId": "gamma", "mode": "binary", "dependency": True,
+                                     "reason": "Reviewed new client dependency"})
+        self.save_inputs()
+        dependencies["entries"].pop()
+        builder.write_json(self.root / self.plan["dependencyManifest"], dependencies)
+        with self.assertRaisesRegex(mods.ModError, "missing: gamma"):
+            builder.load_plan(self.root)
+
+    def test_new_dependency_cannot_substitute_for_missing_captured_recipe(self):
+        self.save_additional_dependency()
+        self.plan["entries"].remove(self.recipe)
+        self.save_inputs()
+        with self.assertRaisesRegex(mods.ModError, "cover every included inventory entry"):
+            builder.load_plan(self.root)
+
+    def test_unknown_recipe_must_be_an_explicit_binary_dependency(self):
+        self.save_additional_dependency()
+        recipe = self.plan["entries"][-1]
+        for changes in ({"dependency": False}, {"dependency": "true"}, {"mode": "source", "dependency": True}):
+            with self.subTest(changes=changes):
+                recipe.update(mode="binary", dependency=True)
+                recipe.update(changes)
+                self.save_inputs()
+                with self.assertRaises(mods.ModError):
+                    builder.load_plan(self.root)
+        recipe.update(mode="binary")
+        del recipe["dependency"]
+        self.save_inputs()
+        with self.assertRaisesRegex(mods.ModError, "declare a reviewed binary dependency"):
+            builder.load_plan(self.root)
+
+    def test_new_dependency_cannot_reactivate_an_excluded_historical_identity(self):
+        self.save_additional_dependency()
+        excluded = self.baseline("gamma-legacy.jar", "gamma")
+        excluded.update(included=False, exclusionReason="Excluded historical dependency")
+        self.manifest["entries"].append(excluded)
+        self.save_inputs()
+        with self.assertRaisesRegex(mods.ModError, "excluded historical mod: gamma"):
+            builder.load_plan(self.root)
+
+    def test_new_dependency_rejects_artifact_collision_with_excluded_history(self):
+        dependencies = self.save_additional_dependency()
+        excluded = self.baseline("historical.jar", "historical")
+        excluded.update(included=False, exclusionReason="Excluded historical dependency")
+        self.manifest["entries"].append(excluded)
+        self.save_inputs()
+        entry = dependencies["entries"][-1]
+        entry["fileName"] = "historical.jar"
+        entry["artifact"]["path"] = "vendor/local/historical.jar"
+        builder.write_json(self.root / self.plan["dependencyManifest"], dependencies)
+        with self.assertRaisesRegex(mods.ModError, "collides with inventory"):
+            builder.load_plan(self.root)
 
     def test_dependency_manifest_rejects_wrong_schema_target_and_loader(self):
         for key, value in (("schemaVersion", 2), ("minecraftVersion", "1.21"), ("loader", "forge")):
