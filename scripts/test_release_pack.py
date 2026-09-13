@@ -416,6 +416,9 @@ class ReleaseTests(unittest.TestCase):
             resource_path = 'overrides/resourcepacks/' + entry['fileName']
             self.assertEqual((self.root / entry['artifact']['path']).read_bytes(), archive.read(resource_path))
             options = dict(line.split(':', 1) for line in archive.read('overrides/options.txt').decode().splitlines())
+            # The launcher may merge current key names into these defaults.
+            # Mark them as 1.20.4 so Minecraft does not run numeric-key migrations.
+            self.assertEqual('3700', options['version'])
             self.assertEqual(['vanilla', 'fabric', 'file/' + entry['fileName'], 'file/minefed-20260907123456.zip'],
                              json.loads(options['resourcePacks']))
             self.assertEqual(['file/' + entry['fileName']], json.loads(options['incompatibleResourcePacks']))

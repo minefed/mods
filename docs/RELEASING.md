@@ -17,6 +17,9 @@ Yuushya Foliage Addon `1.3` 원본 ZIP이 내장된다. 두 파일의 원본 URL
 서버팩 및 독립 `resourcepack.zip`의 게임 파일에는 클라이언트 추가물이 들어가지 않는다.
 
 새로 가져온 인스턴스의 `options.txt`에는 아래 리소스팩이 낮은 우선순위부터 활성화된다.
+옵션 파일에는 Minecraft 1.20.4 데이터 버전인 `version:3700`을 함께 기록한다.
+이 값이 없으면 런처가 병합한 `key.mouse.middle` 같은 현재 키 이름을 구버전 숫자
+키 코드로 변환하려다 옵션 전체 로딩이 실패하고 리소스팩 선택이 초기화될 수 있다.
 
 1. `vanilla`, `fabric`
 2. `yuushya:mcpatcher_feature` — Yuushya 내장 연결 텍스처 정의

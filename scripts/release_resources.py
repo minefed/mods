@@ -12,6 +12,11 @@ import build_modpack as builder
 import mods
 
 
+# Minecraft 1.20.4's data version, not the resource-pack format or release tag.
+# Without it, GameOptions runs legacy numeric-key migrations on modern key names.
+OPTIONS_DATA_VERSION = 3700
+
+
 def prepare(root: Path, lock_path: str, work: Path, selected) -> tuple[list, dict, dict]:
     lock_file = mods.safe_path(root, lock_path)
     snapshot = {'path': lock_path, 'sha256': mods.file_digest(lock_file)[0]}
@@ -135,5 +140,6 @@ def options(records: list[dict], version: str, builtin: list[str]) -> str:
     packs = ['vanilla', 'fabric', *builtin, *['file/' + r['fileName'] for r in enabled],
              f'file/minefed-{version}.zip']
     incompatible = ['file/' + r['fileName'] for r in enabled if r.get('allowIncompatibleFormat')]
-    return ('resourcePacks:' + json.dumps(packs, ensure_ascii=False, separators=(',', ':')) + '\n'
+    return (f'version:{OPTIONS_DATA_VERSION}\n'
+            + 'resourcePacks:' + json.dumps(packs, ensure_ascii=False, separators=(',', ':')) + '\n'
             + 'incompatibleResourcePacks:' + json.dumps(incompatible, ensure_ascii=False, separators=(',', ':')) + '\n')
