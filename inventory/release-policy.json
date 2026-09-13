@@ -572,8 +572,8 @@
         "https://api.modrinth.com/v2/project/NRjRiSSD",
         "https://github.com/FxMorin/MemoryLeakFix",
         "https://github.com/FxMorin/MemoryLeakFix/blob/v1.1.5/LICENSE",
-        "https://github.com/minefed/MemoryLeakFix/commit/16ce1bffcd6a17231dc29fc178dbeca3b5ee5f2c",
-        "https://github.com/minefed/MemoryLeakFix/archive/16ce1bffcd6a17231dc29fc178dbeca3b5ee5f2c.tar.gz"
+        "https://github.com/minefed/MemoryLeakFix/commit/f01909746ee3ad595a3ed91e4abb4779a06a47c2",
+        "https://github.com/minefed/MemoryLeakFix/archive/f01909746ee3ad595a3ed91e4abb4779a06a47c2.tar.gz"
       ],
       "client": true,
       "server": true

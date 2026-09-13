@@ -457,11 +457,11 @@
     {
       "modId": "memoryleakfix",
       "mode": "source",
-      "reason": "Minecraft 1.20.4 Fabric 모듈을 shadow 후 remap한다. Gradle 7.4 실행은 JDK 17, 소스 bytecode release는 8이다. build16 옵션은 설정하지 않는다.",
+      "reason": "Minecraft 1.20.4 Fabric 모듈을 shadow 후 remap하고 최종 JAR의 common Mixin refmap 연결과 intermediary 매핑을 검증한다. Gradle 7.4 실행은 JDK 17, 소스 bytecode release는 8이다. build16 옵션은 설정하지 않는다.",
       "sourcePath": "MemoryLeakFix",
       "java": 17,
       "tasks": [
-        ":fabric:remapJar"
+        ":fabric:verifyMixinRefmap"
       ],
       "args": [
         "--configure-on-demand",

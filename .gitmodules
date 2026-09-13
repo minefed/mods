@@ -101,7 +101,7 @@
 [submodule "MemoryLeakFix"]
 	path = MemoryLeakFix
 	url = https://github.com/minefed/MemoryLeakFix
-	branch = minefed-1.20.4
+	branch = codex/fix-common-mixin-refmap
 [submodule "modern-glass-doors"]
 	path = modern-glass-doors
 	url = https://github.com/minefed/modern-glass-doors
