@@ -4486,6 +4486,60 @@
         "https://github.com/XiLaiTL/Yuushya-Townscape/blob/master/Terms_yuushya_user.md",
         "https://yuushya.com/townscape/"
       ]
+    },
+    {
+      "fileName": "minefed-client-compat-1.0.0.jar",
+      "sha256": "5ddcb4933ac9d766fb4a8c311dd7d43a04c55d72802f6e0f9bec0dcb97dc27e9",
+      "size": 3174,
+      "modId": "minefed-client-compat",
+      "version": "1.0.0",
+      "environment": "client",
+      "management": "submodule",
+      "source": {
+        "path": "minefed-client-compat",
+        "url": "https://github.com/minefed/minefed-client-compat",
+        "upstream": "https://github.com/minefed/minefed-client-compat",
+        "ref": "codex/pts-recipe-sync",
+        "commit": "e27ee63ddc883343e554d32f511fe3bebcc565dd",
+        "trackingBranch": "codex/pts-recipe-sync",
+        "baselineRef": "codex/pts-recipe-sync",
+        "baselineCommit": "e27ee63ddc883343e554d32f511fe3bebcc565dd"
+      },
+      "artifact": {
+        "path": "artifacts/local/minefed-client-compat-1.0.0.jar",
+        "redistribution": "allowed",
+        "url": null,
+        "sha512": "cb65ec0616f00759fd5e1f2619e338c07c0f3eb739c615dcb148d851e4d397644d8f4fc7a821b84e172ce5fd1140fa77d0a44c755a75dd57ecd30f794cd66c0e",
+        "publishedHashMatch": false,
+        "verificationAlgorithm": null,
+        "publishedRelease": null
+      },
+      "included": true,
+      "exclusionReason": null,
+      "capturedServerBaseline": false,
+      "license": "MIT",
+      "licenseUrl": "https://github.com/minefed/minefed-client-compat/blob/e27ee63ddc883343e554d32f511fe3bebcc565dd/LICENSE",
+      "licenseNoticesPath": "inventory/notices/minefed-client-compat-5ddcb4933ac9",
+      "notes": [
+        "Added 2026-09-18; not an observed server-baseline JAR. Build from the pinned source for release.",
+        "Client-only fix for PTS-Deco 4.0.0 recipe reader consuming an absent boolean. The official PTS JAR and server remain unchanged.",
+        "Requires exactly Minecraft 1.20.4 and PTS-Deco 4.0.0; re-review before upgrading either."
+      ],
+      "compatibility": {
+        "minecraft": "=1.20.4",
+        "fabricLoader": ">=0.18.0",
+        "java": ">=17",
+        "dependencies": {
+          "fabricloader": ">=0.18.0",
+          "minecraft": "=1.20.4",
+          "java": ">=17",
+          "ptsdeco": "=4.0.0"
+        }
+      },
+      "evidenceUrls": [
+        "https://github.com/minefed/minefed-client-compat/commit/e27ee63ddc883343e554d32f511fe3bebcc565dd",
+        "https://modrinth.com/version/etl5lvBR"
+      ]
     }
   ],
   "sourcePolicy": {

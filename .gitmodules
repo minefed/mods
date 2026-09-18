@@ -202,3 +202,7 @@
 	path = resourcepack
 	url = https://github.com/minefed/resourcepack
 	branch = main
+[submodule "minefed-client-compat"]
+	path = minefed-client-compat
+	url = https://github.com/minefed/minefed-client-compat
+	branch = codex/pts-recipe-sync

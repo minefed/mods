@@ -13,7 +13,9 @@
         "https://github.com/TCPShield/RealIP/blob/2.8.1/LICENSE",
         "https://github.com/TCPShield/RealIP/blob/2.8.1/README.md"
       ],
-      "noticePaths": ["RealIP/LICENSE"]
+      "noticePaths": [
+        "RealIP/LICENSE"
+      ]
     }
   ],
   "entries": [
@@ -1114,6 +1116,18 @@
       "client": true,
       "server": false,
       "downloadUrl": "https://cdn.modrinth.com/data/Orvt0mRa/versions/VlLxDisa/indium-1.0.31%2Bmc1.20.4.jar"
+    },
+    {
+      "modId": "minefed-client-compat",
+      "distribution": "embed",
+      "artifact": "built",
+      "reason": "MIT independent compatibility code, with corresponding pinned source and original license. The ARR PTS-Deco JAR is not modified.",
+      "evidenceUrls": [
+        "https://github.com/minefed/minefed-client-compat/blob/e27ee63ddc883343e554d32f511fe3bebcc565dd/LICENSE",
+        "https://github.com/minefed/minefed-client-compat/commit/e27ee63ddc883343e554d32f511fe3bebcc565dd"
+      ],
+      "client": true,
+      "server": false
     }
   ],
   "publishedManifest": "inventory/published-artifacts.lock.json"

@@ -994,6 +994,26 @@
       "mode": "binary",
       "reason": "Add the official client-only Sodium/Indium rendering combination for Minecraft 1.20.4, including Continuity Fabric Rendering API compatibility.",
       "dependency": true
+    },
+    {
+      "modId": "minefed-client-compat",
+      "mode": "source",
+      "reason": "Independently authored client-only PTS-Deco 4.0.0 recipe-sync fix; verify the actual Mixin against the pinned unmodified PTS JAR.",
+      "sourcePath": "minefed-client-compat",
+      "java": 17,
+      "tasks": [
+        "build",
+        "verifyPtsCompatibility"
+      ],
+      "args": [
+        "-PptsJar=../artifacts/local/PTS-Deco-4.0.0-Fabric1.20.4.jar"
+      ],
+      "artifactGlobs": [
+        "build/libs/minefed-client-compat-1.0.0.jar"
+      ],
+      "expectedVersion": "1.0.0",
+      "sourceWorkDir": ".",
+      "env": {}
     }
   ],
   "dependencyManifest": "inventory/dependencies.lock.json"

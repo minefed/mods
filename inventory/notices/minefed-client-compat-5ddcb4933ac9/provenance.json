@@ -1,0 +1,19 @@
+{
+  "modId": "minefed-client-compat",
+  "version": "1.0.0",
+  "sha256": "5ddcb4933ac9d766fb4a8c311dd7d43a04c55d72802f6e0f9bec0dcb97dc27e9",
+  "size": 3174,
+  "source": {
+    "path": "minefed-client-compat",
+    "url": "https://github.com/minefed/minefed-client-compat",
+    "upstream": "https://github.com/minefed/minefed-client-compat",
+    "ref": "codex/pts-recipe-sync",
+    "commit": "e27ee63ddc883343e554d32f511fe3bebcc565dd",
+    "trackingBranch": "codex/pts-recipe-sync",
+    "baselineRef": "codex/pts-recipe-sync",
+    "baselineCommit": "e27ee63ddc883343e554d32f511fe3bebcc565dd"
+  },
+  "license": "MIT",
+  "licenseSha256": "c69748264df729daf1c5ebcf5fe5b7872ac997780fc81d0337d0f59ed6caa99b",
+  "note": "New independently authored client compatibility code. Contains no PTS-Deco classes/assets. Not part of the 2026-09-06 captured server baseline."
+}

@@ -11,7 +11,7 @@
 | `resourcepack.zip` | ZIP 루트의 `pack.mcmeta`·`assets/`를 사용하는 게임용 리소스팩 |
 
 2026-09-13 클라이언트 시각 효과와 브라우저 구성을 추가했다. 현재 서버 모드는 67개,
-클라이언트 모드는 Sodium·Indium을 추가한 현재 69개다. 클라이언트에는 Continuity `3.0.0+1.20.2`, MCEF `2.1.6-1.20.4` 공식 JAR와
+클라이언트 모드는 Sodium·Indium·레시피 호환 모드를 추가한 현재 70개다. 클라이언트에는 Continuity `3.0.0+1.20.2`, MCEF `2.1.6-1.20.4` 공식 JAR와
 Yuushya Foliage Addon `1.3` 원본 ZIP이 내장된다. 각 파일의 원본 URL·해시·출처·고지를
 유지하며, 추가 리소스팩은 `inventory/resourcepacks.lock.json`의 `clientPacks`로 관리한다.
 서버팩 및 독립 `resourcepack.zip`의 게임 파일에는 클라이언트 추가물이 들어가지 않는다.
@@ -82,6 +82,10 @@ PFM/Puzzles Lib는 소스 빌드를 유지하면서 `artifact: published`로 공
 리소스팩은 `inventory/resourcepacks.lock.json`의 `resource_pack/` 게임용 파일만 공개한다.
 비공개 `minefed/resourcepack` 저장소와 `design/`의 제작 자료는 공개하지 않는다.
 
+2026-09-18 클라이언트 전용 `minefed-client-compat`를 추가했다. PTS Deco 4.0.0의
+레시피 패킷 읽기 오류를 수정하며 서버팩의 모드는 변경하지 않는다.
+[원인·원격 소스·검증 기록](RECIPE_SYNC_FIX_2026-09-18.md)을 참고한다.
+
 ## 실행 조건과 변경 감지
 
 - 이 통합 저장소의 `main` push는 실행을 요청한다.
@@ -139,7 +143,7 @@ python scripts/release_control.py bootstrap --plan build/release-plan.json
 JDK 17·21과 Node.js 22를 준비한 후 CI는 `./gradlew check assemble -PsourceBuildWorkers=2`를 실행한다.
 `build`와 같은 검사·조립 태스크를 실행하되 도구 회귀 검사와 저장소 정책 검사를 먼저 끝낸다.
 Linux에서만 실행하는 프로세스 취소 검사도 긴 소스 컴파일 전에 통과해야 한다.
-루트 Gradle은 JDK 17을 사용하고, 모드 46개는 각자의 wrapper로 최대 두 개씩 빌드한다. 두 작업자는
+루트 Gradle은 JDK 17을 사용하고, 모드 47개는 각자의 wrapper로 최대 두 개씩 빌드한다. 두 작업자는
 서로 다른 `GRADLE_USER_HOME`을 사용해 Loom의 Minecraft 캐시 충돌을 막으며, 각 작업자 안에서는
 모드를 직렬 빌드한다. 준비·최종 무결성 검사·패키징은 기존 단일 실행 경로를 사용한다.
 

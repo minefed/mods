@@ -1522,6 +1522,25 @@
       "deployedSourceUrl": null,
       "deployedSourceRef": null,
       "deployedSourceCommit": null
+    },
+    {
+      "modId": "minefed-client-compat",
+      "fileName": "minefed-client-compat-1.0.0.jar",
+      "sha256": "5ddcb4933ac9d766fb4a8c311dd7d43a04c55d72802f6e0f9bec0dcb97dc27e9",
+      "reviewedAt": "2026-09-18",
+      "deployedMetadataLicense": null,
+      "embeddedLicenseFiles": [
+        "LICENSE"
+      ],
+      "license": "MIT",
+      "licenseUrl": "https://github.com/minefed/minefed-client-compat/blob/e27ee63ddc883343e554d32f511fe3bebcc565dd/LICENSE",
+      "redistributionFinding": "Independent MIT source and binary may be redistributed with the copyright and license notice.",
+      "notes": "New client add-on, not a captured operational JAR. No PTS-Deco source/assets are included or relicensed.",
+      "sourceRef": "codex/pts-recipe-sync",
+      "sourceCommit": "e27ee63ddc883343e554d32f511fe3bebcc565dd",
+      "evidenceUrls": [
+        "https://github.com/minefed/minefed-client-compat/commit/e27ee63ddc883343e554d32f511fe3bebcc565dd"
+      ]
     }
   ]
 }

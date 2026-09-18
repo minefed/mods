@@ -15,6 +15,10 @@ Minefed 서버의 모드 소스와 운영 JAR를 한 곳에서 관리한다. Min
 
 로컬 전용 JAR는 Git에 포함하지 않는다. 각 JAR의 파일명, SHA-256, 크기, 공식 다운로드 URL, 소스 커밋과 라이선스 조건은 lock 파일에 고정한다. 모드팩 포함 허용은 독립 JAR 미러링 허용과 다를 수 있다.
 
+2026-09-18 [PTS Deco 레시피 접속 오류 수정](docs/RECIPE_SYNC_FIX_2026-09-18.md)을 위해
+독립 클라이언트 모드 `minefed-client-compat` 소스 저장소를 추가했다.
+관측한 운영 기준본 70개와 새 클라이언트 전용 소스 항목을 구분한다.
+
 ## 시작하기
 
 Git과 Python 3.10 이상이 필요하다. 서브모듈은 `.gitmodules`에 기록한 minefed fork와 정확한 gitlink 커밋으로 초기화한다.
@@ -39,7 +43,7 @@ Gradle 직접 실행은 `gradlew.bat build` 또는 `./gradlew build`다. JDK 17�
 MTR 웹 UI용 Node.js 22/npm이 필요하다. 이 작업 공간의 도구 경로는 Git에서 제외한
 `build.local.json`에 설정되어 있다.
 
-`inventory/build-recipes.json`은 소스 빌드 46개와 JAR 사용 25개를 구분한다. 기반 라이브러리
+`inventory/build-recipes.json`은 소스 빌드 47개와 JAR 사용 25개를 구분한다. 기반 라이브러리
 7개와 공식 후속 바이너리 8개, 클라이언트 전용 Continuity·MCEF·Sodium·Indium은 `dependencies.lock.json`의 총 19개 pin을 사용한다. 기존 소스 중
 CityCraft와 Macaw Doors/Fences는 공개된 Fabric 1.20.4용 공식 JAR를 사용한다. PFM과 Puzzles Lib의
 소스 빌드는 유지하고 공개팩에는 `published-artifacts.lock.json`의 공식 배포본 2개를 선택한다.
@@ -68,7 +72,7 @@ GitHub Actions는 `mods/main` 변경과 하위 배포 대상 브랜치의 변경
 [GitHub Releases](https://github.com/minefed/mods/releases)에 공개한다. 하위 브랜치는
 15분 간격으로 확인하며, 동일 입력의 중복 릴리즈는 건너뛴다.
 서버팩 `mods/`에는 전체 모드 JAR 67개, 클라이언트팩 `overrides/mods/`에는 서버 전용
-2개를 제외하고 Continuity·MCEF·Sodium·Indium을 추가한 69개가 직접 포함된다. 공식 JAR도 버전·해시·원본 URL을 유지한 채 내장하며,
+2개를 제외하고 Continuity·MCEF·Sodium·Indium을 추가하고 레시피 호환 모드를 포함한 70개가 직접 포함된다. 공식 JAR도 버전·해시·원본 URL을 유지한 채 내장하며,
 Modern Lights는 소스 전용 공식 업로드 대신 검증된 2.5.0 실행 JAR를 양쪽에 포함한다.
 정상적으로 압축 해제하거나 MRPACK을 가져오면 추가 모드 다운로드·수동 복원이 필요 없다.
 MCEF의 Chromium 네이티브 런타임은 첫 클라이언트 실행에서 공식 서버로부터 별도로 준비된다([MCEF 구성](docs/MCEF.md)).

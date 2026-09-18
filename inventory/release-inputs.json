@@ -325,6 +325,13 @@
       "releaseGlobs": [
         "1.20.4/fabric/build/libs/yuushya-modelling-*.jar"
       ]
+    },
+    {
+      "modId": "minefed-client-compat",
+      "sourcePath": "minefed-client-compat",
+      "releaseGlobs": [
+        "build/libs/minefed-client-compat-*.jar"
+      ]
     }
   ],
   "sources": [
@@ -883,6 +890,16 @@
       "licenseFiles": {
         "LICENSE": "e3a994d82e644b03a792a930f574002658412f62407f5fee083f2555c5f23118",
         "README.md": "0fc9b3d2b97c9af3562f42b444a3d886ed2c1b4d9ee610ebafd5d2e7f3751270"
+      },
+      "nestedGitlinks": {}
+    },
+    {
+      "path": "minefed-client-compat",
+      "kind": "mod",
+      "reviewedCommit": "e27ee63ddc883343e554d32f511fe3bebcc565dd",
+      "licenseFiles": {
+        "LICENSE": "c69748264df729daf1c5ebcf5fe5b7872ac997780fc81d0337d0f59ed6caa99b",
+        "README.md": "4c93564167ae57800ac1d105e42e4c840c3a67906287259705367367033c438c"
       },
       "nestedGitlinks": {}
     }
