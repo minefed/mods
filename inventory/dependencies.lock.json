@@ -1317,6 +1317,188 @@
         ]
       },
       "embeddedNotices": []
+    },
+    {
+      "fileName": "sodium-fabric-0.5.8+mc1.20.4.jar",
+      "sha256": "3c363ec0122157f65e55a8edf6545a60955091387cd0e94b3ecdcd64a93284f7",
+      "size": 949085,
+      "modId": "sodium",
+      "version": "0.5.8+mc1.20.4",
+      "environment": "client",
+      "management": "binary",
+      "artifact": {
+        "path": "artifacts/local/sodium-fabric-0.5.8+mc1.20.4.jar",
+        "redistribution": "allowed",
+        "url": "https://cdn.modrinth.com/data/AANobbMI/versions/4GyXKCLd/sodium-fabric-0.5.8%2Bmc1.20.4.jar",
+        "sha512": "bd00b956bde1205171e744a6a3780e835fb6928eb667fb2b56467818c979fb1e8c82561380a71a7dbfa1516cd4b6cf9087ca99f1ae066da6d65af2c828b8d554",
+        "publishedHashMatch": true,
+        "verificationAlgorithm": "sha512",
+        "publishedRelease": {
+          "provider": "modrinth",
+          "versionId": "4GyXKCLd",
+          "projectId": "AANobbMI",
+          "versionUrl": "https://modrinth.com/version/4GyXKCLd",
+          "gameVersions": [
+            "1.20.3",
+            "1.20.4"
+          ],
+          "loaders": [
+            "fabric",
+            "quilt"
+          ],
+          "officialFileName": "sodium-fabric-0.5.8+mc1.20.4.jar"
+        }
+      },
+      "included": true,
+      "exclusionReason": null,
+      "license": "LGPL-3.0-only",
+      "licenseUrl": "https://github.com/CaffeineMC/sodium/blob/82f4af61fd4ea4c4c5c8e02897202f627d4e68cb/COPYING.LESSER",
+      "licenseNoticesPath": "inventory/notices/sodium-3c363ec01221",
+      "authors": [
+        "@jellysquid3"
+      ],
+      "notes": [
+        "Official client-only Minecraft 1.20.4 / Fabric runtime; added independently of the captured server baseline.",
+        "Sodium 0.5.8 requires Indium for Fabric Rendering API users including the existing Continuity connected-texture mod; retain both client dependencies.",
+        "Unmodified official binary; preserve embedded third-party notices, upstream license texts, authors and immutable corresponding-source archive reference.",
+        "The current Modrinth project license describes newer Sodium versions. This exact 0.5.8 release declares LGPL-3.0-only in fabric.mod.json and its pinned source contains COPYING and COPYING.LESSER; do not substitute the current Polyform license."
+      ],
+      "compatibility": {
+        "minecraft": [
+          "1.20.3",
+          "1.20.4"
+        ],
+        "fabricLoader": ">=0.12.0",
+        "java": null,
+        "dependencies": {
+          "fabricloader": ">=0.12.0",
+          "fabric-rendering-data-attachment-v1": ">=0.1",
+          "fabric-rendering-fluids-v1": ">=0.1"
+        },
+        "breaks": {
+          "optifabric": "*",
+          "canvas": "*",
+          "sodium-blendingregistry": "*",
+          "ocrenderfix_sodium": "*",
+          "betterfpsdist": "<1.20.1-3.8",
+          "bobby": "<5.0.1",
+          "cauldron_dyeing": "<1.0.11",
+          "cullleaves": "<=3.1.0",
+          "custom_hud": "<=3.1.0+1.20",
+          "dashloader": "<5.0.0-beta.2",
+          "farsight": "<1.20.1-4.0",
+          "fluidvoidfading": "<1.1.2",
+          "iceberg": "<1.1.14",
+          "iris": "<=1.6.14",
+          "immersive_portals": "<=5.1.3",
+          "indium": "<=1.0.28",
+          "notenoughcrashes": "<4.4.6",
+          "noxesium": "<1.0.2",
+          "rayon": "<=1.7.2+1.20.1",
+          "reeses-sodium-options": "<1.7.1",
+          "sodium-extra": "<0.5.4",
+          "sspb": "<3.2.0",
+          "supplementaries": "<=1.20-2.7.32"
+        }
+      },
+      "evidenceUrls": [
+        "https://api.modrinth.com/v2/project/AANobbMI",
+        "https://api.modrinth.com/v2/version/4GyXKCLd",
+        "https://github.com/CaffeineMC/sodium/blob/82f4af61fd4ea4c4c5c8e02897202f627d4e68cb/COPYING.LESSER",
+        "https://github.com/CaffeineMC/sodium/commit/82f4af61fd4ea4c4c5c8e02897202f627d4e68cb",
+        "https://github.com/comp500/Indium/blob/56c79304a50cd894b06f28bf51f80bbfbdd097cd/README.md"
+      ],
+      "sourceReference": {
+        "url": "https://github.com/CaffeineMC/sodium",
+        "ref": "mc1.20.4-0.5.8",
+        "commit": "82f4af61fd4ea4c4c5c8e02897202f627d4e68cb",
+        "trackingBranch": null,
+        "trackingBranchStatus": "Upstream no longer publishes a Minecraft 1.20.4 branch; track compatible official releases and preserve the immutable release tag/commit."
+      },
+      "licenseReview": {
+        "reviewedAt": "2026-09-18",
+        "sourceLicense": "LGPL-3.0-only",
+        "binaryLicense": "LGPL-3.0-only"
+      }
+    },
+    {
+      "fileName": "indium-1.0.31+mc1.20.4.jar",
+      "sha256": "a6acf309f91886db6c66c1a8fce7937745053926fa114fe12cb3fdf174dfb57d",
+      "size": 105350,
+      "modId": "indium",
+      "version": "1.0.31+mc1.20.4",
+      "environment": "client",
+      "management": "binary",
+      "artifact": {
+        "path": "artifacts/local/indium-1.0.31+mc1.20.4.jar",
+        "redistribution": "allowed",
+        "url": "https://cdn.modrinth.com/data/Orvt0mRa/versions/VlLxDisa/indium-1.0.31%2Bmc1.20.4.jar",
+        "sha512": "27b4a73ca990742e27eee4348553c86c96c19fddcd0763892029f67ddbde42dc03c0ac21230403ae6b4ce4da315d0d49f582d3daab413b9ea84fd6d172ee7c4f",
+        "publishedHashMatch": true,
+        "verificationAlgorithm": "sha512",
+        "publishedRelease": {
+          "provider": "modrinth",
+          "versionId": "VlLxDisa",
+          "projectId": "Orvt0mRa",
+          "versionUrl": "https://modrinth.com/version/VlLxDisa",
+          "gameVersions": [
+            "1.20.1",
+            "1.20.3",
+            "1.20.4",
+            "1.20.5",
+            "1.20.6"
+          ],
+          "loaders": [
+            "fabric",
+            "quilt"
+          ],
+          "officialFileName": "indium-1.0.31+mc1.20.4.jar"
+        }
+      },
+      "included": true,
+      "exclusionReason": null,
+      "license": "Apache-2.0",
+      "licenseUrl": "https://github.com/comp500/Indium/blob/56c79304a50cd894b06f28bf51f80bbfbdd097cd/LICENSE",
+      "licenseNoticesPath": "inventory/notices/indium-a6acf309f918",
+      "authors": [
+        "comp500"
+      ],
+      "notes": [
+        "Official client-only Minecraft 1.20.4 / Fabric runtime; added independently of the captured server baseline.",
+        "Sodium 0.5.8 requires Indium for Fabric Rendering API users including the existing Continuity connected-texture mod; retain both client dependencies.",
+        "Unmodified official binary; preserve embedded third-party notices, upstream license texts, authors and immutable corresponding-source archive reference.",
+        "The JAR requires Sodium 0.5.8 and declares Minecraft ~1.20.1; Fabric semantic predicates include 1.20.4, also explicitly listed by the official release."
+      ],
+      "compatibility": {
+        "minecraft": "~1.20.1",
+        "fabricLoader": ">=0.8.0",
+        "java": null,
+        "dependencies": {
+          "fabricloader": ">=0.8.0",
+          "minecraft": "~1.20.1",
+          "sodium": "0.5.8",
+          "fabric-renderer-api-v1": ">=3.2.0",
+          "fabric-resource-loader-v0": ">=0.4.0"
+        }
+      },
+      "evidenceUrls": [
+        "https://api.modrinth.com/v2/project/Orvt0mRa",
+        "https://api.modrinth.com/v2/version/VlLxDisa",
+        "https://github.com/comp500/Indium/blob/56c79304a50cd894b06f28bf51f80bbfbdd097cd/LICENSE",
+        "https://github.com/comp500/Indium/commit/56c79304a50cd894b06f28bf51f80bbfbdd097cd",
+        "https://github.com/comp500/Indium/blob/56c79304a50cd894b06f28bf51f80bbfbdd097cd/README.md"
+      ],
+      "sourceReference": {
+        "url": "https://github.com/comp500/Indium",
+        "ref": "1.0.31+mc1.20.4",
+        "commit": "56c79304a50cd894b06f28bf51f80bbfbdd097cd",
+        "trackingBranch": "1.20.x/stable"
+      },
+      "licenseReview": {
+        "reviewedAt": "2026-09-18",
+        "sourceLicense": "Apache-2.0",
+        "binaryLicense": "Apache-2.0"
+      }
     }
   ]
 }

@@ -16,7 +16,9 @@ JAR 재배포 분류는 허용 45개, 모드팩 한정 10개, 로컬 전용 15�
 
 후속 릴리즈 구성 요청에 따라 TCPShield는 Fabric 모드 빌드 대상에서 계속 제외하되
 `server.zip`의 `plugins/TCPShield-2.8.1.jar`에 별도 포함한다. 실제 릴리즈는 서버 모드
-67개와 서버 플러그인 1개이며, 클라이언트에는 모드 65개만 포함한다. 전체 포함 방식과
+67개와 서버 플러그인 1개이며, 클라이언트에는 서버 전용 2개를 제외하고
+Continuity·MCEF·Sodium·Indium을 더한 모드 69개를 포함한다. 이 네 가지 클라이언트
+의존성은 [dependencies.lock.json](../inventory/dependencies.lock.json)에 별도 기록한다. 전체 포함 방식과
 기존 배포 판단 이력의 구분은 [릴리즈 안내](RELEASING.md)를 따른다.
 
 소스 관리와 일괄 빌드 준비 시 다음 차이를 유지해야 한다.

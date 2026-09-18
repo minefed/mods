@@ -1,0 +1,60 @@
+{
+  "fileName": "sodium-fabric-0.5.8+mc1.20.4.jar",
+  "modId": "sodium",
+  "version": "0.5.8+mc1.20.4",
+  "license": "LGPL-3.0-only",
+  "authors": [
+    "@jellysquid3"
+  ],
+  "sourceReference": {
+    "url": "https://github.com/CaffeineMC/sodium",
+    "ref": "mc1.20.4-0.5.8",
+    "commit": "82f4af61fd4ea4c4c5c8e02897202f627d4e68cb",
+    "trackingBranch": null,
+    "trackingBranchStatus": "Upstream no longer publishes a Minecraft 1.20.4 branch; track compatible official releases and preserve the immutable release tag/commit."
+  },
+  "licenseUrl": "https://github.com/CaffeineMC/sodium/blob/82f4af61fd4ea4c4c5c8e02897202f627d4e68cb/COPYING.LESSER",
+  "sha256": "3c363ec0122157f65e55a8edf6545a60955091387cd0e94b3ecdcd64a93284f7",
+  "sha512": "bd00b956bde1205171e744a6a3780e835fb6928eb667fb2b56467818c979fb1e8c82561380a71a7dbfa1516cd4b6cf9087ca99f1ae066da6d65af2c828b8d554",
+  "size": 949085,
+  "reviewedAt": "2026-09-18",
+  "sourceArchiveUrl": "https://github.com/CaffeineMC/sodium/archive/82f4af61fd4ea4c4c5c8e02897202f627d4e68cb.zip",
+  "correspondingSourceArchives": [
+    {
+      "component": "sodium",
+      "url": "https://github.com/CaffeineMC/sodium/archive/82f4af61fd4ea4c4c5c8e02897202f627d4e68cb.zip",
+      "commit": "82f4af61fd4ea4c4c5c8e02897202f627d4e68cb",
+      "sha256": "9f54f8cb7e3617bbe93ab9e64508e54ca24f145973567c5d2b93fc339524eba1",
+      "sha512": "2cf7e8d645c71605c8b7a0bd40fa279e7908d7e00eb97a2d4836047696efad221cbca158446e26adf5503c8aa2f63bfadf122108655cb80fc88e58399db451bb",
+      "size": 623236
+    }
+  ],
+  "licenseFiles": [
+    {
+      "path": "assets/minecraft/textures/block/license_vanillatweaks.txt",
+      "sourceUrl": "https://cdn.modrinth.com/data/AANobbMI/versions/4GyXKCLd/sodium-fabric-0.5.8%2Bmc1.20.4.jar!/assets/minecraft/textures/block/license_vanillatweaks.txt",
+      "sha256": "9ce6f604cb648ba3c2bd7dbae33d8d44d96ae214ccdcbd2b2b4dd5069c9b9c29"
+    },
+    {
+      "path": "programmer_art/assets/minecraft/textures/block/license_vanillatweaks.txt",
+      "sourceUrl": "https://cdn.modrinth.com/data/AANobbMI/versions/4GyXKCLd/sodium-fabric-0.5.8%2Bmc1.20.4.jar!/programmer_art/assets/minecraft/textures/block/license_vanillatweaks.txt",
+      "sha256": "15dcdc551e4aa9e969d72acaafe6e2bb0969805ce78cfd3e3727c1e15a955b50"
+    },
+    {
+      "path": "COPYING",
+      "sourceUrl": "https://github.com/CaffeineMC/sodium/blob/82f4af61fd4ea4c4c5c8e02897202f627d4e68cb/COPYING",
+      "sha256": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986"
+    },
+    {
+      "path": "COPYING.LESSER",
+      "sourceUrl": "https://github.com/CaffeineMC/sodium/blob/82f4af61fd4ea4c4c5c8e02897202f627d4e68cb/COPYING.LESSER",
+      "sha256": "e3a994d82e644b03a792a930f574002658412f62407f5fee083f2555c5f23118"
+    },
+    {
+      "path": "UPSTREAM-README.md",
+      "sourceUrl": "https://github.com/CaffeineMC/sodium/blob/82f4af61fd4ea4c4c5c8e02897202f627d4e68cb/README.md",
+      "sha256": "667bbe72467c7388228c0335f034c4be38772b5ef559f467426d15fc2d840c67"
+    }
+  ],
+  "notice": "Official client-only Minecraft 1.20.4 / Fabric runtime; added independently of the captured server baseline. Sodium 0.5.8 requires Indium for Fabric Rendering API users including the existing Continuity connected-texture mod; retain both client dependencies. Unmodified official binary; preserve embedded third-party notices, upstream license texts, authors and immutable corresponding-source archive reference. The current Modrinth project license describes newer Sodium versions. This exact 0.5.8 release declares LGPL-3.0-only in fabric.mod.json and its pinned source contains COPYING and COPYING.LESSER; do not substitute the current Polyform license."
+}

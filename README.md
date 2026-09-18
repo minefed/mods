@@ -39,8 +39,8 @@ Gradle 직접 실행은 `gradlew.bat build` 또는 `./gradlew build`다. JDK 17�
 MTR 웹 UI용 Node.js 22/npm이 필요하다. 이 작업 공간의 도구 경로는 Git에서 제외한
 `build.local.json`에 설정되어 있다.
 
-`inventory/build-recipes.json`은 소스 빌드 46개와 JAR 사용 23개를 구분한다. 기반 라이브러리
-7개와 공식 후속 바이너리 8개, 클라이언트 전용 Continuity·MCEF는 `dependencies.lock.json`의 총 17개 pin을 사용한다. 기존 소스 중
+`inventory/build-recipes.json`은 소스 빌드 46개와 JAR 사용 25개를 구분한다. 기반 라이브러리
+7개와 공식 후속 바이너리 8개, 클라이언트 전용 Continuity·MCEF·Sodium·Indium은 `dependencies.lock.json`의 총 19개 pin을 사용한다. 기존 소스 중
 CityCraft와 Macaw Doors/Fences는 공개된 Fabric 1.20.4용 공식 JAR를 사용한다. PFM과 Puzzles Lib의
 소스 빌드는 유지하고 공개팩에는 `published-artifacts.lock.json`의 공식 배포본 2개를 선택한다.
 각 소스는 전용 wrapper/JDK로 빌드하며 실패 시 운영 JAR로 자동 대체하지 않는다.
@@ -68,10 +68,12 @@ GitHub Actions는 `mods/main` 변경과 하위 배포 대상 브랜치의 변경
 [GitHub Releases](https://github.com/minefed/mods/releases)에 공개한다. 하위 브랜치는
 15분 간격으로 확인하며, 동일 입력의 중복 릴리즈는 건너뛴다.
 서버팩 `mods/`에는 전체 모드 JAR 67개, 클라이언트팩 `overrides/mods/`에는 서버 전용
-2개를 제외하고 Continuity·MCEF를 추가한 67개가 직접 포함된다. 공식 JAR도 버전·해시·원본 URL을 유지한 채 내장하며,
+2개를 제외하고 Continuity·MCEF·Sodium·Indium을 추가한 69개가 직접 포함된다. 공식 JAR도 버전·해시·원본 URL을 유지한 채 내장하며,
 Modern Lights는 소스 전용 공식 업로드 대신 검증된 2.5.0 실행 JAR를 양쪽에 포함한다.
 정상적으로 압축 해제하거나 MRPACK을 가져오면 추가 모드 다운로드·수동 복원이 필요 없다.
 MCEF의 Chromium 네이티브 런타임은 첫 클라이언트 실행에서 공식 서버로부터 별도로 준비된다([MCEF 구성](docs/MCEF.md)).
+Sodium `0.5.8+mc1.20.4`와 Indium `1.0.31+mc1.20.4`는 클라이언트 렌더링 최적화와
+기존 Continuity의 연결 텍스처 호환성을 함께 제공한다([Sodium 구성](docs/SODIUM.md)).
 선택적 `install-mods.py` 실행으로 모든 모드의 해시를 검사할 수 있다. 정책에 따른 원본
 선택과 자체 빌드 결과의 차이, 기존 재배포 분류와 라이선스는 팩 안의 기록에 보존한다.
 서버팩은 TCPShield 2.8.1을 `plugins/`에 별도 포함하여 총 JAR 68개다. TCPShield는

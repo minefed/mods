@@ -4,7 +4,7 @@
 빌드 대상과 JAR 전용 대상은 `inventory/build-recipes.json`에 명시한다. `mods.lock.json`은
 원래 서버의 바이너리 목록과 소스 커밋을 보존하며, 소스를 컴파일했다고 원본 JAR 해시를 바꾸지 않는다.
 
-현재 구성은 소스 빌드 46개와 바이너리 23개다. 기반 라이브러리 7개, 공식 후속 바이너리 8개와 Continuity·MCEF, 총 17개는 recipe의
+현재 구성은 소스 빌드 46개와 바이너리 25개다. 기반 라이브러리 7개, 공식 후속 바이너리 8개와 Continuity·MCEF·Sodium·Indium, 총 19개는 recipe의
 `dependencyManifest`가 지정한 `inventory/dependencies.lock.json`을 사용한다. 이 목록은
 기존 binary recipe를 대체하거나 명시적인 `dependency: true` recipe와 함께 새 모드를 추가한다.
 운영 기준본은 그대로 보존하며, 과거 제외 항목을 신규 의존성으로 다시 활성화하지 않는다. 의존성 JAR는 빌드 중

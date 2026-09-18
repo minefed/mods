@@ -1082,6 +1082,38 @@
       "client": true,
       "server": true,
       "downloadUrl": "https://cdn.modrinth.com/data/RxVV6ldg/versions/FQMpG8yv/yuushya-modelling-1.20.4-fabric-2.2.0.jar"
+    },
+    {
+      "modId": "sodium",
+      "distribution": "download",
+      "artifact": "built",
+      "reason": "Include the unmodified official client rendering dependency with exact hashes, upstream licenses, third-party notices and immutable corresponding-source reference; excluded from dedicated servers.",
+      "evidenceUrls": [
+        "https://api.modrinth.com/v2/project/AANobbMI",
+        "https://api.modrinth.com/v2/version/4GyXKCLd",
+        "https://github.com/CaffeineMC/sodium/blob/82f4af61fd4ea4c4c5c8e02897202f627d4e68cb/COPYING.LESSER",
+        "https://github.com/CaffeineMC/sodium/commit/82f4af61fd4ea4c4c5c8e02897202f627d4e68cb",
+        "https://github.com/comp500/Indium/blob/56c79304a50cd894b06f28bf51f80bbfbdd097cd/README.md"
+      ],
+      "client": true,
+      "server": false,
+      "downloadUrl": "https://cdn.modrinth.com/data/AANobbMI/versions/4GyXKCLd/sodium-fabric-0.5.8%2Bmc1.20.4.jar"
+    },
+    {
+      "modId": "indium",
+      "distribution": "download",
+      "artifact": "built",
+      "reason": "Include the unmodified official client rendering dependency with exact hashes, upstream licenses, third-party notices and immutable corresponding-source reference; excluded from dedicated servers.",
+      "evidenceUrls": [
+        "https://api.modrinth.com/v2/project/Orvt0mRa",
+        "https://api.modrinth.com/v2/version/VlLxDisa",
+        "https://github.com/comp500/Indium/blob/56c79304a50cd894b06f28bf51f80bbfbdd097cd/LICENSE",
+        "https://github.com/comp500/Indium/commit/56c79304a50cd894b06f28bf51f80bbfbdd097cd",
+        "https://github.com/comp500/Indium/blob/56c79304a50cd894b06f28bf51f80bbfbdd097cd/README.md"
+      ],
+      "client": true,
+      "server": false,
+      "downloadUrl": "https://cdn.modrinth.com/data/Orvt0mRa/versions/VlLxDisa/indium-1.0.31%2Bmc1.20.4.jar"
     }
   ],
   "publishedManifest": "inventory/published-artifacts.lock.json"

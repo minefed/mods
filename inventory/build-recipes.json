@@ -982,6 +982,18 @@
           ":1.20.4:fabric:remapJar"
         ]
       ]
+    },
+    {
+      "modId": "sodium",
+      "mode": "binary",
+      "reason": "Add the official client-only Sodium/Indium rendering combination for Minecraft 1.20.4, including Continuity Fabric Rendering API compatibility.",
+      "dependency": true
+    },
+    {
+      "modId": "indium",
+      "mode": "binary",
+      "reason": "Add the official client-only Sodium/Indium rendering combination for Minecraft 1.20.4, including Continuity Fabric Rendering API compatibility.",
+      "dependency": true
     }
   ],
   "dependencyManifest": "inventory/dependencies.lock.json"

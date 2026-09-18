@@ -40,4 +40,6 @@ python scripts/build_modpack.py plan
 ```
 
 Continuity는 연결 텍스처 구현이며 Yuushya Foliage Addon 리소스팩과 별개의 파일이다.
+2026-09-18부터 함께 포함한 Sodium 0.5.8 환경에서는 Fabric Rendering API 구현을
+제공하는 Indium 1.0.31도 필요하다. 둘 다 [Sodium 구성](SODIUM.md)에 고정했다.
 이 JAR의 메타데이터·해시 검증은 실제 게임 화면의 렌더링 확인을 대체하지 않는다.

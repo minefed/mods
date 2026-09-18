@@ -1,0 +1,49 @@
+{
+  "fileName": "indium-1.0.31+mc1.20.4.jar",
+  "modId": "indium",
+  "version": "1.0.31+mc1.20.4",
+  "license": "Apache-2.0",
+  "authors": [
+    "comp500"
+  ],
+  "sourceReference": {
+    "url": "https://github.com/comp500/Indium",
+    "ref": "1.0.31+mc1.20.4",
+    "commit": "56c79304a50cd894b06f28bf51f80bbfbdd097cd",
+    "trackingBranch": "1.20.x/stable"
+  },
+  "licenseUrl": "https://github.com/comp500/Indium/blob/56c79304a50cd894b06f28bf51f80bbfbdd097cd/LICENSE",
+  "sha256": "a6acf309f91886db6c66c1a8fce7937745053926fa114fe12cb3fdf174dfb57d",
+  "sha512": "27b4a73ca990742e27eee4348553c86c96c19fddcd0763892029f67ddbde42dc03c0ac21230403ae6b4ce4da315d0d49f582d3daab413b9ea84fd6d172ee7c4f",
+  "size": 105350,
+  "reviewedAt": "2026-09-18",
+  "sourceArchiveUrl": "https://github.com/comp500/Indium/archive/56c79304a50cd894b06f28bf51f80bbfbdd097cd.zip",
+  "correspondingSourceArchives": [
+    {
+      "component": "indium",
+      "url": "https://github.com/comp500/Indium/archive/56c79304a50cd894b06f28bf51f80bbfbdd097cd.zip",
+      "commit": "56c79304a50cd894b06f28bf51f80bbfbdd097cd",
+      "sha256": "882c5ecbac8ead6155d4a01fd93a2ecccc9b8636e396c6e7f671fc5c168f4fba",
+      "sha512": "2b9c154321277192b0ed5362e2eeb48de9f436d00476f9a9371f845c892f852b3d4afc7aaab239f8dabce7bfb32910e595d378b9373aca6aaaf3fcc92e367b4f",
+      "size": 151773
+    }
+  ],
+  "licenseFiles": [
+    {
+      "path": "LICENSE",
+      "sourceUrl": "https://cdn.modrinth.com/data/Orvt0mRa/versions/VlLxDisa/indium-1.0.31%2Bmc1.20.4.jar!/LICENSE",
+      "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4"
+    },
+    {
+      "path": "LICENSE",
+      "sourceUrl": "https://github.com/comp500/Indium/blob/56c79304a50cd894b06f28bf51f80bbfbdd097cd/LICENSE",
+      "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4"
+    },
+    {
+      "path": "UPSTREAM-README.md",
+      "sourceUrl": "https://github.com/comp500/Indium/blob/56c79304a50cd894b06f28bf51f80bbfbdd097cd/README.md",
+      "sha256": "b1d73823ae4ac40619a08346ad0b63cf3257d433b7e053eadd14b11ca6537104"
+    }
+  ],
+  "notice": "Official client-only Minecraft 1.20.4 / Fabric runtime; added independently of the captured server baseline. Sodium 0.5.8 requires Indium for Fabric Rendering API users including the existing Continuity connected-texture mod; retain both client dependencies. Unmodified official binary; preserve embedded third-party notices, upstream license texts, authors and immutable corresponding-source archive reference. The JAR requires Sodium 0.5.8 and declares Minecraft ~1.20.1; Fabric semantic predicates include 1.20.4, also explicitly listed by the official release."
+}

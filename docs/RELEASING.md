@@ -11,13 +11,18 @@
 | `resourcepack.zip` | ZIP 루트의 `pack.mcmeta`·`assets/`를 사용하는 게임용 리소스팩 |
 
 2026-09-13 클라이언트 시각 효과와 브라우저 구성을 추가했다. 현재 서버 모드는 67개,
-클라이언트 모드는 67개다. 클라이언트에는 Continuity `3.0.0+1.20.2`, MCEF `2.1.6-1.20.4` 공식 JAR와
+클라이언트 모드는 Sodium·Indium을 추가한 현재 69개다. 클라이언트에는 Continuity `3.0.0+1.20.2`, MCEF `2.1.6-1.20.4` 공식 JAR와
 Yuushya Foliage Addon `1.3` 원본 ZIP이 내장된다. 각 파일의 원본 URL·해시·출처·고지를
 유지하며, 추가 리소스팩은 `inventory/resourcepacks.lock.json`의 `clientPacks`로 관리한다.
 서버팩 및 독립 `resourcepack.zip`의 게임 파일에는 클라이언트 추가물이 들어가지 않는다.
 MCEF의 Chromium/CEF 네이티브 런타임은 JAR와 별개이며 첫 클라이언트 실행에서
 공식 다운로드 서버를 통해 준비한다. 클라이언트 `INSTALL.txt`에 이 동작을 안내한다.
 정확한 MCEF pin·대응 소스·라이선스는 [MCEF 구성](MCEF.md)에 기록한다.
+
+2026-09-18 Sodium `0.5.8+mc1.20.4`와 Continuity 호환에 필요한 Indium
+`1.0.31+mc1.20.4`를 추가했다. 둘 다 `client: true`, `server: false`이며
+공식 원본 JAR가 `client.mrpack/overrides/mods/`에 포함된다.
+호환성·출처·라이선스와 검증 범위는 [Sodium 구성](SODIUM.md)을 따른다.
 
 새로 가져온 인스턴스의 `options.txt`에는 아래 리소스팩이 낮은 우선순위부터 활성화된다.
 옵션 파일에는 Minecraft 1.20.4 데이터 버전인 `version:3700`을 함께 기록한다.

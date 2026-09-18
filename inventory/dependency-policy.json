@@ -71,6 +71,14 @@
     {
       "modId": "supermartijn642corelib",
       "projectId": "rOUBggPv"
+    },
+    {
+      "modId": "sodium",
+      "projectId": "AANobbMI"
+    },
+    {
+      "modId": "indium",
+      "projectId": "Orvt0mRa"
     }
   ]
 }
