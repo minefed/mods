@@ -45,6 +45,66 @@ class InventoryTests(unittest.TestCase):
         path.write_text(json.dumps(value), encoding="utf-8")
         return mods.load_manifest(self.root)
 
+    def cli(self, *args):
+        output, errors = io.StringIO(), io.StringIO()
+        with patch.object(mods, "ROOT", self.root), patch("sys.stdout", output), patch("sys.stderr", errors):
+            result = mods.main(list(args))
+        return result, output.getvalue(), errors.getvalue()
+
+    def test_baseline_capture_marker_requires_boolean(self):
+        entry = self.entry()
+        for invalid in (None, 0, 1, "false"):
+            with self.subTest(value=invalid), self.assertRaisesRegex(mods.ModError, "capturedServerBaseline must be a boolean"):
+                self.manifest({**entry, "capturedServerBaseline": invalid})
+        for valid in (False, True):
+            self.assertEqual(self.manifest({**entry, "capturedServerBaseline": valid})["entries"][0]["capturedServerBaseline"], valid)
+
+    def test_default_cli_verify_and_hydrate_skip_missing_source_addition(self):
+        baseline, addition = self.entry(), self.entry("client.jar", "client")
+        addition["capturedServerBaseline"] = False
+        addition["artifact"]["url"] = None
+        self.manifest(baseline, addition)
+        (self.root / addition["artifact"]["path"]).unlink()
+        self.assertEqual(self.cli("verify"), (0, "Verified 1 recorded artifacts\n", ""))
+        original = self.root / baseline["artifact"]["path"]
+        content = original.read_bytes()
+        original.unlink()
+        with patch.object(mods, "download", return_value=io.BytesIO(content)) as fetch:
+            result, _, errors = self.cli("hydrate")
+            self.assertEqual((result, errors), (0, ""))
+            fetch.assert_called_once_with(baseline["artifact"]["url"])
+        self.assertEqual(original.read_bytes(), content)
+        self.assertFalse((self.root / addition["artifact"]["path"]).exists())
+
+    def test_default_cli_stage_and_pack_preserve_original_baseline(self):
+        baseline, addition = self.entry(), self.entry("client.jar", "client")
+        addition["capturedServerBaseline"] = False
+        self.manifest(baseline, addition)
+        self.assertEqual(self.cli("stage")[0], 0)
+        self.assertEqual([path.name for path in (self.root / "build/staged-mods").iterdir()], ["one.jar"])
+        self.assertEqual(self.cli("pack")[0], 0)
+        with zipfile.ZipFile(self.root / "build/minefed-baseline.zip") as archive:
+            self.assertEqual({name for name in archive.namelist() if name.startswith("mods/")}, {"mods/one.jar"})
+            self.assertEqual(json.loads(archive.read("inventory/mods.lock.json"))["entries"], [baseline])
+            self.assertEqual(json.loads(archive.read("PACK-INFO.json"))["artifactCount"], 1)
+
+    def test_other_manifest_cli_and_internal_pack_keep_source_additions(self):
+        baseline, addition = self.entry(), self.entry("client.jar", "client")
+        addition["capturedServerBaseline"] = False
+        manifest = self.manifest(baseline, addition)
+        other = self.root / "inventory/build-output.json"
+        other.write_text(json.dumps(manifest), encoding="utf-8")
+        self.assertEqual(self.cli("--manifest", "inventory/build-output.json", "verify"),
+                         (0, "Verified 2 recorded artifacts\n", ""))
+        self.assertEqual(mods.pack(self.root, manifest, "build/source-output.zip"), 2)
+        with zipfile.ZipFile(self.root / "build/source-output.zip") as archive:
+            self.assertIn("mods/client.jar", archive.namelist())
+            self.assertEqual(json.loads(archive.read("inventory/mods.lock.json")), manifest)
+        (self.root / addition["artifact"]["path"]).unlink()
+        result, _, errors = self.cli("--manifest", "inventory/build-output.json", "verify")
+        self.assertEqual(result, 1)
+        self.assertIn("Missing artifact: client.jar", errors)
+
     def test_verify_covers_excluded_artifacts_and_detects_mutation(self):
         active, excluded = self.entry(), self.entry("plugin.jar", None, included=False)
         manifest = self.manifest(active, excluded)
@@ -277,6 +337,19 @@ class InventoryTests(unittest.TestCase):
         entry["source"]["url"] = "https://example.com/wrong"
         with self.assertRaisesRegex(mods.ModError, "URL/path differs"):
             mods.check_sources(self.root, [entry])
+
+        # The baseline CLI ignores a new source's absent local JAR, but must
+        # still validate its gitlink and worktree alongside original sources.
+        entry["source"]["url"] = "https://github.com/minefed/source.git"
+        entry["capturedServerBaseline"] = False
+        self.manifest(self.entry("baseline.jar", "baseline"), entry)
+        (self.root / entry["artifact"]["path"]).unlink()
+        self.assertEqual(self.cli("verify", "--sources"),
+                         (0, "Verified 1 recorded artifacts and source pins\n", ""))
+        (source / "code.txt").write_text("uncommitted source addition")
+        result, _, errors = self.cli("verify", "--sources")
+        self.assertEqual(result, 1)
+        self.assertIn("Submodule has local changes: source", errors)
 
 
 if __name__ == "__main__":

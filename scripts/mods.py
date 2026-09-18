@@ -99,6 +99,8 @@ def load_manifest(root: Path, value: str = DEFAULT_MANIFEST) -> dict:
             raise ModError(f"Missing or invalid byte size: {name}")
         if type(entry.get("included")) is not bool:
             raise ModError(f"included must be a boolean: {name}")
+        if "capturedServerBaseline" in entry and type(entry["capturedServerBaseline"]) is not bool:
+            raise ModError(f"capturedServerBaseline must be a boolean: {name}")
         if not entry["included"] and not entry.get("exclusionReason"):
             raise ModError(f"Excluded artifact needs an exclusionReason: {name}")
         if entry.get("management") not in ("submodule", "binary"):
@@ -473,7 +475,8 @@ def hydrate(root: Path, manifest: dict) -> int:
 
 def main(argv=None) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--manifest", default=DEFAULT_MANIFEST, help="Repository-relative lock path")
+    parser.add_argument("--manifest", default=DEFAULT_MANIFEST,
+                        help="Repository-relative lock path; the default inventory processes captured baseline JARs only")
     sub = parser.add_subparsers(dest="command", required=True)
     verification = sub.add_parser("verify", help="Verify every recorded JAR, including excluded entries")
     verification.add_argument("--sources", action="store_true", help="Also verify submodule pins, HEADs and clean worktrees")
@@ -486,17 +489,27 @@ def main(argv=None) -> int:
     args = parser.parse_args(argv)
     try:
         manifest = load_manifest(ROOT, args.manifest)
+        # New source additions share the default inventory for source pinning,
+        # but were not captured from the operating server. Keep this distinction
+        # at the baseline CLI boundary: build APIs and other manifests still
+        # process every supplied entry, including newly compiled client mods.
+        artifacts = manifest
+        if safe_path(ROOT, args.manifest) == safe_path(ROOT, DEFAULT_MANIFEST):
+            artifacts = {**manifest, "entries": [entry for entry in manifest["entries"]
+                                                if entry.get("capturedServerBaseline", True)]}
         if args.command == "verify":
-            count = verify(ROOT, manifest, args.sources)
+            count = verify(ROOT, artifacts)
+            if args.sources:
+                check_sources(ROOT, manifest["entries"], manifest.get("sourceRepositories", []))
             print(f"Verified {count} recorded artifacts" + (" and source pins" if args.sources else ""))
         elif args.command == "stage":
-            count = stage(ROOT, manifest, args.output)
+            count = stage(ROOT, artifacts, args.output)
             print(f"Staged {count} included artifacts in {args.output}")
         elif args.command == "pack":
-            count = pack(ROOT, manifest, args.output, args.private)
+            count = pack(ROOT, artifacts, args.output, args.private)
             print(f"Packed {count} included artifacts in {args.output}" + (" (private)" if args.private else ""))
         else:
-            count = hydrate(ROOT, manifest)
+            count = hydrate(ROOT, artifacts)
             print(f"Restored {count} missing artifacts; existing verified files left unchanged")
         return 0
     except (ModError, OSError, ValueError, zipfile.BadZipFile) as exc:

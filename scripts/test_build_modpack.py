@@ -25,13 +25,18 @@ class RepositoryRecipeTests(unittest.TestCase):
         root = Path(__file__).resolve().parents[1]
         baseline = mods.load_manifest(root)
         manifest, plan = builder.load_plan(root)
-        captured = {entry["modId"] for entry in baseline["entries"] if entry["included"]}
+        captured = {entry["modId"] for entry in baseline["entries"]
+                    if entry["included"] and entry.get("capturedServerBaseline", True)}
+        source_additions = {entry["modId"] for entry in baseline["entries"]
+                            if entry["included"] and not entry.get("capturedServerBaseline", True)}
         dependencies = mods.load_manifest(root, plan["dependencyManifest"])
         reviewed = {entry["modId"] for entry in dependencies["entries"]}
         expected = {entry["modId"] for entry in manifest["entries"] if entry["included"]}
         actual = [recipe["modId"] for recipe in plan["entries"]]
         self.assertEqual(len(captured), 67)
-        self.assertEqual(expected, captured | reviewed)
+        self.assertEqual(expected, captured | source_additions | reviewed)
+        self.assertTrue(source_additions.issubset({recipe["modId"] for recipe in plan["entries"]
+                                                 if recipe["mode"] == "source"}))
         self.assertNotIn("axiom", actual)
         self.assertEqual(len(actual), len(expected))
         self.assertEqual(set(actual), expected)
