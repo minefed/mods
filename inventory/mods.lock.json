@@ -2729,7 +2729,7 @@
         "url": "https://github.com/minefed/Minecraft-Transit-Railway",
         "upstream": "https://github.com/Minecraft-Transit-Railway/Minecraft-Transit-Railway",
         "ref": "codex/optimize-3d-rails",
-        "commit": "cc1f02fc1d9b8a11ed38b25cc1e2bf9c92be2772",
+        "commit": "8536954ecad96c90c5a10b6cff384b202935ea2a",
         "trackingBranch": "codex/optimize-3d-rails",
         "baselineRef": "main",
         "baselineCommit": "53cdc36ebef57c42bdc8633957be1b0e923c40b5"
@@ -2778,7 +2778,7 @@
         "url": "https://github.com/minefed/Minecraft-Transit-Railway",
         "upstream": "https://github.com/Minecraft-Transit-Railway/Minecraft-Transit-Railway",
         "ref": "codex/optimize-3d-rails",
-        "commit": "cc1f02fc1d9b8a11ed38b25cc1e2bf9c92be2772",
+        "commit": "8536954ecad96c90c5a10b6cff384b202935ea2a",
         "trackingBranch": "codex/optimize-3d-rails",
         "baselineRef": "main",
         "baselineCommit": "53cdc36ebef57c42bdc8633957be1b0e923c40b5"
