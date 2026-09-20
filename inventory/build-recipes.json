@@ -589,10 +589,11 @@
     {
       "modId": "mtr",
       "mode": "source",
-      "reason": "Build Fabric 1.20.4 with the pinned Loader 0.18.4 compile API, embedded website, and Java 17 bytecode; verify the remapped JAR's Mixin compatibility before packaging and preserve license notices.",
+      "reason": "Build Fabric 1.20.4 with static 3D rail geometry caching and batched transforms, pinned Loader 0.18.4, embedded website and Java 17 bytecode; verify rail geometry and the remapped JAR's matrix bridge/Mixin compatibility, preserving license notices.",
       "sourcePath": "Minecraft-Transit-Railway",
       "java": 21,
       "tasks": [
+        ":fabric:verifyRailRendering",
         ":fabric:verifyMixinCompatibility"
       ],
       "args": [
