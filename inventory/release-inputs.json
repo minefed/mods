@@ -798,10 +798,10 @@
     {
       "path": "minefed-display",
       "kind": "mod",
-      "reviewedCommit": "869b976756be38f298105d4adf6be2d22e3a0b8c",
+      "reviewedCommit": "a1e8f94df20c22c1ccfc4083b1dc01dc7f757e45",
       "licenseFiles": {
         "LICENSE": "df91ea5ffd7b7ef2859e0add9b7aa5bde9790ef51df4cccef63c4607a36e3268",
-        "README.md": "36cda14021b463aa8294cf16a20780a3369c039c16490f2e663bb362ae2d3aee"
+        "README.md": "781f7227cec6398d6aaba024057c15a983a3909a203f681983b1f451bd7b7d5c"
       },
       "nestedGitlinks": {}
     },

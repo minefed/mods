@@ -620,8 +620,8 @@
       "reason": "Distribute the reviewed built artifact under its original license with all copyright/license notices and corresponding-source obligations. MIT",
       "evidenceUrls": [
         "https://github.com/minefed/minefed-display",
-        "https://github.com/minefed/minefed-display/commit/869b976756be38f298105d4adf6be2d22e3a0b8c",
-        "https://github.com/minefed/minefed-display/archive/869b976756be38f298105d4adf6be2d22e3a0b8c.tar.gz"
+        "https://github.com/minefed/minefed-display/commit/a1e8f94df20c22c1ccfc4083b1dc01dc7f757e45",
+        "https://github.com/minefed/minefed-display/archive/a1e8f94df20c22c1ccfc4083b1dc01dc7f757e45.tar.gz"
       ],
       "client": true,
       "server": true
