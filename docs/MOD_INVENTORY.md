@@ -75,7 +75,7 @@ Continuity·MCEF·Sodium·Indium 및 독립 레시피 호환 모드를 더한 �
 | 36 | memoryleakfix-fabric-1.17+-1.1.5.jar | memoryleakfix / 1.1.5 | MemoryLeakFix · 0105090f | 허용 | 포함 |
 | 37 | minefed-display-1.0.0.jar | minefed-display / 1.0.0 | minefed-display · d4ce3226 | 허용 | 포함 |
 | 38 | mishanguc-1.5.3-1.20.4.jar | mishanguc / 1.5.3 | mishanguc · b8addb77 | 허용 | 포함 |
-| 39 | modern-glass-doors-5.3.0+1.20.3-and-later.jar | modern_glass_doors / 5.3.0+1.20.3-and-later | modern-glass-doors · 155e732f | 허용 | 포함 |
+| 39 | modern-glass-doors-5.3.0+1.20.3-and-later.jar | modern_glass_doors / 5.3.0+1.20.3-and-later | modern-glass-doors · 3c65e91e | 허용 | 포함 |
 | 40 | modern-lights-1.20[2.4.2].jar | modernlights / 2.4.2 | Modern-Lights · 6b04f156 | 로컬 전용 | 포함 |
 | 41 | modernfix-fabric-5.17.0+mc1.20.4.jar | modernfix / 5.17.0+mc1.20.4 | ModernFix · 2856e289 | 허용 | 포함 |
 | 42 | MSD-fabric-1.20.4-4.0.0-beta.14-1.3.15.jar | msd / 1.3.15 | MTR-Station-Decoration-Addon · b06fc072 | 허용 | 포함 |

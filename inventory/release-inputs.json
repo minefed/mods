@@ -819,10 +819,10 @@
     {
       "path": "modern-glass-doors",
       "kind": "mod",
-      "reviewedCommit": "155e732f78f5b5a9ce42478ef342e8d03266799b",
+      "reviewedCommit": "3c65e91eee397e91496f78345165451d86b28932",
       "licenseFiles": {
         "LICENSE": "70f62297c3a1c133cf9e24faa95e79cffe41b8053c32e3f95ea6a6bb386f77df",
-        "README.md": "b61179862277ef27b65a26465c2d4bae6ee133ca31f2b249bf33e5c0dc668b79"
+        "README.md": "25680457aa306fde73fd1ba5142a3d777b377d7c7390fc04b11c7e61ca58bd7f"
       },
       "nestedGitlinks": {}
     },

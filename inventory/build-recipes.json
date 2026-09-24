@@ -517,11 +517,11 @@
     {
       "modId": "modern_glass_doors",
       "mode": "source",
-      "reason": "Minecraft 1.20.3 기준 소스이며 Fabric 메타데이터가 >=1.20.3 호환을 명시한다. Java release 17. 개발 전용 외부 모드는 비활성화한다.",
+      "reason": "Minecraft 1.20.3 기준 소스이며 Fabric 메타데이터가 >=1.20.3 호환을 명시한다. Java release 17. 개발 전용 외부 모드는 비활성화한다. JAR 패키징 전에 데이터를 생성하고 최종 JAR의 블록 상태·모델·텍스처·레시피·전리품을 검사한다.",
       "sourcePath": "modern-glass-doors",
       "java": 17,
       "tasks": [
-        "remapJar"
+        "verifyRuntimeResources"
       ],
       "args": [
         "-Puse_third_party_mods=false"
