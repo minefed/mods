@@ -19,6 +19,11 @@ Minefed 서버의 모드 소스와 운영 JAR를 한 곳에서 관리한다. Min
 독립 클라이언트 모드 `minefed-client-compat` 소스 저장소를 추가했다.
 관측한 운영 기준본 70개와 새 클라이언트 전용 소스 항목을 구분한다.
 
+2026-09-24 [Modern Glass Doors 생성 리소스 누락](docs/MODERN_GLASS_DOORS_FIX_2026-09-24.md)과
+[Minefed Display의 블록 가림 판정](docs/DISPLAY_DEPTH_FIX_2026-09-24.md)을 수정했다.
+두 교체 JAR의 소스 커밋·SHA-256·검증 범위는
+[수정 산출물 기록](inventory/render-fixes-2026-09-24.json)에 고정한다.
+
 ## 시작하기
 
 Git과 Python 3.10 이상이 필요하다. 서브모듈은 `.gitmodules`에 기록한 minefed fork와 정확한 gitlink 커밋으로 초기화한다.

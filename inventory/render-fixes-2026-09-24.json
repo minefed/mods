@@ -1,0 +1,92 @@
+{
+  "schemaVersion": 1,
+  "minecraftVersion": "1.20.4",
+  "loader": "Fabric",
+  "java": 17,
+  "runtimeValidated": false,
+  "validation": {
+    "modpackTools": {
+      "total": 173,
+      "passed": 169,
+      "skipped": 4
+    },
+    "glassDoorRuntimeResources": {
+      "blockstates": 24,
+      "models": 156,
+      "pngTextures": 48
+    },
+    "displayHiddenOpenGL": {
+      "passed": true,
+      "checks": [
+        "old missing-depth-test failure reproduced as control",
+        "wall occludes rear display",
+        "front display remains visible",
+        "display writes depth",
+        "fullbright shader color is reset"
+      ]
+    },
+    "inGame": "Not run; full client modpack, MCEF and graphics-mode integration remain untested."
+  },
+  "entries": [
+    {
+      "modId": "modern_glass_doors",
+      "version": "5.3.0+1.20.3-and-later",
+      "fileName": "modern-glass-doors-5.3.0+1.20.3-and-later.jar",
+      "sha256": "38220292bd00260c364fc0ce30667087ca0d567ed775be9307dd3de3d7f7d94a",
+      "size": 189352,
+      "source": {
+        "path": "modern-glass-doors",
+        "url": "https://github.com/minefed/modern-glass-doors",
+        "upstream": "https://github.com/ReviversMC/modern-glass-doors",
+        "ref": "codex/fix-glass-door-generated-resources",
+        "commit": "3c65e91eee397e91496f78345165451d86b28932",
+        "trackingBranch": "codex/fix-glass-door-generated-resources",
+        "baselineRef": "v5.3.0+1.20.3-and-later",
+        "baselineCommit": "bf38d4feb851041357c81caa696450498cda0048"
+      },
+      "sourceTreeSha256": "4fa89e527e2f80f5bdbe977ef0535830fdd80a539b1525210e7af7c66fde8237",
+      "sourceUrl": "https://github.com/minefed/modern-glass-doors/commit/3c65e91eee397e91496f78345165451d86b28932",
+      "license": "MIT",
+      "binaryLicense": "MIT",
+      "compatibility": {
+        "minecraft": ">=1.20.3",
+        "fabric-item-group-api-v1": "*",
+        "fabric-blockrenderlayer-v1": "*"
+      },
+      "buildReceipt": "build/modpack-work/20260924-glass-resources/sources/modern_glass_doors/result.json"
+    },
+    {
+      "modId": "minefed-display",
+      "version": "1.0.0",
+      "fileName": "minefed-display-1.0.0.jar",
+      "sha256": "78c8359f70b6ecf2d012e9a94ec7ef68b706b935cde41efaea544eb043ee5835",
+      "size": 87856,
+      "source": {
+        "path": "minefed-display",
+        "url": "https://github.com/minefed/minefed-display",
+        "upstream": "https://github.com/minefed/minefed-display",
+        "ref": "codex/fix-display-depth",
+        "commit": "a1e8f94df20c22c1ccfc4083b1dc01dc7f757e45",
+        "trackingBranch": "codex/fix-display-depth",
+        "baselineRef": "main",
+        "baselineCommit": "79708da179682295df0dfc379320a0759c25a97d"
+      },
+      "sourceTreeSha256": "f49f225e36686966e5e36cafd55848fce7c542b86fe9f8f07a34a388e35e3eb1",
+      "sourceUrl": "https://github.com/minefed/minefed-display/commit/a1e8f94df20c22c1ccfc4083b1dc01dc7f757e45",
+      "license": "MIT",
+      "binaryLicense": "MIT",
+      "compatibility": {
+        "fabricloader": ">=0.16.14",
+        "minecraft": "~1.20.4",
+        "java": ">=17",
+        "fabric-api": "*"
+      },
+      "buildReceipt": "build/modpack-work/20260924-display-depth/sources/minefed-display/result.json"
+    }
+  ],
+  "bundle": {
+    "path": "build/render-fixes-20260924.zip",
+    "sha256": "1aac03029872c4797747a9c989f5d2cf4d72f06558d06be8f3892913d8d235f2",
+    "size": 183978
+  }
+}
