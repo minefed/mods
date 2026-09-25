@@ -129,7 +129,7 @@
 [submodule "mishanguc"]
 	path = mishanguc
 	url = https://github.com/minefed/mishanguc
-	branch = minefed-1.20.4
+	branch = codex/fix-gradle-download
 [submodule "MTR-Station-Decoration-Addon"]
 	path = MTR-Station-Decoration-Addon
 	url = https://github.com/minefed/MTR-Station-Decoration-Addon
