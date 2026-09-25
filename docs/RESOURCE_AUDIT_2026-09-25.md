@@ -17,6 +17,7 @@ Minecraft 1.20.4, Fabric Loader 0.18.4, Java 17을 대상으로 전체 빌드 �
 | Mythic Metals Decorations | hydrargym 상자의 파티클 텍스처 네임스페이스를 수정했다. |
 | Minecraft Transit Railway | 파일이 제공되지 않는 광산 수레 사운드 3개의 잘못된 파일 참조를 제거했다. 이벤트 ID와 나머지 사운드는 보존한다. |
 | Diagonal Fences / Macaw's Fences | 대각선 모델 변환을 지원하지 않는 잔디 담장 14종을 모드의 공식 제외 태그에 등록했다. 기본 담장과 기존 등록 ID는 유지한다. |
+| Mishang Urban Construction | Gradle 8.14.3을 받던 Tencent 미러의 읽기 시간 초과가 전체 빌드를 중단시켰다. 공식 배포 URL과 SHA-256으로 고정하고 빈 캐시에서 다운로드·실행을 검증했다. Gradle 버전은 유지한다. |
 | Minefed 리소스팩 | JapanProps의 누락된 상속 루트 18개, Dusty Decorations 종이의 위·아래 방향 상태, Exline Furniture의 팔 텍스처 경로를 보완했다. CityCraft의 제공되지 않은 시험용 그림·아이템 리소스에는 바닐라 리소스를 명시적인 대체재로 사용한다. |
 
 Modern Glass Doors의 생성 리소스 복구와 minefed-display의 깊이 테스트 수정도
@@ -32,6 +33,10 @@ Modern Glass Doors의 생성 리소스 복구와 minefed-display의 깊이 테�
 원본 JAR의 해시와 리소스 개수는 `inventory/resource-baseline.json`에 보존해,
 과거 소스 모드 JAR를 복원하지 않는 CI에서도 같은 검사를 수행한다. 이 기록에는
 JAR나 텍스처·모델 원본을 포함하지 않으며, 로컬 원본이 있으면 기록을 재검증한다.
+
+Mishang의 Gradle 배포 해시는 [Gradle 공식 체크섬 목록](https://gradle.org/release-checksums/)의
+8.14.3 binary ZIP 값과 대조했다. 최초 병렬 빌드는 미러 다운로드 실패로 종료됐고,
+그때 완료된 23개 소스의 검증된 결과는 재사용할 수 있도록 캐시에 보존했다.
 
 실행 검사는 [`client-resource-probe`](../tools/client-resource-probe/README.md)로
 제목 화면의 로딩 완료를 기다린 뒤 리소스를 두 번 다시 읽었다. 시작과 각 리로드

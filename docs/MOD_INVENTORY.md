@@ -74,7 +74,7 @@ Continuity·MCEF·Sodium·Indium 및 독립 레시피 호환 모드를 더한 �
 | 35 | mcw-windows-2.3.1-mc1.20.4fabric.jar | mcwwindows / 2.3.1 | 바이너리 | 모드팩 한정 | 포함 |
 | 36 | memoryleakfix-fabric-1.17+-1.1.5.jar | memoryleakfix / 1.1.5 | MemoryLeakFix · 0105090f | 허용 | 포함 |
 | 37 | minefed-display-1.0.0.jar | minefed-display / 1.0.0 | minefed-display · a1e8f94d | 허용 | 포함 |
-| 38 | mishanguc-1.5.3-1.20.4.jar | mishanguc / 1.5.3 | mishanguc · b8addb77 | 허용 | 포함 |
+| 38 | mishanguc-1.5.3-1.20.4.jar | mishanguc / 1.5.3 | mishanguc · 07028d29 | 허용 | 포함 |
 | 39 | modern-glass-doors-5.3.0+1.20.3-and-later.jar | modern_glass_doors / 5.3.0+1.20.3-and-later | modern-glass-doors · 3c65e91e | 허용 | 포함 |
 | 40 | modern-lights-1.20[2.4.2].jar | modernlights / 2.4.2 | Modern-Lights · 6b04f156 | 로컬 전용 | 포함 |
 | 41 | modernfix-fabric-5.17.0+mc1.20.4.jar | modernfix / 5.17.0+mc1.20.4 | ModernFix · 2856e289 | 허용 | 포함 |
