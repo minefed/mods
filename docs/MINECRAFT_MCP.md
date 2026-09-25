@@ -1,108 +1,69 @@
-# Minecraft Mod MCP 관찰용 클라이언트 구성
+# Minecraft Mod MCP 전체 조작 클라이언트
 
-Minecraft 1.20.4 / Fabric 클라이언트에서 사용자가 보는 화면과 상태를 읽기 위해
-`mcpmod` **0.3.0+minefed.1**을 포함한다. 서버에 접속하는 봇이나 서버 모드가 아니다.
-클라이언트 팩에만 포함하며 설치 후 Minecraft를 완전히 종료하고 다시 실행해야 한다.
-원본 `mcpmod` JAR와 동시에 넣지 않는다. Modrinth·Codex 전역 설정 변경이나
-MCP 브리지 설치는 이 저장소의 빌드·패키징 작업에 포함되지 않는다.
+Minecraft 1.20.4 / Fabric용 `mcpmod` **0.3.0+minefed.2**는 원본 게임 조작 기능을 모두 노출한다.
+이전 `.1`의 관찰 전용 명령 제한은 사용자의 요청에 따라 제거했다. 클라이언트 전용이며
+서버 모드나 별도 봇 계정이 아니다. JAR를 교체한 후 게임을 완전히 종료하고 다시 실행해야 한다.
+동일 `mcpmod` ID의 원본·이전 버전 JAR와 중복 설치하지 않는다.
 
-검증한 로컬 산출물은 `minecraft-mcp-1.20.4-fabric-0.3.0+minefed.1.jar`, 938350 bytes이며
-SHA-256은 `2352c0f58e0f6ed6c6ac757736fc3e5641077de23a5b2e79e58225bdaf4ebe67`이다.
-최종 팩의 정확한 JAR 해시는 해당 팩의 `download-manifest.json`에도 기록한다.
-
-## 원본과 라이선스
-
+## 원본과 빌드
 - 원본: [langyo/minecraft-mod-mcp v0.3.0](https://github.com/langyo/minecraft-mod-mcp/releases/tag/v0.3.0)
-- 소스 ref: `v0.3.0`, 추적 브랜치: `master`
-- 전체 소스 커밋: `50e059dccb09a9e23b91833ffdbf42efd97fa6e6`
-- 공식 파일: `minecraft-mcp-1.20.4-fabric-v0.3.0.jar`, 920529 bytes
-- 공식 SHA-256: `44551aebaf63baf79a4585d2d9330cd21692e61cc573f28604178e1af4c9cd78`
-- 소스·바이너리 라이선스: `MIT OR Apache-2.0 OR CC0-1.0` 중 MIT 조건 적용
-- 저작권: Copyright (c) 2025 langyo. 세 라이선스 원문과 변경 고지를 모두 보존한다.
-
-원본 JAR에는 독립적인 라이선스 파일이 없다. 정확한 소스 커밋에서 가져온
-[원본 라이선스와 변경 고지](../compatibility/minecraft-mcp/NOTICE.md)를 수정 JAR에
-내장하고 팩의 `licenses/selected-jars/`에도 포함한다. 원본 JAR를 Git에 넣지 않는다.
-전체 SHA-512, 크기, 원본 다운로드 URL, 소스 경로와 컴파일용 Gson 고정값은
-[전용 인벤토리](../inventory/minecraft-mcp.lock.json)에 기록한다.
-
-## Minefed 변경
-
-원본 HTTP 서버는 인증 없이 `0.0.0.0`에 바인딩하고 입력·명령 실행 기능도 제공한다.
-Minefed는 원본의 `McpHttpServer` 클래스를 Java 17로 다시 컴파일하여 교체하고
-정확한 1.20.4 이름으로 플레이어·월드를 조회하는 `ObservationState`를 추가한다.
-`ObservationScreenshot`은 1.20.4 `ScreenshotRecorder`와 `NativeImage`를 호출하여
-실제 프레임버퍼를 캡처한다. upstream이 FPS 등의 다른 정수를 화면 크기로 잘못
-추론하는 문제를 피하고, PNG 인코딩 후 네이티브 이미지를 닫는다.
-Fabric 메타데이터에 별도 버전, 라이선스와 1.20.4/Java 17 호환 조건을 명시한다.
-그 외 원본 클래스·자원은 바이트 단위로 보존한다. Java 소스와 원본 인벤토리도 JAR에 내장한다.
-
-- 모든 포트 선택 경로에서 **127.0.0.1**에만 바인딩한다.
-- HTTP는 아래 정확한 세 경로만 허용한다. 나머지는 404, 잘못된 메서드는 405다.
-- 변경 명령·임의 반사 호출·파일 저장·조작 모드·입력 명령은 HTTP 403으로 거절한다.
-- 브라우저 Origin 및 비로컬 Host를 거절하고 CORS 허용 헤더를 제공하지 않는다.
-- 명령 본문은 16 KiB로 제한한다. 읽기 전용 웹 대시보드나 SSE도 제공하지 않는다.
-
-| 요청 | 용도 |
-| --- | --- |
-| `GET /api/status` | 버전·Fabric·PID·포트·관찰 모드 확인 |
-| `GET /api/screenshot` | `original`, `grid` PNG data URL과 `width`, `height` |
-| `POST /api/cmd` | `ping`, `get_player_info`, `get_world_info`, `get_screen_buttons`만 허용 |
-
-명령은 `{"cmd":"get_player_info"}` 또는 `{"method":"get_player_info","params":{}}`다.
-스크린샷은 `/api/cmd`에서 허용하지 않고 전용 GET 경로로만 제공한다.
-status의 `version`은 `0.3.0+minefed.1`, `minecraftVersion`은 `1.20.4`,
-`loader`는 `fabric`, `readOnly`는 `true`, `bindAddress`는 `127.0.0.1`이다.
-`minefed-game`의 전용 관찰 어댑터는 이 식별값을 확인한 뒤 연결한다.
-
-기본 포트는 9876이며 사용 중이면 9875부터 9000까지 찾는다.
-`-Dmcp.port=9860` 또는 `MC_MCP_PORT`로 고정하면 그 포트만 시도한다.
-브리지는 `/api/status`의 PID로 원하는 게임 인스턴스인지 확인해야 한다.
-동일 사용자 PC의 네이티브 프로그램에는 인증 없이 조회가 허용되므로
-loopback 제한을 운영체제 사용자별 접근 제어로 해석하지 않는다.
-
-## 빌드와 패키징
+- 고정 소스: `50e059dccb09a9e23b91833ffdbf42efd97fa6e6`, 추적 브랜치 `master`.
+- 원본 JAR SHA-256: `44551aebaf63baf79a4585d2d9330cd21692e61cc573f28604178e1af4c9cd78`.
+- 배포 입력·라이선스·컴파일 의존성은 `inventory/minecraft-mcp.lock.json`에서 관리한다.
+- 라이선스는 MIT 선택이며 원본 MIT/Apache-2.0/CC0 원문과 변경 고지를 모두 보존한다.
+- `compatibility/minecraft-mcp`의 변경 소스는 JAR에도 포함된다.
+- 최종 해시·크기·소스 커밋은 생성된 `minecraft-mcp-build.json`과 모드팩 manifest가 기준이다.
 
 ```sh
 python scripts/release_mcp.py --output build/minecraft-mcp
 python -m unittest discover -s scripts -p test_release_mcp.py -v
 ```
 
-JDK 17과 Python 표준 라이브러리를 사용한다. 컴파일에는 해시가 고정된 원본 JAR와
-Minecraft 1.20.4의 Gson 2.10.1을 사용하며 Gson은 새 모드에 포함하지 않는다.
-실제 Java/HTTP 검사는 `MINEFED_MCP_JAVA_TESTS=1`로 실행한다.
-모드팩 패키징은 커밋된 수정 소스만 허용하며 결과 해시·원본·소스 파일 해시를
-`download-manifest.json`, `MINEFED-RELEASE.json`, `release-assets.json`에 남긴다.
-입력 인벤토리가 패키징 후 바뀌면 게시 검증이 실패한다. 일반 Modrinth 의존성 검사기는
-이 GitHub pin을 자동 갱신하지 않으며 새 upstream 릴리스는 별도로 검토해야 한다.
+Java 17을 사용한다. 개발 빌드에는 `--allow-uncommitted`를 쓸 수 있지만 배포 패키징은
+커밋된 소스·잠금 파일만 허용한다. 실제 Java/HTTP 검사는 `MINEFED_MCP_JAVA_TESTS=1`로 실행한다.
+기존 pack record의 `artifact: observation` 키는 manifest 호환을 위해 유지하며,
+현재 기능은 `readOnly:false`와 `.2` 버전으로 구분한다.
 
-`build-recipes.json`의 기존 47개 소스/25개 바이너리 기준본은 바꾸지 않는다.
-패키징 단계가 리소스 호환 모드와 이 관찰용 모드를 추가하여 최종 클라이언트 72개,
-서버 68개를 만든다. `server.zip`에는 관찰용 JAR가 들어가지 않는다.
+## 연결과 기능
+기본 주소는 `127.0.0.1:9876`이다. 자동 포트 선택 및 `-Dmcp.port`/`MC_MCP_PORT` 지원은 유지한다.
+외부 Origin/Host는 거부하고 같은 출처의 로컬 웹 대시보드는 허용한다.
 
-## 검증과 한계
+| 경로 | 기능 |
+| --- | --- |
+| `GET /api/status` | 버전·PID·포트·`readOnly:false`·`controlMode` |
+| `GET /api/screenshot` | 실제 화면 원본·격자 PNG와 치수 |
+| `POST /api/cmd` | 원본의 모든 게임 명령 |
+| `GET /api/calls` | 최근 호출 기록 |
+| `GET /api/events` | 원본 SSE 이벤트 |
+| `/`, `/debug`, `/index.html` | 원본 웹 제어 화면 |
 
-2026-09-26 실제 Java HTTP 테스트에서 loopback 바인딩, 조회 허용, 변경 명령 차단,
-Origin/Host 검사, 경로·메서드·본문 제한, PNG 응답과 원본 클래스 보존을 확인했다.
-별도 테스트 인스턴스에서 Minecraft 1.20.4 / Fabric Loader 0.18.4 / Java 17 초기화와
-상태 조회 및 854×480 PNG 스크린샷 HTTP 200 응답을 확인했다.
-임시 싱글플레이 월드에 들어간 후에도 실제 시간·차원·난이도·체력·음식·월드 이름과
-854×480 전체 프레임버퍼를 확인했다. 동일 Minefed 모드팩의 별도 실서버 접속 검증에서도
-실제 플레이어 좌표·시선·체력·차원·크리에이티브 모드 조회가 정상임을 확인했다.
-Java/HTTP/상태/원본 보존 검사는 7개 통과했다. 릴리스 관련 Python 검사는
-93개 중 87개 통과·6개 생략했고, 생략된 MCP Java 5개는 위 실제 Java 실행에서 따로 확인했다.
-Windows의 일부 기존 테스트 하위 프로세스에서 콘솔 인코딩 경고가 있었으나 검사 실패는 없었다.
+명령 형식은 `{"method":"press_key","params":{"key":"W","hold_seconds":0.25}}`이며
+평면형 `{"cmd":"press_key","key":"W","hold_seconds":0.25}`도 지원한다.
+이동, 시선, 마우스/키보드, 텍스트 입력, GUI, 아이템 사용, 블록 설치, 게임 명령,
+스크린샷 저장, 반사 기반 화면 호출을 특정 명령 목록으로 막지 않는다.
+`enter_control_mode`/`exit_control_mode`와 게임 서버의 플레이어 권한은 그대로 적용한다.
+제어 모드를 끝낼 때는 남은 키를 해제한다. `release_all_keys`도 별도로 제공한다.
 
-로컬 검증 팩 `build/releases/20260926022500/`에서 클라이언트 모드 72개, 서버 모드
-68개를 확인했다. `client.mrpack` 안의 MCP JAR는 위 SHA-256과 바이트가 일치하고,
-`server.zip`의 모드 파일·manifest에는 MCP가 없다. 원본 MIT 고지 보존, 클라이언트와
-서버의 실제 JAR 의존성·충돌 검사, 입력 잠금 파일과 세 배포 파일의 CRC·해시 검증이 통과했다.
-이 팩은 로컬 검증 산출물이며 원격 릴리스를 게시하지 않았다.
+## 1.20.4 호환 처리
+원본의 범용 반사 코드 중 게임 버전과 맞지 않는 기본 동작을 `GameplayControl`이 처리한다.
+기준은 [Yarn 1.20.4+build.3](https://maven.fabricmc.net/docs/yarn-1.20.4+build.3/)이다.
+- `press_key`: 정확한 Keyboard.onKey 호출과 별도 타이머로 키를 해제한다. 게임 스레드에서 키 유지 시간만큼 sleep하지 않는다.
+- `set_view_angle`, `look_delta`: 실제 Entity yaw/pitch 접근자를 호출한다.
+- `right_click`, `use_item`, `place_block`: 월드에서는 바닐라 아이템 사용 흐름을 호출한다.
+- `execute_command`, `set_gamemode`: 연결된 플레이어의 네트워크 핸들러로 명령을 보낸다.
+- `close_screen`: 실제 MinecraftClient.setScreen을 호출한다.
 
-월드에 들어가기 전 플레이어·월드 조회는 `available:false, error:not_in_world`다.
-좌표·시선은 숫자 `x/y/z/yaw/pitch`와 기존 `pos/rotation` 문자열로 함께 반환한다.
-시간·난이도·날씨는 클라이언트에 동기화된 실제 값을 클라이언트 스레드에서 읽는다.
-원격 서버 월드 이름은 클라이언트가 알 수 없어 `world_name:null, world_name_available:false`다.
-필드·메서드를 읽지 못하면 `available:false`를 반환하며 그럴듯한 기본값을 만들지 않는다.
-화면 버튼 조회는 upstream 리플렉션 구현이며 모든 모드 화면에서 정확하다고 보장하지 않는다.
-이 저장소 작업은 사용자 Modrinth 설치·운영 서버·Codex 전역 설정을 수정하지 않는다.
+다른 원본 명령은 그대로 위임한다. 모드 GUI의 반사 지원 여부는 화면마다 실사용 검증이 필요하다.
+`place_block` 응답이나 명령 전송 응답은 서버가 실제로 블록을 변경했다는 확인이 아니다.
+시공 결과는 새 화면·상태로 확인한다. UI가 열려 있을 때 월드 사용 요청은 명확한 오류를 반환한다.
+
+## 검증
+MCP 브리지의 도구 목록·인자 전달·오류 표시·이미지 반환을 Node 테스트에서 검증한다.
+Java 테스트는 실제 HTTP에서 모든 원본 명령 전달, 대시보드·기록, 외부 Origin 차단,
+명령·파일 스크린샷과 JAR 원본/라이선스 보존을 검사한다.
+`ControlProbe`는 1.20.4 intermediary 이름만 가진 가짜 클라이언트에서 키 유지 중 게임
+스레드가 계속 실행되는지, 키 해제·시선·명령 전송·아이템 사용이 동작하는지 확인한다.
+실제 게임에서의 이동/시공 검증 여부는 별도 설치 기록과 구분한다.
+
+`minefed-game`은 이 모드에 연결하는 전체 조작 MCP 어댑터를 관리한다.
+별도 upstream Node 런처의 버전 설치·계정·서버 관리 기능은 클라이언트 모드 명령이 아니다.

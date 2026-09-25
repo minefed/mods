@@ -579,7 +579,7 @@ def source_notices(records, version: str) -> str:
                 lines += ['Exact resource-only source: ' + record['sourceCommitUrl'],
                           'Per-file SHA-256 hashes are recorded in download-manifest.json.']
             elif record['artifact'] == 'observation':
-                lines += ['Exact Minefed observation modifications and build instructions: ' + record['sourceCommitUrl'],
+                lines += ['Exact Minefed MCP modifications and build instructions: ' + record['sourceCommitUrl'],
                           'The pinned original artifact, modified source and per-file hashes are recorded in download-manifest.json.',
                           'The modified Java source and original licenses are embedded in the JAR.']
             elif record.get('sourceArchiveUrl'):
@@ -684,11 +684,11 @@ def write_profile(root, destination, side, selected, notices, version, loader, r
                 instructions += ['The MCEF mod JAR is included. On first launch, MCEF separately prepares the platform-specific Chromium/CEF native runtime from https://mcef-download.cinemamod.com.',
                                  'Allow that download and initialization to finish before using Minefed Display web screens; native files retain their own license notices.']
             if any(record['modId'] == 'mcpmod' for record in records):
-                instructions += ['Minecraft Mod MCP is a Minefed observation-only build for this client; restart Minecraft after installing it.',
+                instructions += ['Minecraft Mod MCP is a Minefed full-control build for this client; restart Minecraft after installing it.',
                                  'Its HTTP API binds only to 127.0.0.1, starting at port 9876 (or -Dmcp.port / MC_MCP_PORT).',
-                                 'Only status, screenshot, ping, player/world information and screen-button queries are exposed. Input/control commands and browser requests are disabled.',
-                                 'Local native processes can query this unauthenticated observation API. No multiplayer bot or server mod is installed.',
-                                 'Use the separate minefed-game observation adapter; this pack does not configure AI clients or install an MCP bridge.']
+                                 'All upstream game commands, input and building actions are available. Use enter_control_mode before input; Minecraft server permissions still apply.',
+                                 'Local native processes and the same-origin web dashboard can use this API. No multiplayer bot or server mod is installed.',
+                                 'Use the separate minefed-game MCP adapter; this pack does not configure AI clients or install an MCP bridge.']
             archive.write(resource, f'overrides/resourcepacks/minefed-{version}.zip')
             if resource_records or builtin_packs:
                 archive.writestr('overrides/options.txt', release_resources.options(resource_records, version, list(builtin_packs)))

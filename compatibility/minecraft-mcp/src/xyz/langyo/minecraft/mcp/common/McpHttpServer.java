@@ -1,6 +1,6 @@
 /* Derived from langyo/minecraft-mod-mcp v0.3.0 (MIT option).
- * Minefed changes: loopback-only, observation allowlist, bounded requests,
- * browser-origin rejection, exact routes, and executor shutdown. See NOTICE.md.
+ * Minefed changes: loopback-only transport, full upstream command dispatch,
+ * same-origin dashboard, accurate observations and executor shutdown. See NOTICE.md.
  */
 package xyz.langyo.minecraft.mcp.common;
 
@@ -23,8 +23,6 @@ public class McpHttpServer {
     private static final int PORT_END = McpConfig.PORT_END;
     private HttpServer server;
     private ExecutorService executor;
-    private static final Set<String> OBSERVATION_COMMANDS = Set.of(
-        "ping", "get_player_info", "get_world_info", "get_screen_buttons");
     private final McpMessageHandler handler;
     private int port;
     private final List<CallEvent> callHistory = new CopyOnWriteArrayList<>();
@@ -97,29 +95,30 @@ public class McpHttpServer {
             }
             if (lastErr != null) throw lastErr;
         }
-        executor = Executors.newFixedThreadPool(2, runnable -> {
-            Thread thread = new Thread(runnable, "Minefed-MCP-Observer");
+        executor = Executors.newFixedThreadPool(8, runnable -> {
+            Thread thread = new Thread(runnable, "Minefed-MCP");
             thread.setDaemon(true);
             return thread;
         });
         server.setExecutor(executor);
-        server.createContext("/", this::observe);
+        server.createContext("/", this::route);
         server.start();
         ReflectionHelper.dbg("McpHttpServer: started on port " + port);
     }
 
-    private void observe(HttpExchange exchange) throws IOException {
+    private void route(HttpExchange exchange) throws IOException {
         try {
             String host = exchange.getRequestHeaders().getFirst("Host");
+            String origin = exchange.getRequestHeaders().getFirst("Origin");
             if (!exchange.getRemoteAddress().getAddress().isLoopbackAddress()
-                    || exchange.getRequestHeaders().containsKey("Origin")
+                    || (origin != null && !origin.equals("http://" + host))
                     || !( ("127.0.0.1:" + port).equals(host) || ("localhost:" + port).equals(host))) {
-                sendJson(exchange, 403, "{\"error\":\"local native clients only\"}");
+                sendJson(exchange, 403, "{\"error\":\"local clients and same-origin dashboard only\"}");
                 return;
             }
             String path = exchange.getRequestURI().getRawPath();
-            if (!Set.of("/api/status", "/api/screenshot", "/api/cmd").contains(path)) {
-                sendJson(exchange, 404, "{\"error\":\"observation endpoint not found\"}");
+            if (path.startsWith("/api/") && !Set.of("/api/status", "/api/screenshot", "/api/cmd", "/api/events", "/api/calls").contains(path)) {
+                sendJson(exchange, 404, "{\"error\":\"endpoint not found\"}");
                 return;
             }
             String method = path.equals("/api/cmd") ? "POST" : "GET";
@@ -130,7 +129,10 @@ public class McpHttpServer {
             }
             if (path.equals("/api/status")) sendJson(exchange, 200, buildStatusJson());
             else if (path.equals("/api/screenshot")) new ScreenshotHandler().handle(exchange);
-            else new CmdHandler().handle(exchange);
+            else if (path.equals("/api/cmd")) new CmdHandler().handle(exchange);
+            else if (path.equals("/api/events")) new EventHandler().handle(exchange);
+            else if (path.equals("/api/calls")) new CallsHandler().handle(exchange);
+            else new RootHandler().handle(exchange);
         } finally {
             exchange.close();
         }
@@ -142,8 +144,9 @@ public class McpHttpServer {
         StringBuilder sb = new StringBuilder("{");
         sb.append("\"ok\":true");
         sb.append(",\"type\":\"minecraft-mod\"");
-        sb.append(",\"version\":\"0.3.0+minefed.1\",\"minecraftVersion\":\"1.20.4\"");
-        sb.append(",\"loader\":\"fabric\",\"readOnly\":true,\"bindAddress\":\"127.0.0.1\"");
+        sb.append(",\"version\":\"0.3.0+minefed.2\",\"minecraftVersion\":\"1.20.4\"");
+        sb.append(",\"loader\":\"fabric\",\"readOnly\":false,\"bindAddress\":\"127.0.0.1\"");
+        sb.append(",\"controlMode\":").append(ReflectionHelper.isMcpControlMode());
         String forgeVer = McpConfig.getForgeVersion();
         if (forgeVer != null) sb.append(",\"forgeVersion\":\"").append(esc(forgeVer)).append("\"");
         sb.append(",\"pid\":").append(pid);
@@ -203,7 +206,10 @@ public class McpHttpServer {
         return sb.toString();
     }
 
-    private static String esc(String s) { return s == null ? "" : s.replace("\\", "\\\\").replace("\"", "\\\"").replace("\n", "\\n"); }
+    private static String esc(String s) {
+        String quoted = McpProtocol.GSON.toJson(s == null ? "" : s);
+        return quoted.substring(1, quoted.length() - 1);
+    }
     private static String quote(String s) { return "\"" + esc(s) + "\""; }
 
     class StaticHandler implements HttpHandler {
@@ -298,6 +304,18 @@ public class McpHttpServer {
         return ObservationScreenshot.capture(ReflectionHelper.getMinecraftInstance());
     }
 
+    protected String gameplayCommand(String command, Map<String, String> params) {
+        Object client = ReflectionHelper.getMinecraftInstance();
+        if (command.equals("exit_control_mode")) {
+            String release = GameplayControl.dispatch("release_all_keys", Map.of(), client);
+            if (release.contains("\"error\"")) return release;
+            return null;
+        }
+        if (!ReflectionHelper.isMcpControlMode()
+                && !Set.of("set_gamemode", "close_screen", "release_all_keys").contains(command)) return null;
+        return GameplayControl.dispatch(command, params, client);
+    }
+
     private String generateGridBase64(byte[] pngBytes, int w, int h) {
         try {
             BufferedImage img = javax.imageio.ImageIO.read(new ByteArrayInputStream(pngBytes));
@@ -341,10 +359,7 @@ public class McpHttpServer {
                 if (request == null) throw new IllegalArgumentException("expected object");
                 String cmd = request.has("cmd") ? request.get("cmd").getAsString()
                     : request.has("method") ? request.get("method").getAsString() : "";
-                if (!OBSERVATION_COMMANDS.contains(cmd)) {
-                    sendJson(exchange, 403, "{\"error\":\"command disabled in observation mode\"}");
-                    return;
-                }
+                if (cmd.isBlank()) throw new IllegalArgumentException("missing command");
             } catch (RuntimeException error) {
                 sendJson(exchange, 400, "{\"error\":\"invalid command object\"}");
                 return;
@@ -373,6 +388,7 @@ public class McpHttpServer {
                 String cmd = jo.has("cmd") ? jo.get("cmd").getAsString() : jo.has("method") ? jo.get("method").getAsString() : "";
                 ev.method = cmd;
                 ev.params = body;
+                if (cmd.equals("screenshot")) return McpProtocol.GSON.toJson(captureScreenshot());
                 if (cmd.equals("get_player_info") || cmd.equals("get_world_info")) {
                     Object client;
                     try { client = ReflectionHelper.getMinecraftInstance(); }
@@ -382,18 +398,30 @@ public class McpHttpServer {
                 java.util.Map<String, String> params = new java.util.LinkedHashMap<>();
                 if (jo.has("params") && jo.get("params").isJsonObject()) {
                     for (java.util.Map.Entry<String, com.google.gson.JsonElement> e : jo.getAsJsonObject("params").entrySet()) {
-                        params.put(e.getKey(), e.getValue().isJsonNull() ? "" : e.getValue().getAsString());
+                        params.put(e.getKey(), parameterValue(e.getValue()));
                     }
                 }
                 for (java.util.Map.Entry<String, com.google.gson.JsonElement> e : jo.entrySet()) {
-                    if (!e.getKey().equals("cmd") && !e.getKey().equals("method") && !e.getKey().equals("params") && !e.getValue().isJsonObject()) {
-                        params.putIfAbsent(e.getKey(), e.getValue().isJsonNull() ? "" : e.getValue().getAsString());
+                    if (!e.getKey().equals("cmd") && !e.getKey().equals("method") && !e.getKey().equals("params")) {
+                        params.putIfAbsent(e.getKey(), parameterValue(e.getValue()));
                     }
                 }
+                if (cmd.equals("screenshot_to_file")) {
+                    String path = params.get("path");
+                    if (path == null || path.isBlank()) return "{\"error\":\"missing path\"}";
+                    java.nio.file.Path target = java.nio.file.Paths.get(path).toAbsolutePath();
+                    byte[] data = Base64.getDecoder().decode(captureScreenshot().substring("data:image/png;base64,".length()));
+                    java.nio.file.Files.createDirectories(target.getParent());
+                    java.nio.file.Files.write(target, data);
+                    return McpProtocol.GSON.toJson(Map.of("file", target.toString(), "size", data.length));
+                }
+                String compatibility = gameplayCommand(cmd, params);
+                if (compatibility != null) return compatibility;
                 Object r = handler.dispatch(cmd, params, null);
                 if (r instanceof String) {
                     String s = (String) r;
-                    if (s.startsWith("data:image") || s.startsWith("{") || s.startsWith("[")) return s;
+                    if (s.startsWith("data:image")) return McpProtocol.GSON.toJson(s);
+                    if (s.startsWith("{") || s.startsWith("[")) return s;
                     return "{\"result\":\"" + esc(s) + "\"}";
                 }
                 return McpProtocol.GSON.toJson(r);
@@ -401,6 +429,10 @@ public class McpHttpServer {
                 return "{\"error\":\"" + esc(e.getMessage()) + "\"}";
             }
         }
+    }
+
+    private static String parameterValue(com.google.gson.JsonElement value) {
+        return value.isJsonNull() ? "" : value.isJsonPrimitive() ? value.getAsString() : value.toString();
     }
 
     class EventHandler implements HttpHandler {

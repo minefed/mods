@@ -12,10 +12,11 @@ public final class HttpProbe {
             @Override protected Object dispatch(String method, Map<String, String> params, Object client) {
                 calls++;
                 if (method.equals("screenshot")) return "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+a9l8AAAAASUVORK5CYII=";
-                return "{\"method\":\"" + method + "\",\"calls\":" + calls + "}";
+                return McpProtocol.GSON.toJson(Map.of("method", method, "calls", calls, "params", params));
             }
         };
         McpHttpServer server = new McpHttpServer(handler, Integer.parseInt(args[0])) {
+            @Override protected String gameplayCommand(String command, Map<String, String> params) { return null; }
             @Override protected String captureScreenshot() {
                 return "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+a9l8AAAAASUVORK5CYII=";
             }

@@ -1,4 +1,4 @@
-"""Offline policy tests and opt-in real Java HTTP/package checks for the observer mod."""
+"""Offline policy tests and opt-in real Java HTTP/package checks for the full-control mod."""
 import base64
 import http.client
 import json
@@ -39,7 +39,8 @@ class JavaObservationTests(unittest.TestCase):
         cls.cp = os.pathsep.join(map(str, (cls.work, cls.jar, cls.gson)))
         subprocess.run([str(cls.java / ('javac' + ext)), '--release', '17', '-cp', cls.cp, '-d', str(cls.work),
                         str(mcp.ROOT / 'tools/minecraft-mcp-tests/HttpProbe.java'),
-                        str(mcp.ROOT / 'tools/minecraft-mcp-tests/StateProbe.java')], check=True, capture_output=True)
+                        str(mcp.ROOT / 'tools/minecraft-mcp-tests/StateProbe.java'),
+                        str(mcp.ROOT / 'tools/minecraft-mcp-tests/ControlProbe.java')], check=True, capture_output=True)
         with socket.socket() as sock:
             sock.bind(('127.0.0.1', 0))
             cls.port = sock.getsockname()[1]
@@ -76,7 +77,7 @@ class JavaObservationTests(unittest.TestCase):
         return self.request('POST', '/api/cmd', json.dumps(value), {'Content-Type': 'application/json'})
 
     def test_exact_routes_methods_and_browser_isolation(self):
-        for path in ('/debug', '/', '/api/events', '/api/calls', '/api/status/extra', '/api/%73tatus'):
+        for path in ('/api/status/extra', '/api/%73tatus', '/api/unknown'):
             self.assertEqual(404, self.request('GET', path)[0], path)
         for method, path in [('POST', '/api/status'), ('POST', '/api/screenshot'), ('GET', '/api/cmd')]:
             self.assertEqual(405, self.request(method, path)[0])
@@ -85,24 +86,53 @@ class JavaObservationTests(unittest.TestCase):
         status, headers, body = self.request('GET', '/api/status')
         self.assertEqual(200, status)
         self.assertNotIn('Access-Control-Allow-Origin', headers)
-        self.assertTrue(json.loads(body)['readOnly'])
+        self.assertFalse(json.loads(body)['readOnly'])
+        self.assertEqual(200, self.request('GET', '/debug')[0])
+        self.assertEqual(200, self.request('GET', '/')[0])
+        self.assertEqual(200, self.request('GET', '/api/calls')[0])
+        self.assertEqual(200, self.request('GET', '/api/status', headers={'Origin': f'http://127.0.0.1:{self.port}'})[0])
         self.assertEqual('127.0.0.1', json.loads(body)['bindAddress'])
 
-    def test_only_observation_commands_reach_handler(self):
-        before = json.loads(self.command({'cmd': 'ping'})[2])['calls']
-        for command in ('execute_command', 'click', 'press_key', 'set_gamemode', 'call_screen_method',
-                        'enter_control_mode', 'screenshot_to_file', 'release_mouse', 'screenshot', 'unknown'):
-            self.assertEqual(403, self.command({'method': command})[0], command)
-        after = json.loads(self.command({'cmd': 'ping'})[2])['calls']
-        self.assertEqual(before + 1, after)
-        for command in ('get_player_info', 'get_world_info', 'get_screen_buttons'):
-            status, _, body = self.command({'method': command, 'params': {}})
-            self.assertEqual(200, status)
-            if command == 'get_screen_buttons':
-                self.assertEqual(command, json.loads(body)['method'])
-            else:
-                self.assertFalse(json.loads(body)['available'])
-                self.assertIn('error', json.loads(body))
+    def test_all_upstream_commands_reach_handler_with_parameters(self):
+        commands = ('ping', 'debug_fields', 'get_screen_buttons', 'enumerate_widgets',
+                    'enter_control_mode', 'exit_control_mode', 'release_mouse', 'pause_game',
+                    'close_screen', 'open_chat', 'set_gamemode', 'click', 'right_click',
+                    'mouse_drag', 'drag', 'scroll', 'scroll_at', 'direct_scroll', 'select_list_item',
+                    'press_key', 'type_text', 'paste_text', 'hotkey', 'click_button_id',
+                    'click_button_index', 'switch_tab', 'call_screen_method', 'execute_command',
+                    'set_view_angle', 'look_delta', 'use_item', 'place_block', 'overlay_click',
+                    'release_all_keys', 'future_upstream_command')
+        for command in commands:
+            params = {'key': 'W', 'hold_seconds': 0.25, 'text': '한글\ntext', 'press_enter': True,
+                      'method': 'screenMethod', 'nested': {'x': 1}}
+            status, _, body = self.command({'method': command, 'params': params})
+            self.assertEqual(200, status, command)
+            response = json.loads(body)
+            self.assertEqual(command, response['method'])
+            self.assertEqual('0.25', response['params']['hold_seconds'])
+            self.assertEqual('true', response['params']['press_enter'])
+            self.assertEqual('screenMethod', response['params']['method'])
+            self.assertEqual({'x': 1}, json.loads(response['params']['nested']))
+        for command in ('get_player_info', 'get_world_info'):
+            self.assertFalse(json.loads(self.command({'method': command})[2])['available'])
+        flat = json.loads(self.command({'cmd': 'press_key', 'key': 'W', 'hold_seconds': 1})[2])
+        self.assertEqual('W', flat['params']['key'])
+
+    def test_screenshot_commands_and_explicit_file_output(self):
+        image = json.loads(self.command({'method': 'screenshot'})[2])
+        self.assertTrue(image.startswith('data:image/png;base64,'))
+        target = self.work / 'screenshots' / 'probe.png'
+        status, _, body = self.command({'method': 'screenshot_to_file', 'params': {'path': str(target)}})
+        self.assertEqual(200, status)
+        self.assertEqual(target.stat().st_size, json.loads(body)['size'])
+        self.assertTrue(target.read_bytes().startswith(b'\x89PNG'))
+
+    def test_client_thread_control_compatibility(self):
+        executable = 'java.exe' if os.name == 'nt' else 'java'
+        output = subprocess.run([str(self.java / executable), '-cp', self.cp,
+                                 'xyz.langyo.minecraft.mcp.common.ControlProbe'],
+                                check=True, capture_output=True, text=True).stdout
+        self.assertIn('CONTROL_OK', output)
 
     def test_malformed_and_oversized_requests_are_rejected(self):
         for body in ('null', '[]', '{', '{"cmd":{}}'):
@@ -122,7 +152,7 @@ class JavaObservationTests(unittest.TestCase):
         with zipfile.ZipFile(upstream) as original, zipfile.ZipFile(self.jar) as modified:
             self.assertIsNone(modified.testzip())
             metadata = json.loads(modified.read('fabric.mod.json'))
-            self.assertEqual('0.3.0+minefed.1', metadata['version'])
+            self.assertEqual('0.3.0+minefed.2', metadata['version'])
             self.assertEqual('client', metadata['environment'])
             self.assertEqual('1.20.4', metadata['depends']['minecraft'])
             for name in original.namelist():

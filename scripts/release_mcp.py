@@ -1,4 +1,4 @@
-"""Build a loopback-only observation derivative of the pinned Minecraft MCP JAR."""
+"""Build a loopback-only full-control derivative of the pinned Minecraft MCP JAR."""
 import argparse
 import hashlib
 import json
@@ -17,7 +17,8 @@ SOURCE = 'compatibility/minecraft-mcp'
 SERVER = 'xyz/langyo/minecraft/mcp/common/McpHttpServer'
 SOURCE_FILES = {'LICENSE-MIT', 'LICENSE-APACHE', 'LICENSE-CC0', 'NOTICE.md', 'src/' + SERVER + '.java',
                 'src/xyz/langyo/minecraft/mcp/common/ObservationState.java',
-                'src/xyz/langyo/minecraft/mcp/common/ObservationScreenshot.java'}
+                'src/xyz/langyo/minecraft/mcp/common/ObservationScreenshot.java',
+                'src/xyz/langyo/minecraft/mcp/common/GameplayControl.java'}
 
 
 def pinned_input(root, entry):
@@ -100,7 +101,7 @@ def build(root, work, *, require_committed=True):
         metadata = json.loads(payload['fabric.mod.json'])
         if (metadata.get('id'), metadata.get('version'), metadata.get('environment')) != ('mcpmod', '0.3.0', 'client'):
             raise mods.ModError('Unexpected upstream Minecraft MCP Fabric metadata')
-        metadata.update(version=lock['version'], name='Minecraft Mod MCP (Minefed observation)', license='MIT',
+        metadata.update(version=lock['version'], name='Minecraft Mod MCP (Minefed control)', license='MIT',
                         depends={'minecraft': '1.20.4', 'java': '>=17', 'fabricloader': '>=0.16.0'})
         payload['fabric.mod.json'] = (json.dumps(metadata, ensure_ascii=False, indent=2) + '\n').encode()
         for path in classes.rglob('*.class'):
@@ -123,13 +124,13 @@ def build(root, work, *, require_committed=True):
         'artifact': 'observation', 'distribution': 'embed', 'archiveIncluded': True,
         'artifactRedistribution': 'allowed', 'client': True, 'server': False,
         'license': lock['license'], 'licenseUrl': source_url + '/LICENSE-MIT', 'authors': lock['authors'],
-        'reason': 'Client-only loopback observation derivative of Minecraft Mod MCP; HTTP input/control commands are disabled.',
+        'reason': 'Client-only local Minecraft MCP with all upstream commands and 1.20.4 observation/input compatibility.',
         'evidenceUrls': [lock['upstream']['releaseUrl'], source_url + '/NOTICE.md'],
         'replacesBuiltArtifact': False, 'sourceCommitUrl': source_url,
         'source': {'path': SOURCE, 'url': 'https://github.com/minefed/mods', 'commit': commit},
         'sourceReference': lock['sourceReference'],
         'sourceFiles': {n: hashlib.sha256(data).hexdigest() for n, data in contents.items()},
-        'upstreamArtifact': lock['upstream'], 'readOnly': True, 'bindAddress': '127.0.0.1',
+        'upstreamArtifact': lock['upstream'], 'readOnly': False, 'bindAddress': '127.0.0.1',
     }
     return (record, output, {'fileName': output.name, 'sha256': digest, 'size': size}), {
         'path': LOCK, 'sha256': mods.file_digest(lock_path)[0]}

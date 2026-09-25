@@ -3,13 +3,16 @@
   "modId": "mcpmod",
   "minecraftVersion": "1.20.4",
   "loader": "fabric",
-  "version": "0.3.0+minefed.1",
-  "fileName": "minecraft-mcp-1.20.4-fabric-0.3.0+minefed.1.jar",
+  "version": "0.3.0+minefed.2",
+  "fileName": "minecraft-mcp-1.20.4-fabric-0.3.0+minefed.2.jar",
   "client": true,
   "server": false,
   "license": "MIT",
   "licenseOptions": "MIT OR Apache-2.0 OR CC0-1.0",
-  "authors": ["langyo", "Minefed contributors (observation restrictions)"],
+  "authors": [
+    "langyo",
+    "Minefed contributors (1.20.4 compatibility and local control)"
+  ],
   "sourceReference": {
     "url": "https://github.com/langyo/minecraft-mod-mcp",
     "ref": "v0.3.0",
@@ -46,8 +49,8 @@
   "buildScript": "scripts/release_mcp.py",
   "notes": [
     "The original JAR has no standalone license files; all three upstream license texts and the original MIT copyright are preserved alongside the Minefed modification notice.",
-    "The released JAR is an input, not the installed artifact. Recompile the reviewed replacement HTTP server and added observation helpers with Java 17 and retain the other upstream entries unchanged, except explicit Fabric version/license/runtime metadata.",
-    "Always bind 127.0.0.1; expose only native-client status/screenshot and allowlisted read commands. Do not distribute the unrestricted original as the Minefed runtime.",
+    "The released JAR is an input, not the installed artifact. Recompile the HTTP server and 1.20.4 observation/control helpers with Java 17; preserve other upstream entries and licenses.",
+    "Bind 127.0.0.1; expose every upstream game command plus the local dashboard, history and events. Retain upstream control mode and Minecraft player permissions. No observation-only command allowlist.",
     "Upstream release updates require explicit review; the Modrinth-only dependency checker does not query this GitHub pin."
   ]
 }

@@ -126,7 +126,7 @@ class ReleaseTests(unittest.TestCase):
         return release.release(self.root, 'build/latest.json', version)
 
     def test_observer_is_embedded_only_in_client_with_notice_and_lock(self):
-        entry = self.jar('minecraft-mcp-fixture.jar', 'mcpmod', '0.3.0+minefed.1', environment='client')
+        entry = self.jar('minecraft-mcp-fixture.jar', 'mcpmod', '0.3.0+minefed.2', environment='client')
         record = {**entry, **self.decision('mcpmod', artifact='observation', server=False),
                   'path': 'mods/' + entry['fileName'], 'archiveIncluded': True, 'replacesBuiltArtifact': False}
         self.policy['minecraftMcpMod'] = True
@@ -140,7 +140,7 @@ class ReleaseTests(unittest.TestCase):
         self.assertEqual(snapshot, json.loads(result.read_text())['minecraftMcpManifest'])
         with zipfile.ZipFile(result.parent / 'client.mrpack') as archive:
             self.assertIn('overrides/' + record['path'], archive.namelist())
-            self.assertIn('observation-only', archive.read('overrides/INSTALL.txt').decode())
+            self.assertIn('full-control', archive.read('overrides/INSTALL.txt').decode())
             self.assertIn('mcpmod', archive.read('overrides/LICENSES.md').decode())
         with zipfile.ZipFile(result.parent / 'server.zip') as archive:
             self.assertNotIn(record['path'], archive.namelist())
