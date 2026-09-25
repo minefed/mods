@@ -24,6 +24,10 @@ Minefed 서버의 모드 소스와 운영 JAR를 한 곳에서 관리한다. Min
 두 교체 JAR의 소스 커밋·SHA-256·검증 범위는
 [수정 산출물 기록](inventory/render-fixes-2026-09-24.json)에 고정한다.
 
+2026-09-25 [전체 모드 리소스·빌드·로딩 감사](docs/RESOURCE_AUDIT_2026-09-25.md)에서
+추가 모델·텍스처·CTM 누락을 수정하고 Yuushya Modelling의 모델 로딩을 최적화했다.
+전체 JAR의 리소스 보존 검사를 빌드의 필수 단계로 추가했다.
+
 ## 시작하기
 
 Git과 Python 3.10 이상이 필요하다. 서브모듈은 `.gitmodules`에 기록한 minefed fork와 정확한 gitlink 커밋으로 초기화한다.

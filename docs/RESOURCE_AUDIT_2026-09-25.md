@@ -45,6 +45,28 @@ Mishang의 Gradle 배포 해시는 [Gradle 공식 체크섬 목록](https://grad
 원본 실행 로그와 JFR은 로컬에만 보관하고, 공개 기록에는 필요한 수치와 리소스
 식별자만 남긴다.
 
+## 최종 빌드 검증
+
+`20260925-061229-3aa0516f` 통합 빌드가 성공했다. 소스 47개와 바이너리 25개를
+포함한 JAR 72개를 검사했으며 JSON 오류와 리소스 계열·런타임 클래스의 전체
+누락은 발견되지 않았다. 자동 테스트는 189개 중 185개 통과, 환경 조건에 따른
+4개 건너뛰기였다. MTR의 레일 렌더링·mixin 검사와 클라이언트의 PTS 레시피
+호환성 검사, 소스 저장소 정책 검사도 통과했다. 운영 기준 JAR 70개와 기록된
+소스 고정값의 재검증도 성공했다.
+
+실제 JAR을 열어 오디오 블록 54종의 기존 상태 보존과 추가 방향 모델 216개,
+충돌 JSON 1,401개, 전리품 풀 10개, 옷 CTM의 유효 타일 17개/13개, 두 나비
+모델의 파티클, Oritech·Decorative Blocks·Mythic Metals Decorations·MTR 수정과
+Macaw 제외 태그를 확인했다. Oritech의 Athena 연결 텍스처는 유지하며 각각의
+PNG가 존재하는 것도 확인했다.
+
+Yuushya 충돌 데이터 생성기는 `slab_cube_yellow_wool` 읽기 메시지를 세 번
+출력한다. 원인은 생성기의 `ModelReader`가 바닐라 부모 모델
+`minecraft:block/cube_column`을 찾지 못하는 것이다. 해당 모델은 Minecraft
+JAR에 존재한다. 관련 slab·half-slab·snow-layer 블록은 각각 기본 slab 구현,
+`HalfSlabBlock`, `SnowLayerLikeBlock`에서 모양을 계산하므로 이 생성 충돌 데이터를
+사용하지 않는다. 따라서 이 메시지는 게임에서 모델 파일이 누락됐다는 뜻은 아니다.
+
 ## 실행 범위와 해석
 
 기존 클라이언트는 블록 21,898개, 블록 상태 1,051,873개를 등록했다. Modelling의
