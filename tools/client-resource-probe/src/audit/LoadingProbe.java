@@ -38,15 +38,15 @@ public class LoadingProbe implements ClientModInitializer {
       for(Object state:(Iterable<?>)Class.forName("net.minecraft.class_2689").getMethod("method_11662").invoke(definition)) {
         Object key=Class.forName("net.minecraft.class_773").getMethod("method_3340",Class.forName("net.minecraft.class_2680")).invoke(null,state);
         Object model=unwrap(getModel.invoke(manager,key),wrapper);
-        if(!wrapper.isInstance(model) || !state.toString().contains("facing="+facing.get(model)) || backup.get(model)==model)
+        if(!wrapper.isInstance(model) || !state.toString().contains("facing="+facing.get(model)) || backup.get(model)==null || backup.get(model)==model)
           throw new AssertionError("Incorrect showblock model: "+state+" "+model);
         count++;
       }
     }
     Object item=unwrap(getModel.invoke(manager,modelId.getConstructor(String.class,String.class,String.class).newInstance(namespace,"showblock","inventory")),wrapper);
-    if(count!=128 || !wrapper.isInstance(item) || !facing.get(item).toString().equals("south"))
+    if(count!=128 || !wrapper.isInstance(item) || !facing.get(item).toString().equals("south") || backup.get(item)==null || backup.get(item)==item)
       throw new AssertionError("Missing showblock models: "+count);
-    Object stone=getModel.invoke(manager,modelId.getConstructor(String.class,String.class,String.class).newInstance("minecraft","stone",""));
+    Object stone=unwrap(getModel.invoke(manager,modelId.getConstructor(String.class,String.class,String.class).newInstance("minecraft","stone","")),wrapper);
     if(wrapper.isInstance(stone))throw new AssertionError("Wrapped another mod's model");
     record("showblock_models_checked\t"+(count+1));
   }
