@@ -3027,9 +3027,9 @@
         "path": "Oritech",
         "url": "https://github.com/minefed/Oritech",
         "upstream": "https://github.com/Rearth/Oritech",
-        "ref": "minefed-1.20.4",
-        "commit": "1cf7cfe9aa3ed20cd904f9bc15eb979eb817a647",
-        "trackingBranch": "minefed-1.20.4",
+        "ref": "codex/fix-capacitor-model",
+        "commit": "0ace08abb384f0e38288f4bc82b6c58606509f86",
+        "trackingBranch": "codex/fix-capacitor-model",
         "baselineRef": "v0.5.1+1.20.4",
         "baselineCommit": "83ba099a700478e4fd7e85548ced4f5d7227d114"
       },

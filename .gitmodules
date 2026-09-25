@@ -137,7 +137,7 @@
 [submodule "Oritech"]
 	path = Oritech
 	url = https://github.com/minefed/Oritech
-	branch = minefed-1.20.4
+	branch = codex/fix-capacitor-model
 [submodule "mc-realtime"]
 	path = mc-realtime
 	url = https://github.com/minefed/mc-realtime
