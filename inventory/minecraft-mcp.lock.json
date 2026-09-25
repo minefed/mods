@@ -1,0 +1,53 @@
+{
+  "schemaVersion": 1,
+  "modId": "mcpmod",
+  "minecraftVersion": "1.20.4",
+  "loader": "fabric",
+  "version": "0.3.0+minefed.1",
+  "fileName": "minecraft-mcp-1.20.4-fabric-0.3.0+minefed.1.jar",
+  "client": true,
+  "server": false,
+  "license": "MIT",
+  "licenseOptions": "MIT OR Apache-2.0 OR CC0-1.0",
+  "authors": ["langyo", "Minefed contributors (observation restrictions)"],
+  "sourceReference": {
+    "url": "https://github.com/langyo/minecraft-mod-mcp",
+    "ref": "v0.3.0",
+    "commit": "50e059dccb09a9e23b91833ffdbf42efd97fa6e6",
+    "trackingBranch": "master"
+  },
+  "upstream": {
+    "fileName": "minecraft-mcp-1.20.4-fabric-v0.3.0.jar",
+    "url": "https://github.com/langyo/minecraft-mod-mcp/releases/download/v0.3.0/minecraft-mcp-1.20.4-fabric-v0.3.0.jar",
+    "releaseUrl": "https://github.com/langyo/minecraft-mod-mcp/releases/tag/v0.3.0",
+    "sha256": "44551aebaf63baf79a4585d2d9330cd21692e61cc573f28604178e1af4c9cd78",
+    "sha512": "a4ab587c871f29b1debe97ad4be1c7e1c00cccc68f981e3b3335137af8eeac87b1f669bcc9ca171bbf3ac6470c1fc3cb09fdd05d68fb3654ae3c3b011995fb87",
+    "size": 920529,
+    "verificationAlgorithm": "sha256",
+    "publishedHashMatch": true,
+    "originalServerSourcePath": "packages/common/src/main/java/xyz/langyo/minecraft/mcp/common/McpHttpServer.java",
+    "originalServerSourceSha256": "aa77bf3da9829a2e550d9a8e87118b3faa0c2145fffabe5561cd646b2cc442f5"
+  },
+  "compileDependency": {
+    "fileName": "gson-2.10.1.jar",
+    "url": "https://libraries.minecraft.net/com/google/code/gson/gson/2.10.1/gson-2.10.1.jar",
+    "sha256": "4241c14a7727c34feea6507ec801318a3d4a90f070e4525681079fb94ee4c593",
+    "size": 283367,
+    "bundled": false,
+    "notes": "Compile classpath only; Minecraft 1.20.4 supplies Gson at runtime. No Gson classes are copied into this mod."
+  },
+  "compatibility": {
+    "minecraft": "1.20.4",
+    "fabricLoader": ">=0.16.0",
+    "testedFabricLoader": "0.18.4",
+    "java": ">=17"
+  },
+  "localSourcePath": "compatibility/minecraft-mcp",
+  "buildScript": "scripts/release_mcp.py",
+  "notes": [
+    "The original JAR has no standalone license files; all three upstream license texts and the original MIT copyright are preserved alongside the Minefed modification notice.",
+    "The released JAR is an input, not the installed artifact. Recompile the reviewed replacement HTTP server with Java 17 and retain the other upstream entries unchanged, except explicit Fabric version/license/runtime metadata.",
+    "Always bind 127.0.0.1; expose only native-client status/screenshot and allowlisted read commands. Do not distribute the unrestricted original as the Minefed runtime.",
+    "Upstream release updates require explicit review; the Modrinth-only dependency checker does not query this GitHub pin."
+  ]
+}
