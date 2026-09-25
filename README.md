@@ -19,6 +19,15 @@ Minefed 서버의 모드 소스와 운영 JAR를 한 곳에서 관리한다. Min
 독립 클라이언트 모드 `minefed-client-compat` 소스 저장소를 추가했다.
 관측한 운영 기준본 70개와 새 클라이언트 전용 소스 항목을 구분한다.
 
+2026-09-24 [Modern Glass Doors 생성 리소스 누락](docs/MODERN_GLASS_DOORS_FIX_2026-09-24.md)과
+[Minefed Display의 블록 가림 판정](docs/DISPLAY_DEPTH_FIX_2026-09-24.md)을 수정했다.
+두 교체 JAR의 소스 커밋·SHA-256·검증 범위는
+[수정 산출물 기록](inventory/render-fixes-2026-09-24.json)에 고정한다.
+
+2026-09-25 [전체 모드 리소스·빌드·로딩 감사](docs/RESOURCE_AUDIT_2026-09-25.md)에서
+추가 모델·텍스처·CTM 누락을 수정하고 Yuushya Modelling의 모델 로딩을 최적화했다.
+전체 JAR의 리소스 보존 검사를 빌드의 필수 단계로 추가했다.
+
 ## 시작하기
 
 Git과 Python 3.10 이상이 필요하다. 서브모듈은 `.gitmodules`에 기록한 minefed fork와 정확한 gitlink 커밋으로 초기화한다.
@@ -56,7 +65,8 @@ CityCraft와 Macaw Doors/Fences는 공개된 Fabric 1.20.4용 공식 JAR를 사�
 
 ## 공개 릴리즈와 리소스팩
 
-리소스팩은 `resourcepack/` 서브모듈의 `main` 브랜치에서 관리한다. 원본 저장소는 비공개로
+리소스팩은 `resourcepack/` 서브모듈에서 관리하며, 추적 브랜치와 전체 커밋은 `.gitmodules`와
+`inventory/resourcepacks.lock.json`에 고정한다. 원본 저장소는 비공개로
 유지하며 게임용 `resource_pack/` 파일만 공개 패키지에 포함한다. 새 작업 공간에서 이
 서브모듈을 초기화하려면 해당 비공개 저장소의 읽기 권한이 필요하다.
 
@@ -71,8 +81,8 @@ CityCraft와 Macaw Doors/Fences는 공개된 Fabric 1.20.4용 공식 JAR를 사�
 GitHub Actions는 `mods/main` 변경과 하위 배포 대상 브랜치의 변경을 감지해 세 파일을
 [GitHub Releases](https://github.com/minefed/mods/releases)에 공개한다. 하위 브랜치는
 15분 간격으로 확인하며, 동일 입력의 중복 릴리즈는 건너뛴다.
-서버팩 `mods/`에는 전체 모드 JAR 67개, 클라이언트팩 `overrides/mods/`에는 서버 전용
-2개를 제외하고 Continuity·MCEF·Sodium·Indium을 추가하고 레시피 호환 모드를 포함한 70개가 직접 포함된다. 공식 JAR도 버전·해시·원본 URL을 유지한 채 내장하며,
+서버팩 `mods/`에는 전체 모드 JAR 68개, 클라이언트팩 `overrides/mods/`에는 서버 전용
+2개를 제외하고 Continuity·MCEF·Sodium·Indium을 추가하고 레시피·리소스 호환 모드를 포함한 71개가 직접 포함된다. 공식 JAR도 버전·해시·원본 URL을 유지한 채 내장하며,
 Modern Lights는 소스 전용 공식 업로드 대신 검증된 2.5.0 실행 JAR를 양쪽에 포함한다.
 정상적으로 압축 해제하거나 MRPACK을 가져오면 추가 모드 다운로드·수동 복원이 필요 없다.
 MCEF의 Chromium 네이티브 런타임은 첫 클라이언트 실행에서 공식 서버로부터 별도로 준비된다([MCEF 구성](docs/MCEF.md)).

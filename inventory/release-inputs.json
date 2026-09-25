@@ -421,7 +421,7 @@
     {
       "path": "Decorative-Blocks",
       "kind": "mod",
-      "reviewedCommit": "d5f04025d811dd1310ce5a72a5ed9d40ad16c841",
+      "reviewedCommit": "8550e3b988d1d7f1c27c1c15732070569ded051e",
       "licenseFiles": {
         "LICENSE.txt": "e71851fa1bfb1e965c3ea2dd10b791225343928efbb3eaba98f0647be5929271",
         "README.md": "37fb7419ceab5d9591c56ba217cc17af0c8d568be63d1d45b68683ed87489bfb"
@@ -553,7 +553,7 @@
     {
       "path": "MythicMetalsDecorations",
       "kind": "mod",
-      "reviewedCommit": "c9326608433cbd6210d1f4f0bcbc66ed0393546b",
+      "reviewedCommit": "f5af39239697e9ed89a108da59c2f8eac695d3df",
       "licenseFiles": {
         "LICENSE": "5a9ef810c4bd623a3a0db194a36e9ca918424d341961eab44bd372432045c2e3"
       },
@@ -572,7 +572,7 @@
     {
       "path": "Oritech",
       "kind": "mod",
-      "reviewedCommit": "1cf7cfe9aa3ed20cd904f9bc15eb979eb817a647",
+      "reviewedCommit": "0ace08abb384f0e38288f4bc82b6c58606509f86",
       "licenseFiles": {
         "LICENSE.md": "d504e681c66e5b9b23bd0ff751d2cd721da2f99f983b5a5fd0bb138135e4e8d9",
         "README.md": "59467a3ae9286a8f97bdfc41262afa1feafd8b4887b2369e6644cf766877ac02"
@@ -647,7 +647,7 @@
     {
       "path": "Yuushya-Modelling",
       "kind": "mod",
-      "reviewedCommit": "431d217b6663ba46c221e2bbb7ad9d3049d89565",
+      "reviewedCommit": "6256abeee58ca8952ada2ac617aa15ef16ec23dd",
       "licenseFiles": {
         "LICENSE": "d9cf754697c72a797a18df81565cd25b9ebe42653afa60c227c2925af2d871e1",
         "README.md": "7d5dd25729e467d37051707137535be59849a9dff91cdd2b40528461b6a9fb5c"
@@ -657,7 +657,7 @@
     {
       "path": "Yuushya-Townscape",
       "kind": "mod",
-      "reviewedCommit": "07dfb2768e6c9e316fc2d142172237ad7eeb9f8e",
+      "reviewedCommit": "dda6be38dc069885cd21bb952f3587db209d05b1",
       "licenseFiles": {
         "1.16.5/common/src/main/java/com/yuushya/entity/README.MD": "b350672b402c35e800cfd11a6526be3d9584f22dc77565cf0f6a6915ba60b720",
         "1.18.2/common/src/main/java/com/yuushya/entity/README.MD": "b350672b402c35e800cfd11a6526be3d9584f22dc77565cf0f6a6915ba60b720",
@@ -689,7 +689,7 @@
     {
       "path": "diagonal-fences",
       "kind": "mod",
-      "reviewedCommit": "52a8f8196ba52c51d663c44666ee2a7425fb8282",
+      "reviewedCommit": "aa41b9f39f744455258c27d3728a1ff77908731f",
       "licenseFiles": {
         "LICENSE-ASSETS.md": "ca520b6211afd43cf740743746985f697047aca839fc325487d6fff97af57cec",
         "LICENSE.md": "1f256ecad192880510e84ad60474eab7589218784b9a50bc7ceee34c2b91f1d5",
@@ -798,17 +798,17 @@
     {
       "path": "minefed-display",
       "kind": "mod",
-      "reviewedCommit": "869b976756be38f298105d4adf6be2d22e3a0b8c",
+      "reviewedCommit": "a1e8f94df20c22c1ccfc4083b1dc01dc7f757e45",
       "licenseFiles": {
         "LICENSE": "df91ea5ffd7b7ef2859e0add9b7aa5bde9790ef51df4cccef63c4607a36e3268",
-        "README.md": "36cda14021b463aa8294cf16a20780a3369c039c16490f2e663bb362ae2d3aee"
+        "README.md": "781f7227cec6398d6aaba024057c15a983a3909a203f681983b1f451bd7b7d5c"
       },
       "nestedGitlinks": {}
     },
     {
       "path": "mishanguc",
       "kind": "mod",
-      "reviewedCommit": "ed26012dc37d449fc8480a606319f7294fa9005a",
+      "reviewedCommit": "07028d29c741f688fafd271e5fb0f51937042184",
       "licenseFiles": {
         "LICENSE": "7d3a95e5e06978064ed3f8e2b7c8f845e7fd8a405294727cc708f94cb83b8059",
         "README-en.md": "133d2a1f414f0626d40eaf45eb9c2818ec75c60c23d45d20bdeea1a1862b9f3a",
@@ -819,10 +819,10 @@
     {
       "path": "modern-glass-doors",
       "kind": "mod",
-      "reviewedCommit": "155e732f78f5b5a9ce42478ef342e8d03266799b",
+      "reviewedCommit": "3c65e91eee397e91496f78345165451d86b28932",
       "licenseFiles": {
         "LICENSE": "70f62297c3a1c133cf9e24faa95e79cffe41b8053c32e3f95ea6a6bb386f77df",
-        "README.md": "b61179862277ef27b65a26465c2d4bae6ee133ca31f2b249bf33e5c0dc668b79"
+        "README.md": "25680457aa306fde73fd1ba5142a3d777b377d7c7390fc04b11c7e61ca58bd7f"
       },
       "nestedGitlinks": {}
     },
@@ -852,7 +852,7 @@
     {
       "path": "resourcepack",
       "kind": "resourcepack",
-      "reviewedCommit": "82d0c13c888804e137d377ce25553de07b9b125a",
+      "reviewedCommit": "cbcc8cc1f0f0dbf490a485423b3cbd3959726d21",
       "licenseFiles": {
         "README.md": "5074cbc1e1399c5e50e26cb92c5df5c22e5d7a6f6efacb9409350958a63411b1",
         "design/vehicles/mxr_a1000/source/README.md": "11649f04fe4b93f0c0ede8f3f12f84c4b781adc268cfe377d8073d76cdba3672",

@@ -209,8 +209,8 @@
         "https://github.com/lilypuree/Decorative-Blocks",
         "https://github.com/lilypuree/Decorative-Blocks/blob/5775f8bb2c3fa57e041a2d40d377239e7c78d58d/LICENSE.txt",
         "https://github.com/lilypuree/Decorative-Blocks/commit/5775f8bb2c3fa57e041a2d40d377239e7c78d58d",
-        "https://github.com/minefed/Decorative-Blocks/commit/d5f04025d811dd1310ce5a72a5ed9d40ad16c841",
-        "https://github.com/minefed/Decorative-Blocks/archive/d5f04025d811dd1310ce5a72a5ed9d40ad16c841.tar.gz"
+        "https://github.com/minefed/Decorative-Blocks/commit/8550e3b988d1d7f1c27c1c15732070569ded051e",
+        "https://github.com/minefed/Decorative-Blocks/archive/8550e3b988d1d7f1c27c1c15732070569ded051e.tar.gz"
       ],
       "client": true,
       "server": true
@@ -219,7 +219,7 @@
       "modId": "diagonalfences",
       "distribution": "download",
       "artifact": "baseline",
-      "reason": "Modrinth modpack reference only: the exact original file is hosted on Modrinth and its official API SHA512 matches the baseline JAR. Preserve the original license and download directly from the official CDN; do not embed or rehost the locally rebuilt replacement.",
+      "reason": "Modrinth modpack reference only: the exact original file is hosted on Modrinth and its official API SHA512 matches the baseline JAR. Preserve the original license and download directly from the official CDN; do not embed or rehost the locally rebuilt replacement. The Minefed resource-only compatibility mod supplies the reviewed JSON correction without copying the restricted textures/assets or modifying this official JAR.",
       "evidenceUrls": [
         "https://api.modrinth.com/v2/project/IKARgflD",
         "https://api.modrinth.com/v2/version/vRnCnKBa",
@@ -620,8 +620,8 @@
       "reason": "Distribute the reviewed built artifact under its original license with all copyright/license notices and corresponding-source obligations. MIT",
       "evidenceUrls": [
         "https://github.com/minefed/minefed-display",
-        "https://github.com/minefed/minefed-display/commit/869b976756be38f298105d4adf6be2d22e3a0b8c",
-        "https://github.com/minefed/minefed-display/archive/869b976756be38f298105d4adf6be2d22e3a0b8c.tar.gz"
+        "https://github.com/minefed/minefed-display/commit/a1e8f94df20c22c1ccfc4083b1dc01dc7f757e45",
+        "https://github.com/minefed/minefed-display/archive/a1e8f94df20c22c1ccfc4083b1dc01dc7f757e45.tar.gz"
       ],
       "client": true,
       "server": true
@@ -635,8 +635,8 @@
         "https://api.modrinth.com/v2/project/rItLmRo4",
         "https://github.com/SolidBlock-cn/mishanguc",
         "https://github.com/SolidBlock-cn/mishanguc/blob/1.20.4/LICENSE",
-        "https://github.com/minefed/mishanguc/commit/ed26012dc37d449fc8480a606319f7294fa9005a",
-        "https://github.com/minefed/mishanguc/archive/ed26012dc37d449fc8480a606319f7294fa9005a.tar.gz"
+        "https://github.com/minefed/mishanguc/commit/07028d29c741f688fafd271e5fb0f51937042184",
+        "https://github.com/minefed/mishanguc/archive/07028d29c741f688fafd271e5fb0f51937042184.tar.gz"
       ],
       "client": true,
       "server": true
@@ -650,8 +650,8 @@
         "https://api.modrinth.com/v2/project/zGSQY8dZ",
         "https://github.com/ReviversMC/modern-glass-doors",
         "https://github.com/ReviversMC/modern-glass-doors/blob/v5.3.0+1.20.3-and-later/LICENSE",
-        "https://github.com/minefed/modern-glass-doors/commit/155e732f78f5b5a9ce42478ef342e8d03266799b",
-        "https://github.com/minefed/modern-glass-doors/archive/155e732f78f5b5a9ce42478ef342e8d03266799b.tar.gz"
+        "https://github.com/minefed/modern-glass-doors/commit/3c65e91eee397e91496f78345165451d86b28932",
+        "https://github.com/minefed/modern-glass-doors/archive/3c65e91eee397e91496f78345165451d86b28932.tar.gz"
       ],
       "client": true,
       "server": true
@@ -734,7 +734,7 @@
       "modId": "mythicmetals_decorations",
       "distribution": "download",
       "artifact": "baseline",
-      "reason": "Modrinth modpack reference only: the exact original file is hosted on Modrinth and its official API SHA512 matches the baseline JAR. Preserve the original license and download directly from the official CDN; do not embed or rehost the locally rebuilt replacement.",
+      "reason": "Modrinth modpack reference only: the exact original file is hosted on Modrinth and its official API SHA512 matches the baseline JAR. Preserve the original license and download directly from the official CDN; do not embed or rehost the locally rebuilt replacement. The Minefed resource-only compatibility mod supplies the reviewed JSON correction without copying the restricted textures/assets or modifying this official JAR.",
       "evidenceUrls": [
         "https://api.modrinth.com/v2/project/Wtv23AFN",
         "https://github.com/Noaaan/MythicMetalsDecorations",
@@ -770,8 +770,8 @@
         "https://api.modrinth.com/v2/project/4sYI62kA",
         "https://github.com/Rearth/Oritech",
         "https://github.com/Rearth/Oritech/blob/v0.5.1+1.20.4/LICENSE.md",
-        "https://github.com/minefed/Oritech/commit/1cf7cfe9aa3ed20cd904f9bc15eb979eb817a647",
-        "https://github.com/minefed/Oritech/archive/1cf7cfe9aa3ed20cd904f9bc15eb979eb817a647.tar.gz"
+        "https://github.com/minefed/Oritech/commit/0ace08abb384f0e38288f4bc82b6c58606509f86",
+        "https://github.com/minefed/Oritech/archive/0ace08abb384f0e38288f4bc82b6c58606509f86.tar.gz"
       ],
       "client": true,
       "server": true
@@ -1052,38 +1052,31 @@
     },
     {
       "modId": "yuushya",
-      "distribution": "download",
-      "artifact": "baseline",
-      "reason": "Modrinth modpack reference only: the exact original file is hosted on Modrinth and its official API SHA512 matches the baseline JAR. Preserve the original license and download directly from the official CDN; do not embed or rehost the locally rebuilt replacement.",
+      "distribution": "embed",
+      "artifact": "built",
+      "reason": "Include the same-Minecraft-1.20.4 Minefed derivative of Yuushya Townscape by GeometryCoco, XiLaiTL, SQWatermark and Hikari. The pinned source grants MIT code rights; the creators permit modified assets under CC BY-NC-SA 4.0. Minefed changed model/resource references and loading code, as recorded in the exact source history below. Preserve all author notices, attribution (https://yuushya.com/townscape/), MIT code terms and CC BY-NC-SA 4.0 for assets and their modifications. Yuushya content is provided free of charge and remains noncommercial/share-alike; no cross-version port or new asset license is asserted.",
       "evidenceUrls": [
-        "https://gitee.com/yuushyatownscape/yuushya-townscape/tree/v2.2.3/",
-        "https://github.com/XiLaiTL/Yuushya-Townscape",
-        "https://github.com/XiLaiTL/Yuushya-Townscape/blob/master/LICENSE",
+        "https://github.com/minefed/Yuushya-Townscape/blob/dda6be38dc069885cd21bb952f3587db209d05b1/LICENSE",
         "https://github.com/XiLaiTL/Yuushya-Townscape/blob/master/Terms_yuushya_user.md",
-        "https://yuushya.com/townscape/",
-        "https://support.modrinth.com/en/articles/8797527-obtaining-modpack-permissions",
-        "https://api.modrinth.com/v2/version/g5TBlA52"
+        "https://yuushya.com/townscape/term-of-use-en.html",
+        "https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode.en"
       ],
       "client": true,
-      "server": true,
-      "downloadUrl": "https://cdn.modrinth.com/data/lfVtagkm/versions/g5TBlA52/yuushya-1.20.4-fabric-2.2.3.jar"
+      "server": true
     },
     {
       "modId": "yuushya_modelling",
-      "distribution": "download",
-      "artifact": "baseline",
-      "reason": "Modrinth modpack reference only: the exact original file is hosted on Modrinth and its official API SHA512 matches the baseline JAR. Preserve the original license and download directly from the official CDN; do not embed or rehost the locally rebuilt replacement.",
+      "distribution": "embed",
+      "artifact": "built",
+      "reason": "Include the same-Minecraft-1.20.4 Minefed derivative of Yuushya Modelling by GeometryCoco, XiLaiTL, SQWatermark and Hikari. The pinned source grants MIT code rights; the creators permit modified assets under CC BY-NC-SA 4.0. Minefed changed model/resource references and loading code, as recorded in the exact source history below. Preserve all author notices, attribution (https://yuushya.com/townscape/), MIT code terms and CC BY-NC-SA 4.0 for assets and their modifications. Yuushya content is provided free of charge and remains noncommercial/share-alike; no cross-version port or new asset license is asserted.",
       "evidenceUrls": [
-        "https://github.com/XiLaiTL/Yuushya-Modelling",
-        "https://github.com/XiLaiTL/Yuushya-Modelling/blob/master/LICENSE",
+        "https://github.com/minefed/Yuushya-Modelling/blob/6256abeee58ca8952ada2ac617aa15ef16ec23dd/LICENSE",
         "https://github.com/XiLaiTL/Yuushya-Townscape/blob/master/Terms_yuushya_user.md",
-        "https://yuushya.com/townscape/",
-        "https://support.modrinth.com/en/articles/8797527-obtaining-modpack-permissions",
-        "https://api.modrinth.com/v2/version/FQMpG8yv"
+        "https://yuushya.com/townscape/term-of-use-en.html",
+        "https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode.en"
       ],
       "client": true,
-      "server": true,
-      "downloadUrl": "https://cdn.modrinth.com/data/RxVV6ldg/versions/FQMpG8yv/yuushya-modelling-1.20.4-fabric-2.2.0.jar"
+      "server": true
     },
     {
       "modId": "sodium",
@@ -1130,5 +1123,6 @@
       "server": false
     }
   ],
-  "publishedManifest": "inventory/published-artifacts.lock.json"
+  "publishedManifest": "inventory/published-artifacts.lock.json",
+  "resourceCompatibilityMod": true
 }

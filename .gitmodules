@@ -1,7 +1,7 @@
 [submodule "Minecraft-Transit-Railway"]
 	path = Minecraft-Transit-Railway
 	url = https://github.com/minefed/Minecraft-Transit-Railway
-	branch = codex/optimize-3d-rails
+	branch = codex/fix-minecart-sounds
 [submodule "fabric-webstreamer"]
 	path = fabric-webstreamer
 	url = https://github.com/minefed/fabric-webstreamer
@@ -9,7 +9,7 @@
 [submodule "minefed-display"]
 	path = minefed-display
 	url = https://github.com/minefed/minefed-display
-	branch = minefed-1.20.4
+	branch = codex/fix-display-depth
 [submodule "alloy-forgery"]
 	path = alloy-forgery
 	url = https://github.com/minefed/alloy-forgery
@@ -41,11 +41,11 @@
 [submodule "diagonal-fences"]
 	path = diagonal-fences
 	url = https://github.com/minefed/diagonal-fences
-	branch = minefed-1.20.4
+	branch = codex/fix-macaw-compatibility
 [submodule "Decorative-Blocks"]
 	path = Decorative-Blocks
 	url = https://github.com/minefed/Decorative-Blocks
-	branch = minefed-1.20.4
+	branch = codex/fix-copy-tool-model
 [submodule "CityCraft"]
 	path = CityCraft
 	url = https://github.com/minefed/CityCraft
@@ -105,7 +105,7 @@
 [submodule "modern-glass-doors"]
 	path = modern-glass-doors
 	url = https://github.com/minefed/modern-glass-doors
-	branch = minefed-1.20.4
+	branch = codex/fix-glass-door-generated-resources
 [submodule "ModernFix"]
 	path = ModernFix
 	url = https://github.com/minefed/ModernFix
@@ -121,7 +121,7 @@
 [submodule "MythicMetalsDecorations"]
 	path = MythicMetalsDecorations
 	url = https://github.com/minefed/MythicMetalsDecorations
-	branch = minefed-1.20.4
+	branch = codex/fix-chest-particle
 [submodule "NiceMod"]
 	path = NiceMod
 	url = https://github.com/minefed/NiceMod
@@ -129,7 +129,7 @@
 [submodule "mishanguc"]
 	path = mishanguc
 	url = https://github.com/minefed/mishanguc
-	branch = minefed-1.20.4
+	branch = codex/fix-gradle-download
 [submodule "MTR-Station-Decoration-Addon"]
 	path = MTR-Station-Decoration-Addon
 	url = https://github.com/minefed/MTR-Station-Decoration-Addon
@@ -137,7 +137,7 @@
 [submodule "Oritech"]
 	path = Oritech
 	url = https://github.com/minefed/Oritech
-	branch = minefed-1.20.4
+	branch = codex/fix-capacitor-model
 [submodule "mc-realtime"]
 	path = mc-realtime
 	url = https://github.com/minefed/mc-realtime
@@ -185,7 +185,7 @@
 [submodule "Yuushya-Modelling"]
 	path = Yuushya-Modelling
 	url = https://github.com/minefed/Yuushya-Modelling
-	branch = minefed-1.20.4
+	branch = codex/optimize-model-loading
 [submodule "TrafficCraft"]
 	path = TrafficCraft
 	url = https://github.com/minefed/TrafficCraft
@@ -193,7 +193,7 @@
 [submodule "Yuushya-Townscape"]
 	path = Yuushya-Townscape
 	url = https://github.com/minefed/Yuushya-Townscape
-	branch = minefed-1.20.4
+	branch = codex/fix-runtime-resources
 [submodule "Modern-Lights"]
 	path = Modern-Lights
 	url = https://github.com/minefed/Modern-Lights
@@ -201,7 +201,7 @@
 [submodule "resourcepack"]
 	path = resourcepack
 	url = https://github.com/minefed/resourcepack
-	branch = main
+	branch = codex/fix-mod-assets
 [submodule "minefed-client-compat"]
 	path = minefed-client-compat
 	url = https://github.com/minefed/minefed-client-compat

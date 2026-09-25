@@ -15,6 +15,24 @@ import mods
 import release_pack as release
 
 
+class RepositoryPolicyTests(unittest.TestCase):
+    def test_yuushya_loading_and_resource_fixes_reach_public_archives(self):
+        policy = json.loads((release.ROOT / 'inventory/release-policy.json').read_text(encoding='utf-8'))
+        entries = {e['modId']: e for e in policy['entries']}
+        for identity in ('yuushya', 'yuushya_modelling'):
+            with self.subTest(mod=identity):
+                self.assertEqual(('built', 'embed'), (entries[identity]['artifact'], entries[identity]['distribution']))
+                self.assertNotIn('downloadUrl', entries[identity])
+                self.assertIn('CC BY-NC-SA 4.0', entries[identity]['reason'])
+
+    def test_restricted_originals_have_a_separate_compatibility_mod(self):
+        policy = json.loads((release.ROOT / 'inventory/release-policy.json').read_text(encoding='utf-8'))
+        self.assertTrue(policy['resourceCompatibilityMod'])
+        entries = {e['modId']: e for e in policy['entries']}
+        for identity in ('diagonalfences', 'mythicmetals_decorations'):
+            self.assertEqual('baseline', entries[identity]['artifact'])
+
+
 class ReleaseTests(unittest.TestCase):
     def setUp(self):
         # Packaging tests remain offline/JDK-free. The dependency checker has

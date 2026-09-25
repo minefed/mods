@@ -19,6 +19,7 @@ import zipfile
 
 import build_modpack as builder
 import mods
+import release_compatibility
 import release_dependencies
 import release_plugins
 import release_resources
@@ -573,7 +574,10 @@ def source_notices(records, version: str) -> str:
             heading = 'Inherited inventory notes and current license correction:' if 'capturedLicense' in record else 'Artifact notes:'
             lines += ['', heading, '', *['- ' + note for note in notes]]
         if record.get('sourceCommitUrl'):
-            if record.get('sourceArchiveUrl'):
+            if record['artifact'] == 'compatibility':
+                lines += ['Exact resource-only source: ' + record['sourceCommitUrl'],
+                          'Per-file SHA-256 hashes are recorded in download-manifest.json.']
+            elif record.get('sourceArchiveUrl'):
                 lines += ['Managed source and build instructions: ' + record['sourceCommitUrl'],
                           'Minefed build/compatibility changes are recorded in this repository history at that exact commit.']
                 if record.get('sourceArchiveUrl'):
@@ -732,6 +736,11 @@ def release(root: Path, result_json: str, version: str, policy_path: str = 'inve
         policy = load_policy(root, policy_path, set(paths))
         published, published_snapshot = published_artifacts(root, policy)
         selected = select_files(root, manifest, provenance, paths, policy, work, published)
+        for item in release_compatibility.prepare(root, policy, work):
+            if any(r['modId'] == item[0]['modId'] or r['path'].casefold() == item[0]['path'].casefold()
+                   for r, _, _ in selected):
+                raise mods.ModError('Compatibility mod collides with a selected artifact')
+            selected.append(item)
         plugins, plugin_notices = release_plugins.prepare(root, policy, work)
         client_packs, resource_notices, resource_snapshot = release_resources.prepare(root, resource_lock, work, selected)
         notices = published_notices(root, selected, notices)

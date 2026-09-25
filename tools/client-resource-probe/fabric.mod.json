@@ -1,0 +1,9 @@
+{
+  "schemaVersion": 1,
+  "id": "minefed-loading-probe",
+  "version": "1.0.0",
+  "name": "Minefed Resource Loading Probe (test only)",
+  "environment": "client",
+  "entrypoints": {"client": ["audit.LoadingProbe"]},
+  "depends": {"fabricloader": ">=0.18.4", "minecraft": "=1.20.4", "java": ">=17"}
+}
