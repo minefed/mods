@@ -185,7 +185,7 @@
 [submodule "Yuushya-Modelling"]
 	path = Yuushya-Modelling
 	url = https://github.com/minefed/Yuushya-Modelling
-	branch = minefed-1.20.4
+	branch = codex/optimize-model-loading
 [submodule "TrafficCraft"]
 	path = TrafficCraft
 	url = https://github.com/minefed/TrafficCraft

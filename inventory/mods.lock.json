@@ -4434,9 +4434,9 @@
         "path": "Yuushya-Modelling",
         "url": "https://github.com/minefed/Yuushya-Modelling",
         "upstream": "https://github.com/XiLaiTL/Yuushya-Modelling",
-        "ref": "minefed-1.20.4",
-        "commit": "431d217b6663ba46c221e2bbb7ad9d3049d89565",
-        "trackingBranch": "minefed-1.20.4",
+        "ref": "codex/optimize-model-loading",
+        "commit": "31f6e371ee77c4b079ef283277f7771d43dc8a8b",
+        "trackingBranch": "codex/optimize-model-loading",
         "baselineRef": "refs/heads/master",
         "baselineCommit": "3e36b9f66c0ae10202379f7287f88f7906976163"
       },
