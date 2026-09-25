@@ -19,8 +19,9 @@ JAR 재배포 분류는 허용 45개, 모드팩 한정 10개, 로컬 전용 15�
 
 후속 릴리즈 구성 요청에 따라 TCPShield는 Fabric 모드 빌드 대상에서 계속 제외하되
 `server.zip`의 `plugins/TCPShield-2.8.1.jar`에 별도 포함한다. 실제 릴리즈는 서버 모드
-67개와 서버 플러그인 1개이며, 클라이언트에는 서버 전용 2개를 제외하고
-Continuity·MCEF·Sodium·Indium 및 독립 레시피 호환 모드를 더한 모드 70개를 포함한다. 이 네 가지 클라이언트
+기본 67개에 리소스 전용 호환 모드 1개를 더한 68개와 서버 플러그인 1개이며,
+클라이언트에는 서버 전용 2개를 제외하고 Continuity·MCEF·Sodium·Indium 및
+독립 레시피·리소스 호환 모드를 더한 모드 71개를 포함한다. 이 네 가지 클라이언트
 의존성은 [dependencies.lock.json](../inventory/dependencies.lock.json)에 별도 기록한다. 전체 포함 방식과
 기존 배포 판단 이력의 구분은 [릴리즈 안내](RELEASING.md)를 따른다.
 
@@ -28,6 +29,12 @@ Continuity·MCEF·Sodium·Indium 및 독립 레시피 호환 모드를 더한 �
 `mods.lock.json`의 별도 항목(`capturedServerBaseline: false`)으로 브랜치·전체 커밋·
 빌드 해시·MIT 고지를 관리하며 클라이언트에만 포함한다.
 [PTS Deco 접속 오류 수정](RECIPE_SYNC_FIX_2026-09-18.md)을 참고한다.
+
+리소스 전용 `minefed_resource_fixes`는 루트 저장소의
+[`compatibility/resource-fixes`](../compatibility/resource-fixes/)에서 릴리스 단계에
+결정적으로 패키징한다. 소스 빌드 47개·기존 바이너리 25개의 입력 목록과 구분하며,
+릴리스 기록에 JAR와 입력 JSON의 해시·MIT 고지·정확한 소스 커밋을 추가한다.
+[전체 리소스 감사](RESOURCE_AUDIT_2026-09-25.md)에 수정 범위를 기록한다.
 
 소스 관리와 일괄 빌드 준비 시 다음 차이를 유지해야 한다.
 

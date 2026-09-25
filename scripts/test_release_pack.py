@@ -25,6 +25,13 @@ class RepositoryPolicyTests(unittest.TestCase):
                 self.assertNotIn('downloadUrl', entries[identity])
                 self.assertIn('CC BY-NC-SA 4.0', entries[identity]['reason'])
 
+    def test_restricted_originals_have_a_separate_compatibility_mod(self):
+        policy = json.loads((release.ROOT / 'inventory/release-policy.json').read_text(encoding='utf-8'))
+        self.assertTrue(policy['resourceCompatibilityMod'])
+        entries = {e['modId']: e for e in policy['entries']}
+        for identity in ('diagonalfences', 'mythicmetals_decorations'):
+            self.assertEqual('baseline', entries[identity]['artifact'])
+
 
 class ReleaseTests(unittest.TestCase):
     def setUp(self):

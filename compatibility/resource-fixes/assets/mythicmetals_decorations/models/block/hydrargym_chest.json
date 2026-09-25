@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/chest",
+  "textures": {
+    "particle": "mythicmetals_decorations:block/hydrargym_block"
+  }
+}

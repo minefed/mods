@@ -219,7 +219,7 @@
       "modId": "diagonalfences",
       "distribution": "download",
       "artifact": "baseline",
-      "reason": "Modrinth modpack reference only: the exact original file is hosted on Modrinth and its official API SHA512 matches the baseline JAR. Preserve the original license and download directly from the official CDN; do not embed or rehost the locally rebuilt replacement.",
+      "reason": "Modrinth modpack reference only: the exact original file is hosted on Modrinth and its official API SHA512 matches the baseline JAR. Preserve the original license and download directly from the official CDN; do not embed or rehost the locally rebuilt replacement. The Minefed resource-only compatibility mod supplies the reviewed JSON correction without copying the restricted textures/assets or modifying this official JAR.",
       "evidenceUrls": [
         "https://api.modrinth.com/v2/project/IKARgflD",
         "https://api.modrinth.com/v2/version/vRnCnKBa",
@@ -734,7 +734,7 @@
       "modId": "mythicmetals_decorations",
       "distribution": "download",
       "artifact": "baseline",
-      "reason": "Modrinth modpack reference only: the exact original file is hosted on Modrinth and its official API SHA512 matches the baseline JAR. Preserve the original license and download directly from the official CDN; do not embed or rehost the locally rebuilt replacement.",
+      "reason": "Modrinth modpack reference only: the exact original file is hosted on Modrinth and its official API SHA512 matches the baseline JAR. Preserve the original license and download directly from the official CDN; do not embed or rehost the locally rebuilt replacement. The Minefed resource-only compatibility mod supplies the reviewed JSON correction without copying the restricted textures/assets or modifying this official JAR.",
       "evidenceUrls": [
         "https://api.modrinth.com/v2/project/Wtv23AFN",
         "https://github.com/Noaaan/MythicMetalsDecorations",
@@ -1123,5 +1123,6 @@
       "server": false
     }
   ],
-  "publishedManifest": "inventory/published-artifacts.lock.json"
+  "publishedManifest": "inventory/published-artifacts.lock.json",
+  "resourceCompatibilityMod": true
 }

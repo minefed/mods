@@ -1,0 +1,61 @@
+{
+  "replace": false,
+  "values": [
+    {
+      "id": "mcwfences:andesite_grass_topped_wall",
+      "required": false
+    },
+    {
+      "id": "mcwfences:blackstone_grass_topped_wall",
+      "required": false
+    },
+    {
+      "id": "mcwfences:deepslate_brick_grass_topped_wall",
+      "required": false
+    },
+    {
+      "id": "mcwfences:deepslate_grass_topped_wall",
+      "required": false
+    },
+    {
+      "id": "mcwfences:diorite_grass_topped_wall",
+      "required": false
+    },
+    {
+      "id": "mcwfences:end_brick_grass_topped_wall",
+      "required": false
+    },
+    {
+      "id": "mcwfences:granite_grass_topped_wall",
+      "required": false
+    },
+    {
+      "id": "mcwfences:mud_brick_grass_topped_wall",
+      "required": false
+    },
+    {
+      "id": "mcwfences:nether_brick_grass_topped_wall",
+      "required": false
+    },
+    {
+      "id": "mcwfences:prismarine_grass_topped_wall",
+      "required": false
+    },
+    {
+      "id": "mcwfences:quartz_grass_topped_wall",
+      "required": false
+    },
+    {
+      "id": "mcwfences:red_sandstone_grass_topped_wall",
+      "required": false
+    },
+    {
+      "id": "mcwfences:sandstone_grass_topped_wall",
+      "required": false
+    },
+    {
+      "id": "mcwfences:stone_grass_topped_wall",
+      "required": false
+    }
+  ]
+}
