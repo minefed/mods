@@ -48,8 +48,8 @@ Continuity·MCEF·Sodium·Indium 및 독립 레시피 호환 모드를 더한 �
 | 9 | Chunky-1.3.146.jar | chunky / 1.3.146 | Chunky · e6aac5fe | 허용 | 포함 |
 | 10 | City Craft-2.0.0-Fabric-1.20.x(ex.5.6).jar | citycraft / 2.0.0 | CityCraft · 32f4d36f | 허용 | 포함 |
 | 11 | crossstitch-0.1.6.jar | crossstitch / 0.1.6 | CrossStitch · b509f10b | 허용 | 포함 |
-| 12 | Decorative Blocks-Fabric-1.20.4-5.0.2.jar | decorative_blocks / 5.0.2 | Decorative-Blocks · 7c8f25ae | 허용 | 포함 |
-| 13 | DiagonalFences-v20.4.1-1.20.4-Fabric.jar | diagonalfences / 20.4.1 | diagonal-fences · dca73bef | 로컬 전용 | 포함 |
+| 12 | Decorative Blocks-Fabric-1.20.4-5.0.2.jar | decorative_blocks / 5.0.2 | Decorative-Blocks · 8550e3b9 | 허용 | 포함 |
+| 13 | DiagonalFences-v20.4.1-1.20.4-Fabric.jar | diagonalfences / 20.4.1 | diagonal-fences · aa41b9f3 | 로컬 전용 | 포함 |
 | 14 | DiagonalWalls-v20.4.1-1.20.4-Fabric.jar | diagonalwalls / 20.4.1 | diagonal-walls · 4fefe0eb | 로컬 전용 | 포함 |
 | 15 | DiagonalWindows-v20.4.1-1.20.4-Fabric.jar | diagonalwindows / 20.4.1 | diagonal-windows · 0dea1267 | 로컬 전용 | 포함 |
 | 16 | DustyDecoRefabricated-1.1-1.20.3+1.20.4.jar | dustydecorations / 1.1-1.20.3+1.20.4 | 바이너리 | 허용 | 포함 |
@@ -79,8 +79,8 @@ Continuity·MCEF·Sodium·Indium 및 독립 레시피 호환 모드를 더한 �
 | 40 | modern-lights-1.20[2.4.2].jar | modernlights / 2.4.2 | Modern-Lights · 6b04f156 | 로컬 전용 | 포함 |
 | 41 | modernfix-fabric-5.17.0+mc1.20.4.jar | modernfix / 5.17.0+mc1.20.4 | ModernFix · 2856e289 | 허용 | 포함 |
 | 42 | MSD-fabric-1.20.4-4.0.0-beta.14-1.3.15.jar | msd / 1.3.15 | MTR-Station-Decoration-Addon · b06fc072 | 허용 | 포함 |
-| 43 | MTR-fabric-4.0.3+1.20.4.jar | mtr / 4.0.3 | Minecraft-Transit-Railway · 34a4a8db | 허용 | 제외 |
-| 44 | MTR-fabric-4.0.5+1.20.4.jar | mtr / 4.0.5 | Minecraft-Transit-Railway · 34a4a8db | 허용 | 포함 |
+| 43 | MTR-fabric-4.0.3+1.20.4.jar | mtr / 4.0.3 | Minecraft-Transit-Railway · e1b99f86 | 허용 | 제외 |
+| 44 | MTR-fabric-4.0.5+1.20.4.jar | mtr / 4.0.5 | Minecraft-Transit-Railway · e1b99f86 | 허용 | 포함 |
 | 45 | mythicmetals-0.19.7+1.20.4.jar | mythicmetals / 0.19.7+1.20.4 | MythicMetals · cfa897b7 | 모드팩 한정 | 포함 |
 | 46 | mythicmetals-decorations-0.6.1+1.20.3.jar | mythicmetals_decorations / 0.6.1+1.20.3 | MythicMetalsDecorations · f5af3923 | 로컬 전용 | 포함 |
 | 47 | nicemod-1.4.1 - 1.20.jar | nicemod / 1.4.1 - 1.20 | NiceMod · c3447636 | 허용 | 포함 |
@@ -105,7 +105,7 @@ Continuity·MCEF·Sodium·Indium 및 독립 레시피 호환 모드를 더한 �
 | 66 | wirelessredstone-fabric-1.2.2+1.20.4.jar | wirelessredstone / 1.2.2+1.20.4 | wireless-redstone · 85cd6b45 | 허용 | 포함 |
 | 67 | worldedit-hang-fix-v1.0.2-mc1.20.6-fabric.jar | worldedithangfix / 1.0.2 | worldedit-hang-fix · 45c74411 | 허용 | 포함 |
 | 68 | worldedit-mod-7.3.0.jar | worldedit / 7.3.0+6678-55745ad | WorldEdit · 088da04a | 허용 | 포함 |
-| 69 | yuushya-1.20.4-fabric-2.2.3.jar | yuushya / 2.2.3 | Yuushya-Townscape · 67dc8719 | 모드팩 한정 | 포함 |
-| 70 | yuushya-modelling-1.20.4-fabric-2.2.0.jar | yuushya_modelling / 2.2.0 | Yuushya-Modelling · d7302257 | 모드팩 한정 | 포함 |
+| 69 | yuushya-1.20.4-fabric-2.2.3.jar | yuushya / 2.2.3 | Yuushya-Townscape · dda6be38 | 모드팩 한정 | 포함 |
+| 70 | yuushya-modelling-1.20.4-fabric-2.2.0.jar | yuushya_modelling / 2.2.0 | Yuushya-Modelling · 6256abee | 모드팩 한정 | 포함 |
 
 모든 하위 저장소 작업에도 상위 [AGENTS.md](../AGENTS.md)의 작은 단위 커밋, Conventional Commits, 원격에서 가져올 수 있는 gitlink, 라이선스 보존 지침을 적용한다.

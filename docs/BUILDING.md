@@ -38,11 +38,16 @@ Linux/macOS에서는 `JAVA_HOME`, `MINEFED_JAVA17_HOME`, `MINEFED_JAVA21_HOME` �
    소스 내용·빌드 방침·JDK·빌드 도구가 같으면 해시를 검증한 소스 빌드 캐시를 사용할 수 있다.
 4. 명시한 출력 경로에서 Fabric 런타임 JAR를 하나만 선택한다. 소스/Javadoc/dev JAR,
    모드 ID·버전·Minecraft/Java 요구사항 불일치, 중복 파일명은 오류로 처리한다.
-5. 이번 실행에서 성공한 소스 JAR와 검증된 바이너리 JAR를 합쳐 ZIP을 생성한다.
+5. `verifyModpackResources`가 모든 선택 JAR의 모델·블록 상태·레시피·전리품 JSON 문법을 검사한다.
+   소스 JAR는 독립적인 운영 기준본과 비교해 네임스페이스별 모델·텍스처·블록 상태 등 리소스
+   종류 전체나 런타임 클래스가 사라지지 않았는지도 검사한다. 결과는 해당 실행 디렉터리의
+   `resource-audit.json`에 남긴다. 선택적 내장 리소스팩으로 기본 리소스 누락을 가릴 수 없다.
+6. 이번 실행에서 성공한 소스 JAR와 검증된 바이너리 JAR를 합쳐 ZIP을 생성한다.
    최종 ZIP의 CRC와 모든 JAR SHA-256을 다시 검사한다.
 
 `build`는 제작을 담당하는 `assemble`과 검사를 담당하는 `check`를 모두 실행한다.
-`check`에는 다음 검사가 포함되며, `modpack`은 이 검사 태스크 없이 제작 흐름만 실행한다.
+`check`에는 다음 검사가 포함된다. `modpack`에도 리소스 패키징 검사는 항상 적용되지만,
+아래 도구 회귀 검사는 `check` 또는 `build`로 별도 실행한다.
 
 - `testModpackTools`: JAR 무결성, 캐시·잠금, 실제 자식 프로세스 취소 등을 검사하는 Python unittest.
   심볼릭 링크를 만들 수 없는 환경에서는 해당 검사만 건너뛴다. 모드 컴파일이나 게임 실행은 하지 않는다.
@@ -51,6 +56,11 @@ Linux/macOS에서는 `JAVA_HOME`, `MINEFED_JAVA17_HOME`, `MINEFED_JAVA21_HOME` �
   localhost Maven 서버를 앞에 두고, Loom의 `loom_mappings_*` 의존성이 HTTP 요청 없이
   로컬 Maven 저장소에서 해결되는지 검사한다. 모드 소스나 Minecraft는 빌드하지 않으며,
   루트 Gradle 배포판이 준비된 뒤에는 외부 네트워크가 필요 없다.
+
+JAR 검사는 개별 블록 상태의 참조, 모드가 동적으로 만드는 모델, 실제 시각 결과를 보증하지 않는다.
+클라이언트에서는 [실행 측정 도구](../tools/client-resource-probe/README.md)로 시작과 두 번의
+리소스 재적용을 확인하고, `scripts/audit_client_log.py`로 실제 로딩 진단을 집계한다.
+성능 비교는 빌드와 게임을 동시에 실행하지 않고 같은 팩·JVM·메모리 조건에서 수행한다.
 
 하위 빌드에 적용하는 `scripts/source-repositories.gradle`은 `loom_mappings_*` 그룹을
 HTTP/HTTPS Maven 저장소에서 제외한다. 이 그룹은 Loom이 매핑된 의존성에 부여하는 로컬

@@ -61,7 +61,8 @@ CityCraft와 Macaw Doors/Fences는 공개된 Fabric 1.20.4용 공식 JAR를 사�
 
 ## 공개 릴리즈와 리소스팩
 
-리소스팩은 `resourcepack/` 서브모듈의 `main` 브랜치에서 관리한다. 원본 저장소는 비공개로
+리소스팩은 `resourcepack/` 서브모듈에서 관리하며, 추적 브랜치와 전체 커밋은 `.gitmodules`와
+`inventory/resourcepacks.lock.json`에 고정한다. 원본 저장소는 비공개로
 유지하며 게임용 `resource_pack/` 파일만 공개 패키지에 포함한다. 새 작업 공간에서 이
 서브모듈을 초기화하려면 해당 비공개 저장소의 읽기 권한이 필요하다.
 
