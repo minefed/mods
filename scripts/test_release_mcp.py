@@ -38,7 +38,8 @@ class JavaObservationTests(unittest.TestCase):
         ext = '.exe' if os.name == 'nt' else ''
         cls.cp = os.pathsep.join(map(str, (cls.work, cls.jar, cls.gson)))
         subprocess.run([str(cls.java / ('javac' + ext)), '--release', '17', '-cp', cls.cp, '-d', str(cls.work),
-                        str(mcp.ROOT / 'tools/minecraft-mcp-tests/HttpProbe.java')], check=True, capture_output=True)
+                        str(mcp.ROOT / 'tools/minecraft-mcp-tests/HttpProbe.java'),
+                        str(mcp.ROOT / 'tools/minecraft-mcp-tests/StateProbe.java')], check=True, capture_output=True)
         with socket.socket() as sock:
             sock.bind(('127.0.0.1', 0))
             cls.port = sock.getsockname()[1]
@@ -97,7 +98,11 @@ class JavaObservationTests(unittest.TestCase):
         for command in ('get_player_info', 'get_world_info', 'get_screen_buttons'):
             status, _, body = self.command({'method': command, 'params': {}})
             self.assertEqual(200, status)
-            self.assertEqual(command, json.loads(body)['method'])
+            if command == 'get_screen_buttons':
+                self.assertEqual(command, json.loads(body)['method'])
+            else:
+                self.assertFalse(json.loads(body)['available'])
+                self.assertIn('error', json.loads(body))
 
     def test_malformed_and_oversized_requests_are_rejected(self):
         for body in ('null', '[]', '{', '{"cmd":{}}'):
@@ -129,6 +134,21 @@ class JavaObservationTests(unittest.TestCase):
             self.assertFalse(any(n.startswith('com/google/gson/') for n in modified.namelist()))
         self.assertTrue(self.selected[0]['client'])
         self.assertFalse(self.selected[0]['server'])
+
+    def test_intermediary_state_queries_do_not_fabricate_defaults(self):
+        executable = 'java.exe' if os.name == 'nt' else 'java'
+        output = subprocess.run([str(self.java / executable), '-cp', self.cp,
+                                 'xyz.langyo.minecraft.mcp.common.StateProbe'],
+                                check=True, capture_output=True, text=True).stdout
+        missing, player, world, unsupported = map(json.loads, output.splitlines())
+        self.assertEqual({'available': False, 'error': 'not_in_world'}, missing)
+        self.assertEqual((12.25, 80.5, -9.75, 135.5, -30.25), tuple(player[k] for k in ('x', 'y', 'z', 'yaw', 'pitch')))
+        self.assertEqual('12.250 80.500 -9.750', player['pos'])
+        self.assertEqual((17.5, 13, 'creative'), (player['health'], player['food'], player['gamemode']))
+        self.assertEqual((13001, 77002, 'hard', 'thunder'), tuple(world[k] for k in ('time', 'game_time', 'difficulty', 'weather')))
+        self.assertIsNone(world['world_name'])
+        self.assertFalse(world['world_name_available'])
+        self.assertFalse(unsupported['available'])
 
 
 if __name__ == '__main__':

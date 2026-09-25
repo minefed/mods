@@ -15,7 +15,8 @@ ROOT = Path(__file__).resolve().parents[1]
 LOCK = 'inventory/minecraft-mcp.lock.json'
 SOURCE = 'compatibility/minecraft-mcp'
 SERVER = 'xyz/langyo/minecraft/mcp/common/McpHttpServer'
-SOURCE_FILES = {'LICENSE-MIT', 'LICENSE-APACHE', 'LICENSE-CC0', 'NOTICE.md', 'src/' + SERVER + '.java'}
+SOURCE_FILES = {'LICENSE-MIT', 'LICENSE-APACHE', 'LICENSE-CC0', 'NOTICE.md', 'src/' + SERVER + '.java',
+                'src/xyz/langyo/minecraft/mcp/common/ObservationState.java'}
 
 
 def pinned_input(root, entry):
@@ -78,11 +79,13 @@ def build(root, work, *, require_committed=True):
         temp = Path(temporary)
         java_source = temp / 'McpHttpServer.java'
         java_source.write_bytes(contents['src/' + SERVER + '.java'])
+        state_source = temp / 'ObservationState.java'
+        state_source.write_bytes(contents['src/xyz/langyo/minecraft/mcp/common/ObservationState.java'])
         classes = temp / 'classes'
         classes.mkdir()
         java = builder.java_home(root, 17) / 'bin' / ('javac.exe' if os.name == 'nt' else 'javac')
         result = subprocess.run([str(java), '--release', '17', '-g:none', '-encoding', 'UTF-8', '-classpath',
-                                 os.pathsep.join(map(str, (upstream, gson))), '-d', str(classes), str(java_source)],
+                                 os.pathsep.join(map(str, (upstream, gson))), '-d', str(classes), str(java_source), str(state_source)],
                                 capture_output=True, text=True, encoding='utf-8')
         if result.returncode:
             raise mods.ModError('Minecraft MCP compilation failed: ' + result.stderr)

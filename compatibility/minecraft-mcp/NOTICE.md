@@ -18,9 +18,12 @@ Minefed contributors modified `McpHttpServer.java` on 2026-09-26:
 - Reject browser Origin headers and non-loopback Host headers. No permissive CORS.
 - Bound command request bodies, use two daemon workers, and shut them down on stop.
 - Report the distinct Minefed version and observation-only status.
+- Read player/world state on the client thread using exact Minecraft 1.20.4
+  named/intermediary mappings in the new `ObservationState.java`. Missing state
+  returns `available: false` with an error, never plausible default game values.
 
-The build replaces the HTTP server classes and updates Fabric metadata; other
-upstream entries remain unchanged. Gson is provided by Minecraft, not bundled.
+The build replaces the HTTP server classes, adds `ObservationState`, and updates
+Fabric metadata; other upstream entries remain unchanged. Gson is provided by Minecraft, not bundled.
 The original JAR URL/hash and compile inputs are in `inventory/minecraft-mcp.lock.json`.
 The modified source and this notice are also embedded in the JAR.
 

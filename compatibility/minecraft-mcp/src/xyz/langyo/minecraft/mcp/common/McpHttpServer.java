@@ -371,6 +371,12 @@ public class McpHttpServer {
                 String cmd = jo.has("cmd") ? jo.get("cmd").getAsString() : jo.has("method") ? jo.get("method").getAsString() : "";
                 ev.method = cmd;
                 ev.params = body;
+                if (cmd.equals("get_player_info") || cmd.equals("get_world_info")) {
+                    Object client;
+                    try { client = ReflectionHelper.getMinecraftInstance(); }
+                    catch (Exception error) { client = null; }
+                    return ObservationState.query(cmd, client);
+                }
                 java.util.Map<String, String> params = new java.util.LinkedHashMap<>();
                 if (jo.has("params") && jo.get("params").isJsonObject()) {
                     for (java.util.Map.Entry<String, com.google.gson.JsonElement> e : jo.getAsJsonObject("params").entrySet()) {
