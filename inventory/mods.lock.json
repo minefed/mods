@@ -4367,7 +4367,7 @@
         "url": "https://github.com/minefed/Yuushya-Townscape",
         "upstream": "https://gitee.com/yuushyatownscape/yuushya-townscape",
         "ref": "codex/fix-runtime-resources",
-        "commit": "3d0d1f3d9722d26596160ffca7e408d76a45e98f",
+        "commit": "dda6be38dc069885cd21bb952f3587db209d05b1",
         "trackingBranch": "codex/fix-runtime-resources",
         "baselineRef": "refs/tags/v2.2.3",
         "baselineCommit": "e76ea8ac5454ec424771f593ce05ee0082e4b278"

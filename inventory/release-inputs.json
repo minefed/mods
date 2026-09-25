@@ -657,7 +657,7 @@
     {
       "path": "Yuushya-Townscape",
       "kind": "mod",
-      "reviewedCommit": "3d0d1f3d9722d26596160ffca7e408d76a45e98f",
+      "reviewedCommit": "dda6be38dc069885cd21bb952f3587db209d05b1",
       "licenseFiles": {
         "1.16.5/common/src/main/java/com/yuushya/entity/README.MD": "b350672b402c35e800cfd11a6526be3d9584f22dc77565cf0f6a6915ba60b720",
         "1.18.2/common/src/main/java/com/yuushya/entity/README.MD": "b350672b402c35e800cfd11a6526be3d9584f22dc77565cf0f6a6915ba60b720",
