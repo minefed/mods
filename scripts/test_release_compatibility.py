@@ -37,6 +37,9 @@ class CompatibilityTests(unittest.TestCase):
             self.assertEqual(compat.FILES, set(jar.namelist()))
             self.assertFalse(any(n.endswith(('.png', '.class', '.jar')) for n in jar.namelist()))
             metadata = json.loads(jar.read('fabric.mod.json'))
+            # Loader 0.18.4 production resource packs follow lexicographical mod
+            # order, not dependency order; the override must follow its target.
+            self.assertGreater(metadata['id'], 'mythicmetals_decorations')
             self.assertEqual('*', metadata['environment'])
             self.assertTrue({'diagonalfences', 'mythicmetals_decorations'} <= set(metadata['depends']))
             for kind in ('block', 'item'):

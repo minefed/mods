@@ -30,7 +30,7 @@ JAR 재배포 분류는 허용 45개, 모드팩 한정 10개, 로컬 전용 15�
 빌드 해시·MIT 고지를 관리하며 클라이언트에만 포함한다.
 [PTS Deco 접속 오류 수정](RECIPE_SYNC_FIX_2026-09-18.md)을 참고한다.
 
-리소스 전용 `minefed_resource_fixes`는 루트 저장소의
+리소스 전용 `zz_minefed_resource_fixes`는 루트 저장소의
 [`compatibility/resource-fixes`](../compatibility/resource-fixes/)에서 릴리스 단계에
 결정적으로 패키징한다. 소스 빌드 47개·기존 바이너리 25개의 입력 목록과 구분하며,
 릴리스 기록에 JAR와 입력 JSON의 해시·MIT 고지·정확한 소스 커밋을 추가한다.

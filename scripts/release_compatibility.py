@@ -41,7 +41,7 @@ def prepare(root: Path, policy: dict, work: Path):
             json.loads(data)
         contents[name] = data
     metadata = json.loads(contents['fabric.mod.json'])
-    if (metadata.get('id') != 'minefed_resource_fixes' or metadata.get('environment') != '*'
+    if (metadata.get('id') != 'zz_minefed_resource_fixes' or metadata.get('environment') != '*'
             or any(k in metadata for k in ('entrypoints', 'mixins', 'jars'))):
         raise mods.ModError('Compatibility mod must be resource-only and available on both sides')
     filename = f"minefed-resource-fixes-{metadata['version']}.jar"

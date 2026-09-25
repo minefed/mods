@@ -1,7 +1,7 @@
 # Minefed Resource Fixes
 
 This resource-only Fabric mod contains no textures, executable classes or third-party JARs.
-It loads after its declared dependencies. The original third-party JARs retain their own licenses.
+Its zz_ ID loads after the original models in the pinned Fabric Loader 0.18.4 production ordering. Dependency declarations alone do not control resource priority. The original third-party JARs retain their own licenses.
 
 The two hydrargym chest model JSON files derive from the MIT-licensed software in
 Mythic Metals Decorations by Noaaan and its contributors. Copyright (c) 2021.
