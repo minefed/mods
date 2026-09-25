@@ -21,8 +21,11 @@ Minefed contributors modified `McpHttpServer.java` on 2026-09-26:
 - Read player/world state on the client thread using exact Minecraft 1.20.4
   named/intermediary mappings in the new `ObservationState.java`. Missing state
   returns `available: false` with an error, never plausible default game values.
+- Capture the actual 1.20.4 framebuffer through ScreenshotRecorder/NativeImage
+  on the client thread in `ObservationScreenshot.java`; do not infer dimensions
+  from unrelated integer fields. Close the native image after encoding.
 
-The build replaces the HTTP server classes, adds `ObservationState`, and updates
+The build replaces the HTTP server classes, adds observation helpers, and updates
 Fabric metadata; other upstream entries remain unchanged. Gson is provided by Minecraft, not bundled.
 The original JAR URL/hash and compile inputs are in `inventory/minecraft-mcp.lock.json`.
 The modified source and this notice are also embedded in the JAR.

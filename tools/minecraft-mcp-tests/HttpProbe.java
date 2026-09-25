@@ -15,7 +15,11 @@ public final class HttpProbe {
                 return "{\"method\":\"" + method + "\",\"calls\":" + calls + "}";
             }
         };
-        McpHttpServer server = new McpHttpServer(handler, Integer.parseInt(args[0]));
+        McpHttpServer server = new McpHttpServer(handler, Integer.parseInt(args[0])) {
+            @Override protected String captureScreenshot() {
+                return "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+a9l8AAAAASUVORK5CYII=";
+            }
+        };
         server.start();
         Field field = McpHttpServer.class.getDeclaredField("server");
         field.setAccessible(true);

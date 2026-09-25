@@ -46,7 +46,7 @@
   "buildScript": "scripts/release_mcp.py",
   "notes": [
     "The original JAR has no standalone license files; all three upstream license texts and the original MIT copyright are preserved alongside the Minefed modification notice.",
-    "The released JAR is an input, not the installed artifact. Recompile the reviewed replacement HTTP server and added ObservationState with Java 17 and retain the other upstream entries unchanged, except explicit Fabric version/license/runtime metadata.",
+    "The released JAR is an input, not the installed artifact. Recompile the reviewed replacement HTTP server and added observation helpers with Java 17 and retain the other upstream entries unchanged, except explicit Fabric version/license/runtime metadata.",
     "Always bind 127.0.0.1; expose only native-client status/screenshot and allowlisted read commands. Do not distribute the unrestricted original as the Minefed runtime.",
     "Upstream release updates require explicit review; the Modrinth-only dependency checker does not query this GitHub pin."
   ]

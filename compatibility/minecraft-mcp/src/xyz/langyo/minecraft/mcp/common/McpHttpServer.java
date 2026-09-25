@@ -263,9 +263,7 @@ public class McpHttpServer {
             ev.method = "screenshot";
             long start = System.nanoTime();
             try {
-                java.util.Map<String, String> empty = new java.util.LinkedHashMap<>();
-                Object result = handler.dispatch("screenshot", empty, null);
-                String b64Data = result instanceof String ? (String) result : McpProtocol.GSON.toJson(result);
+                String b64Data = captureScreenshot();
                 if (b64Data == null || !b64Data.startsWith("data:image/png;base64,")) {
                     sendJson(exchange, 500, "{\"error\":\"" + esc(b64Data != null ? b64Data : "null") + "\"}");
                     ev.error = "bad screenshot data";
@@ -294,6 +292,10 @@ public class McpHttpServer {
                 sendJson(exchange, 500, "{\"error\":\"" + esc(e.getMessage()) + "\"}");
             }
         }
+    }
+
+    protected String captureScreenshot() throws Exception {
+        return ObservationScreenshot.capture(ReflectionHelper.getMinecraftInstance());
     }
 
     private String generateGridBase64(byte[] pngBytes, int w, int h) {
