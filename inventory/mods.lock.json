@@ -2896,9 +2896,9 @@
         "path": "MythicMetalsDecorations",
         "url": "https://github.com/minefed/MythicMetalsDecorations",
         "upstream": "https://github.com/Noaaan/MythicMetalsDecorations",
-        "ref": "minefed-1.20.4",
-        "commit": "c9326608433cbd6210d1f4f0bcbc66ed0393546b",
-        "trackingBranch": "minefed-1.20.4",
+        "ref": "codex/fix-chest-particle",
+        "commit": "f5af39239697e9ed89a108da59c2f8eac695d3df",
+        "trackingBranch": "codex/fix-chest-particle",
         "baselineRef": "0.6.1+1.20.3",
         "baselineCommit": "e31a9c7c4ffcdd6b38370a38519593c34f0b92f2"
       },

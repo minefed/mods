@@ -82,7 +82,7 @@ Continuity·MCEF·Sodium·Indium 및 독립 레시피 호환 모드를 더한 �
 | 43 | MTR-fabric-4.0.3+1.20.4.jar | mtr / 4.0.3 | Minecraft-Transit-Railway · 34a4a8db | 허용 | 제외 |
 | 44 | MTR-fabric-4.0.5+1.20.4.jar | mtr / 4.0.5 | Minecraft-Transit-Railway · 34a4a8db | 허용 | 포함 |
 | 45 | mythicmetals-0.19.7+1.20.4.jar | mythicmetals / 0.19.7+1.20.4 | MythicMetals · cfa897b7 | 모드팩 한정 | 포함 |
-| 46 | mythicmetals-decorations-0.6.1+1.20.3.jar | mythicmetals_decorations / 0.6.1+1.20.3 | MythicMetalsDecorations · c9326608 | 로컬 전용 | 포함 |
+| 46 | mythicmetals-decorations-0.6.1+1.20.3.jar | mythicmetals_decorations / 0.6.1+1.20.3 | MythicMetalsDecorations · f5af3923 | 로컬 전용 | 포함 |
 | 47 | nicemod-1.4.1 - 1.20.jar | nicemod / 1.4.1 - 1.20 | NiceMod · c3447636 | 허용 | 포함 |
 | 48 | oritech-0.5.1+1.20.4.jar | oritech / 0.5.1+1.20.4 | Oritech · 0ace08ab | 허용 | 포함 |
 | 49 | owo-lib-0.12.6+1.20.3.jar | owo / 0.12.6+1.20.3 | 공식 JAR · 과거 소스는 sourceProvenance | 허용 | 포함 |

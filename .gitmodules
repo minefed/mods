@@ -121,7 +121,7 @@
 [submodule "MythicMetalsDecorations"]
 	path = MythicMetalsDecorations
 	url = https://github.com/minefed/MythicMetalsDecorations
-	branch = minefed-1.20.4
+	branch = codex/fix-chest-particle
 [submodule "NiceMod"]
 	path = NiceMod
 	url = https://github.com/minefed/NiceMod
