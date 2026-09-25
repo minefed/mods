@@ -56,11 +56,21 @@ def parallelSources = tasks.register('buildSourcesParallel', Exec) {
             '--run', runId, '--workers', '2'
 }
 
+def resourceAudit = tasks.register('verifyModpackResources', Exec) {
+    group = 'verification'
+    description = 'Reject missing generated resource families and invalid runtime JSON before packaging.'
+    dependsOn prepare
+    dependsOn sourceBuildWorkers == '2' ? parallelSources : sourceTasks
+    workingDir rootDir
+    commandLine pythonExecutable, 'scripts/audit_pack_resources.py', '--run', runId
+}
+
 tasks.register('modpack', Exec) {
     group = 'build'
     description = 'Build source mods and package them with pinned binary-only JARs.'
     dependsOn prepare
     dependsOn sourceBuildWorkers == '2' ? parallelSources : sourceTasks
+    dependsOn resourceAudit
     workingDir rootDir
     commandLine runner(['assemble', '--run', runId])
 }
