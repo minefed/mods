@@ -17,4 +17,4 @@ The optional non_diagonal_fences tag entries are authored by Minefed contributor
 Copyright (c) 2026, under MIT. They refer to 14 Macaw grass-topped walls and merge with
 the existing Diagonal Fences tag. No Diagonal Fences assets are included.
 
-Source: https://github.com/minefed/diagonalfences/commit/aa41b9f39f744455258c27d3728a1ff77908731f
+Source: https://github.com/minefed/diagonal-fences/commit/aa41b9f39f744455258c27d3728a1ff77908731f

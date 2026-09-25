@@ -10,8 +10,8 @@
 | `client.mrpack` | Modrinth 형식을 지원하는 런처에서 가져오는 클라이언트팩 |
 | `resourcepack.zip` | ZIP 루트의 `pack.mcmeta`·`assets/`를 사용하는 게임용 리소스팩 |
 
-2026-09-13 클라이언트 시각 효과와 브라우저 구성을 추가했다. 현재 서버 모드는 67개,
-클라이언트 모드는 Sodium·Indium·레시피 호환 모드를 추가한 현재 70개다. 클라이언트에는 Continuity `3.0.0+1.20.2`, MCEF `2.1.6-1.20.4` 공식 JAR와
+2026-09-13 클라이언트 시각 효과와 브라우저 구성을 추가했다. 리소스 호환 모드를 포함한 현재 서버 모드는 68개,
+클라이언트 모드는 Sodium·Indium·레시피·리소스 호환 모드를 추가한 현재 71개다. 클라이언트에는 Continuity `3.0.0+1.20.2`, MCEF `2.1.6-1.20.4` 공식 JAR와
 Yuushya Foliage Addon `1.3` 원본 ZIP이 내장된다. 각 파일의 원본 URL·해시·출처·고지를
 유지하며, 추가 리소스팩은 `inventory/resourcepacks.lock.json`의 `clientPacks`로 관리한다.
 서버팩 및 독립 `resourcepack.zip`의 게임 파일에는 클라이언트 추가물이 들어가지 않는다.
@@ -67,8 +67,8 @@ JAR는 Git에 추가하지 않는다. `install-mods.py`는 정상적으로 압�
 없이 모든 모드의 해시를 검사하는 선택적 검증 도구다.
 
 `serverPlugins`로 지정한 TCPShield 2.8.1은 서버팩 `plugins/TCPShield-2.8.1.jar`에
-추가된다. 서버팩은 `mods/`의 Fabric 모드 67개와 `plugins/`의 플러그인 1개, 총 JAR
-68개다. TCPShield는 Bukkit/Bungee/Velocity용으로 Fabric Loader가 실행하지 않는다.
+추가된다. 서버팩은 `mods/`의 Fabric 모드 68개와 `plugins/`의 플러그인 1개, 총 JAR
+69개다. TCPShield는 Bukkit/Bungee/Velocity용으로 Fabric Loader가 실행하지 않는다.
 해당 플랫폼의 플러그인 폴더에 사용하는 파일이며 클라이언트 MRPACK에는 포함하지 않는다.
 공식 원본의 URL·크기·SHA-256·플러그인 메타데이터와 MIT 고지를 검증·보존한다.
 기존 운영 인벤토리의 Fabric 빌드 제외 표시는 유지하고, 릴리즈 기록의 `plugins`와
