@@ -1052,38 +1052,31 @@
     },
     {
       "modId": "yuushya",
-      "distribution": "download",
-      "artifact": "baseline",
-      "reason": "Modrinth modpack reference only: the exact original file is hosted on Modrinth and its official API SHA512 matches the baseline JAR. Preserve the original license and download directly from the official CDN; do not embed or rehost the locally rebuilt replacement.",
+      "distribution": "embed",
+      "artifact": "built",
+      "reason": "Include the same-Minecraft-1.20.4 Minefed derivative of Yuushya Townscape by GeometryCoco, XiLaiTL, SQWatermark and Hikari. The pinned source grants MIT code rights; the creators permit modified assets under CC BY-NC-SA 4.0. Minefed changed model/resource references and loading code, as recorded in the exact source history below. Preserve all author notices, attribution (https://yuushya.com/townscape/), MIT code terms and CC BY-NC-SA 4.0 for assets and their modifications. Yuushya content is provided free of charge and remains noncommercial/share-alike; no cross-version port or new asset license is asserted.",
       "evidenceUrls": [
-        "https://gitee.com/yuushyatownscape/yuushya-townscape/tree/v2.2.3/",
-        "https://github.com/XiLaiTL/Yuushya-Townscape",
-        "https://github.com/XiLaiTL/Yuushya-Townscape/blob/master/LICENSE",
+        "https://github.com/minefed/Yuushya-Townscape/blob/dda6be38dc069885cd21bb952f3587db209d05b1/LICENSE",
         "https://github.com/XiLaiTL/Yuushya-Townscape/blob/master/Terms_yuushya_user.md",
-        "https://yuushya.com/townscape/",
-        "https://support.modrinth.com/en/articles/8797527-obtaining-modpack-permissions",
-        "https://api.modrinth.com/v2/version/g5TBlA52"
+        "https://yuushya.com/townscape/term-of-use-en.html",
+        "https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode.en"
       ],
       "client": true,
-      "server": true,
-      "downloadUrl": "https://cdn.modrinth.com/data/lfVtagkm/versions/g5TBlA52/yuushya-1.20.4-fabric-2.2.3.jar"
+      "server": true
     },
     {
       "modId": "yuushya_modelling",
-      "distribution": "download",
-      "artifact": "baseline",
-      "reason": "Modrinth modpack reference only: the exact original file is hosted on Modrinth and its official API SHA512 matches the baseline JAR. Preserve the original license and download directly from the official CDN; do not embed or rehost the locally rebuilt replacement.",
+      "distribution": "embed",
+      "artifact": "built",
+      "reason": "Include the same-Minecraft-1.20.4 Minefed derivative of Yuushya Modelling by GeometryCoco, XiLaiTL, SQWatermark and Hikari. The pinned source grants MIT code rights; the creators permit modified assets under CC BY-NC-SA 4.0. Minefed changed model/resource references and loading code, as recorded in the exact source history below. Preserve all author notices, attribution (https://yuushya.com/townscape/), MIT code terms and CC BY-NC-SA 4.0 for assets and their modifications. Yuushya content is provided free of charge and remains noncommercial/share-alike; no cross-version port or new asset license is asserted.",
       "evidenceUrls": [
-        "https://github.com/XiLaiTL/Yuushya-Modelling",
-        "https://github.com/XiLaiTL/Yuushya-Modelling/blob/master/LICENSE",
+        "https://github.com/minefed/Yuushya-Modelling/blob/6256abeee58ca8952ada2ac617aa15ef16ec23dd/LICENSE",
         "https://github.com/XiLaiTL/Yuushya-Townscape/blob/master/Terms_yuushya_user.md",
-        "https://yuushya.com/townscape/",
-        "https://support.modrinth.com/en/articles/8797527-obtaining-modpack-permissions",
-        "https://api.modrinth.com/v2/version/FQMpG8yv"
+        "https://yuushya.com/townscape/term-of-use-en.html",
+        "https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode.en"
       ],
       "client": true,
-      "server": true,
-      "downloadUrl": "https://cdn.modrinth.com/data/RxVV6ldg/versions/FQMpG8yv/yuushya-modelling-1.20.4-fabric-2.2.0.jar"
+      "server": true
     },
     {
       "modId": "sodium",

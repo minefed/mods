@@ -69,6 +69,22 @@ JAR에 존재한다. 관련 slab·half-slab·snow-layer 블록은 각각 기본 
 
 ## 실행 범위와 해석
 
+### 공개 팩의 실제 선택
+
+첫 공개 팩 검사에서 Yuushya 두 모드의 수정된 빌드가 배포 정책에 의해 원본
+JAR로 대체되는 것을 발견했다. 같은 1.20.4 버전의 수정본을 포함하도록 변경했다.
+[고정 소스의 MIT 고지](https://github.com/minefed/Yuushya-Townscape/blob/dda6be38dc069885cd21bb952f3587db209d05b1/LICENSE)와
+[저작자의 사용·2차 창작 조건](https://github.com/XiLaiTL/Yuushya-Townscape/blob/master/Terms_yuushya_user.md)에
+따라 코드 고지, 저작자·소개 페이지, 변경 이력 및 자산의 CC BY-NC-SA 4.0 조건을
+배포 기록에 보존한다. Yuushya 부분은 무료이며 버전 이식은 하지 않는다.
+저작자 웹사이트의 오래된 페이지는 코드에 GNU를 표기하지만 현재 소스와 GitHub
+사용 조건에는 MIT가 명시되어 있다. 자산은 두 자료 모두 CC BY-NC-SA 4.0이다.
+수정본에는 고정 소스가 제공하는 MIT 고지를 그대로 유지한다.
+
+Diagonal Fences의 자산과 Mythic Metals Decorations의 텍스처는 별도 권리 제한이
+있으므로 이 두 모드의 공식 JAR 선택은 유지한다. 관련 수정의 배포 경로와
+최종 선택 JAR 해시는 통합 실행 기록에서 별도로 확인한다.
+
 기존 클라이언트는 블록 21,898개, 블록 상태 1,051,873개를 등록했다. Modelling의
 이전 콜백은 이 큰 모델 집합에서 128개 상태를 반복 검사했으므로 로딩 비용이
 커졌다. 중간 비교에서 이 코드만 바꾼 실행은 시작 285.333초에서 147.044초,
