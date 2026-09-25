@@ -72,6 +72,20 @@ class ReleaseControlTests(unittest.TestCase):
         with self.assertRaisesRegex(mods.ModError, 'Resource pack manifest changed'):
             control.validate_assets(self.root, self.manifest, self.plan)
 
+    def test_observation_mod_requires_unchanged_input_manifest(self):
+        policy = self.root / 'inventory/release-policy.json'
+        policy.write_text('{"minecraftMcpMod":true}')
+        self.manifest['policySha256'] = mods.file_digest(policy)[0]
+        with self.assertRaisesRegex(mods.ModError, 'Minecraft MCP manifest changed'):
+            control.validate_assets(self.root, self.manifest, self.plan)
+        lock = self.root / 'inventory/minecraft-mcp.lock.json'
+        lock.write_text('{"version":"0.3.0+minefed.1"}')
+        self.manifest['minecraftMcpManifest'] = {'path': 'inventory/minecraft-mcp.lock.json', 'sha256': mods.file_digest(lock)[0]}
+        self.assertEqual(3, len(control.validate_assets(self.root, self.manifest, self.plan)))
+        lock.write_text('{"version":"changed"}')
+        with self.assertRaisesRegex(mods.ModError, 'Minecraft MCP manifest changed'):
+            control.validate_assets(self.root, self.manifest, self.plan)
+
     def test_bundled_release_description_does_not_require_missing_downloads(self):
         self.manifest['archiveMode'] = 'bundled'
         self.manifest['profiles']['server']['pluginCount'] = 1

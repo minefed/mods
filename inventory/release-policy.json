@@ -1124,5 +1124,6 @@
     }
   ],
   "publishedManifest": "inventory/published-artifacts.lock.json",
-  "resourceCompatibilityMod": true
+  "resourceCompatibilityMod": true,
+  "minecraftMcpMod": true
 }

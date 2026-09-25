@@ -13,6 +13,12 @@
 새 클라이언트 전용 `minefed-client-compat`도 소스에서 빌드하며, 공식 PTS Deco 4.0.0 JAR에
 실제 Mixin을 적용하는 회귀 검증을 실행한다([접속 오류 수정](RECIPE_SYNC_FIX_2026-09-18.md)).
 
+최종 배포 패키징은 위 기준 빌드에 리소스 호환 모드와
+[Minecraft Mod MCP 관찰용 빌드](MINECRAFT_MCP.md)를 추가한다. MCP의 원본 JAR·컴파일
+의존성은 `inventory/minecraft-mcp.lock.json`, Minefed Java 수정은
+`compatibility/minecraft-mcp/`, 빌드 도구는 `scripts/release_mcp.py`로 관리한다.
+서브모듈이나 운영 기준본을 새로 만들지 않고 클라이언트팩에만 포함한다.
+
 ## 한 번에 실행
 
 Windows에서는 저장소 루트에서 실행한다.

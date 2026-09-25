@@ -20,6 +20,7 @@ import zipfile
 import build_modpack as builder
 import mods
 import release_compatibility
+import release_mcp
 import release_dependencies
 import release_plugins
 import release_resources
@@ -577,6 +578,10 @@ def source_notices(records, version: str) -> str:
             if record['artifact'] == 'compatibility':
                 lines += ['Exact resource-only source: ' + record['sourceCommitUrl'],
                           'Per-file SHA-256 hashes are recorded in download-manifest.json.']
+            elif record['artifact'] == 'observation':
+                lines += ['Exact Minefed observation modifications and build instructions: ' + record['sourceCommitUrl'],
+                          'The pinned original artifact, modified source and per-file hashes are recorded in download-manifest.json.',
+                          'The modified Java source and original licenses are embedded in the JAR.']
             elif record.get('sourceArchiveUrl'):
                 lines += ['Managed source and build instructions: ' + record['sourceCommitUrl'],
                           'Minefed build/compatibility changes are recorded in this repository history at that exact commit.']
@@ -678,6 +683,12 @@ def write_profile(root, destination, side, selected, notices, version, loader, r
             if any(record['modId'] == 'mcef' for record in records):
                 instructions += ['The MCEF mod JAR is included. On first launch, MCEF separately prepares the platform-specific Chromium/CEF native runtime from https://mcef-download.cinemamod.com.',
                                  'Allow that download and initialization to finish before using Minefed Display web screens; native files retain their own license notices.']
+            if any(record['modId'] == 'mcpmod' for record in records):
+                instructions += ['Minecraft Mod MCP is a Minefed observation-only build for this client; restart Minecraft after installing it.',
+                                 'Its HTTP API binds only to 127.0.0.1, starting at port 9876 (or -Dmcp.port / MC_MCP_PORT).',
+                                 'Only status, screenshot, ping, player/world information and screen-button queries are exposed. Input/control commands and browser requests are disabled.',
+                                 'Local native processes can query this unauthenticated observation API. No multiplayer bot or server mod is installed.',
+                                 'Use the separate minefed-game observation adapter; this pack does not configure AI clients or install an MCP bridge.']
             archive.write(resource, f'overrides/resourcepacks/minefed-{version}.zip')
             if resource_records or builtin_packs:
                 archive.writestr('overrides/options.txt', release_resources.options(resource_records, version, list(builtin_packs)))
@@ -736,7 +747,8 @@ def release(root: Path, result_json: str, version: str, policy_path: str = 'inve
         policy = load_policy(root, policy_path, set(paths))
         published, published_snapshot = published_artifacts(root, policy)
         selected = select_files(root, manifest, provenance, paths, policy, work, published)
-        for item in release_compatibility.prepare(root, policy, work):
+        observation, observation_snapshot = release_mcp.prepare(root, policy, work)
+        for item in [*release_compatibility.prepare(root, policy, work), *observation]:
             if any(r['modId'] == item[0]['modId'] or r['path'].casefold() == item[0]['path'].casefold()
                    for r, _, _ in selected):
                 raise mods.ModError('Compatibility mod collides with a selected artifact')
@@ -773,12 +785,15 @@ def release(root: Path, result_json: str, version: str, policy_path: str = 'inve
         result['dependencyCheck'] = dependency_check
         if published_snapshot:
             result['publishedManifest'] = published_snapshot
+        if observation_snapshot:
+            result['minecraftMcpManifest'] = observation_snapshot
         (publication / 'release-assets.json').write_bytes(json_bytes(result))
         # Publish the complete directory in one rename. Failed preparation exposes
         # none of the three assets. Cooperating publishers share a short OS lock.
         with builder._file_lock(destination.parent / '.release-publication.lock', 'Waiting for another release publication'):
             check_published_manifest(root, published_snapshot)
             check_published_manifest(root, resource_snapshot)
+            check_published_manifest(root, observation_snapshot)
             if destination.exists():
                 raise mods.ModError(f'Release output exists; left unchanged: {destination}')
             os.rename(publication, destination)

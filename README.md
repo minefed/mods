@@ -58,6 +58,9 @@ CityCraft와 Macaw Doors/Fences는 공개된 Fabric 1.20.4용 공식 JAR를 사�
 소스 빌드는 유지하고 공개팩에는 `published-artifacts.lock.json`의 공식 배포본 2개를 선택한다.
 각 소스는 전용 wrapper/JDK로 빌드하며 실패 시 운영 JAR로 자동 대체하지 않는다.
 
+최종 클라이언트팩에는 [Minecraft Mod MCP 관찰용 빌드](docs/MINECRAFT_MCP.md)도 포함한다.
+화면·플레이어·월드 조회만 loopback API로 제공하며 서버팩에는 포함하지 않는다.
+
 완성 ZIP과 SHA-256은 `build/distributions/`, 최근 성공 결과 경로는 `latest.json`에 기록된다.
 각 JAR의 실제 버전·해시, 소스 커밋과 내용 해시, 라이선스 고지도 ZIP에 포함한다.
 환경 설정과 개별 모드 빌드, 로그 확인 방법은 [빌드 안내](docs/BUILDING.md)를 참고한다.

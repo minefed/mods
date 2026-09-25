@@ -177,6 +177,12 @@ def validate_assets(root: Path, manifest: dict, plan: dict) -> list[tuple[dict, 
         if mods.file_digest(mods.safe_path(root, published_path))[0] != published_snapshot.get('sha256'):
             raise mods.ModError('Published artifact manifest changed after packaging')
     planned = {s['path']: s['commit'] for s in plan['sources']}
+    observation_snapshot = manifest.get('minecraftMcpManifest')
+    if policy.get('minecraftMcpMod') or observation_snapshot is not None:
+        if (policy.get('minecraftMcpMod') is not True or not isinstance(observation_snapshot, dict)
+                or observation_snapshot.get('path') != 'inventory/minecraft-mcp.lock.json'
+                or mods.file_digest(root / observation_snapshot['path'])[0] != observation_snapshot.get('sha256')):
+            raise mods.ModError('Minecraft MCP manifest changed after packaging')
     resource_snapshot = manifest.get('resourcePackManifest')
     if resource_snapshot is not None:
         if (not isinstance(resource_snapshot, dict) or resource_snapshot.get('path') != 'inventory/resourcepacks.lock.json'

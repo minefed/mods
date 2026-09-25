@@ -125,6 +125,27 @@ class ReleaseTests(unittest.TestCase):
     def run_release(self, version='20260907123456'):
         return release.release(self.root, 'build/latest.json', version)
 
+    def test_observer_is_embedded_only_in_client_with_notice_and_lock(self):
+        entry = self.jar('minecraft-mcp-fixture.jar', 'mcpmod', '0.3.0+minefed.1', environment='client')
+        record = {**entry, **self.decision('mcpmod', artifact='observation', server=False),
+                  'path': 'mods/' + entry['fileName'], 'archiveIncluded': True, 'replacesBuiltArtifact': False}
+        self.policy['minecraftMcpMod'] = True
+        self.write('inventory/release-policy.json', self.policy)
+        self.write('inventory/minecraft-mcp.lock.json', {'version': record['version']})
+        snapshot = {'path': 'inventory/minecraft-mcp.lock.json',
+                    'sha256': mods.file_digest(self.root / 'inventory/minecraft-mcp.lock.json')[0]}
+        prepared = ([(record, self.root / entry['artifact']['path'], entry)], snapshot)
+        with patch.object(release.release_mcp, 'prepare', return_value=prepared):
+            result = self.run_release()
+        self.assertEqual(snapshot, json.loads(result.read_text())['minecraftMcpManifest'])
+        with zipfile.ZipFile(result.parent / 'client.mrpack') as archive:
+            self.assertIn('overrides/' + record['path'], archive.namelist())
+            self.assertIn('observation-only', archive.read('overrides/INSTALL.txt').decode())
+            self.assertIn('mcpmod', archive.read('overrides/LICENSES.md').decode())
+        with zipfile.ZipFile(result.parent / 'server.zip') as archive:
+            self.assertNotIn(record['path'], archive.namelist())
+            self.assertNotIn('mcpmod', [e['modId'] for e in json.loads(archive.read('download-manifest.json'))['files']])
+
     def test_three_assets_preserve_source_bytes_split_sides_and_keep_game_resources(self):
         manifest_path = self.run_release()
         report = json.loads(manifest_path.read_text())
