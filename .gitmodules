@@ -201,7 +201,7 @@
 [submodule "resourcepack"]
 	path = resourcepack
 	url = https://github.com/minefed/resourcepack
-	branch = main
+	branch = codex/fix-mod-assets
 [submodule "minefed-client-compat"]
 	path = minefed-client-compat
 	url = https://github.com/minefed/minefed-client-compat

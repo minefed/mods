@@ -852,7 +852,7 @@
     {
       "path": "resourcepack",
       "kind": "resourcepack",
-      "reviewedCommit": "82d0c13c888804e137d377ce25553de07b9b125a",
+      "reviewedCommit": "cbcc8cc1f0f0dbf490a485423b3cbd3959726d21",
       "licenseFiles": {
         "README.md": "5074cbc1e1399c5e50e26cb92c5df5c22e5d7a6f6efacb9409350958a63411b1",
         "design/vehicles/mxr_a1000/source/README.md": "11649f04fe4b93f0c0ede8f3f12f84c4b781adc268cfe377d8073d76cdba3672",
