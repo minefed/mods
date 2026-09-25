@@ -1,0 +1,2580 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-09-25",
+  "minecraftVersion": "1.20.4",
+  "loader": "fabric",
+  "fabricLoaderVersion": "0.18.4",
+  "java": 17,
+  "implementationMergeCommit": "bae63f716643b1c8d85731aa822a3d9a845b6a37",
+  "build": {
+    "run": "20260925-061229-3aa0516f",
+    "sourceCount": 47,
+    "binaryCount": 25,
+    "resourceArtifactCount": 72,
+    "successful": true,
+    "resourceErrors": [],
+    "baselineArtifactsAndSourcePinsVerified": 70,
+    "changedSubmoduleRemotes": [
+      {
+        "path": "Decorative-Blocks",
+        "ref": "refs/heads/codex/fix-copy-tool-model",
+        "commit": "8550e3b988d1d7f1c27c1c15732070569ded051e",
+        "remoteConfirmed": true
+      },
+      {
+        "path": "Minecraft-Transit-Railway",
+        "ref": "refs/heads/codex/fix-minecart-sounds",
+        "commit": "e1b99f86794eae70bdd00e2c604ad9a61236af1f",
+        "remoteConfirmed": true
+      },
+      {
+        "path": "MythicMetalsDecorations",
+        "ref": "refs/heads/codex/fix-chest-particle",
+        "commit": "f5af39239697e9ed89a108da59c2f8eac695d3df",
+        "remoteConfirmed": true
+      },
+      {
+        "path": "Oritech",
+        "ref": "refs/heads/codex/fix-capacitor-model",
+        "commit": "0ace08abb384f0e38288f4bc82b6c58606509f86",
+        "remoteConfirmed": true
+      },
+      {
+        "path": "Yuushya-Modelling",
+        "ref": "refs/heads/codex/optimize-model-loading",
+        "commit": "6256abeee58ca8952ada2ac617aa15ef16ec23dd",
+        "remoteConfirmed": true
+      },
+      {
+        "path": "Yuushya-Townscape",
+        "ref": "refs/heads/codex/fix-runtime-resources",
+        "commit": "dda6be38dc069885cd21bb952f3587db209d05b1",
+        "remoteConfirmed": true
+      },
+      {
+        "path": "diagonal-fences",
+        "ref": "refs/heads/codex/fix-macaw-compatibility",
+        "commit": "aa41b9f39f744455258c27d3728a1ff77908731f",
+        "remoteConfirmed": true
+      },
+      {
+        "path": "minefed-display",
+        "ref": "refs/heads/codex/fix-display-depth",
+        "commit": "a1e8f94df20c22c1ccfc4083b1dc01dc7f757e45",
+        "remoteConfirmed": true
+      },
+      {
+        "path": "mishanguc",
+        "ref": "refs/heads/codex/fix-gradle-download",
+        "commit": "07028d29c741f688fafd271e5fb0f51937042184",
+        "remoteConfirmed": true
+      },
+      {
+        "path": "modern-glass-doors",
+        "ref": "refs/heads/codex/fix-glass-door-generated-resources",
+        "commit": "3c65e91eee397e91496f78345165451d86b28932",
+        "remoteConfirmed": true
+      },
+      {
+        "path": "resourcepack",
+        "ref": "refs/heads/codex/fix-mod-assets",
+        "commit": "cbcc8cc1f0f0dbf490a485423b3cbd3959726d21",
+        "remoteConfirmed": true
+      }
+    ],
+    "toolsTests": {
+      "total": 189,
+      "passed": 185,
+      "skipped": 4
+    },
+    "resourceAuditSha256": "e3a64cbcd7f7eee3b5d925c68c4182731aeef1c8b95cad9565905a3f9d3998e2",
+    "postReleasePackagingTests": {
+      "total": 195,
+      "passed": 191,
+      "skipped": 4
+    },
+    "additionalResourceOnlyMods": 1,
+    "resourcePriorityRegressionTests": {
+      "total": 4,
+      "passed": 4
+    }
+  },
+  "fixedAssets": {
+    "authoringHitboxModelsExcluded": true,
+    "collisionJsonRetained": 1401,
+    "ashtrayTexture": "block/short_grass",
+    "audioBlocksWithPreservedOldVariants": 54,
+    "addedAudioDirectionalVariants": 216,
+    "painterGiftBoxLootPools": 10,
+    "random.propertiesValidTiles": 17,
+    "random_.propertiesValidTiles": 13,
+    "bothButterflyDefinitionsCorrect": true,
+    "optionalMacawExclusions": 14,
+    "copyToolModelPackaged": true,
+    "capacitorModelCorrect": true,
+    "hydrargymChestParticlesCorrect": true,
+    "unavailableMinecartSoundFilesRemoved": 3
+  },
+  "runtimeValidation": {
+    "clientTitleAndTwoReloads": true,
+    "productionServerChanged": false,
+    "productionClientChanged": false,
+    "serverLogin": false,
+    "worldVisualCoverage": false,
+    "extraTestMod": "tools/client-resource-probe (excluded from releases)",
+    "machine": "AMD Ryzen 7 7730U, 32 GB RAM, Windows",
+    "heap": "-Xmx8G",
+    "jdk": "Eclipse Adoptium 17.0.20.1",
+    "baseline": {
+      "run": "baseline-final-3",
+      "titleMilliseconds": 372626,
+      "reloadMilliseconds": [
+        221805,
+        158280
+      ],
+      "enabledResourcePacks": [
+        "vanilla",
+        "pfm-asset-resources",
+        "fabric",
+        "seasons:seasonal_lush_caves",
+        "continuity:default",
+        "continuity:glass_pane_culling_fix",
+        "yuushya:mcpatcher_feature",
+        "file/Yuushya Foliage Addon 1.3.zip",
+        "file/minefed-20260913144426.zip"
+      ],
+      "hostMemory": {
+        "beforeLaunchAvailableBytes": 8711823360,
+        "minimumAvailableBytes": 4251648,
+        "afterExitAvailableBytes": 9924108288
+      },
+      "completed": true,
+      "showblockModelsCheckedEachLoad": [
+        129,
+        129,
+        129
+      ],
+      "resourceDiagnosticCounts": {
+        "incompatibleModel": 14,
+        "invalidCtmBlock": 48,
+        "invalidModel": 12,
+        "missingModel": 63,
+        "missingSound": 9,
+        "missingSprite": 3,
+        "missingState": 1302,
+        "missingTexture": 99
+      },
+      "resourceDiagnosticCount": 1550
+    },
+    "updated": {
+      "run": "release-final-4",
+      "titleMilliseconds": 191393,
+      "reloadMilliseconds": [
+        65365,
+        60093
+      ],
+      "enabledResourcePacks": [
+        "vanilla",
+        "pfm-asset-resources",
+        "fabric",
+        "seasons:seasonal_lush_caves",
+        "continuity:default",
+        "continuity:glass_pane_culling_fix",
+        "yuushya:mcpatcher_feature",
+        "file/Yuushya Foliage Addon 1.3.zip",
+        "file/minefed-20260925183232.zip"
+      ],
+      "hostMemory": {
+        "beforeLaunchAvailableBytes": 8514359296,
+        "minimumAvailableBytes": 47304704,
+        "afterExitAvailableBytes": 11623075840
+      },
+      "completed": true,
+      "showblockModelsCheckedEachLoad": [
+        129,
+        129,
+        129
+      ],
+      "resourceDiagnosticCounts": {
+        "incompatibleModel": 14
+      },
+      "resourceDiagnosticCount": 14,
+      "resourceCompatibilityAfterOriginalEachLoad": true
+    },
+    "earlierBaselineBeforeHostMemoryChanged": {
+      "run": "baseline-final-2",
+      "titleMilliseconds": 229055,
+      "reloadMilliseconds": [
+        103430,
+        136727
+      ],
+      "enabledResourcePacks": [
+        "vanilla",
+        "pfm-asset-resources",
+        "fabric",
+        "seasons:seasonal_lush_caves",
+        "continuity:default",
+        "continuity:glass_pane_culling_fix",
+        "yuushya:mcpatcher_feature",
+        "file/Yuushya Foliage Addon 1.3.zip",
+        "file/minefed-20260913144426.zip"
+      ],
+      "hostMemory": {
+        "beforeLaunchAvailableBytes": 10662711296,
+        "minimumAvailableBytes": 60555264,
+        "afterExitAvailableBytes": 11868782592
+      },
+      "completed": true,
+      "showblockModelsCheckedEachLoad": [
+        129,
+        129,
+        129
+      ],
+      "resourceDiagnosticCounts": {
+        "incompatibleModel": 14,
+        "invalidCtmBlock": 48,
+        "invalidModel": 12,
+        "missingModel": 63,
+        "missingSound": 9,
+        "missingSprite": 3,
+        "missingState": 1302,
+        "missingTexture": 99
+      },
+      "resourceDiagnosticCount": 1550
+    },
+    "initialUpdatedRunWithMemoryReclamation": {
+      "run": "release-final-3",
+      "titleMilliseconds": 280919,
+      "reloadMilliseconds": [
+        95988,
+        102005
+      ],
+      "enabledResourcePacks": [
+        "vanilla",
+        "pfm-asset-resources",
+        "fabric",
+        "seasons:seasonal_lush_caves",
+        "continuity:default",
+        "continuity:glass_pane_culling_fix",
+        "yuushya:mcpatcher_feature",
+        "file/Yuushya Foliage Addon 1.3.zip",
+        "file/minefed-20260925183232.zip"
+      ],
+      "hostMemory": {
+        "beforeLaunchAvailableBytes": 4898430976,
+        "minimumAvailableBytes": 145772544,
+        "afterExitAvailableBytes": 10432724992
+      },
+      "completed": true,
+      "showblockModelsCheckedEachLoad": [
+        129,
+        129,
+        129
+      ],
+      "resourceDiagnosticCounts": {
+        "incompatibleModel": 14
+      },
+      "resourceDiagnosticCount": 14
+    },
+    "initialUpdatedTimingExclusionReason": "Available RAM changed from 4.56 GiB before launch to 9.72 GiB after exit; repeat the final pack after the baseline to reduce this reclamation bias.",
+    "isolatedModellingComparison": {
+      "baselineRun": "baseline-1",
+      "updatedRun": "modelling-4",
+      "baselineTitleMilliseconds": 285333,
+      "updatedTitleMilliseconds": 147044,
+      "baselineReloadMilliseconds": [
+        134246,
+        130039
+      ],
+      "updatedReloadMilliseconds": [
+        62627,
+        53029
+      ],
+      "scope": "Earlier same-pack comparison changing only Yuushya Modelling; not a measurement of the final integrated release."
+    },
+    "invalidResourcePriorityRun": "release-final-2: title screen and 129 models passed, but the original Mythic Metals Decorations model overrode the compatibility resource because Fabric resource order is lexicographical. Interrupted and corrected the compatibility ID before the final run. Concurrent tool tests and only 2.37 GiB available host RAM also invalidate its timing.",
+    "invalidPublicSelectionRun": "release-final-1: interrupted after discovering that the original release policy replaced the four corrected source artifacts. Fixed Yuushya selection and added the resource-only compatibility mod before final validation.",
+    "initialBaselineWithMemoryPressure": {
+      "run": "baseline-final-1",
+      "titleMilliseconds": 255608,
+      "reloadMilliseconds": [
+        163279,
+        149104
+      ],
+      "enabledResourcePacks": [
+        "vanilla",
+        "pfm-asset-resources",
+        "fabric",
+        "seasons:seasonal_lush_caves",
+        "continuity:default",
+        "continuity:glass_pane_culling_fix",
+        "yuushya:mcpatcher_feature",
+        "file/Yuushya Foliage Addon 1.3.zip",
+        "file/minefed-20260913144426.zip"
+      ],
+      "hostMemory": {
+        "beforeLaunchAvailableBytes": 6313963520,
+        "minimumAvailableBytes": 53960704,
+        "afterExitAvailableBytes": 11441111040
+      },
+      "completed": true,
+      "showblockModelsCheckedEachLoad": [
+        129,
+        129,
+        129
+      ],
+      "resourceDiagnosticCounts": {
+        "incompatibleModel": 14,
+        "invalidCtmBlock": 48,
+        "invalidModel": 12,
+        "missingModel": 63,
+        "missingSound": 9,
+        "missingSprite": 3,
+        "missingState": 1302,
+        "missingTexture": 99
+      },
+      "resourceDiagnosticCount": 1550
+    },
+    "initialBaselineExclusionReason": "Available host RAM changed from approximately 5.9 GiB before launch to 10.7 GiB after exit. Repeat the baseline after that memory was reclaimed to improve comparability.",
+    "excludedPerformanceRun": "integrated-1: concurrent Gradle builds, approximately 400 MB free RAM, interrupted during second reload"
+  },
+  "release": {
+    "version": "20260925183232",
+    "profiles": {
+      "server": {
+        "modCount": 68,
+        "embeddedCount": 68,
+        "pluginCount": 1,
+        "totalJarCount": 69,
+        "additionalResourcePackCount": 0,
+        "downloadCount": 0,
+        "manualCount": 0,
+        "excludedModIds": [
+          "continuity",
+          "mcef",
+          "sodium",
+          "indium",
+          "minefed-client-compat"
+        ]
+      },
+      "client": {
+        "modCount": 71,
+        "embeddedCount": 71,
+        "pluginCount": 0,
+        "totalJarCount": 71,
+        "additionalResourcePackCount": 1,
+        "downloadCount": 0,
+        "manualCount": 0,
+        "excludedModIds": [
+          "crossstitch",
+          "fabricproxy-lite"
+        ]
+      }
+    },
+    "assets": [
+      {
+        "kind": "server",
+        "name": "server.zip",
+        "path": "build/releases/20260925183232/server.zip",
+        "sha256": "473904fc160596598dc4d5ac1897e18c9e07bb4fbf780989a2cf7c9f7484bf2e",
+        "size": 255221136,
+        "mediaType": "application/zip"
+      },
+      {
+        "kind": "client",
+        "name": "client.mrpack",
+        "path": "build/releases/20260925183232/client.mrpack",
+        "sha256": "8032bd5506e7e3466d5e0eb4fb74730e68dcce694fd1e7ab8dd0de011c397d78",
+        "size": 257505928,
+        "mediaType": "application/x-modrinth-modpack+zip"
+      },
+      {
+        "kind": "resourcepack",
+        "name": "resourcepack.zip",
+        "path": "build/releases/20260925183232/resourcepack.zip",
+        "sha256": "37ffd370e66cbc5217495404097a334d843226c6c5ad93bbc2a3dc10d704cc37",
+        "size": 1062291,
+        "mediaType": "application/zip"
+      }
+    ],
+    "fixedSelectionVerification": {
+      "passed": true,
+      "clientModCount": 71,
+      "serverModCount": 68,
+      "sourceFixes": [
+        "decorative_blocks",
+        "mishanguc",
+        "mtr",
+        "oritech",
+        "yuushya",
+        "yuushya_modelling"
+      ],
+      "compatibilityFixes": [
+        "diagonalfences",
+        "mythicmetals_decorations"
+      ]
+    }
+  },
+  "resourcePack": {
+    "id": "minefed",
+    "commit": "cbcc8cc1f0f0dbf490a485423b3cbd3959726d21",
+    "packFormat": 22,
+    "gameFileCount": 115,
+    "runtimeValidated": false
+  },
+  "staticEntries": [
+    {
+      "modId": "alloy_forgery",
+      "version": "2.1.4+1.20.3",
+      "sha256": "aa06b73003c8296922024444e2bf2a6752610fa423f076708204ed9ab73eafee",
+      "families": {
+        "assets/alloy_forgery/blockstates": 6,
+        "assets/alloy_forgery/models": 18,
+        "assets/alloy_forgery/textures": 27,
+        "data/alloy_forgery/loot_tables": 6,
+        "data/alloy_forgery/recipes": 75
+      },
+      "classCount": 85
+    },
+    {
+      "modId": "architectury",
+      "version": "11.1.17",
+      "sha256": "0762da4c5697abe1f87997dbdd6f2823420b7cc6c05aa4768c08318252e04903",
+      "families": {},
+      "classCount": 412
+    },
+    {
+      "modId": "automobility-refueled",
+      "version": "0.4.3.b+1.20.4-fabric",
+      "sha256": "9084e567c94c5590d0e8fd0b22dd1ce18432d0ad7d6039d0eb8528fd64da9457",
+      "families": {
+        "assets/automobility/blockstates": 13,
+        "assets/automobility/models": 78,
+        "assets/automobility/textures": 115,
+        "data/automobility/loot_tables": 12,
+        "data/automobility/recipes": 73
+      },
+      "classCount": 203
+    },
+    {
+      "modId": "bluemap",
+      "version": "5.3",
+      "sha256": "bf4f8789ecafc35a9f26a0309966879601df4e1afa14d1b4d917de6f4d539d44",
+      "families": {},
+      "classCount": 2462
+    },
+    {
+      "modId": "botarium",
+      "version": "3.2.2",
+      "sha256": "7c85682c5d34dfce7005a1a61334c13687a3d117df454f505bf8be6ee3877483",
+      "families": {},
+      "classCount": 136
+    },
+    {
+      "modId": "computercraft",
+      "version": "1.110.2",
+      "sha256": "7d8b3477414981141732fcdf85e2c70e07b6eb60882b7166f55585aba4d5531e",
+      "families": {
+        "assets/computercraft/blockstates": 14,
+        "assets/computercraft/models": 120,
+        "assets/computercraft/textures": 163,
+        "data/computercraft/loot_tables": 15,
+        "data/computercraft/recipes": 75
+      },
+      "classCount": 1692
+    },
+    {
+      "modId": "chiselsandbits",
+      "version": "1.5.10-FC",
+      "sha256": "353f8c2837112be8123578648e1ee91cc18459051e2edfbea4315119e9aea055",
+      "families": {},
+      "classCount": 908
+    },
+    {
+      "modId": "chunky",
+      "version": "1.3.146",
+      "sha256": "15eac4524f89954612ba811f49c57d6ce2a4801eb7e2c28d1105e52047733948",
+      "families": {},
+      "classCount": 132
+    },
+    {
+      "modId": "citycraft",
+      "version": "2.1.1",
+      "sha256": "ac9cee9f7bc2a0bdce0acd08f03d3ae682085fb65aafc6efa62e2f201646456d",
+      "families": {
+        "assets/citycraft/blockstates": 276,
+        "assets/citycraft/models": 719,
+        "assets/citycraft/textures": 498,
+        "data/citycraft/loot_tables": 184,
+        "data/citycraft/recipes": 96
+      },
+      "classCount": 103
+    },
+    {
+      "modId": "continuity",
+      "version": "3.0.0+1.20.2",
+      "sha256": "0fa002f7c67b800e50038e64d8fae4fb0e7386cd2841287cd47046f2b18fe1e3",
+      "families": {},
+      "classCount": 177
+    },
+    {
+      "modId": "crossstitch",
+      "version": "0.1.6",
+      "sha256": "186370423ac667543f5c6fa0183384d76226f7ee48ae9e069b85a2a905de3af4",
+      "families": {},
+      "classCount": 1
+    },
+    {
+      "modId": "decorative_blocks",
+      "version": "5.0.2",
+      "sha256": "2dba9170807127aae7eb46ac5e938d539e652cc77f247ee2d6bebc7ddc9dd856",
+      "families": {
+        "assets/decorative_blocks/blockstates": 56,
+        "assets/decorative_blocks/models": 367,
+        "assets/decorative_blocks/textures": 108,
+        "data/decorative_blocks/loot_tables": 52,
+        "data/decorative_blocks/recipes": 55
+      },
+      "classCount": 67
+    },
+    {
+      "modId": "diagonalfences",
+      "version": "20.4.1",
+      "sha256": "d9f19622afabcff1b52139511ec87380e6ebb5a86bf79095634e75805bfb1ec6",
+      "families": {},
+      "classCount": 51
+    },
+    {
+      "modId": "diagonalwalls",
+      "version": "20.4.1",
+      "sha256": "bb33ad2282be8712917fa4331a8648657bf1b950d6f3a9222532ab0f08cc1967",
+      "families": {},
+      "classCount": 51
+    },
+    {
+      "modId": "diagonalwindows",
+      "version": "20.4.1",
+      "sha256": "34f2d139a16f446259a3ceef4e8d4e6913a6ed2f89f42945d4dc67a61b3c0259",
+      "families": {},
+      "classCount": 51
+    },
+    {
+      "modId": "dustydecorations",
+      "version": "1.1-1.20.3+1.20.4",
+      "sha256": "762e412dabfe680713984b5cf8662931cf13067c15d62b5526ee0c5d9cba37f3",
+      "families": {
+        "assets/dustydecorations/blockstates": 79,
+        "assets/dustydecorations/models": 196,
+        "assets/dustydecorations/textures": 92,
+        "data/dustydecorations/loot_tables": 77,
+        "data/dustydecorations/recipes": 78
+      },
+      "classCount": 57
+    },
+    {
+      "modId": "exlinefurniture",
+      "version": "2.7.2",
+      "sha256": "bbe6c4ea2e9703f7b908515c70f081ababa7f1388610ace31f11f915e72bcfac",
+      "families": {
+        "assets/exlinefurniture/blockstates": 604,
+        "assets/exlinefurniture/models": 1484,
+        "assets/exlinefurniture/textures": 59,
+        "data/exlinefurniture/loot_tables": 596,
+        "data/exlinefurniture/recipes": 792
+      },
+      "classCount": 54
+    },
+    {
+      "modId": "fabric-api",
+      "version": "0.97.3+1.20.4",
+      "sha256": "5c11c93b21e0fbcd83dd11c6059479143f3d422bceac4153c3e55806ba9371f1",
+      "families": {},
+      "classCount": 1354
+    },
+    {
+      "modId": "carpet",
+      "version": "1.4.128+v231205",
+      "sha256": "6918186b6c92ac3bd0260de8565739562c627088e69bbb3c30cf91652d008b65",
+      "families": {},
+      "classCount": 718
+    },
+    {
+      "modId": "seasons",
+      "version": "2.4.2-BETA+1.20.4",
+      "sha256": "4e2777bc79e31c392d77e7164a54de1d5a643149f7e036e51444e7dd1d4ce009",
+      "families": {
+        "assets/seasons/textures": 8
+      },
+      "classCount": 55
+    },
+    {
+      "modId": "fabricproxy-lite",
+      "version": "2.7.0",
+      "sha256": "bdeb88f2173daa9f505933c0d53ff89d4c99983839674a2f630d09db25af5ff6",
+      "families": {},
+      "classCount": 204
+    },
+    {
+      "modId": "fallingtree",
+      "version": "1.20.4.3",
+      "sha256": "1eb5587bc77c1944490849dc75961f9a8e0dcf641c7bde551cf2127910bf5204",
+      "families": {},
+      "classCount": 112
+    },
+    {
+      "modId": "ferritecore",
+      "version": "6.0.3",
+      "sha256": "7d73a183d0ca98691f29afded24b1d33e4adf27594e42ae2c3026ea8b4e6f2ea",
+      "families": {},
+      "classCount": 80
+    },
+    {
+      "modId": "forgeconfigapiport",
+      "version": "20.4.3",
+      "sha256": "274737cd84c33d49be87295c4cf24ff35d7b4a0b379afa6f03523d0bd30acd44",
+      "families": {},
+      "classCount": 273
+    },
+    {
+      "modId": "furnitureexpanded",
+      "version": "1.1-1.20.4",
+      "sha256": "03029806014138224b9862295f6682e4b9ce8683e342685d15e622209b91f418",
+      "families": {
+        "assets/furnitureexpanded/blockstates": 12,
+        "assets/furnitureexpanded/models": 94,
+        "assets/furnitureexpanded/textures": 17,
+        "data/furnitureexpanded/recipes": 18
+      },
+      "classCount": 57
+    },
+    {
+      "modId": "fusion",
+      "version": "1.3.15+a",
+      "sha256": "a05c49c1ae324e6a96aeef5e0b0bec20c2f740b354bb6529bf27e052c9f02dd8",
+      "families": {
+        "assets/fusion/textures": 2
+      },
+      "classCount": 465
+    },
+    {
+      "modId": "geckolib",
+      "version": "4.4.4",
+      "sha256": "0ea1a89297095ca3ade705f77a123ed1ca7e6c1c9bb054bf5141f610b3099c12",
+      "families": {
+        "assets/geckolib/blockstates": 2,
+        "assets/geckolib/models": 23,
+        "assets/geckolib/textures": 30
+      },
+      "classCount": 331
+    },
+    {
+      "modId": "handcrafted",
+      "version": "3.2.1",
+      "sha256": "2602e3949a4260823ba3898138f9b24aaf7a37bc87708bc5c6aadf8a70e9d129",
+      "families": {
+        "assets/handcrafted/blockstates": 267,
+        "assets/handcrafted/models": 12394,
+        "assets/handcrafted/textures": 1009,
+        "data/handcrafted/loot_tables": 267,
+        "data/handcrafted/recipes": 285,
+        "data/minecraft/recipes": 32
+      },
+      "classCount": 85
+    },
+    {
+      "modId": "jpp",
+      "version": "0.0.3.3",
+      "sha256": "8f0839064ac3867b3414b4483c7bc33609e1a878a44b0f643fcb1a34c142e990",
+      "families": {
+        "assets/jpp/blockstates": 19,
+        "assets/jpp/models": 57,
+        "assets/jpp/textures": 24,
+        "data/jpp/recipes": 16
+      },
+      "classCount": 44
+    },
+    {
+      "modId": "lavender",
+      "version": "0.1.9+1.20.3",
+      "sha256": "e3da1be55cb3fc8d8d71e2cd85ba5c10d1768bf53225d4603032e3088ae5516d",
+      "families": {
+        "assets/lavender/models": 1,
+        "assets/lavender/textures": 6
+      },
+      "classCount": 168
+    },
+    {
+      "modId": "lithium",
+      "version": "0.12.1+git.c40b758",
+      "sha256": "19a3bea956d51cd9da68b758547e8a4022530918d46438449bc3723b685c8e51",
+      "families": {},
+      "classCount": 530
+    },
+    {
+      "modId": "mcef",
+      "version": "2.1.6-1.20.4",
+      "sha256": "98f0dd8821dee74d7430ac82089ed7abbaf77d578c99e624940792d0f729c5f1",
+      "families": {},
+      "classCount": 186
+    },
+    {
+      "modId": "mcwdoors",
+      "version": "1.1.5",
+      "sha256": "0afd76357fd5799122a27807b909ebf5d882029c0e6ebf583ea111508383f195",
+      "families": {
+        "assets/mcwdoors/blockstates": 246,
+        "assets/mcwdoors/models": 1394,
+        "assets/mcwdoors/textures": 702,
+        "data/mcwdoors/loot_tables": 239,
+        "data/mcwdoors/recipes": 257
+      },
+      "classCount": 14
+    },
+    {
+      "modId": "mcwfences",
+      "version": "1.2.1",
+      "sha256": "b5f14d6096051e2a6f45fc0901ce62ccba8219227ebabf574446b66eb0ed7ad5",
+      "families": {
+        "assets/mcwfences/blockstates": 180,
+        "assets/mcwfences/models": 854,
+        "assets/mcwfences/textures": 59,
+        "data/mcwfences/loot_tables": 180,
+        "data/mcwfences/recipes": 222
+      },
+      "classCount": 16
+    },
+    {
+      "modId": "mcwroofs",
+      "version": "2.3.2",
+      "sha256": "00ad7d7f98f3ef0ddd459053c64f3b1f989d147eccc0178a765d0fad700e2f9d",
+      "families": {
+        "assets/mcwroofs/blockstates": 605,
+        "assets/mcwroofs/models": 2683,
+        "assets/mcwroofs/textures": 32,
+        "data/mcwroofs/loot_tables": 605,
+        "data/mcwroofs/recipes": 607
+      },
+      "classCount": 23
+    },
+    {
+      "modId": "mcwwindows",
+      "version": "2.4.2",
+      "sha256": "ee605c1349ee7d8d929db9500306b73b0a3edb4a724b3fd34cdeb454ac25400d",
+      "families": {
+        "assets/mcwwindows/blockstates": 328,
+        "assets/mcwwindows/models": 1887,
+        "assets/mcwwindows/textures": 164,
+        "data/mcwwindows/loot_tables": 310,
+        "data/mcwwindows/recipes": 317
+      },
+      "classCount": 38
+    },
+    {
+      "modId": "memoryleakfix",
+      "version": "1.1.5",
+      "sha256": "11c766d3c84a0d42034c6abec9b8096c414fc8cbda7176ffc43ce72645234a34",
+      "families": {},
+      "classCount": 28
+    },
+    {
+      "modId": "minefed-display",
+      "version": "1.0.0",
+      "sha256": "78c8359f70b6ecf2d012e9a94ec7ef68b706b935cde41efaea544eb043ee5835",
+      "families": {
+        "assets/minefed-display/blockstates": 2,
+        "assets/minefed-display/models": 9,
+        "assets/minefed-display/textures": 14
+      },
+      "classCount": 24
+    },
+    {
+      "modId": "mishanguc",
+      "version": "1.5.3",
+      "sha256": "c155d9277ef6e15b2ed15b008fdbdb2d1ae30a7736ad75574dae21169ed28d79",
+      "families": {
+        "assets/mishanguc/blockstates": 1732,
+        "assets/mishanguc/models": 6780,
+        "assets/mishanguc/textures": 151,
+        "data/mishanguc/loot_tables": 1732,
+        "data/mishanguc/recipes": 1228
+      },
+      "classCount": 275
+    },
+    {
+      "modId": "modern_glass_doors",
+      "version": "5.3.0+1.20.3-and-later",
+      "sha256": "38220292bd00260c364fc0ce30667087ca0d567ed775be9307dd3de3d7f7d94a",
+      "families": {
+        "assets/modern_glass_doors/blockstates": 24,
+        "assets/modern_glass_doors/models": 156,
+        "assets/modern_glass_doors/textures": 48,
+        "data/modern_glass_doors/loot_tables": 24,
+        "data/modern_glass_doors/recipes": 48
+      },
+      "classCount": 15
+    },
+    {
+      "modId": "modernlights",
+      "version": "2.5.0",
+      "sha256": "9fe39ca5984584b660ad8068bd5e5e37c37538b367118f04f121bb6a6f46ccde",
+      "families": {
+        "assets/modernlights/blockstates": 193,
+        "assets/modernlights/models": 437,
+        "assets/modernlights/textures": 158,
+        "data/modernlights/loot_tables": 193,
+        "data/modernlights/recipes": 674
+      },
+      "classCount": 30
+    },
+    {
+      "modId": "modernfix",
+      "version": "5.17.1-beta.4+mc1.20.4.4790",
+      "sha256": "c12f920d3eb2e428ed408a179fb2bccc2a51570157983e897d3dbb4a79ddd67e",
+      "families": {},
+      "classCount": 220
+    },
+    {
+      "modId": "msd",
+      "version": "1.4.5",
+      "sha256": "3518c920191e4b0c784accca28830937ab1f1cbdf87d237d72ecf59ff34b392f",
+      "families": {
+        "assets/msd/blockstates": 96,
+        "assets/msd/models": 269,
+        "assets/msd/textures": 73
+      },
+      "classCount": 152
+    },
+    {
+      "modId": "mtr",
+      "version": "4.0.5",
+      "sha256": "848f403e0a95d68202167156739930239feaf96e930d17297243a6289559ad2b",
+      "families": {
+        "assets/minecraft/textures": 30,
+        "assets/mtr/blockstates": 193,
+        "assets/mtr/models": 957,
+        "assets/mtr/textures": 556,
+        "assets/mtrsteamloco/blockstates": 1,
+        "assets/mtrsteamloco/models": 1,
+        "assets/mtrsteamloco/textures": 1,
+        "data/mtr/loot_tables": 190,
+        "data/mtr/recipes": 307,
+        "data/mtrsteamloco/loot_tables": 1,
+        "data/mtrsteamloco/recipes": 1
+      },
+      "classCount": 5721
+    },
+    {
+      "modId": "mythicmetals",
+      "version": "0.19.7+1.20.4",
+      "sha256": "6c8c7f4702dfca1e7db5429cb2dd20fa70e8da1f8952f994dc6b2f1e114fff00",
+      "families": {
+        "assets/alloy_forgery/blockstates": 1,
+        "assets/alloy_forgery/models": 3,
+        "assets/alloy_forgery/textures": 2,
+        "assets/minecraft/textures": 51,
+        "assets/mythicmetals/blockstates": 117,
+        "assets/mythicmetals/models": 669,
+        "assets/mythicmetals/textures": 588,
+        "data/alloy_forgery/loot_tables": 1,
+        "data/custom_piglin_bartering/loot_tables": 1,
+        "data/mythicmetals/loot_tables": 112,
+        "data/mythicmetals/recipes": 619
+      },
+      "classCount": 305
+    },
+    {
+      "modId": "mythicmetals_decorations",
+      "version": "0.6.1+1.20.3",
+      "sha256": "953814477d8e1182a929e592df91ce9ab782b49fbdd5ccdfd4ba4c0a3e2c5caf",
+      "families": {
+        "assets/minecraft/textures": 22,
+        "assets/mythicmetals_decorations/blockstates": 53,
+        "assets/mythicmetals_decorations/models": 132,
+        "assets/mythicmetals_decorations/textures": 155,
+        "data/mythicmetals_decorations/loot_tables": 48,
+        "data/mythicmetals_decorations/recipes": 81
+      },
+      "classCount": 33
+    },
+    {
+      "modId": "nicemod",
+      "version": "1.4.1 - 1.20",
+      "sha256": "200f2f2a226123284c6101b5de5f9c0704d69a9ca092679bb0a310f513cef010",
+      "families": {
+        "assets/nicemod/blockstates": 127,
+        "assets/nicemod/models": 289,
+        "assets/nicemod/textures": 52,
+        "data/nicemod/loot_tables": 125,
+        "data/nicemod/recipes": 127
+      },
+      "classCount": 101
+    },
+    {
+      "modId": "oritech",
+      "version": "0.5.1+1.20.4",
+      "sha256": "1b6dba1ff092eaa752e3657d20d004dadd809db09b55e91e33504b4e3b7dd685",
+      "families": {
+        "assets/minecraft/textures": 2,
+        "assets/oritech/blockstates": 83,
+        "assets/oritech/models": 244,
+        "assets/oritech/textures": 209,
+        "data/oritech/loot_tables": 59,
+        "data/oritech/recipes": 281
+      },
+      "classCount": 335
+    },
+    {
+      "modId": "owo",
+      "version": "0.12.6+1.20.3",
+      "sha256": "b7c1d03cb5bcfcb84ff2bd2d6a3b3a9ef2fa14ef9e53b7d3116c04838811f273",
+      "families": {
+        "assets/owo/textures": 11
+      },
+      "classCount": 590
+    },
+    {
+      "modId": "pfm",
+      "version": "1.5.0",
+      "sha256": "5d5d69707d9e4b4930cce1e41464e32f9cf26181c1f4e9b2e38a1004813d0432",
+      "families": {
+        "assets/pfm/blockstates": 113,
+        "assets/pfm/models": 839,
+        "assets/pfm/textures": 105,
+        "data/pfm/loot_tables": 1,
+        "data/pfm/recipes": 33
+      },
+      "classCount": 878
+    },
+    {
+      "modId": "patchouli",
+      "version": "1.20.4-85-FABRIC",
+      "sha256": "915295880c4127739142725afc3c6dfd9079d33bba3af71589a40363f78e9846",
+      "families": {
+        "assets/patchouli/models": 9,
+        "assets/patchouli/textures": 17
+      },
+      "classCount": 349
+    },
+    {
+      "modId": "ptsdeco",
+      "version": "4.0.0",
+      "sha256": "aa75d6e205c34a063fead0dc5cbd564fcbca640172db718e22ac17ebdcc64919",
+      "families": {
+        "assets/ptsdeco/blockstates": 1882,
+        "assets/ptsdeco/models": 3908,
+        "assets/ptsdeco/textures": 78,
+        "data/ptsdeco/recipes": 1882
+      },
+      "classCount": 118
+    },
+    {
+      "modId": "puzzleslib",
+      "version": "20.4.53",
+      "sha256": "d8d4f9a566179854a67ad33424458108e60cee776e8cb975016b8bcf4ffb6ede",
+      "families": {},
+      "classCount": 768
+    },
+    {
+      "modId": "realtime",
+      "version": "1.0.3-1.20-1.21.1",
+      "sha256": "830391903e41fd74d9b62ef4e3a6e3efb55922978f2579c695ec2a3ae0c1b3e2",
+      "families": {},
+      "classCount": 2
+    },
+    {
+      "modId": "rechiseled",
+      "version": "1.2.5",
+      "sha256": "d4ad010ce1f73f078b45e56fb14b16f2ec8eaa7af2fa8cfd2c49d940ae05e7ea",
+      "families": {
+        "assets/rechiseled/blockstates": 3627,
+        "assets/rechiseled/models": 13855,
+        "assets/rechiseled/textures": 681,
+        "data/rechiseled/loot_tables": 3627,
+        "data/rechiseled/recipes": 1
+      },
+      "classCount": 122
+    },
+    {
+      "modId": "resourcefulconfig",
+      "version": "2.4.8",
+      "sha256": "1d82d48ec1f8e911f520a4dd07f74240e890db74209eecc8330ca6d5e016f104",
+      "families": {
+        "assets/resourcefulconfig/textures": 14
+      },
+      "classCount": 134
+    },
+    {
+      "modId": "resourcefullib",
+      "version": "2.4.10",
+      "sha256": "f79dadaa2db8c621a064e678c4ec6a01f42b4f48a582aa4794da5626d313806f",
+      "families": {},
+      "classCount": 277
+    },
+    {
+      "modId": "starlight",
+      "version": "1.1.3+fabric.c2b8391",
+      "sha256": "7490e3310ec1e95b02a7578049e9553c115cbc8562ea6f3faec5eebe3bf9bed5",
+      "families": {},
+      "classCount": 34
+    },
+    {
+      "modId": "stoneworks",
+      "version": "20.4.0",
+      "sha256": "560f682dbebf6f408648d9be083197c36215dbc8a961ec70842fab6c211f4e97",
+      "families": {
+        "assets/stoneworks/blockstates": 581,
+        "assets/stoneworks/models": 1836,
+        "assets/stoneworks/textures": 200,
+        "data/stoneworks/loot_tables": 581,
+        "data/stoneworks/recipes": 977
+      },
+      "classCount": 17
+    },
+    {
+      "modId": "supermartijn642configlib",
+      "version": "1.1.8+a",
+      "sha256": "b3a48fdee5415c614ba4e9360b8b904315996fafd2a907f666771fb09ea97eac",
+      "families": {},
+      "classCount": 41
+    },
+    {
+      "modId": "supermartijn642corelib",
+      "version": "1.1.24",
+      "sha256": "7c9912584f3eeca0b3100f7e61db25a2fe6f565755f362da59049bdc38b08c68",
+      "families": {
+        "assets/supermartijn642corelib/textures": 5
+      },
+      "classCount": 208
+    },
+    {
+      "modId": "timeoutout",
+      "version": "1.0.4+1.20.2",
+      "sha256": "5233d20ced4c73f7535a3bd97fdb383bec5f81cd8e9f4d68d86ca8b265874d8c",
+      "families": {},
+      "classCount": 6
+    },
+    {
+      "modId": "trafficcraft",
+      "version": "1.20.4-1.1.3",
+      "sha256": "59fd2a033da7b5ba68245a09b1b1938a4b8995cada41c02aea70ebc360ea5546",
+      "families": {
+        "assets/trafficcraft/blockstates": 1342,
+        "assets/trafficcraft/models": 5419,
+        "assets/trafficcraft/textures": 1054,
+        "data/trafficcraft/loot_tables": 1336,
+        "data/trafficcraft/recipes": 68
+      },
+      "classCount": 513
+    },
+    {
+      "modId": "webstreamer",
+      "version": "1.5.0+minefed.1",
+      "sha256": "7045bca523cfb4820788cb9eaa9840d778f2f1a811357d78a5e3530899e1b239",
+      "families": {
+        "assets/webstreamer/blockstates": 1,
+        "assets/webstreamer/models": 2,
+        "assets/webstreamer/textures": 1
+      },
+      "classCount": 1343
+    },
+    {
+      "modId": "wirelessredstone",
+      "version": "1.2.2+1.20.4",
+      "sha256": "3e8777b6630f313a170a1afc2c877eaa8f3643771b56256dc517b165f5c7543e",
+      "families": {
+        "assets/wirelessredstone/blockstates": 4,
+        "assets/wirelessredstone/models": 22,
+        "assets/wirelessredstone/textures": 30,
+        "data/wirelessredstone/loot_tables": 4,
+        "data/wirelessredstone/recipes": 9
+      },
+      "classCount": 54
+    },
+    {
+      "modId": "worldedithangfix",
+      "version": "1.0.5",
+      "sha256": "da826a2b1a0653741c6feed3ab3a750968e25404cdde450682afe8d509fe2598",
+      "families": {},
+      "classCount": 4
+    },
+    {
+      "modId": "worldedit",
+      "version": "7.3.0+f2cdc4a",
+      "sha256": "c54d0ebd16f929345d01f067a5e958bb0eebb053010db5d8f9968789720beb50",
+      "families": {},
+      "classCount": 2030
+    },
+    {
+      "modId": "yuushya",
+      "version": "2.2.3",
+      "sha256": "fb815c1339c8b120666ccca194c7bbd3e5545a69a92ef3ab0d1e7d4d8fd039fc",
+      "families": {
+        "assets/minecraft/models": 2,
+        "assets/yuushya/blockstates": 5773,
+        "assets/yuushya/models": 18869,
+        "assets/yuushya/textures": 2082,
+        "data/yuushya/loot_tables": 5771,
+        "data/yuushya/recipes": 5919
+      },
+      "classCount": 125
+    },
+    {
+      "modId": "yuushya_modelling",
+      "version": "2.2.0",
+      "sha256": "9619518a9746b5f1788e2962bf836ce0b176139cf5f878a355c81d690a721789",
+      "families": {
+        "assets/yuushya/blockstates": 1,
+        "assets/yuushya/models": 85,
+        "assets/yuushya/textures": 45,
+        "data/yuushya/loot_tables": 2,
+        "data/yuushya/recipes": 17
+      },
+      "classCount": 82
+    },
+    {
+      "modId": "sodium",
+      "version": "0.5.8+mc1.20.4",
+      "sha256": "3c363ec0122157f65e55a8edf6545a60955091387cd0e94b3ecdcd64a93284f7",
+      "families": {
+        "assets/minecraft/textures": 10,
+        "assets/sodium/textures": 1
+      },
+      "classCount": 565
+    },
+    {
+      "modId": "indium",
+      "version": "1.0.31+mc1.20.4",
+      "sha256": "a6acf309f91886db6c66c1a8fce7937745053926fa114fe12cb3fdf174dfb57d",
+      "families": {},
+      "classCount": 52
+    },
+    {
+      "modId": "minefed-client-compat",
+      "version": "1.0.0",
+      "sha256": "beb824078b9d42a350ad0a466d96fe7954ce66e6b428b07c0dd33c5d8ebdb273",
+      "families": {},
+      "classCount": 1
+    }
+  ],
+  "releaseEntries": [
+    {
+      "modId": "alloy_forgery",
+      "path": "mods/alloy-forgery-2.1.4+1.20.3.jar",
+      "version": "2.1.4+1.20.3",
+      "sha256": "aa06b73003c8296922024444e2bf2a6752610fa423f076708204ed9ab73eafee",
+      "size": 278209,
+      "client": true,
+      "server": true,
+      "license": "MIT",
+      "artifact": "built",
+      "source": {
+        "path": "alloy-forgery",
+        "url": "https://github.com/minefed/alloy-forgery",
+        "upstream": "https://github.com/wisp-forest/alloy-forgery",
+        "ref": "minefed-1.20.4",
+        "commit": "badd26ba735ffe18723f97db49c5f6c1d0c50ee9",
+        "trackingBranch": "minefed-1.20.4",
+        "baselineRef": "2.1.4+1.20.3",
+        "baselineCommit": "f1b61a1b1c0dc7d483b9c44472237cc1c9cc8711"
+      },
+      "sourceCommitUrl": "https://github.com/minefed/alloy-forgery/tree/badd26ba735ffe18723f97db49c5f6c1d0c50ee9",
+      "replacesBuiltArtifact": false
+    },
+    {
+      "modId": "architectury",
+      "path": "mods/architectury-11.1.17-fabric.jar",
+      "version": "11.1.17",
+      "sha256": "0762da4c5697abe1f87997dbdd6f2823420b7cc6c05aa4768c08318252e04903",
+      "size": 587429,
+      "client": true,
+      "server": true,
+      "license": "LGPL-3.0-only",
+      "artifact": "built",
+      "source": null,
+      "replacesBuiltArtifact": false
+    },
+    {
+      "modId": "automobility-refueled",
+      "path": "mods/automobility-refueled-0.4.3.b+1.20.4-fabric.jar",
+      "version": "0.4.3.b+1.20.4-fabric",
+      "sha256": "9084e567c94c5590d0e8fd0b22dd1ce18432d0ad7d6039d0eb8528fd64da9457",
+      "size": 1080252,
+      "client": true,
+      "server": true,
+      "license": "MIT",
+      "artifact": "built",
+      "source": {
+        "path": "Automobility-Refueled",
+        "url": "https://github.com/minefed/Automobility-Refueled",
+        "upstream": "https://github.com/codenobacon4u/Automobility",
+        "ref": "minefed-1.20.4",
+        "commit": "13160075fb4be333fe2b425183c02f9dc2348184",
+        "trackingBranch": "minefed-1.20.4",
+        "baselineRef": "v0.4.3.b+1.20.4",
+        "baselineCommit": "96a6369eed2e5528ba8d09c643e032cf7fa15c51"
+      },
+      "sourceCommitUrl": "https://github.com/minefed/Automobility-Refueled/tree/13160075fb4be333fe2b425183c02f9dc2348184",
+      "replacesBuiltArtifact": false
+    },
+    {
+      "modId": "bluemap",
+      "path": "mods/BlueMap-5.3-fabric-1.20.jar",
+      "version": "5.3",
+      "sha256": "bf4f8789ecafc35a9f26a0309966879601df4e1afa14d1b4d917de6f4d539d44",
+      "size": 4829077,
+      "client": true,
+      "server": true,
+      "license": "MIT",
+      "artifact": "built",
+      "source": {
+        "path": "BlueMap",
+        "url": "https://github.com/minefed/BlueMap",
+        "upstream": "https://github.com/BlueMap-Minecraft/BlueMap",
+        "ref": "minefed-1.20.4",
+        "commit": "dd63c74e1b8251cde574e1beca1025a840e6761c",
+        "trackingBranch": "minefed-1.20.4",
+        "baselineRef": "v5.3",
+        "baselineCommit": "eed8f79e68b053c119f88bbf358bed893a78d110"
+      },
+      "sourceCommitUrl": "https://github.com/minefed/BlueMap/tree/dd63c74e1b8251cde574e1beca1025a840e6761c",
+      "replacesBuiltArtifact": false
+    },
+    {
+      "modId": "botarium",
+      "path": "mods/botarium-fabric-1.20.4-3.2.2.jar",
+      "version": "3.2.2",
+      "sha256": "7c85682c5d34dfce7005a1a61334c13687a3d117df454f505bf8be6ee3877483",
+      "size": 209117,
+      "client": true,
+      "server": true,
+      "license": "MIT",
+      "artifact": "built",
+      "source": null,
+      "replacesBuiltArtifact": false
+    },
+    {
+      "modId": "computercraft",
+      "path": "mods/cc-tweaked-1.20.4-fabric-1.110.2.jar",
+      "version": "1.110.2",
+      "sha256": "7d8b3477414981141732fcdf85e2c70e07b6eb60882b7166f55585aba4d5531e",
+      "size": 3388211,
+      "client": true,
+      "server": true,
+      "license": "LicenseRef-CCPL",
+      "artifact": "built",
+      "source": {
+        "path": "CC-Tweaked",
+        "url": "https://github.com/minefed/CC-Tweaked",
+        "upstream": "https://github.com/cc-tweaked/CC-Tweaked",
+        "ref": "minefed-1.20.4",
+        "commit": "c3264ade27b032f4b4b480169e67bcb08a01bc0a",
+        "trackingBranch": "minefed-1.20.4",
+        "baselineRef": "v1.20.4-1.110.2",
+        "baselineCommit": "22bd5309babd469b95b7e0bfdc4c4929ded9ab5b"
+      },
+      "sourceCommitUrl": "https://github.com/minefed/CC-Tweaked/tree/c3264ade27b032f4b4b480169e67bcb08a01bc0a",
+      "replacesBuiltArtifact": false
+    },
+    {
+      "modId": "chiselsandbits",
+      "path": "mods/chisels-and-bits-fabric-1.5.10-FC.jar",
+      "version": "1.5.10-FC",
+      "sha256": "353f8c2837112be8123578648e1ee91cc18459051e2edfbea4315119e9aea055",
+      "size": 2707652,
+      "client": true,
+      "server": true,
+      "license": "MIT",
+      "artifact": "built",
+      "source": {
+        "path": "Chisels-and-Bits",
+        "url": "https://github.com/minefed/Chisels-and-Bits",
+        "upstream": "https://github.com/ChiselsAndBits/Chisels-and-Bits",
+        "ref": "minefed-1.20.4",
+        "commit": "12fd1d23b3e6fb929ccba01e034c46ae632acbe0",
+        "trackingBranch": "minefed-1.20.4",
+        "baselineRef": "version/1.20.4",
+        "baselineCommit": "f64db2d6124e004ae498cd1a1154909afd81a96d"
+      },
+      "sourceCommitUrl": "https://github.com/minefed/Chisels-and-Bits/tree/12fd1d23b3e6fb929ccba01e034c46ae632acbe0",
+      "replacesBuiltArtifact": false
+    },
+    {
+      "modId": "chunky",
+      "path": "mods/Chunky-1.3.146.jar",
+      "version": "1.3.146",
+      "sha256": "15eac4524f89954612ba811f49c57d6ce2a4801eb7e2c28d1105e52047733948",
+      "size": 344257,
+      "client": true,
+      "server": true,
+      "license": "GPL-3.0-only",
+      "artifact": "built",
+      "source": {
+        "path": "Chunky",
+        "url": "https://github.com/minefed/Chunky",
+        "upstream": "https://github.com/pop4959/Chunky",
+        "ref": "minefed-1.20.4",
+        "commit": "1fe63d9331b5cbad47dac40b48aabd1b0085c000",
+        "trackingBranch": "minefed-1.20.4",
+        "baselineRef": "d3956d688b70c10ae598861dfbf901946f7cfabb",
+        "baselineCommit": "d3956d688b70c10ae598861dfbf901946f7cfabb"
+      },
+      "sourceCommitUrl": "https://github.com/minefed/Chunky/tree/1fe63d9331b5cbad47dac40b48aabd1b0085c000",
+      "replacesBuiltArtifact": false
+    },
+    {
+      "modId": "citycraft",
+      "path": "mods/City Craft-2.1.1-Fabric-1.20.x(ex.5.6).jar",
+      "version": "2.1.1",
+      "sha256": "ac9cee9f7bc2a0bdce0acd08f03d3ae682085fb65aafc6efa62e2f201646456d",
+      "size": 2120060,
+      "client": true,
+      "server": true,
+      "license": "MIT (official project/JAR metadata); embedded CC0-1.0",
+      "artifact": "built",
+      "source": null,
+      "replacesBuiltArtifact": false
+    },
+    {
+      "modId": "continuity",
+      "path": "mods/continuity-3.0.0+1.20.2.jar",
+      "version": "3.0.0+1.20.2",
+      "sha256": "0fa002f7c67b800e50038e64d8fae4fb0e7386cd2841287cd47046f2b18fe1e3",
+      "size": 1016209,
+      "client": true,
+      "server": false,
+      "license": "LGPL-3.0-only",
+      "artifact": "built",
+      "source": null,
+      "replacesBuiltArtifact": false
+    },
+    {
+      "modId": "crossstitch",
+      "path": "mods/crossstitch-0.1.6.jar",
+      "version": "0.1.6",
+      "sha256": "186370423ac667543f5c6fa0183384d76226f7ee48ae9e069b85a2a905de3af4",
+      "size": 5866,
+      "client": false,
+      "server": true,
+      "license": "MIT",
+      "artifact": "built",
+      "source": {
+        "path": "CrossStitch",
+        "url": "https://github.com/minefed/CrossStitch",
+        "upstream": "https://github.com/PaperMC/CrossStitch",
+        "ref": "minefed-1.20.4",
+        "commit": "aa5545ce774566f3c09f2b34ac4ec0412274dec8",
+        "trackingBranch": "minefed-1.20.4",
+        "baselineRef": "0.1.6",
+        "baselineCommit": "35a21ed5f402ce0957de5d39670e1804705f2247"
+      },
+      "sourceCommitUrl": "https://github.com/minefed/CrossStitch/tree/aa5545ce774566f3c09f2b34ac4ec0412274dec8",
+      "replacesBuiltArtifact": false
+    },
+    {
+      "modId": "decorative_blocks",
+      "path": "mods/Decorative Blocks-Fabric-1.20.4-5.0.2.jar",
+      "version": "5.0.2",
+      "sha256": "2dba9170807127aae7eb46ac5e938d539e652cc77f247ee2d6bebc7ddc9dd856",
+      "size": 479470,
+      "client": true,
+      "server": true,
+      "license": "MIT",
+      "artifact": "built",
+      "source": {
+        "path": "Decorative-Blocks",
+        "url": "https://github.com/minefed/Decorative-Blocks",
+        "upstream": "https://github.com/lilypuree/Decorative-Blocks",
+        "ref": "codex/fix-copy-tool-model",
+        "commit": "8550e3b988d1d7f1c27c1c15732070569ded051e",
+        "trackingBranch": "codex/fix-copy-tool-model",
+        "baselineRef": "main",
+        "baselineCommit": "5775f8bb2c3fa57e041a2d40d377239e7c78d58d"
+      },
+      "sourceCommitUrl": "https://github.com/minefed/Decorative-Blocks/tree/8550e3b988d1d7f1c27c1c15732070569ded051e",
+      "replacesBuiltArtifact": false
+    },
+    {
+      "modId": "diagonalfences",
+      "path": "mods/DiagonalFences-v20.4.1-1.20.4-Fabric.jar",
+      "version": "20.4.1",
+      "sha256": "ae42cd2bdb3c748c42345f3b8f92c3659ac93c06086e99360d0f35167bdcc838",
+      "size": 163915,
+      "client": true,
+      "server": true,
+      "license": "MPL-2.0 AND LicenseRef-All-Rights-Reserved-assets",
+      "artifact": "baseline",
+      "source": {
+        "path": "diagonal-fences",
+        "url": "https://github.com/minefed/diagonal-fences",
+        "upstream": "https://github.com/Fuzss/diagonal-fences",
+        "ref": "codex/fix-macaw-compatibility",
+        "commit": "aa41b9f39f744455258c27d3728a1ff77908731f",
+        "trackingBranch": "codex/fix-macaw-compatibility",
+        "baselineRef": "1.20.4",
+        "baselineCommit": "57e3bc3958e313c772cf68c2bfcb06a367fceb5d"
+      },
+      "sourceCommitUrl": "https://github.com/minefed/diagonal-fences/tree/aa41b9f39f744455258c27d3728a1ff77908731f",
+      "replacesBuiltArtifact": true
+    },
+    {
+      "modId": "diagonalwalls",
+      "path": "mods/DiagonalWalls-v20.4.1-1.20.4-Fabric.jar",
+      "version": "20.4.1",
+      "sha256": "1ebdd486ed7b337bf28f92a869bb53b587f1e26027597b9048602f4fe13d60d5",
+      "size": 160129,
+      "client": true,
+      "server": true,
+      "license": "MPL-2.0 AND LicenseRef-All-Rights-Reserved-assets",
+      "artifact": "baseline",
+      "source": {
+        "path": "diagonal-walls",
+        "url": "https://github.com/minefed/diagonal-walls",
+        "upstream": "https://github.com/Fuzss/diagonal-walls",
+        "ref": "minefed-1.20.4",
+        "commit": "452eb0a4a633ee2d0908f166b0e17315ee99d197",
+        "trackingBranch": "minefed-1.20.4",
+        "baselineRef": "1.20.4",
+        "baselineCommit": "250c86bd48638d7f6979850a36e0240aed38fc85"
+      },
+      "sourceCommitUrl": "https://github.com/minefed/diagonal-walls/tree/452eb0a4a633ee2d0908f166b0e17315ee99d197",
+      "replacesBuiltArtifact": true
+    },
+    {
+      "modId": "diagonalwindows",
+      "path": "mods/DiagonalWindows-v20.4.1-1.20.4-Fabric.jar",
+      "version": "20.4.1",
+      "sha256": "569c9abb705252cd4f10663ea3b9b78e93d72c3443ad6e22636da26c027a3bc1",
+      "size": 164520,
+      "client": true,
+      "server": true,
+      "license": "MPL-2.0 AND LicenseRef-All-Rights-Reserved-assets",
+      "artifact": "baseline",
+      "source": {
+        "path": "diagonal-windows",
+        "url": "https://github.com/minefed/diagonal-windows",
+        "upstream": "https://github.com/Fuzss/diagonal-windows",
+        "ref": "minefed-1.20.4",
+        "commit": "7209c6ea3cb2b05157eeae3ddced087556889bb9",
+        "trackingBranch": "minefed-1.20.4",
+        "baselineRef": "1.20.4",
+        "baselineCommit": "4116d6bab254219ee1e78f25c8ecbd44ac42594b"
+      },
+      "sourceCommitUrl": "https://github.com/minefed/diagonal-windows/tree/7209c6ea3cb2b05157eeae3ddced087556889bb9",
+      "replacesBuiltArtifact": true
+    },
+    {
+      "modId": "dustydecorations",
+      "path": "mods/DustyDecoRefabricated-1.1-1.20.3+1.20.4.jar",
+      "version": "1.1-1.20.3+1.20.4",
+      "sha256": "762e412dabfe680713984b5cf8662931cf13067c15d62b5526ee0c5d9cba37f3",
+      "size": 459565,
+      "client": true,
+      "server": true,
+      "license": "MIT",
+      "artifact": "built",
+      "source": null,
+      "replacesBuiltArtifact": false
+    },
+    {
+      "modId": "exlinefurniture",
+      "path": "mods/exlinefurniture-v2.7.2-fabric-1.20.4.jar",
+      "version": "2.7.2",
+      "sha256": "bbe6c4ea2e9703f7b908515c70f081ababa7f1388610ace31f11f915e72bcfac",
+      "size": 2237364,
+      "client": true,
+      "server": true,
+      "license": "LicenseRef-All-Rights-Reserved (conflicting bundled CC0 boilerplate)",
+      "artifact": "baseline",
+      "source": null,
+      "replacesBuiltArtifact": false
+    },
+    {
+      "modId": "fabric-api",
+      "path": "mods/fabric-api-0.97.3+1.20.4.jar",
+      "version": "0.97.3+1.20.4",
+      "sha256": "5c11c93b21e0fbcd83dd11c6059479143f3d422bceac4153c3e55806ba9371f1",
+      "size": 2187523,
+      "client": true,
+      "server": true,
+      "license": "Apache-2.0",
+      "artifact": "built",
+      "source": null,
+      "replacesBuiltArtifact": false
+    },
+    {
+      "modId": "carpet",
+      "path": "mods/fabric-carpet-1.20.3-1.4.128+v231205.jar",
+      "version": "1.4.128+v231205",
+      "sha256": "6918186b6c92ac3bd0260de8565739562c627088e69bbb3c30cf91652d008b65",
+      "size": 1591688,
+      "client": true,
+      "server": true,
+      "license": "MIT",
+      "artifact": "built",
+      "source": {
+        "path": "fabric-carpet",
+        "url": "https://github.com/minefed/fabric-carpet",
+        "upstream": "https://github.com/gnembon/fabric-carpet",
+        "ref": "minefed-1.20.4",
+        "commit": "72248bbebe61dc0b2b7316378aa7629955d0f91a",
+        "trackingBranch": "minefed-1.20.4",
+        "baselineRef": "1.4.128",
+        "baselineCommit": "92176312d92bfc2595f0bad18b64475f3800921a"
+      },
+      "sourceCommitUrl": "https://github.com/minefed/fabric-carpet/tree/72248bbebe61dc0b2b7316378aa7629955d0f91a",
+      "replacesBuiltArtifact": false
+    },
+    {
+      "modId": "seasons",
+      "path": "mods/fabric-seasons-2.4.2-BETA+1.20.4.jar",
+      "version": "2.4.2-BETA+1.20.4",
+      "sha256": "4e2777bc79e31c392d77e7164a54de1d5a643149f7e036e51444e7dd1d4ce009",
+      "size": 429966,
+      "client": true,
+      "server": true,
+      "license": "MPL-2.0",
+      "artifact": "built",
+      "source": {
+        "path": "fabric-seasons",
+        "url": "https://github.com/minefed/fabric-seasons",
+        "upstream": "https://github.com/lucaargolo/fabric-seasons",
+        "ref": "minefed-1.20.4",
+        "commit": "8e7833a58f54180c6fc6a96a2fb08c63ace5a726",
+        "trackingBranch": "minefed-1.20.4",
+        "baselineRef": "2.4.2-BETA+1.20.4",
+        "baselineCommit": "bccadddf4ea556fe0fcea95bb88360fd25b812e8"
+      },
+      "sourceCommitUrl": "https://github.com/minefed/fabric-seasons/tree/8e7833a58f54180c6fc6a96a2fb08c63ace5a726",
+      "replacesBuiltArtifact": false
+    },
+    {
+      "modId": "fabricproxy-lite",
+      "path": "mods/FabricProxy-Lite-2.7.0.jar",
+      "version": "2.7.0",
+      "sha256": "bdeb88f2173daa9f505933c0d53ff89d4c99983839674a2f630d09db25af5ff6",
+      "size": 273077,
+      "client": false,
+      "server": true,
+      "license": "MIT",
+      "artifact": "built",
+      "source": {
+        "path": "FabricProxy-Lite",
+        "url": "https://github.com/minefed/FabricProxy-Lite",
+        "upstream": "https://github.com/OKTW-Network/FabricProxy-Lite",
+        "ref": "minefed-1.20.4",
+        "commit": "7391c12684820b14039a42c0e5ae2e9178bf4290",
+        "trackingBranch": "minefed-1.20.4",
+        "baselineRef": "v2.7.0",
+        "baselineCommit": "6a7e156c3b84c07adfb80fb99d1739a631ed341a"
+      },
+      "sourceCommitUrl": "https://github.com/minefed/FabricProxy-Lite/tree/7391c12684820b14039a42c0e5ae2e9178bf4290",
+      "replacesBuiltArtifact": false
+    },
+    {
+      "modId": "fallingtree",
+      "path": "mods/FallingTree-1.20.4-1.20.4.3.jar",
+      "version": "1.20.4.3",
+      "sha256": "1eb5587bc77c1944490849dc75961f9a8e0dcf641c7bde551cf2127910bf5204",
+      "size": 339693,
+      "client": true,
+      "server": true,
+      "license": "LGPL-3.0-only",
+      "artifact": "built",
+      "source": {
+        "path": "FallingTree",
+        "url": "https://github.com/minefed/FallingTree",
+        "upstream": "https://github.com/RakambdaOrg/FallingTree",
+        "ref": "minefed-1.20.4",
+        "commit": "0a70a01d3d682a9069f12a00a5c9dbd96d53f2cb",
+        "trackingBranch": "minefed-1.20.4",
+        "baselineRef": "1.20.4.3",
+        "baselineCommit": "6db0a7bface140865da07009c0bd679f684a3340"
+      },
+      "sourceCommitUrl": "https://github.com/minefed/FallingTree/tree/0a70a01d3d682a9069f12a00a5c9dbd96d53f2cb",
+      "replacesBuiltArtifact": false
+    },
+    {
+      "modId": "ferritecore",
+      "path": "mods/ferritecore-6.0.3-fabric.jar",
+      "version": "6.0.3",
+      "sha256": "7d73a183d0ca98691f29afded24b1d33e4adf27594e42ae2c3026ea8b4e6f2ea",
+      "size": 120359,
+      "client": true,
+      "server": true,
+      "license": "MIT",
+      "artifact": "built",
+      "source": {
+        "path": "FerriteCore",
+        "url": "https://github.com/minefed/FerriteCore",
+        "upstream": "https://github.com/malte0811/FerriteCore",
+        "ref": "minefed-1.20.4",
+        "commit": "1df30b595e231bc0dc9a8eabe65d34cce542d3f9",
+        "trackingBranch": "minefed-1.20.4",
+        "baselineRef": "build-6.0.3",
+        "baselineCommit": "a9a24d4f6945f4e41855f55660915b2f5b570dd7"
+      },
+      "sourceCommitUrl": "https://github.com/minefed/FerriteCore/tree/1df30b595e231bc0dc9a8eabe65d34cce542d3f9",
+      "replacesBuiltArtifact": false
+    },
+    {
+      "modId": "forgeconfigapiport",
+      "path": "mods/ForgeConfigAPIPort-v20.4.3-1.20.4-Fabric.jar",
+      "version": "20.4.3",
+      "sha256": "837665e2db855a5072f75964a7b30f12c59fddc92274db21c9b07cce172288b2",
+      "size": 444627,
+      "client": true,
+      "server": true,
+      "license": "MPL-2.0 AND LGPL-2.1-only AND LGPL-3.0-only AND LicenseRef-All-Rights-Reserved-assets",
+      "artifact": "baseline",
+      "source": {
+        "path": "forge-config-api-port",
+        "url": "https://github.com/minefed/forge-config-api-port",
+        "upstream": "https://github.com/Fuzss/forge-config-api-port",
+        "ref": "minefed-1.20.4",
+        "commit": "b102873873cd9d0bd70685cd7bec524666e2d190",
+        "trackingBranch": "minefed-1.20.4",
+        "baselineRef": "1.20.4",
+        "baselineCommit": "a99bf22e9242637d4a71a5f25f03c47d6ff2c2df"
+      },
+      "sourceCommitUrl": "https://github.com/minefed/forge-config-api-port/tree/b102873873cd9d0bd70685cd7bec524666e2d190",
+      "replacesBuiltArtifact": true
+    },
+    {
+      "modId": "furnitureexpanded",
+      "path": "mods/furnitureexpanded-1.1-1.20.4-FABRIC-EXP.jar",
+      "version": "1.1-1.20.4",
+      "sha256": "03029806014138224b9862295f6682e4b9ce8683e342685d15e622209b91f418",
+      "size": 254984,
+      "client": true,
+      "server": true,
+      "license": "LicenseRef-All-Rights-Reserved",
+      "artifact": "baseline",
+      "source": null,
+      "replacesBuiltArtifact": false
+    },
+    {
+      "modId": "fusion",
+      "path": "mods/fusion-1.3.15a-fabric-mc1.20.4.jar",
+      "version": "1.3.15+a",
+      "sha256": "a05c49c1ae324e6a96aeef5e0b0bec20c2f740b354bb6529bf27e052c9f02dd8",
+      "size": 921058,
+      "client": true,
+      "server": true,
+      "license": "LicenseRef-All-Rights-Reserved",
+      "artifact": "built",
+      "source": null,
+      "replacesBuiltArtifact": false
+    },
+    {
+      "modId": "geckolib",
+      "path": "mods/geckolib-fabric-1.20.4-4.4.4.jar",
+      "version": "4.4.4",
+      "sha256": "0ea1a89297095ca3ade705f77a123ed1ca7e6c1c9bb054bf5141f610b3099c12",
+      "size": 1017926,
+      "client": true,
+      "server": true,
+      "license": "MIT",
+      "artifact": "built",
+      "source": {
+        "path": "geckolib",
+        "url": "https://github.com/minefed/geckolib",
+        "upstream": "https://github.com/bernie-g/geckolib",
+        "ref": "minefed-1.20.4",
+        "commit": "fb968c0379ef0f6ef5c0d6672a464b2f2712553f",
+        "trackingBranch": "minefed-1.20.4",
+        "baselineRef": "1.20.4",
+        "baselineCommit": "d0b06fe3386e1be3242298e9373c54e5af0c65d1"
+      },
+      "sourceCommitUrl": "https://github.com/minefed/geckolib/tree/fb968c0379ef0f6ef5c0d6672a464b2f2712553f",
+      "replacesBuiltArtifact": false
+    },
+    {
+      "modId": "handcrafted",
+      "path": "mods/handcrafted-fabric-1.20.4-3.2.1.jar",
+      "version": "3.2.1",
+      "sha256": "c18a198c84a27a1168a258114065e5398cb97e34756cc90faa7c11b34fc2bcdc",
+      "size": 7104588,
+      "client": true,
+      "server": true,
+      "license": "LicenseRef-Terrarium-v1 (MIT code; ARR non-code)",
+      "artifact": "baseline",
+      "source": {
+        "path": "Handcrafted",
+        "url": "https://github.com/minefed/Handcrafted",
+        "upstream": "https://github.com/terrarium-earth/Handcrafted",
+        "ref": "minefed-1.20.4",
+        "commit": "7b5501555b4683757800e9ca7df264d0850caad3",
+        "trackingBranch": "minefed-1.20.4",
+        "baselineRef": "1.20.x",
+        "baselineCommit": "5d3260b2882ebe5de1aa7a4ca4aa2336a593f31d"
+      },
+      "sourceCommitUrl": "https://github.com/minefed/Handcrafted/tree/7b5501555b4683757800e9ca7df264d0850caad3",
+      "replacesBuiltArtifact": true
+    },
+    {
+      "modId": "jpp",
+      "path": "mods/JapanProps_1.20.1_0.0.3.3_Fabric.jar",
+      "version": "0.0.3.3",
+      "sha256": "8f0839064ac3867b3414b4483c7bc33609e1a878a44b0f643fcb1a34c142e990",
+      "size": 6762437,
+      "client": true,
+      "server": true,
+      "license": "CC-BY-NC-3.0 (deployed/CurseForge); CC-BY-NC-ND-4.0 (current Modrinth)",
+      "artifact": "baseline",
+      "source": null,
+      "replacesBuiltArtifact": false
+    },
+    {
+      "modId": "lavender",
+      "path": "mods/lavender-0.1.9+1.20.3.jar",
+      "version": "0.1.9+1.20.3",
+      "sha256": "e3da1be55cb3fc8d8d71e2cd85ba5c10d1768bf53225d4603032e3088ae5516d",
+      "size": 523925,
+      "client": true,
+      "server": true,
+      "license": "MIT",
+      "artifact": "built",
+      "source": null,
+      "replacesBuiltArtifact": false
+    },
+    {
+      "modId": "lithium",
+      "path": "mods/lithium-fabric-mc1.20.4-0.12.1+git.c40b758.jar",
+      "version": "0.12.1+git.c40b758",
+      "sha256": "19a3bea956d51cd9da68b758547e8a4022530918d46438449bc3723b685c8e51",
+      "size": 716380,
+      "client": true,
+      "server": true,
+      "license": "LGPL-3.0-only",
+      "artifact": "built",
+      "source": {
+        "path": "lithium",
+        "url": "https://github.com/minefed/lithium",
+        "upstream": "https://github.com/CaffeineMC/lithium",
+        "ref": "minefed-1.20.4",
+        "commit": "c40b7585606e8434b7a8f1e7ef15c20d99685f19",
+        "trackingBranch": "minefed-1.20.4",
+        "baselineRef": "mc1.20.4-0.12.1",
+        "baselineCommit": "b8f2818899bfcdae1bbf34991f2d3351e72c2f6c"
+      },
+      "sourceCommitUrl": "https://github.com/minefed/lithium/tree/c40b7585606e8434b7a8f1e7ef15c20d99685f19",
+      "replacesBuiltArtifact": false
+    },
+    {
+      "modId": "mcef",
+      "path": "mods/mcef-fabric-2.1.6-1.20.4.jar",
+      "version": "2.1.6-1.20.4",
+      "sha256": "98f0dd8821dee74d7430ac82089ed7abbaf77d578c99e624940792d0f729c5f1",
+      "size": 221800,
+      "client": true,
+      "server": false,
+      "license": "LGPL-2.1-only; bundled Java-CEF: BSD-3-Clause",
+      "artifact": "built",
+      "source": null,
+      "replacesBuiltArtifact": false
+    },
+    {
+      "modId": "mcwdoors",
+      "path": "mods/mcw-doors-1.1.5-mc1.20.4fabric.jar",
+      "version": "1.1.5",
+      "sha256": "0afd76357fd5799122a27807b909ebf5d882029c0e6ebf583ea111508383f195",
+      "size": 1226802,
+      "client": true,
+      "server": true,
+      "license": "MIT (official project/JAR metadata); embedded CC0-1.0",
+      "artifact": "built",
+      "source": null,
+      "replacesBuiltArtifact": false
+    },
+    {
+      "modId": "mcwfences",
+      "path": "mods/mcw-mcwfences-1.2.1-mc1.20.4fabric.jar",
+      "version": "1.2.1",
+      "sha256": "b5f14d6096051e2a6f45fc0901ce62ccba8219227ebabf574446b66eb0ed7ad5",
+      "size": 655933,
+      "client": true,
+      "server": true,
+      "license": "MIT (official project/JAR metadata); embedded CC0-1.0",
+      "artifact": "built",
+      "source": null,
+      "replacesBuiltArtifact": false
+    },
+    {
+      "modId": "mcwroofs",
+      "path": "mods/mcw-roofs-2.3.2-mc1.20.4fabric.jar",
+      "version": "2.3.2",
+      "sha256": "00ad7d7f98f3ef0ddd459053c64f3b1f989d147eccc0178a765d0fad700e2f9d",
+      "size": 1796112,
+      "client": true,
+      "server": true,
+      "license": "LicenseRef-All-Rights-Reserved (project/JAR metadata); embedded CC0 template",
+      "artifact": "baseline",
+      "source": null,
+      "replacesBuiltArtifact": false
+    },
+    {
+      "modId": "mcwwindows",
+      "path": "mods/mcw-mcwwindows-2.4.2-mc1.20.4fabric.jar",
+      "version": "2.4.2",
+      "sha256": "ee605c1349ee7d8d929db9500306b73b0a3edb4a724b3fd34cdeb454ac25400d",
+      "size": 1274041,
+      "client": true,
+      "server": true,
+      "license": "LicenseRef-All-Rights-Reserved; embedded CC0-1.0 template",
+      "artifact": "built",
+      "source": null,
+      "replacesBuiltArtifact": false
+    },
+    {
+      "modId": "memoryleakfix",
+      "path": "mods/memoryleakfix-fabric-1.17+-1.1.5.jar",
+      "version": "1.1.5",
+      "sha256": "11c766d3c84a0d42034c6abec9b8096c414fc8cbda7176ffc43ce72645234a34",
+      "size": 51844,
+      "client": true,
+      "server": true,
+      "license": "LGPL-2.1-only",
+      "artifact": "built",
+      "source": {
+        "path": "MemoryLeakFix",
+        "url": "https://github.com/minefed/MemoryLeakFix",
+        "upstream": "https://github.com/FxMorin/MemoryLeakFix",
+        "ref": "codex/fix-common-mixin-refmap",
+        "commit": "f01909746ee3ad595a3ed91e4abb4779a06a47c2",
+        "trackingBranch": "codex/fix-common-mixin-refmap",
+        "baselineRef": "v1.1.5",
+        "baselineCommit": "f5e4087566740e9df661c5acf38e345f72068c90"
+      },
+      "sourceCommitUrl": "https://github.com/minefed/MemoryLeakFix/tree/f01909746ee3ad595a3ed91e4abb4779a06a47c2",
+      "replacesBuiltArtifact": false
+    },
+    {
+      "modId": "minefed-display",
+      "path": "mods/minefed-display-1.0.0.jar",
+      "version": "1.0.0",
+      "sha256": "78c8359f70b6ecf2d012e9a94ec7ef68b706b935cde41efaea544eb043ee5835",
+      "size": 87856,
+      "client": true,
+      "server": true,
+      "license": "MIT",
+      "artifact": "built",
+      "source": {
+        "path": "minefed-display",
+        "url": "https://github.com/minefed/minefed-display",
+        "upstream": "https://github.com/minefed/minefed-display",
+        "ref": "codex/fix-display-depth",
+        "commit": "a1e8f94df20c22c1ccfc4083b1dc01dc7f757e45",
+        "trackingBranch": "codex/fix-display-depth",
+        "baselineRef": "main",
+        "baselineCommit": "79708da179682295df0dfc379320a0759c25a97d"
+      },
+      "sourceCommitUrl": "https://github.com/minefed/minefed-display/tree/a1e8f94df20c22c1ccfc4083b1dc01dc7f757e45",
+      "replacesBuiltArtifact": false
+    },
+    {
+      "modId": "mishanguc",
+      "path": "mods/mishanguc-1.5.3-1.20.4.jar",
+      "version": "1.5.3",
+      "sha256": "c155d9277ef6e15b2ed15b008fdbdb2d1ae30a7736ad75574dae21169ed28d79",
+      "size": 6205862,
+      "client": true,
+      "server": true,
+      "license": "LGPL-3.0-only",
+      "artifact": "built",
+      "source": {
+        "path": "mishanguc",
+        "url": "https://github.com/minefed/mishanguc",
+        "upstream": "https://github.com/SolidBlock-cn/mishanguc",
+        "ref": "codex/fix-gradle-download",
+        "commit": "07028d29c741f688fafd271e5fb0f51937042184",
+        "trackingBranch": "codex/fix-gradle-download",
+        "baselineRef": "1.20.4",
+        "baselineCommit": "ff9925d49a8e9512bfd0160038421b829c5ff68e"
+      },
+      "sourceCommitUrl": "https://github.com/minefed/mishanguc/tree/07028d29c741f688fafd271e5fb0f51937042184",
+      "replacesBuiltArtifact": false
+    },
+    {
+      "modId": "modern_glass_doors",
+      "path": "mods/modern-glass-doors-5.3.0+1.20.3-and-later.jar",
+      "version": "5.3.0+1.20.3-and-later",
+      "sha256": "38220292bd00260c364fc0ce30667087ca0d567ed775be9307dd3de3d7f7d94a",
+      "size": 189352,
+      "client": true,
+      "server": true,
+      "license": "MIT",
+      "artifact": "built",
+      "source": {
+        "path": "modern-glass-doors",
+        "url": "https://github.com/minefed/modern-glass-doors",
+        "upstream": "https://github.com/ReviversMC/modern-glass-doors",
+        "ref": "codex/fix-glass-door-generated-resources",
+        "commit": "3c65e91eee397e91496f78345165451d86b28932",
+        "trackingBranch": "codex/fix-glass-door-generated-resources",
+        "baselineRef": "v5.3.0+1.20.3-and-later",
+        "baselineCommit": "bf38d4feb851041357c81caa696450498cda0048"
+      },
+      "sourceCommitUrl": "https://github.com/minefed/modern-glass-doors/tree/3c65e91eee397e91496f78345165451d86b28932",
+      "replacesBuiltArtifact": false
+    },
+    {
+      "modId": "modernlights",
+      "path": "mods/modern-lights-2.5.0.jar",
+      "version": "2.5.0",
+      "sha256": "9fe39ca5984584b660ad8068bd5e5e37c37538b367118f04f121bb6a6f46ccde",
+      "size": 1255745,
+      "client": true,
+      "server": true,
+      "license": "CC-BY-NC-SA-4.0 (source-built 2.5.0)",
+      "artifact": "built",
+      "source": {
+        "path": "Modern-Lights",
+        "url": "https://github.com/minefed/Modern-Lights",
+        "upstream": "https://github.com/aka-jammy/Modern-Lights",
+        "ref": "minefed-1.20.4",
+        "commit": "6b04f156a3e24a778fa2e0697d98bfd3aeca0256",
+        "trackingBranch": "minefed-1.20.4",
+        "baselineRef": "1.20---1.20.4",
+        "baselineCommit": "5df1c7567ac7f4dd8d40118000187585e5e9b725"
+      },
+      "sourceCommitUrl": "https://github.com/minefed/Modern-Lights/tree/6b04f156a3e24a778fa2e0697d98bfd3aeca0256",
+      "replacesBuiltArtifact": false
+    },
+    {
+      "modId": "modernfix",
+      "path": "mods/modernfix-fabric-5.17.1-beta.4+mc1.20.4.4790.jar",
+      "version": "5.17.1-beta.4+mc1.20.4.4790",
+      "sha256": "c12f920d3eb2e428ed408a179fb2bccc2a51570157983e897d3dbb4a79ddd67e",
+      "size": 458243,
+      "client": true,
+      "server": true,
+      "license": "LGPL-3.0-or-later (source grant; deployed metadata LGPL-3.0)",
+      "artifact": "built",
+      "source": {
+        "path": "ModernFix",
+        "url": "https://github.com/minefed/ModernFix",
+        "upstream": "https://github.com/embeddedt/ModernFix",
+        "ref": "minefed-1.20.4",
+        "commit": "479096893321f5dc3e97791e5fa7dcf3ed58e15b",
+        "trackingBranch": "minefed-1.20.4",
+        "baselineRef": "5.17.0+1.20.4",
+        "baselineCommit": "c8f9b1cd843e69035ed988baeee04dc46a06fd1b"
+      },
+      "sourceCommitUrl": "https://github.com/minefed/ModernFix/tree/479096893321f5dc3e97791e5fa7dcf3ed58e15b",
+      "replacesBuiltArtifact": false
+    },
+    {
+      "modId": "msd",
+      "path": "mods/fabric-1.4.5.jar",
+      "version": "1.4.5",
+      "sha256": "3518c920191e4b0c784accca28830937ab1f1cbdf87d237d72ecf59ff34b392f",
+      "size": 8016640,
+      "client": true,
+      "server": true,
+      "license": "MIT",
+      "artifact": "built",
+      "source": {
+        "path": "MTR-Station-Decoration-Addon",
+        "url": "https://github.com/minefed/MTR-Station-Decoration-Addon",
+        "upstream": "https://github.com/AIDA64S/MTR-Station-Decoration-Addon",
+        "ref": "codex/update-msd-1.4.5",
+        "commit": "b06fc0725b20a5b7a6c72bdacd20814dd8d8aabf",
+        "trackingBranch": "codex/update-msd-1.4.5",
+        "baselineRef": "4.0.0",
+        "baselineCommit": "14b0a8c9687bdbbfd755f282bbfab4030a92f3d3"
+      },
+      "sourceCommitUrl": "https://github.com/minefed/MTR-Station-Decoration-Addon/tree/b06fc0725b20a5b7a6c72bdacd20814dd8d8aabf",
+      "replacesBuiltArtifact": false
+    },
+    {
+      "modId": "mtr",
+      "path": "mods/fabric-4.0.5.jar",
+      "version": "4.0.5",
+      "sha256": "848f403e0a95d68202167156739930239feaf96e930d17297243a6289559ad2b",
+      "size": 84813480,
+      "client": true,
+      "server": true,
+      "license": "MIT",
+      "artifact": "built",
+      "source": {
+        "path": "Minecraft-Transit-Railway",
+        "url": "https://github.com/minefed/Minecraft-Transit-Railway",
+        "upstream": "https://github.com/Minecraft-Transit-Railway/Minecraft-Transit-Railway",
+        "ref": "codex/fix-minecart-sounds",
+        "commit": "e1b99f86794eae70bdd00e2c604ad9a61236af1f",
+        "trackingBranch": "codex/fix-minecart-sounds",
+        "baselineRef": "main",
+        "baselineCommit": "53cdc36ebef57c42bdc8633957be1b0e923c40b5"
+      },
+      "sourceCommitUrl": "https://github.com/minefed/Minecraft-Transit-Railway/tree/e1b99f86794eae70bdd00e2c604ad9a61236af1f",
+      "replacesBuiltArtifact": false
+    },
+    {
+      "modId": "mythicmetals",
+      "path": "mods/mythicmetals-0.19.7+1.20.4.jar",
+      "version": "0.19.7+1.20.4",
+      "sha256": "f82f5dea1d6facd930abf8f30762c75546eb16c8ee68773d9d1049bf7de7f0aa",
+      "size": 2988807,
+      "client": true,
+      "server": true,
+      "license": "MIT code; ARR textures",
+      "artifact": "baseline",
+      "source": {
+        "path": "MythicMetals",
+        "url": "https://github.com/minefed/MythicMetals",
+        "upstream": "https://github.com/Noaaan/MythicMetals",
+        "ref": "minefed-1.20.4",
+        "commit": "cfa897b7e6b2ab856f08582c5e525e675633b33c",
+        "trackingBranch": "minefed-1.20.4",
+        "baselineRef": "0.19.7+1.20.4",
+        "baselineCommit": "4f61b8a7d01c0edbc57fd3e14f9d2a413e0e62cf"
+      },
+      "sourceCommitUrl": "https://github.com/minefed/MythicMetals/tree/cfa897b7e6b2ab856f08582c5e525e675633b33c",
+      "replacesBuiltArtifact": true
+    },
+    {
+      "modId": "mythicmetals_decorations",
+      "path": "mods/mythicmetals-decorations-0.6.1+1.20.3.jar",
+      "version": "0.6.1+1.20.3",
+      "sha256": "b714e2098a0af1daaee7a9b35cb7c4e9347a2982800fc116961328354cedf077",
+      "size": 538487,
+      "client": true,
+      "server": true,
+      "license": "MIT code; ARR textures",
+      "artifact": "baseline",
+      "source": {
+        "path": "MythicMetalsDecorations",
+        "url": "https://github.com/minefed/MythicMetalsDecorations",
+        "upstream": "https://github.com/Noaaan/MythicMetalsDecorations",
+        "ref": "codex/fix-chest-particle",
+        "commit": "f5af39239697e9ed89a108da59c2f8eac695d3df",
+        "trackingBranch": "codex/fix-chest-particle",
+        "baselineRef": "0.6.1+1.20.3",
+        "baselineCommit": "e31a9c7c4ffcdd6b38370a38519593c34f0b92f2"
+      },
+      "sourceCommitUrl": "https://github.com/minefed/MythicMetalsDecorations/tree/f5af39239697e9ed89a108da59c2f8eac695d3df",
+      "replacesBuiltArtifact": true
+    },
+    {
+      "modId": "nicemod",
+      "path": "mods/nicemod-1.4.1 - 1.20.jar",
+      "version": "1.4.1 - 1.20",
+      "sha256": "200f2f2a226123284c6101b5de5f9c0704d69a9ca092679bb0a310f513cef010",
+      "size": 544156,
+      "client": true,
+      "server": true,
+      "license": "MIT",
+      "artifact": "built",
+      "source": {
+        "path": "NiceMod",
+        "url": "https://github.com/minefed/NiceMod",
+        "upstream": "https://github.com/MIUNO/NiceMod",
+        "ref": "minefed-1.20.4",
+        "commit": "c344763657eaa90d878d858a74c1cdb93cf9d66f",
+        "trackingBranch": "minefed-1.20.4",
+        "baselineRef": "1.4.1",
+        "baselineCommit": "417dd6a481312298456cebb6e5201c56f0afb45a"
+      },
+      "sourceCommitUrl": "https://github.com/minefed/NiceMod/tree/c344763657eaa90d878d858a74c1cdb93cf9d66f",
+      "replacesBuiltArtifact": false
+    },
+    {
+      "modId": "oritech",
+      "path": "mods/oritech-0.5.1+1.20.4.jar",
+      "version": "0.5.1+1.20.4",
+      "sha256": "1b6dba1ff092eaa752e3657d20d004dadd809db09b55e91e33504b4e3b7dd685",
+      "size": 2886942,
+      "client": true,
+      "server": true,
+      "license": "CC0-1.0 (deployed tag)",
+      "artifact": "built",
+      "source": {
+        "path": "Oritech",
+        "url": "https://github.com/minefed/Oritech",
+        "upstream": "https://github.com/Rearth/Oritech",
+        "ref": "codex/fix-capacitor-model",
+        "commit": "0ace08abb384f0e38288f4bc82b6c58606509f86",
+        "trackingBranch": "codex/fix-capacitor-model",
+        "baselineRef": "v0.5.1+1.20.4",
+        "baselineCommit": "83ba099a700478e4fd7e85548ced4f5d7227d114"
+      },
+      "sourceCommitUrl": "https://github.com/minefed/Oritech/tree/0ace08abb384f0e38288f4bc82b6c58606509f86",
+      "replacesBuiltArtifact": false
+    },
+    {
+      "modId": "owo",
+      "path": "mods/owo-lib-0.12.6+1.20.3.jar",
+      "version": "0.12.6+1.20.3",
+      "sha256": "b7c1d03cb5bcfcb84ff2bd2d6a3b3a9ef2fa14ef9e53b7d3116c04838811f273",
+      "size": 1080159,
+      "client": true,
+      "server": true,
+      "license": "MIT",
+      "artifact": "built",
+      "source": null,
+      "replacesBuiltArtifact": false
+    },
+    {
+      "modId": "pfm",
+      "path": "mods/paladin-furniture-mod-1.5.0-fabric-mc1.20.4.jar",
+      "version": "1.5.0",
+      "sha256": "35c0dfdfa11f022b340f429f509f3bbd238134cf4224c8f11ab6e9c8f2e04fbf",
+      "size": 6156933,
+      "client": true,
+      "server": true,
+      "license": "LGPL-3.0-only code; PolyForm-Shield-1.0.0 assets",
+      "artifact": "published",
+      "source": null,
+      "replacesBuiltArtifact": true
+    },
+    {
+      "modId": "patchouli",
+      "path": "mods/Patchouli-1.20.4-85-FABRIC.jar",
+      "version": "1.20.4-85-FABRIC",
+      "sha256": "bad24b0918e88cdf84c64dbe928cbf391c7920558022e3f1d5167d0af5878eca",
+      "size": 860953,
+      "client": true,
+      "server": true,
+      "license": "CC-BY-NC-SA-3.0",
+      "artifact": "baseline",
+      "source": {
+        "path": "Patchouli",
+        "url": "https://github.com/minefed/Patchouli",
+        "upstream": "https://github.com/VazkiiMods/Patchouli",
+        "ref": "minefed-1.20.4",
+        "commit": "5bb9e96cd8256c0bcd2fa87eff2d65be0a7290d5",
+        "trackingBranch": "minefed-1.20.4",
+        "baselineRef": "refs/tags/release-1.20.4-85",
+        "baselineCommit": "4522fbb3e42b5a31688c7c7666cf13c12c0fdb83"
+      },
+      "sourceCommitUrl": "https://github.com/minefed/Patchouli/tree/5bb9e96cd8256c0bcd2fa87eff2d65be0a7290d5",
+      "replacesBuiltArtifact": true
+    },
+    {
+      "modId": "ptsdeco",
+      "path": "mods/PTS-Deco-4.0.0-Fabric1.20.4.jar",
+      "version": "4.0.0",
+      "sha256": "aa75d6e205c34a063fead0dc5cbd564fcbca640172db718e22ac17ebdcc64919",
+      "size": 3476524,
+      "client": true,
+      "server": true,
+      "license": "LicenseRef-All-Rights-Reserved",
+      "artifact": "built",
+      "source": null,
+      "replacesBuiltArtifact": false
+    },
+    {
+      "modId": "puzzleslib",
+      "path": "mods/PuzzlesLib-v20.4.53-1.20.4-Fabric.jar",
+      "version": "20.4.53",
+      "sha256": "22d833f9e9c84e97538ede7a7d8378a9744476a7c03ff639cd2fd1d92bcc3ea4",
+      "size": 1029646,
+      "client": true,
+      "server": true,
+      "license": "MPL-2.0 code; All Rights Reserved assets",
+      "artifact": "published",
+      "source": null,
+      "replacesBuiltArtifact": true
+    },
+    {
+      "modId": "realtime",
+      "path": "mods/realtime-1.0.3-1.20-1.21.1.jar",
+      "version": "1.0.3-1.20-1.21.1",
+      "sha256": "830391903e41fd74d9b62ef4e3a6e3efb55922978f2579c695ec2a3ae0c1b3e2",
+      "size": 11178,
+      "client": true,
+      "server": true,
+      "license": "MIT",
+      "artifact": "built",
+      "source": {
+        "path": "mc-realtime",
+        "url": "https://github.com/minefed/mc-realtime",
+        "upstream": "https://github.com/ttianeo/mc-realtime",
+        "ref": "minefed-1.20.4",
+        "commit": "bd05e0fe8ad18184354dff9453da4b0d8b4703b5",
+        "trackingBranch": "minefed-1.20.4",
+        "baselineRef": "refs/heads/1.20-1.21.1",
+        "baselineCommit": "467b5728786dbfd260df9aced99770343b732267"
+      },
+      "sourceCommitUrl": "https://github.com/minefed/mc-realtime/tree/bd05e0fe8ad18184354dff9453da4b0d8b4703b5",
+      "replacesBuiltArtifact": false
+    },
+    {
+      "modId": "rechiseled",
+      "path": "mods/rechiseled-1.2.5-fabric-mc1.20.4.jar",
+      "version": "1.2.5",
+      "sha256": "d4ad010ce1f73f078b45e56fb14b16f2ec8eaa7af2fa8cfd2c49d940ae05e7ea",
+      "size": 11932928,
+      "client": true,
+      "server": true,
+      "license": "LicenseRef-All-Rights-Reserved",
+      "artifact": "built",
+      "source": null,
+      "replacesBuiltArtifact": false
+    },
+    {
+      "modId": "resourcefulconfig",
+      "path": "mods/resourcefulconfig-fabric-1.20.4-2.4.8.jar",
+      "version": "2.4.8",
+      "sha256": "1d82d48ec1f8e911f520a4dd07f74240e890db74209eecc8330ca6d5e016f104",
+      "size": 228662,
+      "client": true,
+      "server": true,
+      "license": "MIT",
+      "artifact": "built",
+      "source": null,
+      "replacesBuiltArtifact": false
+    },
+    {
+      "modId": "resourcefullib",
+      "path": "mods/resourcefullib-fabric-1.20.4-2.4.10.jar",
+      "version": "2.4.10",
+      "sha256": "f79dadaa2db8c621a064e678c4ec6a01f42b4f48a582aa4794da5626d313806f",
+      "size": 440662,
+      "client": true,
+      "server": true,
+      "license": "MIT",
+      "artifact": "built",
+      "source": null,
+      "replacesBuiltArtifact": false
+    },
+    {
+      "modId": "starlight",
+      "path": "mods/starlight-1.1.3+fabric.c2b8391.jar",
+      "version": "1.1.3+fabric.c2b8391",
+      "sha256": "7490e3310ec1e95b02a7578049e9553c115cbc8562ea6f3faec5eebe3bf9bed5",
+      "size": 126686,
+      "client": true,
+      "server": true,
+      "license": "LGPL-3.0-only",
+      "artifact": "built",
+      "source": {
+        "path": "Starlight",
+        "url": "https://github.com/minefed/Starlight",
+        "upstream": "https://github.com/PaperMC/Starlight",
+        "ref": "minefed-1.20.4",
+        "commit": "c2b8391d83ddadbd8136d2abead7e1014da19a6d",
+        "trackingBranch": "minefed-1.20.4",
+        "baselineRef": "f5dcd1a4278aba0aceb92a64bb91d411154449f7",
+        "baselineCommit": "f5dcd1a4278aba0aceb92a64bb91d411154449f7"
+      },
+      "sourceCommitUrl": "https://github.com/minefed/Starlight/tree/c2b8391d83ddadbd8136d2abead7e1014da19a6d",
+      "replacesBuiltArtifact": false
+    },
+    {
+      "modId": "stoneworks",
+      "path": "mods/Stoneworks-v20.4.0-1.20.4-Fabric.jar",
+      "version": "20.4.0",
+      "sha256": "8eec1130afc17125a0295fd142741e5f242f5255046f9b0a3d61a6d8b9ca8150",
+      "size": 2340696,
+      "client": true,
+      "server": true,
+      "license": "MPL-2.0 code; All Rights Reserved assets",
+      "artifact": "baseline",
+      "source": {
+        "path": "stoneworks",
+        "url": "https://github.com/minefed/stoneworks",
+        "upstream": "https://github.com/Fuzss/stoneworks",
+        "ref": "minefed-1.20.4",
+        "commit": "6f492401ca95bec909e0f0f634c58780fa67793a",
+        "trackingBranch": "minefed-1.20.4",
+        "baselineRef": "refs/heads/1.20.4",
+        "baselineCommit": "fc6ff7702dcf3bc203a4466039a2abe9c55b560f"
+      },
+      "sourceCommitUrl": "https://github.com/minefed/stoneworks/tree/6f492401ca95bec909e0f0f634c58780fa67793a",
+      "replacesBuiltArtifact": true
+    },
+    {
+      "modId": "supermartijn642configlib",
+      "path": "mods/supermartijn642configlib-1.1.8a-fabric-mc1.20.2.jar",
+      "version": "1.1.8+a",
+      "sha256": "b3a48fdee5415c614ba4e9360b8b904315996fafd2a907f666771fb09ea97eac",
+      "size": 205413,
+      "client": true,
+      "server": true,
+      "license": "All Rights Reserved",
+      "artifact": "baseline",
+      "source": null,
+      "replacesBuiltArtifact": false
+    },
+    {
+      "modId": "supermartijn642corelib",
+      "path": "mods/supermartijn642corelib-1.1.24-fabric-mc1.20.4.jar",
+      "version": "1.1.24",
+      "sha256": "7c9912584f3eeca0b3100f7e61db25a2fe6f565755f362da59049bdc38b08c68",
+      "size": 610937,
+      "client": true,
+      "server": true,
+      "license": "LicenseRef-All-Rights-Reserved",
+      "artifact": "built",
+      "source": null,
+      "replacesBuiltArtifact": false
+    },
+    {
+      "modId": "timeoutout",
+      "path": "mods/timeoutout-1.0.4+1.20.2.jar",
+      "version": "1.0.4+1.20.2",
+      "sha256": "5233d20ced4c73f7535a3bd97fdb383bec5f81cd8e9f4d68d86ca8b265874d8c",
+      "size": 9371,
+      "client": true,
+      "server": true,
+      "license": "MIT",
+      "artifact": "built",
+      "source": {
+        "path": "TimeOutOut",
+        "url": "https://github.com/minefed/TimeOutOut",
+        "upstream": "https://github.com/PotatoPresident/TimeOutOut",
+        "ref": "minefed-1.20.4",
+        "commit": "0d27ca115902c93d132a2d062b166c5a544da0c7",
+        "trackingBranch": "minefed-1.20.4",
+        "baselineRef": "refs/tags/1.0.4",
+        "baselineCommit": "14c126ab3dba59399d658bf52c198e2fdcdb8010"
+      },
+      "sourceCommitUrl": "https://github.com/minefed/TimeOutOut/tree/0d27ca115902c93d132a2d062b166c5a544da0c7",
+      "replacesBuiltArtifact": false
+    },
+    {
+      "modId": "trafficcraft",
+      "path": "mods/trafficcraft-fabric-1.20.4-1.1.3.jar",
+      "version": "1.20.4-1.1.3",
+      "sha256": "ddf1d434be7eee0ab7ff67ba4712cb213900bc10c43776cc52dddc40697a0a58",
+      "size": 6602857,
+      "client": true,
+      "server": true,
+      "license": "GPL-3.0",
+      "artifact": "baseline",
+      "source": {
+        "path": "TrafficCraft",
+        "url": "https://github.com/minefed/TrafficCraft",
+        "upstream": "https://github.com/MisterJulsen/TrafficCraft",
+        "ref": "minefed-1.20.4",
+        "commit": "40b9405380f3baae0aa45e9e744e14efd9eecf6c",
+        "trackingBranch": "minefed-1.20.4",
+        "baselineRef": "refs/heads/1.20.4-dev",
+        "baselineCommit": "c6c7092df4c1f77e438e507756255eb47e7a3585"
+      },
+      "sourceCommitUrl": "https://github.com/minefed/TrafficCraft/tree/40b9405380f3baae0aa45e9e744e14efd9eecf6c",
+      "replacesBuiltArtifact": true
+    },
+    {
+      "modId": "webstreamer",
+      "path": "mods/webstreamer-1.5.0+minefed.1.jar",
+      "version": "1.5.0+minefed.1",
+      "sha256": "7045bca523cfb4820788cb9eaa9840d778f2f1a811357d78a5e3530899e1b239",
+      "size": 77465690,
+      "client": true,
+      "server": true,
+      "license": "LGPL-3.0",
+      "artifact": "built",
+      "source": {
+        "path": "fabric-webstreamer",
+        "url": "https://github.com/minefed/fabric-webstreamer",
+        "upstream": "https://github.com/theorzr/fabric-webstreamer",
+        "ref": "minefed-1.20.4",
+        "commit": "f9c03980c9cb31ca891e4429bc2529c6c0cce033",
+        "trackingBranch": "minefed-1.20.4",
+        "baselineRef": "master",
+        "baselineCommit": "ff3796b835d7a61055f218cdddb718429507a1c4"
+      },
+      "sourceCommitUrl": "https://github.com/minefed/fabric-webstreamer/tree/f9c03980c9cb31ca891e4429bc2529c6c0cce033",
+      "replacesBuiltArtifact": false
+    },
+    {
+      "modId": "wirelessredstone",
+      "path": "mods/wirelessredstone-fabric-1.2.2+1.20.4.jar",
+      "version": "1.2.2+1.20.4",
+      "sha256": "3e8777b6630f313a170a1afc2c877eaa8f3643771b56256dc517b165f5c7543e",
+      "size": 233840,
+      "client": true,
+      "server": true,
+      "license": "GPL-3.0",
+      "artifact": "built",
+      "source": {
+        "path": "wireless-redstone",
+        "url": "https://github.com/minefed/wireless-redstone",
+        "upstream": "https://github.com/Razzokk/wireless-redstone",
+        "ref": "minefed-1.20.4",
+        "commit": "85cd6b45cd660deeba6ac5cb58b8d5f82795dae0",
+        "trackingBranch": "minefed-1.20.4",
+        "baselineRef": "refs/tags/v1.2.2+1.20.4",
+        "baselineCommit": "3a7b4d614bb3cc45cd90a809052f0eefb2ae1201"
+      },
+      "sourceCommitUrl": "https://github.com/minefed/wireless-redstone/tree/85cd6b45cd660deeba6ac5cb58b8d5f82795dae0",
+      "replacesBuiltArtifact": false
+    },
+    {
+      "modId": "worldedithangfix",
+      "path": "mods/worldedit-hang-fix-v1.0.5-mc1.18.2-fabric.jar",
+      "version": "1.0.5",
+      "sha256": "da826a2b1a0653741c6feed3ab3a750968e25404cdde450682afe8d509fe2598",
+      "size": 39559,
+      "client": true,
+      "server": true,
+      "license": "LGPL-3.0",
+      "artifact": "built",
+      "source": {
+        "path": "worldedit-hang-fix",
+        "url": "https://github.com/minefed/worldedit-hang-fix",
+        "upstream": "https://github.com/Fallen-Breath/worldedit-hang-fix",
+        "ref": "codex/update-worldedit-hang-fix-1.0.5",
+        "commit": "45c744113850a55f844c7195d5e074b6845d28eb",
+        "trackingBranch": "codex/update-worldedit-hang-fix-1.0.5",
+        "baselineRef": "refs/tags/v1.0.5",
+        "baselineCommit": "583c7ceab5031d0864bf85a5934662a8def870e2"
+      },
+      "sourceCommitUrl": "https://github.com/minefed/worldedit-hang-fix/tree/45c744113850a55f844c7195d5e074b6845d28eb",
+      "replacesBuiltArtifact": false
+    },
+    {
+      "modId": "worldedit",
+      "path": "mods/worldedit-fabric-mc1.20.4-7.3.0-dist.jar",
+      "version": "7.3.0+f2cdc4a",
+      "sha256": "c54d0ebd16f929345d01f067a5e958bb0eebb053010db5d8f9968789720beb50",
+      "size": 4811865,
+      "client": true,
+      "server": true,
+      "license": "GPL-3.0",
+      "artifact": "built",
+      "source": {
+        "path": "WorldEdit",
+        "url": "https://github.com/minefed/WorldEdit",
+        "upstream": "https://github.com/EngineHub/WorldEdit",
+        "ref": "minefed-1.20.4",
+        "commit": "f2cdc4aa7816a0184adf3fcfaf3ff5712d8dfd68",
+        "trackingBranch": "minefed-1.20.4",
+        "baselineRef": "refs/tags/7.3.0",
+        "baselineCommit": "55745adbdb3fecbb2d5bac6d90655c511245a552"
+      },
+      "sourceCommitUrl": "https://github.com/minefed/WorldEdit/tree/f2cdc4aa7816a0184adf3fcfaf3ff5712d8dfd68",
+      "replacesBuiltArtifact": false
+    },
+    {
+      "modId": "yuushya",
+      "path": "mods/yuushya-2.2.3.jar",
+      "version": "2.2.3",
+      "sha256": "fb815c1339c8b120666ccca194c7bbd3e5545a69a92ef3ab0d1e7d4d8fd039fc",
+      "size": 23379106,
+      "client": true,
+      "server": true,
+      "license": "MIT code; CC-BY-NC-SA-4.0 assets with author terms",
+      "artifact": "built",
+      "source": {
+        "path": "Yuushya-Townscape",
+        "url": "https://github.com/minefed/Yuushya-Townscape",
+        "upstream": "https://gitee.com/yuushyatownscape/yuushya-townscape",
+        "ref": "codex/fix-runtime-resources",
+        "commit": "dda6be38dc069885cd21bb952f3587db209d05b1",
+        "trackingBranch": "codex/fix-runtime-resources",
+        "baselineRef": "refs/tags/v2.2.3",
+        "baselineCommit": "e76ea8ac5454ec424771f593ce05ee0082e4b278"
+      },
+      "sourceCommitUrl": "https://github.com/minefed/Yuushya-Townscape/tree/dda6be38dc069885cd21bb952f3587db209d05b1",
+      "replacesBuiltArtifact": false
+    },
+    {
+      "modId": "yuushya_modelling",
+      "path": "mods/yuushya-modelling-2.2.0.jar",
+      "version": "2.2.0",
+      "sha256": "9619518a9746b5f1788e2962bf836ce0b176139cf5f878a355c81d690a721789",
+      "size": 376655,
+      "client": true,
+      "server": true,
+      "license": "MIT code; Yuushya asset terms apply where included",
+      "artifact": "built",
+      "source": {
+        "path": "Yuushya-Modelling",
+        "url": "https://github.com/minefed/Yuushya-Modelling",
+        "upstream": "https://github.com/XiLaiTL/Yuushya-Modelling",
+        "ref": "codex/optimize-model-loading",
+        "commit": "6256abeee58ca8952ada2ac617aa15ef16ec23dd",
+        "trackingBranch": "codex/optimize-model-loading",
+        "baselineRef": "refs/heads/master",
+        "baselineCommit": "3e36b9f66c0ae10202379f7287f88f7906976163"
+      },
+      "sourceCommitUrl": "https://github.com/minefed/Yuushya-Modelling/tree/6256abeee58ca8952ada2ac617aa15ef16ec23dd",
+      "replacesBuiltArtifact": false
+    },
+    {
+      "modId": "sodium",
+      "path": "mods/sodium-fabric-0.5.8+mc1.20.4.jar",
+      "version": "0.5.8+mc1.20.4",
+      "sha256": "3c363ec0122157f65e55a8edf6545a60955091387cd0e94b3ecdcd64a93284f7",
+      "size": 949085,
+      "client": true,
+      "server": false,
+      "license": "LGPL-3.0-only",
+      "artifact": "built",
+      "source": null,
+      "replacesBuiltArtifact": false
+    },
+    {
+      "modId": "indium",
+      "path": "mods/indium-1.0.31+mc1.20.4.jar",
+      "version": "1.0.31+mc1.20.4",
+      "sha256": "a6acf309f91886db6c66c1a8fce7937745053926fa114fe12cb3fdf174dfb57d",
+      "size": 105350,
+      "client": true,
+      "server": false,
+      "license": "Apache-2.0",
+      "artifact": "built",
+      "source": null,
+      "replacesBuiltArtifact": false
+    },
+    {
+      "modId": "minefed-client-compat",
+      "path": "mods/minefed-client-compat-1.0.0.jar",
+      "version": "1.0.0",
+      "sha256": "beb824078b9d42a350ad0a466d96fe7954ce66e6b428b07c0dd33c5d8ebdb273",
+      "size": 3185,
+      "client": true,
+      "server": false,
+      "license": "MIT",
+      "artifact": "built",
+      "source": {
+        "path": "minefed-client-compat",
+        "url": "https://github.com/minefed/minefed-client-compat",
+        "upstream": "https://github.com/minefed/minefed-client-compat",
+        "ref": "codex/pts-recipe-sync",
+        "commit": "e27ee63ddc883343e554d32f511fe3bebcc565dd",
+        "trackingBranch": "codex/pts-recipe-sync",
+        "baselineRef": "codex/pts-recipe-sync",
+        "baselineCommit": "e27ee63ddc883343e554d32f511fe3bebcc565dd"
+      },
+      "sourceCommitUrl": "https://github.com/minefed/minefed-client-compat/tree/e27ee63ddc883343e554d32f511fe3bebcc565dd",
+      "replacesBuiltArtifact": false
+    },
+    {
+      "modId": "zz_minefed_resource_fixes",
+      "path": "mods/minefed-resource-fixes-1.0.0.jar",
+      "version": "1.0.0",
+      "sha256": "78fd2b9be8283411e0e68a6e00c5ba524bbc2989b695a18a54c73e9eccae9aa0",
+      "size": 3170,
+      "client": true,
+      "server": true,
+      "license": "MIT",
+      "artifact": "compatibility",
+      "source": {
+        "path": "compatibility/resource-fixes",
+        "url": "https://github.com/minefed/mods",
+        "commit": "762c115318de2f7c98e464fa934e457013c7bded"
+      },
+      "sourceCommitUrl": "https://github.com/minefed/mods/tree/762c115318de2f7c98e464fa934e457013c7bded/compatibility/resource-fixes",
+      "replacesBuiltArtifact": false,
+      "sourceFiles": {
+        "LICENSE": "475a1c4c5008abba099680c5e05768c5cf9ebb8e893f7fa8b2c6f65d205d7968",
+        "NOTICE.md": "6c10ac479b05f4493d93efe9bb05be26d07b187675bac33ba0d84bb593681b6e",
+        "assets/mythicmetals_decorations/models/block/hydrargym_chest.json": "e9a5c61955d07b37c159fcedc8095c1feb67dd659c046bb459c2b98aacdc4a5f",
+        "assets/mythicmetals_decorations/models/item/hydrargym_chest.json": "742dcac4836576a2ceb8499a8b74f4339d73cc8f1c4fd0bb8d3a90dc81aaa6ab",
+        "data/diagonalfences/tags/blocks/non_diagonal_fences.json": "86a4409d441f320ccaac53af2343e1e90737576e4eea8c048070900a11f1a7c1",
+        "fabric.mod.json": "d8c84992977de0fed5fba343f6a27ef829a7989ba61ddcf8bfddd411a983d254"
+      }
+    }
+  ],
+  "limitations": [
+    "A title-screen resource reload does not verify every placed block, world compatibility or server authentication.",
+    "Yuushya collision generation logs three slab_cube_yellow_wool read messages because ModelReader cannot resolve the vanilla cube_column parent. That model exists in Minecraft; the slab, half-slab and snow-layer blocks compute their shapes in their block classes instead of using this generated collision data.",
+    "Macaw grass-topped walls are excluded through the official non_diagonal_fences tag. Diagonal Blocks may still warn because its diagnostic reads a fixed internal list.",
+    "Missing CityCraft private/test artwork uses explicitly documented vanilla fallback resources.",
+    "Measurements are individual local runs, not hardware-independent performance guarantees. Both final comparison runs retain active user applications and memory pressure; prior baseline measurements are also preserved to show this variation."
+  ]
+}
