@@ -29,6 +29,9 @@ Modern Glass Doors의 생성 리소스 복구와 minefed-display의 깊이 테�
 모델·blockstate·레시피·전리품 JSON을 파싱하고, 소스 빌드 결과가 해시로 고정된
 운영 기준본의 리소스 계열이나 런타임 클래스 전체를 잃지 않았는지 비교한다.
 개별 모델 참조와 동적으로 생성되는 리소스는 이 정적 검사만으로 판단하지 않는다.
+원본 JAR의 해시와 리소스 개수는 `inventory/resource-baseline.json`에 보존해,
+과거 소스 모드 JAR를 복원하지 않는 CI에서도 같은 검사를 수행한다. 이 기록에는
+JAR나 텍스처·모델 원본을 포함하지 않으며, 로컬 원본이 있으면 기록을 재검증한다.
 
 실행 검사는 [`client-resource-probe`](../tools/client-resource-probe/README.md)로
 제목 화면의 로딩 완료를 기다린 뒤 리소스를 두 번 다시 읽었다. 시작과 각 리로드

@@ -19,6 +19,7 @@ import build_modpack as builder
 import mods
 
 ROOT = Path(__file__).resolve().parents[1]
+BASELINE = 'inventory/resource-baseline.json'
 RESOURCE = re.compile(r'^(assets/[^/]+/(?:blockstates|models|textures)|data/[^/]+/(?:recipes|loot_tables))/.+')
 
 
@@ -61,15 +62,53 @@ def lost_families(current: dict, baseline: dict) -> list[str]:
     return sorted(missing)
 
 
+def load_baselines(root: Path) -> dict:
+    """Keep the historical evidence usable in CI without redistributing old JARs."""
+    document = json.loads((root / BASELINE).read_text(encoding='utf-8'))
+    if (not isinstance(document, dict) or document.get('schemaVersion') != 1 or
+            not isinstance(document.get('entries'), list)):
+        raise mods.ModError('Invalid resource baseline manifest')
+    records = {}
+    for row in document['entries']:
+        if not isinstance(row, dict):
+            raise mods.ModError('Resource baseline entry must be an object')
+        identity = row.get('modId')
+        families = row.get('families')
+        if (not isinstance(identity, str) or not identity or identity in records or
+                not re.fullmatch(r'[a-f0-9]{64}', str(row.get('sha256', ''))) or
+                type(row.get('classCount')) is not int or row['classCount'] < 0 or
+                not isinstance(families, dict) or
+                any(not isinstance(key, str) or type(value) is not int or value <= 0
+                    for key, value in families.items())):
+            raise mods.ModError('Invalid or duplicate resource baseline entry: ' + str(identity))
+        records[identity] = row
+    return records
+
+
+def baseline_summary(root: Path, entry: dict, records: dict) -> dict:
+    baseline = records.get(entry['modId'])
+    if baseline is None or baseline['sha256'] != entry['sha256']:
+        raise mods.ModError('Missing hash-matched resource baseline: ' + entry['modId'])
+    path = mods.safe_path(root, entry['artifact']['path'])
+    if path.exists():
+        mods.check_artifact(root, entry)
+        actual = summarize(path)
+        if any(actual[key] != baseline[key] for key in ('families', 'classCount')):
+            raise mods.ModError('Resource baseline does not match the original JAR: ' + entry['modId'])
+    return baseline
+
+
 def audit(root: Path, run: str) -> dict:
     manifest, plan = builder.load_plan(root)
     work = builder.check_run(root, run, manifest, plan)
     entries, _ = builder.collect_entries(root, run, manifest, plan)
     original = mods.load_manifest(root)
     baselines = {e['modId']: e for e in original['entries'] if e['included']}
+    baseline_records = load_baselines(root)
     source_ids = {r['modId'] for r in plan['entries'] if r['mode'] == 'source'}
     report = {'schemaVersion': 1, 'run': run, 'minecraftVersion': '1.20.4',
               'loader': 'fabric', 'runtimeValidated': False, 'entries': [], 'errors': [],
+              'baselineManifestSha256': mods.file_digest(root / BASELINE)[0],
               'scope': 'JAR JSON syntax, resource-family and runtime-class preservation; '
                        'dynamic resources, individual block states and visuals require runtime validation.'}
     for entry in entries:
@@ -79,11 +118,11 @@ def audit(root: Path, run: str) -> dict:
                'sha256': entry['sha256'], 'artifactPath': entry['artifact']['path'], **current}
         baseline_entry = baselines.get(entry['modId'])
         if entry['modId'] in source_ids and baseline_entry and baseline_entry.get('capturedServerBaseline', True):
-            baseline_path = mods.safe_path(root, baseline_entry['artifact']['path'])
-            # Missing historical evidence is an error, not permission to skip a check.
-            mods.check_artifact(root, baseline_entry)
+            # The snapshot is independently captured from the hash-pinned original.
+            # CI restores only required binary inputs, not every historical source JAR.
+            baseline = baseline_summary(root, baseline_entry, baseline_records)
             row['baselineSha256'] = baseline_entry['sha256']
-            row['lostFamilies'] = lost_families(current, summarize(baseline_path))
+            row['lostFamilies'] = lost_families(current, baseline)
             report['errors'].extend(f"{entry['modId']}: lost {family}" for family in row['lostFamilies'])
         report['errors'].extend(f"{entry['modId']}: invalid JSON {item['path']}" for item in current['invalidJson'])
         report['entries'].append(row)
@@ -101,7 +140,7 @@ def main(argv=None):
     args = parser.parse_args(argv)
     try:
         audit(ROOT, args.run)
-    except (mods.ModError, OSError, zipfile.BadZipFile) as exc:
+    except (mods.ModError, OSError, ValueError, zipfile.BadZipFile) as exc:
         print(str(exc), file=sys.stderr)
         return 1
     return 0

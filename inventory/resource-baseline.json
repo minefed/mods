@@ -1,0 +1,770 @@
+{
+  "schemaVersion": 1,
+  "capturedAt": "2026-09-06",
+  "minecraftVersion": "1.20.4",
+  "loader": "fabric",
+  "evidence": "Resource counts extracted from the original operating JARs after verifying their SHA-256 and size against inventory/mods.lock.json. Contains no binary or asset contents.",
+  "entries": [
+    {
+      "modId": "alloy_forgery",
+      "version": "2.1.4+1.20.3",
+      "sha256": "f1aa20a0a51e332008c988ec8651b43b1ba6ed6516143f7f5454ba2479715a95",
+      "size": 278168,
+      "families": {
+        "assets/alloy_forgery/blockstates": 6,
+        "assets/alloy_forgery/models": 18,
+        "assets/alloy_forgery/textures": 27,
+        "data/alloy_forgery/loot_tables": 6,
+        "data/alloy_forgery/recipes": 75
+      },
+      "classCount": 85
+    },
+    {
+      "modId": "architectury",
+      "version": "11.1.17",
+      "sha256": "0762da4c5697abe1f87997dbdd6f2823420b7cc6c05aa4768c08318252e04903",
+      "size": 587429,
+      "families": {},
+      "classCount": 412
+    },
+    {
+      "modId": "automobility-refueled",
+      "version": "0.4.3.b+1.20.4-fabric",
+      "sha256": "917f092ef96b825a2abfc6ef85e897f326898a06ac4a5fe1e8ae16ce5bf84949",
+      "size": 1079440,
+      "families": {
+        "assets/automobility/blockstates": 13,
+        "assets/automobility/models": 78,
+        "assets/automobility/textures": 115,
+        "data/automobility/loot_tables": 12,
+        "data/automobility/recipes": 73
+      },
+      "classCount": 203
+    },
+    {
+      "modId": "bluemap",
+      "version": "5.3",
+      "sha256": "bd23d5bc5cf185e888ff061d127251d2baaad5a28ea2b87ad197f06535a7381c",
+      "size": 4829808,
+      "families": {},
+      "classCount": 2462
+    },
+    {
+      "modId": "botarium",
+      "version": "3.2.2",
+      "sha256": "7c85682c5d34dfce7005a1a61334c13687a3d117df454f505bf8be6ee3877483",
+      "size": 209117,
+      "families": {},
+      "classCount": 136
+    },
+    {
+      "modId": "carpet",
+      "version": "1.4.128+v231205",
+      "sha256": "d8e5cf2184848fd78d482f23554ed814db2094acd37fab62d8ce7379d3ba02ca",
+      "size": 1555727,
+      "families": {},
+      "classCount": 718
+    },
+    {
+      "modId": "chiselsandbits",
+      "version": "1.5.10-FC",
+      "sha256": "f6d7248ee18cbac5b0232097fe5c6369a29f0bafa4818d6f295363d084c82d13",
+      "size": 2707485,
+      "families": {},
+      "classCount": 908
+    },
+    {
+      "modId": "chunky",
+      "version": "1.3.146",
+      "sha256": "ae7fb9d35a3a9d9d4f2104aeae7b31a901c5e5842891e2edd9ddcc42c2646a38",
+      "size": 344004,
+      "families": {},
+      "classCount": 132
+    },
+    {
+      "modId": "citycraft",
+      "version": "2.0.0",
+      "sha256": "eacb5f0cc6d748ee3c15244932b1c3f4fb218602bdcfcdaf6df4301708425cc1",
+      "size": 2006519,
+      "families": {
+        "assets/citycraft/blockstates": 250,
+        "assets/citycraft/models": 637,
+        "assets/citycraft/textures": 443,
+        "data/citycraft/loot_tables": 178,
+        "data/citycraft/recipes": 95
+      },
+      "classCount": 91
+    },
+    {
+      "modId": "computercraft",
+      "version": "1.110.2",
+      "sha256": "544b974507e0337a00472c828a643b88f34702dac2124297f4d017eca338fca5",
+      "size": 3385744,
+      "families": {
+        "assets/computercraft/blockstates": 14,
+        "assets/computercraft/models": 120,
+        "assets/computercraft/textures": 163,
+        "data/computercraft/loot_tables": 15,
+        "data/computercraft/recipes": 75
+      },
+      "classCount": 1692
+    },
+    {
+      "modId": "crossstitch",
+      "version": "0.1.6",
+      "sha256": "cf5aac5c5579b1ceb1b2bd25a15f1e2dcc9226f57670163ad1f841b2f905b82e",
+      "size": 5321,
+      "families": {},
+      "classCount": 1
+    },
+    {
+      "modId": "decorative_blocks",
+      "version": "5.0.2",
+      "sha256": "fed1a24bb2ad5fb53edc7661bd1bafccdd230f7ba54ca86369ad913a222a31c0",
+      "size": 479159,
+      "families": {
+        "assets/decorative_blocks/blockstates": 56,
+        "assets/decorative_blocks/models": 366,
+        "assets/decorative_blocks/textures": 108,
+        "data/decorative_blocks/loot_tables": 52,
+        "data/decorative_blocks/recipes": 55
+      },
+      "classCount": 67
+    },
+    {
+      "modId": "diagonalfences",
+      "version": "20.4.1",
+      "sha256": "ae42cd2bdb3c748c42345f3b8f92c3659ac93c06086e99360d0f35167bdcc838",
+      "size": 163915,
+      "families": {},
+      "classCount": 51
+    },
+    {
+      "modId": "diagonalwalls",
+      "version": "20.4.1",
+      "sha256": "1ebdd486ed7b337bf28f92a869bb53b587f1e26027597b9048602f4fe13d60d5",
+      "size": 160129,
+      "families": {},
+      "classCount": 51
+    },
+    {
+      "modId": "diagonalwindows",
+      "version": "20.4.1",
+      "sha256": "569c9abb705252cd4f10663ea3b9b78e93d72c3443ad6e22636da26c027a3bc1",
+      "size": 164520,
+      "families": {},
+      "classCount": 51
+    },
+    {
+      "modId": "dustydecorations",
+      "version": "1.1-1.20.3+1.20.4",
+      "sha256": "762e412dabfe680713984b5cf8662931cf13067c15d62b5526ee0c5d9cba37f3",
+      "size": 459565,
+      "families": {
+        "assets/dustydecorations/blockstates": 79,
+        "assets/dustydecorations/models": 196,
+        "assets/dustydecorations/textures": 92,
+        "data/dustydecorations/loot_tables": 77,
+        "data/dustydecorations/recipes": 78
+      },
+      "classCount": 57
+    },
+    {
+      "modId": "exlinefurniture",
+      "version": "2.7.2",
+      "sha256": "bbe6c4ea2e9703f7b908515c70f081ababa7f1388610ace31f11f915e72bcfac",
+      "size": 2237364,
+      "families": {
+        "assets/exlinefurniture/blockstates": 604,
+        "assets/exlinefurniture/models": 1484,
+        "assets/exlinefurniture/textures": 59,
+        "data/exlinefurniture/loot_tables": 596,
+        "data/exlinefurniture/recipes": 792
+      },
+      "classCount": 54
+    },
+    {
+      "modId": "fabric-api",
+      "version": "0.97.2+1.20.4",
+      "sha256": "473b9278dc8e97cbde1d8d52e24af6ee3f296ae00d7b46d14967ebcbe16fb7a7",
+      "size": 2187410,
+      "families": {},
+      "classCount": 1354
+    },
+    {
+      "modId": "fabricproxy-lite",
+      "version": "2.7.0",
+      "sha256": "4c8b1ffeb433ac6d076168068089a4c32a5a1f38eb5f4534ba2f2e1c692a4d4f",
+      "size": 273059,
+      "families": {},
+      "classCount": 204
+    },
+    {
+      "modId": "fallingtree",
+      "version": "1.20.4.3",
+      "sha256": "1757f8b8a102615ac60341b855857014fe39ca49301e2f95c7805e14d8b2ba24",
+      "size": 399949,
+      "families": {},
+      "classCount": 142
+    },
+    {
+      "modId": "ferritecore",
+      "version": "6.0.3",
+      "sha256": "66984ee95c4ab05a83c437b0dd04568a4a2c8e7f219b7498604e25952c4cc125",
+      "size": 125100,
+      "families": {},
+      "classCount": 80
+    },
+    {
+      "modId": "forgeconfigapiport",
+      "version": "20.4.3",
+      "sha256": "837665e2db855a5072f75964a7b30f12c59fddc92274db21c9b07cce172288b2",
+      "size": 444627,
+      "families": {},
+      "classCount": 273
+    },
+    {
+      "modId": "furnitureexpanded",
+      "version": "1.1-1.20.4",
+      "sha256": "03029806014138224b9862295f6682e4b9ce8683e342685d15e622209b91f418",
+      "size": 254984,
+      "families": {
+        "assets/furnitureexpanded/blockstates": 12,
+        "assets/furnitureexpanded/models": 94,
+        "assets/furnitureexpanded/textures": 17,
+        "data/furnitureexpanded/recipes": 18
+      },
+      "classCount": 57
+    },
+    {
+      "modId": "fusion",
+      "version": "1.2.12",
+      "sha256": "23aa16b5f60dc609c66bc6098e82ce22c59f694b469114f4dada4f8aa2c00bff",
+      "size": 516763,
+      "families": {
+        "assets/fusion/textures": 2
+      },
+      "classCount": 259
+    },
+    {
+      "modId": "geckolib",
+      "version": "4.4.4",
+      "sha256": "8c11f943399fec3790d63686a7233cbb5731ccbcf60f490090c700b5dce819d0",
+      "size": 1017746,
+      "families": {
+        "assets/geckolib/blockstates": 2,
+        "assets/geckolib/models": 23,
+        "assets/geckolib/textures": 30
+      },
+      "classCount": 331
+    },
+    {
+      "modId": "handcrafted",
+      "version": "3.2.1",
+      "sha256": "c18a198c84a27a1168a258114065e5398cb97e34756cc90faa7c11b34fc2bcdc",
+      "size": 7104588,
+      "families": {
+        "assets/handcrafted/blockstates": 267,
+        "assets/handcrafted/models": 12394,
+        "assets/handcrafted/textures": 1009,
+        "data/handcrafted/loot_tables": 267,
+        "data/handcrafted/recipes": 285,
+        "data/minecraft/recipes": 32
+      },
+      "classCount": 85
+    },
+    {
+      "modId": "jpp",
+      "version": "0.0.3.3",
+      "sha256": "8f0839064ac3867b3414b4483c7bc33609e1a878a44b0f643fcb1a34c142e990",
+      "size": 6762437,
+      "families": {
+        "assets/jpp/blockstates": 19,
+        "assets/jpp/models": 57,
+        "assets/jpp/textures": 24,
+        "data/jpp/recipes": 16
+      },
+      "classCount": 44
+    },
+    {
+      "modId": "lavender",
+      "version": "0.1.9+1.20.3",
+      "sha256": "e3da1be55cb3fc8d8d71e2cd85ba5c10d1768bf53225d4603032e3088ae5516d",
+      "size": 523925,
+      "families": {
+        "assets/lavender/models": 1,
+        "assets/lavender/textures": 6
+      },
+      "classCount": 168
+    },
+    {
+      "modId": "lithium",
+      "version": "0.12.1",
+      "sha256": "6acd49595ee69e1264cfc79898f569452e41bd66985467fcb38d2804191af3cd",
+      "size": 716022,
+      "families": {},
+      "classCount": 530
+    },
+    {
+      "modId": "mcwdoors",
+      "version": "1.1.2",
+      "sha256": "6ec6bc0c8ca80f65a1ebbbe0075a0bbbc4ea19a726d5c9fc1be57f80bc3ab22a",
+      "size": 1230467,
+      "families": {
+        "assets/mcwdoors/blockstates": 246,
+        "assets/mcwdoors/models": 1394,
+        "assets/mcwdoors/textures": 702,
+        "data/mcwdoors/loot_tables": 245,
+        "data/mcwdoors/recipes": 257
+      },
+      "classCount": 13
+    },
+    {
+      "modId": "mcwfences",
+      "version": "1.2.0",
+      "sha256": "77b10cfcfc53ae7289838570f83e170accd0143e2245438d8c3b14da1e527025",
+      "size": 643186,
+      "families": {
+        "assets/mcwfences/blockstates": 180,
+        "assets/mcwfences/models": 854,
+        "assets/mcwfences/textures": 59,
+        "data/mcwfences/loot_tables": 180,
+        "data/mcwfences/recipes": 222
+      },
+      "classCount": 16
+    },
+    {
+      "modId": "mcwroofs",
+      "version": "2.3.2",
+      "sha256": "00ad7d7f98f3ef0ddd459053c64f3b1f989d147eccc0178a765d0fad700e2f9d",
+      "size": 1796112,
+      "families": {
+        "assets/mcwroofs/blockstates": 605,
+        "assets/mcwroofs/models": 2683,
+        "assets/mcwroofs/textures": 32,
+        "data/mcwroofs/loot_tables": 605,
+        "data/mcwroofs/recipes": 607
+      },
+      "classCount": 23
+    },
+    {
+      "modId": "mcwwindows",
+      "version": "2.3.1",
+      "sha256": "dcbb008a7a647cc120fd2cc93374291e7773be8b73c4d082772ed479e2074a73",
+      "size": 1224713,
+      "families": {
+        "assets/mcwwindows/blockstates": 328,
+        "assets/mcwwindows/models": 1887,
+        "assets/mcwwindows/textures": 164,
+        "data/mcwwindows/loot_tables": 310,
+        "data/mcwwindows/recipes": 315
+      },
+      "classCount": 38
+    },
+    {
+      "modId": "memoryleakfix",
+      "version": "1.1.5",
+      "sha256": "b8ac33d7262e019710dd25e454116616bc9ed1f714ed910594b28a4c1da5adde",
+      "size": 49334,
+      "families": {},
+      "classCount": 28
+    },
+    {
+      "modId": "minefed-display",
+      "version": "1.0.0",
+      "sha256": "4d87f76f9ba4f00c7dd9d92daf97d9b6cdce40c54f984cd48f1b3b3f3a9b7dd4",
+      "size": 84781,
+      "families": {
+        "assets/minefed-display/blockstates": 2,
+        "assets/minefed-display/models": 9,
+        "assets/minefed-display/textures": 14
+      },
+      "classCount": 22
+    },
+    {
+      "modId": "mishanguc",
+      "version": "1.5.3",
+      "sha256": "0b83023c51817e2ab9081fec62b97f3695d37821152c2a161e3a89dd908ecb07",
+      "size": 6205768,
+      "families": {
+        "assets/mishanguc/blockstates": 1732,
+        "assets/mishanguc/models": 6780,
+        "assets/mishanguc/textures": 151,
+        "data/mishanguc/loot_tables": 1732,
+        "data/mishanguc/recipes": 1228
+      },
+      "classCount": 275
+    },
+    {
+      "modId": "modern_glass_doors",
+      "version": "5.3.0+1.20.3-and-later",
+      "sha256": "2915d5da4994ef0b589434afcd15417f087754b6126aa2ed9c680498c8779ab9",
+      "size": 199908,
+      "families": {
+        "assets/modern_glass_doors/blockstates": 24,
+        "assets/modern_glass_doors/models": 156,
+        "assets/modern_glass_doors/textures": 48,
+        "data/modern_glass_doors/loot_tables": 24,
+        "data/modern_glass_doors/recipes": 48
+      },
+      "classCount": 15
+    },
+    {
+      "modId": "modernfix",
+      "version": "5.17.0+mc1.20.4",
+      "sha256": "af842acbf99eb94b55f40be4d51549ebd8ffd563f0bbc67e9b3529b4bdbb7f69",
+      "size": 458056,
+      "families": {},
+      "classCount": 220
+    },
+    {
+      "modId": "modernlights",
+      "version": "2.4.2",
+      "sha256": "362bb8dadd6e771ec3c90a9e38af18bd9433de626862d233aac15a79ad0987e5",
+      "size": 690759,
+      "families": {
+        "assets/modernlights/blockstates": 193,
+        "assets/modernlights/models": 437,
+        "assets/modernlights/textures": 158,
+        "data/modernlights/loot_tables": 193,
+        "data/modernlights/recipes": 450
+      },
+      "classCount": 30
+    },
+    {
+      "modId": "msd",
+      "version": "1.3.15",
+      "sha256": "0ba17e1245cc8b375a129bde80562c1be083b58e8ea495088e24d7ee515ce375",
+      "size": 7996899,
+      "families": {
+        "assets/msd/blockstates": 96,
+        "assets/msd/models": 269,
+        "assets/msd/textures": 73
+      },
+      "classCount": 152
+    },
+    {
+      "modId": "mtr",
+      "version": "4.0.5",
+      "sha256": "974fec15c7b2c1e5d3f6ab8e45a6f5c959a40acbaa3ff90997191085ccadda0f",
+      "size": 84551290,
+      "families": {
+        "assets/minecraft/textures": 30,
+        "assets/mtr/blockstates": 193,
+        "assets/mtr/models": 957,
+        "assets/mtr/textures": 556,
+        "assets/mtrsteamloco/blockstates": 1,
+        "assets/mtrsteamloco/models": 1,
+        "assets/mtrsteamloco/textures": 1,
+        "data/mtr/loot_tables": 190,
+        "data/mtr/recipes": 307,
+        "data/mtrsteamloco/loot_tables": 1,
+        "data/mtrsteamloco/recipes": 1
+      },
+      "classCount": 5714
+    },
+    {
+      "modId": "mythicmetals",
+      "version": "0.19.7+1.20.4",
+      "sha256": "f82f5dea1d6facd930abf8f30762c75546eb16c8ee68773d9d1049bf7de7f0aa",
+      "size": 2988807,
+      "families": {
+        "assets/alloy_forgery/blockstates": 1,
+        "assets/alloy_forgery/models": 3,
+        "assets/alloy_forgery/textures": 2,
+        "assets/minecraft/textures": 51,
+        "assets/mythicmetals/blockstates": 117,
+        "assets/mythicmetals/models": 669,
+        "assets/mythicmetals/textures": 588,
+        "data/alloy_forgery/loot_tables": 1,
+        "data/custom_piglin_bartering/loot_tables": 1,
+        "data/mythicmetals/loot_tables": 112,
+        "data/mythicmetals/recipes": 619
+      },
+      "classCount": 305
+    },
+    {
+      "modId": "mythicmetals_decorations",
+      "version": "0.6.1+1.20.3",
+      "sha256": "b714e2098a0af1daaee7a9b35cb7c4e9347a2982800fc116961328354cedf077",
+      "size": 538487,
+      "families": {
+        "assets/minecraft/textures": 22,
+        "assets/mythicmetals_decorations/blockstates": 53,
+        "assets/mythicmetals_decorations/models": 132,
+        "assets/mythicmetals_decorations/textures": 155,
+        "data/mythicmetals_decorations/loot_tables": 48,
+        "data/mythicmetals_decorations/recipes": 81
+      },
+      "classCount": 33
+    },
+    {
+      "modId": "nicemod",
+      "version": "1.4.1 - 1.20",
+      "sha256": "a6dd69de56fd474e599571ab0c906e3ca971cdd3a5cd715a10acf9f3205fd69b",
+      "size": 544045,
+      "families": {
+        "assets/nicemod/blockstates": 127,
+        "assets/nicemod/models": 289,
+        "assets/nicemod/textures": 52,
+        "data/nicemod/loot_tables": 125,
+        "data/nicemod/recipes": 127
+      },
+      "classCount": 101
+    },
+    {
+      "modId": "oritech",
+      "version": "0.5.1+1.20.4",
+      "sha256": "2dde3dcbe82124ec512ca7b05ef4fb4eb782694cbc33e576702cef87b6f02d7d",
+      "size": 2885074,
+      "families": {
+        "assets/minecraft/textures": 2,
+        "assets/oritech/blockstates": 83,
+        "assets/oritech/models": 244,
+        "assets/oritech/textures": 209,
+        "data/oritech/loot_tables": 59,
+        "data/oritech/recipes": 281
+      },
+      "classCount": 334
+    },
+    {
+      "modId": "owo",
+      "version": "0.12.6+1.20.3",
+      "sha256": "b7c1d03cb5bcfcb84ff2bd2d6a3b3a9ef2fa14ef9e53b7d3116c04838811f273",
+      "size": 1080159,
+      "families": {
+        "assets/owo/textures": 11
+      },
+      "classCount": 590
+    },
+    {
+      "modId": "patchouli",
+      "version": "1.20.4-85-FABRIC",
+      "sha256": "bad24b0918e88cdf84c64dbe928cbf391c7920558022e3f1d5167d0af5878eca",
+      "size": 860953,
+      "families": {
+        "assets/patchouli/models": 9,
+        "assets/patchouli/textures": 17
+      },
+      "classCount": 349
+    },
+    {
+      "modId": "pfm",
+      "version": "1.4.4",
+      "sha256": "7df89e7f0146495dd634724c15ffb5e0b184192dc9468cfa221f4ff9aa5ff08f",
+      "size": 5810050,
+      "families": {
+        "assets/pfm/blockstates": 121,
+        "assets/pfm/models": 806,
+        "assets/pfm/textures": 110,
+        "data/pfm/loot_tables": 1,
+        "data/pfm/recipes": 33
+      },
+      "classCount": 700
+    },
+    {
+      "modId": "ptsdeco",
+      "version": "2.1.0",
+      "sha256": "3b9f18e36755fe087a6b7c5d9501be6b92ee8039c27e207bd2d1f4263dbe02b5",
+      "size": 12171064,
+      "families": {
+        "assets/ptsdeco/blockstates": 876,
+        "assets/ptsdeco/models": 2622,
+        "assets/ptsdeco/textures": 167,
+        "data/ptsdeco/recipes": 855
+      },
+      "classCount": 2021
+    },
+    {
+      "modId": "puzzleslib",
+      "version": "20.4.52",
+      "sha256": "cfa2fc847681e69d31a4169ce22c3d57d2d080e4bcd7a878525e3400296c0770",
+      "size": 1029113,
+      "families": {},
+      "classCount": 768
+    },
+    {
+      "modId": "realtime",
+      "version": "1.0.3-1.20-1.21.1",
+      "sha256": "d4e65606ac1bc7e9dedd476ff08fb7e96d958ede60f002946a503d86ecf7f319",
+      "size": 11172,
+      "families": {},
+      "classCount": 2
+    },
+    {
+      "modId": "rechiseled",
+      "version": "1.2.1",
+      "sha256": "5e3745c4699964403fe25eb316312e5340d5d506f4d7af9336ea80922fdae90c",
+      "size": 11921854,
+      "families": {
+        "assets/rechiseled/blockstates": 3627,
+        "assets/rechiseled/models": 13855,
+        "assets/rechiseled/textures": 681,
+        "data/rechiseled/loot_tables": 3627,
+        "data/rechiseled/recipes": 1
+      },
+      "classCount": 122
+    },
+    {
+      "modId": "resourcefulconfig",
+      "version": "2.4.8",
+      "sha256": "1d82d48ec1f8e911f520a4dd07f74240e890db74209eecc8330ca6d5e016f104",
+      "size": 228662,
+      "families": {
+        "assets/resourcefulconfig/textures": 14
+      },
+      "classCount": 134
+    },
+    {
+      "modId": "resourcefullib",
+      "version": "2.4.10",
+      "sha256": "f79dadaa2db8c621a064e678c4ec6a01f42b4f48a582aa4794da5626d313806f",
+      "size": 440662,
+      "families": {},
+      "classCount": 277
+    },
+    {
+      "modId": "seasons",
+      "version": "2.4.2-BETA+1.20.4",
+      "sha256": "97be54d700cd3537899f52aad75ded51a17308c9585221967e7ea70ef02a432d",
+      "size": 429604,
+      "families": {
+        "assets/seasons/textures": 8
+      },
+      "classCount": 55
+    },
+    {
+      "modId": "starlight",
+      "version": "1.1.3+fabric.f5dcd1a",
+      "sha256": "bdf3a3f1c470894d8d24726c12e89eb309c7c46d86ff8527490c5ce5bb67b989",
+      "size": 126410,
+      "families": {},
+      "classCount": 34
+    },
+    {
+      "modId": "stoneworks",
+      "version": "20.4.0",
+      "sha256": "8eec1130afc17125a0295fd142741e5f242f5255046f9b0a3d61a6d8b9ca8150",
+      "size": 2340696,
+      "families": {
+        "assets/stoneworks/blockstates": 581,
+        "assets/stoneworks/models": 1836,
+        "assets/stoneworks/textures": 200,
+        "data/stoneworks/loot_tables": 581,
+        "data/stoneworks/recipes": 977
+      },
+      "classCount": 17
+    },
+    {
+      "modId": "supermartijn642configlib",
+      "version": "1.1.8+a",
+      "sha256": "b3a48fdee5415c614ba4e9360b8b904315996fafd2a907f666771fb09ea97eac",
+      "size": 205413,
+      "families": {},
+      "classCount": 41
+    },
+    {
+      "modId": "supermartijn642corelib",
+      "version": "1.1.20",
+      "sha256": "79d7a9f469aaf5a9e0a2e4d974aeb30c6ee27cff004c61044dae224e1cd9339b",
+      "size": 607125,
+      "families": {
+        "assets/supermartijn642corelib/textures": 5
+      },
+      "classCount": 206
+    },
+    {
+      "modId": "timeoutout",
+      "version": "1.0.4+1.20.2",
+      "sha256": "acb1be1b9b88aaee5d780199d407e5b6b04883c5d93a7f9a17e8f8d9eddfccba",
+      "size": 9342,
+      "families": {},
+      "classCount": 6
+    },
+    {
+      "modId": "trafficcraft",
+      "version": "1.20.4-1.1.3",
+      "sha256": "ddf1d434be7eee0ab7ff67ba4712cb213900bc10c43776cc52dddc40697a0a58",
+      "size": 6602857,
+      "families": {
+        "assets/trafficcraft/blockstates": 1342,
+        "assets/trafficcraft/models": 5419,
+        "assets/trafficcraft/textures": 1054,
+        "data/trafficcraft/loot_tables": 1336,
+        "data/trafficcraft/recipes": 68
+      },
+      "classCount": 506
+    },
+    {
+      "modId": "webstreamer",
+      "version": "1.5.0",
+      "sha256": "e8efce988e65abd58f6b6371c33bdf7a2ea61aee209a53dc5fc3b6415f118041",
+      "size": 77465185,
+      "families": {
+        "assets/webstreamer/blockstates": 1,
+        "assets/webstreamer/models": 2,
+        "assets/webstreamer/textures": 1
+      },
+      "classCount": 1343
+    },
+    {
+      "modId": "wirelessredstone",
+      "version": "1.2.2+1.20.4",
+      "sha256": "c974ea1ce01c64f614d15227575640399475a0f44b8e36ca4fb1932b452612bd",
+      "size": 233838,
+      "families": {
+        "assets/wirelessredstone/blockstates": 4,
+        "assets/wirelessredstone/models": 22,
+        "assets/wirelessredstone/textures": 30,
+        "data/wirelessredstone/loot_tables": 4,
+        "data/wirelessredstone/recipes": 9
+      },
+      "classCount": 54
+    },
+    {
+      "modId": "worldedit",
+      "version": "7.3.0+6678-55745ad",
+      "sha256": "c9deee4bdd58338585433df92475c43b11a0693706a5665506a3ac087d4c47e4",
+      "size": 6122896,
+      "families": {},
+      "classCount": 2543
+    },
+    {
+      "modId": "worldedithangfix",
+      "version": "1.0.2",
+      "sha256": "0d375f10e18bee8dd2c00c683f0a9b9caf7f8b0b77ac0416bab6cfddee94b063",
+      "size": 39108,
+      "families": {},
+      "classCount": 3
+    },
+    {
+      "modId": "yuushya",
+      "version": "2.2.3",
+      "sha256": "cd738522891f31f3d26fe753f53d1c2e44c4055e49d6678c0088624316d4a445",
+      "size": 23408150,
+      "families": {
+        "assets/minecraft/models": 2,
+        "assets/yuushya/blockstates": 5773,
+        "assets/yuushya/models": 18874,
+        "assets/yuushya/textures": 2082,
+        "data/yuushya/loot_tables": 5771,
+        "data/yuushya/recipes": 5919
+      },
+      "classCount": 125
+    },
+    {
+      "modId": "yuushya_modelling",
+      "version": "2.2.0",
+      "sha256": "76051599bbc7dacd4779528d116bdd87f2edbf89f8bb0ace8b20f0c29c82ce8c",
+      "size": 376483,
+      "families": {
+        "assets/yuushya/blockstates": 1,
+        "assets/yuushya/models": 85,
+        "assets/yuushya/textures": 45,
+        "data/yuushya/loot_tables": 2,
+        "data/yuushya/recipes": 17
+      },
+      "classCount": 82
+    }
+  ]
+}
