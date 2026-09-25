@@ -830,9 +830,9 @@
         "path": "diagonal-fences",
         "url": "https://github.com/minefed/diagonal-fences",
         "upstream": "https://github.com/Fuzss/diagonal-fences",
-        "ref": "minefed-1.20.4",
-        "commit": "52a8f8196ba52c51d663c44666ee2a7425fb8282",
-        "trackingBranch": "minefed-1.20.4",
+        "ref": "codex/fix-macaw-compatibility",
+        "commit": "aa41b9f39f744455258c27d3728a1ff77908731f",
+        "trackingBranch": "codex/fix-macaw-compatibility",
         "baselineRef": "1.20.4",
         "baselineCommit": "57e3bc3958e313c772cf68c2bfcb06a367fceb5d"
       },

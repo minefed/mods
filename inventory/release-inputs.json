@@ -689,7 +689,7 @@
     {
       "path": "diagonal-fences",
       "kind": "mod",
-      "reviewedCommit": "52a8f8196ba52c51d663c44666ee2a7425fb8282",
+      "reviewedCommit": "aa41b9f39f744455258c27d3728a1ff77908731f",
       "licenseFiles": {
         "LICENSE-ASSETS.md": "ca520b6211afd43cf740743746985f697047aca839fc325487d6fff97af57cec",
         "LICENSE.md": "1f256ecad192880510e84ad60474eab7589218784b9a50bc7ceee34c2b91f1d5",
