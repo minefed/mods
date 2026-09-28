@@ -3040,7 +3040,7 @@
         "url": "https://github.com/minefed/Oritech",
         "upstream": "https://github.com/Rearth/Oritech",
         "ref": "minefed-1.20.4",
-        "commit": "6dcc9f80de9015ad2380e946bfc890dae7fd565e",
+        "commit": "5085fb1e03783d19f47d5b68f12d5d269d6f08ba",
         "trackingBranch": "minefed-1.20.4",
         "baselineRef": "v0.5.1+1.20.4",
         "baselineCommit": "83ba099a700478e4fd7e85548ced4f5d7227d114"
@@ -3072,7 +3072,8 @@
       "licenseUrl": "https://github.com/Rearth/Oritech/blob/v0.5.1+1.20.4/LICENSE.md",
       "licenseNoticesPath": "inventory/notices/oritech-2dde3dcbe821",
       "notes": [
-        "Exact deployed tag and1.20.4 branch tip gradle.properties0.5.1+1.20.4. v0.6.1+1.20.4 tag points to same commit. Current Modrinth license CC-BY-4.0 differs; deployed historical tag/JAR both CC0."
+        "Exact deployed tag and1.20.4 branch tip gradle.properties0.5.1+1.20.4. v0.6.1+1.20.4 tag points to same commit. Current Modrinth license CC-BY-4.0 differs; deployed historical tag/JAR both CC0.",
+        "2026-09-28: Behavior-preserving network/FPS optimizations fast-forwarded minefed-1.20.4 to 5085fb1e03783d19f47d5b68f12d5d269d6f08ba; see docs/OPTIMIZATION_RESULTS_2026-09-28.md. Captured artifact hashes remain historical baseline evidence."
       ],
       "compatibility": {
         "minecraft": "~1.20.4",
