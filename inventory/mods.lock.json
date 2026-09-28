@@ -2278,9 +2278,9 @@
         "path": "MemoryLeakFix",
         "url": "https://github.com/minefed/MemoryLeakFix",
         "upstream": "https://github.com/FxMorin/MemoryLeakFix",
-        "ref": "codex/fix-common-mixin-refmap",
+        "ref": "minefed-1.20.4",
         "commit": "f01909746ee3ad595a3ed91e4abb4779a06a47c2",
-        "trackingBranch": "codex/fix-common-mixin-refmap",
+        "trackingBranch": "minefed-1.20.4",
         "baselineRef": "v1.1.5",
         "baselineCommit": "f5e4087566740e9df661c5acf38e345f72068c90"
       },
