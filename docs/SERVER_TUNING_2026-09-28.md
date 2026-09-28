@@ -56,7 +56,7 @@ Carpet 로거의 HUD 패킷은 `/log`를 구독한 플레이어에게만 초당 
 | Lithium 0.12.1 | 모든 `mixin.*` 기본 활성. 꺼진 항목(`ai.nearby_entity_tracking`, `world.block_entity_ticking.support_cache`, `experimental.*`, `gen.cached_generator_settings`)은 저자가 동등성을 보장하지 않거나 오류로 끈 것이므로 유지한다. WorldEdit이 있으면 `block.hopper.worldedit_compat`가 자동으로 켜진다. |
 | FerriteCore 6.0.3 | 선택 옵션(`useSmallThreadingDetector`, `compactFastMap`, `populateNeighborTable`)은 속도 이득이 없거나 위험하므로 기본값을 유지한다. |
 | Starlight 1.1.3 | 설정 없음. 제거는 다른 광원 엔진으로 바꾸는 것이라 동작이 같다고 보장할 수 없어 유지한다. |
-| ModernFix | 운영 기준본은 5.17.0이지만 빌드·배포본은 소스 빌드 `5.17.1-beta.4+mc1.20.4.4790`이다(`inventory/build-recipes.json`). 2026-09-21 측정 클라이언트의 5.17.1-beta.4와 일치하므로 추가 조치는 없다. |
+| ModernFix | 운영 기준본은 5.17.0이지만 빌드·배포본은 소스 빌드 `5.17.1-beta.5+mc1.20.4.6c6e`이다(`inventory/build-recipes.json`). 이 버전 문자열은 git 태그 거리와 해시로 만들어진다. 지침 문서만 추가한 커밋 `6c6e57a` 때문에 beta.4에서 beta.5로 바뀌었고, 코드는 2026-09-21 측정 클라이언트의 5.17.1-beta.4(`4790968`)와 같다. 추가 조치는 없다. |
 | ModernFix `mixin.perf.faster_item_rendering` | GUI 아이템의 보이지 않는 면을 생략해 인벤토리 FPS를 높일 수 있다. 저자가 "아이템이 GUI에서 사라지거나 평면으로 보일 수 있다"고 명시했고 이번 작업 환경에서는 실제 클라이언트로 비교할 수 없었다. 따라서 기본값(꺼짐)을 유지한다. |
 
 `faster_item_rendering` 채택 절차는 다음과 같다.
