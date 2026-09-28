@@ -1,0 +1,63 @@
+From 133bc4bc7650b2eca219055236d92ff08aecef33 Mon Sep 17 00:00:00 2001
+From: Claude <noreply@anthropic.com>
+Date: Mon, 28 Sep 2026 06:18:06 +0000
+Subject: [PATCH 4/4] perf(network): encode sync packets once per broadcast
+
+sendToTrackingEntityAndSelf and sendToEntitiesTrackingChunk encoded the
+packet again for every recipient. Encode it lazily on the first
+recipient and pass the same buffer to each send. Fabric's untyped
+payload never moves the buffer's indices (it writes and hands out
+copies), so every recipient still gets the same bytes, and nothing is
+encoded when there are no recipients, as before.
+
+Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_01TD7PJ5R7t7hM3ymeeqXP4H
+---
+ .../geckolib/network/GeckoLibNetwork.java      | 18 +++++++++++++++---
+ 1 file changed, 15 insertions(+), 3 deletions(-)
+
+diff --git a/Fabric/src/main/java/software/bernie/geckolib/network/GeckoLibNetwork.java b/Fabric/src/main/java/software/bernie/geckolib/network/GeckoLibNetwork.java
+index 08acab7..ddb1e5f 100644
+--- a/Fabric/src/main/java/software/bernie/geckolib/network/GeckoLibNetwork.java
++++ b/Fabric/src/main/java/software/bernie/geckolib/network/GeckoLibNetwork.java
+@@ -5,6 +5,7 @@ import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
+ import net.fabricmc.fabric.api.networking.v1.PlayerLookup;
+ import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
+ import net.minecraft.core.BlockPos;
++import net.minecraft.network.FriendlyByteBuf;
+ import net.minecraft.resources.ResourceLocation;
+ import net.minecraft.server.level.ServerLevel;
+ import net.minecraft.server.level.ServerPlayer;
+@@ -76,18 +77,29 @@ public final class GeckoLibNetwork {
+         callback.onReadyToSend(packet);
+     }
+ 
++    // The encoded buffer is shared between recipients: Fabric's payload only ever copies it when writing or handling
+     public static void sendToTrackingEntityAndSelf(AbstractPacket packet, Entity entityToTrack) {
++        FriendlyByteBuf buf = null;
++
+         for (ServerPlayer trackingPlayer : PlayerLookup.tracking(entityToTrack)) {
+-            ServerPlayNetworking.send(trackingPlayer, packet.getPacketID(), packet.encode());
++            if (buf == null)
++                buf = packet.encode();
++
++            ServerPlayNetworking.send(trackingPlayer, packet.getPacketID(), buf);
+         }
+ 
+         if (entityToTrack instanceof ServerPlayer serverPlayer)
+-            ServerPlayNetworking.send(serverPlayer, packet.getPacketID(), packet.encode());
++            ServerPlayNetworking.send(serverPlayer, packet.getPacketID(), buf == null ? packet.encode() : buf);
+     }
+ 
+     public static void sendToEntitiesTrackingChunk(AbstractPacket packet, ServerLevel level, BlockPos blockPos) {
++        FriendlyByteBuf buf = null;
++
+         for (ServerPlayer trackingPlayer : PlayerLookup.tracking(level, blockPos)) {
+-            ServerPlayNetworking.send(trackingPlayer, packet.getPacketID(), packet.encode());
++            if (buf == null)
++                buf = packet.encode();
++
++            ServerPlayNetworking.send(trackingPlayer, packet.getPacketID(), buf);
+         }
+     }
+ 
