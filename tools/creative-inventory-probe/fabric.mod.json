@@ -1,0 +1,10 @@
+{
+  "schemaVersion": 1,
+  "id": "minefed-creative-probe",
+  "version": "1.0.0",
+  "name": "Minefed Creative Inventory Audit (test only)",
+  "license": "MIT",
+  "environment": "client",
+  "entrypoints": { "client": ["audit.CreativeProbe"] },
+  "depends": { "minecraft": "=1.20.4", "fabricloader": "=0.18.4", "java": ">=17" }
+}
