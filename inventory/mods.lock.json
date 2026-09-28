@@ -2541,7 +2541,7 @@
         "url": "https://github.com/minefed/Modern-Lights",
         "upstream": "https://github.com/aka-jammy/Modern-Lights",
         "ref": "minefed-1.20.4",
-        "commit": "dad3999c6ffaa2c2d837d36b9848988034cc354f",
+        "commit": "2961736a5abcfc6cc46cd23d0dd3409cf85185d5",
         "trackingBranch": "minefed-1.20.4",
         "baselineRef": "1.20---1.20.4",
         "baselineCommit": "5df1c7567ac7f4dd8d40118000187585e5e9b725"
@@ -2577,7 +2577,8 @@
       "licenseUrl": "https://github.com/1-Jammy/Modern-Lights/blob/1.20---1.20.4/LICENSE",
       "licenseNoticesPath": "inventory/notices/modernlights-362bb8dadd6e",
       "notes": [
-        "Source fork allowed for noncommercial management with attribution and share-alike. Branch supports1.20 through1.20.4 but is2.5.0; published source history does not contain deployed2.4.2. Keep deployed binary separate. Embedded LICENSE_modern-lights says MIT(c)2024 1_Jammy, while metadata/project/upstream CC-BY-NC-SA; preserve both and apply restrictive noncommercial conditions."
+        "Source fork allowed for noncommercial management with attribution and share-alike. Branch supports1.20 through1.20.4 but is2.5.0; published source history does not contain deployed2.4.2. Keep deployed binary separate. Embedded LICENSE_modern-lights says MIT(c)2024 1_Jammy, while metadata/project/upstream CC-BY-NC-SA; preserve both and apply restrictive noncommercial conditions.",
+        "2026-09-28: Behavior-preserving network/FPS optimizations fast-forwarded minefed-1.20.4 to 2961736a5abcfc6cc46cd23d0dd3409cf85185d5; see docs/OPTIMIZATION_RESULTS_2026-09-28.md. Captured artifact hashes remain historical baseline evidence."
       ],
       "compatibility": {
         "minecraft": "~1.20",
