@@ -75,8 +75,8 @@ JAR는 Git에 추가하지 않는다. `install-mods.py`는 정상적으로 압�
 없이 모든 모드의 해시를 검사하는 선택적 검증 도구다.
 
 `serverPlugins`로 지정한 TCPShield 2.8.1은 서버팩 `plugins/TCPShield-2.8.1.jar`에
-추가된다. 서버팩은 `mods/`의 Fabric 모드 68개와 `plugins/`의 플러그인 1개, 총 JAR
-69개다. TCPShield는 Bukkit/Bungee/Velocity용으로 Fabric Loader가 실행하지 않는다.
+추가된다. 서버팩은 `mods/`의 Fabric 모드 69개와 `plugins/`의 플러그인 1개, 총 JAR
+70개다. TCPShield는 Bukkit/Bungee/Velocity용으로 Fabric Loader가 실행하지 않는다.
 해당 플랫폼의 플러그인 폴더에 사용하는 파일이며 클라이언트 MRPACK에는 포함하지 않는다.
 공식 원본의 URL·크기·SHA-256·플러그인 메타데이터와 MIT 고지를 검증·보존한다.
 기존 운영 인벤토리의 Fabric 빌드 제외 표시는 유지하고, 릴리즈 기록의 `plugins`와
@@ -93,6 +93,8 @@ PFM/Puzzles Lib는 소스 빌드를 유지하면서 `artifact: published`로 공
 2026-09-18 클라이언트 전용 `minefed-client-compat`를 추가했다. PTS Deco 4.0.0의
 레시피 패킷 읽기 오류를 수정하며 서버팩의 모드는 변경하지 않는다.
 [원인·원격 소스·검증 기록](RECIPE_SYNC_FIX_2026-09-18.md)을 참고한다.
+2026-09-28 1.3.0은 PFM 화구·TrafficCraft 신호등 패킷 수정이 서버에서 실행되므로 `server: true`로 바꿔 서버팩에도 포함한다.
+서버 모드 수는 69개가 되며, 서버·클라이언트 팩을 같은 릴리즈로 배포한다([최적화 결과](OPTIMIZATION_RESULTS_2026-09-28.md)).
 
 ## 실행 조건과 변경 감지
 

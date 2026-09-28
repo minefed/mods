@@ -17,7 +17,7 @@ Minefed 서버의 모드 소스와 운영 JAR를 한 곳에서 관리한다. Min
 
 2026-09-18 [PTS Deco 레시피 접속 오류 수정](docs/RECIPE_SYNC_FIX_2026-09-18.md)을 위해
 독립 클라이언트 모드 `minefed-client-compat` 소스 저장소를 추가했다.
-관측한 운영 기준본 70개와 새 클라이언트 전용 소스 항목을 구분한다.
+관측한 운영 기준본 70개와 새 소스 항목을 구분한다. 2026-09-28 1.3.0부터 PFM·TrafficCraft 성능 믹스인 때문에 서버에도 설치한다.
 
 2026-09-24 [Modern Glass Doors 생성 리소스 누락](docs/MODERN_GLASS_DOORS_FIX_2026-09-24.md)과
 [Minefed Display의 블록 가림 판정](docs/DISPLAY_DEPTH_FIX_2026-09-24.md)을 수정했다.
@@ -34,7 +34,7 @@ PFM 헤링본 판자 11종의 첫 프레임 보라색 텍스처와 월드 데이
 
 2026-09-28 [전체 모드 네트워크·FPS 최적화 계획](docs/OPTIMIZATION_PLAN_2026-09-28.md)에
 기능 동등성을 유지하는 서버 송수신·클라이언트 FPS 개선 항목과 기대 성과를 정리했다.
-[구현 결과](docs/OPTIMIZATION_RESULTS_2026-09-28.md)의 17개 서브모듈 커밋은 [패치](patches/perf-2026-09-28/README.md)로 보존했고,
+[구현 결과](docs/OPTIMIZATION_RESULTS_2026-09-28.md)의 17개 서브모듈 변경은 각 통합 브랜치에 병합해 고정했고,
 [패킷 통계 도구](tools/packet-stats/README.md)와 [운영 설정 안내](docs/SERVER_TUNING_2026-09-28.md)를 추가했다.
 
 ## 시작하기
@@ -93,7 +93,7 @@ CityCraft와 Macaw Doors/Fences는 공개된 Fabric 1.20.4용 공식 JAR를 사�
 GitHub Actions는 `mods/main` 변경과 하위 배포 대상 브랜치의 변경을 감지해 세 파일을
 [GitHub Releases](https://github.com/minefed/mods/releases)에 공개한다. 하위 브랜치는
 15분 간격으로 확인하며, 동일 입력의 중복 릴리즈는 건너뛴다.
-서버팩 `mods/`에는 전체 모드 JAR 68개, 클라이언트팩 `overrides/mods/`에는 서버 전용
+서버팩 `mods/`에는 전체 모드 JAR 69개, 클라이언트팩 `overrides/mods/`에는 서버 전용
 2개를 제외하고 Continuity·MCEF·Sodium·Indium을 추가하고 레시피·리소스 호환 모드를 포함한 71개가 직접 포함된다. 공식 JAR도 버전·해시·원본 URL을 유지한 채 내장하며,
 Modern Lights는 소스 전용 공식 업로드 대신 검증된 2.5.0 실행 JAR를 양쪽에 포함한다.
 정상적으로 압축 해제하거나 MRPACK을 가져오면 추가 모드 다운로드·수동 복원이 필요 없다.
@@ -102,7 +102,7 @@ Sodium `0.5.8+mc1.20.4`와 Indium `1.0.31+mc1.20.4`는 클라이언트 렌더링
 기존 Continuity의 연결 텍스처 호환성을 함께 제공한다([Sodium 구성](docs/SODIUM.md)).
 선택적 `install-mods.py` 실행으로 모든 모드의 해시를 검사할 수 있다. 정책에 따른 원본
 선택과 자체 빌드 결과의 차이, 기존 재배포 분류와 라이선스는 팩 안의 기록에 보존한다.
-서버팩은 TCPShield 2.8.1을 `plugins/`에 별도 포함하여 총 JAR 68개다. TCPShield는
+서버팩은 TCPShield 2.8.1을 `plugins/`에 별도 포함하여 총 JAR 70개다. TCPShield는
 Bukkit/Bungee/Velocity용 플러그인이며 Fabric Loader가 실행하는 모드가 아니다.
 자동화와 최초 릴리즈, 설치 방법은 [릴리즈 안내](docs/RELEASING.md)를 참고한다.
 

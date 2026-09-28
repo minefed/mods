@@ -27,7 +27,7 @@ JAR 재배포 분류는 허용 45개, 모드팩 한정 10개, 로컬 전용 15�
 
 추가 소스 `minefed-client-compat`는 2026-09-06 운영 관측 표에 포함하지 않는다.
 `mods.lock.json`의 별도 항목(`capturedServerBaseline: false`)으로 브랜치·전체 커밋·
-빌드 해시·MIT 고지를 관리하며 클라이언트에만 포함한다.
+빌드 해시·MIT 고지를 관리한다. 2026-09-28 1.3.0부터 PFM·TrafficCraft 성능 믹스인 때문에 서버·클라이언트 양쪽에 포함하며, 실제 서버 모드는 69개가 된다.
 [PTS Deco 접속 오류 수정](RECIPE_SYNC_FIX_2026-09-18.md)을 참고한다.
 
 리소스 전용 `zz_minefed_resource_fixes`는 루트 저장소의

@@ -6,17 +6,9 @@
 
 ## 반영 상태
 
-**반영 상태 요약**
-- 코드 변경은 17개 서브모듈의 로컬 `perf/2026-09-28` 브랜치에 커밋했다.
-- 이 작업 세션에는 서브모듈 저장소(`minefed/<mod>`)에 push할 권한이 없었다. 그래서 모든 커밋을 [`patches/perf-2026-09-28/`](../patches/perf-2026-09-28/README.md)에 `git format-patch` 형식으로 보존했다.
-- gitlink는 원격에 없는 커밋을 가리킬 수 없으므로, 이 브랜치의 gitlink와 `inventory/*.json`은 기존 값을 유지한다.
-
-**배포 반영 순서** ([AGENTS.md](../AGENTS.md) 기준)
-1. 각 서브모듈에서 패치를 `git am`으로 적용한다.
-2. 서브모듈 통합 브랜치(`minefed-1.20.4`, client-compat은 `main`)에 병합하고 push한다.
-3. 원격 커밋으로 상위 gitlink와 `inventory/mods.lock.json`을 별도 커밋으로 갱신한다.
-4. 아래 "루트 인벤토리 후속 변경"을 적용한다.
-5. 서버·클라이언트 팩을 **같은 릴리즈**로 함께 배포한다. Oritech와 클라이언트 호환 모드는 양쪽 버전이 같아야 한다.
+- 17개 서브모듈의 변경을 통합 브랜치(`minefed-1.20.4`, client-compat은 `main`)에 fast-forward로 병합해 push했다. 병합 전 원격 통합 브랜치는 모두 기존 gitlink 커밋과 같았다.
+- 루트는 모드별 `chore(<mod>): pin network and FPS optimizations` 커밋으로 gitlink와 `inventory/mods.lock.json`의 커밋을 원격 커밋으로 갱신했다. 전체 소스 항목의 gitlink·HEAD·lock 일치를 `mods.check_sources`로 확인했다(비공개 `resourcepack`은 이 환경에서 초기화하지 않아 제외).
+- **서버·클라이언트 팩은 같은 릴리즈로 함께 배포한다.** Oritech 기계 동기화 형식이 바뀌었고, client-compat 1.3.0은 서버에도 설치된다.
 
 ## 단계별 결과
 
@@ -34,7 +26,7 @@
 | # | 모드 | 결과 | 핵심 근거·검증 |
 | --- | --- | --- | --- |
 | 1-1 | PFM (호환 믹스인) | 완료 | 조리가 끝난 화구·스토브탑은 레시피 결과가 없으면 같은 스택 저장과 블록 갱신을 건너뛴다. 레시피 조회, `setChanged`, 튀어나오기 분기는 유지한다. 공식 PFM 1.5.0 바이트코드에 실제 Mixin을 적용해 5개 시나리오의 이벤트 로그를 비교했다. 차이는 삭제된 동일 저장·갱신 쌍뿐이다. 전용 서버 기동도 확인했다. |
-| 1-2 | Automobility | 일부 | 부가 동기화 패킷을 추적 중인 플레이어에게만 보낸다. 추적하지 않는 클라이언트는 엔티티 ID를 몰라 무시하던 패킷이다. |
+| 1-2 | Automobility | 완료 | 부가 동기화 패킷을 추적 중인 플레이어에게만 보낸다(추적하지 않는 클라이언트는 원래 무시). 탑승자 없이 속도가 0인 주차 차량은 매 틱 강제 속도 패킷(`markHurt`)을 보내지 않는다. 멈추는 순간의 0 속도는 바닐라 이동 갱신이 보낸다(`squaredDistanceTo > 1e-7 || (> 0 && lengthSquared == 0)` 확인). 사용자 승인 범위의 동작 차이는 아래 주의 사항 참고. |
 | 1-3 | Chisels & Bits | 완료 | 청크 전송 이벤트의 전체 재전송을 그 청크를 받은 플레이어에게만 보낸다. Scena 1.0.141의 전송 대상을 디스어셈블해 확인했다. 받는 플레이어의 패킷·순서·시점은 같다. 기존 테스트 28개 통과. |
 | 1-4 | Chisels & Bits | 완료 | 되돌리기 기록 동기화 대기열에서 틱 안의 중복을 제거한다. 직렬화가 flush 시점에 일어나므로 중복 패킷은 바이트가 같았다. |
 | 1-5 | CC: Tweaked | 완료 | 모니터 상태가 마지막 전송 바이트와 정확히 같으면 재전송하지 않는다. 대역폭 예산은 그대로 차감해 다른 모니터의 전송 시점을 유지한다. 새 추적자·크기 변경·제거 시 기억을 비운다. 인코딩 비교 테스트를 추가했고 터미널 테스트 9개와 checkstyle이 통과했다. |
@@ -111,7 +103,7 @@ ModernFix `faster_item_rendering`은 실제 클라이언트로 픽셀 비교를 
 
 | 항목 | 이유 |
 | --- | --- |
-| Automobility `markHurt` 제거 | 속도 변화가 1e-7 이하이면 바닐라 경로가 전송하지 않는다. 또 물살·보트 밀기로 바뀐 클라이언트 속도를 매 틱 재전송이 되돌리므로, 물보라 소리·거품이 달라질 수 있다. |
+| Automobility 주행·탑승 차량의 `markHurt` | 속도 변화가 1e-7 이하이면 바닐라 경로가 전송하지 않으므로, 움직이거나 탑승자가 있는 차량은 매 틱 패킷을 유지한다. |
 | alloy-forgery 비교기 갱신 | 매 틱 호출이 주변 비교기의 재판정과 지지 블록 없는 비교기의 파괴까지 수행한다. |
 | PFM 아이템 렌더 push/pop, 렌더 타입 믹스인 | PFM 자체 믹스인이라 안전하게 대상으로 삼을 수 없다. |
 | PFM 테이블 형태, 냉동고 레시피 조회 | 원본 로직을 다시 구현해야 하거나(라이선스·동등성), 비활성 상태에서도 결과를 쓴다. |
@@ -125,21 +117,15 @@ ModernFix `faster_item_rendering`은 실제 클라이언트로 픽셀 비교를 
 - **MTR 가림 판정 큐 사전 확인:** 확인과 추가 사이에 작업 스레드가 큐를 비우면, 그 프레임의 작업은 다음 프레임으로 한 프레임 늦어질 수 있다. 원래 코드에서도 스레드 타이밍에 따라 생기던 경우와 같은 결과다.
 - **PFM 화구:** 생략된 패킷은 오븐 타이머 값도 함께 갱신했었다. 클라이언트는 이 값을 블록 엔티티 데이터로 표시하지 않는다. 화면은 메뉴 동기화로 갱신된다. 크리에이티브 Ctrl+선택으로 복사하는 NBT만 달라질 수 있다.
 - **Oritech 에너지 파이프:** 매 틱 비교기 이웃 갱신이 없어진다. Oritech 블록에는 비교기 출력이 없다. 이 갱신에 기대는 경우는, 다른 블록이 알림 없이 비교기 입력을 바꾸는 경우뿐이다.
+- **Automobility 주차 차량 (사용자 승인):** 탑승자 없는 정지 차량이 물살·보트에 밀리면, 클라이언트 속도가 서버의 0 속도로 매 틱 되돌려지지 않는다. 물보라 소리 크기와 거품 속도가 달라질 수 있다. 위치는 기존 위치 동기화로 서버와 맞춰진다.
 - **GeckoLib 애니메이션 큐:** 뼈대 큐 객체를 프레임 사이에 보관하는 외부 코드가 있다면 최신 내용을 보게 된다. 팩 안에서는 그런 코드를 찾지 못했다. 단, 소스가 없는 PTS-Deco는 확인하지 못했다.
 
-## 루트 인벤토리 후속 변경
+## 루트 인벤토리 변경
 
-패치를 원격에 반영한 뒤 적용한다. 지금 바꾸면 현재 gitlink 소스와 기대 버전이 달라져 빌드가 실패한다.
-
-- `inventory/build-recipes.json` `minefed-client-compat`:
-  - `expectedVersion` → `1.3.0`
-  - `artifactGlobs` → `build/libs/minefed-client-compat-1.3.0.jar`
-  - `tasks` → `build`, `verifyPtsCompatibility`, `verifyPfmCompatibility`, `verifyPfmPerformance`, `verifyTrafficCraftPerformance`
-  - `args`에 `-PtrafficcraftJar=../artifacts/local/trafficcraft-fabric-1.20.4-1.1.3.jar` 추가
-  - 설명을 PFM·TrafficCraft 성능 믹스인과 양쪽 로드로 갱신한다.
-  - 새 의존성 `trafficcraft =1.20.4-1.1.3`을 반영한다.
-- `inventory/release-policy.json` `minefed-client-compat`: `server: true`와 설명을 갱신한다. 서버에도 PTS-Deco·PFM·TrafficCraft(DragonLib)가 있어 의존성이 충족된다.
-- 17개 서브모듈의 gitlink와 `inventory/mods.lock.json`의 ref·commit.
+- `inventory/build-recipes.json` `minefed-client-compat`: 1.3.0 산출물, 검증 작업 5개(`verifyPfmPerformance`, `verifyTrafficCraftPerformance` 추가), `-PtrafficcraftJar` 인자.
+- `inventory/compatibility-fixtures.lock.json`과 `prepareTrafficCraftFixture` Gradle 작업: 공식 TrafficCraft JAR를 해시 고정으로 복원해 믹스인 검증에 쓴다. 릴리즈 선택에는 영향이 없다.
+- `inventory/release-policy.json` `minefed-client-compat`: `server: true`. 서버 모드는 69개, 서버팩 JAR는 플러그인 포함 70개가 된다. 서버에도 PTS-Deco·PFM·TrafficCraft(DragonLib)가 있어 의존성이 충족된다.
+- 이 설정으로 루트 레시피와 같은 인자의 client-compat 빌드·검증 5개가 통과했고, 1.3.0 JAR SHA-256 `3618f04534850f36754bd9db7cebfe4eea435bcc50ee17e93a9b9efa07d07686`이 재현됐다.
 - **빌드 환경 참고:** 이 환경의 JDK 21과 Gradle 8.14.3에서는 FallingTree(Loom 1.4.6)와 NiceMod의 `remapJar`가 빈 JAR를 만들었다. 변경 전 기준 소스에서도 같았다. 레시피대로 JDK 17과 각 wrapper로 빌드해 산출물을 확인한다.
 
 ## 기대 성과 (재정리)
@@ -153,7 +139,7 @@ ModernFix `faster_item_rendering`은 실제 클라이언트로 픽셀 비교를 
   - 변화 없는 TrafficCraft 신호등 갱신(이웃 변경마다 전체 NBT)과 표지판 초기화의 레벨 전체 전송 제거
   - CC 동일 화면 재전송 제거
   - Oritech 기계 동기화 패킷의 레시피 본문 제거, 레이저 에너지 패킷 약 80% 감소(5틱 주기)
-- **계획 대비 축소:** Automobility 주차 차량의 매 틱 속도 패킷은 동등성 문제로 유지한다. 계획서의 해당 기대치(관찰자 1명당 20 pkt/s → 0)는 이번 결과에서 **제외**한다.
+  - Automobility 주차 차량: 관찰자 1명당 20 pkt/s → 0 (차량 20대·관찰자 10명이면 약 4,000 pkt/s 감소)
 - **서버 틱·청크 빌드:**
   - Townscape 형태 조회의 문자열 생성 제거
   - 장식 모드 형태 캐시
