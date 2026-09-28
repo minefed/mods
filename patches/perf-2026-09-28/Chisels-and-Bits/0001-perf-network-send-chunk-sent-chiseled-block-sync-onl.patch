@@ -1,0 +1,36 @@
+From 61b86bf286d3bc5293a34a44d2d4a0d50c4beb5b Mon Sep 17 00:00:00 2001
+From: Claude <noreply@anthropic.com>
+Date: Mon, 28 Sep 2026 06:08:35 +0000
+Subject: [PATCH 1/2] perf(network): send chunk-sent chiseled block sync only
+ to receiving player
+
+The chunk sent event fires per player from PlayerChunkSender.sendChunk after the
+chunk left that player's pending set, so the receiving player was already one of the
+tracking players. Other tracking players received the same full state on their own
+chunk sent event and every later change through the block entity sync packets.
+
+Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_01TD7PJ5R7t7hM3ymeeqXP4H
+---
+ .../mod/chiselsandbits/registrars/ModEventHandler.java     | 7 +++++--
+ 1 file changed, 5 insertions(+), 2 deletions(-)
+
+diff --git a/core/src/main/java/mod/chiselsandbits/registrars/ModEventHandler.java b/core/src/main/java/mod/chiselsandbits/registrars/ModEventHandler.java
+index 0e48a3a..ed88d65 100755
+--- a/core/src/main/java/mod/chiselsandbits/registrars/ModEventHandler.java
++++ b/core/src/main/java/mod/chiselsandbits/registrars/ModEventHandler.java
+@@ -121,9 +121,12 @@ public final class ModEventHandler {
+                     .filter(ChiseledBlockEntity.class::isInstance)
+                     .map(ChiseledBlockEntity.class::cast)
+                     .forEach(chiseledBlockEntity -> {
+-                        ChiselsAndBits.getInstance().getNetworkChannel().sendToTrackingChunk(
++                        // Only the player that just received the chunk needs the full state; every other
++                        // tracking player already got it through its own chunk sent event and the incremental
++                        // block entity syncs since then.
++                        ChiselsAndBits.getInstance().getNetworkChannel().sendToPlayer(
+                                 new UpdateChiseledBlockPacket(chiseledBlockEntity),
+-                                serverLevel.getChunkAt(chiseledBlockEntity.getBlockPos())
++                                serverPlayer
+                         );
+                     });
+         });
