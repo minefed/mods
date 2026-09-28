@@ -23,7 +23,7 @@
       "url": "https://github.com/minefed/resourcepack",
       "upstream": "https://github.com/minefed/resourcepack",
       "ref": "main",
-      "commit": "cbcc8cc1f0f0dbf490a485423b3cbd3959726d21",
+      "commit": "7f2b21632421bf10973ca13f44fc632ee8018762",
       "baselineRef": "main",
       "baselineCommit": "5565738520f8ef0632462198a426781f124ae382",
       "trackingBranch": "main",
@@ -47,9 +47,9 @@
         "path": "alloy-forgery",
         "url": "https://github.com/minefed/alloy-forgery",
         "upstream": "https://github.com/wisp-forest/alloy-forgery",
-        "ref": "codex/fix-glass-recipe-count",
-        "commit": "e4d10145142f7d3dc12effc1b3083723a9d08d4d",
-        "trackingBranch": "codex/fix-glass-recipe-count",
+        "ref": "minefed-1.20.4",
+        "commit": "fe660cd7c31be0232e952064b6a1b726eda04b8a",
+        "trackingBranch": "minefed-1.20.4",
         "baselineRef": "2.1.4+1.20.3",
         "baselineCommit": "f1b61a1b1c0dc7d483b9c44472237cc1c9cc8711"
       },
@@ -183,7 +183,7 @@
         "url": "https://github.com/minefed/Automobility-Refueled",
         "upstream": "https://github.com/codenobacon4u/Automobility",
         "ref": "minefed-1.20.4",
-        "commit": "13160075fb4be333fe2b425183c02f9dc2348184",
+        "commit": "bdb4d3c8bc08634814b61446179e8eaeeb2c0272",
         "trackingBranch": "minefed-1.20.4",
         "baselineRef": "v0.4.3.b+1.20.4",
         "baselineCommit": "96a6369eed2e5528ba8d09c643e032cf7fa15c51"
@@ -292,7 +292,7 @@
         "url": "https://github.com/minefed/BlueMap",
         "upstream": "https://github.com/BlueMap-Minecraft/BlueMap",
         "ref": "minefed-1.20.4",
-        "commit": "dd63c74e1b8251cde574e1beca1025a840e6761c",
+        "commit": "13ac1898e2117a90c837ccedd952cdce587a53ba",
         "trackingBranch": "minefed-1.20.4",
         "baselineRef": "v5.3",
         "baselineCommit": "eed8f79e68b053c119f88bbf358bed893a78d110"
@@ -428,7 +428,7 @@
         "url": "https://github.com/minefed/CC-Tweaked",
         "upstream": "https://github.com/cc-tweaked/CC-Tweaked",
         "ref": "minefed-1.20.4",
-        "commit": "c3264ade27b032f4b4b480169e67bcb08a01bc0a",
+        "commit": "ec4a25addc99eba5d102efa865216b5782a07175",
         "trackingBranch": "minefed-1.20.4",
         "baselineRef": "v1.20.4-1.110.2",
         "baselineCommit": "22bd5309babd469b95b7e0bfdc4c4929ded9ab5b"
@@ -493,7 +493,7 @@
         "url": "https://github.com/minefed/Chisels-and-Bits",
         "upstream": "https://github.com/ChiselsAndBits/Chisels-and-Bits",
         "ref": "minefed-1.20.4",
-        "commit": "12fd1d23b3e6fb929ccba01e034c46ae632acbe0",
+        "commit": "d3932121d5634cef365b92924c406acf4ad4ec07",
         "trackingBranch": "minefed-1.20.4",
         "baselineRef": "version/1.20.4",
         "baselineCommit": "f64db2d6124e004ae498cd1a1154909afd81a96d"
@@ -546,7 +546,7 @@
         "url": "https://github.com/minefed/Chunky",
         "upstream": "https://github.com/pop4959/Chunky",
         "ref": "minefed-1.20.4",
-        "commit": "1fe63d9331b5cbad47dac40b48aabd1b0085c000",
+        "commit": "5ea8415cbf0254deef7396d85da385390a727848",
         "trackingBranch": "minefed-1.20.4",
         "baselineRef": "d3956d688b70c10ae598861dfbf901946f7cfabb",
         "baselineCommit": "d3956d688b70c10ae598861dfbf901946f7cfabb"
@@ -616,7 +616,7 @@
         "url": "https://github.com/minefed/CityCraft",
         "upstream": "https://github.com/XiaoYao-MC/CityCraft",
         "ref": "minefed-1.20.4",
-        "commit": "32f4d36ff7865630f102e8f71302f483311aed39",
+        "commit": "346bdc50656532e21ed8612c52dda2315410968d",
         "trackingBranch": "minefed-1.20.4",
         "baselineRef": "1.19.3-1.19.4",
         "baselineCommit": "9d38b13c11494f3aeb20fc98e2fbf8a80119eef5"
@@ -685,7 +685,7 @@
         "url": "https://github.com/minefed/CrossStitch",
         "upstream": "https://github.com/PaperMC/CrossStitch",
         "ref": "minefed-1.20.4",
-        "commit": "aa5545ce774566f3c09f2b34ac4ec0412274dec8",
+        "commit": "cf7070233e073b48118987148528b9ab6d252639",
         "trackingBranch": "minefed-1.20.4",
         "baselineRef": "0.1.6",
         "baselineCommit": "35a21ed5f402ce0957de5d39670e1804705f2247"
@@ -766,7 +766,7 @@
         "url": "https://github.com/minefed/Decorative-Blocks",
         "upstream": "https://github.com/lilypuree/Decorative-Blocks",
         "ref": "minefed-1.20.4",
-        "commit": "8550e3b988d1d7f1c27c1c15732070569ded051e",
+        "commit": "0f76279c3c1ecbdc75efd6d2c70ecca9a62e504b",
         "trackingBranch": "minefed-1.20.4",
         "baselineRef": "main",
         "baselineCommit": "5775f8bb2c3fa57e041a2d40d377239e7c78d58d"
@@ -832,7 +832,7 @@
         "url": "https://github.com/minefed/diagonal-fences",
         "upstream": "https://github.com/Fuzss/diagonal-fences",
         "ref": "minefed-1.20.4",
-        "commit": "aa41b9f39f744455258c27d3728a1ff77908731f",
+        "commit": "dcbc670b315eb7733f0c7327433dcfc8a48cae20",
         "trackingBranch": "minefed-1.20.4",
         "baselineRef": "1.20.4",
         "baselineCommit": "57e3bc3958e313c772cf68c2bfcb06a367fceb5d"
@@ -900,7 +900,7 @@
         "url": "https://github.com/minefed/diagonal-walls",
         "upstream": "https://github.com/Fuzss/diagonal-walls",
         "ref": "minefed-1.20.4",
-        "commit": "452eb0a4a633ee2d0908f166b0e17315ee99d197",
+        "commit": "d60948316abe749fb733ea57754638235fe15599",
         "trackingBranch": "minefed-1.20.4",
         "baselineRef": "1.20.4",
         "baselineCommit": "250c86bd48638d7f6979850a36e0240aed38fc85"
@@ -968,7 +968,7 @@
         "url": "https://github.com/minefed/diagonal-windows",
         "upstream": "https://github.com/Fuzss/diagonal-windows",
         "ref": "minefed-1.20.4",
-        "commit": "7209c6ea3cb2b05157eeae3ddced087556889bb9",
+        "commit": "f302f625a025aae215948d678705e77b262ab78e",
         "trackingBranch": "minefed-1.20.4",
         "baselineRef": "1.20.4",
         "baselineCommit": "4116d6bab254219ee1e78f25c8ecbd44ac42594b"
@@ -1217,7 +1217,7 @@
         "url": "https://github.com/minefed/fabric-carpet",
         "upstream": "https://github.com/gnembon/fabric-carpet",
         "ref": "minefed-1.20.4",
-        "commit": "72248bbebe61dc0b2b7316378aa7629955d0f91a",
+        "commit": "9afb3ae353e53517e61c7b2a17eacbe4c070692e",
         "trackingBranch": "minefed-1.20.4",
         "baselineRef": "1.4.128",
         "baselineCommit": "92176312d92bfc2595f0bad18b64475f3800921a"
@@ -1282,9 +1282,9 @@
         "path": "fabric-seasons",
         "url": "https://github.com/minefed/fabric-seasons",
         "upstream": "https://github.com/lucaargolo/fabric-seasons",
-        "ref": "codex/fix-snow-grass-tag",
-        "commit": "d5ff75050e02f131ea82fee0e7904e92eb7214f3",
-        "trackingBranch": "codex/fix-snow-grass-tag",
+        "ref": "minefed-1.20.4",
+        "commit": "7cfb70e58ebc5cdd1ee95a5fe37bc135400f27ab",
+        "trackingBranch": "minefed-1.20.4",
         "baselineRef": "2.4.2-BETA+1.20.4",
         "baselineCommit": "bccadddf4ea556fe0fcea95bb88360fd25b812e8"
       },
@@ -1349,7 +1349,7 @@
         "url": "https://github.com/minefed/FabricProxy-Lite",
         "upstream": "https://github.com/OKTW-Network/FabricProxy-Lite",
         "ref": "minefed-1.20.4",
-        "commit": "7391c12684820b14039a42c0e5ae2e9178bf4290",
+        "commit": "f1fdedf3301fd3c3cfdf7064b59f32f37f07eb62",
         "trackingBranch": "minefed-1.20.4",
         "baselineRef": "v2.7.0",
         "baselineCommit": "6a7e156c3b84c07adfb80fb99d1739a631ed341a"
@@ -1417,7 +1417,7 @@
         "url": "https://github.com/minefed/FallingTree",
         "upstream": "https://github.com/RakambdaOrg/FallingTree",
         "ref": "minefed-1.20.4",
-        "commit": "0a70a01d3d682a9069f12a00a5c9dbd96d53f2cb",
+        "commit": "03515fd50f60e82047eb3a03ec9954a4d26e0b62",
         "trackingBranch": "minefed-1.20.4",
         "baselineRef": "1.20.4.3",
         "baselineCommit": "6db0a7bface140865da07009c0bd679f684a3340"
@@ -1484,7 +1484,7 @@
         "url": "https://github.com/minefed/FerriteCore",
         "upstream": "https://github.com/malte0811/FerriteCore",
         "ref": "minefed-1.20.4",
-        "commit": "1df30b595e231bc0dc9a8eabe65d34cce542d3f9",
+        "commit": "cadfea106ad3496109ae738ff4a0a866b4131ee8",
         "trackingBranch": "minefed-1.20.4",
         "baselineRef": "build-6.0.3",
         "baselineCommit": "a9a24d4f6945f4e41855f55660915b2f5b570dd7"
@@ -1549,7 +1549,7 @@
         "url": "https://github.com/minefed/forge-config-api-port",
         "upstream": "https://github.com/Fuzss/forge-config-api-port",
         "ref": "minefed-1.20.4",
-        "commit": "b102873873cd9d0bd70685cd7bec524666e2d190",
+        "commit": "b7b7a73609b1d7c6d5926a17481998097abd092e",
         "trackingBranch": "minefed-1.20.4",
         "baselineRef": "1.20.4",
         "baselineCommit": "a99bf22e9242637d4a71a5f25f03c47d6ff2c2df"
@@ -1726,7 +1726,7 @@
         "url": "https://github.com/minefed/geckolib",
         "upstream": "https://github.com/bernie-g/geckolib",
         "ref": "minefed-1.20.4",
-        "commit": "fb968c0379ef0f6ef5c0d6672a464b2f2712553f",
+        "commit": "c54b45f710e3a44c38868f0f1ab6fa98eda6ecd9",
         "trackingBranch": "minefed-1.20.4",
         "baselineRef": "1.20.4",
         "baselineCommit": "d0b06fe3386e1be3242298e9373c54e5af0c65d1"
@@ -1790,7 +1790,7 @@
         "url": "https://github.com/minefed/Handcrafted",
         "upstream": "https://github.com/terrarium-earth/Handcrafted",
         "ref": "minefed-1.20.4",
-        "commit": "7b5501555b4683757800e9ca7df264d0850caad3",
+        "commit": "e05b961a7cbed171fa25ed8ddf07a70cf1c0da5e",
         "trackingBranch": "minefed-1.20.4",
         "baselineRef": "1.20.x",
         "baselineCommit": "5d3260b2882ebe5de1aa7a4ca4aa2336a593f31d"
@@ -1982,7 +1982,7 @@
         "url": "https://github.com/minefed/lithium",
         "upstream": "https://github.com/CaffeineMC/lithium",
         "ref": "minefed-1.20.4",
-        "commit": "c40b7585606e8434b7a8f1e7ef15c20d99685f19",
+        "commit": "532b9c97cf13c623ce0349d66473ad7854dc9538",
         "trackingBranch": "minefed-1.20.4",
         "baselineRef": "mc1.20.4-0.12.1",
         "baselineCommit": "b8f2818899bfcdae1bbf34991f2d3351e72c2f6c"
@@ -2045,7 +2045,7 @@
         "url": "https://github.com/minefed/MacawsDoors",
         "upstream": "https://github.com/sketchmacaw/MacawsDoors",
         "ref": "minefed-1.20.4",
-        "commit": "b07c8caa4a45f0f9aac98d04a972fd359d7a84ca",
+        "commit": "05224f9d3c88589245e8bdf2e8ecfcc85a36eafa",
         "trackingBranch": "minefed-1.20.4",
         "baselineRef": "main",
         "baselineCommit": "24b5b4ae1a93c60774f63bd620c53f009e0be7ae"
@@ -2109,7 +2109,7 @@
         "url": "https://github.com/minefed/Fences",
         "upstream": "https://github.com/sketchmacaw/Fences",
         "ref": "minefed-1.20.4",
-        "commit": "c9821fbd10fe55cdb0cc9e91fefb19a5d6d6aa4b",
+        "commit": "a2025a8e38b692e0b2d31ba92d43f97108cfd96a",
         "trackingBranch": "minefed-1.20.4",
         "baselineRef": "main",
         "baselineCommit": "8c4e6d498d344115b7356ca68cdb724cbfc89cb3"
@@ -2281,7 +2281,7 @@
         "url": "https://github.com/minefed/MemoryLeakFix",
         "upstream": "https://github.com/FxMorin/MemoryLeakFix",
         "ref": "minefed-1.20.4",
-        "commit": "f01909746ee3ad595a3ed91e4abb4779a06a47c2",
+        "commit": "2b6a012826638c5e23a57ef8820011f3fb052fd1",
         "trackingBranch": "minefed-1.20.4",
         "baselineRef": "v1.1.5",
         "baselineCommit": "f5e4087566740e9df661c5acf38e345f72068c90"
@@ -2357,7 +2357,7 @@
         "url": "https://github.com/minefed/minefed-display",
         "upstream": "https://github.com/minefed/minefed-display",
         "ref": "minefed-1.20.4",
-        "commit": "a1e8f94df20c22c1ccfc4083b1dc01dc7f757e45",
+        "commit": "15486ffdf40cb1d66b0bd45e2478a7214dac3fdc",
         "trackingBranch": "minefed-1.20.4",
         "baselineRef": "main",
         "baselineCommit": "79708da179682295df0dfc379320a0759c25a97d"
@@ -2408,7 +2408,7 @@
         "url": "https://github.com/minefed/mishanguc",
         "upstream": "https://github.com/SolidBlock-cn/mishanguc",
         "ref": "minefed-1.20.4",
-        "commit": "07028d29c741f688fafd271e5fb0f51937042184",
+        "commit": "86f8deafe1bdef88fb17de70f89857cb1ec06849",
         "trackingBranch": "minefed-1.20.4",
         "baselineRef": "1.20.4",
         "baselineCommit": "ff9925d49a8e9512bfd0160038421b829c5ff68e"
@@ -2472,7 +2472,7 @@
         "url": "https://github.com/minefed/modern-glass-doors",
         "upstream": "https://github.com/ReviversMC/modern-glass-doors",
         "ref": "minefed-1.20.4",
-        "commit": "3c65e91eee397e91496f78345165451d86b28932",
+        "commit": "ff1193030aff2f50b45ab6904bb86f9a84e1c54b",
         "trackingBranch": "minefed-1.20.4",
         "baselineRef": "v5.3.0+1.20.3-and-later",
         "baselineCommit": "bf38d4feb851041357c81caa696450498cda0048"
@@ -2537,7 +2537,7 @@
         "url": "https://github.com/minefed/Modern-Lights",
         "upstream": "https://github.com/aka-jammy/Modern-Lights",
         "ref": "minefed-1.20.4",
-        "commit": "6b04f156a3e24a778fa2e0697d98bfd3aeca0256",
+        "commit": "dad3999c6ffaa2c2d837d36b9848988034cc354f",
         "trackingBranch": "minefed-1.20.4",
         "baselineRef": "1.20---1.20.4",
         "baselineCommit": "5df1c7567ac7f4dd8d40118000187585e5e9b725"
@@ -2605,7 +2605,7 @@
         "url": "https://github.com/minefed/ModernFix",
         "upstream": "https://github.com/embeddedt/ModernFix",
         "ref": "minefed-1.20.4",
-        "commit": "479096893321f5dc3e97791e5fa7dcf3ed58e15b",
+        "commit": "6c6e57a8cab58cd422e1e6aacf59d241a24623c0",
         "trackingBranch": "minefed-1.20.4",
         "baselineRef": "5.17.0+1.20.4",
         "baselineCommit": "c8f9b1cd843e69035ed988baeee04dc46a06fd1b"
@@ -2667,7 +2667,7 @@
         "url": "https://github.com/minefed/MTR-Station-Decoration-Addon",
         "upstream": "https://github.com/AIDA64S/MTR-Station-Decoration-Addon",
         "ref": "minefed-1.20.4",
-        "commit": "b06fc0725b20a5b7a6c72bdacd20814dd8d8aabf",
+        "commit": "85f5edf58ce2c73f4ccb80a4fbe082b6f7a96170",
         "trackingBranch": "minefed-1.20.4",
         "baselineRef": "4.0.0",
         "baselineCommit": "14b0a8c9687bdbbfd755f282bbfab4030a92f3d3"
@@ -2730,9 +2730,9 @@
         "path": "Minecraft-Transit-Railway",
         "url": "https://github.com/minefed/Minecraft-Transit-Railway",
         "upstream": "https://github.com/Minecraft-Transit-Railway/Minecraft-Transit-Railway",
-        "ref": "codex/fix-cargo-loot",
-        "commit": "e33269ecb041c55503053b72ccec4ec68d7bc01c",
-        "trackingBranch": "codex/fix-cargo-loot",
+        "ref": "minefed-1.20.4",
+        "commit": "25cf42b49c788814f10cead1615acd9b08d3d87c",
+        "trackingBranch": "minefed-1.20.4",
         "baselineRef": "main",
         "baselineCommit": "53cdc36ebef57c42bdc8633957be1b0e923c40b5"
       },
@@ -2779,9 +2779,9 @@
         "path": "Minecraft-Transit-Railway",
         "url": "https://github.com/minefed/Minecraft-Transit-Railway",
         "upstream": "https://github.com/Minecraft-Transit-Railway/Minecraft-Transit-Railway",
-        "ref": "codex/fix-cargo-loot",
-        "commit": "e33269ecb041c55503053b72ccec4ec68d7bc01c",
-        "trackingBranch": "codex/fix-cargo-loot",
+        "ref": "minefed-1.20.4",
+        "commit": "25cf42b49c788814f10cead1615acd9b08d3d87c",
+        "trackingBranch": "minefed-1.20.4",
         "baselineRef": "main",
         "baselineCommit": "53cdc36ebef57c42bdc8633957be1b0e923c40b5"
       },
@@ -2832,7 +2832,7 @@
         "url": "https://github.com/minefed/MythicMetals",
         "upstream": "https://github.com/Noaaan/MythicMetals",
         "ref": "minefed-1.20.4",
-        "commit": "cfa897b7e6b2ab856f08582c5e525e675633b33c",
+        "commit": "ddec938754037714b03550d90b806c99bdf1ccac",
         "trackingBranch": "minefed-1.20.4",
         "baselineRef": "0.19.7+1.20.4",
         "baselineCommit": "4f61b8a7d01c0edbc57fd3e14f9d2a413e0e62cf"
@@ -2900,7 +2900,7 @@
         "url": "https://github.com/minefed/MythicMetalsDecorations",
         "upstream": "https://github.com/Noaaan/MythicMetalsDecorations",
         "ref": "minefed-1.20.4",
-        "commit": "f5af39239697e9ed89a108da59c2f8eac695d3df",
+        "commit": "307cc3ac6d1a2e7d5890d74d82e7c74f11117d15",
         "trackingBranch": "minefed-1.20.4",
         "baselineRef": "0.6.1+1.20.3",
         "baselineCommit": "e31a9c7c4ffcdd6b38370a38519593c34f0b92f2"
@@ -2965,7 +2965,7 @@
         "url": "https://github.com/minefed/NiceMod",
         "upstream": "https://github.com/MIUNO/NiceMod",
         "ref": "minefed-1.20.4",
-        "commit": "c344763657eaa90d878d858a74c1cdb93cf9d66f",
+        "commit": "1db9e0c9f4ad61259eeb979802ca1e33f7504ac2",
         "trackingBranch": "minefed-1.20.4",
         "baselineRef": "1.4.1",
         "baselineCommit": "417dd6a481312298456cebb6e5201c56f0afb45a"
@@ -3031,7 +3031,7 @@
         "url": "https://github.com/minefed/Oritech",
         "upstream": "https://github.com/Rearth/Oritech",
         "ref": "minefed-1.20.4",
-        "commit": "0ace08abb384f0e38288f4bc82b6c58606509f86",
+        "commit": "6dcc9f80de9015ad2380e946bfc890dae7fd565e",
         "trackingBranch": "minefed-1.20.4",
         "baselineRef": "v0.5.1+1.20.4",
         "baselineCommit": "83ba099a700478e4fd7e85548ced4f5d7227d114"
@@ -3164,7 +3164,7 @@
         "url": "https://github.com/minefed/paladins-furniture",
         "upstream": "https://github.com/UnlikePaladin/paladins-furniture",
         "ref": "minefed-1.20.4",
-        "commit": "131ac50fa74b0896f0a6d4b56c003076e036b318",
+        "commit": "67839f006ca289586644437a4e59b2190e25837d",
         "trackingBranch": "minefed-1.20.4",
         "baselineRef": "refs/heads/architectury-1.20.4",
         "baselineCommit": "0921e7cdd2684061f2372088bdedd37a9dce838d"
@@ -3229,7 +3229,7 @@
         "url": "https://github.com/minefed/Patchouli",
         "upstream": "https://github.com/VazkiiMods/Patchouli",
         "ref": "minefed-1.20.4",
-        "commit": "5bb9e96cd8256c0bcd2fa87eff2d65be0a7290d5",
+        "commit": "2e4ddda0a0816403e9d20f778febffce66d89004",
         "trackingBranch": "minefed-1.20.4",
         "baselineRef": "refs/tags/release-1.20.4-85",
         "baselineCommit": "4522fbb3e42b5a31688c7c7666cf13c12c0fdb83"
@@ -3333,7 +3333,7 @@
         "url": "https://github.com/minefed/puzzles-lib",
         "upstream": "https://github.com/Fuzss/puzzles-lib",
         "ref": "minefed-1.20.4",
-        "commit": "1dc5d1305d9d93527d09b84c826d30216bb5d468",
+        "commit": "a0ec32d772afa27eaca70058be536f2b07bb6085",
         "trackingBranch": "minefed-1.20.4",
         "baselineRef": "refs/heads/1.20.4",
         "baselineCommit": "dff8529b28db23e197c34f47792839ae305571e5"
@@ -3398,7 +3398,7 @@
         "url": "https://github.com/minefed/mc-realtime",
         "upstream": "https://github.com/ttianeo/mc-realtime",
         "ref": "minefed-1.20.4",
-        "commit": "bd05e0fe8ad18184354dff9453da4b0d8b4703b5",
+        "commit": "ce5d254952ca7926abeec1cc26b2829ec1a6bd32",
         "trackingBranch": "minefed-1.20.4",
         "baselineRef": "refs/heads/1.20-1.21.1",
         "baselineCommit": "467b5728786dbfd260df9aced99770343b732267"
@@ -3655,7 +3655,7 @@
         "url": "https://github.com/minefed/Starlight",
         "upstream": "https://github.com/PaperMC/Starlight",
         "ref": "minefed-1.20.4",
-        "commit": "c2b8391d83ddadbd8136d2abead7e1014da19a6d",
+        "commit": "bd536f78e2c666b683d858a7820fdc2d3949c9c5",
         "trackingBranch": "minefed-1.20.4",
         "baselineRef": "f5dcd1a4278aba0aceb92a64bb91d411154449f7",
         "baselineCommit": "f5dcd1a4278aba0aceb92a64bb91d411154449f7"
@@ -3717,7 +3717,7 @@
         "url": "https://github.com/minefed/stoneworks",
         "upstream": "https://github.com/Fuzss/stoneworks",
         "ref": "minefed-1.20.4",
-        "commit": "6f492401ca95bec909e0f0f634c58780fa67793a",
+        "commit": "cfc197967df1d96f02975cc42e6d608b312360ee",
         "trackingBranch": "minefed-1.20.4",
         "baselineRef": "refs/heads/1.20.4",
         "baselineCommit": "fc6ff7702dcf3bc203a4466039a2abe9c55b560f"
@@ -3894,7 +3894,7 @@
         "url": "https://github.com/minefed/RealIP",
         "upstream": "https://github.com/TCPShield/RealIP",
         "ref": "minefed-1.20.4",
-        "commit": "b0a1956154fee51616ce396bf355a466001c6467",
+        "commit": "20c3fa7b36649af8a7c420d8d430b5d75d87cddd",
         "trackingBranch": "minefed-1.20.4",
         "baselineRef": "refs/tags/2.8.1",
         "baselineCommit": "b316629e047535cd227bf750f4a9d729137922e7"
@@ -3941,7 +3941,7 @@
         "url": "https://github.com/minefed/TimeOutOut",
         "upstream": "https://github.com/PotatoPresident/TimeOutOut",
         "ref": "minefed-1.20.4",
-        "commit": "0d27ca115902c93d132a2d062b166c5a544da0c7",
+        "commit": "01a733efc8a88afca406f7051e7cfc2e6534d56b",
         "trackingBranch": "minefed-1.20.4",
         "baselineRef": "refs/tags/1.0.4",
         "baselineCommit": "14c126ab3dba59399d658bf52c198e2fdcdb8010"
@@ -4016,9 +4016,9 @@
         "path": "TrafficCraft",
         "url": "https://github.com/minefed/TrafficCraft",
         "upstream": "https://github.com/MisterJulsen/TrafficCraft",
-        "ref": "codex/fix-wikipedia-requests",
-        "commit": "69a09747437289bcda71a8bfaa1c72aeca848cad",
-        "trackingBranch": "codex/fix-wikipedia-requests",
+        "ref": "minefed-1.20.4",
+        "commit": "48605568e12d9cec7e85d4057d180b461925a28f",
+        "trackingBranch": "minefed-1.20.4",
         "baselineRef": "refs/heads/1.20.4-dev",
         "baselineCommit": "c6c7092df4c1f77e438e507756255eb47e7a3585"
       },
@@ -4084,7 +4084,7 @@
         "url": "https://github.com/minefed/fabric-webstreamer",
         "upstream": "https://github.com/theorzr/fabric-webstreamer",
         "ref": "minefed-1.20.4",
-        "commit": "f9c03980c9cb31ca891e4429bc2529c6c0cce033",
+        "commit": "4b80ece8911694498bfb0b1c55973c77b0835333",
         "trackingBranch": "minefed-1.20.4",
         "baselineRef": "master",
         "baselineCommit": "ff3796b835d7a61055f218cdddb718429507a1c4"
@@ -4138,7 +4138,7 @@
         "url": "https://github.com/minefed/wireless-redstone",
         "upstream": "https://github.com/Razzokk/wireless-redstone",
         "ref": "minefed-1.20.4",
-        "commit": "85cd6b45cd660deeba6ac5cb58b8d5f82795dae0",
+        "commit": "bb0300f89e859b122df92142eb428e115a11a0ef",
         "trackingBranch": "minefed-1.20.4",
         "baselineRef": "refs/tags/v1.2.2+1.20.4",
         "baselineCommit": "3a7b4d614bb3cc45cd90a809052f0eefb2ae1201"
@@ -4201,7 +4201,7 @@
         "url": "https://github.com/minefed/worldedit-hang-fix",
         "upstream": "https://github.com/Fallen-Breath/worldedit-hang-fix",
         "ref": "minefed-1.20.4",
-        "commit": "45c744113850a55f844c7195d5e074b6845d28eb",
+        "commit": "182987433a87f72eadcde93395935606039cdca0",
         "trackingBranch": "minefed-1.20.4",
         "baselineRef": "refs/tags/v1.0.5",
         "baselineCommit": "583c7ceab5031d0864bf85a5934662a8def870e2"
@@ -4306,7 +4306,7 @@
         "url": "https://github.com/minefed/WorldEdit",
         "upstream": "https://github.com/EngineHub/WorldEdit",
         "ref": "minefed-1.20.4",
-        "commit": "f2cdc4aa7816a0184adf3fcfaf3ff5712d8dfd68",
+        "commit": "a375e58ae7595dbba976950cf8ff0c3cf973c4e3",
         "trackingBranch": "minefed-1.20.4",
         "baselineRef": "refs/tags/7.3.0",
         "baselineCommit": "55745adbdb3fecbb2d5bac6d90655c511245a552"
@@ -4371,9 +4371,9 @@
         "path": "Yuushya-Townscape",
         "url": "https://github.com/minefed/Yuushya-Townscape",
         "upstream": "https://gitee.com/yuushyatownscape/yuushya-townscape",
-        "ref": "codex/fix-survival-data",
-        "commit": "ca14f0658a05e4d53ec302fa01f27de4311359b8",
-        "trackingBranch": "codex/fix-survival-data",
+        "ref": "minefed-1.20.4",
+        "commit": "f2fab506bbe69368eff27d5d4dc6afa23170f0b7",
+        "trackingBranch": "minefed-1.20.4",
         "baselineRef": "refs/tags/v2.2.3",
         "baselineCommit": "e76ea8ac5454ec424771f593ce05ee0082e4b278"
       },
@@ -4441,7 +4441,7 @@
         "url": "https://github.com/minefed/Yuushya-Modelling",
         "upstream": "https://github.com/XiLaiTL/Yuushya-Modelling",
         "ref": "minefed-1.20.4",
-        "commit": "6256abeee58ca8952ada2ac617aa15ef16ec23dd",
+        "commit": "efcfda38866ce70aacbc599c8f25a1e51f2ece78",
         "trackingBranch": "minefed-1.20.4",
         "baselineRef": "refs/heads/master",
         "baselineCommit": "3e36b9f66c0ae10202379f7287f88f7906976163"
@@ -4506,9 +4506,9 @@
         "path": "minefed-client-compat",
         "url": "https://github.com/minefed/minefed-client-compat",
         "upstream": "https://github.com/minefed/minefed-client-compat",
-        "ref": "codex/fix-pfm-first-frame",
-        "commit": "3ac78cb964693b0cbd098e63041f1592d98a99ca",
-        "trackingBranch": "codex/fix-pfm-first-frame",
+        "ref": "main",
+        "commit": "6e4630945e8c8c5e9f080c02e81b41f908bad7b3",
+        "trackingBranch": "main",
         "baselineRef": "codex/pts-recipe-sync",
         "baselineCommit": "e27ee63ddc883343e554d32f511fe3bebcc565dd"
       },

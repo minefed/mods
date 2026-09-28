@@ -1,7 +1,7 @@
 [submodule "Minecraft-Transit-Railway"]
 	path = Minecraft-Transit-Railway
 	url = https://github.com/minefed/Minecraft-Transit-Railway
-	branch = codex/fix-cargo-loot
+	branch = minefed-1.20.4
 [submodule "fabric-webstreamer"]
 	path = fabric-webstreamer
 	url = https://github.com/minefed/fabric-webstreamer
@@ -13,7 +13,7 @@
 [submodule "alloy-forgery"]
 	path = alloy-forgery
 	url = https://github.com/minefed/alloy-forgery
-	branch = codex/fix-glass-recipe-count
+	branch = minefed-1.20.4
 [submodule "Automobility-Refueled"]
 	path = Automobility-Refueled
 	url = https://github.com/minefed/Automobility-Refueled
@@ -69,7 +69,7 @@
 [submodule "fabric-seasons"]
 	path = fabric-seasons
 	url = https://github.com/minefed/fabric-seasons
-	branch = codex/fix-snow-grass-tag
+	branch = minefed-1.20.4
 [submodule "FerriteCore"]
 	path = FerriteCore
 	url = https://github.com/minefed/FerriteCore
@@ -189,11 +189,11 @@
 [submodule "TrafficCraft"]
 	path = TrafficCraft
 	url = https://github.com/minefed/TrafficCraft
-	branch = codex/fix-wikipedia-requests
+	branch = minefed-1.20.4
 [submodule "Yuushya-Townscape"]
 	path = Yuushya-Townscape
 	url = https://github.com/minefed/Yuushya-Townscape
-	branch = codex/fix-survival-data
+	branch = minefed-1.20.4
 [submodule "Modern-Lights"]
 	path = Modern-Lights
 	url = https://github.com/minefed/Modern-Lights
@@ -205,4 +205,4 @@
 [submodule "minefed-client-compat"]
 	path = minefed-client-compat
 	url = https://github.com/minefed/minefed-client-compat
-	branch = codex/fix-pfm-first-frame
+	branch = main
