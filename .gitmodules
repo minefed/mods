@@ -69,7 +69,7 @@
 [submodule "fabric-seasons"]
 	path = fabric-seasons
 	url = https://github.com/minefed/fabric-seasons
-	branch = minefed-1.20.4
+	branch = codex/fix-snow-grass-tag
 [submodule "FerriteCore"]
 	path = FerriteCore
 	url = https://github.com/minefed/FerriteCore
