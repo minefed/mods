@@ -2973,7 +2973,7 @@
         "url": "https://github.com/minefed/NiceMod",
         "upstream": "https://github.com/MIUNO/NiceMod",
         "ref": "minefed-1.20.4",
-        "commit": "1db9e0c9f4ad61259eeb979802ca1e33f7504ac2",
+        "commit": "ca33bc7abcf231ffcbceefefb44fb088b7535198",
         "trackingBranch": "minefed-1.20.4",
         "baselineRef": "1.4.1",
         "baselineCommit": "417dd6a481312298456cebb6e5201c56f0afb45a"
@@ -3009,7 +3009,8 @@
       "licenseUrl": "https://github.com/MIUNO/NiceMod/blob/1.4.1/LICENSE",
       "licenseNoticesPath": "inventory/notices/nicemod-a6dd69de56fd",
       "notes": [
-        "Exact release tag contains mod_version1.4.1 -1.20 and metadata >=1.20 <1.21; build targets1.20.2. Do not use1.4.1_2 tag which targets1.21."
+        "Exact release tag contains mod_version1.4.1 -1.20 and metadata >=1.20 <1.21; build targets1.20.2. Do not use1.4.1_2 tag which targets1.21.",
+        "2026-09-28: Behavior-preserving network/FPS optimizations fast-forwarded minefed-1.20.4 to ca33bc7abcf231ffcbceefefb44fb088b7535198; see docs/OPTIMIZATION_RESULTS_2026-09-28.md. Captured artifact hashes remain historical baseline evidence."
       ],
       "compatibility": {
         "minecraft": ">=1.20 <1.21",
