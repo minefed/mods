@@ -1,0 +1,244 @@
+From e5a4f87e47e5de7e1ef5c122dc4e58aa2750706d Mon Sep 17 00:00:00 2001
+From: Claude <noreply@anthropic.com>
+Date: Mon, 28 Sep 2026 06:22:39 +0000
+Subject: [PATCH 3/3] perf(biome): reuse seasonal weather per biome in
+ injectBiomeTemperature
+
+Every World.getBiome call ran getSeasonWeather, which rebuilt the biome
+id string for the force-snow list and allocated a Pair and a boxed
+Float. getSeasonWeather only reads its arguments and the config, so
+compute it once for all four seasons into an immutable per-biome table
+keyed by the config instance, biome id and original weather (identity
+and values), and rebuild the table whenever any of them differs. The
+season is still resolved on every call and the same weather fields are
+written, so the values seen by rendering, precipitation and spawning are
+unchanged. A config-parameter overload keeps the public getSeasonWeather
+signature and body; a null season keeps the original code path.
+
+Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_01TD7PJ5R7t7hM3ymeeqXP4H
+---
+ .../lucaargolo/seasons/FabricSeasons.java     | 52 +++++++++++------
+ .../lucaargolo/seasons/mixed/BiomeMixed.java  |  5 ++
+ .../lucaargolo/seasons/mixin/BiomeMixin.java  | 13 +++++
+ .../seasons/utils/SeasonalWeatherTable.java   | 57 +++++++++++++++++++
+ 4 files changed, 111 insertions(+), 16 deletions(-)
+ create mode 100644 src/main/java/io/github/lucaargolo/seasons/utils/SeasonalWeatherTable.java
+
+diff --git a/src/main/java/io/github/lucaargolo/seasons/FabricSeasons.java b/src/main/java/io/github/lucaargolo/seasons/FabricSeasons.java
+index f16ea04..6a4c754 100644
+--- a/src/main/java/io/github/lucaargolo/seasons/FabricSeasons.java
++++ b/src/main/java/io/github/lucaargolo/seasons/FabricSeasons.java
+@@ -367,56 +367,76 @@ public class FabricSeasons implements ModInitializer {
+         }
+         Season season = FabricSeasons.getCurrentSeason(world);
+ 
+-        Pair<Boolean, Float> modifiedWeather = getSeasonWeather(season, biomeId, originalWeather.hasPrecipitation, originalWeather.temperature);
+-        currentWeather.hasPrecipitation = modifiedWeather.getLeft();
+-        currentWeather.temperature = modifiedWeather.getRight();
++        if(season == null) {
++            // Only reachable with an invalid locked season in the config; keep the original path and its errors.
++            Pair<Boolean, Float> modifiedWeather = getSeasonWeather(season, biomeId, originalWeather.hasPrecipitation, originalWeather.temperature);
++            currentWeather.hasPrecipitation = modifiedWeather.getLeft();
++            currentWeather.temperature = modifiedWeather.getRight();
++            return;
++        }
++
++        // getSeasonWeather is a pure function of the config, season, biome id and original weather, so reuse
++        // the per biome table instead of recomputing it (and allocating a Pair) on every biome lookup.
++        ModConfig config = CONFIG;
++        BiomeMixed mixed = (BiomeMixed) (Object) biome;
++        SeasonalWeatherTable table = mixed.getSeasonalWeatherTable();
++        if (table == null || !table.matches(config, biomeId, originalWeather)) {
++            table = new SeasonalWeatherTable(config, biomeId, originalWeather);
++            mixed.setSeasonalWeatherTable(table);
++        }
++        currentWeather.hasPrecipitation = table.hasPrecipitation(season);
++        currentWeather.temperature = table.getTemperature(season);
+     }
+ 
+     public static Pair<Boolean, Float> getSeasonWeather(Season season, Identifier biomeId, Boolean hasPrecipitation, float temp) {
+-        if(!CONFIG.doTemperatureChanges(biomeId)) {
++        return getSeasonWeather(CONFIG, season, biomeId, hasPrecipitation, temp);
++    }
++
++    public static Pair<Boolean, Float> getSeasonWeather(ModConfig config, Season season, Identifier biomeId, Boolean hasPrecipitation, float temp) {
++        if(!config.doTemperatureChanges(biomeId)) {
+             return new Pair<>(hasPrecipitation, temp);
+         }
+-        if(CONFIG.isSnowForcedInBiome(biomeId) && season == Season.WINTER) {
++        if(config.isSnowForcedInBiome(biomeId) && season == Season.WINTER) {
+             return new Pair<>(hasPrecipitation, 0.14f);
+         }else if(temp <= -0.51) {
+             //Permanently Frozen Biomes
+             return switch (season) {
+-                case SPRING -> CONFIG.isFallAndSpringReversed() ? new Pair<>(hasPrecipitation, temp - 0.3f) : new Pair<>(hasPrecipitation, temp);
++                case SPRING -> config.isFallAndSpringReversed() ? new Pair<>(hasPrecipitation, temp - 0.3f) : new Pair<>(hasPrecipitation, temp);
+                 case SUMMER -> new Pair<>(hasPrecipitation, temp + 0.84f);
+                 case WINTER -> new Pair<>(hasPrecipitation, temp - 0.7f);
+-                case FALL -> CONFIG.isFallAndSpringReversed() ? new Pair<>(hasPrecipitation, temp) : new Pair<>(hasPrecipitation, temp - 0.3f);
++                case FALL -> config.isFallAndSpringReversed() ? new Pair<>(hasPrecipitation, temp) : new Pair<>(hasPrecipitation, temp - 0.3f);
+             };
+         }else if(temp <= 0.15) {
+             //Usually Frozen Biomes
+             return switch (season) {
+-                case SPRING -> CONFIG.isFallAndSpringReversed() ? new Pair<>(hasPrecipitation, temp - 0.25f) : new Pair<>(hasPrecipitation, temp);
+-                case SUMMER -> new Pair<>(hasPrecipitation, temp + (CONFIG.shouldSnowyBiomesMeltInSummer() ? 0.66f : 0f));
++                case SPRING -> config.isFallAndSpringReversed() ? new Pair<>(hasPrecipitation, temp - 0.25f) : new Pair<>(hasPrecipitation, temp);
++                case SUMMER -> new Pair<>(hasPrecipitation, temp + (config.shouldSnowyBiomesMeltInSummer() ? 0.66f : 0f));
+                 case WINTER -> new Pair<>(hasPrecipitation, temp - 0.75f);
+-                case FALL -> CONFIG.isFallAndSpringReversed() ? new Pair<>(hasPrecipitation, temp) : new Pair<>(hasPrecipitation, temp - 0.25f);
++                case FALL -> config.isFallAndSpringReversed() ? new Pair<>(hasPrecipitation, temp) : new Pair<>(hasPrecipitation, temp - 0.25f);
+             };
+         }else if(temp <= 0.49) {
+             //Temparate Biomes
+             return switch (season) {
+-                case SPRING -> CONFIG.isFallAndSpringReversed() ? new Pair<>(hasPrecipitation, temp - 0.16f) : new Pair<>(hasPrecipitation, temp);
++                case SPRING -> config.isFallAndSpringReversed() ? new Pair<>(hasPrecipitation, temp - 0.16f) : new Pair<>(hasPrecipitation, temp);
+                 case SUMMER -> new Pair<>(hasPrecipitation, temp + 0.66f);
+                 case WINTER -> new Pair<>(hasPrecipitation, temp - 0.8f);
+-                case FALL  -> CONFIG.isFallAndSpringReversed() ? new Pair<>(hasPrecipitation, temp) : new Pair<>(hasPrecipitation, temp - 0.16f);
++                case FALL  -> config.isFallAndSpringReversed() ? new Pair<>(hasPrecipitation, temp) : new Pair<>(hasPrecipitation, temp - 0.16f);
+             };
+         }else if(temp <= 0.79) {
+             //Usually Ice Free Biomes
+             return switch (season) {
+-                case SPRING -> CONFIG.isFallAndSpringReversed() ? new Pair<>(hasPrecipitation, temp - 0.34f) : new Pair<>(hasPrecipitation, temp);
++                case SPRING -> config.isFallAndSpringReversed() ? new Pair<>(hasPrecipitation, temp - 0.34f) : new Pair<>(hasPrecipitation, temp);
+                 case SUMMER -> new Pair<>(hasPrecipitation, temp + 0.46f);
+                 case WINTER -> new Pair<>(hasPrecipitation, temp - 0.56f);
+-                case FALL -> CONFIG.isFallAndSpringReversed() ? new Pair<>(hasPrecipitation, temp) : new Pair<>(hasPrecipitation, temp - 0.34f);
++                case FALL -> config.isFallAndSpringReversed() ? new Pair<>(hasPrecipitation, temp) : new Pair<>(hasPrecipitation, temp - 0.34f);
+             };
+         }else{
+             // Ice Free Biomes
+             return switch (season) {
+-                case SPRING -> CONFIG.isFallAndSpringReversed() ? new Pair<>(hasPrecipitation, temp - 0.34f) : new Pair<>(hasPrecipitation, temp);
++                case SPRING -> config.isFallAndSpringReversed() ? new Pair<>(hasPrecipitation, temp - 0.34f) : new Pair<>(hasPrecipitation, temp);
+                 case SUMMER -> new Pair<>(hasPrecipitation, temp + 0.4f);
+                 case WINTER -> new Pair<>(true, temp - 0.64f);
+-                case FALL -> CONFIG.isFallAndSpringReversed() ? new Pair<>(hasPrecipitation, temp) : new Pair<>(hasPrecipitation, temp - 0.34f);
++                case FALL -> config.isFallAndSpringReversed() ? new Pair<>(hasPrecipitation, temp) : new Pair<>(hasPrecipitation, temp - 0.34f);
+             };
+         }
+     }
+diff --git a/src/main/java/io/github/lucaargolo/seasons/mixed/BiomeMixed.java b/src/main/java/io/github/lucaargolo/seasons/mixed/BiomeMixed.java
+index 9a6ce03..723d2a4 100644
+--- a/src/main/java/io/github/lucaargolo/seasons/mixed/BiomeMixed.java
++++ b/src/main/java/io/github/lucaargolo/seasons/mixed/BiomeMixed.java
+@@ -1,5 +1,6 @@
+ package io.github.lucaargolo.seasons.mixed;
+ 
++import io.github.lucaargolo.seasons.utils.SeasonalWeatherTable;
+ import net.minecraft.world.biome.Biome;
+ 
+ public interface BiomeMixed {
+@@ -8,5 +9,9 @@ public interface BiomeMixed {
+ 
+     void setOriginalWeather(Biome.Weather originalWeather);
+ 
++    SeasonalWeatherTable getSeasonalWeatherTable();
++
++    void setSeasonalWeatherTable(SeasonalWeatherTable seasonalWeatherTable);
++
+ 
+ }
+diff --git a/src/main/java/io/github/lucaargolo/seasons/mixin/BiomeMixin.java b/src/main/java/io/github/lucaargolo/seasons/mixin/BiomeMixin.java
+index e1a865e..753e692 100644
+--- a/src/main/java/io/github/lucaargolo/seasons/mixin/BiomeMixin.java
++++ b/src/main/java/io/github/lucaargolo/seasons/mixin/BiomeMixin.java
+@@ -5,6 +5,7 @@ import io.github.lucaargolo.seasons.mixed.BiomeMixed;
+ import io.github.lucaargolo.seasons.resources.FoliageSeasonColors;
+ import io.github.lucaargolo.seasons.resources.GrassSeasonColors;
+ import io.github.lucaargolo.seasons.utils.ColorsCache;
++import io.github.lucaargolo.seasons.utils.SeasonalWeatherTable;
+ import net.fabricmc.api.EnvType;
+ import net.fabricmc.api.Environment;
+ import net.minecraft.client.MinecraftClient;
+@@ -35,6 +36,8 @@ public abstract class BiomeMixin implements BiomeMixed {
+ 
+     private Biome.Weather originalWeather;
+ 
++    private SeasonalWeatherTable seasonalWeatherTable;
++
+     @SuppressWarnings({"ConstantConditions", "removal", "OptionalAssignedToNull"})
+     @Environment(EnvType.CLIENT)
+     @Inject(at = @At("TAIL"), method = "getGrassColorAt", cancellable = true)
+@@ -130,4 +133,14 @@ public abstract class BiomeMixin implements BiomeMixed {
+     public void setOriginalWeather(Biome.Weather originalWeather) {
+         this.originalWeather = originalWeather;
+     }
++
++    @Override
++    public SeasonalWeatherTable getSeasonalWeatherTable() {
++        return this.seasonalWeatherTable;
++    }
++
++    @Override
++    public void setSeasonalWeatherTable(SeasonalWeatherTable seasonalWeatherTable) {
++        this.seasonalWeatherTable = seasonalWeatherTable;
++    }
+ }
+diff --git a/src/main/java/io/github/lucaargolo/seasons/utils/SeasonalWeatherTable.java b/src/main/java/io/github/lucaargolo/seasons/utils/SeasonalWeatherTable.java
+new file mode 100644
+index 0000000..31f6be2
+--- /dev/null
++++ b/src/main/java/io/github/lucaargolo/seasons/utils/SeasonalWeatherTable.java
+@@ -0,0 +1,57 @@
++package io.github.lucaargolo.seasons.utils;
++
++import io.github.lucaargolo.seasons.FabricSeasons;
++import net.minecraft.util.Identifier;
++import net.minecraft.util.Pair;
++import net.minecraft.world.biome.Biome;
++
++/**
++ * Results of {@link FabricSeasons#getSeasonWeather(ModConfig, Season, Identifier, Boolean, float)} for every
++ * season, for one config instance, biome id and original weather. getSeasonWeather only reads its arguments
++ * and the config, so the table is valid for as long as {@link #matches} holds. Immutable (final fields filled
++ * in the constructor), so it can be shared between server, render and chunk builder threads.
++ */
++public final class SeasonalWeatherTable {
++
++    private final ModConfig config;
++    private final Identifier biomeId;
++    private final Biome.Weather originalWeather;
++    private final boolean originalPrecipitation;
++    private final int originalTemperatureBits;
++    private final boolean[] precipitation;
++    private final float[] temperature;
++
++    public SeasonalWeatherTable(ModConfig config, Identifier biomeId, Biome.Weather originalWeather) {
++        this.config = config;
++        this.biomeId = biomeId;
++        this.originalWeather = originalWeather;
++        this.originalPrecipitation = originalWeather.hasPrecipitation;
++        float originalTemperature = originalWeather.temperature;
++        this.originalTemperatureBits = Float.floatToRawIntBits(originalTemperature);
++        Season[] seasons = Season.values();
++        this.precipitation = new boolean[seasons.length];
++        this.temperature = new float[seasons.length];
++        for (Season season : seasons) {
++            Pair<Boolean, Float> weather = FabricSeasons.getSeasonWeather(config, season, biomeId, originalPrecipitation, originalTemperature);
++            this.precipitation[season.ordinal()] = weather.getLeft();
++            this.temperature[season.ordinal()] = weather.getRight();
++        }
++    }
++
++    public boolean matches(ModConfig config, Identifier biomeId, Biome.Weather originalWeather) {
++        return this.config == config
++            && this.originalWeather == originalWeather
++            && this.originalPrecipitation == originalWeather.hasPrecipitation
++            && this.originalTemperatureBits == Float.floatToRawIntBits(originalWeather.temperature)
++            && this.biomeId.equals(biomeId);
++    }
++
++    public boolean hasPrecipitation(Season season) {
++        return precipitation[season.ordinal()];
++    }
++
++    public float getTemperature(Season season) {
++        return temperature[season.ordinal()];
++    }
++
++}
