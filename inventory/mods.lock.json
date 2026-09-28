@@ -4451,7 +4451,7 @@
         "url": "https://github.com/minefed/Yuushya-Modelling",
         "upstream": "https://github.com/XiLaiTL/Yuushya-Modelling",
         "ref": "minefed-1.20.4",
-        "commit": "efcfda38866ce70aacbc599c8f25a1e51f2ece78",
+        "commit": "4749f8f734925533b4d4743770dd74bb53a55584",
         "trackingBranch": "minefed-1.20.4",
         "baselineRef": "refs/heads/master",
         "baselineCommit": "3e36b9f66c0ae10202379f7287f88f7906976163"
@@ -4483,7 +4483,8 @@
       "licenseUrl": "https://github.com/XiLaiTL/Yuushya-Modelling/blob/master/LICENSE",
       "licenseNoticesPath": "inventory/notices/yuushya_modelling-76051599bbc7",
       "notes": [
-        "Separate official author repo corrects deployed metadata pointing generically at Townscape. Root modVersion2.2.0 and1.20.4 Gradle subprojects match deployed. Source hardcodes127.0.0.1:7890 HTTP/HTTPS proxy; override for future builds. Retain author/asset attribution."
+        "Separate official author repo corrects deployed metadata pointing generically at Townscape. Root modVersion2.2.0 and1.20.4 Gradle subprojects match deployed. Source hardcodes127.0.0.1:7890 HTTP/HTTPS proxy; override for future builds. Retain author/asset attribution.",
+        "2026-09-28: Behavior-preserving network/FPS optimizations fast-forwarded minefed-1.20.4 to 4749f8f734925533b4d4743770dd74bb53a55584; see docs/OPTIMIZATION_RESULTS_2026-09-28.md. Captured artifact hashes remain historical baseline evidence."
       ],
       "compatibility": {
         "minecraft": "~1.20.4",
