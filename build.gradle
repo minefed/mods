@@ -56,6 +56,19 @@ def parallelSources = tasks.register('buildSourcesParallel', Exec) {
             '--run', runId, '--workers', '2'
 }
 
+// PFM is normally source-built, so prepareModpack's binary selection does not
+// hydrate its official release. The compatibility probe needs the exact
+// published bytecode, restored through the existing hash-pinned downloader.
+def compatibilityFixtures = tasks.register('prepareCompatibilityFixtures', Exec) {
+    group = 'verification'
+    description = 'Restore reviewed official JARs used by compatibility regression probes.'
+    workingDir rootDir
+    commandLine pythonExecutable, 'scripts/mods.py', '--manifest',
+            'inventory/published-artifacts.lock.json', 'hydrate'
+}
+tasks.named('source_minefed_client_compat') { dependsOn compatibilityFixtures }
+parallelSources.configure { dependsOn compatibilityFixtures }
+
 def resourceAudit = tasks.register('verifyModpackResources', Exec) {
     group = 'verification'
     description = 'Reject missing generated resource families and invalid runtime JSON before packaging.'

@@ -4504,9 +4504,9 @@
         "path": "minefed-client-compat",
         "url": "https://github.com/minefed/minefed-client-compat",
         "upstream": "https://github.com/minefed/minefed-client-compat",
-        "ref": "main",
-        "commit": "e27ee63ddc883343e554d32f511fe3bebcc565dd",
-        "trackingBranch": "main",
+        "ref": "codex/fix-pfm-first-frame",
+        "commit": "2bfb8938c48e572c7d4af16346f9c53b36354853",
+        "trackingBranch": "codex/fix-pfm-first-frame",
         "baselineRef": "codex/pts-recipe-sync",
         "baselineCommit": "e27ee63ddc883343e554d32f511fe3bebcc565dd"
       },
@@ -4528,7 +4528,8 @@
       "notes": [
         "Added 2026-09-18; not an observed server-baseline JAR. Build from the pinned source for release.",
         "Client-only fix for PTS-Deco 4.0.0 recipe reader consuming an absent boolean. The official PTS JAR and server remain unchanged.",
-        "Requires exactly Minecraft 1.20.4 and PTS-Deco 4.0.0; re-review before upgrading either."
+        "Requires exactly Minecraft 1.20.4 and PTS-Deco 4.0.0; re-review before upgrading either.",
+        "2026-09-28: Version 1.1.0 fixes PFM first-frame sprites and preserves PTS recipe synchronization; both official-bytecode probes pass. Minecraft 1.20.4 / Fabric Loader 0.18.4 / Java 17 runtime. Source branch codex/fix-pfm-first-frame; captured artifact hashes remain historical baseline evidence."
       ],
       "compatibility": {
         "minecraft": "=1.20.4",
