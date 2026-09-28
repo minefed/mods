@@ -41,3 +41,10 @@ output, using the obtainable `minecraft:sweet_berries` item instead of the
 non-item `minecraft:sweet_berry_bush` block. It loads only when Japan Props is
 installed. No Japan Props code, artwork, or text is redistributed.
 Source release: https://modrinth.com/mod/japan-props/version/hnS8fdTL
+
+The Paladin's Furniture shower guide entry is independently authored by Minefed
+(MIT). It uses the registered `pfm:basic_shower_head` icon, retains links to both
+existing shower recipes, and supplies new explanatory text. It refers to the
+original mod's book template; it includes no PFM models, textures, illustrations,
+or copied prose. PFM's LGPL-3.0 code and PolyForm Shield assets remain separate.
+Source release: https://modrinth.com/mod/paladins-furniture/version/CFrrGcF0

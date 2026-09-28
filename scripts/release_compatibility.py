@@ -15,6 +15,7 @@ FILES = {
     'data/diagonalfences/tags/blocks/non_diagonal_fences.json',
     'data/dustydecorations/loot_tables/blocks/pot.json',
     'data/jpp/recipes/tc.json',
+    'assets/pfm/patchouli_books/guide_book/en_us/entries/shower_crafting_entry.json',
 }
 EXLINE_WOODS = ('oak', 'spruce', 'birch', 'jungle', 'acacia', 'dark_oak',
                 'mangrove', 'cherry', 'bamboo', 'crimson', 'warped')

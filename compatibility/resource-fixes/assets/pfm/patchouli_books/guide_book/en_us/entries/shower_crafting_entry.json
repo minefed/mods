@@ -1,0 +1,16 @@
+{
+  "name": "Shower recipes",
+  "icon": "pfm:basic_shower_head",
+  "category": "pfm:shower_category",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Use the following recipes to craft a shower head and handle."
+    },
+    {
+      "type": "pfm:furniturerecipe2template",
+      "recipe": "pfm:basic_shower_head",
+      "recipe2": "pfm:basic_shower_handle"
+    }
+  ]
+}
