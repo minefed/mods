@@ -1,0 +1,60 @@
+From f1de93956b0e886fbca7dabd0e9b78a854c4c4fc Mon Sep 17 00:00:00 2001
+From: Claude <noreply@anthropic.com>
+Date: Mon, 28 Sep 2026 06:08:59 +0000
+Subject: [PATCH] perf(automobile): send sync packets only to tracking players
+
+forNearbyPlayers sent the automobile data/components/attachment/banner
+packets to every player within 200 blocks, including players whose client
+does not know the entity. Those clients drop the packet (every handler
+looks the entity up by ID and ignores unknown IDs). Keep a server-side
+mirror of the tracker's seenBy set via start/stopSeenByPlayer and skip
+non-tracking players; distance check, driver exclusion and send order
+are unchanged.
+
+Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_01TD7PJ5R7t7hM3ymeeqXP4H
+---
+ .../automobility/entity/AutomobileEntity.java  | 18 +++++++++++++++++-
+ 1 file changed, 17 insertions(+), 1 deletion(-)
+
+diff --git a/common/src/main/java/io/github/foundationgames/automobility/entity/AutomobileEntity.java b/common/src/main/java/io/github/foundationgames/automobility/entity/AutomobileEntity.java
+index 146654d..d75453d 100644
+--- a/common/src/main/java/io/github/foundationgames/automobility/entity/AutomobileEntity.java
++++ b/common/src/main/java/io/github/foundationgames/automobility/entity/AutomobileEntity.java
+@@ -108,6 +108,9 @@ public class AutomobileEntity extends Entity implements RenderableAutomobile, En
+ 
+     private boolean dirty = false;
+ 
++    // Server-side mirror of the vanilla tracker's seenBy set (maintained by start/stopSeenByPlayer)
++    private final Set<ServerPlayer> trackingPlayers = new HashSet<>();
++
+     private float engineSpeed = 0;
+     private float boostSpeed = 0;
+     private float speedDirection = 0;
+@@ -498,12 +501,25 @@ public class AutomobileEntity extends Entity implements RenderableAutomobile, En
+             if (ignoreDriver && p == getFirstPassenger()) {
+                 continue;
+             }
+-            if (p.position().distanceTo(position()) < radius && p instanceof ServerPlayer player) {
++            // Players not tracking this entity don't know its ID, so the client handlers would drop the packet anyway
++            if (p.position().distanceTo(position()) < radius && p instanceof ServerPlayer player && this.trackingPlayers.contains(player)) {
+                 action.accept(player);
+             }
+         }
+     }
+ 
++    @Override
++    public void startSeenByPlayer(ServerPlayer player) {
++        super.startSeenByPlayer(player);
++        this.trackingPlayers.add(player);
++    }
++
++    @Override
++    public void stopSeenByPlayer(ServerPlayer player) {
++        super.stopSeenByPlayer(player);
++        this.trackingPlayers.remove(player);
++    }
++
+     public Vec3 getTailPos() {
+         return this.position()
+                 .add(new Vec3(0, 0, this.getFrame().model().rearAttachmentPos() * 0.0625)
