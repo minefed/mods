@@ -68,7 +68,7 @@ def prepare(root: Path, policy: dict, work: Path):
         'artifact': 'compatibility', 'distribution': 'embed', 'archiveIncluded': True,
         'artifactRedistribution': 'allowed', 'client': True, 'server': True,
         'license': 'MIT', 'licenseUrl': source_url + '/LICENSE',
-        'reason': 'Resource-only Minefed overrides for the original Diagonal Fences and Mythic Metals Decorations JARs. Includes JSON and author notices, no third-party textures or executable classes.',
+        'reason': 'Resource-only Minefed model/tag fixes, obsolete Exline and Dusty loot/recipe cleanup, Japan Props teacup repair, and PFM guide icon correction. Includes reviewed JSON and author notices, no third-party textures or executable classes.',
         'evidenceUrls': [source_url, source_url + '/NOTICE.md'],
         'authors': metadata['authors'], 'replacesBuiltArtifact': False,
         'sourceCommitUrl': source_url,

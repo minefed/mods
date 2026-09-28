@@ -1,9 +1,9 @@
 {
   "schemaVersion": 1,
   "id": "zz_minefed_resource_fixes",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "name": "Minefed Resource Fixes",
-  "description": "Resource and tag corrections for the original Mythic Metals Decorations and Diagonal Fences mods.",
+  "description": "Model, tag, recipe, loot and guide corrections for the pinned Minefed Minecraft 1.20.4 modpack.",
   "authors": ["Minefed contributors"],
   "license": "MIT",
   "environment": "*",
