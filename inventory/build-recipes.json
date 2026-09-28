@@ -562,9 +562,9 @@
         "-Dorg.gradle.jvmargs=-Xmx1536m -Dfile.encoding=UTF-8 --enable-preview"
       ],
       "artifactGlobs": [
-        "fabric/build/libs/modernfix-fabric-5.17.1-beta.4+mc1.20.4.4790.jar"
+        "fabric/build/libs/modernfix-fabric-5.17.1-beta.5+mc1.20.4.6c6e.jar"
       ],
-      "expectedVersion": "5.17.1-beta.4+mc1.20.4.4790"
+      "expectedVersion": "5.17.1-beta.5+mc1.20.4.6c6e"
     },
     {
       "modId": "msd",
