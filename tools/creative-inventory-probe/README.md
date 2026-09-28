@@ -37,6 +37,9 @@ Outputs in the disposable game directory:
 - `cold-` / `reload-render-candidates.tsv`: magenta pixels by page, frame and ID.
 - `cold-` / `reload-page-*-frame-*.png`: candidate pages and herringbone evidence.
 - Registry and creative ID lists; no item NBT, account data or coordinates.
+- `non-diagonal-fences.tsv`: verifies that registered Macaw grass-topped walls
+  actually receive the world's diagonal exclusion tag. This distinguishes the
+  known startup model-conversion warnings from an ineffective data-pack fix.
 
 Magenta pixels are **candidates**, not automatic texture errors. Inspect the
 saved images: the rotation tool, unobtainium and magenta bit bag really contain

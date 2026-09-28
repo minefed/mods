@@ -37,6 +37,7 @@ public final class CreativeProbe implements ClientModInitializer {
                 awaitReady(client, existing);
                 if (!existing) createWorld(client);
                 sweep(client, "cold");
+                verifyDiagonalExclusions(client);
                 if (!Boolean.getBoolean("audit.skipReload")) {
                     CompletableFuture<?> reload = onMain(client, client::method_1521);
                     reload.get(TIMEOUT_MINUTES, TimeUnit.MINUTES);
@@ -106,5 +107,25 @@ public final class CreativeProbe implements ClientModInitializer {
         });
         screen.done.get(TIMEOUT_MINUTES, TimeUnit.MINUTES);
         record(pass + "_sweep_complete\t" + screen.stackCount());
+    }
+
+    private static void verifyDiagonalExclusions(class_310 client) throws Exception {
+        onMain(client, () -> {
+            class_6862<class_2248> excluded = class_6862.method_40092(
+                class_7924.field_41254, new class_2960("diagonalfences", "non_diagonal_fences"));
+            List<String> results = new ArrayList<>();
+            for (class_2248 block : class_7923.field_41175) {
+                String id = class_7923.field_41175.method_10221(block).toString();
+                if (id.startsWith("mcwfences:") && id.endsWith("_grass_topped_wall")) {
+                    boolean present = block.method_9564().method_26164(excluded);
+                    results.add(id + "\t" + present);
+                }
+            }
+            Files.write(Path.of("non-diagonal-fences.tsv"), results);
+            if (results.stream().anyMatch(line -> line.endsWith("\tfalse")))
+                throw new IllegalStateException("Unsupported Macaw walls are missing their diagonal exclusion tag");
+            record("diagonal_exclusions\t" + results.size());
+            return null;
+        });
     }
 }
