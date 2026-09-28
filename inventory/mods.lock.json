@@ -4017,7 +4017,7 @@
         "url": "https://github.com/minefed/TrafficCraft",
         "upstream": "https://github.com/MisterJulsen/TrafficCraft",
         "ref": "codex/fix-wikipedia-requests",
-        "commit": "6d4297bffc7b7195fd91a4e25f2a0fa73a8a6fcb",
+        "commit": "69a09747437289bcda71a8bfaa1c72aeca848cad",
         "trackingBranch": "codex/fix-wikipedia-requests",
         "baselineRef": "refs/heads/1.20.4-dev",
         "baselineCommit": "c6c7092df4c1f77e438e507756255eb47e7a3585"
@@ -4051,7 +4051,8 @@
       "notes": [
         "Branch1.20.4-dev gradle.properties matches deployed1.1.3, MC1.20.4, DragonLib2.2.24; regular1.20.4 branch is1.1.2. JAR embeds DragonLib and ForgeConfigAPIPort; preserve their notices.",
         "Bundled ForgeConfigAPIPort includes LICENSE-ASSETS.md (All Rights Reserved); public whole-JAR asset permission remains unverified.",
-        "2026-09-28: Identify Wikidata requests in the optional DragonLib article loader and bound connection/read timeouts; keep the bundled dependency unchanged. Minecraft 1.20.4 / Fabric Loader 0.18.4 / Java 17 runtime. Source branch codex/fix-wikipedia-requests; captured artifact hashes remain historical baseline evidence."
+        "2026-09-28: Identify Wikidata requests in the optional DragonLib article loader and bound connection/read timeouts; keep the bundled dependency unchanged. Minecraft 1.20.4 / Fabric Loader 0.18.4 / Java 17 runtime. Source branch codex/fix-wikipedia-requests; captured artifact hashes remain historical baseline evidence.",
+        "2026-09-28: Keep the official bundle and delegate the Wikidata repair to minefed-client-compat 1.1.1; no duplicate redirect in source builds. Minecraft 1.20.4 / Fabric Loader 0.18.4 / Java 17 runtime. Source branch codex/fix-wikipedia-requests; captured artifact hashes remain historical baseline evidence."
       ],
       "compatibility": {
         "minecraft": "~1.20.4",
