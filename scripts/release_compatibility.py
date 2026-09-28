@@ -14,6 +14,11 @@ FILES = {
     'assets/mythicmetals_decorations/models/item/hydrargym_chest.json',
     'data/diagonalfences/tags/blocks/non_diagonal_fences.json',
 }
+EXLINE_WOODS = ('oak', 'spruce', 'birch', 'jungle', 'acacia', 'dark_oak',
+                'mangrove', 'cherry', 'bamboo', 'crimson', 'warped')
+FILES.update(f'data/exlinefurniture/recipes/{wood}_dresser_recipe.json' for wood in EXLINE_WOODS)
+FILES.update(f'data/exlinefurniture/loot_tables/blocks/{name}.json' for name in
+             (*[wood + '_dresser' for wood in EXLINE_WOODS], 'bamboo_log_table', 'bamboo_log_glass_table'))
 
 
 def prepare(root: Path, policy: dict, work: Path):

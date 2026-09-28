@@ -18,3 +18,14 @@ Copyright (c) 2026, under MIT. They refer to 14 Macaw grass-topped walls and mer
 the existing Diagonal Fences tag. No Diagonal Fences assets are included.
 
 Source: https://github.com/minefed/diagonal-fences/commit/aa41b9f39f744455258c27d3728a1ff77908731f
+
+The Exline's Furniture overrides are independently authored by Minefed (MIT).
+Version 2.7.2 registers neither the eleven wood dressers nor the two bamboo log
+tables, but still bundles their recipes/loot. The obsolete dresser recipes use
+Fabric's false empty-OR load condition, and the thirteen unused loot tables have
+empty pools. No registered block, item, or usable recipe is removed. Registry
+absence was checked in the complete Minecraft 1.20.4 client. Review these exact
+overrides before changing Exline's version; the metadata rejects other versions.
+No Exline code, models, textures, recipe patterns, or prose is included here.
+The original mod retains its separate All Rights Reserved terms and official
+download: https://modrinth.com/mod/exlines-furniture/version/DfuDGYlp
