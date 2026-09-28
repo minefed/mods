@@ -10,8 +10,11 @@
 운영 기준본은 그대로 보존하며, 과거 제외 항목을 신규 의존성으로 다시 활성화하지 않는다. 의존성 JAR는 빌드 중
 공식 URL에서 복원하고 해시를 검사한다. 호환 최신 버전 확인과 업데이트는 [의존성 관리](DEPENDENCIES.md)를 따른다.
 
-새 클라이언트 전용 `minefed-client-compat`도 소스에서 빌드하며, 공식 PTS Deco 4.0.0 JAR에
-실제 Mixin을 적용하는 회귀 검증을 실행한다([접속 오류 수정](RECIPE_SYNC_FIX_2026-09-18.md)).
+클라이언트 전용 `minefed-client-compat`도 소스에서 빌드하며, 공식 PTS Deco 4.0.0과
+PFM 1.5.0 JAR에 실제 Mixin을 적용하는 회귀 검증을 실행한다
+([접속 오류 수정](RECIPE_SYNC_FIX_2026-09-18.md),
+[첫 프레임 텍스처 수정](MOD_HEALTH_AUDIT_2026-09-28.md)). 공식 검사 입력은
+`prepareCompatibilityFixtures`가 고정 해시를 검사하며 복원한다.
 
 최종 배포 패키징은 위 기준 빌드에 리소스 호환 모드와
 [Minecraft Mod MCP 관찰용 빌드](MINECRAFT_MCP.md)를 추가한다. MCP의 원본 JAR·컴파일

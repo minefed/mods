@@ -1,0 +1,698 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-09-28",
+  "target": {
+    "minecraft": "1.20.4",
+    "fabricLoader": "0.18.4",
+    "runtimeJava": 17
+  },
+  "build": {
+    "run": "20260928-043405-06622ed9",
+    "sourceCompilation": true,
+    "runtimeValidated": false,
+    "sourceCount": 47,
+    "binaryCount": 25,
+    "path": "build/distributions/minefed-1.20.4-20260928-043405-06622ed9.zip",
+    "sha256": "1561b4c9d91f081a07bb208d5c8fd4dc0645ff58dc16a43e3bf43116305d9587",
+    "size": 256542934,
+    "artifactCount": 72,
+    "private": true
+  },
+  "toolTests": {
+    "total": 213,
+    "passed": 201,
+    "skipped": 12
+  },
+  "sourceCompilationEvidence": [
+    {
+      "modId": "alloy_forgery",
+      "source": "alloy-forgery",
+      "commit": "e4d10145142f7d3dc12effc1b3083723a9d08d4d",
+      "compiledRun": "20260928-022735-349c16a9",
+      "sha256": "fa9e3576e30552827773c6aae55fbe6e4e99f88101ec4d0d1ccffebd41de5865"
+    },
+    {
+      "modId": "automobility-refueled",
+      "source": "Automobility-Refueled",
+      "commit": "13160075fb4be333fe2b425183c02f9dc2348184",
+      "compiledRun": "20260928-011940-7de71450",
+      "sha256": "9084e567c94c5590d0e8fd0b22dd1ce18432d0ad7d6039d0eb8528fd64da9457"
+    },
+    {
+      "modId": "bluemap",
+      "source": "BlueMap",
+      "commit": "dd63c74e1b8251cde574e1beca1025a840e6761c",
+      "compiledRun": "20260928-011940-7de71450",
+      "sha256": "bf4f8789ecafc35a9f26a0309966879601df4e1afa14d1b4d917de6f4d539d44"
+    },
+    {
+      "modId": "carpet",
+      "source": "fabric-carpet",
+      "commit": "72248bbebe61dc0b2b7316378aa7629955d0f91a",
+      "compiledRun": "20260928-011940-7de71450",
+      "sha256": "a4fe02e8645736efc52799237d41de4ee208c4864169c37c493f44de2d8167bb"
+    },
+    {
+      "modId": "chiselsandbits",
+      "source": "Chisels-and-Bits",
+      "commit": "12fd1d23b3e6fb929ccba01e034c46ae632acbe0",
+      "compiledRun": "20260928-011940-7de71450",
+      "sha256": "5c6e00436159d3988591c8d29c42dad8911c7dc279ad930a47160c4a04bca5ab"
+    },
+    {
+      "modId": "chunky",
+      "source": "Chunky",
+      "commit": "1fe63d9331b5cbad47dac40b48aabd1b0085c000",
+      "compiledRun": "20260928-011940-7de71450",
+      "sha256": "15eac4524f89954612ba811f49c57d6ce2a4801eb7e2c28d1105e52047733948"
+    },
+    {
+      "modId": "computercraft",
+      "source": "CC-Tweaked",
+      "commit": "c3264ade27b032f4b4b480169e67bcb08a01bc0a",
+      "compiledRun": "20260928-011940-7de71450",
+      "sha256": "7d8b3477414981141732fcdf85e2c70e07b6eb60882b7166f55585aba4d5531e"
+    },
+    {
+      "modId": "crossstitch",
+      "source": "CrossStitch",
+      "commit": "aa5545ce774566f3c09f2b34ac4ec0412274dec8",
+      "compiledRun": "20260928-011940-7de71450",
+      "sha256": "308a8708d4894a25f4cec906e4dbcb9b2284374fe947c555dc1021bbcd5df38a"
+    },
+    {
+      "modId": "decorative_blocks",
+      "source": "Decorative-Blocks",
+      "commit": "8550e3b988d1d7f1c27c1c15732070569ded051e",
+      "compiledRun": "20260928-011940-7de71450",
+      "sha256": "e6dd551ca1b7f9caebd12b777f212cbc1e74a24f9da9167af2b06562f56e16d0"
+    },
+    {
+      "modId": "diagonalfences",
+      "source": "diagonal-fences",
+      "commit": "aa41b9f39f744455258c27d3728a1ff77908731f",
+      "compiledRun": "20260928-011940-7de71450",
+      "sha256": "6d7659a49e20109dcf68657ec199e34869262406579cb8f8a26c8263159e7ee6"
+    },
+    {
+      "modId": "diagonalwalls",
+      "source": "diagonal-walls",
+      "commit": "452eb0a4a633ee2d0908f166b0e17315ee99d197",
+      "compiledRun": "20260928-011940-7de71450",
+      "sha256": "38ec3e15b9eca602dbf30aeb8c163a539bf5d8ee3e9889135cf08a66a454a5e6"
+    },
+    {
+      "modId": "diagonalwindows",
+      "source": "diagonal-windows",
+      "commit": "7209c6ea3cb2b05157eeae3ddced087556889bb9",
+      "compiledRun": "20260928-011940-7de71450",
+      "sha256": "1ff0ec6f09b455a3af51df06685894d04913e2d6bf15068ce47eef65116d28d2"
+    },
+    {
+      "modId": "fabricproxy-lite",
+      "source": "FabricProxy-Lite",
+      "commit": "7391c12684820b14039a42c0e5ae2e9178bf4290",
+      "compiledRun": "20260928-011940-7de71450",
+      "sha256": "bdeb88f2173daa9f505933c0d53ff89d4c99983839674a2f630d09db25af5ff6"
+    },
+    {
+      "modId": "fallingtree",
+      "source": "FallingTree",
+      "commit": "0a70a01d3d682a9069f12a00a5c9dbd96d53f2cb",
+      "compiledRun": "20260928-011940-7de71450",
+      "sha256": "e38abf5c19b508f8235f35437417add5dbf43e62bc75388fd0be13cc9522e9dc"
+    },
+    {
+      "modId": "ferritecore",
+      "source": "FerriteCore",
+      "commit": "1df30b595e231bc0dc9a8eabe65d34cce542d3f9",
+      "compiledRun": "20260928-011940-7de71450",
+      "sha256": "e0d62691710fc9eda85c2c0c3d46b5a8217da49854818664f317da551a7e8125"
+    },
+    {
+      "modId": "forgeconfigapiport",
+      "source": "forge-config-api-port",
+      "commit": "b102873873cd9d0bd70685cd7bec524666e2d190",
+      "compiledRun": "20260928-011940-7de71450",
+      "sha256": "281009ae7be766b10c3406522ce2d430fe90d95e243a3d9f7b9ac115e9750be9"
+    },
+    {
+      "modId": "geckolib",
+      "source": "geckolib",
+      "commit": "fb968c0379ef0f6ef5c0d6672a464b2f2712553f",
+      "compiledRun": "20260928-011940-7de71450",
+      "sha256": "ea3112c0f3fc5cbddb07ca8236b0f89a9dc454a5efeb8114f65baeb5e59c1dba"
+    },
+    {
+      "modId": "handcrafted",
+      "source": "Handcrafted",
+      "commit": "7b5501555b4683757800e9ca7df264d0850caad3",
+      "compiledRun": "20260928-011940-7de71450",
+      "sha256": "2602e3949a4260823ba3898138f9b24aaf7a37bc87708bc5c6aadf8a70e9d129"
+    },
+    {
+      "modId": "lithium",
+      "source": "lithium",
+      "commit": "c40b7585606e8434b7a8f1e7ef15c20d99685f19",
+      "compiledRun": "20260928-011940-7de71450",
+      "sha256": "19a3bea956d51cd9da68b758547e8a4022530918d46438449bc3723b685c8e51"
+    },
+    {
+      "modId": "memoryleakfix",
+      "source": "MemoryLeakFix",
+      "commit": "f01909746ee3ad595a3ed91e4abb4779a06a47c2",
+      "compiledRun": "20260928-011940-7de71450",
+      "sha256": "d9ff4f45384802c9b24b943299e489b94bac58400a024fc5d659fb8b6ec57126"
+    },
+    {
+      "modId": "minefed-client-compat",
+      "source": "minefed-client-compat",
+      "commit": "3ac78cb964693b0cbd098e63041f1592d98a99ca",
+      "compiledRun": "20260928-042231-e547ac57",
+      "sha256": "78ac37b4e7e0259c569fd8362b78d7ef8be6cae60c40787711d89c321c87c06c"
+    },
+    {
+      "modId": "minefed-display",
+      "source": "minefed-display",
+      "commit": "a1e8f94df20c22c1ccfc4083b1dc01dc7f757e45",
+      "compiledRun": "20260928-011940-7de71450",
+      "sha256": "78c8359f70b6ecf2d012e9a94ec7ef68b706b935cde41efaea544eb043ee5835"
+    },
+    {
+      "modId": "mishanguc",
+      "source": "mishanguc",
+      "commit": "07028d29c741f688fafd271e5fb0f51937042184",
+      "compiledRun": "20260928-011940-7de71450",
+      "sha256": "c155d9277ef6e15b2ed15b008fdbdb2d1ae30a7736ad75574dae21169ed28d79"
+    },
+    {
+      "modId": "modern_glass_doors",
+      "source": "modern-glass-doors",
+      "commit": "3c65e91eee397e91496f78345165451d86b28932",
+      "compiledRun": "20260928-011940-7de71450",
+      "sha256": "38220292bd00260c364fc0ce30667087ca0d567ed775be9307dd3de3d7f7d94a"
+    },
+    {
+      "modId": "modernfix",
+      "source": "ModernFix",
+      "commit": "479096893321f5dc3e97791e5fa7dcf3ed58e15b",
+      "compiledRun": "20260928-011940-7de71450",
+      "sha256": "c12f920d3eb2e428ed408a179fb2bccc2a51570157983e897d3dbb4a79ddd67e"
+    },
+    {
+      "modId": "modernlights",
+      "source": "Modern-Lights",
+      "commit": "6b04f156a3e24a778fa2e0697d98bfd3aeca0256",
+      "compiledRun": "20260928-011940-7de71450",
+      "sha256": "9fe39ca5984584b660ad8068bd5e5e37c37538b367118f04f121bb6a6f46ccde"
+    },
+    {
+      "modId": "msd",
+      "source": "MTR-Station-Decoration-Addon",
+      "commit": "b06fc0725b20a5b7a6c72bdacd20814dd8d8aabf",
+      "compiledRun": "20260928-011940-7de71450",
+      "sha256": "3518c920191e4b0c784accca28830937ab1f1cbdf87d237d72ecf59ff34b392f"
+    },
+    {
+      "modId": "mtr",
+      "source": "Minecraft-Transit-Railway",
+      "commit": "e33269ecb041c55503053b72ccec4ec68d7bc01c",
+      "compiledRun": "20260928-022735-349c16a9",
+      "sha256": "c6379228b6df019cc0b71cf051cba675addd2f024f2dc01fa91447de5cb4ce16"
+    },
+    {
+      "modId": "mythicmetals",
+      "source": "MythicMetals",
+      "commit": "cfa897b7e6b2ab856f08582c5e525e675633b33c",
+      "compiledRun": "20260928-022735-349c16a9",
+      "sha256": "6c8c7f4702dfca1e7db5429cb2dd20fa70e8da1f8952f994dc6b2f1e114fff00"
+    },
+    {
+      "modId": "mythicmetals_decorations",
+      "source": "MythicMetalsDecorations",
+      "commit": "f5af39239697e9ed89a108da59c2f8eac695d3df",
+      "compiledRun": "20260928-022735-349c16a9",
+      "sha256": "953814477d8e1182a929e592df91ce9ab782b49fbdd5ccdfd4ba4c0a3e2c5caf"
+    },
+    {
+      "modId": "nicemod",
+      "source": "NiceMod",
+      "commit": "c344763657eaa90d878d858a74c1cdb93cf9d66f",
+      "compiledRun": "20260928-022735-349c16a9",
+      "sha256": "200f2f2a226123284c6101b5de5f9c0704d69a9ca092679bb0a310f513cef010"
+    },
+    {
+      "modId": "oritech",
+      "source": "Oritech",
+      "commit": "0ace08abb384f0e38288f4bc82b6c58606509f86",
+      "compiledRun": "20260928-022735-349c16a9",
+      "sha256": "1b6dba1ff092eaa752e3657d20d004dadd809db09b55e91e33504b4e3b7dd685"
+    },
+    {
+      "modId": "patchouli",
+      "source": "Patchouli",
+      "commit": "5bb9e96cd8256c0bcd2fa87eff2d65be0a7290d5",
+      "compiledRun": "20260928-022735-349c16a9",
+      "sha256": "0ce9d9dedfbb5fcc387023cc9093219d025afd52f6bb60fe4da254a96a5f198d"
+    },
+    {
+      "modId": "pfm",
+      "source": "paladins-furniture",
+      "commit": "131ac50fa74b0896f0a6d4b56c003076e036b318",
+      "compiledRun": "20260928-022735-349c16a9",
+      "sha256": "5d5d69707d9e4b4930cce1e41464e32f9cf26181c1f4e9b2e38a1004813d0432"
+    },
+    {
+      "modId": "puzzleslib",
+      "source": "puzzles-lib",
+      "commit": "1dc5d1305d9d93527d09b84c826d30216bb5d468",
+      "compiledRun": "20260928-022735-349c16a9",
+      "sha256": "8db3019e7d4138faea97f1a86fee570cef91fb026fa9435a0c66452ff76c4373"
+    },
+    {
+      "modId": "realtime",
+      "source": "mc-realtime",
+      "commit": "bd05e0fe8ad18184354dff9453da4b0d8b4703b5",
+      "compiledRun": "20260928-022735-349c16a9",
+      "sha256": "830391903e41fd74d9b62ef4e3a6e3efb55922978f2579c695ec2a3ae0c1b3e2"
+    },
+    {
+      "modId": "seasons",
+      "source": "fabric-seasons",
+      "commit": "d5ff75050e02f131ea82fee0e7904e92eb7214f3",
+      "compiledRun": "20260928-022735-349c16a9",
+      "sha256": "cac6629401652563a642981e96d8d0fce4e1149fafb0dd014d17fe3330a8e2b8"
+    },
+    {
+      "modId": "starlight",
+      "source": "Starlight",
+      "commit": "c2b8391d83ddadbd8136d2abead7e1014da19a6d",
+      "compiledRun": "20260928-022735-349c16a9",
+      "sha256": "7490e3310ec1e95b02a7578049e9553c115cbc8562ea6f3faec5eebe3bf9bed5"
+    },
+    {
+      "modId": "stoneworks",
+      "source": "stoneworks",
+      "commit": "6f492401ca95bec909e0f0f634c58780fa67793a",
+      "compiledRun": "20260928-022735-349c16a9",
+      "sha256": "4ebc556e66ac62db31f345b53934570c669ae7962bfd81710a3621d027c7b280"
+    },
+    {
+      "modId": "timeoutout",
+      "source": "TimeOutOut",
+      "commit": "0d27ca115902c93d132a2d062b166c5a544da0c7",
+      "compiledRun": "20260928-022735-349c16a9",
+      "sha256": "5233d20ced4c73f7535a3bd97fdb383bec5f81cd8e9f4d68d86ca8b265874d8c"
+    },
+    {
+      "modId": "trafficcraft",
+      "source": "TrafficCraft",
+      "commit": "69a09747437289bcda71a8bfaa1c72aeca848cad",
+      "compiledRun": "20260928-042231-e547ac57",
+      "sha256": "59fd2a033da7b5ba68245a09b1b1938a4b8995cada41c02aea70ebc360ea5546"
+    },
+    {
+      "modId": "webstreamer",
+      "source": "fabric-webstreamer",
+      "commit": "f9c03980c9cb31ca891e4429bc2529c6c0cce033",
+      "compiledRun": "20260928-022735-349c16a9",
+      "sha256": "7045bca523cfb4820788cb9eaa9840d778f2f1a811357d78a5e3530899e1b239"
+    },
+    {
+      "modId": "wirelessredstone",
+      "source": "wireless-redstone",
+      "commit": "85cd6b45cd660deeba6ac5cb58b8d5f82795dae0",
+      "compiledRun": "20260928-022735-349c16a9",
+      "sha256": "a346f44ad0ff2cf46324d74926fecb28748bf732c18ee47fbfe040f2723d578c"
+    },
+    {
+      "modId": "worldedit",
+      "source": "WorldEdit",
+      "commit": "f2cdc4aa7816a0184adf3fcfaf3ff5712d8dfd68",
+      "compiledRun": "20260928-022735-349c16a9",
+      "sha256": "c54d0ebd16f929345d01f067a5e958bb0eebb053010db5d8f9968789720beb50"
+    },
+    {
+      "modId": "worldedithangfix",
+      "source": "worldedit-hang-fix",
+      "commit": "45c744113850a55f844c7195d5e074b6845d28eb",
+      "compiledRun": "20260928-022735-349c16a9",
+      "sha256": "da826a2b1a0653741c6feed3ab3a750968e25404cdde450682afe8d509fe2598"
+    },
+    {
+      "modId": "yuushya",
+      "source": "Yuushya-Townscape",
+      "commit": "ca14f0658a05e4d53ec302fa01f27de4311359b8",
+      "compiledRun": "20260928-022735-349c16a9",
+      "sha256": "42ed60d6cbd1ad38c980699c8783473e9220cb195a0c190fd5d2c0a4e8199e4f"
+    },
+    {
+      "modId": "yuushya_modelling",
+      "source": "Yuushya-Modelling",
+      "commit": "6256abeee58ca8952ada2ac617aa15ef16ec23dd",
+      "compiledRun": "20260928-022735-349c16a9",
+      "sha256": "9619518a9746b5f1788e2962bf836ce0b176139cf5f878a355c81d690a721789"
+    }
+  ],
+  "release": {
+    "version": "20260928133356",
+    "assets": [
+      {
+        "kind": "server",
+        "name": "server.zip",
+        "path": "build/releases/20260928133356/server.zip",
+        "sha256": "113446337c4ef5cb35519fb133a4680ad3a1e2e379761e590ce4f97a297ed328",
+        "size": 255237650,
+        "mediaType": "application/zip"
+      },
+      {
+        "kind": "client",
+        "name": "client.mrpack",
+        "path": "build/releases/20260928133356/client.mrpack",
+        "sha256": "df765d9a87697770bd5902a9fb3a279821d2b943dfd38ed0c50916a106235449",
+        "size": 258473516,
+        "mediaType": "application/x-modrinth-modpack+zip"
+      },
+      {
+        "kind": "resourcepack",
+        "name": "resourcepack.zip",
+        "path": "build/releases/20260928133356/resourcepack.zip",
+        "sha256": "35212ed7082891fffe008e3f93a29ef02491ac2b8338924ec592e4d674505239",
+        "size": 1062280,
+        "mediaType": "application/zip"
+      }
+    ],
+    "profiles": {
+      "server": {
+        "modCount": 68,
+        "embeddedCount": 68,
+        "pluginCount": 1,
+        "totalJarCount": 69,
+        "additionalResourcePackCount": 0,
+        "downloadCount": 0,
+        "manualCount": 0,
+        "excludedModIds": [
+          "continuity",
+          "mcef",
+          "sodium",
+          "indium",
+          "minefed-client-compat",
+          "mcpmod"
+        ]
+      },
+      "client": {
+        "modCount": 72,
+        "embeddedCount": 72,
+        "pluginCount": 0,
+        "totalJarCount": 72,
+        "additionalResourcePackCount": 1,
+        "downloadCount": 0,
+        "manualCount": 0,
+        "excludedModIds": [
+          "crossstitch",
+          "fabricproxy-lite"
+        ]
+      }
+    }
+  },
+  "runtime": {
+    "profile": "release-final-sweep-2",
+    "artifactCheck": {
+      "checkedModJars": 72,
+      "sha256Match": true,
+      "clientPackSha256": "df765d9a87697770bd5902a9fb3a279821d2b943dfd38ed0c50916a106235449"
+    },
+    "creative": {
+      "schemaVersion": 1,
+      "passes": {
+        "cold": {
+          "stacks": 18970,
+          "pages": 396,
+          "candidates": [
+            {
+              "page": 187,
+              "frame": 1,
+              "index": 8995,
+              "item": "mishanguc:rotating_tool",
+              "pixels": 336
+            },
+            {
+              "page": 187,
+              "frame": 3,
+              "index": 8995,
+              "item": "mishanguc:rotating_tool",
+              "pixels": 336
+            },
+            {
+              "page": 206,
+              "frame": 1,
+              "index": 9921,
+              "item": "mythicmetals:unobtainium",
+              "pixels": 48
+            },
+            {
+              "page": 206,
+              "frame": 3,
+              "index": 9921,
+              "item": "mythicmetals:unobtainium",
+              "pixels": 48
+            },
+            {
+              "page": 307,
+              "frame": 1,
+              "index": 14736,
+              "item": "chiselsandbits:bit_bag_dyed",
+              "pixels": 1376
+            },
+            {
+              "page": 307,
+              "frame": 3,
+              "index": 14736,
+              "item": "chiselsandbits:bit_bag_dyed",
+              "pixels": 1376
+            }
+          ],
+          "firstFrameOnly": []
+        },
+        "reload": {
+          "stacks": 18970,
+          "pages": 396,
+          "candidates": [
+            {
+              "page": 187,
+              "frame": 1,
+              "index": 8995,
+              "item": "mishanguc:rotating_tool",
+              "pixels": 336
+            },
+            {
+              "page": 187,
+              "frame": 3,
+              "index": 8995,
+              "item": "mishanguc:rotating_tool",
+              "pixels": 336
+            },
+            {
+              "page": 206,
+              "frame": 1,
+              "index": 9921,
+              "item": "mythicmetals:unobtainium",
+              "pixels": 48
+            },
+            {
+              "page": 206,
+              "frame": 3,
+              "index": 9921,
+              "item": "mythicmetals:unobtainium",
+              "pixels": 48
+            },
+            {
+              "page": 307,
+              "frame": 1,
+              "index": 14736,
+              "item": "chiselsandbits:bit_bag_dyed",
+              "pixels": 1376
+            },
+            {
+              "page": 307,
+              "frame": 3,
+              "index": 14736,
+              "item": "chiselsandbits:bit_bag_dyed",
+              "pixels": 1376
+            }
+          ],
+          "firstFrameOnly": []
+        }
+      },
+      "requiresVisualReview": true,
+      "limits": "Candidates require screenshot review; this checks GUI item rendering, not every placed-block state or server feature."
+    },
+    "worldDiagnostics": {
+      "schemaVersion": 1,
+      "reloadStarts": 2,
+      "worldJoinCount": 1,
+      "startupSeconds": [
+        209.311
+      ],
+      "resourceDiagnosticCount": 14,
+      "counts": {
+        "incompatibleModel": 14
+      },
+      "resources": {
+        "incompatibleModel": {
+          "mcwfences:andesite_grass_topped_wall": 1,
+          "mcwfences:blackstone_grass_topped_wall": 1,
+          "mcwfences:deepslate_brick_grass_topped_wall": 1,
+          "mcwfences:deepslate_grass_topped_wall": 1,
+          "mcwfences:diorite_grass_topped_wall": 1,
+          "mcwfences:end_brick_grass_topped_wall": 1,
+          "mcwfences:granite_grass_topped_wall": 1,
+          "mcwfences:mud_brick_grass_topped_wall": 1,
+          "mcwfences:nether_brick_grass_topped_wall": 1,
+          "mcwfences:prismarine_grass_topped_wall": 1,
+          "mcwfences:quartz_grass_topped_wall": 1,
+          "mcwfences:red_sandstone_grass_topped_wall": 1,
+          "mcwfences:sandstone_grass_topped_wall": 1,
+          "mcwfences:stone_grass_topped_wall": 1
+        }
+      },
+      "limits": "Covers emitted model/texture/CTM/sound and world recipe/loot/tag/book diagnostics. World data coverage requires entering a world; first-frame visual correctness and remote-server login require separate checks."
+    },
+    "diagonalExclusions": {
+      "mcwfences:stone_grass_topped_wall": "true",
+      "mcwfences:andesite_grass_topped_wall": "true",
+      "mcwfences:diorite_grass_topped_wall": "true",
+      "mcwfences:granite_grass_topped_wall": "true",
+      "mcwfences:sandstone_grass_topped_wall": "true",
+      "mcwfences:red_sandstone_grass_topped_wall": "true",
+      "mcwfences:blackstone_grass_topped_wall": "true",
+      "mcwfences:nether_brick_grass_topped_wall": "true",
+      "mcwfences:end_brick_grass_topped_wall": "true",
+      "mcwfences:deepslate_grass_topped_wall": "true",
+      "mcwfences:deepslate_brick_grass_topped_wall": "true",
+      "mcwfences:quartz_grass_topped_wall": "true",
+      "mcwfences:mud_brick_grass_topped_wall": "true",
+      "mcwfences:prismarine_grass_topped_wall": "true"
+    },
+    "wikipediaArticleLanguageCounts": {
+      "Q8004": 96,
+      "Q2354774": 2
+    },
+    "visualReview": {
+      "complete": true,
+      "missingTextureCheckerboards": 0,
+      "reviewedPurpleItemIds": [
+        "chiselsandbits:bit_bag_dyed",
+        "mishanguc:rotating_tool",
+        "mythicmetals:unobtainium"
+      ]
+    }
+  },
+  "baselineWorldDiagnostics": {
+    "schemaVersion": 1,
+    "reloadStarts": 1,
+    "worldJoinCount": 1,
+    "startupSeconds": [
+      240.459
+    ],
+    "resourceDiagnosticCount": 55,
+    "counts": {
+      "incompatibleModel": 14,
+      "invalidBookIcon": 1,
+      "invalidLootTable": 16,
+      "invalidRecipe": 14,
+      "missingBookRecipe": 9,
+      "missingTagReference": 1
+    },
+    "resources": {
+      "incompatibleModel": {
+        "mcwfences:andesite_grass_topped_wall": 1,
+        "mcwfences:blackstone_grass_topped_wall": 1,
+        "mcwfences:deepslate_brick_grass_topped_wall": 1,
+        "mcwfences:deepslate_grass_topped_wall": 1,
+        "mcwfences:diorite_grass_topped_wall": 1,
+        "mcwfences:end_brick_grass_topped_wall": 1,
+        "mcwfences:granite_grass_topped_wall": 1,
+        "mcwfences:mud_brick_grass_topped_wall": 1,
+        "mcwfences:nether_brick_grass_topped_wall": 1,
+        "mcwfences:prismarine_grass_topped_wall": 1,
+        "mcwfences:quartz_grass_topped_wall": 1,
+        "mcwfences:red_sandstone_grass_topped_wall": 1,
+        "mcwfences:sandstone_grass_topped_wall": 1,
+        "mcwfences:stone_grass_topped_wall": 1
+      },
+      "invalidRecipe": {
+        "alloy_forgery:glass_from_sand": 1,
+        "exlinefurniture:acacia_dresser_recipe": 1,
+        "exlinefurniture:bamboo_dresser_recipe": 1,
+        "exlinefurniture:birch_dresser_recipe": 1,
+        "exlinefurniture:cherry_dresser_recipe": 1,
+        "exlinefurniture:crimson_dresser_recipe": 1,
+        "exlinefurniture:dark_oak_dresser_recipe": 1,
+        "exlinefurniture:jungle_dresser_recipe": 1,
+        "exlinefurniture:mangrove_dresser_recipe": 1,
+        "exlinefurniture:oak_dresser_recipe": 1,
+        "exlinefurniture:spruce_dresser_recipe": 1,
+        "exlinefurniture:warped_dresser_recipe": 1,
+        "jpp:tc": 1,
+        "yuushya:gardener_gift_box": 1
+      },
+      "invalidLootTable": {
+        "dustydecorations:blocks/pot": 1,
+        "exlinefurniture:blocks/acacia_dresser": 1,
+        "exlinefurniture:blocks/bamboo_dresser": 1,
+        "exlinefurniture:blocks/bamboo_log_glass_table": 1,
+        "exlinefurniture:blocks/bamboo_log_table": 1,
+        "exlinefurniture:blocks/birch_dresser": 1,
+        "exlinefurniture:blocks/cherry_dresser": 1,
+        "exlinefurniture:blocks/crimson_dresser": 1,
+        "exlinefurniture:blocks/dark_oak_dresser": 1,
+        "exlinefurniture:blocks/jungle_dresser": 1,
+        "exlinefurniture:blocks/mangrove_dresser": 1,
+        "exlinefurniture:blocks/oak_dresser": 1,
+        "exlinefurniture:blocks/spruce_dresser": 1,
+        "exlinefurniture:blocks/warped_dresser": 1,
+        "mtr:blocks/train_cargo_loader": 1,
+        "mtr:blocks/train_cargo_unloader": 1
+      },
+      "missingTagReference": {
+        "seasons:replaceable_by_snow": 1
+      },
+      "missingBookRecipe": {
+        "yuushya:block_blueprint": 1,
+        "yuushya:dailylife_stuff_blueprint": 1,
+        "yuushya:deco_blueprint": 1,
+        "yuushya:extra_shapes_blueprint": 1,
+        "yuushya:facility_blueprint": 1,
+        "yuushya:form_trans_item": 1,
+        "yuushya:furniture_blueprint": 1,
+        "yuushya:get_showblock_item": 1,
+        "yuushya:sign_blueprint": 1
+      },
+      "invalidBookIcon": {
+        "minecraft:basic_shower_head": 1
+      }
+    },
+    "limits": "Covers emitted model/texture/CTM/sound and world recipe/loot/tag/book diagnostics. World data coverage requires entering a world; first-frame visual correctness and remote-server login require separate checks."
+  },
+  "releaseJarIntegrity": {
+    "topLevelJars": 72,
+    "nestedJars": 138,
+    "classes": 28579,
+    "multiReleaseClasses": 16,
+    "incompatibleClasses": [],
+    "zipErrors": []
+  },
+  "regressionProbes": {
+    "pfmActualMixin": true,
+    "ptsActualMixin": true,
+    "mtrRailRendering": true,
+    "mtrActualMixin": true
+  },
+  "deployment": {
+    "installedClientModified": false,
+    "productionServerModified": false,
+    "uploadedReleaseAssets": false
+  },
+  "limits": "Source builds, archive integrity, world data loading and GUI item first/reload frames were checked. Not every placed block state, mod feature, external-server login, BlueMap output or Bukkit plugin runtime was tested. Sound-event warnings are not included in missing sound-file reference counts. The release tool runtimeValidated flag remains false."
+}
