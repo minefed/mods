@@ -1,0 +1,46 @@
+From 2b8d5ac4d2dd97dd1191a64a049a5d81d19d2347 Mon Sep 17 00:00:00 2001
+From: Claude <noreply@anthropic.com>
+Date: Mon, 28 Sep 2026 06:23:04 +0000
+Subject: [PATCH 05/10] perf(render): precompile railway sign route name
+ separator
+
+String.split only has a fast path for single-character patterns, so the
+two-character "||" separator was compiled for every route on every railway
+sign each frame. String.split(regex) is Pattern.compile(regex).split(input, 0),
+which the precompiled Pattern.split(input) performs identically.
+
+Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_01TD7PJ5R7t7hM3ymeeqXP4H
+---
+ .../src/main/java/org/mtr/mod/render/RenderRailwaySign.java  | 5 ++++-
+ 1 file changed, 4 insertions(+), 1 deletion(-)
+
+diff --git a/fabric/src/main/java/org/mtr/mod/render/RenderRailwaySign.java b/fabric/src/main/java/org/mtr/mod/render/RenderRailwaySign.java
+index 305523e..0362305 100644
+--- a/fabric/src/main/java/org/mtr/mod/render/RenderRailwaySign.java
++++ b/fabric/src/main/java/org/mtr/mod/render/RenderRailwaySign.java
+@@ -33,12 +33,15 @@ import java.util.Arrays;
+ import java.util.Comparator;
+ import java.util.List;
+ import java.util.WeakHashMap;
++import java.util.regex.Pattern;
+ import java.util.stream.Collectors;
+ 
+ public class RenderRailwaySign<T extends BlockRailwaySign.BlockEntity> extends BlockEntityRenderer<T> implements IBlock, IGui, IDrawing {
+ 
+ 	private static final Identifier WHITE_TEXTURE = new Identifier(Init.MOD_ID, "textures/block/white.png");
+ 	private static final WeakHashMap<String[], SignLayout> SIGN_LAYOUT_CACHE = new WeakHashMap<>();
++	// String.split compiles multi-character patterns on every call
++	private static final Pattern ROUTE_NAME_SEPARATOR = Pattern.compile("\\|\\|");
+ 	private static int cachedResourceGeneration = -1;
+ 
+ 	public RenderRailwaySign(Argument dispatcher) {
+@@ -196,7 +199,7 @@ public class RenderRailwaySign<T extends BlockRailwaySign.BlockEntity> extends B
+ 				if (!simplifiedRoute.getName().isEmpty()) {
+ 					final int color = simplifiedRoute.getColor();
+ 					if (!addedColors.contains(color) && selectedIds.contains(color) && simplifiedRoute.getPlatforms().stream().anyMatch(simplifiedRoutePlatform -> platformIds.contains(simplifiedRoutePlatform.getPlatformId()))) {
+-						selectedRoutesSorted.add(new IntObjectImmutablePair<>(color, simplifiedRoute.getName().split("\\|\\|")[0]));
++						selectedRoutesSorted.add(new IntObjectImmutablePair<>(color, ROUTE_NAME_SEPARATOR.split(simplifiedRoute.getName())[0]));
+ 						addedColors.add(color);
+ 					}
+ 				}

@@ -1,0 +1,227 @@
+From 5ee45e6e56978fef39e899f1804c1ecd60b988a1 Mon Sep 17 00:00:00 2001
+From: Claude <noreply@anthropic.com>
+Date: Mon, 28 Sep 2026 06:27:17 +0000
+Subject: [PATCH 08/10] perf(core): skip unused detached path in vehicle update
+ copies
+
+VehicleExtraData.copy(pathUpdateIndex) detached-copied every PathData of the
+vehicle's path for each client update, only for the constructor to wrap it as
+the copy's immutablePath before clearing path and re-adding the needed subset.
+Its only caller, Client.update, places the copy in a VehicleUpdate that is
+serialized from path. Redirect copyPath in copy() to an empty list; the
+serialized update and all other fields are unchanged. The compatibility test
+checks the call sequence, the single caller and that no update consumer reads
+immutablePath.
+
+Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_01TD7PJ5R7t7hM3ymeeqXP4H
+---
+ .gitignore                                    |  2 +
+ .../mtr/mixin/VehicleExtraDataCopyMixin.java  | 23 ++++++
+ fabric/src/main/resources/mtr.mixins.json     |  1 +
+ .../mtr/mod/mixin/MixinCompatibilityTest.java | 79 +++++++++++++++++++
+ .../mtr/mixin/VehicleExtraDataCopyMixin.java  | 23 ++++++
+ forge/src/main/resources/mtr.mixins.json      |  1 +
+ 6 files changed, 129 insertions(+)
+ create mode 100644 fabric/src/main/java/org/mtr/mixin/VehicleExtraDataCopyMixin.java
+ create mode 100644 forge/src/main/java/org/mtr/mixin/VehicleExtraDataCopyMixin.java
+
+diff --git a/.gitignore b/.gitignore
+index f3af045..74e848e 100644
+--- a/.gitignore
++++ b/.gitignore
+@@ -233,6 +233,7 @@ forge/src/main/java/org/mtr/mixin/*
+ !fabric/src/main/java/org/mtr/mixin/RawModelBoundsMixin.java
+ !fabric/src/main/java/org/mtr/mixin/OptimizedModelBoundsMixin.java
+ !fabric/src/main/java/org/mtr/mixin/VehicleExtraDataMixin.java
++!fabric/src/main/java/org/mtr/mixin/VehicleExtraDataCopyMixin.java
+ !fabric/src/main/java/org/mtr/mixin/SidingSpeedLimitMixin.java
+ !fabric/src/main/java/org/mtr/mixin/VehicleSpeedLimitMixin.java
+ !fabric/src/main/java/org/mtr/mixin/WorldChunkDoorScanMixin.java
+@@ -243,6 +244,7 @@ forge/src/main/java/org/mtr/mixin/*
+ !forge/src/main/java/org/mtr/mixin/RawModelBoundsMixin.java
+ !forge/src/main/java/org/mtr/mixin/OptimizedModelBoundsMixin.java
+ !forge/src/main/java/org/mtr/mixin/VehicleExtraDataMixin.java
++!forge/src/main/java/org/mtr/mixin/VehicleExtraDataCopyMixin.java
+ !forge/src/main/java/org/mtr/mixin/SidingSpeedLimitMixin.java
+ !forge/src/main/java/org/mtr/mixin/VehicleSpeedLimitMixin.java
+ !forge/src/main/java/org/mtr/mixin/WorldChunkDoorScanMixin.java
+diff --git a/fabric/src/main/java/org/mtr/mixin/VehicleExtraDataCopyMixin.java b/fabric/src/main/java/org/mtr/mixin/VehicleExtraDataCopyMixin.java
+new file mode 100644
+index 0000000..4c8cd91
+--- /dev/null
++++ b/fabric/src/main/java/org/mtr/mixin/VehicleExtraDataCopyMixin.java
+@@ -0,0 +1,23 @@
++package org.mtr.mixin;
++
++import org.mtr.core.data.PathData;
++import org.mtr.core.data.VehicleExtraData;
++import org.mtr.libraries.it.unimi.dsi.fastutil.objects.ObjectArrayList;
++import org.spongepowered.asm.mixin.Mixin;
++import org.spongepowered.asm.mixin.injection.At;
++import org.spongepowered.asm.mixin.injection.Redirect;
++
++/**
++ * {@code copy(pathUpdateIndex)} passes a detached copy of the entire path to the constructor, which only keeps
++ * it as the copy's {@code immutablePath}, then refills {@code path} with the original path subset. The copy's only
++ * caller wraps it in a {@code VehicleUpdate} that is serialized from {@code path}; its {@code immutablePath} is
++ * never read, so the detached copy is not built.
++ */
++@Mixin(value = VehicleExtraData.class, remap = false)
++public abstract class VehicleExtraDataCopyMixin {
++
++	@Redirect(method = "copy", at = @At(value = "INVOKE", target = "Lorg/mtr/core/data/VehicleExtraData;copyPath(Lorg/mtr/libraries/it/unimi/dsi/fastutil/objects/ObjectArrayList;)Lorg/mtr/libraries/it/unimi/dsi/fastutil/objects/ObjectArrayList;"))
++	private ObjectArrayList<PathData> mtr$skipUnusedPathCopy(ObjectArrayList<PathData> path) {
++		return new ObjectArrayList<>();
++	}
++}
+diff --git a/fabric/src/main/resources/mtr.mixins.json b/fabric/src/main/resources/mtr.mixins.json
+index 56664d6..b6d8a4d 100644
+--- a/fabric/src/main/resources/mtr.mixins.json
++++ b/fabric/src/main/resources/mtr.mixins.json
+@@ -8,6 +8,7 @@
+ 		"PlayerTeleportationStateAccessor",
+ 		"PathDataAccessor",
+ 		"VehicleExtraDataMixin",
++		"VehicleExtraDataCopyMixin",
+ 		"SidingSpeedLimitMixin",
+ 		"VehicleSpeedLimitMixin"
+ 	],
+diff --git a/fabric/src/test/java/org/mtr/mod/mixin/MixinCompatibilityTest.java b/fabric/src/test/java/org/mtr/mod/mixin/MixinCompatibilityTest.java
+index 5569cd7..b56fec0 100644
+--- a/fabric/src/test/java/org/mtr/mod/mixin/MixinCompatibilityTest.java
++++ b/fabric/src/test/java/org/mtr/mod/mixin/MixinCompatibilityTest.java
+@@ -161,6 +161,55 @@ public final class MixinCompatibilityTest {
+ 		assertEquals(hashedFields("org/mtr/mapping/render/batch/MaterialProperties"), hashedFields(materialMixin));
+ 	}
+ 
++	@Test
++	public void vehicleUpdateCopySkipsOnlyTheUnusedDetachedPath() throws IOException {
++		final String mixin = "org/mtr/mixin/VehicleExtraDataCopyMixin";
++		final String copyPath = "Lorg/mtr/core/data/VehicleExtraData;copyPath(Lorg/mtr/libraries/it/unimi/dsi/fastutil/objects/ObjectArrayList;)Lorg/mtr/libraries/it/unimi/dsi/fastutil/objects/ObjectArrayList;";
++		assertTrue(configuredMixins("mixins").contains(mixin));
++		int redirects = 0;
++		for (MethodNode handler : readClass(mixin).methods) {
++			final AnnotationNode redirect = annotation(handler, REDIRECT);
++			if (redirect != null) {
++				assertEquals(List.of("copy"), stringValues(redirect, "method"));
++				assertEquals(copyPath, value((AnnotationNode) value(redirect, "at"), "target"));
++				redirects++;
++			}
++		}
++		assertEquals(1, redirects);
++
++		// copy() passes the detached path only to the constructor, then clears and refills its path field.
++		final List<String> sequence = new ArrayList<>();
++		for (AbstractInsnNode instruction : method(readClass("org/mtr/core/data/VehicleExtraData"), "copy", "(I)Lorg/mtr/core/data/VehicleExtraData;").instructions) {
++			if (instruction instanceof MethodInsnNode) {
++				final MethodInsnNode invocation = (MethodInsnNode) instruction;
++				final String call = "L" + invocation.owner + ";" + invocation.name + invocation.desc;
++				if (call.equals(copyPath) || invocation.name.equals("<init>") && invocation.owner.equals("org/mtr/core/data/VehicleExtraData") || invocation.name.equals("clear")) {
++					sequence.add(invocation.name);
++				}
++			} else if (instruction instanceof FieldInsnNode && ((FieldInsnNode) instruction).name.equals("immutablePath")) {
++				fail("copy() must not read the copied immutablePath");
++			}
++		}
++		assertEquals(List.of("copyPath", "<init>", "clear"), sequence);
++
++		// The copy's only consumer is the serialized vehicle update.
++		final List<String> callers = new ArrayList<>();
++		for (ClassNode classNode : coreClasses()) {
++			for (MethodNode method : classNode.methods) {
++				for (AbstractInsnNode instruction : method.instructions) {
++					if (instruction instanceof MethodInsnNode && ((MethodInsnNode) instruction).owner.equals("org/mtr/core/data/VehicleExtraData") && ((MethodInsnNode) instruction).name.equals("copy")) {
++						callers.add(classNode.name + "." + method.name);
++					}
++					if (instruction instanceof FieldInsnNode && ((FieldInsnNode) instruction).name.equals("immutablePath")) {
++						assertFalse(classNode.name.startsWith("org/mtr/core/operation/VehicleUpdate") || classNode.name.startsWith("org/mtr/core/generated/operation/VehicleUpdate") || classNode.name.contains("VehicleLiftResponse") || classNode.name.equals("org/mtr/core/data/Client"),
++								classNode.name + " must not read immutablePath from a vehicle update copy");
++					}
++				}
++			}
++		}
++		assertEquals(List.of("org/mtr/core/data/Client.update"), callers);
++	}
++
+ 	@Test
+ 	public void configuredRedirectsUseScalarInjectionPointsForOlderMixinExtras() throws IOException {
+ 		int checked = 0;
+@@ -289,6 +338,36 @@ public final class MixinCompatibilityTest {
+ 		return null;
+ 	}
+ 
++	private static List<ClassNode> coreClasses() throws IOException {
++		final String modJar = System.getProperty("mtr.test.modJar");
++		final String archivePath;
++		if (modJar != null && !modJar.isEmpty()) {
++			archivePath = modJar;
++		} else {
++			try {
++				archivePath = new java.io.File(org.mtr.core.data.VehicleExtraData.class.getProtectionDomain().getCodeSource().getLocation().toURI()).getPath();
++			} catch (java.net.URISyntaxException e) {
++				throw new IOException(e);
++			}
++		}
++		final List<ClassNode> result = new ArrayList<>();
++		try (ZipFile archive = new ZipFile(archivePath)) {
++			final java.util.Enumeration<? extends ZipEntry> entries = archive.entries();
++			while (entries.hasMoreElements()) {
++				final ZipEntry entry = entries.nextElement();
++				if (entry.getName().startsWith("org/mtr/core/") && entry.getName().endsWith(".class")) {
++					try (InputStream input = archive.getInputStream(entry)) {
++						final ClassNode node = new ClassNode();
++						new ClassReader(readBytes(input)).accept(node, ClassReader.SKIP_DEBUG | ClassReader.SKIP_FRAMES);
++						result.add(node);
++					}
++				}
++			}
++		}
++		assertTrue(result.size() > 100, "Core classes must be scanned");
++		return result;
++	}
++
+ 	private static MethodNode method(ClassNode classNode, String name, String descriptor) {
+ 		for (MethodNode method : classNode.methods) {
+ 			if (method.name.equals(name) && method.desc.equals(descriptor)) {
+diff --git a/forge/src/main/java/org/mtr/mixin/VehicleExtraDataCopyMixin.java b/forge/src/main/java/org/mtr/mixin/VehicleExtraDataCopyMixin.java
+new file mode 100644
+index 0000000..4c8cd91
+--- /dev/null
++++ b/forge/src/main/java/org/mtr/mixin/VehicleExtraDataCopyMixin.java
+@@ -0,0 +1,23 @@
++package org.mtr.mixin;
++
++import org.mtr.core.data.PathData;
++import org.mtr.core.data.VehicleExtraData;
++import org.mtr.libraries.it.unimi.dsi.fastutil.objects.ObjectArrayList;
++import org.spongepowered.asm.mixin.Mixin;
++import org.spongepowered.asm.mixin.injection.At;
++import org.spongepowered.asm.mixin.injection.Redirect;
++
++/**
++ * {@code copy(pathUpdateIndex)} passes a detached copy of the entire path to the constructor, which only keeps
++ * it as the copy's {@code immutablePath}, then refills {@code path} with the original path subset. The copy's only
++ * caller wraps it in a {@code VehicleUpdate} that is serialized from {@code path}; its {@code immutablePath} is
++ * never read, so the detached copy is not built.
++ */
++@Mixin(value = VehicleExtraData.class, remap = false)
++public abstract class VehicleExtraDataCopyMixin {
++
++	@Redirect(method = "copy", at = @At(value = "INVOKE", target = "Lorg/mtr/core/data/VehicleExtraData;copyPath(Lorg/mtr/libraries/it/unimi/dsi/fastutil/objects/ObjectArrayList;)Lorg/mtr/libraries/it/unimi/dsi/fastutil/objects/ObjectArrayList;"))
++	private ObjectArrayList<PathData> mtr$skipUnusedPathCopy(ObjectArrayList<PathData> path) {
++		return new ObjectArrayList<>();
++	}
++}
+diff --git a/forge/src/main/resources/mtr.mixins.json b/forge/src/main/resources/mtr.mixins.json
+index 56664d6..b6d8a4d 100644
+--- a/forge/src/main/resources/mtr.mixins.json
++++ b/forge/src/main/resources/mtr.mixins.json
+@@ -8,6 +8,7 @@
+ 		"PlayerTeleportationStateAccessor",
+ 		"PathDataAccessor",
+ 		"VehicleExtraDataMixin",
++		"VehicleExtraDataCopyMixin",
+ 		"SidingSpeedLimitMixin",
+ 		"VehicleSpeedLimitMixin"
+ 	],

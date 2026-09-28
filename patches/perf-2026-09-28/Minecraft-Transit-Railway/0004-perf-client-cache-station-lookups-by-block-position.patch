@@ -1,0 +1,181 @@
+From 16d2ffb2b5c33e41b3f0f2fcb2e35b3ecc762c47 Mon Sep 17 00:00:00 2001
+From: Claude <noreply@anthropic.com>
+Date: Mon, 28 Sep 2026 06:22:45 +0000
+Subject: [PATCH 04/10] perf(client): cache station lookups by block position
+
+Signs, PIDS and station name blocks called findStation every frame, which
+streamed over every client station. Cache the result per block position,
+including misses, in the client data instance. Core applies every station
+update, addition and removal before calling sync(), which now drops the
+cache; a data reset or world change replaces the instance. The lookup keeps
+the first matching station in the same iteration order, and positions
+outside the packed key range are looked up directly.
+
+Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_01TD7PJ5R7t7hM3ymeeqXP4H
+---
+ .../src/main/java/org/mtr/mod/InitClient.java |  2 +-
+ .../mtr/mod/client/MinecraftClientData.java   | 44 +++++++++++++++++
+ .../client/MinecraftClientDataSyncTest.java   | 47 +++++++++++++++++++
+ 3 files changed, 92 insertions(+), 1 deletion(-)
+
+diff --git a/fabric/src/main/java/org/mtr/mod/InitClient.java b/fabric/src/main/java/org/mtr/mod/InitClient.java
+index e138dab..8424546 100644
+--- a/fabric/src/main/java/org/mtr/mod/InitClient.java
++++ b/fabric/src/main/java/org/mtr/mod/InitClient.java
+@@ -504,7 +504,7 @@ public final class InitClient {
+ 	}
+ 
+ 	public static Station findStation(BlockPos blockPos) {
+-		return MinecraftClientData.getInstance().stations.stream().filter(station -> station.inArea(Init.blockPosToPosition(blockPos))).findFirst().orElse(null);
++		return MinecraftClientData.getInstance().findStation(blockPos.getX(), blockPos.getY(), blockPos.getZ());
+ 	}
+ 
+ 	public static void findClosePlatform(BlockPos blockPos, int radius, Consumer<Platform> consumer) {
+diff --git a/fabric/src/main/java/org/mtr/mod/client/MinecraftClientData.java b/fabric/src/main/java/org/mtr/mod/client/MinecraftClientData.java
+index 9c03358..c9b4d44 100644
+--- a/fabric/src/main/java/org/mtr/mod/client/MinecraftClientData.java
++++ b/fabric/src/main/java/org/mtr/mod/client/MinecraftClientData.java
+@@ -36,6 +36,13 @@ public final class MinecraftClientData extends ClientData {
+ 	public final ObjectArrayList<DashboardListItem> railActions = new ObjectArrayList<>();
+ 
+ 	private final LongAVLTreeSet routeIdsWithDisabledAnnouncements = new LongAVLTreeSet();
++	/** Results of {@link #findStation(int, int, int)}, including misses; cleared when stations may have changed. */
++	@Nullable
++	private Long2ObjectOpenHashMap<Station> stationsByBlockPos;
++
++	private static final int MAX_CACHED_STATION_POSITIONS = 16384;
++	private static final int MAX_CACHED_HORIZONTAL = 1 << 25;
++	private static final int MAX_CACHED_VERTICAL = 1 << 11;
+ 
+ 	private static MinecraftClientData instance = new MinecraftClientData();
+ 	private static MinecraftClientData dashboardInstance = new MinecraftClientData();
+@@ -68,6 +75,8 @@ public final class MinecraftClientData extends ClientData {
+ 		}));
+ 
+ 		simplifiedRoutes.forEach(simplifiedRoute -> simplifiedRouteIdMap.put(simplifiedRoute.getId(), simplifiedRoute));
++		// Every client station update, addition and removal is followed by a full sync
++		stationsByBlockPos = null;
+ 	}
+ 
+ 	/** Vehicle/lift packets do not change the rail graph, routes, or spatial indexes. */
+@@ -134,6 +143,41 @@ public final class MinecraftClientData extends ClientData {
+ 		}
+ 	}
+ 
++	/**
++	 * @return the first station, in iteration order, whose area contains the block position
++	 */
++	@Nullable
++	public Station findStation(int x, int y, int z) {
++		if (x < -MAX_CACHED_HORIZONTAL || x >= MAX_CACHED_HORIZONTAL || z < -MAX_CACHED_HORIZONTAL || z >= MAX_CACHED_HORIZONTAL || y < -MAX_CACHED_VERTICAL || y >= MAX_CACHED_VERTICAL) {
++			return findStationUncached(x, y, z);
++		}
++		final long key = ((long) (x & 0x3FFFFFF) << 38) | ((long) (z & 0x3FFFFFF) << 12) | (y & 0xFFF);
++		if (stationsByBlockPos == null) {
++			stationsByBlockPos = new Long2ObjectOpenHashMap<>();
++		}
++		final Station cachedStation = stationsByBlockPos.get(key);
++		if (cachedStation != null || stationsByBlockPos.containsKey(key)) {
++			return cachedStation;
++		}
++		if (stationsByBlockPos.size() >= MAX_CACHED_STATION_POSITIONS) {
++			stationsByBlockPos.clear();
++		}
++		final Station station = findStationUncached(x, y, z);
++		stationsByBlockPos.put(key, station);
++		return station;
++	}
++
++	@Nullable
++	private Station findStationUncached(int x, int y, int z) {
++		final Position position = new Position(x, y, z);
++		for (final Station station : stations) {
++			if (station.inArea(position)) {
++				return station;
++			}
++		}
++		return null;
++	}
++
+ 	public boolean getRouteIdHasDisabledAnnouncements(long routeId) {
+ 		return routeIdsWithDisabledAnnouncements.contains(routeId);
+ 	}
+diff --git a/fabric/src/test/java/org/mtr/mod/client/MinecraftClientDataSyncTest.java b/fabric/src/test/java/org/mtr/mod/client/MinecraftClientDataSyncTest.java
+index fe7a907..f86412d 100644
+--- a/fabric/src/test/java/org/mtr/mod/client/MinecraftClientDataSyncTest.java
++++ b/fabric/src/test/java/org/mtr/mod/client/MinecraftClientDataSyncTest.java
+@@ -5,6 +5,7 @@ import org.mtr.core.data.Lift;
+ import org.mtr.core.data.Position;
+ import org.mtr.core.data.Rail;
+ import org.mtr.core.data.SimplifiedRoute;
++import org.mtr.core.data.Station;
+ import org.mtr.core.data.TransportMode;
+ import org.mtr.core.serializer.JsonReader;
+ import org.mtr.core.tool.Angle;
+@@ -13,6 +14,8 @@ import org.mtr.libraries.it.unimi.dsi.fastutil.objects.Object2ObjectArrayMap;
+ import org.mtr.libraries.it.unimi.dsi.fastutil.objects.ObjectArrayList;
+ import org.mtr.libraries.it.unimi.dsi.fastutil.objects.ObjectArraySet;
+ 
++import java.util.Random;
++
+ import static org.junit.jupiter.api.Assertions.*;
+ 
+ public final class MinecraftClientDataSyncTest {
+@@ -60,12 +63,56 @@ public final class MinecraftClientDataSyncTest {
+ 		assertSame(railWrapper, data.railWrapperList.get(rail.getHexId()));
+ 	}
+ 
++	@Test
++	public void cachedStationLookupMatchesStationScanAcrossSyncs() {
++		final Random random = new Random(5);
++		final MinecraftClientData data = new MinecraftClientData();
++		for (int i = 0; i < 30; i++) {
++			data.stations.add(station(random, data));
++		}
++		data.sync();
++		int nonNull = 0;
++		for (int step = 0; step < 100_000; step++) {
++			final int action = random.nextInt(200);
++			if (action == 0 && !data.stations.isEmpty()) {
++				final Station station = data.stations.stream().skip(random.nextInt(data.stations.size())).findFirst().orElseThrow();
++				station.setCorners(randomPosition(random, -250), randomPosition(random, 250));
++				data.sync();
++			} else if (action == 1) {
++				data.stations.add(station(random, data));
++				data.sync();
++			} else if (action == 2 && !data.stations.isEmpty()) {
++				data.stations.remove(data.stations.stream().skip(random.nextInt(data.stations.size())).findFirst().orElseThrow());
++				data.sync();
++			} else {
++				final int x = random.nextInt(10) == 0 ? random.nextInt() : random.nextInt(400) - 200;
++				final int y = random.nextInt(10) == 0 ? random.nextInt() : random.nextInt(400) - 200;
++				final int z = random.nextInt(400) - 200;
++				final Position position = new Position(x, y, z);
++				final Station expected = data.stations.stream().filter(station -> station.inArea(position)).findFirst().orElse(null);
++				assertSame(expected, data.findStation(x, y, z), "step " + step);
++				nonNull += expected == null ? 0 : 1;
++			}
++		}
++		assertTrue(nonNull > 10_000, "The fixture must contain stations: " + nonNull);
++	}
++
+ 	@Test
+ 	public void publicCollectionFieldDescriptorsRemainCompatible() throws Exception {
+ 		assertEquals(Object2ObjectArrayMap.class, MinecraftClientData.class.getField("railWrapperList").getType());
+ 		assertEquals(ObjectArraySet.class, MinecraftClientData.class.getField("blockedRailIds").getType());
+ 	}
+ 
++	private static Station station(Random random, MinecraftClientData data) {
++		final Station station = new Station(data);
++		station.setCorners(randomPosition(random, -250), randomPosition(random, 250));
++		return station;
++	}
++
++	private static Position randomPosition(Random random, long y) {
++		return new Position(random.nextInt(400) - 200, y, random.nextInt(400) - 200);
++	}
++
+ 	private static Lift lift(long id, String name, MinecraftClientData data) {
+ 		return new Lift(reader("{\"id\":" + id + ",\"name\":\"" + name + "\"}"), data);
+ 	}

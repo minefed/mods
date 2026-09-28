@@ -1,0 +1,396 @@
+From 8b548e24cd2874517f8bee27531b844648897294 Mon Sep 17 00:00:00 2001
+From: Claude <noreply@anthropic.com>
+Date: Mon, 28 Sep 2026 06:15:25 +0000
+Subject: [PATCH 02/10] perf(render): reset only dirty occlusion cache blocks
+
+The occlusion worker reset its whole ArrayOcclusionCache (13.5 MiB at render
+distance 12, 256 MiB from 32) with Arrays.fill on every cycle. Use a cache
+with the same byte layout, index arithmetic and exceptions that marks each
+64-byte block becoming non-zero, and zero only marked blocks on reset.
+
+Also return false directly for boxes whose every cell lies outside the cache
+cube, after the camera-inside check. The library already skips each such cell
+because its cache lookup returns -1 and then returns false without casting a
+ray or touching the cache. Unsorted, oversized or near-overflow boxes still go
+through the library.
+
+Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_01TD7PJ5R7t7hM3ymeeqXP4H
+---
+ .../mod/render/DirtyBlockOcclusionCache.java  |  91 +++++++++
+ .../ReachLimitedOcclusionCullingInstance.java |  72 ++++++++
+ .../java/org/mtr/mod/render/WorkerThread.java |   2 +-
+ .../OcclusionCullingEquivalenceTest.java      | 174 ++++++++++++++++++
+ 4 files changed, 338 insertions(+), 1 deletion(-)
+ create mode 100644 fabric/src/main/java/org/mtr/mod/render/DirtyBlockOcclusionCache.java
+ create mode 100644 fabric/src/main/java/org/mtr/mod/render/ReachLimitedOcclusionCullingInstance.java
+ create mode 100644 fabric/src/test/java/org/mtr/mod/render/OcclusionCullingEquivalenceTest.java
+
+diff --git a/fabric/src/main/java/org/mtr/mod/render/DirtyBlockOcclusionCache.java b/fabric/src/main/java/org/mtr/mod/render/DirtyBlockOcclusionCache.java
+new file mode 100644
+index 0000000..a644721
+--- /dev/null
++++ b/fabric/src/main/java/org/mtr/mod/render/DirtyBlockOcclusionCache.java
+@@ -0,0 +1,91 @@
++package org.mtr.mod.render;
++
++import com.logisticscraft.occlusionculling.cache.ArrayOcclusionCache;
++import com.logisticscraft.occlusionculling.cache.OcclusionCache;
++
++import java.util.Arrays;
++
++/**
++ * The same byte layout and index arithmetic as {@link ArrayOcclusionCache}, including its exceptions.
++ * Each 64-byte block that becomes non-zero is marked, so a reset only zeroes marked blocks
++ * instead of the whole cube. Every byte is zero after a reset, exactly as before.
++ */
++final class DirtyBlockOcclusionCache implements OcclusionCache {
++
++	private static final int BLOCK_SHIFT = 6;
++
++	private final int reachX2;
++	private final byte[] cache;
++	private final long[] dirtyBlocks;
++	private int positionKey;
++	private int entry;
++	private int offset;
++
++	DirtyBlockOcclusionCache(int reach) {
++		reachX2 = reach * 2;
++		cache = new byte[(reachX2 * reachX2 * reachX2) / 4];
++		final int blocks = (cache.length >> BLOCK_SHIFT) + 1;
++		dirtyBlocks = new long[(blocks >> 6) + 1];
++	}
++
++	@Override
++	public void resetCache() {
++		for (int i = 0; i < dirtyBlocks.length; i++) {
++			long word = dirtyBlocks[i];
++			if (word != 0) {
++				dirtyBlocks[i] = 0;
++				while (word != 0) {
++					final int block = (i << 6) + Long.numberOfTrailingZeros(word);
++					final int start = block << BLOCK_SHIFT;
++					Arrays.fill(cache, start, Math.min(start + (1 << BLOCK_SHIFT), cache.length), (byte) 0);
++					word &= word - 1;
++				}
++			}
++		}
++	}
++
++	@Override
++	public void setVisible(int x, int y, int z) {
++		positionKey = x + y * reachX2 + z * reachX2 * reachX2;
++		entry = positionKey / 4;
++		offset = (positionKey % 4) * 2;
++		set(entry, 1 << offset);
++	}
++
++	@Override
++	public void setHidden(int x, int y, int z) {
++		positionKey = x + y * reachX2 + z * reachX2 * reachX2;
++		entry = positionKey / 4;
++		offset = (positionKey % 4) * 2;
++		set(entry, 1 << offset + 1);
++	}
++
++	@Override
++	public int getState(int x, int y, int z) {
++		positionKey = x + y * reachX2 + z * reachX2 * reachX2;
++		entry = positionKey / 4;
++		offset = (positionKey % 4) * 2;
++		return cache[entry] >> offset & 3;
++	}
++
++	@Override
++	public void setLastVisible() {
++		set(entry, 1 << offset);
++	}
++
++	@Override
++	public void setLastHidden() {
++		set(entry, 1 << offset + 1);
++	}
++
++	/** Equivalent to {@code cache[index] |= bits}; an invalid index throws before anything is written. */
++	private void set(int index, int bits) {
++		final byte oldValue = cache[index];
++		final byte newValue = (byte) (oldValue | bits);
++		cache[index] = newValue;
++		if (oldValue == 0 && newValue != 0) {
++			final int block = index >> BLOCK_SHIFT;
++			dirtyBlocks[block >> 6] |= 1L << block;
++		}
++	}
++}
+diff --git a/fabric/src/main/java/org/mtr/mod/render/ReachLimitedOcclusionCullingInstance.java b/fabric/src/main/java/org/mtr/mod/render/ReachLimitedOcclusionCullingInstance.java
+new file mode 100644
+index 0000000..720339e
+--- /dev/null
++++ b/fabric/src/main/java/org/mtr/mod/render/ReachLimitedOcclusionCullingInstance.java
+@@ -0,0 +1,72 @@
++package org.mtr.mod.render;
++
++import com.logisticscraft.occlusionculling.DataProvider;
++import com.logisticscraft.occlusionculling.OcclusionCullingInstance;
++import com.logisticscraft.occlusionculling.util.MathUtilities;
++import com.logisticscraft.occlusionculling.util.Vec3d;
++
++/**
++ * Uses {@link DirtyBlockOcclusionCache} and skips boxes whose cells are all outside the cache cube.
++ * <p>
++ * For such boxes, the library marks every cell as skipped because its cache lookup returns
++ * {@code -1}, performs no ray or cache access, and returns {@code false}. The camera-inside
++ * check still comes first. Boxes near integer overflow or large enough to overflow the
++ * library's cell index are passed through unchanged.
++ */
++final class ReachLimitedOcclusionCullingInstance extends OcclusionCullingInstance {
++
++	private static final double AABB_EXPANSION = 0.5;
++	private static final int MAX_COORDINATE = 1 << 29;
++	private static final long MAX_CELLS = 1L << 24;
++
++	private final int reach;
++
++	ReachLimitedOcclusionCullingInstance(int maxDistance, DataProvider provider) {
++		super(maxDistance, provider, new DirtyBlockOcclusionCache(maxDistance), AABB_EXPANSION);
++		reach = maxDistance;
++	}
++
++	@Override
++	public boolean isAABBVisible(Vec3d aabbMin, Vec3d aabbMax, Vec3d viewerPosition) {
++		return aabbMin != null && aabbMax != null && viewerPosition != null && isOutsideReach(
++				MathUtilities.floor(aabbMin.x - AABB_EXPANSION), MathUtilities.floor(aabbMax.x + AABB_EXPANSION), MathUtilities.floor(viewerPosition.x),
++				MathUtilities.floor(aabbMin.y - AABB_EXPANSION), MathUtilities.floor(aabbMax.y + AABB_EXPANSION), MathUtilities.floor(viewerPosition.y),
++				MathUtilities.floor(aabbMin.z - AABB_EXPANSION), MathUtilities.floor(aabbMax.z + AABB_EXPANSION), MathUtilities.floor(viewerPosition.z),
++				reach
++		) ? false : super.isAABBVisible(aabbMin, aabbMax, viewerPosition);
++	}
++
++	/**
++	 * @return {@code true} only if {@link OcclusionCullingInstance#isAABBVisible} is known to return {@code false} without side effects
++	 */
++	static boolean isOutsideReach(int minX, int maxX, int cameraX, int minY, int maxY, int cameraY, int minZ, int maxZ, int cameraZ, int reach) {
++		if (!inRange(minX, maxX, cameraX) || !inRange(minY, maxY, cameraY) || !inRange(minZ, maxZ, cameraZ)) {
++			return false;
++		}
++		// Keep the library's result when the camera is inside the expanded box
++		if (inside(minX, maxX, cameraX) && inside(minY, maxY, cameraY) && inside(minZ, maxZ, cameraZ)) {
++			return false;
++		}
++		final long cellsXY = (long) (maxX - minX + 1) * (maxY - minY + 1);
++		if (cellsXY > MAX_CELLS || cellsXY * (maxZ - minZ + 1) > MAX_CELLS) {
++			return false;
++		}
++		// A cell is cached only if all three axes are within reach - 2
++		final int limit = reach - 2;
++		return outside(minX - cameraX, maxX - cameraX, limit) || outside(minY - cameraY, maxY - cameraY, limit) || outside(minZ - cameraZ, maxZ - cameraZ, limit);
++	}
++
++	private static boolean inRange(int min, int max, int camera) {
++		return min <= max && Math.abs(min) <= MAX_COORDINATE && Math.abs(max) <= MAX_COORDINATE && Math.abs(camera) <= MAX_COORDINATE;
++	}
++
++	/** The negation of the library's {@code POSITIVE} and {@code NEGATIVE} cases. */
++	private static boolean inside(int min, int max, int camera) {
++		return !(max > camera && min > camera) && !(min < camera && max < camera);
++	}
++
++	/** Whether every offset in {@code [min, max]} fails {@code Math.abs(offset) <= limit}. */
++	private static boolean outside(int min, int max, int limit) {
++		return max < -limit || min > limit || limit < 0;
++	}
++}
+diff --git a/fabric/src/main/java/org/mtr/mod/render/WorkerThread.java b/fabric/src/main/java/org/mtr/mod/render/WorkerThread.java
+index 3d23c93..de3e7d5 100644
+--- a/fabric/src/main/java/org/mtr/mod/render/WorkerThread.java
++++ b/fabric/src/main/java/org/mtr/mod/render/WorkerThread.java
+@@ -79,7 +79,7 @@ public final class WorkerThread extends CustomThread {
+ 		final int newRenderDistance = MinecraftClientHelper.getRenderDistance();
+ 		if (renderDistance != newRenderDistance) {
+ 			renderDistance = newRenderDistance;
+-			occlusionCullingInstance = new OcclusionCullingInstance(Math.min(renderDistance, MAX_OCCLUSION_CHUNK_DISTANCE) * 16, new CullingDataProvider());
++			occlusionCullingInstance = new ReachLimitedOcclusionCullingInstance(Math.min(renderDistance, MAX_OCCLUSION_CHUNK_DISTANCE) * 16, new CullingDataProvider());
+ 		}
+ 	}
+ 
+diff --git a/fabric/src/test/java/org/mtr/mod/render/OcclusionCullingEquivalenceTest.java b/fabric/src/test/java/org/mtr/mod/render/OcclusionCullingEquivalenceTest.java
+new file mode 100644
+index 0000000..81670a2
+--- /dev/null
++++ b/fabric/src/test/java/org/mtr/mod/render/OcclusionCullingEquivalenceTest.java
+@@ -0,0 +1,174 @@
++package org.mtr.mod.render;
++
++import com.logisticscraft.occlusionculling.DataProvider;
++import com.logisticscraft.occlusionculling.OcclusionCullingInstance;
++import com.logisticscraft.occlusionculling.cache.ArrayOcclusionCache;
++import com.logisticscraft.occlusionculling.cache.OcclusionCache;
++import com.logisticscraft.occlusionculling.util.Vec3d;
++import org.junit.jupiter.api.Test;
++
++import java.lang.reflect.Field;
++import java.util.Random;
++
++import static org.junit.jupiter.api.Assertions.*;
++
++public final class OcclusionCullingEquivalenceTest {
++
++	@Test
++	public void dirtyBlockCacheMatchesArrayCacheIncludingInvalidIndices() throws ReflectiveOperationException {
++		final Random random = new Random(3);
++		for (final int reach : new int[]{0, 1, 2, 5, 16, 33}) {
++			final ArrayOcclusionCache original = new ArrayOcclusionCache(reach);
++			final DirtyBlockOcclusionCache optimized = new DirtyBlockOcclusionCache(reach);
++			final byte[] originalBytes = bytes(original);
++			final byte[] optimizedBytes = bytes(optimized);
++			assertEquals(originalBytes.length, optimizedBytes.length);
++			for (int step = 0; step < 200_000; step++) {
++				final int operation = random.nextInt(20);
++				final int range = reach * 2 + 4;
++				final int x = random.nextInt(range) - 2;
++				final int y = random.nextInt(range) - 2;
++				final int z = random.nextInt(range) - 2;
++				assertSame(outcome(original, operation, x, y, z), outcome(optimized, operation, x, y, z), "reach " + reach + " step " + step);
++				if (operation == 0 || step % 97 == 0) {
++					assertArrayEquals(originalBytes, optimizedBytes, "reach " + reach + " step " + step);
++				}
++			}
++			original.resetCache();
++			optimized.resetCache();
++			assertArrayEquals(new byte[originalBytes.length], optimizedBytes);
++		}
++	}
++
++	@Test
++	public void cullingResultsMatchTheLibraryInstance() {
++		final Random random = new Random(4);
++		for (final int reach : new int[]{32, 48, 64}) {
++			final TestDataProvider provider = new TestDataProvider(random.nextLong());
++			final OcclusionCullingInstance original = new OcclusionCullingInstance(reach, provider);
++			final ReachLimitedOcclusionCullingInstance optimized = new ReachLimitedOcclusionCullingInstance(reach, provider);
++			int skipped = 0;
++			int visible = 0;
++			for (int step = 0; step < 60_000; step++) {
++				if (random.nextInt(40) == 0) {
++					original.resetCache();
++					optimized.resetCache();
++				}
++				final Vec3d camera = new Vec3d(random.nextInt(8) + random.nextDouble(), 60 + random.nextInt(8) + random.nextDouble(), random.nextInt(8) + random.nextDouble());
++				final double scale = random.nextInt(4) == 0 ? reach * 4 : reach;
++				final double x = camera.x + (random.nextDouble() - 0.5) * scale * 2;
++				final double y = camera.y + (random.nextDouble() - 0.5) * scale;
++				final double z = camera.z + (random.nextDouble() - 0.5) * scale * 2;
++				final double sizeX = random.nextInt(10) == 0 ? random.nextDouble() * reach * 3 : random.nextDouble() * 6;
++				final double sizeY = random.nextDouble() * 6;
++				final double sizeZ = random.nextInt(10) == 0 ? random.nextDouble() * reach * 3 : random.nextDouble() * 6;
++				final Vec3d min = new Vec3d(x, y, z);
++				// Some callers pass unsorted rail end points
++				final Vec3d max = random.nextInt(20) == 0 ? new Vec3d(x - sizeX, y + sizeY, z - sizeZ) : new Vec3d(x + sizeX, y + sizeY, z + sizeZ);
++				final boolean expected = original.isAABBVisible(min, max, camera);
++				final int[] cells = cells(min, max, camera);
++				if (ReachLimitedOcclusionCullingInstance.isOutsideReach(cells[0], cells[1], cells[2], cells[3], cells[4], cells[5], cells[6], cells[7], cells[8], reach)) {
++					assertFalse(expected);
++					skipped++;
++				}
++				visible += expected ? 1 : 0;
++				assertEquals(expected, optimized.isAABBVisible(min, max, camera), "reach " + reach + " step " + step);
++			}
++			assertTrue(skipped > 1000, "Boxes outside the cache cube must use the early return: " + skipped);
++			assertTrue(visible > 1000 && visible < 59_000, "The fixture must contain visible and hidden boxes: " + visible);
++		}
++		assertTrue(new ReachLimitedOcclusionCullingInstance(32, new TestDataProvider(0)).isAABBVisible(new Vec3d(-1, -1, -1), new Vec3d(1, 1, 1), new Vec3d(0, 0, 0)));
++		assertTrue(new ReachLimitedOcclusionCullingInstance(32, new TestDataProvider(0)).isAABBVisible(null, new Vec3d(1, 1, 1), new Vec3d(0, 0, 0)));
++	}
++
++	@Test
++	public void earlyReturnRequiresEveryCellOutsideTheCacheCube() {
++		assertTrue(ReachLimitedOcclusionCullingInstance.isOutsideReach(31, 40, 0, 0, 1, 0, 0, 1, 0, 32));
++		assertFalse(ReachLimitedOcclusionCullingInstance.isOutsideReach(30, 40, 0, 0, 1, 0, 0, 1, 0, 32));
++		assertTrue(ReachLimitedOcclusionCullingInstance.isOutsideReach(-40, -31, 0, 0, 1, 0, 0, 1, 0, 32));
++		assertFalse(ReachLimitedOcclusionCullingInstance.isOutsideReach(-40, -30, 0, 0, 1, 0, 0, 1, 0, 32));
++		// Camera inside the box
++		assertFalse(ReachLimitedOcclusionCullingInstance.isOutsideReach(-1, 1, 0, -1, 1, 0, -1, 1, 0, 1));
++		// Unsorted, oversized or near-overflow boxes are left to the library
++		assertFalse(ReachLimitedOcclusionCullingInstance.isOutsideReach(40, 31, 0, 0, 1, 0, 0, 1, 0, 32));
++		assertFalse(ReachLimitedOcclusionCullingInstance.isOutsideReach(100, 5000, 0, 0, 5000, 0, 0, 5000, 0, 32));
++		assertFalse(ReachLimitedOcclusionCullingInstance.isOutsideReach(Integer.MAX_VALUE - 1, Integer.MAX_VALUE, 0, 0, 1, 0, 0, 1, 0, 32));
++	}
++
++	private static int[] cells(Vec3d min, Vec3d max, Vec3d camera) {
++		return new int[]{
++				floor(min.x - 0.5), floor(max.x + 0.5), floor(camera.x),
++				floor(min.y - 0.5), floor(max.y + 0.5), floor(camera.y),
++				floor(min.z - 0.5), floor(max.z + 0.5), floor(camera.z),
++		};
++	}
++
++	private static int floor(double value) {
++		final int intValue = (int) value;
++		return value < intValue ? intValue - 1 : intValue;
++	}
++
++	private static Object outcome(OcclusionCache cache, int operation, int x, int y, int z) {
++		try {
++			switch (operation) {
++				case 0:
++					cache.resetCache();
++					return "reset";
++				case 1:
++				case 2:
++				case 3:
++					cache.setVisible(x, y, z);
++					return "visible";
++				case 4:
++				case 5:
++				case 6:
++					cache.setHidden(x, y, z);
++					return "hidden";
++				case 7:
++					cache.setLastVisible();
++					return "last visible";
++				case 8:
++					cache.setLastHidden();
++					return "last hidden";
++				default:
++					return STATES[cache.getState(x, y, z) & 3];
++			}
++		} catch (ArrayIndexOutOfBoundsException e) {
++			return "out of bounds";
++		}
++	}
++
++	private static final String[] STATES = {"0", "1", "2", "3"};
++
++	private static byte[] bytes(OcclusionCache cache) throws ReflectiveOperationException {
++		final Field field = cache.getClass().getDeclaredField("cache");
++		field.setAccessible(true);
++		return (byte[]) field.get(cache);
++	}
++
++	private static final class TestDataProvider implements DataProvider {
++
++		private final long seed;
++
++		private TestDataProvider(long seed) {
++			this.seed = seed;
++		}
++
++		@Override
++		public boolean prepareChunk(int chunkX, int chunkZ) {
++			return hash(chunkX, 0, chunkZ) % 50 != 0;
++		}
++
++		@Override
++		public boolean isOpaqueFullCube(int x, int y, int z) {
++			return y < 58 || hash(x, y, z) % 12 == 0;
++		}
++
++		private long hash(int x, int y, int z) {
++			long hash = seed ^ x * 0x9E3779B97F4A7C15L ^ y * 0xC2B2AE3D27D4EB4FL ^ z * 0x165667B19E3779F9L;
++			hash ^= hash >>> 29;
++			hash *= 0xBF58476D1CE4E5B9L;
++			return Math.abs(hash ^ hash >>> 32);
++		}
++	}
++}

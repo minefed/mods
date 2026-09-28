@@ -1,0 +1,150 @@
+From 067548029740ef2a6aebfdfb24f5c580f11fc138 Mon Sep 17 00:00:00 2001
+From: Claude <noreply@anthropic.com>
+Date: Mon, 28 Sep 2026 06:25:27 +0000
+Subject: [PATCH 07/10] perf(client): stop resending sensor power requests
+ every frame
+
+While a vehicle head was over an unpowered redstone sensor, the client sent
+PacketTurnOnBlockEntity every frame until the powered state made the round
+trip. The server's power() only raises the sensor to level 2 and schedules
+the decay tick once from level 0, so these repeats were no-ops. Track the last
+request per sensor position and world, and send again only when the observed
+power level differs or 250 ms have passed without a change.
+
+Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_01TD7PJ5R7t7hM3ymeeqXP4H
+---
+ .../org/mtr/mod/data/SensorPowerRequests.java | 46 +++++++++++++++++++
+ .../org/mtr/mod/data/VehicleExtension.java    |  6 ++-
+ .../mtr/mod/data/SensorPowerRequestsTest.java | 45 ++++++++++++++++++
+ 3 files changed, 96 insertions(+), 1 deletion(-)
+ create mode 100644 fabric/src/main/java/org/mtr/mod/data/SensorPowerRequests.java
+ create mode 100644 fabric/src/test/java/org/mtr/mod/data/SensorPowerRequestsTest.java
+
+diff --git a/fabric/src/main/java/org/mtr/mod/data/SensorPowerRequests.java b/fabric/src/main/java/org/mtr/mod/data/SensorPowerRequests.java
+new file mode 100644
+index 0000000..3611252
+--- /dev/null
++++ b/fabric/src/main/java/org/mtr/mod/data/SensorPowerRequests.java
+@@ -0,0 +1,46 @@
++package org.mtr.mod.data;
++
++import org.mtr.libraries.it.unimi.dsi.fastutil.longs.Long2LongOpenHashMap;
++
++import javax.annotation.Nullable;
++import java.lang.ref.WeakReference;
++
++/**
++ * Suppresses repeated client requests to power the same redstone sensor while an earlier request is in flight.
++ * <p>
++ * The server's {@code power()} only raises the sensor to its maximum level, so a repeated request is a no-op
++ * until that level has decayed. A request is sent again as soon as the client observes a different power level
++ * for the position, or after {@link #RESEND_MILLIS} without a change.
++ */
++public final class SensorPowerRequests {
++
++	public static final long RESEND_MILLIS = 250;
++	private static final int PRUNE_SIZE = 256;
++
++	/** Packed {@code (millis << 2) | powered} of the last request per position. */
++	private final Long2LongOpenHashMap requests = new Long2LongOpenHashMap();
++	private WeakReference<Object> world = new WeakReference<>(null);
++
++	/**
++	 * @param currentMillis a monotonic clock in milliseconds
++	 * @return whether the request should be sent now; if so, it is recorded as in flight
++	 */
++	public boolean shouldSend(@Nullable Object world, long position, int powered, long currentMillis) {
++		if (this.world.get() != world) {
++			requests.clear();
++			this.world = new WeakReference<>(world);
++		}
++		if (requests.containsKey(position)) {
++			final long request = requests.get(position);
++			final long elapsed = currentMillis - (request >> 2);
++			if ((request & 3) == (powered & 3) && elapsed >= 0 && elapsed < RESEND_MILLIS) {
++				return false;
++			}
++		}
++		if (requests.size() >= PRUNE_SIZE) {
++			requests.long2LongEntrySet().removeIf(entry -> currentMillis - (entry.getLongValue() >> 2) >= RESEND_MILLIS);
++		}
++		requests.put(position, (currentMillis << 2) | (powered & 3));
++		return true;
++	}
++}
+diff --git a/fabric/src/main/java/org/mtr/mod/data/VehicleExtension.java b/fabric/src/main/java/org/mtr/mod/data/VehicleExtension.java
+index 78e7b3e..53220cb 100644
+--- a/fabric/src/main/java/org/mtr/mod/data/VehicleExtension.java
++++ b/fabric/src/main/java/org/mtr/mod/data/VehicleExtension.java
+@@ -41,6 +41,8 @@ public class VehicleExtension extends Vehicle implements Utilities {
+ 
+ 	public final PersistentVehicleData persistentVehicleData;
+ 
++	private static final SensorPowerRequests SENSOR_POWER_REQUESTS = new SensorPowerRequests();
++
+ 	public VehicleExtension(VehicleUpdate vehicleUpdate, Data data) {
+ 		super(vehicleUpdate.getVehicleExtraData(), null, new JsonReader(Utilities.getJsonObjectFromData(vehicleUpdate.getVehicle())), data);
+ 		final PersistentVehicleData tempPersistentVehicleData = MinecraftClientData.getInstance().vehicleIdToPersistentVehicleData.get(getId());
+@@ -219,7 +221,9 @@ public class VehicleExtension extends Vehicle implements Utilities {
+ 					}
+ 					if (BlockTrainSensorBase.matchesFilter(new World(clientWorld.data), offsetBlockPos, thisRouteId, speed)) {
+ 						if (block.data instanceof BlockTrainRedstoneSensor && IBlock.getStatePropertySafe(blockState, BlockTrainRedstoneSensor.POWERED) < 2) {
+-							InitClient.REGISTRY_CLIENT.sendPacketToServer(new PacketTurnOnBlockEntity(offsetBlockPos));
++							if (SENSOR_POWER_REQUESTS.shouldSend(clientWorld.data, offsetBlockPos.asLong(), IBlock.getStatePropertySafe(blockState, BlockTrainRedstoneSensor.POWERED), System.nanoTime() / 1_000_000)) {
++								InitClient.REGISTRY_CLIENT.sendPacketToServer(new PacketTurnOnBlockEntity(offsetBlockPos));
++							}
+ 						} else if (block.data instanceof BlockTrainAnnouncer && VehicleRidingMovement.isRiding(id)) {
+ 							final BlockEntity blockEntity = clientWorld.getBlockEntity(offsetBlockPos);
+ 							if (blockEntity != null && blockEntity.data instanceof BlockTrainAnnouncer.BlockEntity) {
+diff --git a/fabric/src/test/java/org/mtr/mod/data/SensorPowerRequestsTest.java b/fabric/src/test/java/org/mtr/mod/data/SensorPowerRequestsTest.java
+new file mode 100644
+index 0000000..f7709f3
+--- /dev/null
++++ b/fabric/src/test/java/org/mtr/mod/data/SensorPowerRequestsTest.java
+@@ -0,0 +1,45 @@
++package org.mtr.mod.data;
++
++import org.junit.jupiter.api.Test;
++
++import static org.junit.jupiter.api.Assertions.*;
++
++public final class SensorPowerRequestsTest {
++
++	@Test
++	public void repeatsAreSuppressedOnlyWhileTheSameStateIsInFlight() {
++		final SensorPowerRequests requests = new SensorPowerRequests();
++		final Object world = new Object();
++		assertTrue(requests.shouldSend(world, 1, 0, 1000));
++		// Frames before the server's powered state arrives
++		assertFalse(requests.shouldSend(world, 1, 0, 1016));
++		assertFalse(requests.shouldSend(world, 1, 0, 1000 + SensorPowerRequests.RESEND_MILLIS - 1));
++		// Another sensor is independent
++		assertTrue(requests.shouldSend(world, 2, 0, 1016));
++		// No response: retry after the timeout
++		assertTrue(requests.shouldSend(world, 1, 0, 1000 + SensorPowerRequests.RESEND_MILLIS));
++		assertFalse(requests.shouldSend(world, 1, 0, 1000 + SensorPowerRequests.RESEND_MILLIS + 1));
++		// The observed state decayed from 2 to 1: send immediately
++		assertTrue(requests.shouldSend(world, 1, 1, 1300));
++		assertFalse(requests.shouldSend(world, 1, 1, 1310));
++		assertTrue(requests.shouldSend(world, 1, 0, 1320));
++		// A clock step backwards never suppresses indefinitely
++		assertTrue(requests.shouldSend(world, 1, 0, 100));
++		// A different world starts empty
++		assertTrue(requests.shouldSend(new Object(), 1, 0, 101));
++	}
++
++	@Test
++	public void staleRequestsArePrunedWithoutChangingDecisions() {
++		final SensorPowerRequests requests = new SensorPowerRequests();
++		final Object world = new Object();
++		for (int i = 0; i < 1000; i++) {
++			assertTrue(requests.shouldSend(world, i, 0, i * 10L));
++		}
++		for (int i = 0; i < 1000; i++) {
++			final long now = 10_000 + i;
++			assertTrue(requests.shouldSend(world, 5000 + i, 1, now));
++			assertFalse(requests.shouldSend(world, 5000 + i, 1, now));
++		}
++	}
++}
