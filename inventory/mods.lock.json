@@ -429,7 +429,7 @@
         "url": "https://github.com/minefed/CC-Tweaked",
         "upstream": "https://github.com/cc-tweaked/CC-Tweaked",
         "ref": "minefed-1.20.4",
-        "commit": "ec4a25addc99eba5d102efa865216b5782a07175",
+        "commit": "a9dd88fd9973bb00c4a3faa2643f2169f30b55ca",
         "trackingBranch": "minefed-1.20.4",
         "baselineRef": "v1.20.4-1.110.2",
         "baselineCommit": "22bd5309babd469b95b7e0bfdc4c4929ded9ab5b"
@@ -461,7 +461,8 @@
       "licenseUrl": "https://github.com/cc-tweaked/CC-Tweaked/blob/22bd5309babd469b95b7e0bfdc4c4929ded9ab5b/LICENSES/LicenseRef-CCPL.txt",
       "licenseNoticesPath": null,
       "notes": [
-        "CCPL explicitly permits modification and original/modified redistribution; provide complete corresponding sources without cost and retain CCPL. Preserve all LICENSES and per-file SPDX notices; portions have other licenses."
+        "CCPL explicitly permits modification and original/modified redistribution; provide complete corresponding sources without cost and retain CCPL. Preserve all LICENSES and per-file SPDX notices; portions have other licenses.",
+        "2026-09-28: Behavior-preserving network/FPS optimizations fast-forwarded minefed-1.20.4 to a9dd88fd9973bb00c4a3faa2643f2169f30b55ca; see docs/OPTIMIZATION_RESULTS_2026-09-28.md. Captured artifact hashes remain historical baseline evidence."
       ],
       "compatibility": {
         "minecraft": "=1.20.4",
