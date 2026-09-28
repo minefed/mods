@@ -2415,7 +2415,7 @@
         "url": "https://github.com/minefed/mishanguc",
         "upstream": "https://github.com/SolidBlock-cn/mishanguc",
         "ref": "minefed-1.20.4",
-        "commit": "86f8deafe1bdef88fb17de70f89857cb1ec06849",
+        "commit": "7e3d1a6ec8e156bd1a9ff0c722ccddbbcc3ba474",
         "trackingBranch": "minefed-1.20.4",
         "baselineRef": "1.20.4",
         "baselineCommit": "ff9925d49a8e9512bfd0160038421b829c5ff68e"
@@ -2448,7 +2448,8 @@
       "licenseUrl": "https://github.com/SolidBlock-cn/mishanguc/blob/1.20.4/LICENSE",
       "licenseNoticesPath": "inventory/notices/mishanguc-0b83023c5181",
       "notes": [
-        "Branch gradle.properties mod1.5.3, MC1.20.4, supported1.20.3/1.20.4. Do not use v1.5.3 tag: it points to1.20.2 branch. Branch pin matches version but exact deployed build commit is not proven."
+        "Branch gradle.properties mod1.5.3, MC1.20.4, supported1.20.3/1.20.4. Do not use v1.5.3 tag: it points to1.20.2 branch. Branch pin matches version but exact deployed build commit is not proven.",
+        "2026-09-28: Behavior-preserving network/FPS optimizations fast-forwarded minefed-1.20.4 to 7e3d1a6ec8e156bd1a9ff0c722ccddbbcc3ba474; see docs/OPTIMIZATION_RESULTS_2026-09-28.md. Captured artifact hashes remain historical baseline evidence."
       ],
       "compatibility": {
         "minecraft": ">=1.20.3 <1.25",
