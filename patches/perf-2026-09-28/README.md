@@ -7,8 +7,12 @@
 
 ```sh
 git -C <submodule> switch -c perf/2026-09-28
-git -C <submodule> am ../patches/perf-2026-09-28/<submodule>/*.patch
+git -C <submodule> am --keep-cr ../patches/perf-2026-09-28/<submodule>/*.patch
 ```
+
+`--keep-cr`는 CRLF 소스를 쓰는 Oritech 패치에 필요하며, 다른 서브모듈에도 영향이 없다.
+루트 `.gitattributes`는 `patches/**`를 바이너리처럼 다뤄, 체크아웃할 때 줄 끝이 바뀌지 않게 한다.
+2026-09-28에 17개 서브모듈 모두에서, gitlink 커밋에 패치를 적용한 결과 트리가 로컬 `perf/2026-09-28` 브랜치 트리와 일치함을 확인했다.
 
 적용한 뒤에는 [AGENTS.md](../../AGENTS.md)의 절차를 따른다. 각 서브모듈의 `minefed-1.20.4`(client-compat은 `main`)에 병합해 push하고, 원격 커밋으로 상위 gitlink와 `inventory/mods.lock.json`을 갱신한다.
 gitlink는 원격에 없는 커밋을 가리키면 안 되므로, 이 브랜치의 gitlink는 아직 기존 커밋을 유지한다.
