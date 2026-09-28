@@ -183,7 +183,7 @@
         "url": "https://github.com/minefed/Automobility-Refueled",
         "upstream": "https://github.com/codenobacon4u/Automobility",
         "ref": "minefed-1.20.4",
-        "commit": "bdb4d3c8bc08634814b61446179e8eaeeb2c0272",
+        "commit": "1c9e6a416d6afb04401277acee195591b7c566c6",
         "trackingBranch": "minefed-1.20.4",
         "baselineRef": "v0.4.3.b+1.20.4",
         "baselineCommit": "96a6369eed2e5528ba8d09c643e032cf7fa15c51"
@@ -203,7 +203,8 @@
       "licenseUrl": "https://github.com/codenobacon4u/Automobility/blob/96a6369eed2e5528ba8d09c643e032cf7fa15c51/LICENSE",
       "licenseNoticesPath": null,
       "notes": [
-        "Exact deployed SHA512 matches GitHub release asset. Distinct mod ID and implementation from legacy minefed/Automobility. Same GitHub fork network may require carrying refueled/1.20.4 in the existing organization fork or a separately imported repository."
+        "Exact deployed SHA512 matches GitHub release asset. Distinct mod ID and implementation from legacy minefed/Automobility. Same GitHub fork network may require carrying refueled/1.20.4 in the existing organization fork or a separately imported repository.",
+        "2026-09-28: Behavior-preserving network/FPS optimizations fast-forwarded minefed-1.20.4 to 1c9e6a416d6afb04401277acee195591b7c566c6; see docs/OPTIMIZATION_RESULTS_2026-09-28.md. Captured artifact hashes remain historical baseline evidence."
       ],
       "compatibility": {
         "minecraft": "1.20.x",
