@@ -29,3 +29,8 @@ overrides before changing Exline's version; the metadata rejects other versions.
 No Exline code, models, textures, recipe patterns, or prose is included here.
 The original mod retains its separate All Rights Reserved terms and official
 download: https://modrinth.com/mod/exlines-furniture/version/DfuDGYlp
+
+The empty Dusty Decorations `pot` loot table is independently authored by Minefed
+(MIT). The pinned Fabric 1.1 release has no `pot` block/item; its registered
+`cooking_pot` already has a separate, valid loot table which remains untouched.
+Source release: https://modrinth.com/mod/dusty-decorations/version/DHsgxScD
