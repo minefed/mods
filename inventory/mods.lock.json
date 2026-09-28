@@ -47,9 +47,9 @@
         "path": "alloy-forgery",
         "url": "https://github.com/minefed/alloy-forgery",
         "upstream": "https://github.com/wisp-forest/alloy-forgery",
-        "ref": "minefed-1.20.4",
-        "commit": "badd26ba735ffe18723f97db49c5f6c1d0c50ee9",
-        "trackingBranch": "minefed-1.20.4",
+        "ref": "codex/fix-glass-recipe-count",
+        "commit": "e4d10145142f7d3dc12effc1b3083723a9d08d4d",
+        "trackingBranch": "codex/fix-glass-recipe-count",
         "baselineRef": "2.1.4+1.20.3",
         "baselineCommit": "f1b61a1b1c0dc7d483b9c44472237cc1c9cc8711"
       },
@@ -81,7 +81,8 @@
       "licenseUrl": "https://github.com/wisp-forest/alloy-forgery/blob/f1b61a1b1c0dc7d483b9c44472237cc1c9cc8711/LICENSE",
       "licenseNoticesPath": "inventory/notices/alloy_forgery-f1aa20a0a51e",
       "notes": [
-        "Release tag matches deployed version; canonical source redirects from LordDeatHunter/Alloy-Forgery."
+        "Release tag matches deployed version; canonical source redirects from LordDeatHunter/Alloy-Forgery.",
+        "2026-09-28: Fix numeric ingredient count so glass forging loads. Minecraft 1.20.4 / Fabric Loader 0.18.4 / Java 17 runtime. Source branch codex/fix-glass-recipe-count; captured artifact hashes remain historical baseline evidence."
       ],
       "compatibility": {
         "minecraft": ">=1.20.3",
