@@ -1731,7 +1731,7 @@
         "url": "https://github.com/minefed/geckolib",
         "upstream": "https://github.com/bernie-g/geckolib",
         "ref": "minefed-1.20.4",
-        "commit": "c54b45f710e3a44c38868f0f1ab6fa98eda6ecd9",
+        "commit": "133bc4bc7650b2eca219055236d92ff08aecef33",
         "trackingBranch": "minefed-1.20.4",
         "baselineRef": "1.20.4",
         "baselineCommit": "d0b06fe3386e1be3242298e9373c54e5af0c65d1"
@@ -1763,7 +1763,8 @@
       "licenseUrl": "https://github.com/bernie-g/geckolib/blob/1.20.4/LICENSE",
       "licenseNoticesPath": "inventory/notices/geckolib-8c11f943399f",
       "notes": [
-        "Branch gradle.properties matches deployed 4.4.4, MC1.20.4/Fabric. Legacy stable branch; retain MIT notice."
+        "Branch gradle.properties matches deployed 4.4.4, MC1.20.4/Fabric. Legacy stable branch; retain MIT notice.",
+        "2026-09-28: Behavior-preserving network/FPS optimizations fast-forwarded minefed-1.20.4 to 133bc4bc7650b2eca219055236d92ff08aecef33; see docs/OPTIMIZATION_RESULTS_2026-09-28.md. Captured artifact hashes remain historical baseline evidence."
       ],
       "compatibility": {
         "minecraft": ">=1.20.4",
