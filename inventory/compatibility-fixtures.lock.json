@@ -1,0 +1,63 @@
+{
+  "schemaVersion": 1,
+  "minecraftVersion": "1.20.4",
+  "loader": "fabric",
+  "purpose": "Official binaries restored only as bytecode fixtures for compatibility Mixin verification; not release selections.",
+  "entries": [
+    {
+      "fileName": "trafficcraft-fabric-1.20.4-1.1.3.jar",
+      "sha256": "ddf1d434be7eee0ab7ff67ba4712cb213900bc10c43776cc52dddc40697a0a58",
+      "size": 6602857,
+      "modId": "trafficcraft",
+      "version": "1.20.4-1.1.3",
+      "environment": "*",
+      "management": "binary",
+      "source": null,
+      "artifact": {
+        "path": "artifacts/local/trafficcraft-fabric-1.20.4-1.1.3.jar",
+        "redistribution": "local-only",
+        "url": "https://cdn.modrinth.com/data/Y1PXWvWn/versions/rzrY1Buf/trafficcraft-fabric-1.20.4-1.1.3.jar",
+        "sha512": "1040282280a87c6a4005692e20586480c4618d7b1bf244667a2057fb1c0223689b1db68801e108ce917c2d1c534f7184aba1c2a838b55d0bca369b0282cae7a3",
+        "publishedHashMatch": true,
+        "verificationAlgorithm": "sha512",
+        "publishedRelease": {
+          "provider": "modrinth",
+          "versionId": "rzrY1Buf",
+          "projectId": "Y1PXWvWn",
+          "versionUrl": "https://modrinth.com/version/rzrY1Buf",
+          "gameVersions": [
+            "1.20.4"
+          ],
+          "loaders": [
+            "fabric"
+          ],
+          "officialFileName": "trafficcraft-fabric-1.20.4-1.1.3.jar"
+        }
+      },
+      "included": true,
+      "exclusionReason": null,
+      "license": "GPL-3.0",
+      "licenseUrl": "https://github.com/MisterJulsen/TrafficCraft/blob/1.20.4-dev/LICENSE",
+      "licenseNoticesPath": null,
+      "notes": [
+        "Official TrafficCraft 1.20.4-1.1.3 bytecode fixture for minefed-client-compat verifyTrafficCraftPerformance. Same bytes and origin as the captured baseline entry in mods.lock.json; release selection still follows release-policy.json."
+      ],
+      "compatibility": {
+        "minecraft": "~1.20.4",
+        "fabricLoader": ">=0.16.6",
+        "java": ">=17",
+        "dependencies": {
+          "fabricloader": ">=0.16.6",
+          "minecraft": "~1.20.4",
+          "java": ">=17",
+          "dragonlib": ">=1.20.4-2.2.24",
+          "fabric-api": "*"
+        }
+      },
+      "evidenceUrls": [
+        "https://github.com/MisterJulsen/TrafficCraft",
+        "https://github.com/MisterJulsen/TrafficCraft/blob/1.20.4-dev/LICENSE"
+      ]
+    }
+  ]
+}

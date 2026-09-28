@@ -66,6 +66,16 @@ def compatibilityFixtures = tasks.register('prepareCompatibilityFixtures', Exec)
     commandLine pythonExecutable, 'scripts/mods.py', '--manifest',
             'inventory/published-artifacts.lock.json', 'hydrate'
 }
+// TrafficCraft ships its captured official JAR rather than the source build, so
+// the Mixin probe restores those exact bytes from a separate fixture manifest.
+def trafficCraftFixture = tasks.register('prepareTrafficCraftFixture', Exec) {
+    group = 'verification'
+    description = 'Restore the official TrafficCraft JAR used by compatibility Mixin probes.'
+    workingDir rootDir
+    commandLine pythonExecutable, 'scripts/mods.py', '--manifest',
+            'inventory/compatibility-fixtures.lock.json', 'hydrate'
+}
+compatibilityFixtures.configure { dependsOn trafficCraftFixture }
 tasks.named('source_minefed_client_compat') { dependsOn compatibilityFixtures }
 parallelSources.configure { dependsOn compatibilityFixtures }
 

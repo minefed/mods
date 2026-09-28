@@ -1114,13 +1114,13 @@
       "modId": "minefed-client-compat",
       "distribution": "embed",
       "artifact": "built",
-      "reason": "Independent MIT compatibility code for PTS recipes, PFM first-frame textures and DragonLib Wikidata requests, with pinned source and original license. The official PTS-Deco, PFM and TrafficCraft/DragonLib JARs are not modified.",
+      "reason": "Independent MIT compatibility code for PTS recipes, PFM first-frame textures, DragonLib Wikidata requests and behavior-preserving PFM/TrafficCraft performance Mixins, with pinned source and original license. Loaded on both sides because the stove and traffic-light packet fixes run on the server. The official PTS-Deco, PFM and TrafficCraft/DragonLib JARs are not modified.",
       "evidenceUrls": [
         "https://github.com/minefed/minefed-client-compat/blob/e27ee63ddc883343e554d32f511fe3bebcc565dd/LICENSE",
         "https://github.com/minefed/minefed-client-compat/commit/e27ee63ddc883343e554d32f511fe3bebcc565dd"
       ],
       "client": true,
-      "server": false
+      "server": true
     }
   ],
   "publishedManifest": "inventory/published-artifacts.lock.json",
