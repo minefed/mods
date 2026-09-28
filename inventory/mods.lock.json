@@ -2664,9 +2664,9 @@
         "path": "MTR-Station-Decoration-Addon",
         "url": "https://github.com/minefed/MTR-Station-Decoration-Addon",
         "upstream": "https://github.com/AIDA64S/MTR-Station-Decoration-Addon",
-        "ref": "codex/update-msd-1.4.5",
+        "ref": "minefed-1.20.4",
         "commit": "b06fc0725b20a5b7a6c72bdacd20814dd8d8aabf",
-        "trackingBranch": "codex/update-msd-1.4.5",
+        "trackingBranch": "minefed-1.20.4",
         "baselineRef": "4.0.0",
         "baselineCommit": "14b0a8c9687bdbbfd755f282bbfab4030a92f3d3"
       },
