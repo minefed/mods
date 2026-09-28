@@ -1,0 +1,552 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-09-28",
+  "root": {
+    "branch": "main",
+    "integratedCommit": "0d8ba66796c2f6dac587db491c1e83f0afcdb5eb",
+    "includedAuditCommit": "05a7c60e1ede3b729fac46a137e234a43a750979",
+    "method": "fast-forward"
+  },
+  "children": [
+    {
+      "path": "Minecraft-Transit-Railway",
+      "previousBranch": "codex/fix-cargo-loot",
+      "before": "e33269ecb041c55503053b72ccec4ec68d7bc01c",
+      "target": "minefed-1.20.4",
+      "previousRemote": "e1b99f86794eae70bdd00e2c604ad9a61236af1f",
+      "commit": "25cf42b49c788814f10cead1615acd9b08d3d87c",
+      "remoteVerified": true,
+      "codeAndAssetsUnchanged": true
+    },
+    {
+      "path": "fabric-webstreamer",
+      "previousBranch": "minefed-1.20.4",
+      "before": "f9c03980c9cb31ca891e4429bc2529c6c0cce033",
+      "target": "minefed-1.20.4",
+      "previousRemote": "f9c03980c9cb31ca891e4429bc2529c6c0cce033",
+      "commit": "4b80ece8911694498bfb0b1c55973c77b0835333",
+      "remoteVerified": true,
+      "codeAndAssetsUnchanged": true
+    },
+    {
+      "path": "minefed-display",
+      "previousBranch": "minefed-1.20.4",
+      "before": "a1e8f94df20c22c1ccfc4083b1dc01dc7f757e45",
+      "target": "minefed-1.20.4",
+      "previousRemote": "a1e8f94df20c22c1ccfc4083b1dc01dc7f757e45",
+      "commit": "15486ffdf40cb1d66b0bd45e2478a7214dac3fdc",
+      "remoteVerified": true,
+      "codeAndAssetsUnchanged": true
+    },
+    {
+      "path": "alloy-forgery",
+      "previousBranch": "codex/fix-glass-recipe-count",
+      "before": "e4d10145142f7d3dc12effc1b3083723a9d08d4d",
+      "target": "minefed-1.20.4",
+      "previousRemote": "badd26ba735ffe18723f97db49c5f6c1d0c50ee9",
+      "commit": "fe660cd7c31be0232e952064b6a1b726eda04b8a",
+      "remoteVerified": true,
+      "codeAndAssetsUnchanged": true
+    },
+    {
+      "path": "Automobility-Refueled",
+      "previousBranch": "",
+      "before": "13160075fb4be333fe2b425183c02f9dc2348184",
+      "target": "minefed-1.20.4",
+      "previousRemote": "13160075fb4be333fe2b425183c02f9dc2348184",
+      "commit": "bdb4d3c8bc08634814b61446179e8eaeeb2c0272",
+      "remoteVerified": true,
+      "codeAndAssetsUnchanged": true
+    },
+    {
+      "path": "Chisels-and-Bits",
+      "previousBranch": "",
+      "before": "12fd1d23b3e6fb929ccba01e034c46ae632acbe0",
+      "target": "minefed-1.20.4",
+      "previousRemote": "12fd1d23b3e6fb929ccba01e034c46ae632acbe0",
+      "commit": "d3932121d5634cef365b92924c406acf4ad4ec07",
+      "remoteVerified": true,
+      "codeAndAssetsUnchanged": true
+    },
+    {
+      "path": "BlueMap",
+      "previousBranch": "",
+      "before": "dd63c74e1b8251cde574e1beca1025a840e6761c",
+      "target": "minefed-1.20.4",
+      "previousRemote": "dd63c74e1b8251cde574e1beca1025a840e6761c",
+      "commit": "13ac1898e2117a90c837ccedd952cdce587a53ba",
+      "remoteVerified": true,
+      "codeAndAssetsUnchanged": true
+    },
+    {
+      "path": "CrossStitch",
+      "previousBranch": "",
+      "before": "aa5545ce774566f3c09f2b34ac4ec0412274dec8",
+      "target": "minefed-1.20.4",
+      "previousRemote": "aa5545ce774566f3c09f2b34ac4ec0412274dec8",
+      "commit": "cf7070233e073b48118987148528b9ab6d252639",
+      "remoteVerified": true,
+      "codeAndAssetsUnchanged": true
+    },
+    {
+      "path": "Chunky",
+      "previousBranch": "",
+      "before": "1fe63d9331b5cbad47dac40b48aabd1b0085c000",
+      "target": "minefed-1.20.4",
+      "previousRemote": "1fe63d9331b5cbad47dac40b48aabd1b0085c000",
+      "commit": "5ea8415cbf0254deef7396d85da385390a727848",
+      "remoteVerified": true,
+      "codeAndAssetsUnchanged": true
+    },
+    {
+      "path": "CC-Tweaked",
+      "previousBranch": "",
+      "before": "c3264ade27b032f4b4b480169e67bcb08a01bc0a",
+      "target": "minefed-1.20.4",
+      "previousRemote": "c3264ade27b032f4b4b480169e67bcb08a01bc0a",
+      "commit": "ec4a25addc99eba5d102efa865216b5782a07175",
+      "remoteVerified": true,
+      "codeAndAssetsUnchanged": true
+    },
+    {
+      "path": "diagonal-fences",
+      "previousBranch": "minefed-1.20.4",
+      "before": "aa41b9f39f744455258c27d3728a1ff77908731f",
+      "target": "minefed-1.20.4",
+      "previousRemote": "aa41b9f39f744455258c27d3728a1ff77908731f",
+      "commit": "dcbc670b315eb7733f0c7327433dcfc8a48cae20",
+      "remoteVerified": true,
+      "codeAndAssetsUnchanged": true
+    },
+    {
+      "path": "Decorative-Blocks",
+      "previousBranch": "minefed-1.20.4",
+      "before": "8550e3b988d1d7f1c27c1c15732070569ded051e",
+      "target": "minefed-1.20.4",
+      "previousRemote": "8550e3b988d1d7f1c27c1c15732070569ded051e",
+      "commit": "0f76279c3c1ecbdc75efd6d2c70ecca9a62e504b",
+      "remoteVerified": true,
+      "codeAndAssetsUnchanged": true
+    },
+    {
+      "path": "CityCraft",
+      "previousBranch": "",
+      "before": "32f4d36ff7865630f102e8f71302f483311aed39",
+      "target": "minefed-1.20.4",
+      "previousRemote": "32f4d36ff7865630f102e8f71302f483311aed39",
+      "commit": "346bdc50656532e21ed8612c52dda2315410968d",
+      "remoteVerified": true,
+      "codeAndAssetsUnchanged": true
+    },
+    {
+      "path": "diagonal-walls",
+      "previousBranch": "",
+      "before": "452eb0a4a633ee2d0908f166b0e17315ee99d197",
+      "target": "minefed-1.20.4",
+      "previousRemote": "452eb0a4a633ee2d0908f166b0e17315ee99d197",
+      "commit": "d60948316abe749fb733ea57754638235fe15599",
+      "remoteVerified": true,
+      "codeAndAssetsUnchanged": true
+    },
+    {
+      "path": "diagonal-windows",
+      "previousBranch": "",
+      "before": "7209c6ea3cb2b05157eeae3ddced087556889bb9",
+      "target": "minefed-1.20.4",
+      "previousRemote": "7209c6ea3cb2b05157eeae3ddced087556889bb9",
+      "commit": "f302f625a025aae215948d678705e77b262ab78e",
+      "remoteVerified": true,
+      "codeAndAssetsUnchanged": true
+    },
+    {
+      "path": "FabricProxy-Lite",
+      "previousBranch": "",
+      "before": "7391c12684820b14039a42c0e5ae2e9178bf4290",
+      "target": "minefed-1.20.4",
+      "previousRemote": "7391c12684820b14039a42c0e5ae2e9178bf4290",
+      "commit": "f1fdedf3301fd3c3cfdf7064b59f32f37f07eb62",
+      "remoteVerified": true,
+      "codeAndAssetsUnchanged": true
+    },
+    {
+      "path": "fabric-carpet",
+      "previousBranch": "",
+      "before": "72248bbebe61dc0b2b7316378aa7629955d0f91a",
+      "target": "minefed-1.20.4",
+      "previousRemote": "72248bbebe61dc0b2b7316378aa7629955d0f91a",
+      "commit": "9afb3ae353e53517e61c7b2a17eacbe4c070692e",
+      "remoteVerified": true,
+      "codeAndAssetsUnchanged": true
+    },
+    {
+      "path": "fabric-seasons",
+      "previousBranch": "codex/fix-snow-grass-tag",
+      "before": "d5ff75050e02f131ea82fee0e7904e92eb7214f3",
+      "target": "minefed-1.20.4",
+      "previousRemote": "8e7833a58f54180c6fc6a96a2fb08c63ace5a726",
+      "commit": "7cfb70e58ebc5cdd1ee95a5fe37bc135400f27ab",
+      "remoteVerified": true,
+      "codeAndAssetsUnchanged": true
+    },
+    {
+      "path": "FerriteCore",
+      "previousBranch": "",
+      "before": "1df30b595e231bc0dc9a8eabe65d34cce542d3f9",
+      "target": "minefed-1.20.4",
+      "previousRemote": "1df30b595e231bc0dc9a8eabe65d34cce542d3f9",
+      "commit": "cadfea106ad3496109ae738ff4a0a866b4131ee8",
+      "remoteVerified": true,
+      "codeAndAssetsUnchanged": true
+    },
+    {
+      "path": "forge-config-api-port",
+      "previousBranch": "",
+      "before": "b102873873cd9d0bd70685cd7bec524666e2d190",
+      "target": "minefed-1.20.4",
+      "previousRemote": "b102873873cd9d0bd70685cd7bec524666e2d190",
+      "commit": "b7b7a73609b1d7c6d5926a17481998097abd092e",
+      "remoteVerified": true,
+      "codeAndAssetsUnchanged": true
+    },
+    {
+      "path": "FallingTree",
+      "previousBranch": "",
+      "before": "0a70a01d3d682a9069f12a00a5c9dbd96d53f2cb",
+      "target": "minefed-1.20.4",
+      "previousRemote": "0a70a01d3d682a9069f12a00a5c9dbd96d53f2cb",
+      "commit": "03515fd50f60e82047eb3a03ec9954a4d26e0b62",
+      "remoteVerified": true,
+      "codeAndAssetsUnchanged": true
+    },
+    {
+      "path": "geckolib",
+      "previousBranch": "",
+      "before": "fb968c0379ef0f6ef5c0d6672a464b2f2712553f",
+      "target": "minefed-1.20.4",
+      "previousRemote": "fb968c0379ef0f6ef5c0d6672a464b2f2712553f",
+      "commit": "c54b45f710e3a44c38868f0f1ab6fa98eda6ecd9",
+      "remoteVerified": true,
+      "codeAndAssetsUnchanged": true
+    },
+    {
+      "path": "lithium",
+      "previousBranch": "",
+      "before": "c40b7585606e8434b7a8f1e7ef15c20d99685f19",
+      "target": "minefed-1.20.4",
+      "previousRemote": "c40b7585606e8434b7a8f1e7ef15c20d99685f19",
+      "commit": "532b9c97cf13c623ce0349d66473ad7854dc9538",
+      "remoteVerified": true,
+      "codeAndAssetsUnchanged": true
+    },
+    {
+      "path": "MacawsDoors",
+      "previousBranch": "",
+      "before": "b07c8caa4a45f0f9aac98d04a972fd359d7a84ca",
+      "target": "minefed-1.20.4",
+      "previousRemote": "b07c8caa4a45f0f9aac98d04a972fd359d7a84ca",
+      "commit": "05224f9d3c88589245e8bdf2e8ecfcc85a36eafa",
+      "remoteVerified": true,
+      "codeAndAssetsUnchanged": true
+    },
+    {
+      "path": "Fences",
+      "previousBranch": "",
+      "before": "c9821fbd10fe55cdb0cc9e91fefb19a5d6d6aa4b",
+      "target": "minefed-1.20.4",
+      "previousRemote": "c9821fbd10fe55cdb0cc9e91fefb19a5d6d6aa4b",
+      "commit": "a2025a8e38b692e0b2d31ba92d43f97108cfd96a",
+      "remoteVerified": true,
+      "codeAndAssetsUnchanged": true
+    },
+    {
+      "path": "MemoryLeakFix",
+      "previousBranch": "minefed-1.20.4",
+      "before": "f01909746ee3ad595a3ed91e4abb4779a06a47c2",
+      "target": "minefed-1.20.4",
+      "previousRemote": "f01909746ee3ad595a3ed91e4abb4779a06a47c2",
+      "commit": "2b6a012826638c5e23a57ef8820011f3fb052fd1",
+      "remoteVerified": true,
+      "codeAndAssetsUnchanged": true
+    },
+    {
+      "path": "modern-glass-doors",
+      "previousBranch": "minefed-1.20.4",
+      "before": "3c65e91eee397e91496f78345165451d86b28932",
+      "target": "minefed-1.20.4",
+      "previousRemote": "3c65e91eee397e91496f78345165451d86b28932",
+      "commit": "ff1193030aff2f50b45ab6904bb86f9a84e1c54b",
+      "remoteVerified": true,
+      "codeAndAssetsUnchanged": true
+    },
+    {
+      "path": "ModernFix",
+      "previousBranch": "",
+      "before": "479096893321f5dc3e97791e5fa7dcf3ed58e15b",
+      "target": "minefed-1.20.4",
+      "previousRemote": "479096893321f5dc3e97791e5fa7dcf3ed58e15b",
+      "commit": "6c6e57a8cab58cd422e1e6aacf59d241a24623c0",
+      "remoteVerified": true,
+      "codeAndAssetsUnchanged": true
+    },
+    {
+      "path": "Handcrafted",
+      "previousBranch": "",
+      "before": "7b5501555b4683757800e9ca7df264d0850caad3",
+      "target": "minefed-1.20.4",
+      "previousRemote": "7b5501555b4683757800e9ca7df264d0850caad3",
+      "commit": "e05b961a7cbed171fa25ed8ddf07a70cf1c0da5e",
+      "remoteVerified": true,
+      "codeAndAssetsUnchanged": true
+    },
+    {
+      "path": "MythicMetals",
+      "previousBranch": "",
+      "before": "cfa897b7e6b2ab856f08582c5e525e675633b33c",
+      "target": "minefed-1.20.4",
+      "previousRemote": "cfa897b7e6b2ab856f08582c5e525e675633b33c",
+      "commit": "ddec938754037714b03550d90b806c99bdf1ccac",
+      "remoteVerified": true,
+      "codeAndAssetsUnchanged": true
+    },
+    {
+      "path": "MythicMetalsDecorations",
+      "previousBranch": "minefed-1.20.4",
+      "before": "f5af39239697e9ed89a108da59c2f8eac695d3df",
+      "target": "minefed-1.20.4",
+      "previousRemote": "f5af39239697e9ed89a108da59c2f8eac695d3df",
+      "commit": "307cc3ac6d1a2e7d5890d74d82e7c74f11117d15",
+      "remoteVerified": true,
+      "codeAndAssetsUnchanged": true
+    },
+    {
+      "path": "NiceMod",
+      "previousBranch": "",
+      "before": "c344763657eaa90d878d858a74c1cdb93cf9d66f",
+      "target": "minefed-1.20.4",
+      "previousRemote": "c344763657eaa90d878d858a74c1cdb93cf9d66f",
+      "commit": "1db9e0c9f4ad61259eeb979802ca1e33f7504ac2",
+      "remoteVerified": true,
+      "codeAndAssetsUnchanged": true
+    },
+    {
+      "path": "mishanguc",
+      "previousBranch": "minefed-1.20.4",
+      "before": "07028d29c741f688fafd271e5fb0f51937042184",
+      "target": "minefed-1.20.4",
+      "previousRemote": "07028d29c741f688fafd271e5fb0f51937042184",
+      "commit": "86f8deafe1bdef88fb17de70f89857cb1ec06849",
+      "remoteVerified": true,
+      "codeAndAssetsUnchanged": true
+    },
+    {
+      "path": "MTR-Station-Decoration-Addon",
+      "previousBranch": "minefed-1.20.4",
+      "before": "b06fc0725b20a5b7a6c72bdacd20814dd8d8aabf",
+      "target": "minefed-1.20.4",
+      "previousRemote": "b06fc0725b20a5b7a6c72bdacd20814dd8d8aabf",
+      "commit": "85f5edf58ce2c73f4ccb80a4fbe082b6f7a96170",
+      "remoteVerified": true,
+      "codeAndAssetsUnchanged": true
+    },
+    {
+      "path": "Oritech",
+      "previousBranch": "minefed-1.20.4",
+      "before": "0ace08abb384f0e38288f4bc82b6c58606509f86",
+      "target": "minefed-1.20.4",
+      "previousRemote": "0ace08abb384f0e38288f4bc82b6c58606509f86",
+      "commit": "6dcc9f80de9015ad2380e946bfc890dae7fd565e",
+      "remoteVerified": true,
+      "codeAndAssetsUnchanged": true
+    },
+    {
+      "path": "mc-realtime",
+      "previousBranch": "",
+      "before": "bd05e0fe8ad18184354dff9453da4b0d8b4703b5",
+      "target": "minefed-1.20.4",
+      "previousRemote": "bd05e0fe8ad18184354dff9453da4b0d8b4703b5",
+      "commit": "ce5d254952ca7926abeec1cc26b2829ec1a6bd32",
+      "remoteVerified": true,
+      "codeAndAssetsUnchanged": true
+    },
+    {
+      "path": "puzzles-lib",
+      "previousBranch": "",
+      "before": "1dc5d1305d9d93527d09b84c826d30216bb5d468",
+      "target": "minefed-1.20.4",
+      "previousRemote": "1dc5d1305d9d93527d09b84c826d30216bb5d468",
+      "commit": "a0ec32d772afa27eaca70058be536f2b07bb6085",
+      "remoteVerified": true,
+      "codeAndAssetsUnchanged": true
+    },
+    {
+      "path": "Patchouli",
+      "previousBranch": "",
+      "before": "5bb9e96cd8256c0bcd2fa87eff2d65be0a7290d5",
+      "target": "minefed-1.20.4",
+      "previousRemote": "5bb9e96cd8256c0bcd2fa87eff2d65be0a7290d5",
+      "commit": "2e4ddda0a0816403e9d20f778febffce66d89004",
+      "remoteVerified": true,
+      "codeAndAssetsUnchanged": true
+    },
+    {
+      "path": "paladins-furniture",
+      "previousBranch": "",
+      "before": "131ac50fa74b0896f0a6d4b56c003076e036b318",
+      "target": "minefed-1.20.4",
+      "previousRemote": "131ac50fa74b0896f0a6d4b56c003076e036b318",
+      "commit": "67839f006ca289586644437a4e59b2190e25837d",
+      "remoteVerified": true,
+      "codeAndAssetsUnchanged": true
+    },
+    {
+      "path": "Starlight",
+      "previousBranch": "",
+      "before": "c2b8391d83ddadbd8136d2abead7e1014da19a6d",
+      "target": "minefed-1.20.4",
+      "previousRemote": "c2b8391d83ddadbd8136d2abead7e1014da19a6d",
+      "commit": "bd536f78e2c666b683d858a7820fdc2d3949c9c5",
+      "remoteVerified": true,
+      "codeAndAssetsUnchanged": true
+    },
+    {
+      "path": "RealIP",
+      "previousBranch": "",
+      "before": "b0a1956154fee51616ce396bf355a466001c6467",
+      "target": "minefed-1.20.4",
+      "previousRemote": "b0a1956154fee51616ce396bf355a466001c6467",
+      "commit": "20c3fa7b36649af8a7c420d8d430b5d75d87cddd",
+      "remoteVerified": true,
+      "codeAndAssetsUnchanged": true
+    },
+    {
+      "path": "TimeOutOut",
+      "previousBranch": "",
+      "before": "0d27ca115902c93d132a2d062b166c5a544da0c7",
+      "target": "minefed-1.20.4",
+      "previousRemote": "0d27ca115902c93d132a2d062b166c5a544da0c7",
+      "commit": "01a733efc8a88afca406f7051e7cfc2e6534d56b",
+      "remoteVerified": true,
+      "codeAndAssetsUnchanged": true
+    },
+    {
+      "path": "worldedit-hang-fix",
+      "previousBranch": "minefed-1.20.4",
+      "before": "45c744113850a55f844c7195d5e074b6845d28eb",
+      "target": "minefed-1.20.4",
+      "previousRemote": "45c744113850a55f844c7195d5e074b6845d28eb",
+      "commit": "182987433a87f72eadcde93395935606039cdca0",
+      "remoteVerified": true,
+      "codeAndAssetsUnchanged": true
+    },
+    {
+      "path": "wireless-redstone",
+      "previousBranch": "",
+      "before": "85cd6b45cd660deeba6ac5cb58b8d5f82795dae0",
+      "target": "minefed-1.20.4",
+      "previousRemote": "85cd6b45cd660deeba6ac5cb58b8d5f82795dae0",
+      "commit": "bb0300f89e859b122df92142eb428e115a11a0ef",
+      "remoteVerified": true,
+      "codeAndAssetsUnchanged": true
+    },
+    {
+      "path": "stoneworks",
+      "previousBranch": "",
+      "before": "6f492401ca95bec909e0f0f634c58780fa67793a",
+      "target": "minefed-1.20.4",
+      "previousRemote": "6f492401ca95bec909e0f0f634c58780fa67793a",
+      "commit": "cfc197967df1d96f02975cc42e6d608b312360ee",
+      "remoteVerified": true,
+      "codeAndAssetsUnchanged": true
+    },
+    {
+      "path": "WorldEdit",
+      "previousBranch": "",
+      "before": "f2cdc4aa7816a0184adf3fcfaf3ff5712d8dfd68",
+      "target": "minefed-1.20.4",
+      "previousRemote": "f2cdc4aa7816a0184adf3fcfaf3ff5712d8dfd68",
+      "commit": "a375e58ae7595dbba976950cf8ff0c3cf973c4e3",
+      "remoteVerified": true,
+      "codeAndAssetsUnchanged": true
+    },
+    {
+      "path": "Yuushya-Modelling",
+      "previousBranch": "minefed-1.20.4",
+      "before": "6256abeee58ca8952ada2ac617aa15ef16ec23dd",
+      "target": "minefed-1.20.4",
+      "previousRemote": "6256abeee58ca8952ada2ac617aa15ef16ec23dd",
+      "commit": "efcfda38866ce70aacbc599c8f25a1e51f2ece78",
+      "remoteVerified": true,
+      "codeAndAssetsUnchanged": true
+    },
+    {
+      "path": "TrafficCraft",
+      "previousBranch": "codex/fix-wikipedia-requests",
+      "before": "69a09747437289bcda71a8bfaa1c72aeca848cad",
+      "target": "minefed-1.20.4",
+      "previousRemote": "40b9405380f3baae0aa45e9e744e14efd9eecf6c",
+      "commit": "48605568e12d9cec7e85d4057d180b461925a28f",
+      "remoteVerified": true,
+      "codeAndAssetsUnchanged": true
+    },
+    {
+      "path": "Yuushya-Townscape",
+      "previousBranch": "codex/fix-survival-data",
+      "before": "ca14f0658a05e4d53ec302fa01f27de4311359b8",
+      "target": "minefed-1.20.4",
+      "previousRemote": "dda6be38dc069885cd21bb952f3587db209d05b1",
+      "commit": "f2fab506bbe69368eff27d5d4dc6afa23170f0b7",
+      "remoteVerified": true,
+      "codeAndAssetsUnchanged": true
+    },
+    {
+      "path": "Modern-Lights",
+      "previousBranch": "",
+      "before": "6b04f156a3e24a778fa2e0697d98bfd3aeca0256",
+      "target": "minefed-1.20.4",
+      "previousRemote": "6b04f156a3e24a778fa2e0697d98bfd3aeca0256",
+      "commit": "dad3999c6ffaa2c2d837d36b9848988034cc354f",
+      "remoteVerified": true,
+      "codeAndAssetsUnchanged": true
+    },
+    {
+      "path": "resourcepack",
+      "previousBranch": "main",
+      "before": "cbcc8cc1f0f0dbf490a485423b3cbd3959726d21",
+      "target": "main",
+      "previousRemote": "cbcc8cc1f0f0dbf490a485423b3cbd3959726d21",
+      "commit": "7f2b21632421bf10973ca13f44fc632ee8018762",
+      "remoteVerified": true,
+      "codeAndAssetsUnchanged": true
+    },
+    {
+      "path": "minefed-client-compat",
+      "previousBranch": "codex/fix-pfm-first-frame",
+      "before": "3ac78cb964693b0cbd098e63041f1592d98a99ca",
+      "target": "main",
+      "previousRemote": "e27ee63ddc883343e554d32f511fe3bebcc565dd",
+      "commit": "6e4630945e8c8c5e9f080c02e81b41f908bad7b3",
+      "remoteVerified": true,
+      "codeAndAssetsUnchanged": true
+    }
+  ],
+  "guidance": {
+    "repositories": 53,
+    "files": [
+      "AGENTS.md",
+      "CLAUDE.md"
+    ],
+    "resourcepackSpecificInstructionsPreserved": true
+  },
+  "localProfile": {
+    "releaseVersion": "20260928133356",
+    "clientPackSha256": "df765d9a87697770bd5902a9fb3a279821d2b943dfd38ed0c50916a106235449",
+    "jarCount": 72,
+    "changedJarCount": 34,
+    "unchangedJarCount": 38,
+    "allPayloadHashesVerified": true,
+    "optionsOnlyResourcePackSelectionChanged": true,
+    "gameLaunchedAfterInstall": false,
+    "backupDirectoryName": "mod-health-20260928-140711"
+  },
+  "productionServerModified": false
+}
