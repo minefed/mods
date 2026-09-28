@@ -1114,7 +1114,7 @@
       "modId": "minefed-client-compat",
       "distribution": "embed",
       "artifact": "built",
-      "reason": "MIT independent compatibility code, with corresponding pinned source and original license. The ARR PTS-Deco JAR is not modified.",
+      "reason": "Independent MIT compatibility code for PTS recipes, PFM first-frame textures and DragonLib Wikidata requests, with pinned source and original license. The official PTS-Deco, PFM and TrafficCraft/DragonLib JARs are not modified.",
       "evidenceUrls": [
         "https://github.com/minefed/minefed-client-compat/blob/e27ee63ddc883343e554d32f511fe3bebcc565dd/LICENSE",
         "https://github.com/minefed/minefed-client-compat/commit/e27ee63ddc883343e554d32f511fe3bebcc565dd"
