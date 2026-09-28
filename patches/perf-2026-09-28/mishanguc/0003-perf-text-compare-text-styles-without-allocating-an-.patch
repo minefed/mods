@@ -1,0 +1,58 @@
+From 34f1bea21a1c2492ddb2f7db62b943e8e22ddf71 Mon Sep 17 00:00:00 2001
+From: Claude <noreply@anthropic.com>
+Date: Mon, 28 Sep 2026 06:25:35 +0000
+Subject: [PATCH 3/6] perf(text): compare text styles without allocating an
+ array per frame
+
+TextContext.draw built a new boolean[5] for every text on every frame
+just to compare it with cachedStyles through Arrays.equals. Compare the
+five fields against cachedStyles directly instead; the result is the same
+for every combination, including a null cachedStyles.
+
+Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_01TD7PJ5R7t7hM3ymeeqXP4H
+---
+ .../pers/solid/mishang/uc/text/TextContext.java  | 16 ++++++++++++++--
+ 1 file changed, 14 insertions(+), 2 deletions(-)
+
+diff --git a/src/main/java/pers/solid/mishang/uc/text/TextContext.java b/src/main/java/pers/solid/mishang/uc/text/TextContext.java
+index 6c8f8dbc..d09e2533 100644
+--- a/src/main/java/pers/solid/mishang/uc/text/TextContext.java
++++ b/src/main/java/pers/solid/mishang/uc/text/TextContext.java
+@@ -27,7 +27,6 @@ import pers.solid.mishang.uc.util.HorizontalAlign;
+ import pers.solid.mishang.uc.util.TextBridge;
+ import pers.solid.mishang.uc.util.VerticalAlign;
+ 
+-import java.util.Arrays;
+ import java.util.Collection;
+ 
+ /**
+@@ -293,7 +292,7 @@ public class TextContext implements Cloneable {
+     if (text == null && extra == null) {
+       return;
+     }
+-    if (!Arrays.equals(cachedStyles, new boolean[]{bold, italic, underline, strikethrough, obfuscated}) || text != cachedText) {
++    if (stylesChanged() || text != cachedText) {
+       reformatText();
+     }
+     final OrderedText orderedText = formattedText == null ? null : formattedText.asOrderedText();
+@@ -371,6 +370,19 @@ public class TextContext implements Cloneable {
+     cachedStyles = new boolean[]{bold, italic, underline, strikethrough, obfuscated};
+   }
+ 
++  /**
++   * 检查 {@link #bold}、{@link #italic}、{@link #underline}、{@link #strikethrough}、{@link #obfuscated} 是否与 {@link #cachedStyles} 不同。结果与将这些字段组成新数组后用 {@code Arrays.equals} 比较相同，但不会每帧分配数组。
++   */
++  private boolean stylesChanged() {
++    final boolean[] cachedStyles = this.cachedStyles;
++    return cachedStyles == null
++        || cachedStyles[0] != bold
++        || cachedStyles[1] != italic
++        || cachedStyles[2] != underline
++        || cachedStyles[3] != strikethrough
++        || cachedStyles[4] != obfuscated;
++  }
++
+   /**
+    * 获取文本宽度，如果存在 extra 字段，则还需要考虑该对象的宽度。
+    */

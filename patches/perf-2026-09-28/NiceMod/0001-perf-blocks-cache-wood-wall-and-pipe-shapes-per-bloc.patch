@@ -1,0 +1,121 @@
+From 3c78197a53ef61d4631152ed304772462765f178 Mon Sep 17 00:00:00 2001
+From: Claude <noreply@anthropic.com>
+Date: Mon, 28 Sep 2026 06:12:44 +0000
+Subject: [PATCH 1/2] perf(blocks): cache wood wall and pipe shapes per block
+ state
+
+WoodWall rebuilt its outline and collision shapes on every query (four
+BlockState.toString() calls plus up to four unions), and APipe did up to
+twelve unions per outline query. Both results depend only on the block
+state, so add a small ShapeCache that runs the unchanged computation once
+per state and returns that result afterwards. The cache is a
+ConcurrentHashMap because shapes are also queried from chunk builder
+threads.
+
+Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_01TD7PJ5R7t7hM3ymeeqXP4H
+---
+ src/main/java/ru/miuno/blocks/ShapeCache.java | 24 +++++++++++++++++++
+ .../java/ru/miuno/blocks/block/WoodWall.java  | 10 ++++----
+ .../ru/miuno/blocks/block_types/APipe.java    |  6 +++++
+ 3 files changed, 34 insertions(+), 6 deletions(-)
+ create mode 100644 src/main/java/ru/miuno/blocks/ShapeCache.java
+
+diff --git a/src/main/java/ru/miuno/blocks/ShapeCache.java b/src/main/java/ru/miuno/blocks/ShapeCache.java
+new file mode 100644
+index 0000000..4895c8a
+--- /dev/null
++++ b/src/main/java/ru/miuno/blocks/ShapeCache.java
+@@ -0,0 +1,24 @@
++package ru.miuno.blocks;
++
++import java.util.Map;
++import java.util.concurrent.ConcurrentHashMap;
++import java.util.function.Function;
++
++import net.minecraft.block.BlockState;
++import net.minecraft.util.shape.VoxelShape;
++
++// Caches a shape that depends only on the block state: the original computation runs once per state
++// and later lookups return its result. Safe to use from chunk builder worker threads.
++public final class ShapeCache {
++    private final Map<BlockState, VoxelShape> shapes = new ConcurrentHashMap<>();
++    private final Function<BlockState, VoxelShape> factory;
++
++    public ShapeCache(Function<BlockState, VoxelShape> factory) {
++        this.factory = factory;
++    }
++
++    public VoxelShape get(BlockState state) {
++        VoxelShape shape = shapes.get(state);
++        return shape != null ? shape : shapes.computeIfAbsent(state, factory);
++    }
++}
+diff --git a/src/main/java/ru/miuno/blocks/block/WoodWall.java b/src/main/java/ru/miuno/blocks/block/WoodWall.java
+index d7106c0..46ec1b8 100644
+--- a/src/main/java/ru/miuno/blocks/block/WoodWall.java
++++ b/src/main/java/ru/miuno/blocks/block/WoodWall.java
+@@ -8,6 +8,7 @@ import net.minecraft.util.math.BlockPos;
+ import net.minecraft.util.shape.VoxelShape;
+ import net.minecraft.util.shape.VoxelShapes;
+ import net.minecraft.world.BlockView;
++import ru.miuno.blocks.ShapeCache;
+ 
+ public class WoodWall extends FenceBlock {
+     VoxelShape POST_SHAPE = Block.createCuboidShape(4.0F, 0.0F, 4.0F, 12.0F, 16.0F, 12.0F);
+@@ -15,6 +16,7 @@ public class WoodWall extends FenceBlock {
+     VoxelShape EAST_SHAPE = Block.createCuboidShape(4.0F, 0.0F, 4.0F, 16.0F, 16.0F, 12.0F);
+     VoxelShape SOUTH_SHAPE = Block.createCuboidShape(4.0F, 0.0F, 4.0F, 12.0F, 16.0F, 16.0F);
+     VoxelShape WEST_SHAPE = Block.createCuboidShape(0.0F, 0.0F, 4.0F, 12.0F, 16.0F, 12.0F);
++    private final ShapeCache shapes = new ShapeCache(state -> makebuildShapes(state, POST_SHAPE, NORTH_SHAPE, EAST_SHAPE, SOUTH_SHAPE, WEST_SHAPE));
+ 
+     public WoodWall(Settings settings) {
+         super(settings);
+@@ -39,14 +41,10 @@ public class WoodWall extends FenceBlock {
+ 
+ 
+     public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
+-        VoxelShape shape;
+-        shape = makebuildShapes(state, POST_SHAPE, NORTH_SHAPE, EAST_SHAPE, SOUTH_SHAPE, WEST_SHAPE);
+-        return shape;
++        return shapes.get(state);
+     }
+ 
+     public VoxelShape getCollisionShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
+-        VoxelShape shape;
+-        shape = makebuildShapes(state, POST_SHAPE, NORTH_SHAPE, EAST_SHAPE, SOUTH_SHAPE, WEST_SHAPE);
+-        return shape;
++        return shapes.get(state);
+     }
+ }
+diff --git a/src/main/java/ru/miuno/blocks/block_types/APipe.java b/src/main/java/ru/miuno/blocks/block_types/APipe.java
+index 638fad9..00a960c 100644
+--- a/src/main/java/ru/miuno/blocks/block_types/APipe.java
++++ b/src/main/java/ru/miuno/blocks/block_types/APipe.java
+@@ -27,6 +27,7 @@ import net.minecraft.util.shape.VoxelShape;
+ import net.minecraft.util.shape.VoxelShapes;
+ import net.minecraft.world.BlockView;
+ import net.minecraft.world.World;
++import ru.miuno.blocks.ShapeCache;
+ 
+ @SuppressWarnings("deprecation")
+ public abstract class APipe extends Block implements Waterloggable {
+@@ -40,6 +41,7 @@ public abstract class APipe extends Block implements Waterloggable {
+     public static final DirectionProperty FACING = DirectionProperty.of("facing");
+     public static final Map<Direction, BooleanProperty> CONNECTIONS = new HashMap<>();
+     public static final BooleanProperty WATERLOGGED = Properties.WATERLOGGED;
++    private final ShapeCache outlineShapes = new ShapeCache(this::createOutlineShape);
+ 
+     public APipe(Settings settings) {
+         super(settings);
+@@ -111,6 +113,10 @@ public abstract class APipe extends Block implements Waterloggable {
+ 
+     @Override
+     public VoxelShape getOutlineShape(BlockState state, BlockView view, BlockPos pos, ShapeContext ctx) {
++        return outlineShapes.get(state);
++    }
++
++    private VoxelShape createOutlineShape(BlockState state) {
+         VoxelShape shape = CORE_SHAPE;
+         VoxelShape shape2 = CORE_SHAPE;
+         for (Direction dir : Direction.values()) {

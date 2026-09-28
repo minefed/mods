@@ -1,0 +1,1102 @@
+From ca33bc7abcf231ffcbceefefb44fb088b7535198 Mon Sep 17 00:00:00 2001
+From: Claude <noreply@anthropic.com>
+Date: Mon, 28 Sep 2026 06:12:44 +0000
+Subject: [PATCH 2/2] perf(blocks): cache state-only outline shapes of
+ decorative blocks
+
+Forty decorative blocks created their outline shape (cuboids and unions)
+on every call, and the default collision shape reuses the outline. Each
+shape depends only on the block state, so move the unchanged computation
+into createOutlineShape and serve it through ShapeCache.
+
+Blocks whose outline is the full cube singleton are left unchanged since
+they allocate nothing.
+
+Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_01TD7PJ5R7t7hM3ymeeqXP4H
+---
+ src/main/java/ru/miuno/blocks/block/Basis.java             | 7 +++++++
+ src/main/java/ru/miuno/blocks/block/Bell.java              | 7 +++++++
+ src/main/java/ru/miuno/blocks/block/Capital.java           | 6 ++++++
+ src/main/java/ru/miuno/blocks/block/Column.java            | 7 +++++++
+ src/main/java/ru/miuno/blocks/block/Deepening.java         | 7 +++++++
+ src/main/java/ru/miuno/blocks/block/Hole.java              | 7 +++++++
+ src/main/java/ru/miuno/blocks/block/Loophole.java          | 7 +++++++
+ src/main/java/ru/miuno/blocks/block/Recess.java            | 7 +++++++
+ src/main/java/ru/miuno/blocks/block/Recess_a.java          | 7 +++++++
+ src/main/java/ru/miuno/blocks/block/SlabHole.java          | 7 +++++++
+ src/main/java/ru/miuno/blocks/block/SlabLoophole.java      | 7 +++++++
+ src/main/java/ru/miuno/blocks/block/SlabRecess.java        | 7 +++++++
+ src/main/java/ru/miuno/blocks/block/SlabRecess_a.java      | 7 +++++++
+ src/main/java/ru/miuno/blocks/block/WallPipe.java          | 7 +++++++
+ src/main/java/ru/miuno/blocks/decoration/BigSupport.java   | 7 +++++++
+ src/main/java/ru/miuno/blocks/decoration/Bridge.java       | 7 +++++++
+ src/main/java/ru/miuno/blocks/decoration/Cannon.java       | 7 +++++++
+ src/main/java/ru/miuno/blocks/decoration/Crate.java        | 7 +++++++
+ src/main/java/ru/miuno/blocks/decoration/Crossbar.java     | 7 +++++++
+ src/main/java/ru/miuno/blocks/decoration/CrossbarA.java    | 7 +++++++
+ src/main/java/ru/miuno/blocks/decoration/CrossbarB.java    | 7 +++++++
+ .../java/ru/miuno/blocks/decoration/CrossbarPlatform.java  | 7 +++++++
+ .../java/ru/miuno/blocks/decoration/CrossbarSupport.java   | 7 +++++++
+ src/main/java/ru/miuno/blocks/decoration/Decor.java        | 7 +++++++
+ src/main/java/ru/miuno/blocks/decoration/Decor2.java       | 7 +++++++
+ src/main/java/ru/miuno/blocks/decoration/Decor3.java       | 7 +++++++
+ src/main/java/ru/miuno/blocks/decoration/GateBlock.java    | 7 +++++++
+ .../java/ru/miuno/blocks/decoration/GateBlockPeaks.java    | 7 +++++++
+ src/main/java/ru/miuno/blocks/decoration/GlassPanel.java   | 7 +++++++
+ .../java/ru/miuno/blocks/decoration/HorizontalSupport.java | 7 +++++++
+ src/main/java/ru/miuno/blocks/decoration/Platform.java     | 7 +++++++
+ src/main/java/ru/miuno/blocks/decoration/Post.java         | 7 +++++++
+ src/main/java/ru/miuno/blocks/decoration/SmallSupport.java | 7 +++++++
+ src/main/java/ru/miuno/blocks/decoration/Support.java      | 7 +++++++
+ src/main/java/ru/miuno/blocks/decoration/Valve.java        | 7 +++++++
+ src/main/java/ru/miuno/blocks/decoration/WallLantern.java  | 7 +++++++
+ src/main/java/ru/miuno/blocks/decoration/WallLanternA.java | 7 +++++++
+ src/main/java/ru/miuno/blocks/decoration/WallSupport.java  | 7 +++++++
+ src/main/java/ru/miuno/blocks/decoration/Weathercock.java  | 7 +++++++
+ src/main/java/ru/miuno/blocks/decoration/Window.java       | 7 +++++++
+ 40 files changed, 279 insertions(+)
+
+diff --git a/src/main/java/ru/miuno/blocks/block/Basis.java b/src/main/java/ru/miuno/blocks/block/Basis.java
+index e3f41e8..951d090 100644
+--- a/src/main/java/ru/miuno/blocks/block/Basis.java
++++ b/src/main/java/ru/miuno/blocks/block/Basis.java
+@@ -9,14 +9,21 @@ import net.minecraft.util.shape.VoxelShape;
+ import net.minecraft.util.shape.VoxelShapes;
+ import net.minecraft.world.BlockView;
+ import ru.miuno.blocks.block_types.Half;
++import ru.miuno.blocks.ShapeCache;
+ 
+ public class Basis extends Half {
++    private static final ShapeCache OUTLINE_SHAPES = new ShapeCache(Basis::createOutlineShape);
++
+     public Basis(Settings settings) {
+       super(settings);
+     }
+ 
+     @Override
+ 	public VoxelShape getOutlineShape(BlockState state, BlockView view, BlockPos pos, ShapeContext ctx) {
++		return OUTLINE_SHAPES.get(state);
++	}
++
++	private static VoxelShape createOutlineShape(BlockState state) {
+ 		BlockHalf dir = state.get(HALF);
+ 		return switch (dir) {
+ 			case TOP -> VoxelShapes.union(Block.createCuboidShape(2, 0, 2, 14, 8, 14), Block.createCuboidShape(0, 8, 0, 16, 16, 16));
+diff --git a/src/main/java/ru/miuno/blocks/block/Bell.java b/src/main/java/ru/miuno/blocks/block/Bell.java
+index dd2cd94..363b14d 100644
+--- a/src/main/java/ru/miuno/blocks/block/Bell.java
++++ b/src/main/java/ru/miuno/blocks/block/Bell.java
+@@ -13,8 +13,11 @@ import net.minecraft.util.shape.VoxelShape;
+ import net.minecraft.world.BlockView;
+ import net.minecraft.world.World;
+ import ru.miuno.NiceMod;
++import ru.miuno.blocks.ShapeCache;
+ 
+ public class Bell extends Block {
++    private static final ShapeCache OUTLINE_SHAPES = new ShapeCache(Bell::createOutlineShape);
++
+     public Bell(Settings settings) {
+         super(settings);
+     }
+@@ -26,6 +29,10 @@ public class Bell extends Block {
+ 
+     @Override
+     public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
++        return OUTLINE_SHAPES.get(state);
++    }
++
++    private static VoxelShape createOutlineShape(BlockState state) {
+         return Block.createCuboidShape(6, 0, 6, 10, 3, 10);
+     }
+     
+diff --git a/src/main/java/ru/miuno/blocks/block/Capital.java b/src/main/java/ru/miuno/blocks/block/Capital.java
+index bcd9c0b..85c9f7e 100644
+--- a/src/main/java/ru/miuno/blocks/block/Capital.java
++++ b/src/main/java/ru/miuno/blocks/block/Capital.java
+@@ -7,8 +7,10 @@ import net.minecraft.util.shape.VoxelShape;
+ import net.minecraft.util.shape.VoxelShapes;
+ import net.minecraft.world.BlockView;
+ import ru.miuno.blocks.block_types.WaterloggableBlock;
++import ru.miuno.blocks.ShapeCache;
+ 
+ public class Capital extends WaterloggableBlock {
++    private static final ShapeCache OUTLINE_SHAPES = new ShapeCache(Capital::createOutlineShape);
+ 
+     public Capital(Settings settings) {
+         super(settings);
+@@ -16,6 +18,10 @@ public class Capital extends WaterloggableBlock {
+ 
+     @Override
+     public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
++        return OUTLINE_SHAPES.get(state);
++    }
++
++    private static VoxelShape createOutlineShape(BlockState state) {
+         return VoxelShapes.union(VoxelShapes.cuboid(0, 0, 0, 1, 0.125, 1), VoxelShapes.cuboid(0.125, 0.125, 0.125, 0.875, 1, 0.875), VoxelShapes.cuboid(0, 0.875, 0, 1, 1, 1));
+     }
+ }
+diff --git a/src/main/java/ru/miuno/blocks/block/Column.java b/src/main/java/ru/miuno/blocks/block/Column.java
+index 7715478..2d1c8ac 100644
+--- a/src/main/java/ru/miuno/blocks/block/Column.java
++++ b/src/main/java/ru/miuno/blocks/block/Column.java
+@@ -8,8 +8,11 @@ import net.minecraft.util.math.Direction.Axis;
+ import net.minecraft.util.shape.VoxelShape;
+ import net.minecraft.world.BlockView;
+ import ru.miuno.blocks.block_types.Pillar;
++import ru.miuno.blocks.ShapeCache;
+ 
+ public class Column extends Pillar {
++    private static final ShapeCache OUTLINE_SHAPES = new ShapeCache(Column::createOutlineShape);
++
+     public Column(Settings settings) {
+         super(settings);
+     }
+@@ -29,6 +32,10 @@ public class Column extends Pillar {
+     }*/
+ 	@Override
+ 	public VoxelShape getOutlineShape(BlockState state, BlockView view, BlockPos pos, ShapeContext ctx) {
++		return OUTLINE_SHAPES.get(state);
++	}
++
++	private static VoxelShape createOutlineShape(BlockState state) {
+ 		Axis dir = state.get(AXIS);
+ 		return switch (dir) {
+ 			case X -> Block.createCuboidShape(0, 2, 2, 16, 14, 14);
+diff --git a/src/main/java/ru/miuno/blocks/block/Deepening.java b/src/main/java/ru/miuno/blocks/block/Deepening.java
+index 5f0895c..e0f10e7 100644
+--- a/src/main/java/ru/miuno/blocks/block/Deepening.java
++++ b/src/main/java/ru/miuno/blocks/block/Deepening.java
+@@ -8,14 +8,21 @@ import net.minecraft.util.shape.VoxelShape;
+ import net.minecraft.util.shape.VoxelShapes;
+ import net.minecraft.world.BlockView;
+ import ru.miuno.blocks.block_types.Horizontal;
++import ru.miuno.blocks.ShapeCache;
+ 
+ public class Deepening extends Horizontal {
++    private static final ShapeCache OUTLINE_SHAPES = new ShapeCache(Deepening::createOutlineShape);
++
+     public Deepening(Settings settings) {
+         super(settings);
+     }
+     
+ 	@Override
+ 	public VoxelShape getOutlineShape(BlockState state, BlockView view, BlockPos pos, ShapeContext ctx) {
++		return OUTLINE_SHAPES.get(state);
++	}
++
++	private static VoxelShape createOutlineShape(BlockState state) {
+ 		Direction dir = state.get(FACING);
+ 		switch(dir) {
+ 			case NORTH:
+diff --git a/src/main/java/ru/miuno/blocks/block/Hole.java b/src/main/java/ru/miuno/blocks/block/Hole.java
+index 9b17c95..55a3ed5 100644
+--- a/src/main/java/ru/miuno/blocks/block/Hole.java
++++ b/src/main/java/ru/miuno/blocks/block/Hole.java
+@@ -9,14 +9,21 @@ import net.minecraft.util.shape.VoxelShape;
+ import net.minecraft.util.shape.VoxelShapes;
+ import net.minecraft.world.BlockView;
+ import ru.miuno.blocks.block_types.Pillar;
++import ru.miuno.blocks.ShapeCache;
+ 
+ public class Hole extends Pillar {
++    private static final ShapeCache OUTLINE_SHAPES = new ShapeCache(Hole::createOutlineShape);
++
+     public Hole(AbstractBlock.Settings settings) {
+         super(settings);
+     }
+ 
+     @Override
+     public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
++        return OUTLINE_SHAPES.get(state);
++    }
++
++    private static VoxelShape createOutlineShape(BlockState state) {
+         switch ((Direction.Axis)state.get(AXIS)) {
+             default: {
+                 return VoxelShapes.union(VoxelShapes.cuboid(0, 0, 0, 1, 0.25, 1), VoxelShapes.cuboid(0, 0.75, 0, 1, 1, 1), VoxelShapes.cuboid(0, 0, 0, 1, 1, 0.25), VoxelShapes.cuboid(0, 0, 0.75, 1, 1, 1));
+diff --git a/src/main/java/ru/miuno/blocks/block/Loophole.java b/src/main/java/ru/miuno/blocks/block/Loophole.java
+index 4cbcc9a..a85799d 100644
+--- a/src/main/java/ru/miuno/blocks/block/Loophole.java
++++ b/src/main/java/ru/miuno/blocks/block/Loophole.java
+@@ -9,14 +9,21 @@ import net.minecraft.util.shape.VoxelShape;
+ import net.minecraft.util.shape.VoxelShapes;
+ import net.minecraft.world.BlockView;
+ import ru.miuno.blocks.block_types.HorizontalHalf;
++import ru.miuno.blocks.ShapeCache;
+ 
+ public class Loophole extends HorizontalHalf{
++    private static final ShapeCache OUTLINE_SHAPES = new ShapeCache(Loophole::createOutlineShape);
++
+     public Loophole(Settings settings) {
+         super(settings);
+     }
+ 
+     @Override
+     public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
++        return OUTLINE_SHAPES.get(state);
++    }
++
++    private static VoxelShape createOutlineShape(BlockState state) {
+         Direction dir = state.get(FACING);
+         if (state.get(HALF) == BlockHalf.BOTTOM) {
+             switch(dir) {
+diff --git a/src/main/java/ru/miuno/blocks/block/Recess.java b/src/main/java/ru/miuno/blocks/block/Recess.java
+index 1bb1107..ebdea5d 100644
+--- a/src/main/java/ru/miuno/blocks/block/Recess.java
++++ b/src/main/java/ru/miuno/blocks/block/Recess.java
+@@ -8,14 +8,21 @@ import net.minecraft.util.shape.VoxelShape;
+ import net.minecraft.util.shape.VoxelShapes;
+ import net.minecraft.world.BlockView;
+ import ru.miuno.blocks.block_types.Horizontal;
++import ru.miuno.blocks.ShapeCache;
+ 
+ public class Recess extends Horizontal {
++    private static final ShapeCache OUTLINE_SHAPES = new ShapeCache(Recess::createOutlineShape);
++
+     public Recess(Settings settings) {
+         super(settings);
+     }
+ 
+ 	@Override
+ 	public VoxelShape getOutlineShape(BlockState state, BlockView view, BlockPos pos, ShapeContext ctx) {
++		return OUTLINE_SHAPES.get(state);
++	}
++
++	private static VoxelShape createOutlineShape(BlockState state) {
+ 		Direction dir = state.get(FACING);
+ 		switch(dir) {
+ 			case NORTH:
+diff --git a/src/main/java/ru/miuno/blocks/block/Recess_a.java b/src/main/java/ru/miuno/blocks/block/Recess_a.java
+index b4efb3f..20296fa 100644
+--- a/src/main/java/ru/miuno/blocks/block/Recess_a.java
++++ b/src/main/java/ru/miuno/blocks/block/Recess_a.java
+@@ -8,14 +8,21 @@ import net.minecraft.util.shape.VoxelShape;
+ import net.minecraft.util.shape.VoxelShapes;
+ import net.minecraft.world.BlockView;
+ import ru.miuno.blocks.block_types.Horizontal;
++import ru.miuno.blocks.ShapeCache;
+ 
+ public class Recess_a extends Horizontal {
++	private static final ShapeCache OUTLINE_SHAPES = new ShapeCache(Recess_a::createOutlineShape);
++
+ 	public Recess_a(Settings settings) {
+ 		super(settings);
+ 	}
+ 
+ 	@Override
+ 	public VoxelShape getOutlineShape(BlockState state, BlockView view, BlockPos pos, ShapeContext ctx) {
++		return OUTLINE_SHAPES.get(state);
++	}
++
++	private static VoxelShape createOutlineShape(BlockState state) {
+ 		Direction dir = state.get(FACING);
+ 		switch(dir) {
+ 			case NORTH:
+diff --git a/src/main/java/ru/miuno/blocks/block/SlabHole.java b/src/main/java/ru/miuno/blocks/block/SlabHole.java
+index 43ce4bb..08a92ff 100644
+--- a/src/main/java/ru/miuno/blocks/block/SlabHole.java
++++ b/src/main/java/ru/miuno/blocks/block/SlabHole.java
+@@ -8,14 +8,21 @@ import net.minecraft.util.shape.VoxelShape;
+ import net.minecraft.util.shape.VoxelShapes;
+ import net.minecraft.world.BlockView;
+ import ru.miuno.blocks.block_types.WaterloggableRodBlock;
++import ru.miuno.blocks.ShapeCache;
+ 
+ public class SlabHole extends WaterloggableRodBlock {
++	private static final ShapeCache OUTLINE_SHAPES = new ShapeCache(SlabHole::createOutlineShape);
++
+ 	public SlabHole(Settings settings) {
+ 		super(settings);
+ 	}
+ 
+     @Override
+     public VoxelShape getOutlineShape(BlockState blockState, BlockView view, BlockPos pos, ShapeContext context) {
++        return OUTLINE_SHAPES.get(blockState);
++    }
++
++    private static VoxelShape createOutlineShape(BlockState blockState) {
+         Direction dir = blockState.get(FACING);
+         return switch (dir) {
+             case UP -> VoxelShapes.union(VoxelShapes.cuboid(0, 0, 0, 0.25, 0.5, 1), VoxelShapes.cuboid(0.75, 0, 0, 1, 0.5, 1), VoxelShapes.cuboid(0, 0, 0, 1, 0.5, 0.25), VoxelShapes.cuboid(0, 0, 0.75, 1, 0.5, 1));
+diff --git a/src/main/java/ru/miuno/blocks/block/SlabLoophole.java b/src/main/java/ru/miuno/blocks/block/SlabLoophole.java
+index abec6cc..7b0179d 100644
+--- a/src/main/java/ru/miuno/blocks/block/SlabLoophole.java
++++ b/src/main/java/ru/miuno/blocks/block/SlabLoophole.java
+@@ -10,14 +10,21 @@ import net.minecraft.util.shape.VoxelShape;
+ import net.minecraft.util.shape.VoxelShapes;
+ import net.minecraft.world.BlockView;
+ import ru.miuno.blocks.block_types.HorizontalHalf;
++import ru.miuno.blocks.ShapeCache;
+ 
+ public class SlabLoophole extends HorizontalHalf {
++    private static final ShapeCache OUTLINE_SHAPES = new ShapeCache(SlabLoophole::createOutlineShape);
++
+     public SlabLoophole(Settings settings) {
+         super(settings);
+     }
+     
+     @Override
+ 	public VoxelShape getOutlineShape(BlockState state, BlockView view, BlockPos pos, ShapeContext ctx) {
++		return OUTLINE_SHAPES.get(state);
++	}
++
++	private static VoxelShape createOutlineShape(BlockState state) {
+ 		Direction dir = state.get(FACING);
+         if (state.get(HALF) == BlockHalf.BOTTOM) {
+             return switch (dir) {
+diff --git a/src/main/java/ru/miuno/blocks/block/SlabRecess.java b/src/main/java/ru/miuno/blocks/block/SlabRecess.java
+index 67ddb48..d436193 100644
+--- a/src/main/java/ru/miuno/blocks/block/SlabRecess.java
++++ b/src/main/java/ru/miuno/blocks/block/SlabRecess.java
+@@ -8,14 +8,21 @@ import net.minecraft.util.math.BlockPos;
+ import net.minecraft.util.math.Direction;
+ import net.minecraft.world.BlockView;
+ import ru.miuno.blocks.block_types.Horizontal;
++import ru.miuno.blocks.ShapeCache;
+ 
+ public class SlabRecess extends Horizontal {
++	private static final ShapeCache OUTLINE_SHAPES = new ShapeCache(SlabRecess::createOutlineShape);
++
+ 	public SlabRecess(Settings settings) {
+ 		super(settings);
+ 	}
+ 
+ 	@Override
+ 	public VoxelShape getOutlineShape(BlockState state, BlockView view, BlockPos pos, ShapeContext ctx) {
++		return OUTLINE_SHAPES.get(state);
++	}
++
++	private static VoxelShape createOutlineShape(BlockState state) {
+ 		Direction dir = state.get(FACING);
+ 		switch(dir) {
+ 			case NORTH:
+diff --git a/src/main/java/ru/miuno/blocks/block/SlabRecess_a.java b/src/main/java/ru/miuno/blocks/block/SlabRecess_a.java
+index 3f2128b..b577716 100644
+--- a/src/main/java/ru/miuno/blocks/block/SlabRecess_a.java
++++ b/src/main/java/ru/miuno/blocks/block/SlabRecess_a.java
+@@ -8,14 +8,21 @@ import net.minecraft.util.shape.VoxelShape;
+ import net.minecraft.util.shape.VoxelShapes;
+ import net.minecraft.world.BlockView;
+ import ru.miuno.blocks.block_types.Horizontal;
++import ru.miuno.blocks.ShapeCache;
+ 
+ public class SlabRecess_a extends Horizontal {
++	private static final ShapeCache OUTLINE_SHAPES = new ShapeCache(SlabRecess_a::createOutlineShape);
++
+ 	public SlabRecess_a(Settings settings) {
+ 		super(settings);
+ 	}
+ 
+ 	@Override
+ 	public VoxelShape getOutlineShape(BlockState state, BlockView view, BlockPos pos, ShapeContext ctx) {
++		return OUTLINE_SHAPES.get(state);
++	}
++
++	private static VoxelShape createOutlineShape(BlockState state) {
+ 		Direction dir = state.get(FACING);
+ 		switch(dir) {
+ 			case NORTH:
+diff --git a/src/main/java/ru/miuno/blocks/block/WallPipe.java b/src/main/java/ru/miuno/blocks/block/WallPipe.java
+index 0ac01bb..5472db2 100644
+--- a/src/main/java/ru/miuno/blocks/block/WallPipe.java
++++ b/src/main/java/ru/miuno/blocks/block/WallPipe.java
+@@ -8,14 +8,21 @@ import net.minecraft.util.shape.VoxelShape;
+ import net.minecraft.util.shape.VoxelShapes;
+ import net.minecraft.world.BlockView;
+ import ru.miuno.blocks.block_types.WaterloggableRodBlock;
++import ru.miuno.blocks.ShapeCache;
+ 
+ public class WallPipe extends WaterloggableRodBlock {
++	private static final ShapeCache OUTLINE_SHAPES = new ShapeCache(WallPipe::createOutlineShape);
++
+ 	public WallPipe(Settings settings) {
+ 		super(settings);
+ 	}
+ 
+     @Override
+     public VoxelShape getOutlineShape(BlockState blockState, BlockView view, BlockPos pos, ShapeContext context) {
++        return OUTLINE_SHAPES.get(blockState);
++    }
++
++    private static VoxelShape createOutlineShape(BlockState blockState) {
+         Direction dir = blockState.get(FACING);
+         return switch (dir) {
+             case UP -> VoxelShapes.union(VoxelShapes.cuboid(0, 0, 0, 1, 0.5, 1), VoxelShapes.cuboid(0.3125, 0.5, 0.3125, 0.6875, 1, 0.6875));
+diff --git a/src/main/java/ru/miuno/blocks/decoration/BigSupport.java b/src/main/java/ru/miuno/blocks/decoration/BigSupport.java
+index 847a176..84fb400 100644
+--- a/src/main/java/ru/miuno/blocks/decoration/BigSupport.java
++++ b/src/main/java/ru/miuno/blocks/decoration/BigSupport.java
+@@ -9,14 +9,21 @@ import net.minecraft.util.shape.VoxelShape;
+ import net.minecraft.util.shape.VoxelShapes;
+ import net.minecraft.world.BlockView;
+ import ru.miuno.blocks.block_types.Horizontal;
++import ru.miuno.blocks.ShapeCache;
+ 
+ public class BigSupport extends Horizontal {	
++    private static final ShapeCache OUTLINE_SHAPES = new ShapeCache(BigSupport::createOutlineShape);
++
+     public BigSupport(Settings settings) {
+         super(settings);
+     }
+ 
+ 	@Override
+ 	public VoxelShape getOutlineShape(BlockState state, BlockView view, BlockPos pos, ShapeContext ctx) {
++		return OUTLINE_SHAPES.get(state);
++	}
++
++	private static VoxelShape createOutlineShape(BlockState state) {
+ 		Direction dir = state.get(FACING);
+ 		return switch (dir) {
+ 			case NORTH -> VoxelShapes.union(Block.createCuboidShape(5, 0, 13, 11, 13, 16), Block.createCuboidShape(0, 13, 0, 16, 16, 16));
+diff --git a/src/main/java/ru/miuno/blocks/decoration/Bridge.java b/src/main/java/ru/miuno/blocks/decoration/Bridge.java
+index 60f375b..14a9a8f 100644
+--- a/src/main/java/ru/miuno/blocks/decoration/Bridge.java
++++ b/src/main/java/ru/miuno/blocks/decoration/Bridge.java
+@@ -9,14 +9,21 @@ import net.minecraft.util.shape.VoxelShape;
+ import net.minecraft.util.shape.VoxelShapes;
+ import net.minecraft.world.BlockView;
+ import ru.miuno.blocks.block_types.Horizontal;
++import ru.miuno.blocks.ShapeCache;
+ 
+ public class Bridge extends Horizontal{
++    private static final ShapeCache OUTLINE_SHAPES = new ShapeCache(Bridge::createOutlineShape);
++
+     public Bridge(Settings settings) {
+         super(Settings.copy(Blocks.OAK_PLANKS).nonOpaque());
+     }
+ 
+ 	@Override
+ 	public VoxelShape getOutlineShape(BlockState state, BlockView view, BlockPos pos, ShapeContext ctx) {
++		return OUTLINE_SHAPES.get(state);
++	}
++
++	private static VoxelShape createOutlineShape(BlockState state) {
+ 		Direction dir = state.get(FACING);
+ 		switch(dir) {
+ 			case NORTH:
+diff --git a/src/main/java/ru/miuno/blocks/decoration/Cannon.java b/src/main/java/ru/miuno/blocks/decoration/Cannon.java
+index 1f124ad..03243a2 100644
+--- a/src/main/java/ru/miuno/blocks/decoration/Cannon.java
++++ b/src/main/java/ru/miuno/blocks/decoration/Cannon.java
+@@ -9,14 +9,21 @@ import net.minecraft.util.math.Direction;
+ import net.minecraft.util.shape.VoxelShape;
+ import net.minecraft.world.BlockView;
+ import ru.miuno.blocks.block_types.Horizontal;
++import ru.miuno.blocks.ShapeCache;
+ 
+ public class Cannon extends Horizontal {
++    private static final ShapeCache OUTLINE_SHAPES = new ShapeCache(Cannon::createOutlineShape);
++
+     public Cannon(Settings settings) {
+         super(Settings.copy(Blocks.OAK_PLANKS).nonOpaque());
+     }
+     
+ 	@Override
+ 	public VoxelShape getOutlineShape(BlockState state, BlockView view, BlockPos pos, ShapeContext ctx) {
++		return OUTLINE_SHAPES.get(state);
++	}
++
++	private static VoxelShape createOutlineShape(BlockState state) {
+ 		Direction dir = state.get(FACING);
+ 		return switch (dir) {
+ 			case NORTH -> Block.createCuboidShape(0, 0, 0, 16, 8, 16);
+diff --git a/src/main/java/ru/miuno/blocks/decoration/Crate.java b/src/main/java/ru/miuno/blocks/decoration/Crate.java
+index 41b74e4..102162c 100644
+--- a/src/main/java/ru/miuno/blocks/decoration/Crate.java
++++ b/src/main/java/ru/miuno/blocks/decoration/Crate.java
+@@ -9,14 +9,21 @@ import net.minecraft.util.shape.VoxelShape;
+ import net.minecraft.util.shape.VoxelShapes;
+ import net.minecraft.world.BlockView;
+ import ru.miuno.blocks.block_types.Horizontal;
++import ru.miuno.blocks.ShapeCache;
+ 
+ public class Crate extends Horizontal {
++    private static final ShapeCache OUTLINE_SHAPES = new ShapeCache(Crate::createOutlineShape);
++
+     public Crate(Settings settings) {
+         super(Settings.copy(Blocks.OAK_PLANKS).nonOpaque());
+     }
+ 
+ 	@Override
+ 	public VoxelShape getOutlineShape(BlockState state, BlockView view, BlockPos pos, ShapeContext ctx) {
++		return OUTLINE_SHAPES.get(state);
++	}
++
++	private static VoxelShape createOutlineShape(BlockState state) {
+ 		Direction dir = state.get(FACING);
+ 		switch(dir) {
+ 			case NORTH:
+diff --git a/src/main/java/ru/miuno/blocks/decoration/Crossbar.java b/src/main/java/ru/miuno/blocks/decoration/Crossbar.java
+index 148aaf1..c167f0a 100644
+--- a/src/main/java/ru/miuno/blocks/decoration/Crossbar.java
++++ b/src/main/java/ru/miuno/blocks/decoration/Crossbar.java
+@@ -9,14 +9,21 @@ import net.minecraft.util.math.Direction.Axis;
+ import net.minecraft.util.shape.VoxelShape;
+ import net.minecraft.world.BlockView;
+ import ru.miuno.blocks.block_types.PillarHalf;
++import ru.miuno.blocks.ShapeCache;
+ 
+ public class Crossbar extends PillarHalf {
++    private static final ShapeCache OUTLINE_SHAPES = new ShapeCache(Crossbar::createOutlineShape);
++
+     public Crossbar(Settings settings) {
+         super(settings);
+     }
+ 
+     @Override
+ 	public VoxelShape getOutlineShape(BlockState state, BlockView view, BlockPos pos, ShapeContext ctx) {
++		return OUTLINE_SHAPES.get(state);
++	}
++
++	private static VoxelShape createOutlineShape(BlockState state) {
+ 		Axis dir = state.get(AXIS);
+         if (state.get(HALF) == BlockHalf.BOTTOM) {
+             return switch (dir) {
+diff --git a/src/main/java/ru/miuno/blocks/decoration/CrossbarA.java b/src/main/java/ru/miuno/blocks/decoration/CrossbarA.java
+index ec1f189..f9a9438 100644
+--- a/src/main/java/ru/miuno/blocks/decoration/CrossbarA.java
++++ b/src/main/java/ru/miuno/blocks/decoration/CrossbarA.java
+@@ -8,14 +8,21 @@ import net.minecraft.util.shape.VoxelShape;
+ import net.minecraft.util.shape.VoxelShapes;
+ import net.minecraft.world.BlockView;
+ import ru.miuno.blocks.block_types.Horizontal;
++import ru.miuno.blocks.ShapeCache;
+ 
+ public class CrossbarA extends Horizontal {
++    private static final ShapeCache OUTLINE_SHAPES = new ShapeCache(CrossbarA::createOutlineShape);
++
+     public CrossbarA(Settings settings) {
+         super(settings);
+     }
+ 
+ 	@Override
+ 	public VoxelShape getOutlineShape(BlockState state, BlockView view, BlockPos pos, ShapeContext ctx) {
++		return OUTLINE_SHAPES.get(state);
++	}
++
++	private static VoxelShape createOutlineShape(BlockState state) {
+ 		Direction dir = state.get(FACING);
+ 		switch(dir) {
+ 			case NORTH:
+diff --git a/src/main/java/ru/miuno/blocks/decoration/CrossbarB.java b/src/main/java/ru/miuno/blocks/decoration/CrossbarB.java
+index 8fc3dd6..9c34df2 100644
+--- a/src/main/java/ru/miuno/blocks/decoration/CrossbarB.java
++++ b/src/main/java/ru/miuno/blocks/decoration/CrossbarB.java
+@@ -8,14 +8,21 @@ import net.minecraft.util.shape.VoxelShape;
+ import net.minecraft.util.shape.VoxelShapes;
+ import net.minecraft.world.BlockView;
+ import ru.miuno.blocks.block_types.Horizontal;
++import ru.miuno.blocks.ShapeCache;
+ 
+ public class CrossbarB extends Horizontal {
++    private static final ShapeCache OUTLINE_SHAPES = new ShapeCache(CrossbarB::createOutlineShape);
++
+     public CrossbarB(Settings settings) {
+         super(settings);
+     }
+ 	
+     @Override  
+ 	public VoxelShape getOutlineShape(BlockState state, BlockView view, BlockPos pos, ShapeContext ctx) {
++		return OUTLINE_SHAPES.get(state);
++	}
++
++	private static VoxelShape createOutlineShape(BlockState state) {
+ 		Direction dir = state.get(FACING);
+ 		switch(dir) {
+ 			case NORTH:
+diff --git a/src/main/java/ru/miuno/blocks/decoration/CrossbarPlatform.java b/src/main/java/ru/miuno/blocks/decoration/CrossbarPlatform.java
+index bb4bccc..5d51c4c 100644
+--- a/src/main/java/ru/miuno/blocks/decoration/CrossbarPlatform.java
++++ b/src/main/java/ru/miuno/blocks/decoration/CrossbarPlatform.java
+@@ -8,14 +8,21 @@ import net.minecraft.util.shape.VoxelShape;
+ import net.minecraft.util.shape.VoxelShapes;
+ import net.minecraft.world.BlockView;
+ import ru.miuno.blocks.block_types.WaterloggableBlock;
++import ru.miuno.blocks.ShapeCache;
+ 
+ public class CrossbarPlatform extends WaterloggableBlock {
++    private static final ShapeCache OUTLINE_SHAPES = new ShapeCache(CrossbarPlatform::createOutlineShape);
++
+     public CrossbarPlatform(Settings settings) {
+         super(settings);
+     }
+ 
+     @Override
+     public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
++        return OUTLINE_SHAPES.get(state);
++    }
++
++    private static VoxelShape createOutlineShape(BlockState state) {
+         return VoxelShapes.union(Block.createCuboidShape(4, 0, 4, 12, 16, 12), Block.createCuboidShape(0, 13, 0, 16, 16, 16));
+     }
+ }
+diff --git a/src/main/java/ru/miuno/blocks/decoration/CrossbarSupport.java b/src/main/java/ru/miuno/blocks/decoration/CrossbarSupport.java
+index 971ca54..a17a781 100644
+--- a/src/main/java/ru/miuno/blocks/decoration/CrossbarSupport.java
++++ b/src/main/java/ru/miuno/blocks/decoration/CrossbarSupport.java
+@@ -9,14 +9,21 @@ import net.minecraft.util.shape.VoxelShape;
+ import net.minecraft.util.shape.VoxelShapes;
+ import net.minecraft.world.BlockView;
+ import ru.miuno.blocks.block_types.Horizontal;
++import ru.miuno.blocks.ShapeCache;
+ 
+ public class CrossbarSupport extends Horizontal {
++    private static final ShapeCache OUTLINE_SHAPES = new ShapeCache(CrossbarSupport::createOutlineShape);
++
+     public CrossbarSupport(Settings settings) {
+         super(settings);
+     }
+     
+     @Override  
+ 	public VoxelShape getOutlineShape(BlockState state, BlockView view, BlockPos pos, ShapeContext ctx) {
++		return OUTLINE_SHAPES.get(state);
++	}
++
++	private static VoxelShape createOutlineShape(BlockState state) {
+ 		Direction dir = state.get(FACING);
+ 		return switch (dir) {
+ 			case NORTH -> VoxelShapes.union(Block.createCuboidShape(4, 0, 8, 12, 13, 16), Block.createCuboidShape(0, 13, 0, 16, 16, 16));
+diff --git a/src/main/java/ru/miuno/blocks/decoration/Decor.java b/src/main/java/ru/miuno/blocks/decoration/Decor.java
+index 9da9002..0fc1280 100644
+--- a/src/main/java/ru/miuno/blocks/decoration/Decor.java
++++ b/src/main/java/ru/miuno/blocks/decoration/Decor.java
+@@ -9,14 +9,21 @@ import net.minecraft.util.math.Direction;
+ import net.minecraft.util.shape.VoxelShape;
+ import net.minecraft.world.BlockView;
+ import ru.miuno.blocks.block_types.Horizontal;
++import ru.miuno.blocks.ShapeCache;
+ 
+ public class Decor extends Horizontal{
++    private static final ShapeCache OUTLINE_SHAPES = new ShapeCache(Decor::createOutlineShape);
++
+     public Decor(Settings settings) {
+         super(Settings.copy(Blocks.OAK_PLANKS).nonOpaque());
+     }
+ 
+ 	@Override
+ 	public VoxelShape getOutlineShape(BlockState state, BlockView view, BlockPos pos, ShapeContext ctx) {
++		return OUTLINE_SHAPES.get(state);
++	}
++
++	private static VoxelShape createOutlineShape(BlockState state) {
+ 		Direction dir = state.get(FACING);
+ 		return switch (dir) {
+ 			case NORTH -> Block.createCuboidShape(2, 0, 2, 14, 16, 14);
+diff --git a/src/main/java/ru/miuno/blocks/decoration/Decor2.java b/src/main/java/ru/miuno/blocks/decoration/Decor2.java
+index 788a524..bec4a0d 100644
+--- a/src/main/java/ru/miuno/blocks/decoration/Decor2.java
++++ b/src/main/java/ru/miuno/blocks/decoration/Decor2.java
+@@ -9,14 +9,21 @@ import net.minecraft.util.math.Direction;
+ import net.minecraft.util.shape.VoxelShape;
+ import net.minecraft.world.BlockView;
+ import ru.miuno.blocks.block_types.Horizontal;
++import ru.miuno.blocks.ShapeCache;
+ 
+ public class Decor2 extends Horizontal{
++    private static final ShapeCache OUTLINE_SHAPES = new ShapeCache(Decor2::createOutlineShape);
++
+     public Decor2(Settings settings) {
+         super(Settings.copy(Blocks.OAK_PLANKS).nonOpaque());
+     }
+ 
+ 	@Override
+ 	public VoxelShape getOutlineShape(BlockState state, BlockView view, BlockPos pos, ShapeContext ctx) {
++		return OUTLINE_SHAPES.get(state);
++	}
++
++	private static VoxelShape createOutlineShape(BlockState state) {
+ 		Direction dir = state.get(FACING);
+ 		return switch (dir) {
+ 			case NORTH -> Block.createCuboidShape(0, 0, 0, 16, 3, 16);
+diff --git a/src/main/java/ru/miuno/blocks/decoration/Decor3.java b/src/main/java/ru/miuno/blocks/decoration/Decor3.java
+index d73c820..7c409e4 100644
+--- a/src/main/java/ru/miuno/blocks/decoration/Decor3.java
++++ b/src/main/java/ru/miuno/blocks/decoration/Decor3.java
+@@ -9,14 +9,21 @@ import net.minecraft.util.math.Direction;
+ import net.minecraft.util.shape.VoxelShape;
+ import net.minecraft.world.BlockView;
+ import ru.miuno.blocks.block_types.Horizontal;
++import ru.miuno.blocks.ShapeCache;
+ 
+ public class Decor3 extends Horizontal{
++    private static final ShapeCache OUTLINE_SHAPES = new ShapeCache(Decor3::createOutlineShape);
++
+     public Decor3(Settings settings) {
+         super(Settings.copy(Blocks.OAK_PLANKS).nonOpaque());
+     }
+ 
+ 	@Override
+ 	public VoxelShape getOutlineShape(BlockState state, BlockView view, BlockPos pos, ShapeContext ctx) {
++		return OUTLINE_SHAPES.get(state);
++	}
++
++	private static VoxelShape createOutlineShape(BlockState state) {
+ 		Direction dir = state.get(FACING);
+ 		return switch (dir) {
+ 			case NORTH -> Block.createCuboidShape(4, 0, 4, 12, 16, 12);
+diff --git a/src/main/java/ru/miuno/blocks/decoration/GateBlock.java b/src/main/java/ru/miuno/blocks/decoration/GateBlock.java
+index c71119a..e178d8b 100644
+--- a/src/main/java/ru/miuno/blocks/decoration/GateBlock.java
++++ b/src/main/java/ru/miuno/blocks/decoration/GateBlock.java
+@@ -8,14 +8,21 @@ import net.minecraft.util.math.Direction;
+ import net.minecraft.util.shape.VoxelShape;
+ import net.minecraft.world.BlockView;
+ import ru.miuno.blocks.block_types.Horizontal;
++import ru.miuno.blocks.ShapeCache;
+ 
+ public class GateBlock extends Horizontal {
++    private static final ShapeCache OUTLINE_SHAPES = new ShapeCache(GateBlock::createOutlineShape);
++
+     public GateBlock(Settings settings) {
+         super(settings);
+     }
+     
+     @Override
+ 	public VoxelShape getOutlineShape(BlockState state, BlockView view, BlockPos pos, ShapeContext ctx) {
++		return OUTLINE_SHAPES.get(state);
++	}
++
++	private static VoxelShape createOutlineShape(BlockState state) {
+ 		Direction dir = state.get(FACING);
+ 		return switch (dir) {
+ 			case NORTH -> Block.createCuboidShape(0, 0, 6, 16, 16, 10);
+diff --git a/src/main/java/ru/miuno/blocks/decoration/GateBlockPeaks.java b/src/main/java/ru/miuno/blocks/decoration/GateBlockPeaks.java
+index e62b21a..a17c4f4 100644
+--- a/src/main/java/ru/miuno/blocks/decoration/GateBlockPeaks.java
++++ b/src/main/java/ru/miuno/blocks/decoration/GateBlockPeaks.java
+@@ -9,14 +9,21 @@ import net.minecraft.util.math.Direction;
+ import net.minecraft.util.shape.VoxelShape;
+ import net.minecraft.world.BlockView;
+ import ru.miuno.blocks.block_types.HorizontalHalf;
++import ru.miuno.blocks.ShapeCache;
+ 
+ public class GateBlockPeaks extends HorizontalHalf {
++    private static final ShapeCache OUTLINE_SHAPES = new ShapeCache(GateBlockPeaks::createOutlineShape);
++
+     public GateBlockPeaks(Settings settings) {
+         super(settings);
+     }
+     
+     @Override
+     public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
++        return OUTLINE_SHAPES.get(state);
++    }
++
++    private static VoxelShape createOutlineShape(BlockState state) {
+         Direction dir = state.get(FACING);
+         if (state.get(HALF) == BlockHalf.BOTTOM) {
+ 			return switch (dir) {
+diff --git a/src/main/java/ru/miuno/blocks/decoration/GlassPanel.java b/src/main/java/ru/miuno/blocks/decoration/GlassPanel.java
+index 39d1ef7..306f13d 100644
+--- a/src/main/java/ru/miuno/blocks/decoration/GlassPanel.java
++++ b/src/main/java/ru/miuno/blocks/decoration/GlassPanel.java
+@@ -8,14 +8,21 @@ import net.minecraft.util.shape.VoxelShape;
+ import net.minecraft.util.shape.VoxelShapes;
+ import net.minecraft.world.BlockView;
+ import ru.miuno.blocks.block_types.Half;
++import ru.miuno.blocks.ShapeCache;
+ 
+ public class GlassPanel extends Half{
++    private static final ShapeCache OUTLINE_SHAPES = new ShapeCache(GlassPanel::createOutlineShape);
++
+     public GlassPanel(Settings settings) {
+         super(settings);
+     }
+     
+     @Override
+     public VoxelShape getOutlineShape(BlockState state, BlockView view, BlockPos pos, ShapeContext ctx) {
++        return OUTLINE_SHAPES.get(state);
++    }
++
++    private static VoxelShape createOutlineShape(BlockState state) {
+         BlockHalf dir = state.get(HALF);
+         switch(dir) {
+             case TOP:
+diff --git a/src/main/java/ru/miuno/blocks/decoration/HorizontalSupport.java b/src/main/java/ru/miuno/blocks/decoration/HorizontalSupport.java
+index 72b3d63..d126d38 100644
+--- a/src/main/java/ru/miuno/blocks/decoration/HorizontalSupport.java
++++ b/src/main/java/ru/miuno/blocks/decoration/HorizontalSupport.java
+@@ -9,14 +9,21 @@ import net.minecraft.util.math.Direction;
+ import net.minecraft.util.shape.VoxelShape;
+ import net.minecraft.world.BlockView;
+ import ru.miuno.blocks.block_types.HorizontalHalf;
++import ru.miuno.blocks.ShapeCache;
+ 
+ public class HorizontalSupport extends HorizontalHalf{
++    private static final ShapeCache OUTLINE_SHAPES = new ShapeCache(HorizontalSupport::createOutlineShape);
++
+     public HorizontalSupport(Settings settings) {
+         super(settings);
+     }
+ 
+     @Override
+     public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
++        return OUTLINE_SHAPES.get(state);
++    }
++
++    private static VoxelShape createOutlineShape(BlockState state) {
+         Direction dir = state.get(FACING);
+         if (state.get(HALF) == BlockHalf.BOTTOM) {
+             return switch(dir) {
+diff --git a/src/main/java/ru/miuno/blocks/decoration/Platform.java b/src/main/java/ru/miuno/blocks/decoration/Platform.java
+index cce4b27..704e84f 100644
+--- a/src/main/java/ru/miuno/blocks/decoration/Platform.java
++++ b/src/main/java/ru/miuno/blocks/decoration/Platform.java
+@@ -8,14 +8,21 @@ import net.minecraft.util.math.BlockPos;
+ import net.minecraft.util.shape.VoxelShape;
+ import net.minecraft.world.BlockView;
+ import ru.miuno.blocks.block_types.Half;
++import ru.miuno.blocks.ShapeCache;
+ 
+ public class Platform extends Half {
++    private static final ShapeCache OUTLINE_SHAPES = new ShapeCache(Platform::createOutlineShape);
++
+     public Platform(Settings settings) {
+         super(settings);
+     }
+     
+ 	@Override
+ 	public VoxelShape getOutlineShape(BlockState state, BlockView view, BlockPos pos, ShapeContext ctx) {
++		return OUTLINE_SHAPES.get(state);
++	}
++
++	private static VoxelShape createOutlineShape(BlockState state) {
+ 		BlockHalf dir = state.get(HALF);
+ 		return switch (dir) {
+ 			case TOP -> Block.createCuboidShape(0, 13, 0, 16, 16, 16);
+diff --git a/src/main/java/ru/miuno/blocks/decoration/Post.java b/src/main/java/ru/miuno/blocks/decoration/Post.java
+index 1f99699..edda411 100644
+--- a/src/main/java/ru/miuno/blocks/decoration/Post.java
++++ b/src/main/java/ru/miuno/blocks/decoration/Post.java
+@@ -7,14 +7,21 @@ import net.minecraft.util.math.BlockPos;
+ import net.minecraft.util.shape.VoxelShape;
+ import net.minecraft.world.BlockView;
+ import ru.miuno.blocks.block_types.WaterloggableBlock;
++import ru.miuno.blocks.ShapeCache;
+ 
+ public class Post extends WaterloggableBlock {
++    private static final ShapeCache OUTLINE_SHAPES = new ShapeCache(Post::createOutlineShape);
++
+     public Post(Settings settings) {
+         super(settings);
+     }
+ 
+     @Override
+     public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
++        return OUTLINE_SHAPES.get(state);
++    }
++
++    private static VoxelShape createOutlineShape(BlockState state) {
+         return Block.createCuboidShape(5, 0, 5, 11, 16, 11);
+     }
+ }
+\ No newline at end of file
+diff --git a/src/main/java/ru/miuno/blocks/decoration/SmallSupport.java b/src/main/java/ru/miuno/blocks/decoration/SmallSupport.java
+index 3228023..ac42e53 100644
+--- a/src/main/java/ru/miuno/blocks/decoration/SmallSupport.java
++++ b/src/main/java/ru/miuno/blocks/decoration/SmallSupport.java
+@@ -8,14 +8,21 @@ import net.minecraft.util.shape.VoxelShape;
+ import net.minecraft.util.shape.VoxelShapes;
+ import net.minecraft.world.BlockView;
+ import ru.miuno.blocks.block_types.Horizontal;
++import ru.miuno.blocks.ShapeCache;
+ 
+ public class SmallSupport extends Horizontal {
++    private static final ShapeCache OUTLINE_SHAPES = new ShapeCache(SmallSupport::createOutlineShape);
++
+     public SmallSupport(Settings settings) {
+         super(settings);
+     }
+ 
+ 	@Override
+ 	public VoxelShape getOutlineShape(BlockState state, BlockView view, BlockPos pos, ShapeContext ctx) {
++		return OUTLINE_SHAPES.get(state);
++	}
++
++	private static VoxelShape createOutlineShape(BlockState state) {
+ 		Direction dir = state.get(FACING);
+ 		switch(dir) {
+ 			case NORTH:
+diff --git a/src/main/java/ru/miuno/blocks/decoration/Support.java b/src/main/java/ru/miuno/blocks/decoration/Support.java
+index c3ac212..af8a6cb 100644
+--- a/src/main/java/ru/miuno/blocks/decoration/Support.java
++++ b/src/main/java/ru/miuno/blocks/decoration/Support.java
+@@ -9,14 +9,21 @@ import net.minecraft.util.shape.VoxelShape;
+ import net.minecraft.util.shape.VoxelShapes;
+ import net.minecraft.world.BlockView;
+ import ru.miuno.blocks.block_types.Horizontal;
++import ru.miuno.blocks.ShapeCache;
+ 
+ public class Support extends Horizontal {
++    private static final ShapeCache OUTLINE_SHAPES = new ShapeCache(Support::createOutlineShape);
++
+     public Support(Settings settings) {
+         super(settings);
+     }
+ 	
+ 	@Override
+ 	public VoxelShape getOutlineShape(BlockState state, BlockView view, BlockPos pos, ShapeContext ctx) {
++		return OUTLINE_SHAPES.get(state);
++	}
++
++	private static VoxelShape createOutlineShape(BlockState state) {
+ 		Direction dir = state.get(FACING);
+ 		return switch (dir) {
+ 			case NORTH -> VoxelShapes.union(Block.createCuboidShape(5, 0, 13, 11, 13, 16), Block.createCuboidShape(5, 13, 0, 11, 16, 16));
+diff --git a/src/main/java/ru/miuno/blocks/decoration/Valve.java b/src/main/java/ru/miuno/blocks/decoration/Valve.java
+index e82d02b..40d4082 100644
+--- a/src/main/java/ru/miuno/blocks/decoration/Valve.java
++++ b/src/main/java/ru/miuno/blocks/decoration/Valve.java
+@@ -8,14 +8,21 @@ import net.minecraft.util.math.Direction;
+ import net.minecraft.util.shape.VoxelShape;
+ import net.minecraft.world.BlockView;
+ import ru.miuno.blocks.block_types.WaterloggableRodBlock;
++import ru.miuno.blocks.ShapeCache;
+ 
+ public class Valve extends WaterloggableRodBlock {
++	private static final ShapeCache OUTLINE_SHAPES = new ShapeCache(Valve::createOutlineShape);
++
+ 	public Valve(Settings settings) {
+ 		super(settings);
+ 	}
+ 
+     @Override
+     public VoxelShape getOutlineShape(BlockState blockState, BlockView view, BlockPos pos, ShapeContext context) {
++        return OUTLINE_SHAPES.get(blockState);
++    }
++
++    private static VoxelShape createOutlineShape(BlockState blockState) {
+         Direction dir = blockState.get(FACING);
+         return switch (dir) {
+             case UP -> Block.createCuboidShape(5, 0, 5, 11, 5, 11);
+diff --git a/src/main/java/ru/miuno/blocks/decoration/WallLantern.java b/src/main/java/ru/miuno/blocks/decoration/WallLantern.java
+index ab8ed12..a583f99 100644
+--- a/src/main/java/ru/miuno/blocks/decoration/WallLantern.java
++++ b/src/main/java/ru/miuno/blocks/decoration/WallLantern.java
+@@ -9,14 +9,21 @@ import net.minecraft.util.shape.VoxelShape;
+ import net.minecraft.util.shape.VoxelShapes;
+ import net.minecraft.world.BlockView;
+ import ru.miuno.blocks.block_types.Horizontal;
++import ru.miuno.blocks.ShapeCache;
+ 
+ public class WallLantern extends Horizontal {
++	private static final ShapeCache OUTLINE_SHAPES = new ShapeCache(WallLantern::createOutlineShape);
++
+ 	public WallLantern(Settings settings) {
+ 		super(settings);
+ 	}
+ 
+ 	@Override
+ 	public VoxelShape getOutlineShape(BlockState state, BlockView view, BlockPos pos, ShapeContext ctx) {
++		return OUTLINE_SHAPES.get(state);
++	}
++
++	private static VoxelShape createOutlineShape(BlockState state) {
+ 		Direction dir = state.get(FACING);
+ 		return switch (dir) {
+ 			case NORTH -> VoxelShapes.union(/*Block.createCuboidShape(5, 0, 0, 11, 7, 6),*/ Block.createCuboidShape(5, 0, 13, 11, 13, 16), Block.createCuboidShape(5, 13, 0, 11, 16, 16));
+diff --git a/src/main/java/ru/miuno/blocks/decoration/WallLanternA.java b/src/main/java/ru/miuno/blocks/decoration/WallLanternA.java
+index 1ca7087..46e9513 100644
+--- a/src/main/java/ru/miuno/blocks/decoration/WallLanternA.java
++++ b/src/main/java/ru/miuno/blocks/decoration/WallLanternA.java
+@@ -9,14 +9,21 @@ import net.minecraft.util.shape.VoxelShape;
+ import net.minecraft.util.shape.VoxelShapes;
+ import net.minecraft.world.BlockView;
+ import ru.miuno.blocks.block_types.Horizontal;
++import ru.miuno.blocks.ShapeCache;
+ 
+ public class WallLanternA extends Horizontal {
++    private static final ShapeCache OUTLINE_SHAPES = new ShapeCache(WallLanternA::createOutlineShape);
++
+     public WallLanternA(Settings settings) {
+         super(settings);
+     }
+ 
+ 	@Override
+ 	public VoxelShape getOutlineShape(BlockState state, BlockView view, BlockPos pos, ShapeContext ctx) {
++		return OUTLINE_SHAPES.get(state);
++	}
++
++	private static VoxelShape createOutlineShape(BlockState state) {
+ 		Direction dir = state.get(FACING);
+ 		return switch (dir) {
+ 			case NORTH -> VoxelShapes.union(Block.createCuboidShape(5, 0, 5, 11, 13, 11), Block.createCuboidShape(-8, 13, 5, 24, 16, 11));
+diff --git a/src/main/java/ru/miuno/blocks/decoration/WallSupport.java b/src/main/java/ru/miuno/blocks/decoration/WallSupport.java
+index 80399d1..689fd22 100644
+--- a/src/main/java/ru/miuno/blocks/decoration/WallSupport.java
++++ b/src/main/java/ru/miuno/blocks/decoration/WallSupport.java
+@@ -8,14 +8,21 @@ import net.minecraft.util.math.Direction;
+ import net.minecraft.util.shape.VoxelShape;
+ import net.minecraft.world.BlockView;
+ import ru.miuno.blocks.block_types.Horizontal;
++import ru.miuno.blocks.ShapeCache;
+ 
+ public class WallSupport extends Horizontal {
++    private static final ShapeCache OUTLINE_SHAPES = new ShapeCache(WallSupport::createOutlineShape);
++
+     public WallSupport(Settings settings) {
+         super(settings);
+     }
+ 
+ 	@Override
+ 	public VoxelShape getOutlineShape(BlockState state, BlockView view, BlockPos pos, ShapeContext ctx) {
++		return OUTLINE_SHAPES.get(state);
++	}
++
++	private static VoxelShape createOutlineShape(BlockState state) {
+ 		Direction dir = state.get(FACING);
+ 		return switch (dir) {
+ 			case NORTH -> Block.createCuboidShape(5, 0, 13, 11, 16, 16);
+diff --git a/src/main/java/ru/miuno/blocks/decoration/Weathercock.java b/src/main/java/ru/miuno/blocks/decoration/Weathercock.java
+index 6c7e127..39e5eae 100644
+--- a/src/main/java/ru/miuno/blocks/decoration/Weathercock.java
++++ b/src/main/java/ru/miuno/blocks/decoration/Weathercock.java
+@@ -8,14 +8,21 @@ import net.minecraft.util.math.Direction;
+ import net.minecraft.util.shape.VoxelShape;
+ import net.minecraft.util.shape.VoxelShapes;
+ import net.minecraft.world.BlockView;
++import ru.miuno.blocks.ShapeCache;
+ 
+ public class Weathercock extends LightningRodBlock {
++	private static final ShapeCache OUTLINE_SHAPES = new ShapeCache(Weathercock::createOutlineShape);
++
+ 	public Weathercock(Settings settings) {
+ 		super(settings);
+ 	}
+ 
+     @Override
+     public VoxelShape getOutlineShape(BlockState blockState, BlockView view, BlockPos pos, ShapeContext context) {
++        return OUTLINE_SHAPES.get(blockState);
++    }
++
++    private static VoxelShape createOutlineShape(BlockState blockState) {
+         Direction dir = blockState.get(FACING);
+         return switch (dir) {
+             case UP -> VoxelShapes.cuboid(0.25, 0, 0.25, 0.75, 1, 0.75);
+diff --git a/src/main/java/ru/miuno/blocks/decoration/Window.java b/src/main/java/ru/miuno/blocks/decoration/Window.java
+index 163ef83..014c33f 100644
+--- a/src/main/java/ru/miuno/blocks/decoration/Window.java
++++ b/src/main/java/ru/miuno/blocks/decoration/Window.java
+@@ -8,14 +8,21 @@ import net.minecraft.util.shape.VoxelShape;
+ import net.minecraft.util.shape.VoxelShapes;
+ import net.minecraft.world.BlockView;
+ import ru.miuno.blocks.block_types.Horizontal;
++import ru.miuno.blocks.ShapeCache;
+ 
+ public class Window extends Horizontal{
++    private static final ShapeCache OUTLINE_SHAPES = new ShapeCache(Window::createOutlineShape);
++
+     public Window(Settings settings) {
+         super(settings);
+     }
+     
+ 	@Override
+ 	public VoxelShape getOutlineShape(BlockState state, BlockView view, BlockPos pos, ShapeContext ctx) {
++		return OUTLINE_SHAPES.get(state);
++	}
++
++	private static VoxelShape createOutlineShape(BlockState state) {
+ 		Direction dir = state.get(FACING);
+ 		switch(dir) {
+ 			case NORTH:

@@ -1,0 +1,186 @@
+From 2961736a5abcfc6cc46cd23d0dd3409cf85185d5 Mon Sep 17 00:00:00 2001
+From: Claude <noreply@anthropic.com>
+Date: Mon, 28 Sep 2026 06:17:18 +0000
+Subject: [PATCH] perf(shapes): reuse constant outline shapes of wall-mounted
+ lights
+
+CeilingLight, Panel, PanelSmall, Mini and MiniLight built six cuboids on
+every outline query only to return one of them. The cuboids are
+constants, so create them once as static fields and pass those to
+Util.voxelShapeMaker. The selected shape is unchanged for every state.
+
+Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_01TD7PJ5R7t7hM3ymeeqXP4H
+---
+ .../custom/shapes/CeilingLightBlock.java          | 15 +++++++--------
+ .../modernlights/custom/shapes/MiniBlock.java     | 15 +++++++--------
+ .../custom/shapes/MiniLightBlock.java             | 15 +++++++--------
+ .../modernlights/custom/shapes/PanelBlock.java    | 15 +++++++--------
+ .../custom/shapes/PanelSmallBlock.java            | 15 +++++++--------
+ 5 files changed, 35 insertions(+), 40 deletions(-)
+
+diff --git a/src/main/java/com/jammy1/modernlights/custom/shapes/CeilingLightBlock.java b/src/main/java/com/jammy1/modernlights/custom/shapes/CeilingLightBlock.java
+index cc0d7ee..6988eb3 100644
+--- a/src/main/java/com/jammy1/modernlights/custom/shapes/CeilingLightBlock.java
++++ b/src/main/java/com/jammy1/modernlights/custom/shapes/CeilingLightBlock.java
+@@ -12,6 +12,12 @@ import net.minecraft.util.shape.VoxelShapes;
+ import net.minecraft.world.BlockView;
+ 
+ public class CeilingLightBlock extends ToggleableWallMountedBlock {
++    private static final VoxelShape NORTH_SHAPE = VoxelShapes.cuboid(0.3125, 0.3125, 0.9375, 0.6875, 0.6875, 1);
++    private static final VoxelShape SOUTH_SHAPE = VoxelShapes.cuboid(0.3125, 0.3125, 0, 0.6875, 0.6875, 0.0625);
++    private static final VoxelShape EAST_SHAPE = VoxelShapes.cuboid(0, 0.3125, 0.3125, 0.0625, 0.6875, 0.6875);
++    private static final VoxelShape WEST_SHAPE = VoxelShapes.cuboid(0.9375, 0.3125, 0.3125, 1, 0.6875, 0.6875);
++    private static final VoxelShape UP_SHAPE = VoxelShapes.cuboid(0.3125, 0.9375, 0.3125, 0.6875, 1, 0.6875);
++    private static final VoxelShape DOWN_SHAPE = VoxelShapes.cuboid(0.3125, 0, 0.3125, 0.6875, 0.0625, 0.6875);
+ 
+     public CeilingLightBlock(Settings settings) {
+         super(settings);
+@@ -22,13 +28,6 @@ public class CeilingLightBlock extends ToggleableWallMountedBlock {
+         Direction dir = state.get(FACING);
+         WallMountLocation face = state.get(FACE);
+ 
+-        return Util.voxelShapeMaker(dir, face,
+-                VoxelShapes.cuboid(0.3125, 0.3125, 0.9375, 0.6875, 0.6875, 1),
+-                VoxelShapes.cuboid(0.3125, 0.3125, 0, 0.6875, 0.6875, 0.0625),
+-                VoxelShapes.cuboid(0, 0.3125, 0.3125, 0.0625, 0.6875, 0.6875),
+-                VoxelShapes.cuboid(0.9375, 0.3125, 0.3125, 1, 0.6875, 0.6875),
+-                VoxelShapes.cuboid(0.3125, 0.9375, 0.3125, 0.6875, 1, 0.6875),
+-                VoxelShapes.cuboid(0.3125, 0, 0.3125, 0.6875, 0.0625, 0.6875)
+-        );
++        return Util.voxelShapeMaker(dir, face, NORTH_SHAPE, SOUTH_SHAPE, EAST_SHAPE, WEST_SHAPE, UP_SHAPE, DOWN_SHAPE);
+     }
+ }
+\ No newline at end of file
+diff --git a/src/main/java/com/jammy1/modernlights/custom/shapes/MiniBlock.java b/src/main/java/com/jammy1/modernlights/custom/shapes/MiniBlock.java
+index 6d0151d..41f29d9 100644
+--- a/src/main/java/com/jammy1/modernlights/custom/shapes/MiniBlock.java
++++ b/src/main/java/com/jammy1/modernlights/custom/shapes/MiniBlock.java
+@@ -12,6 +12,12 @@ import net.minecraft.util.shape.VoxelShapes;
+ import net.minecraft.world.BlockView;
+ 
+ public class MiniBlock extends ToggleableWallMountedBlock {
++    private static final VoxelShape NORTH_SHAPE = VoxelShapes.cuboid(0.375, 0.375, 0.75, 0.625, 0.625, 1);
++    private static final VoxelShape SOUTH_SHAPE = VoxelShapes.cuboid(0.375, 0.375, 0, 0.625, 0.625, 0.25);
++    private static final VoxelShape EAST_SHAPE = VoxelShapes.cuboid(0, 0.375, 0.375, 0.25, 0.625, 0.625);
++    private static final VoxelShape WEST_SHAPE = VoxelShapes.cuboid(0.75, 0.375, 0.375, 1, 0.625, 0.625);
++    private static final VoxelShape UP_SHAPE = VoxelShapes.cuboid(0.375, 0.75, 0.375, 0.625, 1, 0.625);
++    private static final VoxelShape DOWN_SHAPE = VoxelShapes.cuboid(0.375, 0, 0.375, 0.625, 0.25, 0.625);
+ 
+     public MiniBlock(Settings settings) {
+         super(settings);
+@@ -22,14 +28,7 @@ public class MiniBlock extends ToggleableWallMountedBlock {
+         Direction dir = state.get(FACING);
+         WallMountLocation face = state.get(FACE);
+ 
+-        return Util.voxelShapeMaker(dir, face,
+-                VoxelShapes.cuboid(0.375, 0.375, 0.75, 0.625, 0.625, 1),
+-                VoxelShapes.cuboid(0.375, 0.375, 0, 0.625, 0.625, 0.25),
+-                VoxelShapes.cuboid(0, 0.375, 0.375, 0.25, 0.625, 0.625),
+-                VoxelShapes.cuboid(0.75, 0.375, 0.375, 1, 0.625, 0.625),
+-                VoxelShapes.cuboid(0.375, 0.75, 0.375, 0.625, 1, 0.625),
+-                VoxelShapes.cuboid(0.375, 0, 0.375, 0.625, 0.25, 0.625)
+-        );
++        return Util.voxelShapeMaker(dir, face, NORTH_SHAPE, SOUTH_SHAPE, EAST_SHAPE, WEST_SHAPE, UP_SHAPE, DOWN_SHAPE);
+     }
+ 
+ }
+diff --git a/src/main/java/com/jammy1/modernlights/custom/shapes/MiniLightBlock.java b/src/main/java/com/jammy1/modernlights/custom/shapes/MiniLightBlock.java
+index 58eb4f0..5459901 100644
+--- a/src/main/java/com/jammy1/modernlights/custom/shapes/MiniLightBlock.java
++++ b/src/main/java/com/jammy1/modernlights/custom/shapes/MiniLightBlock.java
+@@ -12,6 +12,12 @@ import net.minecraft.util.shape.VoxelShapes;
+ import net.minecraft.world.BlockView;
+ 
+ public class MiniLightBlock extends ToggleableWallMountedBlock {
++    private static final VoxelShape NORTH_SHAPE = VoxelShapes.cuboid(0.375, 0.375, 0.9375, 0.625, 0.625, 1);
++    private static final VoxelShape SOUTH_SHAPE = VoxelShapes.cuboid(0.375, 0.375, 0, 0.625, 0.625, 0.0625);
++    private static final VoxelShape EAST_SHAPE = VoxelShapes.cuboid(0, 0.375, 0.375, 0.0625, 0.625, 0.625);
++    private static final VoxelShape WEST_SHAPE = VoxelShapes.cuboid(0.9375, 0.375, 0.375, 1, 0.625, 0.625);
++    private static final VoxelShape UP_SHAPE = VoxelShapes.cuboid(0.375, 0.9375, 0.375, 0.625, 1, 0.625);
++    private static final VoxelShape DOWN_SHAPE = VoxelShapes.cuboid(0.375, 0, 0.375, 0.625, 0.0625, 0.625);
+ 
+     public MiniLightBlock(Settings settings) {
+         super(settings);
+@@ -22,14 +28,7 @@ public class MiniLightBlock extends ToggleableWallMountedBlock {
+         Direction dir = state.get(FACING);
+         WallMountLocation face = state.get(FACE);
+ 
+-        return Util.voxelShapeMaker(dir, face,
+-                VoxelShapes.cuboid(0.375, 0.375, 0.9375, 0.625, 0.625, 1),
+-                VoxelShapes.cuboid(0.375, 0.375, 0, 0.625, 0.625, 0.0625),
+-                VoxelShapes.cuboid(0, 0.375, 0.375, 0.0625, 0.625, 0.625),
+-                VoxelShapes.cuboid(0.9375, 0.375, 0.375, 1, 0.625, 0.625),
+-                VoxelShapes.cuboid(0.375, 0.9375, 0.375, 0.625, 1, 0.625),
+-                VoxelShapes.cuboid(0.375, 0, 0.375, 0.625, 0.0625, 0.625)
+-        );
++        return Util.voxelShapeMaker(dir, face, NORTH_SHAPE, SOUTH_SHAPE, EAST_SHAPE, WEST_SHAPE, UP_SHAPE, DOWN_SHAPE);
+     }
+ 
+ }
+diff --git a/src/main/java/com/jammy1/modernlights/custom/shapes/PanelBlock.java b/src/main/java/com/jammy1/modernlights/custom/shapes/PanelBlock.java
+index f6c8921..725b65c 100644
+--- a/src/main/java/com/jammy1/modernlights/custom/shapes/PanelBlock.java
++++ b/src/main/java/com/jammy1/modernlights/custom/shapes/PanelBlock.java
+@@ -12,6 +12,12 @@ import net.minecraft.util.shape.VoxelShapes;
+ import net.minecraft.world.BlockView;
+ 
+ public class PanelBlock extends ToggleableWallMountedBlock {
++    private static final VoxelShape NORTH_SHAPE = VoxelShapes.cuboid(0, 0, 0.9375, 1, 1, 1);
++    private static final VoxelShape SOUTH_SHAPE = VoxelShapes.cuboid(0, 0, 0, 1, 1, 0.0625);
++    private static final VoxelShape EAST_SHAPE = VoxelShapes.cuboid(0, 0, 0, 0.0625, 1, 1);
++    private static final VoxelShape WEST_SHAPE = VoxelShapes.cuboid(0.9375, 0, 0, 1, 1, 1);
++    private static final VoxelShape UP_SHAPE = VoxelShapes.cuboid(0, 0.9375, 0, 1, 1, 1);
++    private static final VoxelShape DOWN_SHAPE = VoxelShapes.cuboid(0, 0, 0, 1, 0.0625, 1);
+ 
+     public PanelBlock(Settings settings) {
+         super(settings);
+@@ -22,14 +28,7 @@ public class PanelBlock extends ToggleableWallMountedBlock {
+         Direction dir = state.get(FACING);
+         WallMountLocation face = state.get(FACE);
+ 
+-        return Util.voxelShapeMaker(dir, face,
+-                VoxelShapes.cuboid(0, 0, 0.9375, 1, 1, 1),
+-                VoxelShapes.cuboid(0, 0, 0, 1, 1, 0.0625),
+-                VoxelShapes.cuboid(0, 0, 0, 0.0625, 1, 1),
+-                VoxelShapes.cuboid(0.9375, 0, 0, 1, 1, 1),
+-                VoxelShapes.cuboid(0, 0.9375, 0, 1, 1, 1),
+-                VoxelShapes.cuboid(0, 0, 0, 1, 0.0625, 1)
+-        );
++        return Util.voxelShapeMaker(dir, face, NORTH_SHAPE, SOUTH_SHAPE, EAST_SHAPE, WEST_SHAPE, UP_SHAPE, DOWN_SHAPE);
+     }
+ 
+ }
+diff --git a/src/main/java/com/jammy1/modernlights/custom/shapes/PanelSmallBlock.java b/src/main/java/com/jammy1/modernlights/custom/shapes/PanelSmallBlock.java
+index 160b30f..aa5f583 100644
+--- a/src/main/java/com/jammy1/modernlights/custom/shapes/PanelSmallBlock.java
++++ b/src/main/java/com/jammy1/modernlights/custom/shapes/PanelSmallBlock.java
+@@ -12,6 +12,12 @@ import net.minecraft.util.shape.VoxelShapes;
+ import net.minecraft.world.BlockView;
+ 
+ public class PanelSmallBlock extends ToggleableWallMountedBlock {
++    private static final VoxelShape NORTH_SHAPE = VoxelShapes.cuboid(0.1875, 0.1875, 0.9375, 0.8125, 0.8125, 1);
++    private static final VoxelShape SOUTH_SHAPE = VoxelShapes.cuboid(0.1875, 0.1875, 0, 0.8125, 0.8125, 0.0625);
++    private static final VoxelShape EAST_SHAPE = VoxelShapes.cuboid(0, 0.1875, 0.1875, 0.0625, 0.8125, 0.8125);
++    private static final VoxelShape WEST_SHAPE = VoxelShapes.cuboid(0.9375, 0.1875, 0.1875, 1, 0.8125, 0.8125);
++    private static final VoxelShape UP_SHAPE = VoxelShapes.cuboid(0.1875, 0.9375, 0.1875, 0.8125, 1, 0.8125);
++    private static final VoxelShape DOWN_SHAPE = VoxelShapes.cuboid(0.1875, 0, 0.1875, 0.8125, 0.0625, 0.8125);
+ 
+     public PanelSmallBlock(Settings settings) {
+         super(settings);
+@@ -22,14 +28,7 @@ public class PanelSmallBlock extends ToggleableWallMountedBlock {
+         Direction dir = state.get(FACING);
+         WallMountLocation face = state.get(FACE);
+ 
+-        return Util.voxelShapeMaker(dir, face,
+-                VoxelShapes.cuboid(0.1875, 0.1875, 0.9375, 0.8125, 0.8125, 1),
+-                VoxelShapes.cuboid(0.1875, 0.1875, 0, 0.8125, 0.8125, 0.0625),
+-                VoxelShapes.cuboid(0, 0.1875, 0.1875, 0.0625, 0.8125, 0.8125),
+-                VoxelShapes.cuboid(0.9375, 0.1875, 0.1875, 1, 0.8125, 0.8125),
+-                VoxelShapes.cuboid(0.1875, 0.9375, 0.1875, 0.8125, 1, 0.8125),
+-                VoxelShapes.cuboid(0.1875, 0, 0.1875, 0.8125, 0.0625, 0.8125)
+-        );
++        return Util.voxelShapeMaker(dir, face, NORTH_SHAPE, SOUTH_SHAPE, EAST_SHAPE, WEST_SHAPE, UP_SHAPE, DOWN_SHAPE);
+     }
+ 
+ }
