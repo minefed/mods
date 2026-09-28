@@ -105,7 +105,7 @@
 [submodule "modern-glass-doors"]
 	path = modern-glass-doors
 	url = https://github.com/minefed/modern-glass-doors
-	branch = codex/fix-glass-door-generated-resources
+	branch = minefed-1.20.4
 [submodule "ModernFix"]
 	path = ModernFix
 	url = https://github.com/minefed/ModernFix

@@ -2469,9 +2469,9 @@
         "path": "modern-glass-doors",
         "url": "https://github.com/minefed/modern-glass-doors",
         "upstream": "https://github.com/ReviversMC/modern-glass-doors",
-        "ref": "codex/fix-glass-door-generated-resources",
+        "ref": "minefed-1.20.4",
         "commit": "3c65e91eee397e91496f78345165451d86b28932",
-        "trackingBranch": "codex/fix-glass-door-generated-resources",
+        "trackingBranch": "minefed-1.20.4",
         "baselineRef": "v5.3.0+1.20.3-and-later",
         "baselineCommit": "bf38d4feb851041357c81caa696450498cda0048"
       },
