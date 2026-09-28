@@ -55,3 +55,9 @@ The inventory summary rejects incomplete page coverage, missing resource-reload
 passes, render exceptions and malformed evidence. A complete sweep still needs
 visual review of its saved candidates. `-Daudit.skipReload=true` is available
 only for diagnostic runs; it will not satisfy the default summary check.
+
+An optional `-Daudit.verifyWikipedia=true` check verifies that TrafficCraft's
+two DragonLib Wikipedia articles actually received nonempty sitelink maps.
+It writes only Wikidata IDs and language counts to `wikipedia-articles.tsv`.
+This checks the live User-Agent repair and requires Wikidata network access;
+leave it off when running an offline texture-only audit.

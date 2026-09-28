@@ -38,6 +38,7 @@ public final class CreativeProbe implements ClientModInitializer {
                 if (!existing) createWorld(client);
                 sweep(client, "cold");
                 verifyDiagonalExclusions(client);
+                if (Boolean.getBoolean("audit.verifyWikipedia")) verifyWikipediaArticles();
                 if (!Boolean.getBoolean("audit.skipReload")) {
                     CompletableFuture<?> reload = onMain(client, client::method_1521);
                     reload.get(TIMEOUT_MINUTES, TimeUnit.MINUTES);
@@ -127,5 +128,22 @@ public final class CreativeProbe implements ClientModInitializer {
             record("diagonal_exclusions\t" + results.size());
             return null;
         });
+    }
+
+    private static void verifyWikipediaArticles() throws Exception {
+        Class<?> wiki = Class.forName("de.mrjulsen.mcdragonlib.util.Wikipedia");
+        List<String> rows = new ArrayList<>();
+        for (String id : List.of("Q8004", "Q2354774")) {
+            Object article = wiki.getMethod("getArticle", String.class).invoke(null, id);
+            if (article == null || !(boolean) article.getClass().getMethod("isLoaded").invoke(article))
+                throw new IllegalStateException("Wikipedia article did not finish: " + id);
+            var languagesField = article.getClass().getDeclaredField("articleLanguages");
+            languagesField.setAccessible(true);
+            int count = ((Map<?, ?>) languagesField.get(article)).size();
+            if (count == 0) throw new IllegalStateException("Wikipedia article has no sitelinks: " + id);
+            rows.add(id + "\t" + count);
+        }
+        Files.write(Path.of("wikipedia-articles.tsv"), rows);
+        record("wikipedia_articles\t" + rows.size());
     }
 }
