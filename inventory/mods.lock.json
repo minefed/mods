@@ -4195,9 +4195,9 @@
         "path": "worldedit-hang-fix",
         "url": "https://github.com/minefed/worldedit-hang-fix",
         "upstream": "https://github.com/Fallen-Breath/worldedit-hang-fix",
-        "ref": "codex/update-worldedit-hang-fix-1.0.5",
+        "ref": "minefed-1.20.4",
         "commit": "45c744113850a55f844c7195d5e074b6845d28eb",
-        "trackingBranch": "codex/update-worldedit-hang-fix-1.0.5",
+        "trackingBranch": "minefed-1.20.4",
         "baselineRef": "refs/tags/v1.0.5",
         "baselineCommit": "583c7ceab5031d0864bf85a5934662a8def870e2"
       },
