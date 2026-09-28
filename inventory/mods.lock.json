@@ -2354,9 +2354,9 @@
         "path": "minefed-display",
         "url": "https://github.com/minefed/minefed-display",
         "upstream": "https://github.com/minefed/minefed-display",
-        "ref": "codex/fix-display-depth",
+        "ref": "minefed-1.20.4",
         "commit": "a1e8f94df20c22c1ccfc4083b1dc01dc7f757e45",
-        "trackingBranch": "codex/fix-display-depth",
+        "trackingBranch": "minefed-1.20.4",
         "baselineRef": "main",
         "baselineCommit": "79708da179682295df0dfc379320a0759c25a97d"
       },
