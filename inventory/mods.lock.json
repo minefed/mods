@@ -1286,7 +1286,7 @@
         "url": "https://github.com/minefed/fabric-seasons",
         "upstream": "https://github.com/lucaargolo/fabric-seasons",
         "ref": "minefed-1.20.4",
-        "commit": "7cfb70e58ebc5cdd1ee95a5fe37bc135400f27ab",
+        "commit": "e5a4f87e47e5de7e1ef5c122dc4e58aa2750706d",
         "trackingBranch": "minefed-1.20.4",
         "baselineRef": "2.4.2-BETA+1.20.4",
         "baselineCommit": "bccadddf4ea556fe0fcea95bb88360fd25b812e8"
@@ -1319,7 +1319,8 @@
       "licenseNoticesPath": "inventory/notices/seasons-97be54d700cd",
       "notes": [
         "Exact release tag and1.20.4 branch head; preserve MPL notices and source availability when distributing binaries.",
-        "2026-09-28: Fix the renamed short-grass snow replacement tag. Minecraft 1.20.4 / Fabric Loader 0.18.4 / Java 17 runtime. Source branch codex/fix-snow-grass-tag; captured artifact hashes remain historical baseline evidence."
+        "2026-09-28: Fix the renamed short-grass snow replacement tag. Minecraft 1.20.4 / Fabric Loader 0.18.4 / Java 17 runtime. Source branch codex/fix-snow-grass-tag; captured artifact hashes remain historical baseline evidence.",
+        "2026-09-28: Behavior-preserving network/FPS optimizations fast-forwarded minefed-1.20.4 to e5a4f87e47e5de7e1ef5c122dc4e58aa2750706d; see docs/OPTIMIZATION_RESULTS_2026-09-28.md. Captured artifact hashes remain historical baseline evidence."
       ],
       "compatibility": {
         "minecraft": "1.20.x",
