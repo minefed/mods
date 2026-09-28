@@ -2736,7 +2736,7 @@
         "url": "https://github.com/minefed/Minecraft-Transit-Railway",
         "upstream": "https://github.com/Minecraft-Transit-Railway/Minecraft-Transit-Railway",
         "ref": "minefed-1.20.4",
-        "commit": "25cf42b49c788814f10cead1615acd9b08d3d87c",
+        "commit": "5e3e07b2151088b877497a954bbb19e102a6dd9c",
         "trackingBranch": "minefed-1.20.4",
         "baselineRef": "main",
         "baselineCommit": "53cdc36ebef57c42bdc8633957be1b0e923c40b5"
@@ -2757,7 +2757,8 @@
       "licenseNoticesPath": "inventory/notices/mtr-7ac59ffd87a9",
       "notes": [
         "Deployed metadata id=mtr version4.0.3 requires MC1.20.4/Fabric. Duplicate id with4.0.5 in server folder; root agent selects active runtime policy and newest existing minefed source pin.",
-        "기존 minefed 저장소의 확인된 최신 원격 커밋을 소스 pin으로 사용한다. 운영 JAR와 소스 빌드의 바이트 동일성을 의미하지 않는다."
+        "기존 minefed 저장소의 확인된 최신 원격 커밋을 소스 pin으로 사용한다. 운영 JAR와 소스 빌드의 바이트 동일성을 의미하지 않는다.",
+        "2026-09-28: Behavior-preserving network/FPS optimizations fast-forwarded minefed-1.20.4 to 5e3e07b2151088b877497a954bbb19e102a6dd9c; see docs/OPTIMIZATION_RESULTS_2026-09-28.md. Captured artifact hashes remain historical baseline evidence."
       ],
       "compatibility": {
         "minecraft": "1.20.4",
@@ -2785,7 +2786,7 @@
         "url": "https://github.com/minefed/Minecraft-Transit-Railway",
         "upstream": "https://github.com/Minecraft-Transit-Railway/Minecraft-Transit-Railway",
         "ref": "minefed-1.20.4",
-        "commit": "25cf42b49c788814f10cead1615acd9b08d3d87c",
+        "commit": "5e3e07b2151088b877497a954bbb19e102a6dd9c",
         "trackingBranch": "minefed-1.20.4",
         "baselineRef": "main",
         "baselineCommit": "53cdc36ebef57c42bdc8633957be1b0e923c40b5"
@@ -2809,7 +2810,8 @@
         "기존 minefed 저장소의 확인된 최신 원격 커밋을 소스 pin으로 사용한다. 운영 JAR와 소스 빌드의 바이트 동일성을 의미하지 않는다.",
         "2026-09-12: Minecraft 1.20.4 / Fabric / Java 17 bytecode. Compile Loader pinned to 0.18.4 to preserve Redirect annotation compatibility with MixinExtras 0.5.0; remapped runtime JAR verification is required by the build recipe. See docs/MTR_MIXIN_FIX_2026-09-12.md. Captured operating JAR hashes are unchanged.",
         "2026-09-21: Cache and batch static 3D rail transforms for Minecraft 1.20.4 / Fabric Loader 0.18.4 / Java 17. Source branch codex/optimize-3d-rails is remotely available. The recipe also verifies geometry, visibility, bounded cache invalidation and the remapped matrix bridge. Captured server artifact hashes remain historical baseline evidence.",
-        "2026-09-28: Give internal cargo blocks valid loot tables without nonexistent items. Minecraft 1.20.4 / Fabric Loader 0.18.4 / Java 17 runtime. Source branch codex/fix-cargo-loot; captured artifact hashes remain historical baseline evidence."
+        "2026-09-28: Give internal cargo blocks valid loot tables without nonexistent items. Minecraft 1.20.4 / Fabric Loader 0.18.4 / Java 17 runtime. Source branch codex/fix-cargo-loot; captured artifact hashes remain historical baseline evidence.",
+        "2026-09-28: Behavior-preserving network/FPS optimizations fast-forwarded minefed-1.20.4 to 5e3e07b2151088b877497a954bbb19e102a6dd9c; see docs/OPTIMIZATION_RESULTS_2026-09-28.md. Captured artifact hashes remain historical baseline evidence."
       ],
       "compatibility": {
         "minecraft": "1.20.4",
