@@ -26,6 +26,29 @@ class ClientLogAuditTests(unittest.TestCase):
         self.assertEqual(result["counts"], {"missingSound": 1})
         self.assertEqual(result["startupSeconds"], [])
 
+    def test_world_data_failures_are_counted_without_private_log_content(self):
+        result = audit("""
+[Worker/ERROR]: Couldn't load tag seasons:replaceable_by_snow as it is missing following references: minecraft:grass (from seasons)
+[Worker/ERROR]: Couldn't parse element loot_tables:mtr:blocks/train_cargo_loader - Unknown registry key: private local details
+[Render/ERROR]: Parsing error loading recipe alloy_forgery:glass_from_sand
+[Render/WARN]: Invalid icon item stack: Unknown item ID: minecraft:basic_shower_head
+[Render/WARN]: Recipe yuushya:block_blueprint (of type minecraft:crafting) not found
+[Server/INFO]: PrivatePlayer[local:E:42] logged in with entity id 200 at (123.0, 64.0, 456.0)
+""")
+        self.assertEqual(result["resourceDiagnosticCount"], 5)
+        self.assertEqual(result["worldJoinCount"], 1)
+        self.assertEqual(result["resources"]["invalidRecipe"], {"alloy_forgery:glass_from_sand": 1})
+        self.assertEqual(result["resources"]["invalidLootTable"], {"mtr:blocks/train_cargo_loader": 1})
+        self.assertEqual(result["resources"]["missingBookRecipe"], {"yuushya:block_blueprint": 1})
+        self.assertNotIn("PrivatePlayer", str(result))
+        self.assertNotIn("123.0", str(result))
+        self.assertNotIn("private local details", str(result))
+
+    def test_clean_title_does_not_claim_world_coverage(self):
+        result = audit("Reloading ResourceManager: vanilla, fabric\nGame took 100.0 seconds to start\n")
+        self.assertEqual(result["resourceDiagnosticCount"], 0)
+        self.assertEqual(result["worldJoinCount"], 0)
+
 
 if __name__ == "__main__":
     unittest.main()
