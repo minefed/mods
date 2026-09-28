@@ -1,0 +1,220 @@
+From 5f1a3e7986c2a61bcf8089791bf2f7349b197d65 Mon Sep 17 00:00:00 2001
+From: Claude <noreply@anthropic.com>
+Date: Mon, 28 Sep 2026 07:21:28 +0000
+Subject: [PATCH 08/15] build(trafficcraft): add pinned TrafficCraft and
+ DragonLib signature stubs
+
+Compile-only signatures for the TrafficCraft 1.20.4-1.1.3 / DragonLib
+1.20.4-2.2.24 classes and Fabric 1.20.4 intermediary Minecraft members the
+TrafficCraft performance Mixins use. They are never packaged.
+
+Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_01TD7PJ5R7t7hM3ymeeqXP4H
+---
+ .../mcdragonlib/block/SyncedBlockEntity.java        |  7 +++++++
+ .../mcdragonlib/client/ber/BERGraphics.java         |  7 +++++++
+ .../trafficcraft/block/data/TrafficLightColor.java  |  5 +++++
+ .../trafficcraft/block/data/TrafficLightIcon.java   |  5 +++++
+ .../block/entity/TrafficLightBlockEntity.java       |  7 +++++++
+ .../client/TrafficLightTextureManager.java          | 13 +++++++++++++
+ src/stubs/java/net/minecraft/class_1922.java        |  5 +++++
+ src/stubs/java/net/minecraft/class_1923.java        |  7 +++++++
+ src/stubs/java/net/minecraft/class_2586.java        |  2 ++
+ src/stubs/java/net/minecraft/class_265.java         |  5 +++++
+ src/stubs/java/net/minecraft/class_3215.java        |  7 +++++++
+ src/stubs/java/net/minecraft/class_3218.java        |  7 +++++++
+ src/stubs/java/net/minecraft/class_3726.java        |  5 +++++
+ src/stubs/java/net/minecraft/class_3898.java        |  9 +++++++++
+ 14 files changed, 91 insertions(+)
+ create mode 100644 src/stubs/java/de/mrjulsen/mcdragonlib/block/SyncedBlockEntity.java
+ create mode 100644 src/stubs/java/de/mrjulsen/mcdragonlib/client/ber/BERGraphics.java
+ create mode 100644 src/stubs/java/de/mrjulsen/trafficcraft/block/data/TrafficLightColor.java
+ create mode 100644 src/stubs/java/de/mrjulsen/trafficcraft/block/data/TrafficLightIcon.java
+ create mode 100644 src/stubs/java/de/mrjulsen/trafficcraft/block/entity/TrafficLightBlockEntity.java
+ create mode 100644 src/stubs/java/de/mrjulsen/trafficcraft/client/TrafficLightTextureManager.java
+ create mode 100644 src/stubs/java/net/minecraft/class_1922.java
+ create mode 100644 src/stubs/java/net/minecraft/class_1923.java
+ create mode 100644 src/stubs/java/net/minecraft/class_265.java
+ create mode 100644 src/stubs/java/net/minecraft/class_3215.java
+ create mode 100644 src/stubs/java/net/minecraft/class_3218.java
+ create mode 100644 src/stubs/java/net/minecraft/class_3726.java
+ create mode 100644 src/stubs/java/net/minecraft/class_3898.java
+
+diff --git a/src/stubs/java/de/mrjulsen/mcdragonlib/block/SyncedBlockEntity.java b/src/stubs/java/de/mrjulsen/mcdragonlib/block/SyncedBlockEntity.java
+new file mode 100644
+index 0000000..6543a5f
+--- /dev/null
++++ b/src/stubs/java/de/mrjulsen/mcdragonlib/block/SyncedBlockEntity.java
+@@ -0,0 +1,7 @@
++/* Copyright (c) 2026 Minefed. SPDX-License-Identifier: MIT */
++package de.mrjulsen.mcdragonlib.block;
++
++import net.minecraft.class_2586;
++
++/** Compile-only DragonLib 1.20.4-2.2.24 signature. */
++public abstract class SyncedBlockEntity extends class_2586 {}
+diff --git a/src/stubs/java/de/mrjulsen/mcdragonlib/client/ber/BERGraphics.java b/src/stubs/java/de/mrjulsen/mcdragonlib/client/ber/BERGraphics.java
+new file mode 100644
+index 0000000..e21547a
+--- /dev/null
++++ b/src/stubs/java/de/mrjulsen/mcdragonlib/client/ber/BERGraphics.java
+@@ -0,0 +1,7 @@
++/* Copyright (c) 2026 Minefed. SPDX-License-Identifier: MIT */
++package de.mrjulsen.mcdragonlib.client.ber;
++
++import net.minecraft.class_2586;
++
++/** Compile-only DragonLib 1.20.4-2.2.24 signature. */
++public class BERGraphics<B extends class_2586> {}
+diff --git a/src/stubs/java/de/mrjulsen/trafficcraft/block/data/TrafficLightColor.java b/src/stubs/java/de/mrjulsen/trafficcraft/block/data/TrafficLightColor.java
+new file mode 100644
+index 0000000..afc269b
+--- /dev/null
++++ b/src/stubs/java/de/mrjulsen/trafficcraft/block/data/TrafficLightColor.java
+@@ -0,0 +1,5 @@
++/* Copyright (c) 2026 Minefed. SPDX-License-Identifier: MIT */
++package de.mrjulsen.trafficcraft.block.data;
++
++/** Compile-only TrafficCraft 1.20.4-1.1.3 signature. */
++public enum TrafficLightColor {}
+diff --git a/src/stubs/java/de/mrjulsen/trafficcraft/block/data/TrafficLightIcon.java b/src/stubs/java/de/mrjulsen/trafficcraft/block/data/TrafficLightIcon.java
+new file mode 100644
+index 0000000..3848775
+--- /dev/null
++++ b/src/stubs/java/de/mrjulsen/trafficcraft/block/data/TrafficLightIcon.java
+@@ -0,0 +1,5 @@
++/* Copyright (c) 2026 Minefed. SPDX-License-Identifier: MIT */
++package de.mrjulsen.trafficcraft.block.data;
++
++/** Compile-only TrafficCraft 1.20.4-1.1.3 signature. */
++public enum TrafficLightIcon {}
+diff --git a/src/stubs/java/de/mrjulsen/trafficcraft/block/entity/TrafficLightBlockEntity.java b/src/stubs/java/de/mrjulsen/trafficcraft/block/entity/TrafficLightBlockEntity.java
+new file mode 100644
+index 0000000..fee900c
+--- /dev/null
++++ b/src/stubs/java/de/mrjulsen/trafficcraft/block/entity/TrafficLightBlockEntity.java
+@@ -0,0 +1,7 @@
++/* Copyright (c) 2026 Minefed. SPDX-License-Identifier: MIT */
++package de.mrjulsen.trafficcraft.block.entity;
++
++import de.mrjulsen.mcdragonlib.block.SyncedBlockEntity;
++
++/** Compile-only TrafficCraft 1.20.4-1.1.3 signature (the real class extends ColoredBlockEntity). */
++public abstract class TrafficLightBlockEntity extends SyncedBlockEntity {}
+diff --git a/src/stubs/java/de/mrjulsen/trafficcraft/client/TrafficLightTextureManager.java b/src/stubs/java/de/mrjulsen/trafficcraft/client/TrafficLightTextureManager.java
+new file mode 100644
+index 0000000..c8175ba
+--- /dev/null
++++ b/src/stubs/java/de/mrjulsen/trafficcraft/client/TrafficLightTextureManager.java
+@@ -0,0 +1,13 @@
++/* Copyright (c) 2026 Minefed. SPDX-License-Identifier: MIT */
++package de.mrjulsen.trafficcraft.client;
++
++import de.mrjulsen.trafficcraft.block.data.TrafficLightColor;
++import de.mrjulsen.trafficcraft.block.data.TrafficLightIcon;
++
++/** Compile-only TrafficCraft 1.20.4-1.1.3 signature. */
++public class TrafficLightTextureManager {
++    public static class TrafficLightTextureKey {
++        public TrafficLightIcon getIcon() { throw new AssertionError("stub"); }
++        public TrafficLightColor getColor() { throw new AssertionError("stub"); }
++    }
++}
+diff --git a/src/stubs/java/net/minecraft/class_1922.java b/src/stubs/java/net/minecraft/class_1922.java
+new file mode 100644
+index 0000000..c185000
+--- /dev/null
++++ b/src/stubs/java/net/minecraft/class_1922.java
+@@ -0,0 +1,5 @@
++/* Copyright (c) 2026 Minefed. SPDX-License-Identifier: MIT */
++package net.minecraft;
++
++/** Compile-only BlockGetter signature. */
++public interface class_1922 {}
+diff --git a/src/stubs/java/net/minecraft/class_1923.java b/src/stubs/java/net/minecraft/class_1923.java
+new file mode 100644
+index 0000000..c075b86
+--- /dev/null
++++ b/src/stubs/java/net/minecraft/class_1923.java
+@@ -0,0 +1,7 @@
++/* Copyright (c) 2026 Minefed. SPDX-License-Identifier: MIT */
++package net.minecraft;
++
++/** Compile-only ChunkPos signature. */
++public class class_1923 {
++    public class_1923(class_2338 pos) { throw new AssertionError("stub"); }
++}
+diff --git a/src/stubs/java/net/minecraft/class_2586.java b/src/stubs/java/net/minecraft/class_2586.java
+index 5158f88..f0396e0 100644
+--- a/src/stubs/java/net/minecraft/class_2586.java
++++ b/src/stubs/java/net/minecraft/class_2586.java
+@@ -4,4 +4,6 @@ package net.minecraft;
+ /** Compile-only BlockEntity signature. */
+ public abstract class class_2586 {
+     public class_2680 method_11010() { throw new AssertionError("stub"); }
++    public class_2338 method_11016() { throw new AssertionError("stub"); }
++    public void method_5431() { throw new AssertionError("stub"); }
+ }
+diff --git a/src/stubs/java/net/minecraft/class_265.java b/src/stubs/java/net/minecraft/class_265.java
+new file mode 100644
+index 0000000..f89d6be
+--- /dev/null
++++ b/src/stubs/java/net/minecraft/class_265.java
+@@ -0,0 +1,5 @@
++/* Copyright (c) 2026 Minefed. SPDX-License-Identifier: MIT */
++package net.minecraft;
++
++/** Compile-only VoxelShape signature. */
++public abstract class class_265 {}
+diff --git a/src/stubs/java/net/minecraft/class_3215.java b/src/stubs/java/net/minecraft/class_3215.java
+new file mode 100644
+index 0000000..827a4c2
+--- /dev/null
++++ b/src/stubs/java/net/minecraft/class_3215.java
+@@ -0,0 +1,7 @@
++/* Copyright (c) 2026 Minefed. SPDX-License-Identifier: MIT */
++package net.minecraft;
++
++/** Compile-only ServerChunkCache signature. */
++public abstract class class_3215 {
++    public final class_3898 field_17254 = null;
++}
+diff --git a/src/stubs/java/net/minecraft/class_3218.java b/src/stubs/java/net/minecraft/class_3218.java
+new file mode 100644
+index 0000000..c7018bf
+--- /dev/null
++++ b/src/stubs/java/net/minecraft/class_3218.java
+@@ -0,0 +1,7 @@
++/* Copyright (c) 2026 Minefed. SPDX-License-Identifier: MIT */
++package net.minecraft;
++
++/** Compile-only ServerLevel signature. */
++public abstract class class_3218 extends class_1937 {
++    public class_3215 method_14178() { throw new AssertionError("stub"); }
++}
+diff --git a/src/stubs/java/net/minecraft/class_3726.java b/src/stubs/java/net/minecraft/class_3726.java
+new file mode 100644
+index 0000000..11ba160
+--- /dev/null
++++ b/src/stubs/java/net/minecraft/class_3726.java
+@@ -0,0 +1,5 @@
++/* Copyright (c) 2026 Minefed. SPDX-License-Identifier: MIT */
++package net.minecraft;
++
++/** Compile-only CollisionContext signature. */
++public interface class_3726 {}
+diff --git a/src/stubs/java/net/minecraft/class_3898.java b/src/stubs/java/net/minecraft/class_3898.java
+new file mode 100644
+index 0000000..0805047
+--- /dev/null
++++ b/src/stubs/java/net/minecraft/class_3898.java
+@@ -0,0 +1,9 @@
++/* Copyright (c) 2026 Minefed. SPDX-License-Identifier: MIT */
++package net.minecraft;
++
++import java.util.List;
++
++/** Compile-only ChunkMap signature. */
++public abstract class class_3898 {
++    public List<?> method_17210(class_1923 pos, boolean onlyOnWatchDistanceEdge) { throw new AssertionError("stub"); }
++}

@@ -1,0 +1,71 @@
+From df486f41b6fb8de369adca02d1afc39cfa0f7803 Mon Sep 17 00:00:00 2001
+From: Claude <noreply@anthropic.com>
+Date: Mon, 28 Sep 2026 07:22:26 +0000
+Subject: [PATCH 11/15] perf(trafficcraft): send sign texture resets only to
+ the chunk's players
+
+A new sign texture sent TrafficSignTextureResetPacket to every player in the
+dimension, but its client handler only resets a TrafficSignBlockEntity found
+at that position. Send it to the players vanilla sends that chunk's block
+updates to (ChunkMap#getPlayers(pos, false)), as DragonLib's own update
+helper does; clients without the chunk never had the sign loaded. Levels
+that are not server levels keep the full list.
+
+Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_01TD7PJ5R7t7hM3ymeeqXP4H
+---
+ .../TrafficSignResetRecipientsMixin.java      | 32 +++++++++++++++++++
+ .../minefed-trafficcraft-perf.mixins.json     |  2 +-
+ 2 files changed, 33 insertions(+), 1 deletion(-)
+ create mode 100644 src/main/java/team/minefed/mods/clientcompat/mixin/TrafficSignResetRecipientsMixin.java
+
+diff --git a/src/main/java/team/minefed/mods/clientcompat/mixin/TrafficSignResetRecipientsMixin.java b/src/main/java/team/minefed/mods/clientcompat/mixin/TrafficSignResetRecipientsMixin.java
+new file mode 100644
+index 0000000..a647f4a
+--- /dev/null
++++ b/src/main/java/team/minefed/mods/clientcompat/mixin/TrafficSignResetRecipientsMixin.java
+@@ -0,0 +1,32 @@
++/* Copyright (c) 2026 Minefed. SPDX-License-Identifier: MIT */
++package team.minefed.mods.clientcompat.mixin;
++
++import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
++import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
++import java.util.List;
++import net.minecraft.class_1923;
++import net.minecraft.class_1937;
++import net.minecraft.class_2586;
++import net.minecraft.class_3218;
++import org.spongepowered.asm.mixin.Mixin;
++import org.spongepowered.asm.mixin.Pseudo;
++import org.spongepowered.asm.mixin.injection.At;
++
++/**
++ * A new sign texture sends TrafficSignTextureResetPacket to every player in the dimension.
++ * Its client handler only resets the TrafficSignBlockEntity it finds at that position, so it
++ * does nothing on clients that were not sent this chunk. Send it only to the players that
++ * vanilla sends this chunk's block-entity updates to. Other levels keep the full list.
++ */
++@Pseudo
++@Mixin(targets = "de.mrjulsen.trafficcraft.block.entity.TrafficSignBlockEntity", remap = false)
++public abstract class TrafficSignResetRecipientsMixin {
++    @WrapOperation(method = "setAndResetTexture(Lde/mrjulsen/trafficcraft/data/NamedTrafficSignTextureReference;)V",
++        remap = false, require = 1, expect = 1, allow = 1,
++        at = @At(value = "INVOKE", target = "Lnet/minecraft/class_1937;method_18456()Ljava/util/List;", remap = false))
++    private List<?> minefed$playersWithChunk(class_1937 level, Operation<List<?>> original) {
++        if (!(level instanceof class_3218 server)) return original.call(level);
++        class_2586 entity = (class_2586) (Object) this;
++        return server.method_14178().field_17254.method_17210(new class_1923(entity.method_11016()), false);
++    }
++}
+diff --git a/src/main/resources/minefed-trafficcraft-perf.mixins.json b/src/main/resources/minefed-trafficcraft-perf.mixins.json
+index 32de82b..f4dba19 100644
+--- a/src/main/resources/minefed-trafficcraft-perf.mixins.json
++++ b/src/main/resources/minefed-trafficcraft-perf.mixins.json
+@@ -3,6 +3,6 @@
+   "minVersion": "0.8.7",
+   "package": "team.minefed.mods.clientcompat.mixin",
+   "compatibilityLevel": "JAVA_17",
+-  "mixins": ["TrafficCraftShapeCacheMixin", "TrafficLightUpdateMixin"],
++  "mixins": ["TrafficCraftShapeCacheMixin", "TrafficLightUpdateMixin", "TrafficSignResetRecipientsMixin"],
+   "injectors": { "defaultRequire": 1 }
+ }

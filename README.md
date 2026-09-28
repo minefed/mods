@@ -34,6 +34,8 @@ PFM 헤링본 판자 11종의 첫 프레임 보라색 텍스처와 월드 데이
 
 2026-09-28 [전체 모드 네트워크·FPS 최적화 계획](docs/OPTIMIZATION_PLAN_2026-09-28.md)에
 기능 동등성을 유지하는 서버 송수신·클라이언트 FPS 개선 항목과 기대 성과를 정리했다.
+[구현 결과](docs/OPTIMIZATION_RESULTS_2026-09-28.md)의 17개 서브모듈 커밋은 [패치](patches/perf-2026-09-28/README.md)로 보존했고,
+[패킷 통계 도구](tools/packet-stats/README.md)와 [운영 설정 안내](docs/SERVER_TUNING_2026-09-28.md)를 추가했다.
 
 ## 시작하기
 

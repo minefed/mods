@@ -38,7 +38,7 @@
 | 1-3 | Chisels & Bits | 완료 | 청크 전송 이벤트의 전체 재전송을 그 청크를 받은 플레이어에게만 보낸다. Scena 1.0.141의 전송 대상을 디스어셈블해 확인했다. 받는 플레이어의 패킷·순서·시점은 같다. 기존 테스트 28개 통과. |
 | 1-4 | Chisels & Bits | 완료 | 되돌리기 기록 동기화 대기열에서 틱 안의 중복을 제거한다. 직렬화가 flush 시점에 일어나므로 중복 패킷은 바이트가 같았다. |
 | 1-5 | CC: Tweaked | 완료 | 모니터 상태가 마지막 전송 바이트와 정확히 같으면 재전송하지 않는다. 대역폭 예산은 그대로 차감해 다른 모니터의 전송 시점을 유지한다. 새 추적자·크기 변경·제거 시 기억을 비운다. 인코딩 비교 테스트를 추가했고 터미널 테스트 9개와 checkstyle이 통과했다. |
-| 1-6 | TrafficCraft (호환 믹스인) | 아래 별도 표 | — |
+| 1-6 | TrafficCraft (호환 믹스인) | 완료 | 아래 TrafficCraft 절 |
 | 1-7 | Yuushya Townscape | 완료 | 형태 캐시 키를 `BlockState`로 바꿨다(`ConcurrentHashMap`). `toString()`은 캐시에 없을 때만 계산한다. 같은 형태 객체를 반환한다. |
 | 1-8 | NiceMod, Modern-Lights, mishanguc, Townscape | 완료 | 상태에만 의존하는 형태를 상태별로 한 번만 계산한다. 이전·이후 빌드로 모든 블록 상태의 윤곽·충돌·컬링 형태를 비교했고 불일치 0건이다(NiceMod 1,475, Modern-Lights 1,088, mishanguc 1,712 상태). |
 | 1-9 | mishanguc | 완료 | 매 프레임 GL 텍스처 이름을 만들고 해제하지 않던 호출을 제거했다(1.20.4에서 `AbstractTexture.close()`는 아무것도 하지 않아 누수였다). 실제 그리기는 `RenderLayer.getText`가 바인딩한다. |
@@ -67,7 +67,7 @@ Forge는 ForgeGradle 설정에 JDK 17이 필요해, 전체 소스를 `javac --re
 | --- | --- | --- |
 | 3-1 Oritech 기계 동기화 | 완료 | 레시피 ID만 보낸다. 단, 서버 레시피 관리자의 같은 객체일 때만이며, `/reload`로 사라진 레시피 등은 기존처럼 전체를 보낸다. 클라이언트는 레시피를 `getTime()`으로만 읽으므로 결과가 같다. owo 핸드셰이크는 이 변경을 구분하지 못하므로 **서버·클라이언트 동시 배포 필수**. |
 | 3-1b Oritech 레이저 에너지 | 완료 | 빔 패킷은 매 틱 유지한다. 에너지 패킷은 5틱마다 보내고, 화면을 연 플레이어가 있으면 매 틱 보낸다. 클라이언트 에너지는 화면에서만 표시되고, 화면을 열 때 즉시 갱신된다. |
-| 3-2 TrafficCraft 신호 패킷 | 아래 별도 표 | — |
+| 3-2 TrafficCraft 신호 패킷 | 제외 | 아래 TrafficCraft 절 |
 | 3-3 C&B 되돌리기 증분 | 제외 | 클라이언트 추적기의 기준 상태 합의가 필요해 프로토콜을 크게 바꿔야 한다. 1-4로 폭주는 틱당 1회로 줄었다. |
 | 3-4 MTR Core | 완료 | `VehicleExtraData.copy`의 쓰이지 않는 전체 경로 복사를 없앴다(테스트가 모든 Core 클래스에서 미사용을 확인). 바이너리 상대에게는 JSON 문자열을 만들지 않고 문자 수만 센다. 수신자 간 `VehicleUpdate` 공유는 불변성을 증명하지 못해 제외했다. |
 
@@ -95,7 +95,17 @@ ModernFix `faster_item_rendering`은 실제 클라이언트로 픽셀 비교를 
 
 ## TrafficCraft 호환 믹스인
 
-구현 진행 중이다. 완료 후 이 절에 결과를 기록한다.
+공식 TrafficCraft 1.20.4-1.1.3 JAR에 `minefed-client-compat` 1.3.0의 믹스인으로 적용한다(TrafficCraft 코드는 복사하지 않음).
+검증은 실제 Sponge Mixin 0.8.7·MixinExtras 0.5.0으로 공식 바이트코드에 적용해 실행한 `verifyTrafficCraftPerformance`(의도적 결함 5종을 모두 검출), 그리고 전용 서버에서 신호등·표지판 기둥·도로 소금 배치·갱신 확인이다.
+
+| 항목 | 결과 | 핵심 근거 |
+| --- | --- | --- |
+| 1-6 불필요한 신호등 갱신 | 완료 | `setPowered`·`stopSchedule`·`enableOnlyColors`가 필드를 바꾸지 않으면 패킷만 생략하고 `setChanged`는 유지한다. 클라이언트가 읽는 모든 필드는 변경 시 자체 갱신을 보낸다(프로브 검사). 패킷 없이 바뀌는 값은 서버만 읽는 private 타이머뿐이다. |
+| 1-8 형태 캐시 | 완료 | `TrafficLightBlock`·`TrafficSignPostBlock`·`RoadSaltBlock`의 `getShape`는 상태와 정적 형태만 읽는다. 첫 결과를 상태별로 보관한다(419개 상태 일치). |
+| 4단계 전구 모델 조회 | 완료 | 아이콘·색별로 TrafficCraft 자체 탐색이 반환한 모델을 재사용한다(224회 렌더에서 같은 그리기). |
+| 4단계 표지판 텍스처 초기화 수신자 | 완료 | 청크를 추적하는 플레이어에게만 보낸다. 다른 클라이언트는 해당 블록 엔티티가 없어 원래도 아무 일도 하지 않았다. |
+| 3-2 신호 전용 패킷 | 제외 | 색만 적용하면 타이머·스케줄 객체·경고 로그가 전체 NBT 적용과 달라진다. 1-6 이후에는 실제 색 변경만 전체 갱신을 보낸다. |
+| 배경 텍스처 재생성, 서버 텍스처 캐시, 스케줄 판정 할당, 아틀라스 | 제외 | 리소스 팩·월드 파일 외부 변경과 가변 객체 때문에 동일성을 증명할 수 없거나, 원본 로직을 다시 구현해야 한다. |
 
 ## 제외하거나 축소한 항목
 
@@ -122,9 +132,12 @@ ModernFix `faster_item_rendering`은 실제 클라이언트로 픽셀 비교를 
 패치를 원격에 반영한 뒤 적용한다. 지금 바꾸면 현재 gitlink 소스와 기대 버전이 달라져 빌드가 실패한다.
 
 - `inventory/build-recipes.json` `minefed-client-compat`:
-  - `expectedVersion` → `1.2.0`
-  - `artifactGlobs` → `build/libs/minefed-client-compat-1.2.0.jar`
-  - 설명을 양쪽 로드로 갱신하고, TrafficCraft 검증 인자를 추가한다(아래 TrafficCraft 절).
+  - `expectedVersion` → `1.3.0`
+  - `artifactGlobs` → `build/libs/minefed-client-compat-1.3.0.jar`
+  - `tasks` → `build`, `verifyPtsCompatibility`, `verifyPfmCompatibility`, `verifyPfmPerformance`, `verifyTrafficCraftPerformance`
+  - `args`에 `-PtrafficcraftJar=../artifacts/local/trafficcraft-fabric-1.20.4-1.1.3.jar` 추가
+  - 설명을 PFM·TrafficCraft 성능 믹스인과 양쪽 로드로 갱신한다.
+  - 새 의존성 `trafficcraft =1.20.4-1.1.3`을 반영한다.
 - `inventory/release-policy.json` `minefed-client-compat`: `server: true`와 설명을 갱신한다. 서버에도 PTS-Deco·PFM·TrafficCraft(DragonLib)가 있어 의존성이 충족된다.
 - 17개 서브모듈의 gitlink와 `inventory/mods.lock.json`의 ref·commit.
 - **빌드 환경 참고:** 이 환경의 JDK 21과 Gradle 8.14.3에서는 FallingTree(Loom 1.4.6)와 NiceMod의 `remapJar`가 빈 JAR를 만들었다. 변경 전 기준 소스에서도 같았다. 레시피대로 JDK 17과 각 wrapper로 빌드해 산출물을 확인한다.
@@ -137,6 +150,7 @@ ModernFix `faster_item_rendering`은 실제 클라이언트로 픽셀 비교를 
 - **서버 TX:**
   - 조리가 끝난 PFM 화구: 관찰자 1명당 약 5~15 KB/s, 20 pkt/s → 0
   - C&B 청크 재전송: 근처 N명 → 1명
+  - 변화 없는 TrafficCraft 신호등 갱신(이웃 변경마다 전체 NBT)과 표지판 초기화의 레벨 전체 전송 제거
   - CC 동일 화면 재전송 제거
   - Oritech 기계 동기화 패킷의 레시피 본문 제거, 레이저 에너지 패킷 약 80% 감소(5틱 주기)
 - **계획 대비 축소:** Automobility 주차 차량의 매 틱 속도 패킷은 동등성 문제로 유지한다. 계획서의 해당 기대치(관찰자 1명당 20 pkt/s → 0)는 이번 결과에서 **제외**한다.

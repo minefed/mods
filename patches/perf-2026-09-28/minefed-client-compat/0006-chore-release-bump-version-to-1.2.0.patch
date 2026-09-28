@@ -1,0 +1,35 @@
+From 103cec7fe728a97a2f701aaef7ed8ea1fc05e514 Mon Sep 17 00:00:00 2001
+From: Claude <noreply@anthropic.com>
+Date: Mon, 28 Sep 2026 06:49:44 +0000
+Subject: [PATCH 06/15] chore(release): bump version to 1.2.0
+
+Describe the new PFM server and render work in the mod metadata.
+
+Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_01TD7PJ5R7t7hM3ymeeqXP4H
+---
+ gradle.properties                  | 2 +-
+ src/main/resources/fabric.mod.json | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/gradle.properties b/gradle.properties
+index cee66d0..34df9ba 100644
+--- a/gradle.properties
++++ b/gradle.properties
+@@ -1,2 +1,2 @@
+ org.gradle.jvmargs=-Xmx512m
+-mod_version=1.1.1
++mod_version=1.2.0
+diff --git a/src/main/resources/fabric.mod.json b/src/main/resources/fabric.mod.json
+index 2b5eafa..981c288 100644
+--- a/src/main/resources/fabric.mod.json
++++ b/src/main/resources/fabric.mod.json
+@@ -3,7 +3,7 @@
+   "id": "minefed-client-compat",
+   "version": "${version}",
+   "name": "Minefed Client Compatibility",
+-  "description": "Fixes PTS-Deco recipes, PFM first-frame textures and DragonLib Wikidata requests on Minecraft 1.20.4.",
++  "description": "Fixes PTS-Deco recipes, PFM first-frame textures and DragonLib Wikidata requests on Minecraft 1.20.4 clients, and removes redundant PFM stove updates, idle microwave lookups and empty furniture rendering work.",
+   "authors": ["Minefed"],
+   "license": "MIT",
+   "environment": "*",

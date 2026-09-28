@@ -1,0 +1,110 @@
+From 1525664b838cc0546babc63e2fe104d04919fddd Mon Sep 17 00:00:00 2001
+From: Claude <noreply@anthropic.com>
+Date: Mon, 28 Sep 2026 07:22:10 +0000
+Subject: [PATCH 10/15] perf(trafficcraft): reuse state-only outline shapes
+
+TrafficLightBlock, TrafficSignPostBlock and RoadSaltBlock rebuild their
+outline shape from the block state alone on every outline and ray query,
+with up to seven Shapes.or calls or a new box. Keep the first shape
+TrafficCraft returns for each of the block's own states in a concurrent map;
+voxel shapes are immutable. Other blocks' states and null states still reach
+TrafficCraft's code directly.
+
+Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_01TD7PJ5R7t7hM3ymeeqXP4H
+---
+ .../mixin/TrafficCraftShapeCacheMixin.java    | 37 +++++++++++++++++++
+ .../trafficcraft/StateShapeCache.java         | 27 ++++++++++++++
+ .../minefed-trafficcraft-perf.mixins.json     |  2 +-
+ 3 files changed, 65 insertions(+), 1 deletion(-)
+ create mode 100644 src/main/java/team/minefed/mods/clientcompat/mixin/TrafficCraftShapeCacheMixin.java
+ create mode 100644 src/main/java/team/minefed/mods/clientcompat/trafficcraft/StateShapeCache.java
+
+diff --git a/src/main/java/team/minefed/mods/clientcompat/mixin/TrafficCraftShapeCacheMixin.java b/src/main/java/team/minefed/mods/clientcompat/mixin/TrafficCraftShapeCacheMixin.java
+new file mode 100644
+index 0000000..709cf63
+--- /dev/null
++++ b/src/main/java/team/minefed/mods/clientcompat/mixin/TrafficCraftShapeCacheMixin.java
+@@ -0,0 +1,37 @@
++/* Copyright (c) 2026 Minefed. SPDX-License-Identifier: MIT */
++package team.minefed.mods.clientcompat.mixin;
++
++import com.llamalad7.mixinextras.injector.wrapmethod.WrapMethod;
++import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
++import net.minecraft.class_1922;
++import net.minecraft.class_2338;
++import net.minecraft.class_265;
++import net.minecraft.class_2680;
++import net.minecraft.class_3726;
++import org.spongepowered.asm.mixin.Mixin;
++import org.spongepowered.asm.mixin.Pseudo;
++import org.spongepowered.asm.mixin.injection.At;
++import team.minefed.mods.clientcompat.trafficcraft.StateShapeCache;
++
++/**
++ * These getShape methods read only their block state and constant shapes, but rebuild the
++ * shape with up to seven Shapes.or calls (or a new box) on every outline and ray query.
++ * Keep the first result per state. VoxelShapes are immutable, so later callers receive an
++ * equal shape. Other blocks' states and null states still go straight to TrafficCraft.
++ */
++@Pseudo
++@Mixin(targets = {
++    "de.mrjulsen.trafficcraft.block.TrafficLightBlock",
++    "de.mrjulsen.trafficcraft.block.TrafficSignPostBlock",
++    "de.mrjulsen.trafficcraft.block.RoadSaltBlock"
++}, remap = false)
++public abstract class TrafficCraftShapeCacheMixin {
++    @WrapMethod(method = "method_9530(Lnet/minecraft/class_2680;Lnet/minecraft/class_1922;Lnet/minecraft/class_2338;Lnet/minecraft/class_3726;)Lnet/minecraft/class_265;",
++        remap = false, require = 1, expect = 1, allow = 1)
++    private class_265 minefed$shapeOfState(class_2680 state, class_1922 level, class_2338 pos, class_3726 context,
++            Operation<class_265> original) {
++        if (state == null || state.method_26204() != (Object) this) return original.call(state, level, pos, context);
++        class_265 shape = StateShapeCache.get(state);
++        return shape != null ? shape : StateShapeCache.put(state, original.call(state, level, pos, context));
++    }
++}
+diff --git a/src/main/java/team/minefed/mods/clientcompat/trafficcraft/StateShapeCache.java b/src/main/java/team/minefed/mods/clientcompat/trafficcraft/StateShapeCache.java
+new file mode 100644
+index 0000000..c2f278c
+--- /dev/null
++++ b/src/main/java/team/minefed/mods/clientcompat/trafficcraft/StateShapeCache.java
+@@ -0,0 +1,27 @@
++/* Copyright (c) 2026 Minefed. SPDX-License-Identifier: MIT */
++package team.minefed.mods.clientcompat.trafficcraft;
++
++import java.util.concurrent.ConcurrentHashMap;
++import net.minecraft.class_265;
++import net.minecraft.class_2680;
++
++/**
++ * Outline shapes of TrafficCraft blocks whose getShape reads nothing but the block state.
++ * Block states are unique per block, so one map serves all of them. Shape builders may run
++ * on chunk-builder threads, hence the concurrent map; the first stored shape wins.
++ */
++public final class StateShapeCache {
++    private static final ConcurrentHashMap<class_2680, class_265> SHAPES = new ConcurrentHashMap<>();
++
++    private StateShapeCache() {}
++
++    public static class_265 get(class_2680 state) {
++        return SHAPES.get(state);
++    }
++
++    public static class_265 put(class_2680 state, class_265 shape) {
++        if (shape == null) return null;
++        class_265 previous = SHAPES.putIfAbsent(state, shape);
++        return previous != null ? previous : shape;
++    }
++}
+diff --git a/src/main/resources/minefed-trafficcraft-perf.mixins.json b/src/main/resources/minefed-trafficcraft-perf.mixins.json
+index 9b656ac..32de82b 100644
+--- a/src/main/resources/minefed-trafficcraft-perf.mixins.json
++++ b/src/main/resources/minefed-trafficcraft-perf.mixins.json
+@@ -3,6 +3,6 @@
+   "minVersion": "0.8.7",
+   "package": "team.minefed.mods.clientcompat.mixin",
+   "compatibilityLevel": "JAVA_17",
+-  "mixins": ["TrafficLightUpdateMixin"],
++  "mixins": ["TrafficCraftShapeCacheMixin", "TrafficLightUpdateMixin"],
+   "injectors": { "defaultRequire": 1 }
+ }
