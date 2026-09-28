@@ -1,0 +1,38 @@
+From 7e81d9a1ee83578f504cac5513dd4123f9f6db0b Mon Sep 17 00:00:00 2001
+From: Claude <noreply@anthropic.com>
+Date: Mon, 28 Sep 2026 06:02:07 +0000
+Subject: [PATCH 2/4] perf(render): precompile route name separator pattern
+
+Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_01TD7PJ5R7t7hM3ymeeqXP4H
+---
+ .../java/top/mcmtr/mod/render/RenderYamanoteRailwaySign.java | 5 ++++-
+ 1 file changed, 4 insertions(+), 1 deletion(-)
+
+diff --git a/fabric/src/main/java/top/mcmtr/mod/render/RenderYamanoteRailwaySign.java b/fabric/src/main/java/top/mcmtr/mod/render/RenderYamanoteRailwaySign.java
+index 168661a..1801a6d 100644
+--- a/fabric/src/main/java/top/mcmtr/mod/render/RenderYamanoteRailwaySign.java
++++ b/fabric/src/main/java/top/mcmtr/mod/render/RenderYamanoteRailwaySign.java
+@@ -30,10 +30,13 @@ import top.mcmtr.mod.config.Config;
+ 
+ import javax.annotation.Nullable;
+ import java.util.Comparator;
++import java.util.regex.Pattern;
+ import java.util.stream.Collectors;
+ 
+ public class RenderYamanoteRailwaySign<T extends BlockYamanoteRailwaySign.BlockYamanoteRailwaySignEntity> extends BlockEntityRenderer<T> implements IBlock, IGui, IDrawing {
+ 
++    private static final Pattern ROUTE_NAME_SEPARATOR = Pattern.compile("\\|\\|");
++
+     public RenderYamanoteRailwaySign(Argument argument) {
+         super(argument);
+     }
+@@ -188,7 +191,7 @@ public class RenderYamanoteRailwaySign<T extends BlockYamanoteRailwaySign.BlockY
+             MinecraftClientData.getInstance().simplifiedRoutes.forEach(simplifiedRoute -> {
+                 final int color = simplifiedRoute.getColor();
+                 if (!addedColors.contains(color) && selectedIds.contains(color) && simplifiedRoute.getPlatforms().stream().anyMatch(simplifiedRoutePlatform -> platformIds.contains(simplifiedRoutePlatform.getPlatformId()))) {
+-                    selectedRoutesSorted.add(new IntObjectImmutablePair<>(color, simplifiedRoute.getName().split("\\|\\|")[0]));
++                    selectedRoutesSorted.add(new IntObjectImmutablePair<>(color, ROUTE_NAME_SEPARATOR.split(simplifiedRoute.getName())[0]));
+                     addedColors.add(color);
+                 }
+             });

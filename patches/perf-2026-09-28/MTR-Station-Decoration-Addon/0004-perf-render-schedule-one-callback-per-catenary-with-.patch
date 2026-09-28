@@ -1,0 +1,212 @@
+From 80f140e2c25e625d84648b0394a6120a552ad602 Mon Sep 17 00:00:00 2001
+From: Claude <noreply@anthropic.com>
+Date: Mon, 28 Sep 2026 06:02:07 +0000
+Subject: [PATCH 4/4] perf(render): schedule one callback per catenary with
+ cached light positions
+
+Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_01TD7PJ5R7t7hM3ymeeqXP4H
+---
+ .../top/mcmtr/mixin/RenderRailsMixin.java     | 70 +++++++++++++------
+ .../mod/client/MSDMinecraftClientData.java    | 30 ++++++++
+ 2 files changed, 77 insertions(+), 23 deletions(-)
+
+diff --git a/fabric/src/main/java/top/mcmtr/mixin/RenderRailsMixin.java b/fabric/src/main/java/top/mcmtr/mixin/RenderRailsMixin.java
+index 6eeccbb..db06570 100644
+--- a/fabric/src/main/java/top/mcmtr/mixin/RenderRailsMixin.java
++++ b/fabric/src/main/java/top/mcmtr/mixin/RenderRailsMixin.java
+@@ -41,31 +41,32 @@ public abstract class RenderRailsMixin {
+         final ObjectArrayList<Function<OcclusionCullingInstance, Runnable>> cullingTasksMSD = new ObjectArrayList<>();
+         final Vector3d cameraPositionMSD = minecraftClientMSD.getGameRendererMapped().getCamera().getPos();
+         final Vec3d cameraMSD = new Vec3d(cameraPositionMSD.getXMapped(), cameraPositionMSD.getYMapped(), cameraPositionMSD.getZMapped());
+-        final ObjectArrayList<Catenary> catenariesToRender = new ObjectArrayList<>();
++        final ObjectArrayList<MSDMinecraftClientData.CatenaryWrapper> catenariesToRender = new ObjectArrayList<>();
+         MSDMinecraftClientData.getInstance().catenaryWrapperList.values().forEach(catenaryWrapper -> {
+             cullingTasksMSD.add(occlusionCullingInstance -> {
+                 final boolean shouldRender = occlusionCullingInstance.isAABBVisible(catenaryWrapper.startVector, catenaryWrapper.endVector, cameraMSD);
+                 return () -> catenaryWrapper.shouldRender = shouldRender;
+             });
+             if (catenaryWrapper.shouldRender) {
+-                catenariesToRender.add(catenaryWrapper.getCatenary());
++                catenariesToRender.add(catenaryWrapper);
+             }
+         });
+-        final ObjectArrayList<RigidCatenary> rigidCatenariesToRender = new ObjectArrayList<>();
++        final ObjectArrayList<MSDMinecraftClientData.RigidCatenaryWrapper> rigidCatenariesToRender = new ObjectArrayList<>();
+         MSDMinecraftClientData.getInstance().rigidCatenaryWrapperList.values().forEach(rigidCatenaryWrapper -> {
+             cullingTasksMSD.add(occlusionCullingInstance -> {
+                 final boolean shouldRender = occlusionCullingInstance.isAABBVisible(rigidCatenaryWrapper.startVector, rigidCatenaryWrapper.endVector, cameraMSD);
+                 return () -> rigidCatenaryWrapper.shouldRender = shouldRender;
+             });
+             if (rigidCatenaryWrapper.shouldRender) {
+-                rigidCatenariesToRender.add(rigidCatenaryWrapper.getRigidCatenary());
++                rigidCatenariesToRender.add(rigidCatenaryWrapper);
+             }
+         });
+ 
+-        catenariesToRender.forEach(catenary -> {
++        catenariesToRender.forEach(catenaryWrapper -> {
++            final Catenary catenary = catenaryWrapper.getCatenary();
+             switch (catenary.getCatenaryType()) {
+                 case CATENARY:
+-                    renderCatenaryStandard(clientWorldMSD, catenary);
++                    renderCatenaryStandard(clientWorldMSD, catenary, catenaryWrapper.getLightPositions());
+                     break;
+                 case ELECTRIC:
+                     MainRenderer.scheduleRender(QueuedRenderLayer.LINES, (graphicsHolder, offset) ->
+@@ -80,12 +81,12 @@ public abstract class RenderRailsMixin {
+                             )));
+                     break;
+                 case RIGID_SOFT_CATENARY:
+-                    renderRigidSoftCatenaryStandard(clientWorldMSD, catenary);
++                    renderRigidSoftCatenaryStandard(clientWorldMSD, catenary, catenaryWrapper.getLightPositions());
+                     break;
+             }
+         });
+ 
+-        rigidCatenariesToRender.forEach(rigidCatenary -> renderRigidCatenaryStandard(clientWorldMSD, rigidCatenary));
++        rigidCatenariesToRender.forEach(rigidCatenaryWrapper -> renderRigidCatenaryStandard(clientWorldMSD, rigidCatenaryWrapper.getRigidCatenary(), rigidCatenaryWrapper.getLightPositions()));
+ 
+         MainRenderer.WORKER_THREAD.scheduleRails(occlusionCullingInstance -> {
+             final ObjectArrayList<Runnable> tasks = new ObjectArrayList<>();
+@@ -95,11 +96,16 @@ public abstract class RenderRailsMixin {
+     }
+ 
+     @Unique
+-    private static void renderCatenaryStandard(ClientWorld clientWorld, Catenary catenary) {
+-        catenary.catenaryMath.render((x1, y1, z1, x2, y2, z2, count, i, base, sinX, sinZ, increment) -> {
+-            final BlockPos blockPos = org.mtr.mod.Init.newBlockPos(x1, y1, z1);
+-            final int light = LightmapTextureManager.pack(clientWorld.getLightLevel(LightType.getBlockMapped(), blockPos), clientWorld.getLightLevel(LightType.getSkyMapped(), blockPos));
+-            MainRenderer.scheduleRender(CATENARY_TEXTURE, false, QueuedRenderLayer.EXTERIOR, (graphicsHolder, offset) -> {
++    private static void renderCatenaryStandard(ClientWorld clientWorld, Catenary catenary, BlockPos[] lightPositions) {
++        final int[] lights = getLights(clientWorld, lightPositions);
++        if (lights.length == 0) {
++            return;
++        }
++        // One scheduled callback per catenary, emitting the segments in the same order as one callback per segment did
++        MainRenderer.scheduleRender(CATENARY_TEXTURE, false, QueuedRenderLayer.EXTERIOR, (graphicsHolder, offset) -> {
++            final int[] segmentIndex = {0};
++            catenary.catenaryMath.render((x1, y1, z1, x2, y2, z2, count, i, base, sinX, sinZ, increment) -> {
++                final int light = lights[segmentIndex[0]++];
+                 if (count < 8) {
+                     IDrawing.drawTexture(graphicsHolder, x1, y1 + 0.65F + base, z1, x2, y2 + 0.65F + base, z2, x2, y2, z2, x1, y1, z1, offset, 0.0F, 0.0F, 1.0F, 1.0F, Direction.UP, -1, light);
+                     IDrawing.drawTexture(graphicsHolder, x2, y2 + 0.65F + base, z2, x1, y1 + 0.65F + base, z1, x1, y1, z1, x2, y2, z2, offset, 0.0F, 1.0F, 1.0F, 0.0F, Direction.UP, -1, light);
+@@ -122,11 +128,15 @@ public abstract class RenderRailsMixin {
+     }
+ 
+     @Unique
+-    private static void renderRigidCatenaryStandard(ClientWorld clientWorld, RigidCatenary rigidCatenary) {
+-        rigidCatenary.rigidCatenaryMath.render((x1, z1, x2, z2, x3, z3, x4, z4, x5, z5, x6, z6, x7, z7, x8, z8, y1, y2) -> {
+-            final BlockPos blockPos = org.mtr.mod.Init.newBlockPos(x1, y1, z1);
+-            final int light = LightmapTextureManager.pack(clientWorld.getLightLevel(LightType.getBlockMapped(), blockPos), clientWorld.getLightLevel(LightType.getSkyMapped(), blockPos));
+-            MainRenderer.scheduleRender(RIGID_CATENARY_TEXTURE, false, QueuedRenderLayer.EXTERIOR, (graphicsHolder, offset) -> {
++    private static void renderRigidCatenaryStandard(ClientWorld clientWorld, RigidCatenary rigidCatenary, BlockPos[] lightPositions) {
++        final int[] lights = getLights(clientWorld, lightPositions);
++        if (lights.length == 0) {
++            return;
++        }
++        MainRenderer.scheduleRender(RIGID_CATENARY_TEXTURE, false, QueuedRenderLayer.EXTERIOR, (graphicsHolder, offset) -> {
++            final int[] segmentIndex = {0};
++            rigidCatenary.rigidCatenaryMath.render((x1, z1, x2, z2, x3, z3, x4, z4, x5, z5, x6, z6, x7, z7, x8, z8, y1, y2) -> {
++                final int light = lights[segmentIndex[0]++];
+                 IDrawing.drawTexture(graphicsHolder, x1, y1, z1, x2, y1, z2, x3, y2, z3, x4, y2, z4, offset, 0.0F, 0.0F, 1.0F, 0.03125F, Direction.UP, -1, light);
+                 IDrawing.drawTexture(graphicsHolder, x3, y2, z3, x2, y1, z2, x1, y1, z1, x4, y2, z4, offset, 0.0F, 0.03125F, 1.0F, 0.0F, Direction.UP, -1, light);
+                 IDrawing.drawTexture(graphicsHolder, x1, y1, z1, x5, y1 + 0.125F, z5, x8, y2 + 0.125F, z8, x4, y2, z4, offset, 0.0F, 0.5F, 1.0F, 1.0F, Direction.UP, -1, light);
+@@ -140,11 +150,15 @@ public abstract class RenderRailsMixin {
+     }
+ 
+     @Unique
+-    private static void renderRigidSoftCatenaryStandard(ClientWorld clientWorld, Catenary catenary) {
+-        catenary.catenaryMath.render((x1, y1, z1, x2, y2, z2, count, i, base, sinX, sinZ, increment) -> {
+-            final BlockPos blockPos = org.mtr.mod.Init.newBlockPos(x1, y1, z1);
+-            final int light = LightmapTextureManager.pack(clientWorld.getLightLevel(LightType.getBlockMapped(), blockPos), clientWorld.getLightLevel(LightType.getSkyMapped(), blockPos));
+-            MainRenderer.scheduleRender(CATENARY_TEXTURE, false, QueuedRenderLayer.EXTERIOR, (graphicsHolder, offset) -> {
++    private static void renderRigidSoftCatenaryStandard(ClientWorld clientWorld, Catenary catenary, BlockPos[] lightPositions) {
++        final int[] lights = getLights(clientWorld, lightPositions);
++        if (lights.length == 0) {
++            return;
++        }
++        MainRenderer.scheduleRender(CATENARY_TEXTURE, false, QueuedRenderLayer.EXTERIOR, (graphicsHolder, offset) -> {
++            final int[] segmentIndex = {0};
++            catenary.catenaryMath.render((x1, y1, z1, x2, y2, z2, count, i, base, sinX, sinZ, increment) -> {
++                final int light = lights[segmentIndex[0]++];
+                 IDrawing.drawTexture(graphicsHolder, (x1 - sinX), y1, (z1 + sinZ), (x2 - sinX), y2, (z2 + sinZ), (x2 + sinX), y2, (z2 - sinZ), (x1 + sinX), y1, (z1 - sinZ), offset, 0.0F, 0.0F, 1.0F, 0.03125F, Direction.UP, -1, light);
+                 IDrawing.drawTexture(graphicsHolder, (x2 - sinX), y2, (z2 + sinZ), (x1 - sinX), y1, (z1 + sinZ), (x1 + sinX), y1, (z1 - sinZ), (x2 + sinX), y2, (z2 - sinZ), offset, 0.0F, 0.03125F, 1.0F, 0.0F, Direction.UP, -1, light);
+                 IDrawing.drawTexture(graphicsHolder, x1, y1 + 0.03125F, z1, x2, y2 + 0.03125F, z2, x2, y2, z2, x1, y1, z1, offset, 0.0F, 0.0F, 1.0F, 0.03125F, Direction.UP, -1, light);
+@@ -152,4 +166,14 @@ public abstract class RenderRailsMixin {
+             });
+         });
+     }
++
++    @Unique
++    private static int[] getLights(ClientWorld clientWorld, BlockPos[] lightPositions) {
++        final int[] lights = new int[lightPositions.length];
++        for (int index = 0; index < lightPositions.length; index++) {
++            final BlockPos blockPos = lightPositions[index];
++            lights[index] = LightmapTextureManager.pack(clientWorld.getLightLevel(LightType.getBlockMapped(), blockPos), clientWorld.getLightLevel(LightType.getSkyMapped(), blockPos));
++        }
++        return lights;
++    }
+ }
+\ No newline at end of file
+diff --git a/fabric/src/main/java/top/mcmtr/mod/client/MSDMinecraftClientData.java b/fabric/src/main/java/top/mcmtr/mod/client/MSDMinecraftClientData.java
+index 5ac0246..5b3aa92 100644
+--- a/fabric/src/main/java/top/mcmtr/mod/client/MSDMinecraftClientData.java
++++ b/fabric/src/main/java/top/mcmtr/mod/client/MSDMinecraftClientData.java
+@@ -110,6 +110,8 @@ public final class MSDMinecraftClientData extends MSDClientData {
+         public final Vec3d startVector;
+         public final Vec3d endVector;
+         private Catenary catenary;
++        private Catenary lightPositionsCatenary;
++        private BlockPos[] lightPositions;
+ 
+         private CatenaryWrapper(Catenary catenary, String hexId, Position startPosition, Position endPosition) {
+             this.catenary = catenary;
+@@ -129,6 +131,19 @@ public final class MSDMinecraftClientData extends MSDClientData {
+         public Catenary getCatenary() {
+             return this.catenary;
+         }
++
++        /**
++         * @return the light sampling position of each segment of the current catenary, in render order (cached until the catenary object is replaced)
++         */
++        public BlockPos[] getLightPositions() {
++            if (lightPositionsCatenary != catenary) {
++                final ObjectArrayList<BlockPos> blockPosList = new ObjectArrayList<>();
++                catenary.catenaryMath.render((x1, y1, z1, x2, y2, z2, count, i, base, sinX, sinZ, increment) -> blockPosList.add(org.mtr.mod.Init.newBlockPos(x1, y1, z1)));
++                lightPositions = blockPosList.toArray(new BlockPos[0]);
++                lightPositionsCatenary = catenary;
++            }
++            return lightPositions;
++        }
+     }
+ 
+     public static class RigidCatenaryWrapper {
+@@ -137,6 +152,8 @@ public final class MSDMinecraftClientData extends MSDClientData {
+         public final Vec3d startVector;
+         public final Vec3d endVector;
+         private RigidCatenary rigidCatenary;
++        private RigidCatenary lightPositionsRigidCatenary;
++        private BlockPos[] lightPositions;
+ 
+         public RigidCatenaryWrapper(RigidCatenary rigidCatenary, String hexId, Position startPosition, Position endPosition) {
+             this.rigidCatenary = rigidCatenary;
+@@ -157,5 +174,18 @@ public final class MSDMinecraftClientData extends MSDClientData {
+         public RigidCatenary getRigidCatenary() {
+             return rigidCatenary;
+         }
++
++        /**
++         * @return the light sampling position of each segment of the current rigid catenary, in render order (cached until the rigid catenary object is replaced)
++         */
++        public BlockPos[] getLightPositions() {
++            if (lightPositionsRigidCatenary != rigidCatenary) {
++                final ObjectArrayList<BlockPos> blockPosList = new ObjectArrayList<>();
++                rigidCatenary.rigidCatenaryMath.render((x1, z1, x2, z2, x3, z3, x4, z4, x5, z5, x6, z6, x7, z7, x8, z8, y1, y2) -> blockPosList.add(org.mtr.mod.Init.newBlockPos(x1, y1, z1)));
++                lightPositions = blockPosList.toArray(new BlockPos[0]);
++                lightPositionsRigidCatenary = rigidCatenary;
++            }
++            return lightPositions;
++        }
+     }
+ }

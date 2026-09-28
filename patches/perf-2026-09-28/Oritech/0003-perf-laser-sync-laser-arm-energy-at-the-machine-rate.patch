@@ -1,0 +1,70 @@
+From da22e34190b03e5457a42bee3c7da204989b6f1e Mon Sep 17 00:00:00 2001
+From: Claude <noreply@anthropic.com>
+Date: Mon, 28 Sep 2026 06:06:12 +0000
+Subject: [PATCH 3/4] perf(laser): sync laser arm energy at the machine rate
+
+The beam packet is still sent every firing tick. The energy packet,
+only shown in the screen, is sent every 5 ticks, every tick while any
+player has the screen open, and when the screen is opened.
+
+Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_01TD7PJ5R7t7hM3ymeeqXP4H
+---
+ .../interaction/LaserArmBlockEntity.java      | 19 +++++++++++++++----
+ 1 file changed, 15 insertions(+), 4 deletions(-)
+
+diff --git a/src/main/java/rearth/oritech/block/entity/machines/interaction/LaserArmBlockEntity.java b/src/main/java/rearth/oritech/block/entity/machines/interaction/LaserArmBlockEntity.java
+index 72c1cfa..eab2426 100644
+--- a/src/main/java/rearth/oritech/block/entity/machines/interaction/LaserArmBlockEntity.java
++++ b/src/main/java/rearth/oritech/block/entity/machines/interaction/LaserArmBlockEntity.java
+@@ -39,6 +39,7 @@ import rearth.oritech.block.entity.machines.MachineCoreEntity;
+ import rearth.oritech.block.entity.machines.processing.AtomicForgeBlockEntity;
+ import rearth.oritech.client.init.ModScreens;
+ import rearth.oritech.client.init.ParticleContent;
++import rearth.oritech.client.ui.BasicMachineScreenHandler;
+ import rearth.oritech.client.ui.UpgradableMachineScreenHandler;
+ import rearth.oritech.init.BlockContent;
+ import rearth.oritech.init.BlockEntitiesContent;
+@@ -172,7 +173,7 @@ public class LaserArmBlockEntity extends BlockEntity implements GeoBlockEntity,
+         }
+         
+         if (networkDirty)
+-            updateNetwork();
++            updateNetwork(false);
+         
+     }
+     
+@@ -320,12 +321,22 @@ public class LaserArmBlockEntity extends BlockEntity implements GeoBlockEntity,
+         return (int) (Oritech.CONFIG.laserArmConfig.energyPerTick() * (1 / addonData.speed()));
+     }
+     
+-    private void updateNetwork() {
++    private void updateNetwork(boolean forceEnergySync) {
+         NetworkContent.MACHINE_CHANNEL.serverHandle(this).send(new NetworkContent.LaserArmSyncPacket(pos, currentTarget, lastFiredAt, areaSize));
+-        NetworkContent.MACHINE_CHANNEL.serverHandle(this).send(new NetworkContent.GenericEnergySyncPacket(pos, energyStorage.amount, energyStorage.capacity));
++        // energy is only displayed in the screen, so it's synced like other machines: every tick while the screen is open, otherwise every 5 ticks
++        if (forceEnergySync || Objects.requireNonNull(world).getTime() % 5 == 0 || isScreenOpen())
++            NetworkContent.MACHINE_CHANNEL.serverHandle(this).send(new NetworkContent.GenericEnergySyncPacket(pos, energyStorage.amount, energyStorage.capacity));
+         networkDirty = false;
+     }
+     
++    private boolean isScreenOpen() {
++        for (var player : Objects.requireNonNull(world).getPlayers()) {
++            if (player.currentScreenHandler instanceof BasicMachineScreenHandler handler && pos.equals(handler.getBlockPos()))
++                return true;
++        }
++        return false;
++    }
++    
+     public boolean setTargetFromDesignator(BlockPos targetPos) {
+         var success = trySetNewTarget(targetPos, true);
+         findNextBlockBreakTarget();
+@@ -670,7 +681,7 @@ public class LaserArmBlockEntity extends BlockEntity implements GeoBlockEntity,
+         buf.writeBlockPos(this.getPos());
+         buf.write(ADDON_UI_ENDEC, getUiData());
+         buf.writeFloat(getCoreQuality());
+-        updateNetwork();
++        updateNetwork(true);
+     }
+     
+     @Nullable

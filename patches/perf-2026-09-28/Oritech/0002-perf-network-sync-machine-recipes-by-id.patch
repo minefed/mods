@@ -1,0 +1,141 @@
+From 8e48c6cfb1bee690cd4b1e1d9ddf984b89e40b7f Mon Sep 17 00:00:00 2001
+From: Claude <noreply@anthropic.com>
+Date: Mon, 28 Sep 2026 06:06:12 +0000
+Subject: [PATCH 2/4] perf(network): sync machine recipes by id
+
+MachineSyncPacket now carries the recipe id when the current recipe is
+the exact instance registered under that id in the server recipe
+manager, which the client already received. The dummy recipe is sent as
+neither id nor recipe, anything else is still sent in full.
+
+Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_01TD7PJ5R7t7hM3ymeeqXP4H
+---
+ .../FluidMultiblockGeneratorBlockEntity.java  |  1 +
+ .../block/base/entity/MachineBlockEntity.java | 32 +++++++++++++++++--
+ .../UpgradableGeneratorBlockEntity.java       |  1 +
+ .../oritech/network/NetworkContent.java       |  5 ++-
+ 4 files changed, 36 insertions(+), 3 deletions(-)
+
+diff --git a/src/main/java/rearth/oritech/block/base/entity/FluidMultiblockGeneratorBlockEntity.java b/src/main/java/rearth/oritech/block/base/entity/FluidMultiblockGeneratorBlockEntity.java
+index 3496bc4..40003eb 100644
+--- a/src/main/java/rearth/oritech/block/base/entity/FluidMultiblockGeneratorBlockEntity.java
++++ b/src/main/java/rearth/oritech/block/base/entity/FluidMultiblockGeneratorBlockEntity.java
+@@ -58,6 +58,7 @@ public abstract class FluidMultiblockGeneratorBlockEntity extends MultiblockGene
+             // this is separate so that progress is not reset when out of energy
+             var activeRecipe = recipeCandidate.get().value();
+             currentRecipe = activeRecipe;
++            currentRecipeId = recipeCandidate.get().id();
+             var recipeTime = (int) (currentRecipe.getTime() * getSpeedMultiplier() * (1 / getEfficiencyMultiplier()));
+             progress = recipeTime;
+             setCurrentMaxBurnTime(recipeTime);
+diff --git a/src/main/java/rearth/oritech/block/base/entity/MachineBlockEntity.java b/src/main/java/rearth/oritech/block/base/entity/MachineBlockEntity.java
+index 08f3a34..6277898 100644
+--- a/src/main/java/rearth/oritech/block/base/entity/MachineBlockEntity.java
++++ b/src/main/java/rearth/oritech/block/base/entity/MachineBlockEntity.java
+@@ -21,6 +21,7 @@ import net.minecraft.screen.ScreenHandler;
+ import net.minecraft.server.network.ServerPlayerEntity;
+ import net.minecraft.state.property.Properties;
+ import net.minecraft.text.Text;
++import net.minecraft.util.Identifier;
+ import net.minecraft.util.math.BlockPos;
+ import net.minecraft.util.math.Direction;
+ import net.minecraft.world.World;
+@@ -56,6 +57,9 @@ public abstract class MachineBlockEntity extends BlockEntity
+     private final AnimationController<MachineBlockEntity> animationController = getAnimationController();
+     protected int energyPerTick;
+     protected OritechRecipe currentRecipe = OritechRecipe.DUMMY;
++    // recipe manager id of currentRecipe (server only), used to sync the recipe by id instead of the full recipe
++    @Nullable
++    protected Identifier currentRecipeId;
+     protected InventoryInputMode inventoryInputMode = InventoryInputMode.FILL_LEFT_TO_RIGHT;
+     // network state
+     protected boolean networkDirty = true;
+@@ -87,6 +91,7 @@ public abstract class MachineBlockEntity extends BlockEntity
+             if (hasEnoughEnergy()) {
+                 var activeRecipe = recipeCandidate.get().value();
+                 currentRecipe = activeRecipe;
++                currentRecipeId = recipeCandidate.get().id();
+                 
+                 // check energy
+                 useEnergy();
+@@ -153,7 +158,20 @@ public abstract class MachineBlockEntity extends BlockEntity
+     }
+     
+     protected void sendNetworkEntry() {
+-        NetworkContent.MACHINE_CHANNEL.serverHandle(this).send(new NetworkContent.MachineSyncPacket(getPos(), energyStorage.amount, energyStorage.capacity, energyStorage.maxInsert, progress, currentRecipe, inventoryInputMode));
++        // the client has all recipes of the recipe manager, so only the id is sent when currentRecipe is exactly the recipe registered under that id.
++        // The dummy recipe is sent as no id and no recipe. Anything else is sent in full, as before.
++        Identifier syncedRecipeId = null;
++        OritechRecipe syncedRecipe = null;
++        if (currentRecipe != OritechRecipe.DUMMY) {
++            var registeredEntry = currentRecipeId == null ? null : Objects.requireNonNull(world).getRecipeManager().get(currentRecipeId).orElse(null);
++            if (registeredEntry != null && registeredEntry.value() == currentRecipe) {
++                syncedRecipeId = currentRecipeId;
++            } else {
++                syncedRecipe = currentRecipe;
++            }
++        }
++        
++        NetworkContent.MACHINE_CHANNEL.serverHandle(this).send(new NetworkContent.MachineSyncPacket(getPos(), energyStorage.amount, energyStorage.capacity, energyStorage.maxInsert, progress, syncedRecipeId, syncedRecipe, inventoryInputMode));
+         networkDirty = false;
+     }
+     
+@@ -164,10 +182,20 @@ public abstract class MachineBlockEntity extends BlockEntity
+         this.setEnergyStored(message.energy());
+         this.energyStorage.maxInsert = message.maxInsert();
+         this.energyStorage.capacity = message.maxEnergy();
+-        this.setCurrentRecipe(message.activeRecipe());
++        this.setCurrentRecipe(resolveSyncedRecipe(message));
+         this.setInventoryInputMode(message.inputMode());
+     }
+     
++    private OritechRecipe resolveSyncedRecipe(NetworkContent.MachineSyncPacket message) {
++        if (message.activeRecipe() != null) return message.activeRecipe();
++        if (message.activeRecipeId() == null) return OritechRecipe.DUMMY;
++        
++        // recipes are synced to the client by the recipe manager, so this is only missing if the client recipes are out of sync
++        var entry = Objects.requireNonNull(world).getRecipeManager().get(message.activeRecipeId());
++        if (entry.isPresent() && entry.get().value() instanceof OritechRecipe recipe) return recipe;
++        return OritechRecipe.DUMMY;
++    }
++    
+     public List<ItemStack> getCraftingResults(OritechRecipe activeRecipe) {
+         return activeRecipe.getResults();
+     }
+diff --git a/src/main/java/rearth/oritech/block/base/entity/UpgradableGeneratorBlockEntity.java b/src/main/java/rearth/oritech/block/base/entity/UpgradableGeneratorBlockEntity.java
+index 9075a5a..9f17f1f 100644
+--- a/src/main/java/rearth/oritech/block/base/entity/UpgradableGeneratorBlockEntity.java
++++ b/src/main/java/rearth/oritech/block/base/entity/UpgradableGeneratorBlockEntity.java
+@@ -100,6 +100,7 @@ public abstract class UpgradableGeneratorBlockEntity extends UpgradableMachineBl
+             // this is separate so that progress is not reset when out of energy
+             var activeRecipe = recipeCandidate.get().value();
+             currentRecipe = activeRecipe;
++            currentRecipeId = recipeCandidate.get().id();
+             
+             // speed -> lower = faster, efficiency -> lower = better
+             var recipeTime = (int) (currentRecipe.getTime() * getSpeedMultiplier() * (1 / getEfficiencyMultiplier()));
+diff --git a/src/main/java/rearth/oritech/network/NetworkContent.java b/src/main/java/rearth/oritech/network/NetworkContent.java
+index 97273bd..b937692 100644
+--- a/src/main/java/rearth/oritech/network/NetworkContent.java
++++ b/src/main/java/rearth/oritech/network/NetworkContent.java
+@@ -1,6 +1,7 @@
+ package rearth.oritech.network;
+ 
+ import io.wispforest.owo.network.OwoNetChannel;
++import io.wispforest.owo.serialization.annotations.NullableComponent;
+ import io.wispforest.owo.serialization.endec.ReflectiveEndecBuilder;
+ import net.fabricmc.fabric.api.transfer.v1.fluid.FluidVariant;
+ import net.minecraft.item.ItemStack;
+@@ -29,8 +30,10 @@ public class NetworkContent {
+     public static final OwoNetChannel UI_CHANNEL = OwoNetChannel.create(new Identifier(Oritech.MOD_ID, "ui_interactions"));
+     
+     // Server -> Client
++    // the active recipe is sent as its recipe id when the client has it, as full recipe otherwise, and as neither for OritechRecipe.DUMMY
+     public record MachineSyncPacket(BlockPos position, long energy, long maxEnergy, long maxInsert, int progress,
+-                                    OritechRecipe activeRecipe, InventoryInputMode inputMode) {
++                                    @NullableComponent Identifier activeRecipeId, @NullableComponent OritechRecipe activeRecipe,
++                                    InventoryInputMode inputMode) {
+     }
+     
+     // Client -> Server (e.g. from UI interactions
