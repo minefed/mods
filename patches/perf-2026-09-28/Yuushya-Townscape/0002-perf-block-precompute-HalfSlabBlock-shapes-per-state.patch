@@ -1,0 +1,41 @@
+From 6e12f4653cb3ed5f72c6524d7794355636df711e Mon Sep 17 00:00:00 2001
+From: Claude <noreply@anthropic.com>
+Date: Mon, 28 Sep 2026 06:14:11 +0000
+Subject: [PATCH 2/2] perf(block): precompute HalfSlabBlock shapes per state
+
+getShape depends only on TYPE and OTHER, so compute the 16 shapes once
+with the original function instead of joining shapes on every call.
+
+Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_01TD7PJ5R7t7hM3ymeeqXP4H
+---
+ .../main/java/com/yuushya/block/HalfSlabBlock.java | 14 ++++++++++++--
+ 1 file changed, 12 insertions(+), 2 deletions(-)
+
+diff --git a/1.20.4/common/src/main/java/com/yuushya/block/HalfSlabBlock.java b/1.20.4/common/src/main/java/com/yuushya/block/HalfSlabBlock.java
+index d0ef3e2..80a7991 100644
+--- a/1.20.4/common/src/main/java/com/yuushya/block/HalfSlabBlock.java
++++ b/1.20.4/common/src/main/java/com/yuushya/block/HalfSlabBlock.java
+@@ -47,10 +47,20 @@ public class HalfSlabBlock extends Block implements SimpleWaterloggedBlock {
+     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
+         builder.add(TYPE, OTHER, WATERLOGGED);
+     }
++    //形状只取决于 TYPE 与 OTHER，按状态预先计算
++    private static final VoxelShape[][] SHAPES = new VoxelShape[HalfSlabState.values().length][HalfSlabState.values().length];
++    static {
++        for (HalfSlabState type : HalfSlabState.values()) {
++            for (HalfSlabState other : HalfSlabState.values()) {
++                SHAPES[type.ordinal()][other.ordinal()] = computeShape(type, other);
++            }
++        }
++    }
+     @Override
+     public @NotNull VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
+-        HalfSlabState type = state.getValue(TYPE);
+-        HalfSlabState other = state.getValue(OTHER);
++        return SHAPES[state.getValue(TYPE).ordinal()][state.getValue(OTHER).ordinal()];
++    }
++    private static VoxelShape computeShape(HalfSlabState type, HalfSlabState other) {
+         VoxelShape shape0 = switch (type){
+             case BOTH -> Shapes.join(Block.box(0.0, 0.0, 0.0, 16.0, 4.0, 16.0), Block.box(0.0, 12.0, 0.0, 16.0, 16.0, 16.0), BooleanOp.OR);
+             case TOP -> Block.box(0.0, 12.0, 0.0, 16.0, 16.0, 16.0);

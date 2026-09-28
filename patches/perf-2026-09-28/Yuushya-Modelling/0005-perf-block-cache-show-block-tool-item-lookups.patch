@@ -1,0 +1,102 @@
+From 4749f8f734925533b4d4743770dd74bb53a55584 Mon Sep 17 00:00:00 2001
+From: Claude <noreply@anthropic.com>
+Date: Mon, 28 Sep 2026 06:16:37 +0000
+Subject: [PATCH 5/5] perf(block): cache show block tool item lookups
+
+getShape built up to 11 ResourceLocations and registry lookups per call. Cache each item once it is registered; a missing item is still looked up every time and resolves to air as before.
+
+Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_01TD7PJ5R7t7hM3ymeeqXP4H
+---
+ .../blockentity/showblock/ShowBlock.java      | 49 ++++++++++++++-----
+ 1 file changed, 38 insertions(+), 11 deletions(-)
+
+diff --git a/1.20.4/common/src/main/java/com/yuushya/modelling/blockentity/showblock/ShowBlock.java b/1.20.4/common/src/main/java/com/yuushya/modelling/blockentity/showblock/ShowBlock.java
+index ae3f86a..9e3fc48 100644
+--- a/1.20.4/common/src/main/java/com/yuushya/modelling/blockentity/showblock/ShowBlock.java
++++ b/1.20.4/common/src/main/java/com/yuushya/modelling/blockentity/showblock/ShowBlock.java
+@@ -9,6 +9,8 @@ import net.minecraft.core.Direction;
+ import net.minecraft.core.Registry;
+ import net.minecraft.core.registries.BuiltInRegistries;
+ import net.minecraft.resources.ResourceLocation;
++import net.minecraft.world.item.Item;
++import net.minecraft.world.item.Items;
+ import net.minecraft.world.item.context.BlockPlaceContext;
+ import net.minecraft.world.level.BlockGetter;
+ import net.minecraft.world.level.LevelAccessor;
+@@ -31,25 +33,50 @@ public class ShowBlock extends AbstractYuushyaBlock implements EntityBlock {
+         this.registerDefaultState(defaultBlockState().setValue(POWERED,false).setValue(LIT,0).setValue(HORIZONTAL_FACING,Direction.SOUTH));
+     }
+ 
++    //物品注册后不会再变化，只缓存已注册的物品；缺失时仍每次查询，与原先一样得到空气
++    private static final class CachedItem {
++        private final ResourceLocation id;
++        private volatile Item item;
++        CachedItem(String path) { this.id = new ResourceLocation(Yuushya.MOD_ID, path); }
++        Item get() {
++            Item cached = item;
++            if (cached != null) return cached;
++            Item found = BuiltInRegistries.ITEM.get(id);
++            if (found != Items.AIR) item = found;
++            return found;
++        }
++    }
++    private static final CachedItem GUI_ITEM = new CachedItem("gui_item");
++    private static final CachedItem ROT_TRANS_ITEM = new CachedItem("rot_trans_item");
++    private static final CachedItem POS_TRANS_ITEM = new CachedItem("pos_trans_item");
++    private static final CachedItem MICRO_POS_TRANS_ITEM = new CachedItem("micro_pos_trans_item");
++    private static final CachedItem SLOT_TRANS_ITEM = new CachedItem("slot_trans_item");
++    private static final CachedItem GET_SHOWBLOCK_ITEM = new CachedItem("get_showblock_item");
++    private static final CachedItem MOVE_TRANSFORMDATA_ITEM = new CachedItem("move_transformdata_item");
++    private static final CachedItem GET_BLOCKSTATE_ITEM = new CachedItem("get_blockstate_item");
++    private static final CachedItem SCALE_TRANS_ITEM = new CachedItem("scale_trans_item");
++    private static final CachedItem DEBUG_STICK_ITEM = new CachedItem("debug_stick_item");
++    private static final CachedItem DESTROY_ITEM = new CachedItem("destroy_item");
++
+     @Environment(EnvType.CLIENT)
+     @Override
+     public VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
+         if (level.getBlockState(pos).is(state.getBlock())){
+-            if(context.isHoldingItem(BuiltInRegistries.ITEM.get(new ResourceLocation(Yuushya.MOD_ID,"gui_item")))){
++            if(context.isHoldingItem(GUI_ITEM.get())){
+                 ShowBlockEntity blockEntity = (ShowBlockEntity) level.getBlockEntity(pos);
+                 if(blockEntity!=null) {
+                     blockEntity.setShowFrame();
+                 }
+             }
+-            else if(context.isHoldingItem(BuiltInRegistries.ITEM.get(new ResourceLocation(Yuushya.MOD_ID,"rot_trans_item")))){
++            else if(context.isHoldingItem(ROT_TRANS_ITEM.get())){
+                 ShowBlockEntity blockEntity = (ShowBlockEntity) level.getBlockEntity(pos);
+                 if(blockEntity!=null) {
+                     blockEntity.setShowRotAixs();
+                     blockEntity.setShowText();
+                 }
+             }
+-            else if(context.isHoldingItem(BuiltInRegistries.ITEM.get(new ResourceLocation(Yuushya.MOD_ID,"pos_trans_item")))
+-                    ||context.isHoldingItem(BuiltInRegistries.ITEM.get(new ResourceLocation(Yuushya.MOD_ID,"micro_pos_trans_item")))
++            else if(context.isHoldingItem(POS_TRANS_ITEM.get())
++                    ||context.isHoldingItem(MICRO_POS_TRANS_ITEM.get())
+             ){
+                 ShowBlockEntity blockEntity = (ShowBlockEntity) level.getBlockEntity(pos);
+                 if(blockEntity!=null) {
+@@ -57,13 +84,13 @@ public class ShowBlock extends AbstractYuushyaBlock implements EntityBlock {
+                     blockEntity.setShowText();
+                 }
+             }
+-            else if(context.isHoldingItem(BuiltInRegistries.ITEM.get(new ResourceLocation(Yuushya.MOD_ID,"slot_trans_item")))
+-                    ||context.isHoldingItem(BuiltInRegistries.ITEM.get(new ResourceLocation(Yuushya.MOD_ID,"get_showblock_item")))
+-                    ||context.isHoldingItem(BuiltInRegistries.ITEM.get(new ResourceLocation(Yuushya.MOD_ID,"move_transformdata_item")))
+-                    ||context.isHoldingItem(BuiltInRegistries.ITEM.get(new ResourceLocation(Yuushya.MOD_ID,"get_blockstate_item")))
+-                    ||context.isHoldingItem(BuiltInRegistries.ITEM.get(new ResourceLocation(Yuushya.MOD_ID,"scale_trans_item")))
+-                    ||context.isHoldingItem(BuiltInRegistries.ITEM.get(new ResourceLocation(Yuushya.MOD_ID,"debug_stick_item")))
+-                    ||context.isHoldingItem(BuiltInRegistries.ITEM.get(new ResourceLocation(Yuushya.MOD_ID,"destroy_item")))
++            else if(context.isHoldingItem(SLOT_TRANS_ITEM.get())
++                    ||context.isHoldingItem(GET_SHOWBLOCK_ITEM.get())
++                    ||context.isHoldingItem(MOVE_TRANSFORMDATA_ITEM.get())
++                    ||context.isHoldingItem(GET_BLOCKSTATE_ITEM.get())
++                    ||context.isHoldingItem(SCALE_TRANS_ITEM.get())
++                    ||context.isHoldingItem(DEBUG_STICK_ITEM.get())
++                    ||context.isHoldingItem(DESTROY_ITEM.get())
+             ){
+                 ShowBlockEntity blockEntity = (ShowBlockEntity) level.getBlockEntity(pos);
+                 if(blockEntity!=null) blockEntity.setShowText();

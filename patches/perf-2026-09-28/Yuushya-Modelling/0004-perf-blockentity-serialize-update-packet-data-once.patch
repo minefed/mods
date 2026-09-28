@@ -1,0 +1,28 @@
+From 61578ab85a943ace533f4dec84cf6270597e0708 Mon Sep 17 00:00:00 2001
+From: Claude <noreply@anthropic.com>
+Date: Mon, 28 Sep 2026 06:16:36 +0000
+Subject: [PATCH 4/5] perf(blockentity): serialize update packet data once
+
+getUpdatePacket wrote the Blocks list via getUpdateTag() and then again via saveAdditional() under the same key. Start from super.getUpdateTag() so it is written once; the resulting tag is identical.
+
+Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_01TD7PJ5R7t7hM3ymeeqXP4H
+---
+ .../modelling/blockentity/showblock/ShowBlockEntity.java       | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+diff --git a/1.20.4/common/src/main/java/com/yuushya/modelling/blockentity/showblock/ShowBlockEntity.java b/1.20.4/common/src/main/java/com/yuushya/modelling/blockentity/showblock/ShowBlockEntity.java
+index a72e538..afd218e 100644
+--- a/1.20.4/common/src/main/java/com/yuushya/modelling/blockentity/showblock/ShowBlockEntity.java
++++ b/1.20.4/common/src/main/java/com/yuushya/modelling/blockentity/showblock/ShowBlockEntity.java
+@@ -114,7 +114,8 @@ public class ShowBlockEntity extends BlockEntity implements ITransformDataInvent
+     }
+     @Override
+     public ClientboundBlockEntityDataPacket getUpdatePacket() {
+-        CompoundTag compoundTag=getUpdateTag();
++        //下面的saveAdditional会写入同样的Blocks，不必先经由getUpdateTag()再序列化一次
++        CompoundTag compoundTag=super.getUpdateTag();
+         return ClientboundBlockEntityDataPacket.create(this, (blockEntity)->{saveAdditional(compoundTag); return compoundTag;});
+     }
+ }
+\ No newline at end of file
