@@ -2363,7 +2363,7 @@
         "url": "https://github.com/minefed/minefed-display",
         "upstream": "https://github.com/minefed/minefed-display",
         "ref": "minefed-1.20.4",
-        "commit": "15486ffdf40cb1d66b0bd45e2478a7214dac3fdc",
+        "commit": "c31c7417baa399e3874b7ecc70d87d9f147d857b",
         "trackingBranch": "minefed-1.20.4",
         "baselineRef": "main",
         "baselineCommit": "79708da179682295df0dfc379320a0759c25a97d"
@@ -2384,7 +2384,8 @@
       "licenseNoticesPath": "inventory/notices/minefed-display-4d87f76f9ba4",
       "notes": [
         "Deployed metadata MIT, MC~1.20.4, Java>=17, FabricLoader>=0.16.14. Root agent resolves newest existing minefed source ref separately.",
-        "기존 minefed 저장소의 확인된 최신 원격 커밋을 소스 pin으로 사용한다. 운영 JAR와 소스 빌드의 바이트 동일성을 의미하지 않는다."
+        "기존 minefed 저장소의 확인된 최신 원격 커밋을 소스 pin으로 사용한다. 운영 JAR와 소스 빌드의 바이트 동일성을 의미하지 않는다.",
+        "2026-09-28: Behavior-preserving network/FPS optimizations fast-forwarded minefed-1.20.4 to c31c7417baa399e3874b7ecc70d87d9f147d857b; see docs/OPTIMIZATION_RESULTS_2026-09-28.md. Captured artifact hashes remain historical baseline evidence."
       ],
       "compatibility": {
         "minecraft": "~1.20.4",
