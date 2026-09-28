@@ -1420,7 +1420,7 @@
         "url": "https://github.com/minefed/FallingTree",
         "upstream": "https://github.com/RakambdaOrg/FallingTree",
         "ref": "minefed-1.20.4",
-        "commit": "03515fd50f60e82047eb3a03ec9954a4d26e0b62",
+        "commit": "ebefcc387feae711ee1545828c3aea82366d91ae",
         "trackingBranch": "minefed-1.20.4",
         "baselineRef": "1.20.4.3",
         "baselineCommit": "6db0a7bface140865da07009c0bd679f684a3340"
@@ -1453,7 +1453,8 @@
       "licenseUrl": "https://github.com/RakambdaOrg/FallingTree/blob/6db0a7bface140865da07009c0bd679f684a3340/LICENSE.md",
       "licenseNoticesPath": null,
       "notes": [
-        "Exact1.20.4.3 tag; canonical owner renamed from Rakambda to RakambdaOrg. Preserve LGPL/GPL notices and corresponding source availability."
+        "Exact1.20.4.3 tag; canonical owner renamed from Rakambda to RakambdaOrg. Preserve LGPL/GPL notices and corresponding source availability.",
+        "2026-09-28: Behavior-preserving network/FPS optimizations fast-forwarded minefed-1.20.4 to ebefcc387feae711ee1545828c3aea82366d91ae; see docs/OPTIMIZATION_RESULTS_2026-09-28.md. Captured artifact hashes remain historical baseline evidence."
       ],
       "compatibility": {
         "minecraft": null,
