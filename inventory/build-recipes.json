@@ -999,7 +999,7 @@
     {
       "modId": "minefed-client-compat",
       "mode": "source",
-      "reason": "Client-only PTS-Deco 4.0.0 recipe synchronization and PFM 1.5.0 first-frame herringbone fixes; verify both shipped Mixins against hash-pinned official bytecode.",
+      "reason": "Client-only PTS-Deco recipe synchronization, PFM first-frame herringbone textures and DragonLib Wikidata request fixes. Verify PTS/PFM Mixins against hash-pinned official bytecode; check Wikipedia loading in the live client.",
       "sourcePath": "minefed-client-compat",
       "java": 17,
       "tasks": [
@@ -1012,9 +1012,9 @@
         "-PpfmJar=../artifacts/local/paladin-furniture-mod-1.5.0-fabric-mc1.20.4.jar"
       ],
       "artifactGlobs": [
-        "build/libs/minefed-client-compat-1.1.0.jar"
+        "build/libs/minefed-client-compat-1.1.1.jar"
       ],
-      "expectedVersion": "1.1.0",
+      "expectedVersion": "1.1.1",
       "sourceWorkDir": ".",
       "env": {}
     }
