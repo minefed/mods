@@ -34,3 +34,10 @@ The empty Dusty Decorations `pot` loot table is independently authored by Minefe
 (MIT). The pinned Fabric 1.1 release has no `pot` block/item; its registered
 `cooking_pot` already has a separate, valid loot table which remains untouched.
 Source release: https://modrinth.com/mod/dusty-decorations/version/DHsgxScD
+
+The Japan Props teacup recipe is independently authored by Minefed (MIT).
+It preserves the three-slab-and-berry crafting arrangement and single teacup
+output, using the obtainable `minecraft:sweet_berries` item instead of the
+non-item `minecraft:sweet_berry_bush` block. It loads only when Japan Props is
+installed. No Japan Props code, artwork, or text is redistributed.
+Source release: https://modrinth.com/mod/japan-props/version/hnS8fdTL

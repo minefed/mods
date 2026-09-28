@@ -1,0 +1,13 @@
+{
+  "fabric:load_conditions": [
+    { "condition": "fabric:all_mods_loaded", "values": ["jpp"] }
+  ],
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": ["SBS", " S "],
+  "key": {
+    "S": { "tag": "minecraft:wooden_slabs" },
+    "B": { "item": "minecraft:sweet_berries" }
+  },
+  "result": { "item": "jpp:teacup", "count": 1 }
+}

@@ -14,6 +14,7 @@ FILES = {
     'assets/mythicmetals_decorations/models/item/hydrargym_chest.json',
     'data/diagonalfences/tags/blocks/non_diagonal_fences.json',
     'data/dustydecorations/loot_tables/blocks/pot.json',
+    'data/jpp/recipes/tc.json',
 }
 EXLINE_WOODS = ('oak', 'spruce', 'birch', 'jungle', 'acacia', 'dark_oak',
                 'mangrove', 'cherry', 'bamboo', 'crimson', 'warped')
