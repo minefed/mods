@@ -4382,7 +4382,7 @@
         "url": "https://github.com/minefed/Yuushya-Townscape",
         "upstream": "https://gitee.com/yuushyatownscape/yuushya-townscape",
         "ref": "minefed-1.20.4",
-        "commit": "f2fab506bbe69368eff27d5d4dc6afa23170f0b7",
+        "commit": "6e12f4653cb3ed5f72c6524d7794355636df711e",
         "trackingBranch": "minefed-1.20.4",
         "baselineRef": "refs/tags/v2.2.3",
         "baselineCommit": "e76ea8ac5454ec424771f593ce05ee0082e4b278"
@@ -4416,7 +4416,8 @@
       "notes": [
         "Official author's GitHub mirror master has1.20.4 Gradle subprojects but root modVersion2.2.1, older than deployed2.2.3. Gitee is source contact in JAR. Terms permit modpack/server distribution with creator-page attribution and Yuushya portion free; other-version ports require author permission. Authoritative Gitee v2.2.3 tag exists and peels to e76ea8ac5454ec424771f593ce05ee0082e4b278. Import that tag to minefed GitHub fork before using exact deployed-source gitlink; GitHub-only mirror pin remains older.",
         "Exact deployed 2.2.3 source imported from the author’s Gitee v2.2.3 into the minefed management branch; original GitHub mirror lagged behind.",
-        "2026-09-28: Repair gardener ingredient and survival guide recipe types and IDs. Minecraft 1.20.4 / Fabric Loader 0.18.4 / Java 17 runtime. Source branch codex/fix-survival-data; captured artifact hashes remain historical baseline evidence."
+        "2026-09-28: Repair gardener ingredient and survival guide recipe types and IDs. Minecraft 1.20.4 / Fabric Loader 0.18.4 / Java 17 runtime. Source branch codex/fix-survival-data; captured artifact hashes remain historical baseline evidence.",
+        "2026-09-28: Behavior-preserving network/FPS optimizations fast-forwarded minefed-1.20.4 to 6e12f4653cb3ed5f72c6524d7794355636df711e; see docs/OPTIMIZATION_RESULTS_2026-09-28.md. Captured artifact hashes remain historical baseline evidence."
       ],
       "compatibility": {
         "minecraft": "~1.20.4",
