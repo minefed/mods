@@ -2362,9 +2362,9 @@
         "path": "minefed-display",
         "url": "https://github.com/minefed/minefed-display",
         "upstream": "https://github.com/minefed/minefed-display",
-        "ref": "minefed-1.20.4",
-        "commit": "8b4cd45ba84560051d021dcacdee747b5a795e03",
-        "trackingBranch": "minefed-1.20.4",
+        "ref": "perf/behavior-preserving-client-20260930",
+        "commit": "30cad66e155323a87b15dadf63ccc89be92ecd89",
+        "trackingBranch": "perf/behavior-preserving-client-20260930",
         "baselineRef": "main",
         "baselineCommit": "79708da179682295df0dfc379320a0759c25a97d"
       },
@@ -2386,7 +2386,8 @@
         "Deployed metadata MIT, MC~1.20.4, Java>=17, FabricLoader>=0.16.14. Root agent resolves newest existing minefed source ref separately.",
         "기존 minefed 저장소의 확인된 최신 원격 커밋을 소스 pin으로 사용한다. 운영 JAR와 소스 빌드의 바이트 동일성을 의미하지 않는다.",
         "2026-09-28: Behavior-preserving network/FPS optimizations fast-forwarded minefed-1.20.4 to c31c7417baa399e3874b7ecc70d87d9f147d857b; see docs/OPTIMIZATION_RESULTS_2026-09-28.md. Captured artifact hashes remain historical baseline evidence.",
-        "2026-09-29: RAM/GPU optimizations fast-forwarded minefed-1.20.4 to 8b4cd45ba84560051d021dcacdee747b5a795e03: browsers closed on disconnect and block entity unload, created only for displays in the view frustum and closed after 30 s out of view, and --process-per-site shared Chromium renderers; see docs/RAM_GPU_OPTIMIZATION_RESULTS_2026-09-29.md. Captured artifact hashes remain historical baseline evidence."
+        "2026-09-29: RAM/GPU optimizations fast-forwarded minefed-1.20.4 to 8b4cd45ba84560051d021dcacdee747b5a795e03: browsers closed on disconnect and block entity unload, created only for displays in the view frustum and closed after 30 s out of view, and --process-per-site shared Chromium renderers; see docs/RAM_GPU_OPTIMIZATION_RESULTS_2026-09-29.md. Captured artifact hashes remain historical baseline evidence.",
+        "2026-09-30: Additional behavior-preserving client rendering work pinned on review branch perf/behavior-preserving-client-20260930 at 30cad66e155323a87b15dadf63ccc89be92ecd89. Existing captured JAR hashes remain historical baseline evidence; no default-branch merge or game deployment is implied."
       ],
       "compatibility": {
         "minecraft": "~1.20.4",

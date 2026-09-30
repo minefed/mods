@@ -491,7 +491,8 @@
       "sourcePath": "minefed-display",
       "java": 17,
       "tasks": [
-        "remapJar"
+        "remapJar",
+        "verifyDisplayBezelTrace"
       ],
       "args": [],
       "artifactGlobs": [
