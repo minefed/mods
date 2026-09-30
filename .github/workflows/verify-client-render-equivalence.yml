@@ -111,6 +111,12 @@ jobs:
               javaLauncher = javaToolchains.launcherFor {
                 languageVersion = JavaLanguageVersion.of(17)
               }
+              testLogging {
+                exceptionFormat = 'full'
+                showExceptions = true
+                showCauses = true
+                showStackTraces = true
+              }
             }
           }
           GRADLE
