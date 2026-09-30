@@ -1,0 +1,164 @@
+name: Verify client render equivalence
+
+# This temporary review branch never invokes the main-branch release workflow.
+on:
+  push:
+    branches: [perf/behavior-preserving-client-20260930]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: minefed-client-render-equivalence-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  root-checks:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - name: Check out the exact feature commit without persisted credentials
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+          submodules: false
+      - name: Set up Java 17
+        id: java17
+        uses: actions/setup-java@dd06d9cba3e5552c54d9f8ea23572deb30010f7c # v6.0.0
+        with:
+          distribution: temurin
+          java-version: '17'
+          cache-jdk: false
+      - name: Validate the build plan and aggregate tooling checks
+        env:
+          MINEFED_JAVA17_HOME: ${{ steps.java17.outputs.path }}
+          MINEFED_PYTHON: python3
+          PYTHONUTF8: '1'
+        run: |
+          set -euo pipefail
+          python3 scripts/build_modpack.py plan
+          ./gradlew --no-daemon --max-workers=2 check
+
+  changed-mods:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 90
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - mod: mtr
+            source: Minecraft-Transit-Railway
+          - mod: msd
+            source: MTR-Station-Decoration-Addon
+          - mod: display
+            source: minefed-display
+    steps:
+      - name: Check out the exact feature commit without persisted credentials
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+          submodules: false
+      - name: Materialize only the changed module at its recorded gitlink
+        env:
+          SOURCE: ${{ matrix.source }}
+        run: |
+          set -euo pipefail
+          git submodule update --init --depth=1 -- "$SOURCE"
+          python3 - <<'PY'
+          import json, os, subprocess
+          source = os.environ['SOURCE']
+          entries = json.load(open('inventory/mods.lock.json', encoding='utf-8'))['entries']
+          recorded = {entry['source']['commit'] for entry in entries
+                      if (entry.get('source') or {}).get('path') == source}
+          actual = subprocess.check_output(['git', '-C', source, 'rev-parse', 'HEAD'], text=True).strip()
+          gitlink = subprocess.check_output(['git', 'ls-tree', 'HEAD', '--', source], text=True).split()[2]
+          assert recorded == {actual} and actual == gitlink, (source, recorded, actual, gitlink)
+          print(f'Verified source pin: {source} {actual}')
+          PY
+      - name: Set up build Java 21
+        id: java21
+        uses: actions/setup-java@dd06d9cba3e5552c54d9f8ea23572deb30010f7c # v6.0.0
+        with:
+          distribution: temurin
+          java-version: '21'
+          cache-jdk: false
+      - name: Set up default Java 17
+        id: java17
+        uses: actions/setup-java@dd06d9cba3e5552c54d9f8ea23572deb30010f7c # v6.0.0
+        with:
+          distribution: temurin
+          java-version: '17'
+          cache-jdk: false
+      - name: Set up Node for the existing MTR website build
+        if: matrix.mod == 'mtr'
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: '22'
+          package-manager-cache: false
+      - name: Verify and build MTR for Fabric 1.20.4
+        if: matrix.mod == 'mtr'
+        working-directory: Minecraft-Transit-Railway
+        env:
+          JAVA_HOME: ${{ steps.java21.outputs.path }}
+          JAVA17_HOME: ${{ steps.java17.outputs.path }}
+          JAVA21_HOME: ${{ steps.java21.outputs.path }}
+          NG_BUILD_MAX_WORKERS: '1'
+        run: |
+          set -euo pipefail
+          cat > "$RUNNER_TEMP/minefed-test-java17.gradle" <<'GRADLE'
+          allprojects {
+            tasks.withType(Test).configureEach {
+              javaLauncher = javaToolchains.launcherFor {
+                languageVersion = JavaLanguageVersion.of(17)
+              }
+            }
+          }
+          GRADLE
+          ./gradlew --no-daemon --max-workers=2 --configure-on-demand \
+            '-Dorg.gradle.jvmargs=-Xmx1536m -Dfile.encoding=COMPAT' -Dfabric.loom.ci=true \
+            --init-script ../scripts/source-repositories.gradle \
+            --init-script "$RUNNER_TEMP/minefed-test-java17.gradle" \
+            -Porg.gradle.java.installations.paths="$JAVA17_HOME,$JAVA21_HOME" \
+            -PminecraftVersion=1.20.4 -PexcludeAssets=false \
+            :fabric:test :fabric:build :fabric:verifyRailRendering \
+            :fabric:verifyMixinCompatibility :fabric:verifyLightTypeCompatibility
+      - name: Verify and build MSD for Fabric 1.20.4
+        if: matrix.mod == 'msd'
+        working-directory: MTR-Station-Decoration-Addon
+        env:
+          JAVA_HOME: ${{ steps.java17.outputs.path }}
+          JAVA17_HOME: ${{ steps.java17.outputs.path }}
+          JAVA21_HOME: ${{ steps.java21.outputs.path }}
+          PYTHONUTF8: '1'
+        run: |
+          set -euo pipefail
+          ./gradlew --no-daemon --max-workers=2 --configure-on-demand \
+            --init-script ../scripts/source-repositories.gradle \
+            -Porg.gradle.java.installations.paths="$JAVA17_HOME,$JAVA21_HOME" \
+            -PminecraftVersion=1.20.4 \
+            :fabric:setupFiles :verifyRenderReuse :fabric:verifyLightTypeContract :fabric:build
+      - name: Ensure a headless OpenGL test context is available
+        if: matrix.mod == 'display'
+        run: |
+          set -euo pipefail
+          if ! command -v xvfb-run >/dev/null; then
+            sudo apt-get update
+            sudo apt-get install --yes xvfb
+          fi
+      - name: Verify and build display with headless OpenGL
+        if: matrix.mod == 'display'
+        working-directory: minefed-display
+        env:
+          JAVA_HOME: ${{ steps.java17.outputs.path }}
+          LIBGL_ALWAYS_SOFTWARE: '1'
+        run: |
+          set -euo pipefail
+          xvfb-run -a -s '-screen 0 1280x720x24' ./gradlew \
+            --no-daemon --max-workers=2 --init-script ../scripts/source-repositories.gradle \
+            build verifyDisplayOcclusion
+      - name: Record built JAR hashes without publishing artifacts
+        env:
+          SOURCE: ${{ matrix.source }}
+        run: |
+          set -euo pipefail
+          find "$SOURCE" -path '*/build/libs/*.jar' -type f -print0 | sort -z | xargs -0 -r sha256sum
