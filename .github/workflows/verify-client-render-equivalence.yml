@@ -162,6 +162,24 @@ jobs:
           xvfb-run -a -s '-screen 0 1280x720x24' bash ./gradlew \
             --no-daemon --max-workers=2 --init-script ../scripts/source-repositories.gradle \
             build verifyDisplayOcclusion
+      - name: Summarize JUnit results without publishing artifacts
+        if: always()
+        env:
+          SOURCE: ${{ matrix.source }}
+        run: |
+          python3 - <<'PYTEST'
+          import json, os, pathlib, xml.etree.ElementTree as ET
+          source = pathlib.Path(os.environ['SOURCE'])
+          summaries = {}
+          for base in (source, source / 'fabric', source / 'forge'):
+              for report in (base / 'build' / 'test-results').glob('*/TEST-*.xml'):
+                  suite = ET.parse(report).getroot()
+                  key = str(report.parent.relative_to(source))
+                  totals = summaries.setdefault(key, {name: 0 for name in ('tests', 'failures', 'errors', 'skipped')})
+                  for name in totals:
+                      totals[name] += int(suite.get(name, 0))
+          print(json.dumps(summaries, indent=2))
+          PYTEST
       - name: Record built JAR hashes without publishing artifacts
         env:
           SOURCE: ${{ matrix.source }}
