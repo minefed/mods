@@ -37,7 +37,7 @@ jobs:
         run: |
           set -euo pipefail
           python3 scripts/build_modpack.py plan
-          ./gradlew --no-daemon --max-workers=2 check
+          bash ./gradlew --no-daemon --max-workers=2 check
 
   changed-mods:
     runs-on: ubuntu-24.04
@@ -114,7 +114,7 @@ jobs:
             }
           }
           GRADLE
-          ./gradlew --no-daemon --max-workers=2 --configure-on-demand \
+          bash ./gradlew --no-daemon --max-workers=2 --configure-on-demand \
             '-Dorg.gradle.jvmargs=-Xmx1536m -Dfile.encoding=COMPAT' -Dfabric.loom.ci=true \
             --init-script ../scripts/source-repositories.gradle \
             --init-script "$RUNNER_TEMP/minefed-test-java17.gradle" \
@@ -132,7 +132,7 @@ jobs:
           PYTHONUTF8: '1'
         run: |
           set -euo pipefail
-          ./gradlew --no-daemon --max-workers=2 --configure-on-demand \
+          bash ./gradlew --no-daemon --max-workers=2 --configure-on-demand \
             --init-script ../scripts/source-repositories.gradle \
             -Porg.gradle.java.installations.paths="$JAVA17_HOME,$JAVA21_HOME" \
             -PminecraftVersion=1.20.4 \
@@ -153,7 +153,7 @@ jobs:
           LIBGL_ALWAYS_SOFTWARE: '1'
         run: |
           set -euo pipefail
-          xvfb-run -a -s '-screen 0 1280x720x24' ./gradlew \
+          xvfb-run -a -s '-screen 0 1280x720x24' bash ./gradlew \
             --no-daemon --max-workers=2 --init-script ../scripts/source-repositories.gradle \
             build verifyDisplayOcclusion
       - name: Record built JAR hashes without publishing artifacts
