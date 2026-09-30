@@ -4527,7 +4527,7 @@
         "url": "https://github.com/minefed/minefed-client-compat",
         "upstream": "https://github.com/minefed/minefed-client-compat",
         "ref": "main",
-        "commit": "db91307c14c656f59268bfbb55d130b2f588861f",
+        "commit": "87f3a19f20b1317729b4cad63217596286422112",
         "trackingBranch": "main",
         "baselineRef": "codex/pts-recipe-sync",
         "baselineCommit": "e27ee63ddc883343e554d32f511fe3bebcc565dd"
@@ -4554,7 +4554,8 @@
         "2026-09-28: Version 1.1.0 fixes PFM first-frame sprites and preserves PTS recipe synchronization; both official-bytecode probes pass. Minecraft 1.20.4 / Fabric Loader 0.18.4 / Java 17 runtime. Source branch codex/fix-pfm-first-frame; captured artifact hashes remain historical baseline evidence.",
         "2026-09-28: Ship the independently authored Wikidata request repair in 1.1.1 beside the PTS/PFM fixes so official TrafficCraft bundles receive it. Minecraft 1.20.4 / Fabric Loader 0.18.4 / Java 17 runtime. Source branch codex/fix-pfm-first-frame; captured artifact hashes remain historical baseline evidence.",
         "2026-09-28: Behavior-preserving network/FPS optimizations fast-forwarded main to db91307c14c656f59268bfbb55d130b2f588861f; see docs/OPTIMIZATION_RESULTS_2026-09-28.md. Captured artifact hashes remain historical baseline evidence.",
-        "2026-09-28: Version 1.3.0 also loads on dedicated servers (fabric.mod.json environment \"*\") and adds behavior-preserving PFM 1.5.0 and TrafficCraft 1.20.4-1.1.3 performance Mixins verified against the official bytecode; it now requires trafficcraft =1.20.4-1.1.3. Install it on both server and client. The recorded 1.0.0 artifact remains historical evidence."
+        "2026-09-28: Version 1.3.0 also loads on dedicated servers (fabric.mod.json environment \"*\") and adds behavior-preserving PFM 1.5.0 and TrafficCraft 1.20.4-1.1.3 performance Mixins verified against the official bytecode; it now requires trafficcraft =1.20.4-1.1.3. Install it on both server and client. The recorded 1.0.0 artifact remains historical evidence.",
+        "2026-09-29: Version 1.4.0 fast-forwarded main to 87f3a19f20b1317729b4cad63217596286422112: client-only block atlas sprite rules (exact downscale, 512 px cap except msd, 16-pixel mipmap alignment; configurable in config/minefed-atlas.properties) and deferred MCEF initialization until first API use; verifyAtlasSprites checks the rules. Still installed on server and client; see docs/RAM_GPU_OPTIMIZATION_RESULTS_2026-09-29.md."
       ],
       "compatibility": {
         "minecraft": "=1.20.4",

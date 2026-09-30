@@ -999,7 +999,7 @@
     {
       "modId": "minefed-client-compat",
       "mode": "source",
-      "reason": "PTS-Deco recipe synchronization, PFM first-frame herringbone textures, DragonLib Wikidata requests, and behavior-preserving PFM/TrafficCraft performance Mixins. Loads on client and server; verify every Mixin against hash-pinned official PTS, PFM and TrafficCraft bytecode.",
+      "reason": "PTS-Deco recipe synchronization, PFM first-frame herringbone textures, DragonLib Wikidata requests, and behavior-preserving PFM/TrafficCraft performance Mixins. Loads on client and server; verify every Mixin against hash-pinned official PTS, PFM and TrafficCraft bytecode. Version 1.4.0 adds client-only block atlas sprite rules and deferred MCEF initialization; verifyAtlasSprites checks the sprite rules without fixtures.",
       "sourcePath": "minefed-client-compat",
       "java": 17,
       "tasks": [
@@ -1007,7 +1007,8 @@
         "verifyPtsCompatibility",
         "verifyPfmCompatibility",
         "verifyPfmPerformance",
-        "verifyTrafficCraftPerformance"
+        "verifyTrafficCraftPerformance",
+        "verifyAtlasSprites"
       ],
       "args": [
         "-PptsJar=../artifacts/local/PTS-Deco-4.0.0-Fabric1.20.4.jar",
@@ -1015,9 +1016,9 @@
         "-PtrafficcraftJar=../artifacts/local/trafficcraft-fabric-1.20.4-1.1.3.jar"
       ],
       "artifactGlobs": [
-        "build/libs/minefed-client-compat-1.3.0.jar"
+        "build/libs/minefed-client-compat-1.4.0.jar"
       ],
-      "expectedVersion": "1.3.0",
+      "expectedVersion": "1.4.0",
       "sourceWorkDir": ".",
       "env": {}
     }
