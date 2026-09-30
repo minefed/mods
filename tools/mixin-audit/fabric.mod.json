@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "id": "minefed_mixin_audit",
+  "version": "1.0.0",
+  "name": "Minefed Mixin Audit",
+  "description": "Test-only probe: applies every Mixin of the installed mods through Knot, then exits before the game starts.",
+  "license": "MIT",
+  "environment": "*",
+  "entrypoints": {
+    "preLaunch": ["team.minefed.mixinaudit.MixinAuditEntrypoint"]
+  },
+  "depends": {
+    "fabricloader": ">=0.15"
+  }
+}
