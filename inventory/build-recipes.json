@@ -574,7 +574,9 @@
       "java": 17,
       "tasks": [
         ":fabric:setupFiles",
-        ":fabric:remapJar"
+        ":fabric:remapJar",
+        ":verifyRenderReuse",
+        ":fabric:verifyLightTypeContract"
       ],
       "args": [
         "-PminecraftVersion=1.20.4",

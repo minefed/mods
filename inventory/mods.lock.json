@@ -2676,9 +2676,9 @@
         "path": "MTR-Station-Decoration-Addon",
         "url": "https://github.com/minefed/MTR-Station-Decoration-Addon",
         "upstream": "https://github.com/AIDA64S/MTR-Station-Decoration-Addon",
-        "ref": "minefed-1.20.4",
-        "commit": "91cdd24f6fbf94a1b12f5432ce93d7168246e769",
-        "trackingBranch": "minefed-1.20.4",
+        "ref": "perf/behavior-preserving-client-20260930",
+        "commit": "286791d619421d1cf7a14ac843c4d766303c9fa5",
+        "trackingBranch": "perf/behavior-preserving-client-20260930",
         "baselineRef": "4.0.0",
         "baselineCommit": "14b0a8c9687bdbbfd755f282bbfab4030a92f3d3"
       },
@@ -2712,7 +2712,8 @@
         "Last source state before bump to1.3.16; gradle.properties explicitly Minecraft1.20.4, MTR4.0.0-beta.14, version1.3.15. No deployed release tag exists; build equivalence not proven. Current4.0.0 branch tip14b0a8c9687bdbbfd755f282bbfab4030a92f3d3 is1.4.5/MTR4.0.5.",
         "2026-09-12: official successor 1.4.5 merged into remotely available codex/update-msd-1.4.5; original operating JAR version/hash remain historical. See docs/MOD_UPDATE_APPLIED_2026-09-12.md.",
         "2026-09-28: Behavior-preserving network/FPS optimizations fast-forwarded minefed-1.20.4 to 80f140e2c25e625d84648b0394a6120a552ad602; see docs/OPTIMIZATION_RESULTS_2026-09-28.md. Captured artifact hashes remain historical baseline evidence.",
-        "2026-09-29: RAM/GPU optimizations fast-forwarded minefed-1.20.4 to 91cdd24f6fbf94a1b12f5432ce93d7168246e769 (station cache released on disconnect, unused railing_stair_iron texture removed, eight large block textures repacked to the texels their models use with UV-only model edits); see docs/RAM_GPU_OPTIMIZATION_RESULTS_2026-09-29.md. Captured artifact hashes remain historical baseline evidence."
+        "2026-09-29: RAM/GPU optimizations fast-forwarded minefed-1.20.4 to 91cdd24f6fbf94a1b12f5432ce93d7168246e769 (station cache released on disconnect, unused railing_stair_iron texture removed, eight large block textures repacked to the texels their models use with UV-only model edits); see docs/RAM_GPU_OPTIMIZATION_RESULTS_2026-09-29.md. Captured artifact hashes remain historical baseline evidence.",
+        "2026-09-30: Additional behavior-preserving client rendering work pinned on review branch perf/behavior-preserving-client-20260930 at 286791d619421d1cf7a14ac843c4d766303c9fa5. Existing captured JAR hashes remain historical baseline evidence; no default-branch merge or game deployment is implied."
       ],
       "compatibility": {
         "minecraft": "1.20.4",
