@@ -2745,7 +2745,7 @@
         "url": "https://github.com/minefed/Minecraft-Transit-Railway",
         "upstream": "https://github.com/Minecraft-Transit-Railway/Minecraft-Transit-Railway",
         "ref": "perf/behavior-preserving-client-20260930",
-        "commit": "f4b2ebe6284d134c811b1f64000734d4060d1927",
+        "commit": "2ac2a880b60f2c70911ced75c512f317896fb44e",
         "trackingBranch": "perf/behavior-preserving-client-20260930",
         "baselineRef": "main",
         "baselineCommit": "53cdc36ebef57c42bdc8633957be1b0e923c40b5"
@@ -2769,7 +2769,7 @@
         "기존 minefed 저장소의 확인된 최신 원격 커밋을 소스 pin으로 사용한다. 운영 JAR와 소스 빌드의 바이트 동일성을 의미하지 않는다.",
         "2026-09-28: Behavior-preserving network/FPS optimizations fast-forwarded minefed-1.20.4 to 5e3e07b2151088b877497a954bbb19e102a6dd9c; see docs/OPTIMIZATION_RESULTS_2026-09-28.md. Captured artifact hashes remain historical baseline evidence.",
         "2026-09-29: RAM/GPU optimizations fast-forwarded minefed-1.20.4 to 0eebe623db14d545c147fa58fc0c2f8f7a838935 (model GPU buffer and dynamic texture leak fixes, per-reload shader compilation, sparse occlusion cache, idle model texture release, MTR font loaded only when enabled, dynamic texture resolution default 1, door textures out of the block atlas, smaller escalator and A320/S700 textures); see docs/RAM_GPU_OPTIMIZATION_RESULTS_2026-09-29.md. Minecraft 1.20.4 / Fabric Loader 0.18.4 / Java 17 bytecode. Captured artifact hashes remain historical baseline evidence.",
-        "2026-09-30: Additional behavior-preserving client rendering work pinned on review branch perf/behavior-preserving-client-20260930 at f4b2ebe6284d134c811b1f64000734d4060d1927. Existing captured JAR hashes remain historical baseline evidence; no default-branch merge or game deployment is implied."
+        "2026-09-30: Additional behavior-preserving client rendering work pinned on review branch perf/behavior-preserving-client-20260930 at 2ac2a880b60f2c70911ced75c512f317896fb44e. Existing captured JAR hashes remain historical baseline evidence; no default-branch merge or game deployment is implied."
       ],
       "compatibility": {
         "minecraft": "1.20.4",
@@ -2797,7 +2797,7 @@
         "url": "https://github.com/minefed/Minecraft-Transit-Railway",
         "upstream": "https://github.com/Minecraft-Transit-Railway/Minecraft-Transit-Railway",
         "ref": "perf/behavior-preserving-client-20260930",
-        "commit": "f4b2ebe6284d134c811b1f64000734d4060d1927",
+        "commit": "2ac2a880b60f2c70911ced75c512f317896fb44e",
         "trackingBranch": "perf/behavior-preserving-client-20260930",
         "baselineRef": "main",
         "baselineCommit": "53cdc36ebef57c42bdc8633957be1b0e923c40b5"
@@ -2824,7 +2824,7 @@
         "2026-09-28: Give internal cargo blocks valid loot tables without nonexistent items. Minecraft 1.20.4 / Fabric Loader 0.18.4 / Java 17 runtime. Source branch codex/fix-cargo-loot; captured artifact hashes remain historical baseline evidence.",
         "2026-09-28: Behavior-preserving network/FPS optimizations fast-forwarded minefed-1.20.4 to 5e3e07b2151088b877497a954bbb19e102a6dd9c; see docs/OPTIMIZATION_RESULTS_2026-09-28.md. Captured artifact hashes remain historical baseline evidence.",
         "2026-09-29: RAM/GPU optimizations fast-forwarded minefed-1.20.4 to 0eebe623db14d545c147fa58fc0c2f8f7a838935 (model GPU buffer and dynamic texture leak fixes, per-reload shader compilation, sparse occlusion cache, idle model texture release, MTR font loaded only when enabled, dynamic texture resolution default 1, door textures out of the block atlas, smaller escalator and A320/S700 textures); see docs/RAM_GPU_OPTIMIZATION_RESULTS_2026-09-29.md. Minecraft 1.20.4 / Fabric Loader 0.18.4 / Java 17 bytecode. Captured artifact hashes remain historical baseline evidence.",
-        "2026-09-30: Additional behavior-preserving client rendering work pinned on review branch perf/behavior-preserving-client-20260930 at f4b2ebe6284d134c811b1f64000734d4060d1927. Existing captured JAR hashes remain historical baseline evidence; no default-branch merge or game deployment is implied."
+        "2026-09-30: Additional behavior-preserving client rendering work pinned on review branch perf/behavior-preserving-client-20260930 at 2ac2a880b60f2c70911ced75c512f317896fb44e. Existing captured JAR hashes remain historical baseline evidence; no default-branch merge or game deployment is implied."
       ],
       "compatibility": {
         "minecraft": "1.20.4",
