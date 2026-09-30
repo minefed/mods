@@ -481,10 +481,11 @@
     {
       "path": "MTR-Station-Decoration-Addon",
       "kind": "mod",
-      "reviewedCommit": "b06fc0725b20a5b7a6c72bdacd20814dd8d8aabf",
+      "reviewedCommit": "286791d619421d1cf7a14ac843c4d766303c9fa5",
       "licenseFiles": {
         "LICENSE.txt": "bfaf4fd2e0cb41e02554476bd760cb5d40f38ba8b10c34e9d73cb809c9f4ccb0",
-        "README.md": "5099d7e06fd13725efb74d3d32cf693f47b1d07b95e170b3108154985d042c6c"
+        "README.md": "5099d7e06fd13725efb74d3d32cf693f47b1d07b95e170b3108154985d042c6c",
+        "verification/README.md": "1fcca6e8e1e455ae7cc2d3f4245abc839b98682baa23c05ee48922d913f5b3a4"
       },
       "nestedGitlinks": {}
     },
@@ -511,7 +512,7 @@
     {
       "path": "Minecraft-Transit-Railway",
       "kind": "mod",
-      "reviewedCommit": "3cdeeeb2951dfd1d9f2ddfe28dd4844e0b732e0e",
+      "reviewedCommit": "0650f2699f7860a119da5f78edfb1c3c492a79ee",
       "licenseFiles": {
         "LICENSE": "c4445a98dbe7fc73944796bcc54c5fefc659f3cacced0ad1cc9c6f794eea0b0e",
         "LICENSE_ORIGINAL": "4d52d2934d6a874ccbb3ece33566801c6796c86d0c86f1b27989b2710f30644b",
@@ -798,10 +799,10 @@
     {
       "path": "minefed-display",
       "kind": "mod",
-      "reviewedCommit": "a1e8f94df20c22c1ccfc4083b1dc01dc7f757e45",
+      "reviewedCommit": "30cad66e155323a87b15dadf63ccc89be92ecd89",
       "licenseFiles": {
         "LICENSE": "df91ea5ffd7b7ef2859e0add9b7aa5bde9790ef51df4cccef63c4607a36e3268",
-        "README.md": "781f7227cec6398d6aaba024057c15a983a3909a203f681983b1f451bd7b7d5c"
+        "README.md": "273459e2a1c1e310a5a9f561ef4a563d2cbf2a3dae1a413294fb9ee40b30dd15"
       },
       "nestedGitlinks": {}
     },

@@ -1,9 +1,10 @@
 name: Verify client render equivalence
 
-# This temporary review branch never invokes the main-branch release workflow.
+# Verify the exact pinned sources on the review branch and after integration.
+# Public packaging and publication remain in the existing release workflow.
 on:
   push:
-    branches: [perf/behavior-preserving-client-20260930]
+    branches: [main, perf/behavior-preserving-client-20260930]
 
 permissions:
   contents: read
@@ -105,12 +106,9 @@ jobs:
           NG_BUILD_MAX_WORKERS: '1'
         run: |
           set -euo pipefail
-          cat > "$RUNNER_TEMP/minefed-test-java17.gradle" <<'GRADLE'
+          cat > "$RUNNER_TEMP/minefed-test-logging.gradle" <<'GRADLE'
           allprojects {
             tasks.withType(Test).configureEach {
-              javaLauncher = javaToolchains.launcherFor {
-                languageVersion = JavaLanguageVersion.of(17)
-              }
               testLogging {
                 exceptionFormat = 'full'
                 showExceptions = true
@@ -123,7 +121,7 @@ jobs:
           bash ./gradlew --no-daemon --max-workers=2 --configure-on-demand \
             '-Dorg.gradle.jvmargs=-Xmx1536m -Dfile.encoding=COMPAT' -Dfabric.loom.ci=true \
             --init-script ../scripts/source-repositories.gradle \
-            --init-script "$RUNNER_TEMP/minefed-test-java17.gradle" \
+            --init-script "$RUNNER_TEMP/minefed-test-logging.gradle" \
             -Porg.gradle.java.installations.paths="$JAVA17_HOME,$JAVA21_HOME" \
             -PminecraftVersion=1.20.4 -PexcludeAssets=false \
             :fabric:test :fabric:build :fabric:verifyRailRendering \
