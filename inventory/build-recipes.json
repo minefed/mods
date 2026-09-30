@@ -594,7 +594,9 @@
       "java": 21,
       "tasks": [
         ":fabric:verifyRailRendering",
-        ":fabric:verifyMixinCompatibility"
+        ":fabric:verifyMixinCompatibility",
+        ":fabric:test",
+        ":fabric:verifyLightTypeCompatibility"
       ],
       "args": [
         "-PminecraftVersion=1.20.4",
