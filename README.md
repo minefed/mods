@@ -38,8 +38,7 @@ PFM 헤링본 판자 11종의 첫 프레임 보라색 텍스처와 월드 데이
 [패킷 통계 도구](tools/packet-stats/README.md)와 [운영 설정 안내](docs/SERVER_TUNING_2026-09-28.md)를 추가했다.
 후속 [RAM·GPU 최적화 조사](docs/RAM_GPU_OPTIMIZATION_PLAN_2026-09-28.md)에 블록 아틀라스 VRAM,
 MTR·웹 화면의 메모리 누수와 JVM 설정 제안을 정리했다.
-그중 1~3단계의 [구현 결과](docs/RAM_GPU_OPTIMIZATION_RESULTS_2026-09-29.md)는 MTR·MSD·client-compat 1.4.0에 반영했다.
-minefed-display·webstreamer 변경은 원격 push 전이라 아직 고정하지 않았다.
+그중 1~3단계의 [구현 결과](docs/RAM_GPU_OPTIMIZATION_RESULTS_2026-09-29.md)는 MTR·MSD·minefed-display·webstreamer·client-compat 1.4.0에 반영해 고정했다.
 [Mixin audit](tools/mixin-audit/README.md)로 모드 전체의 Mixin 적용을 실제 Knot 실행에서 확인한다.
 
 ## 시작하기
