@@ -2363,7 +2363,7 @@
         "url": "https://github.com/minefed/minefed-display",
         "upstream": "https://github.com/minefed/minefed-display",
         "ref": "minefed-1.20.4",
-        "commit": "30cad66e155323a87b15dadf63ccc89be92ecd89",
+        "commit": "b5821c6bed1cf80d3028ecaff2f3ea5077a8d2c5",
         "trackingBranch": "minefed-1.20.4",
         "baselineRef": "main",
         "baselineCommit": "79708da179682295df0dfc379320a0759c25a97d"
@@ -2387,7 +2387,8 @@
         "기존 minefed 저장소의 확인된 최신 원격 커밋을 소스 pin으로 사용한다. 운영 JAR와 소스 빌드의 바이트 동일성을 의미하지 않는다.",
         "2026-09-28: Behavior-preserving network/FPS optimizations fast-forwarded minefed-1.20.4 to c31c7417baa399e3874b7ecc70d87d9f147d857b; see docs/OPTIMIZATION_RESULTS_2026-09-28.md. Captured artifact hashes remain historical baseline evidence.",
         "2026-09-29: RAM/GPU optimizations fast-forwarded minefed-1.20.4 to 8b4cd45ba84560051d021dcacdee747b5a795e03: browsers closed on disconnect and block entity unload, created only for displays in the view frustum and closed after 30 s out of view, and --process-per-site shared Chromium renderers; see docs/RAM_GPU_OPTIMIZATION_RESULTS_2026-09-29.md. Captured artifact hashes remain historical baseline evidence.",
-        "2026-09-30: Approved behavior-preserving client rendering changes pinned for integration on minefed-1.20.4 at 30cad66e155323a87b15dadf63ccc89be92ecd89. Signal/read-order, light singleton, text reuse and display trace checks are recorded by the build recipes and CI. Existing captured JAR hashes remain historical baseline evidence."
+        "2026-09-30: Approved behavior-preserving client rendering changes pinned for integration on minefed-1.20.4 at 30cad66e155323a87b15dadf63ccc89be92ecd89. Signal/read-order, light singleton, text reuse and display trace checks are recorded by the build recipes and CI. Existing captured JAR hashes remain historical baseline evidence.",
+        "2026-10-05: Pin passive-browser cursor capture fix 1.0.1 on minefed-1.20.4. Minecraft 1.20.4 / Fabric / Java 17; install the no-op cursor listener before native browser creation. Historical baseline JAR hashes are unchanged."
       ],
       "compatibility": {
         "minecraft": "~1.20.4",
