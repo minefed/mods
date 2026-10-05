@@ -1,0 +1,1039 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-06",
+  "minecraftVersion": "1.20.4",
+  "loader": "Fabric",
+  "validatedLoaderVersion": "0.18.4",
+  "java": 17,
+  "buildJava": 21,
+  "purpose": "Local client follow-up: bounded dense occlusion cache, reusable culling world view, deferred resource expiry scans, and display cursor ownership fix.",
+  "validation": {
+    "mtr": {
+      "test": 89,
+      "verifyRailRendering": 8,
+      "verifyMixinCompatibility": 8,
+      "verifyLightTypeCompatibility": 3,
+      "failures": 0,
+      "skipped": 0,
+      "errors": 0
+    },
+    "display": {
+      "build": true,
+      "verifyDisplayCursor": true,
+      "bezelCases": 13552,
+      "bezelVertices": 23586112,
+      "fixturesExcludedFromJar": true
+    },
+    "root": {
+      "buildToolTests": 54,
+      "releaseInputTests": 17,
+      "buildPlan": true
+    },
+    "mtrResources": {
+      "paths": 4387,
+      "added": 0,
+      "removed": 0,
+      "lineEndingOnlyDifferences": 2008,
+      "semanticDifferences": 0
+    },
+    "inGame": {
+      "scope": "One Windows client device; paired fresh-launch A2/B2 foreground captures along the same measurement route, subject to the limitations below.",
+      "cursor": "The included display cursor ownership fix passed automated regression checks. These performance captures do not establish a full native CEF cursor-interaction test.",
+      "serverFilesChanged": false,
+      "graphicsOptionsChangedDuringA2B2": false,
+      "bundleChangesGraphicsOptions": false,
+      "finalLocalSettings": {
+        "enableVsync": false,
+        "maxFps": 60,
+        "otherMeasuredGraphicsAndDistanceOptionsUnchanged": true,
+        "scope": "The tested local profile only; the two-JAR bundle contains no options file and does not force this setting on installation."
+      },
+      "finalLocalProfileOptionsChanged": true
+    }
+  },
+  "hardware": {
+    "cpu": "AMD Ryzen 7 7730U with Radeon Graphics",
+    "physicalCores": 8,
+    "logicalProcessors": 16,
+    "gpu": "AMD Radeon (TM) Graphics",
+    "gpuDriverVersion": "31.0.21914.7005",
+    "memoryGiB": 29.84
+  },
+  "measurements": {
+    "control": {
+      "phase": "a2",
+      "mtrSourceCommit": "0650f2699f7860a119da5f78edfb1c3c492a79ee",
+      "displaySourceCommit": "b5821c6bed1cf80d3028ecaff2f3ea5077a8d2c5",
+      "frameMetrics": {
+        "combined": {
+          "run_count": 3,
+          "duration_ms": 30009,
+          "render_loop_count": 1050,
+          "fps": 34.98950314905528,
+          "sample_count": 1050,
+          "mean_loop_ms": 28.483648111428572,
+          "p50_loop_ms": 26.1287,
+          "p95_loop_ms": 45.7206,
+          "p99_loop_ms": 56.9201,
+          "max_loop_ms": 132.8307,
+          "frames_over_50ms": 29,
+          "frames_over_100ms": 1
+        },
+        "runs": [
+          {
+            "duration_ms": 10008,
+            "render_loop_count": 335,
+            "fps": 33.47322142286171,
+            "sample_count": 335,
+            "mean_loop_ms": 29.717020298507464,
+            "p50_loop_ms": 27.4153,
+            "p95_loop_ms": 49.5495,
+            "p99_loop_ms": 56.9201,
+            "max_loop_ms": 132.8307,
+            "frames_over_50ms": 15,
+            "frames_over_100ms": 1
+          },
+          {
+            "duration_ms": 10000,
+            "render_loop_count": 363,
+            "fps": 36.3,
+            "sample_count": 363,
+            "mean_loop_ms": 27.47433503305785,
+            "p50_loop_ms": 25.8324,
+            "p95_loop_ms": 38.817101,
+            "p99_loop_ms": 48.1856,
+            "max_loop_ms": 63.6193,
+            "frames_over_50ms": 3,
+            "frames_over_100ms": 0
+          },
+          {
+            "duration_ms": 10001,
+            "render_loop_count": 352,
+            "fps": 35.1964803519648,
+            "sample_count": 352,
+            "mean_loop_ms": 28.350696306818183,
+            "p50_loop_ms": 25.9096,
+            "p95_loop_ms": 43.8673,
+            "p99_loop_ms": 64.8655,
+            "max_loop_ms": 85.1643,
+            "frames_over_50ms": 11,
+            "frames_over_100ms": 0
+          }
+        ]
+      },
+      "alignedOsMetrics": {
+        "frameWindowsCombined": {
+          "rate_intervals": 33,
+          "weighted_interval_seconds": 30.008968,
+          "process_cpu_machine_percent_mean": 14.250354186184639,
+          "process_cpu_one_core_percent_mean": 228.00566697895422,
+          "system_cpu_percent_mean": 22.631417250968674,
+          "focused_snapshots": 30,
+          "snapshots": 30,
+          "working_set_mib": {
+            "n": 30,
+            "mean": 8864.10859375,
+            "min": 8852.27734375,
+            "max": 8875.08984375
+          },
+          "private_mib": {
+            "n": 30,
+            "mean": 10645.353515625,
+            "min": 10631.859375,
+            "max": 10657.35546875
+          }
+        },
+        "frameWindows": [
+          {
+            "rate_intervals": 11,
+            "weighted_interval_seconds": 10.007963,
+            "process_cpu_machine_percent_mean": 16.47316643406057,
+            "process_cpu_one_core_percent_mean": 263.5706629449691,
+            "system_cpu_percent_mean": 24.06915742077858,
+            "focused_snapshots": 10,
+            "snapshots": 10,
+            "working_set_mib": {
+              "n": 10,
+              "mean": 8874.76484375,
+              "min": 8874.1796875,
+              "max": 8875.08984375
+            },
+            "private_mib": {
+              "n": 10,
+              "mean": 10657.097265625,
+              "min": 10656.57421875,
+              "max": 10657.35546875
+            }
+          },
+          {
+            "rate_intervals": 11,
+            "weighted_interval_seconds": 9.99998,
+            "process_cpu_machine_percent_mean": 12.298923808354802,
+            "process_cpu_one_core_percent_mean": 196.78278093367683,
+            "system_cpu_percent_mean": 21.886157448792602,
+            "focused_snapshots": 10,
+            "snapshots": 10,
+            "working_set_mib": {
+              "n": 10,
+              "mean": 8861.337890625,
+              "min": 8861.28125,
+              "max": 8861.38671875
+            },
+            "private_mib": {
+              "n": 10,
+              "mean": 10642.55234375,
+              "min": 10642.48828125,
+              "max": 10642.6484375
+            }
+          },
+          {
+            "rate_intervals": 11,
+            "weighted_interval_seconds": 10.001025,
+            "process_cpu_machine_percent_mean": 13.977226383484581,
+            "process_cpu_one_core_percent_mean": 223.6356221357533,
+            "system_cpu_percent_mean": 21.937861609771243,
+            "focused_snapshots": 10,
+            "snapshots": 10,
+            "working_set_mib": {
+              "n": 10,
+              "mean": 8856.223046875,
+              "min": 8852.27734375,
+              "max": 8861.55078125
+            },
+            "private_mib": {
+              "n": 10,
+              "mean": 10636.4109375,
+              "min": 10631.859375,
+              "max": 10642.68359375
+            }
+          }
+        ],
+        "jfrWindow": {
+          "rate_intervals": 31,
+          "weighted_interval_seconds": 30.000327,
+          "process_cpu_machine_percent_mean": 24.00863420644266,
+          "process_cpu_one_core_percent_mean": 384.1381473030826,
+          "system_cpu_percent_mean": 32.336533702205784,
+          "focused_snapshots": 30,
+          "snapshots": 30,
+          "working_set_mib": {
+            "n": 30,
+            "mean": 8886.519921875,
+            "min": 8859.21875,
+            "max": 8924.234375
+          },
+          "private_mib": {
+            "n": 30,
+            "mean": 10667.620572916667,
+            "min": 10639.98828125,
+            "max": 10706.60546875
+          }
+        },
+        "jfrOverlapsFrameWindows": false,
+        "maxOsSampleGapSeconds": 1.022608,
+        "frameOsCoverage": {
+          "samples": 181,
+          "focused_samples": 181,
+          "max_sample_gap_seconds": 1.022608
+        },
+        "jfrOsCoverage": {
+          "samples": 181,
+          "focused_samples": 181,
+          "max_sample_gap_seconds": 1.022608
+        },
+        "separateFrameAndJfrOsSessions": false,
+        "systemDetails": {
+          "Minecraft Version": "1.20.4",
+          "Java Version": "17.0.20.1, Azul Systems, Inc.",
+          "Window size": "854x480",
+          "Backend API": "AMD Radeon (TM) Graphics GL version 3.2.0 Core Profile Context 23.19.14.07.240801, ATI Technologies Inc.",
+          "Graphics mode": "fast",
+          "CPU": "16x AMD Ryzen 7 7730U with Radeon Graphics"
+        },
+        "options": {
+          "enableVsync": "true",
+          "fullscreen": "false",
+          "graphicsMode": "fast",
+          "maxFps": "60",
+          "mipmapLevels": "4",
+          "renderDistance": "12",
+          "simulationDistance": "12"
+        },
+        "gpuTimerRatioPercent": {
+          "n": 1050,
+          "mean": 39.90948664662949,
+          "min": 7.341653034498408,
+          "max": 75.54148762738167
+        },
+        "gpuMetricNote": "Minecraft GPU timer query duration divided by metricsSampleDuration; not Windows GPU engine utilization.",
+        "timingNote": "FPS-window OS alignment is approximate: report filename timestamps have one-second resolution. JFR alignment uses the recorded start/duration. CPU means weight sampled-rate intervals by window overlap; memory uses snapshots inside each window. When separateFrameAndJfrOsSessions is true, the frame OS session does not establish JFR coverage; jfrOsCoverage describes its separate collector."
+      },
+      "jfr": {
+        "recordingSeconds": 30.0,
+        "threadGroups": {
+          "render": {
+            "executionSamples": {
+              "java": 325,
+              "native": 84
+            },
+            "allocationMiBPerSecond": 72.75442586400355,
+            "cachedResourceTickInclusiveJavaSamples": 23
+          },
+          "mtrWorker": {
+            "executionSamples": {
+              "java": 2231
+            },
+            "allocationMiBPerSecond": 49.22572415342351
+          }
+        },
+        "series": {
+          "heapMiB.After GC": {
+            "n": 3,
+            "mean": 3640.9308700561523,
+            "min": 3518.2173233032227,
+            "max": 3886.287643432617,
+            "p95": 3518.287643432617,
+            "sum": 10922.792610168457
+          },
+          "heapMiB.Before GC": {
+            "n": 3,
+            "mean": 4817.097358703613,
+            "min": 3518.287643432617,
+            "max": 5470.217323303223,
+            "p95": 5462.787109375,
+            "sum": 14451.29207611084
+          },
+          "jdk.GCPhasePause.ms": {
+            "n": 4,
+            "mean": 6.158275,
+            "min": 1.0078,
+            "max": 10.1941,
+            "p95": 7.0248,
+            "sum": 24.6331
+          }
+        },
+        "deoptimizations": {
+          "total": 5,
+          "vertexAttributeStateApply": 0,
+          "cachedResourceGetData": 0
+        }
+      },
+      "foregroundObservation": {
+        "sessionDurationSeconds": 180.0262361,
+        "samples": 181,
+        "foregroundSamples": 181,
+        "allSampledTimesForeground": true,
+        "scope": "Session-level once-per-second focus samples; transitions between samples are not detected. This is not an aligned per-frame OS CPU statistic."
+      }
+    },
+    "patched": {
+      "phase": "b2",
+      "mtrSourceCommit": "8167073c541f88996eb2ab4a184f1c27aac2462b",
+      "displaySourceCommit": "b5821c6bed1cf80d3028ecaff2f3ea5077a8d2c5",
+      "frameMetrics": {
+        "combined": {
+          "run_count": 3,
+          "duration_ms": 30035,
+          "render_loop_count": 1088,
+          "fps": 36.224404860995506,
+          "sample_count": 1088,
+          "mean_loop_ms": 27.520660665441174,
+          "p50_loop_ms": 26.2292,
+          "p95_loop_ms": 38.2827,
+          "p99_loop_ms": 47.1715,
+          "max_loop_ms": 92.7267,
+          "frames_over_50ms": 4,
+          "frames_over_100ms": 0
+        },
+        "runs": [
+          {
+            "duration_ms": 10003,
+            "render_loop_count": 344,
+            "fps": 34.389683095071476,
+            "sample_count": 344,
+            "mean_loop_ms": 28.948246220930233,
+            "p50_loop_ms": 28.1612,
+            "p95_loop_ms": 40.0596,
+            "p99_loop_ms": 49.2456,
+            "max_loop_ms": 92.7267,
+            "frames_over_50ms": 3,
+            "frames_over_100ms": 0
+          },
+          {
+            "duration_ms": 10024,
+            "render_loop_count": 377,
+            "fps": 37.609736632083,
+            "sample_count": 377,
+            "mean_loop_ms": 26.52090531564987,
+            "p50_loop_ms": 25.614601,
+            "p95_loop_ms": 37.6586,
+            "p99_loop_ms": 44.1862,
+            "max_loop_ms": 50.8719,
+            "frames_over_50ms": 1,
+            "frames_over_100ms": 0
+          },
+          {
+            "duration_ms": 10008,
+            "render_loop_count": 367,
+            "fps": 36.67066346922462,
+            "sample_count": 367,
+            "mean_loop_ms": 27.209538964577654,
+            "p50_loop_ms": 25.8958,
+            "p95_loop_ms": 38.0012,
+            "p99_loop_ms": 46.1121,
+            "max_loop_ms": 48.1886,
+            "frames_over_50ms": 0,
+            "frames_over_100ms": 0
+          }
+        ]
+      },
+      "alignedOsMetrics": {
+        "frameWindowsCombined": {
+          "rate_intervals": 33,
+          "weighted_interval_seconds": 30.036263,
+          "process_cpu_machine_percent_mean": 12.866220395729293,
+          "process_cpu_one_core_percent_mean": 205.8595263316687,
+          "system_cpu_percent_mean": 21.947007853994837,
+          "focused_snapshots": 30,
+          "snapshots": 30,
+          "working_set_mib": {
+            "n": 30,
+            "mean": 9174.754557291666,
+            "min": 9164.3515625,
+            "max": 9189.33203125
+          },
+          "private_mib": {
+            "n": 30,
+            "mean": 10927.926041666668,
+            "min": 10916.61328125,
+            "max": 10943.8671875
+          }
+        },
+        "frameWindows": [
+          {
+            "rate_intervals": 11,
+            "weighted_interval_seconds": 10.004046,
+            "process_cpu_machine_percent_mean": 13.69589542399285,
+            "process_cpu_one_core_percent_mean": 219.1343267838856,
+            "system_cpu_percent_mean": 21.99185881086854,
+            "focused_snapshots": 10,
+            "snapshots": 10,
+            "working_set_mib": {
+              "n": 10,
+              "mean": 9187.69453125,
+              "min": 9187.05078125,
+              "max": 9189.33203125
+            },
+            "private_mib": {
+              "n": 10,
+              "mean": 10942.0703125,
+              "min": 10941.5,
+              "max": 10943.8671875
+            }
+          },
+          {
+            "rate_intervals": 11,
+            "weighted_interval_seconds": 10.024157,
+            "process_cpu_machine_percent_mean": 12.176864252632289,
+            "process_cpu_one_core_percent_mean": 194.82982804211662,
+            "system_cpu_percent_mean": 21.68085975638019,
+            "focused_snapshots": 10,
+            "snapshots": 10,
+            "working_set_mib": {
+              "n": 10,
+              "mean": 9172.1640625,
+              "min": 9172.015625,
+              "max": 9172.23046875
+            },
+            "private_mib": {
+              "n": 10,
+              "mean": 10925.030859375,
+              "min": 10925.01171875,
+              "max": 10925.15234375
+            }
+          },
+          {
+            "rate_intervals": 11,
+            "weighted_interval_seconds": 10.00806,
+            "process_cpu_machine_percent_mean": 12.727343036832458,
+            "process_cpu_one_core_percent_mean": 203.63748858931933,
+            "system_cpu_percent_mean": 22.16875105697644,
+            "focused_snapshots": 10,
+            "snapshots": 10,
+            "working_set_mib": {
+              "n": 10,
+              "mean": 9164.405078125,
+              "min": 9164.3515625,
+              "max": 9164.58203125
+            },
+            "private_mib": {
+              "n": 10,
+              "mean": 10916.676953125,
+              "min": 10916.61328125,
+              "max": 10916.875
+            }
+          }
+        ],
+        "jfrWindow": {
+          "rate_intervals": 31,
+          "weighted_interval_seconds": 30.001797,
+          "process_cpu_machine_percent_mean": 23.306285019044143,
+          "process_cpu_one_core_percent_mean": 372.9005603047063,
+          "system_cpu_percent_mean": 32.28258142612099,
+          "focused_snapshots": 30,
+          "snapshots": 30,
+          "working_set_mib": {
+            "n": 30,
+            "mean": 9106.418880208334,
+            "min": 9035.36328125,
+            "max": 9157.9140625
+          },
+          "private_mib": {
+            "n": 30,
+            "mean": 10921.54765625,
+            "min": 10848.69921875,
+            "max": 10973.64453125
+          }
+        },
+        "jfrOverlapsFrameWindows": false,
+        "maxOsSampleGapSeconds": 1.024737,
+        "frameOsCoverage": {
+          "samples": 181,
+          "focused_samples": 181,
+          "max_sample_gap_seconds": 1.024737
+        },
+        "jfrOsCoverage": {
+          "samples": 181,
+          "focused_samples": 181,
+          "max_sample_gap_seconds": 1.024737
+        },
+        "separateFrameAndJfrOsSessions": false,
+        "systemDetails": {
+          "Minecraft Version": "1.20.4",
+          "Java Version": "17.0.20.1, Azul Systems, Inc.",
+          "Window size": "854x480",
+          "Backend API": "AMD Radeon (TM) Graphics GL version 3.2.0 Core Profile Context 23.19.14.07.240801, ATI Technologies Inc.",
+          "Graphics mode": "fast",
+          "CPU": "16x AMD Ryzen 7 7730U with Radeon Graphics"
+        },
+        "options": {
+          "enableVsync": "true",
+          "fullscreen": "false",
+          "graphicsMode": "fast",
+          "maxFps": "60",
+          "mipmapLevels": "4",
+          "renderDistance": "12",
+          "simulationDistance": "12"
+        },
+        "gpuTimerRatioPercent": {
+          "n": 1088,
+          "mean": 39.46213517323148,
+          "min": 13.04765525523351,
+          "max": 76.07081652349902
+        },
+        "gpuMetricNote": "Minecraft GPU timer query duration divided by metricsSampleDuration; not Windows GPU engine utilization.",
+        "timingNote": "FPS-window OS alignment is approximate: report filename timestamps have one-second resolution. JFR alignment uses the recorded start/duration. CPU means weight sampled-rate intervals by window overlap; memory uses snapshots inside each window. When separateFrameAndJfrOsSessions is true, the frame OS session does not establish JFR coverage; jfrOsCoverage describes its separate collector."
+      },
+      "jfr": {
+        "recordingSeconds": 30.0,
+        "threadGroups": {
+          "render": {
+            "executionSamples": {
+              "java": 345,
+              "native": 89
+            },
+            "allocationMiBPerSecond": 79.78707985436336,
+            "cachedResourceTickInclusiveJavaSamples": 2
+          },
+          "mtrWorker": {
+            "executionSamples": {
+              "java": 1958
+            },
+            "allocationMiBPerSecond": 41.10634581416937
+          }
+        },
+        "series": {
+          "heapMiB.After GC": {
+            "n": 2,
+            "mean": 3432.811019897461,
+            "min": 3419.6073303222656,
+            "max": 3446.0147094726562,
+            "p95": 3419.6073303222656,
+            "sum": 6865.622039794922
+          },
+          "heapMiB.Before GC": {
+            "n": 2,
+            "mean": 4618.006511688232,
+            "min": 3730.0147094726562,
+            "max": 5505.998313903809,
+            "p95": 3730.0147094726562,
+            "sum": 9236.013023376465
+          },
+          "jdk.GCPhasePause.ms": {
+            "n": 2,
+            "mean": 20.7887,
+            "min": 10.0981,
+            "max": 31.4793,
+            "p95": 10.0981,
+            "sum": 41.5774
+          }
+        },
+        "deoptimizations": {
+          "total": 5,
+          "vertexAttributeStateApply": 0,
+          "cachedResourceGetData": 0
+        }
+      },
+      "foregroundObservation": {
+        "sessionDurationSeconds": 180.0255378,
+        "samples": 181,
+        "foregroundSamples": 181,
+        "allSampledTimesForeground": true,
+        "scope": "Session-level once-per-second focus samples; transitions between samples are not detected. This is not an aligned per-frame OS CPU statistic."
+      }
+    },
+    "observedFpsDifference": 1.2349017119402248,
+    "observedFpsChangePercent": 3.5293490927251536,
+    "interpretation": "Descriptive observations on this device, not a guaranteed or independently isolated causal FPS gain. All results, including unfavorable ones, are retained.",
+    "metricDefinition": "FPS is client render-loop count divided by profile duration. Frame percentiles use nearest rank. These are not server TPS or GPU presentation latency.",
+    "allocationDefinition": "JFR allocation rates use cumulative ThreadAllocationStatistics deltas; allocation sampling weights are deliberately omitted.",
+    "samplingDefinition": "Java execution sample counts and inclusive method sample counts are sampling evidence, not additive CPU percentages or elapsed frame times.",
+    "limitations": [
+      "A2/B2 are repeated windows from one fresh process per condition, not independent trials across devices.",
+      "Moving vehicles, server activity, warm-up and thermal/scheduling variation can affect results.",
+      "Frame profiles and JFR are separate observation windows; do not divide JFR totals by frame-profile frame counts.",
+      "Focus is sampled about once per second; report filenames permit approximate FPS-window OS alignment, not subsecond synchronization."
+    ]
+  },
+  "excludedOrConfoundedCaptures": [
+    {
+      "phase": "patched-early",
+      "classification": "excluded",
+      "frameMetrics": {
+        "run_count": 3,
+        "duration_ms": 30028,
+        "render_loop_count": 1750,
+        "fps": 58.278939656320766,
+        "sample_count": 1750,
+        "mean_loop_ms": 17.083239364,
+        "p50_loop_ms": 16.6305,
+        "p95_loop_ms": 19.566799,
+        "p99_loop_ms": 26.409901,
+        "max_loop_ms": 56.446899,
+        "frames_over_50ms": 1,
+        "frames_over_100ms": 0
+      },
+      "reason": "Rail workload had not fully loaded; approximately 58 FPS must not be presented as a measured improvement."
+    },
+    {
+      "phase": "patched",
+      "classification": "JIT-deoptimization-confounded B1 observation",
+      "frameMetrics": {
+        "run_count": 3,
+        "duration_ms": 30061,
+        "render_loop_count": 894,
+        "fps": 29.7395296230997,
+        "sample_count": 894,
+        "mean_loop_ms": 33.556901118568234,
+        "p50_loop_ms": 32.4731,
+        "p95_loop_ms": 49.4873,
+        "p99_loop_ms": 69.3469,
+        "max_loop_ms": 166.7894,
+        "frames_over_50ms": 39,
+        "frames_over_100ms": 5
+      },
+      "deoptimizations": {
+        "total": 464185,
+        "vertexAttributeStateApply": 463447,
+        "cachedResourceGetData": 720
+      },
+      "reason": "Late route reset followed a different warm-up history, with repeated VertexAttributeState.apply color-branch deoptimizations. The renderer bytecode is identical across the old/new JARs; this run is retained but not used as the primary paired comparison."
+    }
+  ],
+  "entries": [
+    {
+      "modId": "mtr",
+      "version": "4.0.5",
+      "fileName": "fabric-4.0.5.jar",
+      "artifactPath": "Minecraft-Transit-Railway/fabric/build/libs/fabric-4.0.5.jar",
+      "sha256": "60961be723771edbd3bfc5c22e75e0cbc021df261b21907ed172422b1d6349c1",
+      "size": 83178680,
+      "source": {
+        "path": "Minecraft-Transit-Railway",
+        "url": "https://github.com/minefed/Minecraft-Transit-Railway",
+        "trackingBranch": "minefed-1.20.4",
+        "commit": "8167073c541f88996eb2ab4a184f1c27aac2462b"
+      },
+      "sourceUrl": "https://github.com/minefed/Minecraft-Transit-Railway/commit/8167073c541f88996eb2ab4a184f1c27aac2462b",
+      "license": "MIT",
+      "binaryLicense": "MIT",
+      "compatibility": {
+        "fabric": "*",
+        "minecraft": "1.20.4"
+      },
+      "bundlePath": "mods/fabric-4.0.5.jar",
+      "provenanceInventory": "inventory/client-regression-fixes-2026-10-05.json",
+      "licenseNotices": [
+        {
+          "path": "licenses/mtr/LICENSE",
+          "sourcePath": "Minecraft-Transit-Railway/LICENSE",
+          "sourceCommit": "8167073c541f88996eb2ab4a184f1c27aac2462b",
+          "sha256": "c4445a98dbe7fc73944796bcc54c5fefc659f3cacced0ad1cc9c6f794eea0b0e",
+          "size": 1068
+        },
+        {
+          "path": "licenses/mtr/LICENSE_ORIGINAL",
+          "sourcePath": "Minecraft-Transit-Railway/LICENSE_ORIGINAL",
+          "sourceCommit": "8167073c541f88996eb2ab4a184f1c27aac2462b",
+          "sha256": "4d52d2934d6a874ccbb3ece33566801c6796c86d0c86f1b27989b2710f30644b",
+          "size": 1068
+        }
+      ],
+      "rollbackBaseline": {
+        "fileName": "fabric-4.0.5.jar",
+        "sha256": "e892395bfe22d5e8c653f61e3a7946a14aa989ece09d9c903af7da19a6649f0c",
+        "instruction": "Restore the user's pre-update backup; old binaries are not included in this bundle."
+      }
+    },
+    {
+      "modId": "minefed-display",
+      "version": "1.0.1",
+      "fileName": "minefed-display-1.0.1.jar",
+      "artifactPath": "minefed-display/build/libs/minefed-display-1.0.1.jar",
+      "sha256": "f0dc65505f2f9721801af666bbeb0fab7da4c48518eae444c55ae484ff4fc910",
+      "size": 93994,
+      "source": {
+        "path": "minefed-display",
+        "url": "https://github.com/minefed/minefed-display",
+        "trackingBranch": "minefed-1.20.4",
+        "commit": "b5821c6bed1cf80d3028ecaff2f3ea5077a8d2c5"
+      },
+      "sourceUrl": "https://github.com/minefed/minefed-display/commit/b5821c6bed1cf80d3028ecaff2f3ea5077a8d2c5",
+      "license": "MIT",
+      "binaryLicense": "MIT",
+      "compatibility": {
+        "fabricloader": ">=0.16.14",
+        "minecraft": "~1.20.4",
+        "java": ">=17",
+        "fabric-api": "*"
+      },
+      "bundlePath": "mods/minefed-display-1.0.1.jar",
+      "provenanceInventory": "inventory/client-regression-fixes-2026-10-05.json",
+      "licenseNotices": [
+        {
+          "path": "licenses/minefed-display/LICENSE",
+          "sourcePath": "minefed-display/LICENSE",
+          "sourceCommit": "b5821c6bed1cf80d3028ecaff2f3ea5077a8d2c5",
+          "sha256": "df91ea5ffd7b7ef2859e0add9b7aa5bde9790ef51df4cccef63c4607a36e3268",
+          "size": 1074
+        }
+      ],
+      "rollbackBaseline": {
+        "fileName": "minefed-display-1.0.0.jar",
+        "sha256": "8e396e33f7d3d89fcaf422ba0605d80297fa4330f9b3bbb7c90ed8cb99a462fd",
+        "instruction": "Restore the user's pre-update backup; old binaries are not included in this bundle."
+      }
+    }
+  ],
+  "sourceCommits": [
+    "d0be6a9295c0739cd186484699193c243d4f48b5",
+    "8167073c541f88996eb2ab4a184f1c27aac2462b"
+  ],
+  "licensePolicy": "Source and binary MIT status is carried from the reviewed inventory and checked against JAR metadata. Original copyright/license notices are included; embedded JAR notices remain unchanged.",
+  "settingTrials": [
+    {
+      "classification": "Separate device setting trial using the same patched JARs; not part of the A2/B2 code comparison.",
+      "referencePhase": "b2",
+      "changes": {
+        "enableVsync": {
+          "before": true,
+          "after": false
+        }
+      },
+      "capture": {
+        "phase": "vsync-off",
+        "mtrSourceCommit": "8167073c541f88996eb2ab4a184f1c27aac2462b",
+        "displaySourceCommit": "b5821c6bed1cf80d3028ecaff2f3ea5077a8d2c5",
+        "frameMetrics": {
+          "combined": {
+            "run_count": 3,
+            "duration_ms": 30018,
+            "render_loop_count": 1680,
+            "fps": 55.96642014791125,
+            "sample_count": 1680,
+            "mean_loop_ms": 17.807536904761903,
+            "p50_loop_ms": 16.6649,
+            "p95_loop_ms": 22.1049,
+            "p99_loop_ms": 41.3187,
+            "max_loop_ms": 71.4452,
+            "frames_over_50ms": 11,
+            "frames_over_100ms": 0
+          },
+          "runs": [
+            {
+              "duration_ms": 10000,
+              "render_loop_count": 583,
+              "fps": 58.3,
+              "sample_count": 583,
+              "mean_loop_ms": 17.096491595197257,
+              "p50_loop_ms": 16.6596,
+              "p95_loop_ms": 19.9131,
+              "p99_loop_ms": 23.252,
+              "max_loop_ms": 27.9999,
+              "frames_over_50ms": 0,
+              "frames_over_100ms": 0
+            },
+            {
+              "duration_ms": 10015,
+              "render_loop_count": 551,
+              "fps": 55.01747378931603,
+              "sample_count": 551,
+              "mean_loop_ms": 18.11079927404719,
+              "p50_loop_ms": 16.6801,
+              "p95_loop_ms": 24.5492,
+              "p99_loop_ms": 39.7635,
+              "max_loop_ms": 56.8087,
+              "frames_over_50ms": 1,
+              "frames_over_100ms": 0
+            },
+            {
+              "duration_ms": 10003,
+              "render_loop_count": 546,
+              "fps": 54.58362491252624,
+              "sample_count": 546,
+              "mean_loop_ms": 18.260727106227105,
+              "p50_loop_ms": 16.6624,
+              "p95_loop_ms": 23.6034,
+              "p99_loop_ms": 53.5051,
+              "max_loop_ms": 71.4452,
+              "frames_over_50ms": 10,
+              "frames_over_100ms": 0
+            }
+          ]
+        },
+        "alignedOsMetrics": {
+          "frameWindowsCombined": {
+            "rate_intervals": 33,
+            "weighted_interval_seconds": 30.018079,
+            "process_cpu_machine_percent_mean": 19.721733626398102,
+            "process_cpu_one_core_percent_mean": 315.54773802236963,
+            "system_cpu_percent_mean": 33.422159734052244,
+            "focused_snapshots": 30,
+            "snapshots": 30,
+            "working_set_mib": {
+              "n": 30,
+              "mean": 8506.615885416666,
+              "min": 8489.46484375,
+              "max": 8549.2109375
+            },
+            "private_mib": {
+              "n": 30,
+              "mean": 10535.31796875,
+              "min": 10515.984375,
+              "max": 10581.91796875
+            }
+          },
+          "frameWindows": [
+            {
+              "rate_intervals": 11,
+              "weighted_interval_seconds": 9.999888,
+              "process_cpu_machine_percent_mean": 21.2794571832839,
+              "process_cpu_one_core_percent_mean": 340.4713149325424,
+              "system_cpu_percent_mean": 31.93031028544757,
+              "focused_snapshots": 10,
+              "snapshots": 10,
+              "working_set_mib": {
+                "n": 10,
+                "mean": 8490.93046875,
+                "min": 8489.46484375,
+                "max": 8504.046875
+              },
+              "private_mib": {
+                "n": 10,
+                "mean": 10517.515625,
+                "min": 10515.984375,
+                "max": 10531.296875
+              }
+            },
+            {
+              "rate_intervals": 11,
+              "weighted_interval_seconds": 10.015147,
+              "process_cpu_machine_percent_mean": 17.660535161184608,
+              "process_cpu_one_core_percent_mean": 282.56856257895373,
+              "system_cpu_percent_mean": 36.026090665156666,
+              "focused_snapshots": 10,
+              "snapshots": 10,
+              "working_set_mib": {
+                "n": 10,
+                "mean": 8503.030859375,
+                "min": 8502.3984375,
+                "max": 8503.89453125
+              },
+              "private_mib": {
+                "n": 10,
+                "mean": 10531.044140625,
+                "min": 10530.62109375,
+                "max": 10531.5390625
+              }
+            },
+            {
+              "rate_intervals": 11,
+              "weighted_interval_seconds": 10.003044000000001,
+              "process_cpu_machine_percent_mean": 20.228193912033944,
+              "process_cpu_one_core_percent_mean": 323.6511025925431,
+              "system_cpu_percent_mean": 32.306456988573046,
+              "focused_snapshots": 10,
+              "snapshots": 10,
+              "working_set_mib": {
+                "n": 10,
+                "mean": 8525.886328125,
+                "min": 8501.1328125,
+                "max": 8549.2109375
+              },
+              "private_mib": {
+                "n": 10,
+                "mean": 10557.394140625,
+                "min": 10531.31640625,
+                "max": 10581.91796875
+              }
+            }
+          ],
+          "jfrWindow": {
+            "rate_intervals": 31,
+            "weighted_interval_seconds": 30.00019,
+            "process_cpu_machine_percent_mean": 18.59620163982201,
+            "process_cpu_one_core_percent_mean": 297.53922623715215,
+            "system_cpu_percent_mean": 27.70735559674701,
+            "focused_snapshots": 30,
+            "snapshots": 30,
+            "working_set_mib": {
+              "n": 30,
+              "mean": 8467.303515625,
+              "min": 8455.921875,
+              "max": 8489.8359375
+            },
+            "private_mib": {
+              "n": 30,
+              "mean": 10490.118359375,
+              "min": 10477.1171875,
+              "max": 10516.13671875
+            }
+          },
+          "jfrOverlapsFrameWindows": false,
+          "maxOsSampleGapSeconds": 1.025954,
+          "frameOsCoverage": {
+            "samples": 121,
+            "focused_samples": 121,
+            "max_sample_gap_seconds": 1.025954
+          },
+          "jfrOsCoverage": {
+            "samples": 61,
+            "focused_samples": 61,
+            "max_sample_gap_seconds": 1.015568
+          },
+          "separateFrameAndJfrOsSessions": true,
+          "systemDetails": {
+            "Minecraft Version": "1.20.4",
+            "Java Version": "17.0.20.1, Azul Systems, Inc.",
+            "Window size": "854x480",
+            "Backend API": "AMD Radeon (TM) Graphics GL version 3.2.0 Core Profile Context 23.19.14.07.240801, ATI Technologies Inc.",
+            "Graphics mode": "fast",
+            "CPU": "16x AMD Ryzen 7 7730U with Radeon Graphics"
+          },
+          "options": {
+            "enableVsync": "false",
+            "fullscreen": "false",
+            "graphicsMode": "fast",
+            "maxFps": "60",
+            "mipmapLevels": "4",
+            "renderDistance": "12",
+            "simulationDistance": "12"
+          },
+          "gpuTimerRatioPercent": {
+            "n": 1680,
+            "mean": 62.457876368040516,
+            "min": 15.134843581445523,
+            "max": 181.96278769627878
+          },
+          "gpuMetricNote": "Minecraft GPU timer query duration divided by metricsSampleDuration; not Windows GPU engine utilization.",
+          "timingNote": "FPS-window OS alignment is approximate: report filename timestamps have one-second resolution. JFR alignment uses the recorded start/duration. CPU means weight sampled-rate intervals by window overlap; memory uses snapshots inside each window. When separateFrameAndJfrOsSessions is true, the frame OS session does not establish JFR coverage; jfrOsCoverage describes its separate collector."
+        },
+        "jfr": {
+          "recordingSeconds": 30.0,
+          "threadGroups": {
+            "render": {
+              "executionSamples": {
+                "java": 687,
+                "native": 76
+              },
+              "allocationMiBPerSecond": 150.69817057759948,
+              "cachedResourceTickInclusiveJavaSamples": 0
+            },
+            "mtrWorker": {
+              "executionSamples": {
+                "java": 2262
+              },
+              "allocationMiBPerSecond": 45.01356921164183
+            }
+          },
+          "series": {
+            "heapMiB.After GC": {
+              "n": 5,
+              "mean": 3420.2241760253905,
+              "min": 3280.1863861083984,
+              "max": 3933.614547729492,
+              "p95": 3297.614547729492,
+              "sum": 17101.120880126953
+            },
+            "heapMiB.Before GC": {
+              "n": 5,
+              "mean": 4677.333995056152,
+              "min": 3297.614547729492,
+              "max": 5504.322341918945,
+              "p95": 5501.735481262207,
+              "sum": 23386.66997528076
+            },
+            "jdk.GCPhasePause.ms": {
+              "n": 6,
+              "mean": 9.018183333333333,
+              "min": 1.0144,
+              "max": 24.5972,
+              "p95": 10.3497,
+              "sum": 54.1091
+            }
+          },
+          "deoptimizations": {
+            "total": 6,
+            "vertexAttributeStateApply": 0,
+            "cachedResourceGetData": 0
+          }
+        },
+        "foregroundObservation": {
+          "sessionDurationSeconds": 120.0205249,
+          "samples": 121,
+          "foregroundSamples": 121,
+          "allSampledTimesForeground": true,
+          "scope": "Session-level once-per-second focus samples; transitions between samples are not detected. This is not an aligned per-frame OS CPU statistic.",
+          "collector": "vsync-off-os",
+          "appliesTo": "FPS profiling windows only; does not establish JFR foreground coverage."
+        },
+        "jfrForegroundObservation": {
+          "collector": "vsync-off-jfr-os",
+          "appliesTo": "The separate JFR recording window, as checked by the final alignment validation.",
+          "sessionDurationSeconds": 60.0293527,
+          "samples": 61,
+          "foregroundSamples": 61,
+          "allSampledTimesForeground": true,
+          "scope": "Independent once-per-second foreground samples; the FPS collector's sample count does not cover this JFR session."
+        }
+      },
+      "tradeoff": "Disabling VSync can introduce visible screen tearing. Results are specific to this device and workload.",
+      "bundleAppliesSetting": false
+    }
+  ],
+  "bundle": {
+    "path": "build/client-device-fixes-20261006.zip",
+    "sha256": "0df5bb5d0f02da3b0cd479f5c173973258a473416cf3c1af734a7b84f9273953",
+    "size": 81284843
+  }
+}
