@@ -1,0 +1,216 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-05",
+  "minecraftVersion": "1.20.4",
+  "loader": "Fabric",
+  "java": 17,
+  "runtimeValidated": false,
+  "validation": {
+    "mtr": {
+      "test": 79,
+      "verifyRailRendering": 8,
+      "verifyMixinCompatibility": 8,
+      "verifyLightTypeCompatibility": 3,
+      "failures": 0,
+      "skipped": 0
+    },
+    "display": {
+      "build": true,
+      "verifyDisplayCursor": true,
+      "bezelCases": 13552,
+      "bezelVertices": 23586112,
+      "fixturesExcludedFromJar": true
+    },
+    "root": {
+      "buildToolTests": 54,
+      "releaseInputTests": 17,
+      "buildPlan": true
+    },
+    "mtrResources": {
+      "paths": 4387,
+      "added": 0,
+      "removed": 0,
+      "lineEndingOnlyDifferences": 2008,
+      "semanticDifferences": 0
+    },
+    "inGame": "Pre-change JFR only; client was in background when checked. No post-change gameplay FPS or native CEF integration test. No running client JARs or server files changed."
+  },
+  "benchmark": {
+    "kind": "Synthetic occlusion batches, not gameplay frame times or FPS",
+    "aabbsPerBatch": 512,
+    "measurementRounds": 7,
+    "rows": [
+      {
+        "policy": "sparse",
+        "reach": "192",
+        "scene": "open",
+        "median_ms": "1.527696",
+        "min_ms": "1.471726",
+        "max_ms": "1.566790",
+        "checksum": "179200",
+        "payload_kib": "762"
+      },
+      {
+        "policy": "selected",
+        "reach": "192",
+        "scene": "open",
+        "median_ms": "1.076560",
+        "min_ms": "0.945624",
+        "max_ms": "1.106290",
+        "checksum": "179200",
+        "payload_kib": "13824"
+      },
+      {
+        "policy": "sparse",
+        "reach": "192",
+        "scene": "pillars",
+        "median_ms": "4.687652",
+        "min_ms": "4.585950",
+        "max_ms": "4.896004",
+        "checksum": "166880",
+        "payload_kib": "789"
+      },
+      {
+        "policy": "selected",
+        "reach": "192",
+        "scene": "pillars",
+        "median_ms": "3.468634",
+        "min_ms": "3.326002",
+        "max_ms": "4.095094",
+        "checksum": "166880",
+        "payload_kib": "13824"
+      },
+      {
+        "policy": "sparse",
+        "reach": "192",
+        "scene": "walls",
+        "median_ms": "31.319930",
+        "min_ms": "30.776118",
+        "max_ms": "34.775530",
+        "checksum": "31850",
+        "payload_kib": "691"
+      },
+      {
+        "policy": "selected",
+        "reach": "192",
+        "scene": "walls",
+        "median_ms": "21.147592",
+        "min_ms": "20.699238",
+        "max_ms": "21.541306",
+        "checksum": "31850",
+        "payload_kib": "13824"
+      },
+      {
+        "policy": "sparse",
+        "reach": "256",
+        "scene": "walls",
+        "median_ms": "23.084450",
+        "min_ms": "22.567630",
+        "max_ms": "25.423450",
+        "checksum": "3948",
+        "payload_kib": "948"
+      },
+      {
+        "policy": "selected",
+        "reach": "256",
+        "scene": "walls",
+        "median_ms": "17.370750",
+        "min_ms": "16.549530",
+        "max_ms": "18.136460",
+        "checksum": "3948",
+        "payload_kib": "32768"
+      },
+      {
+        "policy": "sparse",
+        "reach": "272",
+        "scene": "walls",
+        "median_ms": "26.736440",
+        "min_ms": "23.490020",
+        "max_ms": "43.840560",
+        "checksum": "3570",
+        "payload_kib": "989"
+      },
+      {
+        "policy": "selected",
+        "reach": "272",
+        "scene": "walls",
+        "median_ms": "28.974900",
+        "min_ms": "27.212480",
+        "max_ms": "30.868700",
+        "checksum": "3570",
+        "payload_kib": "989"
+      },
+      {
+        "policy": "sparse",
+        "reach": "512",
+        "scene": "walls",
+        "median_ms": "22.586750",
+        "min_ms": "21.907180",
+        "max_ms": "23.986200",
+        "checksum": "1547",
+        "payload_kib": "1466"
+      },
+      {
+        "policy": "selected",
+        "reach": "512",
+        "scene": "walls",
+        "median_ms": "22.874480",
+        "min_ms": "22.133950",
+        "max_ms": "24.275790",
+        "checksum": "1547",
+        "payload_kib": "1466"
+      }
+    ]
+  },
+  "entries": [
+    {
+      "modId": "mtr",
+      "version": "4.0.5",
+      "fileName": "fabric-4.0.5.jar",
+      "artifactPath": "Minecraft-Transit-Railway/fabric/build/libs/fabric-4.0.5.jar",
+      "sha256": "455e4ebb8883bcda0103beaefdc9bd08cd118ae8e0fa163d9656d6add03ac6d3",
+      "size": 83178018,
+      "source": {
+        "path": "Minecraft-Transit-Railway",
+        "url": "https://github.com/minefed/Minecraft-Transit-Railway",
+        "trackingBranch": "minefed-1.20.4",
+        "commit": "13e1789dde2be749d0ece45c2847b14913e4fb93"
+      },
+      "sourceUrl": "https://github.com/minefed/Minecraft-Transit-Railway/commit/13e1789dde2be749d0ece45c2847b14913e4fb93",
+      "license": "MIT",
+      "binaryLicense": "MIT",
+      "compatibility": {
+        "fabric": "*",
+        "minecraft": "1.20.4"
+      }
+    },
+    {
+      "modId": "minefed-display",
+      "version": "1.0.1",
+      "fileName": "minefed-display-1.0.1.jar",
+      "artifactPath": "minefed-display/build/libs/minefed-display-1.0.1.jar",
+      "sha256": "f0dc65505f2f9721801af666bbeb0fab7da4c48518eae444c55ae484ff4fc910",
+      "size": 93994,
+      "source": {
+        "path": "minefed-display",
+        "url": "https://github.com/minefed/minefed-display",
+        "trackingBranch": "minefed-1.20.4",
+        "commit": "b5821c6bed1cf80d3028ecaff2f3ea5077a8d2c5"
+      },
+      "sourceUrl": "https://github.com/minefed/minefed-display/commit/b5821c6bed1cf80d3028ecaff2f3ea5077a8d2c5",
+      "license": "MIT",
+      "binaryLicense": "MIT",
+      "compatibility": {
+        "fabricloader": ">=0.16.14",
+        "minecraft": "~1.20.4",
+        "java": ">=17",
+        "fabric-api": "*"
+      }
+    }
+  ],
+  "bundle": {
+    "path": "build/client-regression-fixes-20261005.zip",
+    "sha256": "640ed62ff83580bad124a4e574c6ee1fd7af78695e618de2a0bbf73c6228273e",
+    "size": 81280373
+  }
+}
