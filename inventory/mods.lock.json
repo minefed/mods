@@ -2746,7 +2746,7 @@
         "url": "https://github.com/minefed/Minecraft-Transit-Railway",
         "upstream": "https://github.com/Minecraft-Transit-Railway/Minecraft-Transit-Railway",
         "ref": "minefed-1.20.4",
-        "commit": "13e1789dde2be749d0ece45c2847b14913e4fb93",
+        "commit": "8167073c541f88996eb2ab4a184f1c27aac2462b",
         "trackingBranch": "minefed-1.20.4",
         "baselineRef": "main",
         "baselineCommit": "53cdc36ebef57c42bdc8633957be1b0e923c40b5"
@@ -2799,7 +2799,7 @@
         "url": "https://github.com/minefed/Minecraft-Transit-Railway",
         "upstream": "https://github.com/Minecraft-Transit-Railway/Minecraft-Transit-Railway",
         "ref": "minefed-1.20.4",
-        "commit": "13e1789dde2be749d0ece45c2847b14913e4fb93",
+        "commit": "8167073c541f88996eb2ab4a184f1c27aac2462b",
         "trackingBranch": "minefed-1.20.4",
         "baselineRef": "main",
         "baselineCommit": "53cdc36ebef57c42bdc8633957be1b0e923c40b5"
