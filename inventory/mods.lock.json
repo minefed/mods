@@ -2746,7 +2746,7 @@
         "url": "https://github.com/minefed/Minecraft-Transit-Railway",
         "upstream": "https://github.com/Minecraft-Transit-Railway/Minecraft-Transit-Railway",
         "ref": "minefed-1.20.4",
-        "commit": "0650f2699f7860a119da5f78edfb1c3c492a79ee",
+        "commit": "13e1789dde2be749d0ece45c2847b14913e4fb93",
         "trackingBranch": "minefed-1.20.4",
         "baselineRef": "main",
         "baselineCommit": "53cdc36ebef57c42bdc8633957be1b0e923c40b5"
@@ -2770,7 +2770,8 @@
         "기존 minefed 저장소의 확인된 최신 원격 커밋을 소스 pin으로 사용한다. 운영 JAR와 소스 빌드의 바이트 동일성을 의미하지 않는다.",
         "2026-09-28: Behavior-preserving network/FPS optimizations fast-forwarded minefed-1.20.4 to 5e3e07b2151088b877497a954bbb19e102a6dd9c; see docs/OPTIMIZATION_RESULTS_2026-09-28.md. Captured artifact hashes remain historical baseline evidence.",
         "2026-09-29: RAM/GPU optimizations fast-forwarded minefed-1.20.4 to 0eebe623db14d545c147fa58fc0c2f8f7a838935 (model GPU buffer and dynamic texture leak fixes, per-reload shader compilation, sparse occlusion cache, idle model texture release, MTR font loaded only when enabled, dynamic texture resolution default 1, door textures out of the block atlas, smaller escalator and A320/S700 textures); see docs/RAM_GPU_OPTIMIZATION_RESULTS_2026-09-29.md. Minecraft 1.20.4 / Fabric Loader 0.18.4 / Java 17 bytecode. Captured artifact hashes remain historical baseline evidence.",
-        "2026-09-30: Approved behavior-preserving client rendering changes pinned for integration on minefed-1.20.4 at 0650f2699f7860a119da5f78edfb1c3c492a79ee. Signal/read-order, light singleton, text reuse and display trace checks are recorded by the build recipes and CI. Existing captured JAR hashes remain historical baseline evidence."
+        "2026-09-30: Approved behavior-preserving client rendering changes pinned for integration on minefed-1.20.4 at 0650f2699f7860a119da5f78edfb1c3c492a79ee. Signal/read-order, light singleton, text reuse and display trace checks are recorded by the build recipes and CI. Existing captured JAR hashes remain historical baseline evidence.",
+        "2026-10-05: Pin bounded dense occlusion cache regression correction on minefed-1.20.4. Minecraft 1.20.4 / Fabric Loader 0.18.4 / Java 17. Use dense dirty blocks through 16 chunks (at most 32 MiB payload) and preserve sparse storage beyond that. Historical baseline JAR hashes are unchanged."
       ],
       "compatibility": {
         "minecraft": "1.20.4",
@@ -2798,7 +2799,7 @@
         "url": "https://github.com/minefed/Minecraft-Transit-Railway",
         "upstream": "https://github.com/Minecraft-Transit-Railway/Minecraft-Transit-Railway",
         "ref": "minefed-1.20.4",
-        "commit": "0650f2699f7860a119da5f78edfb1c3c492a79ee",
+        "commit": "13e1789dde2be749d0ece45c2847b14913e4fb93",
         "trackingBranch": "minefed-1.20.4",
         "baselineRef": "main",
         "baselineCommit": "53cdc36ebef57c42bdc8633957be1b0e923c40b5"
@@ -2825,7 +2826,8 @@
         "2026-09-28: Give internal cargo blocks valid loot tables without nonexistent items. Minecraft 1.20.4 / Fabric Loader 0.18.4 / Java 17 runtime. Source branch codex/fix-cargo-loot; captured artifact hashes remain historical baseline evidence.",
         "2026-09-28: Behavior-preserving network/FPS optimizations fast-forwarded minefed-1.20.4 to 5e3e07b2151088b877497a954bbb19e102a6dd9c; see docs/OPTIMIZATION_RESULTS_2026-09-28.md. Captured artifact hashes remain historical baseline evidence.",
         "2026-09-29: RAM/GPU optimizations fast-forwarded minefed-1.20.4 to 0eebe623db14d545c147fa58fc0c2f8f7a838935 (model GPU buffer and dynamic texture leak fixes, per-reload shader compilation, sparse occlusion cache, idle model texture release, MTR font loaded only when enabled, dynamic texture resolution default 1, door textures out of the block atlas, smaller escalator and A320/S700 textures); see docs/RAM_GPU_OPTIMIZATION_RESULTS_2026-09-29.md. Minecraft 1.20.4 / Fabric Loader 0.18.4 / Java 17 bytecode. Captured artifact hashes remain historical baseline evidence.",
-        "2026-09-30: Approved behavior-preserving client rendering changes pinned for integration on minefed-1.20.4 at 0650f2699f7860a119da5f78edfb1c3c492a79ee. Signal/read-order, light singleton, text reuse and display trace checks are recorded by the build recipes and CI. Existing captured JAR hashes remain historical baseline evidence."
+        "2026-09-30: Approved behavior-preserving client rendering changes pinned for integration on minefed-1.20.4 at 0650f2699f7860a119da5f78edfb1c3c492a79ee. Signal/read-order, light singleton, text reuse and display trace checks are recorded by the build recipes and CI. Existing captured JAR hashes remain historical baseline evidence.",
+        "2026-10-05: Pin bounded dense occlusion cache regression correction on minefed-1.20.4. Minecraft 1.20.4 / Fabric Loader 0.18.4 / Java 17. Use dense dirty blocks through 16 chunks (at most 32 MiB payload) and preserve sparse storage beyond that. Historical baseline JAR hashes are unchanged."
       ],
       "compatibility": {
         "minecraft": "1.20.4",
