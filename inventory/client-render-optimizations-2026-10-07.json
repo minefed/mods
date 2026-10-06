@@ -1,0 +1,907 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-07",
+  "minecraftVersion": "1.20.4",
+  "loader": "Fabric",
+  "runtimeJava": 17,
+  "distributionScope": "Local replacement bundle; no binary publication performed.",
+  "purpose": "Skip occluded vehicle light reads and offscreen display bezel geometry; halve C&B cache-hit key hashing.",
+  "entries": [
+    {
+      "modId": "mtr",
+      "version": "4.0.5",
+      "fileName": "fabric-4.0.5.jar",
+      "artifactPath": "build/client-render-optimizations-20261007/mods/fabric-4.0.5.jar",
+      "sha256": "774d2ef6abb2a0e80211b101f3d901eb347183922b8cb799f7a33af9d759776b",
+      "size": 83178960,
+      "source": {
+        "path": "Minecraft-Transit-Railway",
+        "url": "https://github.com/minefed/Minecraft-Transit-Railway",
+        "trackingBranch": "minefed-1.20.4",
+        "commit": "d1b0f5681f1e4b78c3be965da1b040d226574401"
+      },
+      "sourceLicense": "MIT",
+      "binaryLicense": "MIT",
+      "licenseScope": "Minefed mod itself; bundled third-party dependencies retain their own licenses.",
+      "licenseNotices": [
+        {
+          "sourcePath": "Minecraft-Transit-Railway/LICENSE",
+          "sourceCommit": "d1b0f5681f1e4b78c3be965da1b040d226574401",
+          "sha256": "c4445a98dbe7fc73944796bcc54c5fefc659f3cacced0ad1cc9c6f794eea0b0e",
+          "size": 1068
+        },
+        {
+          "sourcePath": "Minecraft-Transit-Railway/LICENSE_ORIGINAL",
+          "sourceCommit": "d1b0f5681f1e4b78c3be965da1b040d226574401",
+          "sha256": "4d52d2934d6a874ccbb3ece33566801c6796c86d0c86f1b27989b2710f30644b",
+          "size": 1068
+        }
+      ],
+      "buildJava": 21,
+      "compatibility": {
+        "fabric": "*",
+        "minecraft": "1.20.4"
+      },
+      "artifactInspection": {
+        "baselineSha256": "dc1b179f53d125187b4f392daecbb73a70bbcb313b58a3d3e7848549cf340a52",
+        "added": [],
+        "removed": [],
+        "changed": [
+          "org/mtr/mod/render/PositionAndRotation.class",
+          "org/mtr/mod/render/RenderVehicles$PreviousConnectionPositions.class",
+          "org/mtr/mod/render/RenderVehicles$PreviousGangwayMovementPositions.class",
+          "org/mtr/mod/render/RenderVehicles$RidingPlayerInterpolation.class",
+          "org/mtr/mod/render/RenderVehicles.class"
+        ],
+        "resourcesUnchanged": true,
+        "existingNoticesUnchanged": true,
+        "testFixturesExcluded": true,
+        "changedClassVersions": {
+          "org/mtr/mod/render/PositionAndRotation.class": 61,
+          "org/mtr/mod/render/RenderVehicles$PreviousConnectionPositions.class": 61,
+          "org/mtr/mod/render/RenderVehicles$PreviousGangwayMovementPositions.class": 61,
+          "org/mtr/mod/render/RenderVehicles$RidingPlayerInterpolation.class": 61,
+          "org/mtr/mod/render/RenderVehicles.class": 61
+        }
+      }
+    },
+    {
+      "modId": "minefed-display",
+      "version": "1.0.2",
+      "fileName": "minefed-display-1.0.2.jar",
+      "artifactPath": "build/client-render-optimizations-20261007/mods/minefed-display-1.0.2.jar",
+      "sha256": "bc38540ce1d5ce0fc4e80c42431bd648539722f1abe4d3a75cc0837691115bf2",
+      "size": 95980,
+      "source": {
+        "path": "minefed-display",
+        "url": "https://github.com/minefed/minefed-display",
+        "trackingBranch": "minefed-1.20.4",
+        "commit": "d328cfd27ac8d71a7b293a9604cb7508f8651e4b"
+      },
+      "sourceLicense": "MIT",
+      "binaryLicense": "MIT",
+      "licenseScope": "Minefed mod itself; bundled third-party dependencies retain their own licenses.",
+      "licenseNotices": [
+        {
+          "sourcePath": "minefed-display/LICENSE",
+          "sourceCommit": "d328cfd27ac8d71a7b293a9604cb7508f8651e4b",
+          "sha256": "df91ea5ffd7b7ef2859e0add9b7aa5bde9790ef51df4cccef63c4607a36e3268",
+          "size": 1074
+        }
+      ],
+      "buildJava": 17,
+      "compatibility": {
+        "fabricloader": ">=0.16.14",
+        "minecraft": "~1.20.4",
+        "java": ">=17",
+        "fabric-api": "*"
+      },
+      "artifactInspection": {
+        "baselineSha256": "f0dc65505f2f9721801af666bbeb0fab7da4c48518eae444c55ae484ff4fc910",
+        "added": [
+          "team/minefed/mods/display/client/renderers/BrowserVisibility$1.class"
+        ],
+        "removed": [],
+        "changed": [
+          "META-INF/MANIFEST.MF",
+          "fabric.mod.json",
+          "team/minefed/mods/display/client/renderers/BrowserVisibility.class",
+          "team/minefed/mods/display/client/renderers/CustomSizeDisplayBlockEntityRenderer.class"
+        ],
+        "resourcesUnchanged": true,
+        "existingNoticesUnchanged": true,
+        "testFixturesExcluded": true,
+        "changedClassVersions": {
+          "team/minefed/mods/display/client/renderers/BrowserVisibility$1.class": 61,
+          "team/minefed/mods/display/client/renderers/BrowserVisibility.class": 61,
+          "team/minefed/mods/display/client/renderers/CustomSizeDisplayBlockEntityRenderer.class": 61
+        }
+      }
+    },
+    {
+      "modId": "chiselsandbits",
+      "version": "1.5.10-FC",
+      "fileName": "chisels-and-bits-fabric-1.5.10-FC.jar",
+      "artifactPath": "build/client-render-optimizations-20261007/mods/chisels-and-bits-fabric-1.5.10-FC.jar",
+      "sha256": "08190fa23c868ebaf6faaf853e972456be291bb0178a58edfafb9642b00781dd",
+      "size": 2707674,
+      "source": {
+        "path": "Chisels-and-Bits",
+        "url": "https://github.com/minefed/Chisels-and-Bits",
+        "trackingBranch": "minefed-1.20.4",
+        "commit": "28723461a5afbfba6aa5c6e6349ffecd8da54ec0"
+      },
+      "sourceLicense": "MIT",
+      "binaryLicense": "MIT",
+      "licenseScope": "Minefed mod itself; bundled third-party dependencies retain their own licenses.",
+      "licenseNotices": [
+        {
+          "sourcePath": "Chisels-and-Bits/LICENSE",
+          "sourceCommit": "28723461a5afbfba6aa5c6e6349ffecd8da54ec0",
+          "sha256": "340e9ed2e5c1c8b29ec59d7c797d9f292557bd23446f537fb763b85bf034f3d6",
+          "size": 1077
+        }
+      ],
+      "buildJava": 17,
+      "compatibility": {
+        "fabricloader": ">=0.15.6",
+        "fabric": ">=0.95.4",
+        "minecraft": "1.20.4",
+        "java": ">=17",
+        "scena": ">=1.0.141"
+      },
+      "artifactInspection": {
+        "baselineSha256": "5c6e00436159d3988591c8d29c42dad8911c7dc279ad930a47160c4a04bca5ab",
+        "added": [],
+        "removed": [],
+        "changed": [
+          "META-INF/MANIFEST.MF",
+          "META-INF/jars/chisels-and-bits-fabric-1.5.10-FC-api-fabric.jar!/META-INF/MANIFEST.MF",
+          "META-INF/jars/chisels-and-bits-fabric-1.5.10-FC-core-fabric.jar!/META-INF/MANIFEST.MF",
+          "META-INF/jars/chisels-and-bits-fabric-1.5.10-FC-core-fabric.jar!/mod/chiselsandbits/change/ChangeTrackerSyncManager$Entry.class",
+          "META-INF/jars/chisels-and-bits-fabric-1.5.10-FC-core-fabric.jar!/mod/chiselsandbits/change/ChangeTrackerSyncManager.class",
+          "META-INF/jars/chisels-and-bits-fabric-1.5.10-FC-core-fabric.jar!/mod/chiselsandbits/registrars/ModEventHandler.class",
+          "META-INF/jars/chisels-and-bits-fabric-1.5.10-FC-core-fabric.jar!/mod/chiselsandbits/utils/SimpleMaxSizedCache.class"
+        ],
+        "resourcesUnchanged": true,
+        "existingNoticesUnchanged": true,
+        "testFixturesExcluded": true,
+        "changedClassVersions": {
+          "META-INF/jars/chisels-and-bits-fabric-1.5.10-FC-core-fabric.jar!/mod/chiselsandbits/change/ChangeTrackerSyncManager$Entry.class": 61,
+          "META-INF/jars/chisels-and-bits-fabric-1.5.10-FC-core-fabric.jar!/mod/chiselsandbits/change/ChangeTrackerSyncManager.class": 61,
+          "META-INF/jars/chisels-and-bits-fabric-1.5.10-FC-core-fabric.jar!/mod/chiselsandbits/registrars/ModEventHandler.class": 61,
+          "META-INF/jars/chisels-and-bits-fabric-1.5.10-FC-core-fabric.jar!/mod/chiselsandbits/utils/SimpleMaxSizedCache.class": 61
+        },
+        "baselineSourceCommit": "12fd1d23b3e6fb929ccba01e034c46ae632acbe0",
+        "previousSourcePin": "353dbfbb1cbaddad499338f5c54a4b6b81f6529f",
+        "baselineCaveat": "The historical baseline JAR predates the previous source pin; archive differences also include earlier network optimizations, not only this cache change."
+      }
+    }
+  ],
+  "validation": {
+    "mtr": {
+      "test": {
+        "tests": 91,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "verifyRailRendering": {
+        "tests": 8,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "verifyMixinCompatibility": {
+        "tests": 8,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "verifyLightTypeCompatibility": {
+        "tests": 3,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      }
+    },
+    "display": {
+      "build": true,
+      "verifyDisplayOcclusion": true,
+      "verifyDisplayCursor": true,
+      "bezelTraceCases": 13552,
+      "bezelTraceVertices": 23586112,
+      "bezelVisibilityCases": 1283,
+      "bezelVisibilityVertices": 6920640,
+      "alphaFramebufferPairs": 32,
+      "nativeCefLifecycleTested": false,
+      "additionalShaderPassesTested": false
+    },
+    "chiselsandbits": {
+      "tests": 34,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "root": {
+      "buildToolTests": 65,
+      "releaseInputTests": 17,
+      "finalRecipeTests": 2,
+      "buildPlan": true,
+      "allRecordedGitlinksMatchLock": true,
+      "sourceRepositoriesCheckedInIndex": 52,
+      "changedSourceHeadsAndRemotesMatchLock": true,
+      "fullLocalCheckoutVerification": {
+        "passed": false,
+        "reason": "Pre-existing Automobility-Refueled checkout differs from lock; unrelated checkouts preserved."
+      }
+    },
+    "newInGameFpsMeasurement": false
+  },
+  "performanceEvidence": {
+    "mtr": {
+      "hiddenUnriddenCarWorldLightQueriesPerRenderCall": {
+        "before": 2,
+        "after": 0
+      }
+    },
+    "display": {
+      "offscreen32By32BezelVerticesPerRenderCall": {
+        "before": 4096,
+        "after": 0
+      }
+    },
+    "chiselsandbits": {
+      "cachedKeyHashesFor1000Hits": {
+        "before": 2000,
+        "after": 1000
+      },
+      "itemNbtSerializationUnchanged": true
+    },
+    "interpretation": "Deterministic removed work, not measured FPS gains."
+  },
+  "deferred": {
+    "webstreamerAsyncDecoding": "Requires bounded frame ownership, audio synchronization, segment transitions and teardown validation; no decoder threading change included.",
+    "cullingBatchRewrite": "No worker queue or asynchronous visibility publication changes included."
+  },
+  "localInstallation": {
+    "applied": false,
+    "optionsChanged": false,
+    "serverFilesChanged": false
+  },
+  "bundlePath": "build/client-render-optimizations-20261007.zip",
+  "bundledDependencyNotices": [
+    {
+      "coordinates": "org.lz4:lz4-pure-java:1.8.0",
+      "version": "1.8.0",
+      "license": "Apache-2.0",
+      "licenseScope": "Upstream library, including its nested core module where present; independent dependency notices remain separate.",
+      "sourceUrl": "https://github.com/lz4/lz4-java",
+      "sourceTag": "1.8.0",
+      "sourceCommit": "78eae489e8163e4df56735a79dd8ef9c4f4ec056",
+      "sourceCommitEvidence": "git ls-remote --tags against official upstream; peeled annotated tag where applicable",
+      "noticeFiles": [
+        {
+          "path": "lz4-java-1.8.0/LICENSE.txt",
+          "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+          "size": 11358,
+          "sourceUrl": "https://raw.githubusercontent.com/lz4/lz4-java/78eae489e8163e4df56735a79dd8ef9c4f4ec056/LICENSE.txt",
+          "sourceCommit": "78eae489e8163e4df56735a79dd8ef9c4f4ec056",
+          "sourcePath": "LICENSE.txt",
+          "copiedVerbatim": true,
+          "bundlePath": "notices/dependencies/chiselsandbits/lz4-java-1.8.0/LICENSE.txt"
+        },
+        {
+          "path": "lz4-java-1.8.0/README.md",
+          "sha256": "a49ad288908449e1217d2664e5e95c2c9c31c4cc6a5e52f81ce10fcae4573b47",
+          "size": 7425,
+          "sourceUrl": "https://raw.githubusercontent.com/lz4/lz4-java/78eae489e8163e4df56735a79dd8ef9c4f4ec056/README.md",
+          "sourceCommit": "78eae489e8163e4df56735a79dd8ef9c4f4ec056",
+          "sourcePath": "README.md",
+          "copiedVerbatim": true,
+          "bundlePath": "notices/dependencies/chiselsandbits/lz4-java-1.8.0/README.md"
+        },
+        {
+          "path": "lz4-java-1.8.0/LZ4Factory.java",
+          "sha256": "b3b3c9d8daef839165e3f53754b043d8826264b89e2a9e57b8bf7d2086224d67",
+          "size": 12902,
+          "sourceUrl": "https://raw.githubusercontent.com/lz4/lz4-java/78eae489e8163e4df56735a79dd8ef9c4f4ec056/src/java/net/jpountz/lz4/LZ4Factory.java",
+          "sourceCommit": "78eae489e8163e4df56735a79dd8ef9c4f4ec056",
+          "sourcePath": "src/java/net/jpountz/lz4/LZ4Factory.java",
+          "copiedVerbatim": true,
+          "bundlePath": "notices/dependencies/chiselsandbits/lz4-java-1.8.0/LZ4Factory.java"
+        }
+      ],
+      "evidenceFiles": [
+        {
+          "path": "lz4-java-1.8.0/lz4-pure-java-1.8.0.pom",
+          "sha256": "69680c651ccab3130dba58ce670c8b41bed993ac071fc5ce0ba8cf7ba1a5ce32",
+          "size": 2109,
+          "source": "existing Gradle Maven artifact cache",
+          "cachePath": "C:\\Users\\강찬\\.gradle\\caches\\modules-2\\files-2.1\\org.lz4\\lz4-pure-java\\1.8.0\\8bae56c2d55a0cda0e951f126aae04cf1d16f7fb\\lz4-pure-java-1.8.0.pom",
+          "copiedVerbatim": true,
+          "bundlePath": "notices/dependencies/chiselsandbits/lz4-java-1.8.0/lz4-pure-java-1.8.0.pom"
+        },
+        {
+          "path": "lz4-java-1.8.0/embedded-fabric.mod.json",
+          "sha256": "8e99d1268e7e6a0a05d52d2e7d8daba69749ee02bbb56ad8fc96b218376d0f46",
+          "size": 159,
+          "source": "unchanged fabric.mod.json extracted from the packaged dependency",
+          "container": "META-INF/jars/chisels-and-bits-fabric-1.5.10-FC-api-fabric.jar!/META-INF/jars/lz4-pure-java-1.8.0.jar",
+          "copiedVerbatim": true,
+          "bundlePath": "notices/dependencies/chiselsandbits/lz4-java-1.8.0/embedded-fabric.mod.json"
+        }
+      ],
+      "embeddedJar": {
+        "modId": "org_lz4_lz4-pure-java",
+        "version": "1.8.0",
+        "metadataLicense": null,
+        "sha256": "b891dddbc908bbd3db2c4f299a9cef9d9fafb7f11a5b9dbbf79faa55566f098c",
+        "size": 125051,
+        "locations": [
+          "META-INF/jars/chisels-and-bits-fabric-1.5.10-FC-api-fabric.jar!/META-INF/jars/lz4-pure-java-1.8.0.jar",
+          "META-INF/jars/chisels-and-bits-fabric-1.5.10-FC-core-fabric.jar!/META-INF/jars/lz4-pure-java-1.8.0.jar",
+          "META-INF/jars/lz4-pure-java-1.8.0.jar"
+        ]
+      },
+      "originalCachedJar": {
+        "path": "C:\\Users\\강찬\\.gradle\\caches\\modules-2\\files-2.1\\org.lz4\\lz4-pure-java\\1.8.0\\3cb64324dc77d990bfc0167161fd2ccf252950e1\\lz4-pure-java-1.8.0.jar",
+        "sha256": "56df2cd46e45e8e8069fcc89bfcde1767cbbb6430d0e60ecbd13404a4e967963",
+        "size": 124814
+      },
+      "embeddedComparedToOriginalCachedJar": {
+        "added": [
+          "fabric.mod.json"
+        ],
+        "removed": [],
+        "changed": []
+      },
+      "copyrightEvidence": "Verbatim upstream LZ4Factory.java header and cached official POM name Copyright 2020 Adrien Grand and the lz4-java contributors; upstream README credits Yann Collet. No standalone NOTICE/COPYRIGHT file occurs in the official release tree.",
+      "bundledBy": "chiselsandbits"
+    },
+    {
+      "coordinates": "com.communi-suggestu.scena:scena-fabric:1.0.141",
+      "version": "1.0.141",
+      "license": "MIT",
+      "licenseScope": "Upstream library, including its nested core module where present; independent dependency notices remain separate.",
+      "sourceUrl": "https://github.com/Communi-Suggestu/Scena",
+      "sourceTag": "1.0.141",
+      "sourceCommit": "665de0cf9e3ab34caa200916ea7730d72023ae2c",
+      "sourceCommitEvidence": "git ls-remote --tags against official upstream; peeled annotated tag where applicable",
+      "noticeFiles": [
+        {
+          "path": "scena-1.0.141/LICENSE",
+          "sha256": "0775ee777ad70a1b1ea44a6733a441a511eaaa0d136a864fa17373990ce17ac5",
+          "size": 1073,
+          "sourceUrl": "https://raw.githubusercontent.com/Communi-Suggestu/Scena/665de0cf9e3ab34caa200916ea7730d72023ae2c/LICENSE",
+          "sourceCommit": "665de0cf9e3ab34caa200916ea7730d72023ae2c",
+          "sourcePath": "LICENSE",
+          "copiedVerbatim": true,
+          "bundlePath": "notices/dependencies/chiselsandbits/scena-1.0.141/LICENSE"
+        }
+      ],
+      "evidenceFiles": [
+        {
+          "path": "scena-1.0.141/scena-fabric-1.0.141.pom",
+          "sha256": "e7224817c87888312d592c7920eb2c7b16b079318d41068cb6a593e83a8fd49e",
+          "size": 2400,
+          "source": "existing Gradle Maven artifact cache",
+          "cachePath": "C:\\Users\\강찬\\.gradle\\caches\\modules-2\\files-2.1\\com.communi-suggestu.scena\\scena-fabric\\1.0.141\\b6e239cc24096f0c1d3c5ad83a18360b7f93a4a8\\scena-fabric-1.0.141.pom",
+          "copiedVerbatim": true,
+          "bundlePath": "notices/dependencies/chiselsandbits/scena-1.0.141/scena-fabric-1.0.141.pom"
+        },
+        {
+          "path": "scena-1.0.141/build.gradle",
+          "sha256": "86577a883f0898e3366335d3ce4dbcff19f0a77c5bd42a8a3899753d69f012a6",
+          "size": 10783,
+          "sourceUrl": "https://raw.githubusercontent.com/Communi-Suggestu/Scena/665de0cf9e3ab34caa200916ea7730d72023ae2c/build.gradle",
+          "sourceCommit": "665de0cf9e3ab34caa200916ea7730d72023ae2c",
+          "sourcePath": "build.gradle",
+          "copiedVerbatim": true,
+          "bundlePath": "notices/dependencies/chiselsandbits/scena-1.0.141/build.gradle"
+        },
+        {
+          "path": "scena-1.0.141/embedded-fabric.mod.json",
+          "sha256": "4f1f98555fe58cccb98e8fd265503c0e0490368a176780bad1022416acc8944c",
+          "size": 897,
+          "source": "unchanged fabric.mod.json extracted from the packaged dependency",
+          "container": "META-INF/jars/chisels-and-bits-fabric-1.5.10-FC-api-fabric.jar!/META-INF/jars/scena-fabric-1.0.141.jar",
+          "copiedVerbatim": true,
+          "bundlePath": "notices/dependencies/chiselsandbits/scena-1.0.141/embedded-fabric.mod.json"
+        }
+      ],
+      "embeddedJar": {
+        "modId": "scena",
+        "version": "1.0.141",
+        "metadataLicense": "MIT",
+        "sha256": "8a79d7485fccd67beb50df086ba66827c0218a67565efca1c753a37dbee152b5",
+        "size": 356322,
+        "locations": [
+          "META-INF/jars/chisels-and-bits-fabric-1.5.10-FC-api-fabric.jar!/META-INF/jars/scena-fabric-1.0.141.jar",
+          "META-INF/jars/chisels-and-bits-fabric-1.5.10-FC-core-fabric.jar!/META-INF/jars/scena-fabric-1.0.141.jar",
+          "META-INF/jars/scena-fabric-1.0.141.jar"
+        ]
+      },
+      "originalCachedJar": {
+        "path": "C:\\Users\\강찬\\.gradle\\caches\\modules-2\\files-2.1\\com.communi-suggestu.scena\\scena-fabric\\1.0.141\\ef032fa9901841ae1eb4db90b46698eeb8f77d6f\\scena-fabric-1.0.141.jar",
+        "sha256": "8a79d7485fccd67beb50df086ba66827c0218a67565efca1c753a37dbee152b5",
+        "size": 356322
+      },
+      "embeddedComparedToOriginalCachedJar": {
+        "added": [],
+        "removed": [],
+        "changed": []
+      },
+      "licenseMetadataDiscrepancy": {
+        "upstreamReleaseTagLicense": "MIT",
+        "embeddedJarMetadataLicense": "MIT",
+        "publishedPomLicense": "GNU GENERAL PUBLIC LICENSE Version 3",
+        "evidence": "Preserved exact tag LICENSE, exact embedded metadata, cached official POM, and upstream tag build.gradle with POM license declaration.",
+        "interpretation": "MIT records the exact release-tag license and embedded metadata. The conflicting Maven POM declaration is retained, not rewritten or silently discarded."
+      },
+      "bundledBy": "chiselsandbits"
+    },
+    {
+      "coordinates": "com.communi-suggestu.saecularia-caudices:saecularia-caudices-fabric:1.0.39",
+      "version": "1.0.39",
+      "license": "MIT",
+      "licenseScope": "Upstream library, including its nested core module where present; independent dependency notices remain separate.",
+      "sourceUrl": "https://github.com/Communi-Suggestu/Saecularia-Caudices",
+      "sourceTag": "1.0.39",
+      "sourceCommit": "50ffd47fb6fcf64900a5d742e1ea159aae0458fa",
+      "sourceCommitEvidence": "git ls-remote --tags against official upstream; peeled annotated tag where applicable",
+      "noticeFiles": [
+        {
+          "path": "saecularia-caudices-1.0.39/LICENSE",
+          "sha256": "0775ee777ad70a1b1ea44a6733a441a511eaaa0d136a864fa17373990ce17ac5",
+          "size": 1073,
+          "sourceUrl": "https://raw.githubusercontent.com/Communi-Suggestu/Saecularia-Caudices/50ffd47fb6fcf64900a5d742e1ea159aae0458fa/LICENSE",
+          "sourceCommit": "50ffd47fb6fcf64900a5d742e1ea159aae0458fa",
+          "sourcePath": "LICENSE",
+          "copiedVerbatim": true,
+          "bundlePath": "notices/dependencies/chiselsandbits/saecularia-caudices-1.0.39/LICENSE"
+        }
+      ],
+      "evidenceFiles": [
+        {
+          "path": "saecularia-caudices-1.0.39/saecularia-caudices-fabric-1.0.39.pom",
+          "sha256": "bdb36a411bf202fed152ebf48aefe0af78ee5a1acfef5fb337ca664492b2e911",
+          "size": 2290,
+          "source": "existing Gradle Maven artifact cache",
+          "cachePath": "C:\\Users\\강찬\\.gradle\\caches\\modules-2\\files-2.1\\com.communi-suggestu.saecularia-caudices\\saecularia-caudices-fabric\\1.0.39\\a54dea9470f32dba7d360021f8fdb977e555ac69\\saecularia-caudices-fabric-1.0.39.pom",
+          "copiedVerbatim": true,
+          "bundlePath": "notices/dependencies/chiselsandbits/saecularia-caudices-1.0.39/saecularia-caudices-fabric-1.0.39.pom"
+        },
+        {
+          "path": "saecularia-caudices-1.0.39/build.gradle",
+          "sha256": "253eeee1233e2f0bf3eff99a7cebc84944cdba99f5730569d67477105a822d93",
+          "size": 8599,
+          "sourceUrl": "https://raw.githubusercontent.com/Communi-Suggestu/Saecularia-Caudices/50ffd47fb6fcf64900a5d742e1ea159aae0458fa/build.gradle",
+          "sourceCommit": "50ffd47fb6fcf64900a5d742e1ea159aae0458fa",
+          "sourcePath": "build.gradle",
+          "copiedVerbatim": true,
+          "bundlePath": "notices/dependencies/chiselsandbits/saecularia-caudices-1.0.39/build.gradle"
+        },
+        {
+          "path": "saecularia-caudices-1.0.39/embedded-fabric.mod.json",
+          "sha256": "b4a3c49f5ae8db8e8141819d3fd7c02d5c6fc5bdefd5a42ac28ec9118945e757",
+          "size": 919,
+          "source": "unchanged fabric.mod.json extracted from the packaged dependency",
+          "container": "META-INF/jars/chisels-and-bits-fabric-1.5.10-FC-api-fabric.jar!/META-INF/jars/scena-fabric-1.0.141.jar!/META-INF/jars/saecularia-caudices-fabric-1.0.39.jar",
+          "copiedVerbatim": true,
+          "bundlePath": "notices/dependencies/chiselsandbits/saecularia-caudices-1.0.39/embedded-fabric.mod.json"
+        }
+      ],
+      "embeddedJar": {
+        "modId": "saeculariacaudices",
+        "version": "1.0.39",
+        "metadataLicense": "MIT",
+        "sha256": "d9f00d87a3ea530798ba5a3e63967111ec9f837e370600b98b73e4f853a945e4",
+        "size": 51611,
+        "locations": [
+          "META-INF/jars/chisels-and-bits-fabric-1.5.10-FC-api-fabric.jar!/META-INF/jars/scena-fabric-1.0.141.jar!/META-INF/jars/saecularia-caudices-fabric-1.0.39.jar",
+          "META-INF/jars/chisels-and-bits-fabric-1.5.10-FC-api-fabric.jar!/META-INF/jars/scena-fabric-1.0.141.jar!/META-INF/jars/scena-fabric-1.0.141-core-fabric.jar!/META-INF/jars/saecularia-caudices-fabric-1.0.39.jar",
+          "META-INF/jars/chisels-and-bits-fabric-1.5.10-FC-core-fabric.jar!/META-INF/jars/scena-fabric-1.0.141.jar!/META-INF/jars/saecularia-caudices-fabric-1.0.39.jar",
+          "META-INF/jars/chisels-and-bits-fabric-1.5.10-FC-core-fabric.jar!/META-INF/jars/scena-fabric-1.0.141.jar!/META-INF/jars/scena-fabric-1.0.141-core-fabric.jar!/META-INF/jars/saecularia-caudices-fabric-1.0.39.jar",
+          "META-INF/jars/scena-fabric-1.0.141.jar!/META-INF/jars/saecularia-caudices-fabric-1.0.39.jar",
+          "META-INF/jars/scena-fabric-1.0.141.jar!/META-INF/jars/scena-fabric-1.0.141-core-fabric.jar!/META-INF/jars/saecularia-caudices-fabric-1.0.39.jar"
+        ]
+      },
+      "originalCachedJar": {
+        "path": "C:\\Users\\강찬\\.gradle\\caches\\modules-2\\files-2.1\\com.communi-suggestu.saecularia-caudices\\saecularia-caudices-fabric\\1.0.39\\42fb19c7223ceb8719b3b766e3b65ffd191f21bf\\saecularia-caudices-fabric-1.0.39.jar",
+        "sha256": "d9f00d87a3ea530798ba5a3e63967111ec9f837e370600b98b73e4f853a945e4",
+        "size": 51611
+      },
+      "embeddedComparedToOriginalCachedJar": {
+        "added": [],
+        "removed": [],
+        "changed": []
+      },
+      "licenseMetadataDiscrepancy": {
+        "upstreamReleaseTagLicense": "MIT",
+        "embeddedJarMetadataLicense": "MIT",
+        "publishedPomLicense": "GNU GENERAL PUBLIC LICENSE Version 3",
+        "evidence": "Preserved exact tag LICENSE, exact embedded metadata, cached official POM, and upstream tag build.gradle with POM license declaration.",
+        "interpretation": "MIT records the exact release-tag license and embedded metadata. The conflicting Maven POM declaration is retained, not rewritten or silently discarded."
+      },
+      "bundledBy": "chiselsandbits"
+    },
+    {
+      "coordinates": "org.mtr:Shadow-Libraries-net/util:0.0.1",
+      "license": "MIT",
+      "sourceUrl": "https://raw.githubusercontent.com/jonafanho/Shadow-Libraries/60fced0dc8a9fd5a114cc3346dd27f90bf61ed9c/LICENSE",
+      "bundledEvidence": {
+        "prefix": "org/mtr/libraries/",
+        "classOrResourceCount": 4644,
+        "versionBasis": "wrapper only; dependencies retain own licenses"
+      },
+      "noticeFiles": [
+        {
+          "path": "shadow-libraries/LICENSE",
+          "sha256": "f19a81c2e9ceb7f149c4141940fdef2251ba41e7ef8125b4b9039300d403f9e0",
+          "size": 1068,
+          "sourceUrl": "https://raw.githubusercontent.com/jonafanho/Shadow-Libraries/60fced0dc8a9fd5a114cc3346dd27f90bf61ed9c/LICENSE",
+          "bundlePath": "notices/dependencies/mtr/shadow-libraries/LICENSE"
+        }
+      ],
+      "bundledBy": "mtr"
+    },
+    {
+      "coordinates": "com.squareup.okhttp3:okhttp:5.0.0-alpha.14",
+      "license": "Apache-2.0",
+      "sourceUrl": "https://raw.githubusercontent.com/square/okhttp/parent-5.0.0-alpha.14/LICENSE.txt",
+      "bundledEvidence": {
+        "prefix": "org/mtr/libraries/okhttp3/",
+        "classOrResourceCount": 402,
+        "versionBasis": "version string in OkHttp.class"
+      },
+      "noticeFiles": [
+        {
+          "path": "okhttp/LICENSE.txt",
+          "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+          "size": 11358,
+          "sourceUrl": "https://raw.githubusercontent.com/square/okhttp/parent-5.0.0-alpha.14/LICENSE.txt",
+          "bundlePath": "notices/dependencies/mtr/okhttp/LICENSE.txt"
+        }
+      ],
+      "bundledBy": "mtr"
+    },
+    {
+      "coordinates": "org.eclipse.jetty:jetty-*:9.4.54.v20240208",
+      "license": "EPL-1.0 OR Apache-2.0",
+      "sourceUrl": "https://raw.githubusercontent.com/jetty/jetty.project/jetty-9.4.54.v20240208/LICENSE",
+      "bundledEvidence": {
+        "prefix": "org/mtr/libraries/org/eclipse/jetty/",
+        "classOrResourceCount": 1118,
+        "versionBasis": "version in org/eclipse/jetty/version/build.properties"
+      },
+      "noticeFiles": [
+        {
+          "path": "jetty/LICENSE",
+          "sha256": "9e01711373ef33e5354a5695ffd872e2e0f832db84fc58ab661bf2dd3b2896d1",
+          "size": 23171,
+          "sourceUrl": "https://raw.githubusercontent.com/jetty/jetty.project/jetty-9.4.54.v20240208/LICENSE",
+          "bundlePath": "notices/dependencies/mtr/jetty/LICENSE"
+        },
+        {
+          "path": "jetty/NOTICE.txt",
+          "sha256": "0532e23d3f394fff2f7d6a902380512aaae8b016a2710e028f2ff4a5f2392606",
+          "size": 3609,
+          "sourceUrl": "https://raw.githubusercontent.com/jetty/jetty.project/jetty-9.4.54.v20240208/NOTICE.txt",
+          "bundlePath": "notices/dependencies/mtr/jetty/NOTICE.txt"
+        }
+      ],
+      "bundledBy": "mtr"
+    },
+    {
+      "coordinates": "org.jetbrains.kotlin:kotlin-stdlib:1.9.23",
+      "license": "Apache-2.0",
+      "sourceUrl": "https://raw.githubusercontent.com/JetBrains/kotlin/v1.9.23/license/LICENSE.txt",
+      "bundledEvidence": {
+        "prefix": "org/mtr/libraries/kotlin/",
+        "classOrResourceCount": 1030,
+        "versionBasis": "KotlinVersionCurrentValue.get constructs 1,9,23"
+      },
+      "noticeFiles": [
+        {
+          "path": "kotlin/LICENSE.txt",
+          "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+          "size": 11358,
+          "sourceUrl": "https://raw.githubusercontent.com/JetBrains/kotlin/v1.9.23/license/LICENSE.txt",
+          "bundlePath": "notices/dependencies/mtr/kotlin/LICENSE.txt"
+        },
+        {
+          "path": "kotlin/NOTICE.txt",
+          "sha256": "ea7099352103ade6a6918bc7efb00f8bcd43db0e76b2da2e83237c0bc0ff1b19",
+          "size": 482,
+          "sourceUrl": "https://raw.githubusercontent.com/JetBrains/kotlin/v1.9.23/license/NOTICE.txt",
+          "bundlePath": "notices/dependencies/mtr/kotlin/NOTICE.txt"
+        }
+      ],
+      "bundledBy": "mtr"
+    },
+    {
+      "coordinates": "com.google.code.gson:gson:2.11.0",
+      "license": "Apache-2.0",
+      "sourceUrl": "https://raw.githubusercontent.com/google/gson/gson-parent-2.11.0/LICENSE",
+      "bundledEvidence": {
+        "prefix": "org/mtr/libraries/com/google/gson/",
+        "classOrResourceCount": 229,
+        "versionBasis": "GSON 2.11.0 error strings in shaded classes"
+      },
+      "noticeFiles": [
+        {
+          "path": "gson/LICENSE",
+          "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+          "size": 11358,
+          "sourceUrl": "https://raw.githubusercontent.com/google/gson/gson-parent-2.11.0/LICENSE",
+          "bundlePath": "notices/dependencies/mtr/gson/LICENSE"
+        }
+      ],
+      "bundledBy": "mtr"
+    },
+    {
+      "coordinates": "it.unimi.dsi:fastutil",
+      "license": "Apache-2.0",
+      "sourceUrl": "https://raw.githubusercontent.com/vigna/fastutil/8.5.13/LICENSE-2.0",
+      "bundledEvidence": {
+        "prefix": "org/mtr/libraries/it/unimi/dsi/fastutil/",
+        "classOrResourceCount": 1436,
+        "versionBasis": "exact bundled version unknown; official notice reference 8.5.13, not a version identification"
+      },
+      "noticeFiles": [
+        {
+          "path": "fastutil/LICENSE-2.0",
+          "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+          "size": 11358,
+          "sourceUrl": "https://raw.githubusercontent.com/vigna/fastutil/8.5.13/LICENSE-2.0",
+          "bundlePath": "notices/dependencies/mtr/fastutil/LICENSE-2.0"
+        }
+      ],
+      "bundledBy": "mtr"
+    },
+    {
+      "coordinates": "com.squareup.okio:okio",
+      "license": "Apache-2.0",
+      "sourceUrl": "https://raw.githubusercontent.com/square/okio/parent-3.9.0/LICENSE.txt",
+      "bundledEvidence": {
+        "prefix": "org/mtr/libraries/okio/",
+        "classOrResourceCount": 116,
+        "versionBasis": "exact bundled version unknown; official notice reference parent-3.9.0, not a version identification"
+      },
+      "noticeFiles": [
+        {
+          "path": "okio/LICENSE.txt",
+          "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+          "size": 11358,
+          "sourceUrl": "https://raw.githubusercontent.com/square/okio/parent-3.9.0/LICENSE.txt",
+          "bundlePath": "notices/dependencies/mtr/okio/LICENSE.txt"
+        }
+      ],
+      "bundledBy": "mtr"
+    },
+    {
+      "coordinates": "org.msgpack:msgpack-core",
+      "license": "Apache-2.0",
+      "sourceUrl": "https://raw.githubusercontent.com/msgpack/msgpack-java/v0.9.8/LICENSE.txt",
+      "bundledEvidence": {
+        "prefix": "org/mtr/libraries/org/msgpack/",
+        "classOrResourceCount": 110,
+        "versionBasis": "exact bundled version unknown; official notice reference v0.9.8, not a version identification"
+      },
+      "noticeFiles": [
+        {
+          "path": "msgpack/LICENSE.txt",
+          "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+          "size": 11358,
+          "sourceUrl": "https://raw.githubusercontent.com/msgpack/msgpack-java/v0.9.8/LICENSE.txt",
+          "bundlePath": "notices/dependencies/mtr/msgpack/LICENSE.txt"
+        },
+        {
+          "path": "msgpack/NOTICE",
+          "sha256": "a6af52473ba50eae58b035a2e6bbd0ec0631d44d6dfe31d5dd2d34308f1dab5d",
+          "size": 220,
+          "sourceUrl": "https://raw.githubusercontent.com/msgpack/msgpack-java/v0.9.8/NOTICE",
+          "bundlePath": "notices/dependencies/mtr/msgpack/NOTICE"
+        },
+        {
+          "path": "msgpack/LICENCE.sbt-extras.txt",
+          "sha256": "eb4516dc3c1e0cd58f16a7d294d3cc1e7d8cb7c297489d4f70c1f0a1f888d599",
+          "size": 1550,
+          "sourceUrl": "https://raw.githubusercontent.com/msgpack/msgpack-java/v0.9.8/LICENCE.sbt-extras.txt",
+          "bundlePath": "notices/dependencies/mtr/msgpack/LICENCE.sbt-extras.txt"
+        }
+      ],
+      "bundledBy": "mtr"
+    },
+    {
+      "coordinates": "de.javagl:obj",
+      "license": "MIT",
+      "sourceUrl": "https://raw.githubusercontent.com/javagl/Obj/master/LICENSE.txt",
+      "bundledEvidence": {
+        "prefix": "org/mtr/libraries/de/javagl/obj/",
+        "classOrResourceCount": 40,
+        "versionBasis": "exact bundled version unknown; official upstream license source"
+      },
+      "noticeFiles": [
+        {
+          "path": "obj/LICENSE.txt",
+          "sha256": "5ff9903a250555bbea06cfba1266185c040d02ec32796122f22da446c25ebd63",
+          "size": 1133,
+          "sourceUrl": "https://raw.githubusercontent.com/javagl/Obj/master/LICENSE.txt",
+          "bundlePath": "notices/dependencies/mtr/obj/LICENSE.txt"
+        }
+      ],
+      "bundledBy": "mtr"
+    },
+    {
+      "coordinates": "org.jetbrains:annotations",
+      "license": "Apache-2.0",
+      "sourceUrl": "https://raw.githubusercontent.com/JetBrains/java-annotations/24.1.0/LICENSE.txt",
+      "bundledEvidence": {
+        "prefix": "org/mtr/libraries/org/jetbrains/",
+        "classOrResourceCount": 9,
+        "versionBasis": "exact bundled version unknown; official notice reference 24.1.0, not a version identification",
+        "additionalPrefix": "org/mtr/libraries/org/intellij/"
+      },
+      "noticeFiles": [
+        {
+          "path": "annotations/LICENSE.txt",
+          "sha256": "8c1e966c7855fb54027bcaf6ebe7a43abe4785791e8cf9148c363761d493d097",
+          "size": 11352,
+          "sourceUrl": "https://raw.githubusercontent.com/JetBrains/java-annotations/24.1.0/LICENSE.txt",
+          "bundlePath": "notices/dependencies/mtr/annotations/LICENSE.txt"
+        }
+      ],
+      "bundledBy": "mtr"
+    },
+    {
+      "coordinates": "com.google.errorprone:error_prone_annotations",
+      "license": "Apache-2.0",
+      "sourceUrl": "https://raw.githubusercontent.com/google/error-prone/v2.27.0/COPYING",
+      "bundledEvidence": {
+        "prefix": "org/mtr/libraries/com/google/errorprone/",
+        "classOrResourceCount": 4,
+        "versionBasis": "exact bundled version unknown; official notice reference v2.27.0, not a version identification"
+      },
+      "noticeFiles": [
+        {
+          "path": "errorprone/COPYING",
+          "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+          "size": 11358,
+          "sourceUrl": "https://raw.githubusercontent.com/google/error-prone/v2.27.0/COPYING",
+          "bundlePath": "notices/dependencies/mtr/errorprone/COPYING"
+        }
+      ],
+      "bundledBy": "mtr"
+    },
+    {
+      "coordinates": "font:Noto-Sans-SemiBold:2.004",
+      "license": "OFL-1.1",
+      "sourceUrl": "https://raw.githubusercontent.com/notofonts/noto-fonts/main/LICENSE",
+      "bundledEvidence": {
+        "prefix": "assets/mtr/font/noto-sans-semibold.ttf",
+        "classOrResourceCount": 1,
+        "versionBasis": "font name table explicitly identifies Noto Sans, version2.004, SIL OFL1.1; notice obtained from official font repository"
+      },
+      "noticeFiles": [
+        {
+          "path": "noto-sans/LICENSE",
+          "sha256": "0dab92d0544f7b233403f14b84a663bdbfa746982eda629e7f4f9ffe1b036feb",
+          "size": 4377,
+          "sourceUrl": "https://raw.githubusercontent.com/notofonts/noto-fonts/main/LICENSE",
+          "bundlePath": "notices/dependencies/mtr/noto-sans/LICENSE"
+        }
+      ],
+      "bundledBy": "mtr"
+    },
+    {
+      "coordinates": "font:Noto-Serif-CJK-TC-SemiBold",
+      "license": "OFL-1.1",
+      "sourceUrl": "https://raw.githubusercontent.com/notofonts/noto-cjk/main/Serif/LICENSE",
+      "bundledEvidence": {
+        "prefix": "assets/mtr/font/noto-serif-cjk-tc-semibold.ttf",
+        "classOrResourceCount": 1,
+        "versionBasis": "font name table license evidence saved separately; official Noto CJK Serif license"
+      },
+      "noticeFiles": [
+        {
+          "path": "noto-serif-cjk/LICENSE",
+          "sha256": "6a73f9541c2de74158c0e7cf6b0a58ef774f5a780bf191f2d7ec9cc53efe2bf2",
+          "size": 4301,
+          "sourceUrl": "https://raw.githubusercontent.com/notofonts/noto-cjk/main/Serif/LICENSE",
+          "bundlePath": "notices/dependencies/mtr/noto-serif-cjk/LICENSE"
+        }
+      ],
+      "bundledBy": "mtr"
+    },
+    {
+      "coordinates": "javax.servlet:javax.servlet-api",
+      "license": "CDDL-1.0 OR GPL-2.0-only WITH Classpath-exception-2.0",
+      "sourceUrl": "https://repo.maven.apache.org/maven2/javax/servlet/javax.servlet-api/4.0.1/javax.servlet-api-4.0.1-sources.jar",
+      "bundledEvidence": {
+        "prefix": "org/mtr/libraries/javax/servlet/",
+        "classCount": 85,
+        "versionBasis": "API4.0 classes observed, exact bundled patch release unknown. Official4.0.1 license reference is not a version identification."
+      },
+      "noticeFiles": [
+        {
+          "path": "servlet-api/LICENSE.txt",
+          "sha256": "a4c80869daf4350b6773bd5e6ee1d0a6cc52b63db3a3d2dc20961b0cdd272a5c",
+          "size": 36116,
+          "sourceUrl": "https://repo.maven.apache.org/maven2/javax/servlet/javax.servlet-api/4.0.1/javax.servlet-api-4.0.1.jar",
+          "archiveEntry": "META-INF/LICENSE.txt",
+          "sourceArtifactSha256": "83a03dd877d3674576f0da7b90755c8524af099ccf0607fc61aa971535ad7c60",
+          "bundlePath": "notices/dependencies/mtr/servlet-api/LICENSE.txt"
+        }
+      ],
+      "bundledBy": "mtr"
+    },
+    {
+      "coordinates": "org.mtr:Transport-Simulation-Core:0.0.1",
+      "license": "MIT",
+      "sourceUrl": "https://github.com/Minecraft-Transit-Railway/Transport-Simulation-Core/tree/ecde7247f4200a417ff19dd257276f40e666d11b",
+      "sourceCommit": "ecde7247f4200a417ff19dd257276f40e666d11b",
+      "bundledEvidence": {
+        "prefix": "org/mtr/core/",
+        "inputArtifact": "libs/Transport-Simulation-Core-0.0.1.jar",
+        "versionBasis": "Pinned upstream base and modified-source provenance are recorded in Minecraft-Transit-Railway/patches/dependencies/provenance.json. sourceCommit is the license source base, not a claim that modified bundled classes are unmodified upstream."
+      },
+      "noticeFiles": [
+        {
+          "path": "transport-core/LICENSE",
+          "sha256": "f19a81c2e9ceb7f149c4141940fdef2251ba41e7ef8125b4b9039300d403f9e0",
+          "size": 1068,
+          "sourceUrl": "https://raw.githubusercontent.com/Minecraft-Transit-Railway/Transport-Simulation-Core/ecde7247f4200a417ff19dd257276f40e666d11b/LICENSE",
+          "bundlePath": "notices/dependencies/mtr/transport-core/LICENSE"
+        }
+      ],
+      "bundledBy": "mtr"
+    },
+    {
+      "coordinates": "org.mtr:Minecraft-Mappings:0.0.1",
+      "license": "MIT",
+      "sourceUrl": "https://github.com/Minecraft-Transit-Railway/Minecraft-Mappings/tree/a0567ff7219a7f44b06089d208ab866e9a19e029",
+      "sourceCommit": "a0567ff7219a7f44b06089d208ab866e9a19e029",
+      "bundledEvidence": {
+        "prefix": "org/mtr/mapping/",
+        "inputArtifact": "libs/Minecraft-Mappings-common-0.0.1.jar",
+        "versionBasis": "Pinned upstream base and modified-source provenance are recorded in Minecraft-Transit-Railway/patches/dependencies/provenance.json. sourceCommit is the license source base, not a claim that modified bundled classes are unmodified upstream."
+      },
+      "noticeFiles": [
+        {
+          "path": "mappings/LICENSE",
+          "sha256": "f19a81c2e9ceb7f149c4141940fdef2251ba41e7ef8125b4b9039300d403f9e0",
+          "size": 1068,
+          "sourceUrl": "https://raw.githubusercontent.com/Minecraft-Transit-Railway/Minecraft-Mappings/a0567ff7219a7f44b06089d208ab866e9a19e029/LICENSE",
+          "bundlePath": "notices/dependencies/mtr/mappings/LICENSE"
+        }
+      ],
+      "bundledBy": "mtr"
+    }
+  ],
+  "dependencyNoticeManifests": [
+    {
+      "bundledBy": "chiselsandbits",
+      "bundlePath": "notices/dependencies/chiselsandbits/manifest.json",
+      "sha256": "f74e58097d3fb2c7fa608787cbe24ca60dc8ca82e058654fab9ffece5e6dfd10",
+      "size": 14007,
+      "scope": "Official license and copyright materials for dependencies already embedded in the local Chisels & Bits replacement JAR; no runtime JARs are distributed in this notice folder.",
+      "additionalEvidenceFiles": []
+    },
+    {
+      "bundledBy": "mtr",
+      "bundlePath": "notices/dependencies/mtr/manifest.json",
+      "sha256": "ba2253af0ac76948a9bb3e58c6a2fe08efa8992c4f9bc6b2fea812c7e2fdca0b",
+      "size": 15060,
+      "scope": "Supplementary official notices for observed shaded MTR dependency packages and bundled fonts. Not an exhaustive legal certification; exact versions are marked unknown where the stripped JAR has no version evidence. Reference notice versions are explicitly not assertions of bundled versions. Existing embedded notices are preserved unchanged.",
+      "additionalEvidenceFiles": [
+        {
+          "bundlePath": "notices/dependencies/mtr/font-metadata-evidence.json",
+          "sha256": "717006780ed4e32bb2c3060a52933dd95ab731d0c91bbd6b73bfe126f58955d2",
+          "size": 2022
+        }
+      ]
+    }
+  ]
+}
