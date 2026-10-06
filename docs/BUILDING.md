@@ -146,6 +146,16 @@ git -c core.longpaths=true submodule update --init --recursive
 소스·JAR·ZIP 검증이 실패하면 해당 실행의 배포 ZIP을 발행하거나 `latest.json`을 갱신하지 않는다.
 진단용 로그와 임시 파일은 실행 작업 디렉터리에 남을 수 있다.
 
+Gradle 실행 전 wrapper 배포판 다운로드에서 확인된 일시적 HTTP 429/5xx 또는
+연결·읽기 시간 초과는 최대 3회 시도한다. 재시도 전에는 2초, 4초를 기다리고 도구
+지문을 다시 확인한다. 컴파일·테스트 실패, HTTP 404, 인증·체크섬 오류는 재시도하지 않는다.
+`gradle-<단계>.log`는 마지막 시도이며, 첫 시도부터 각 시도의 로그를
+`gradle-<단계>-attempt-<번호>.log`로 함께 보존한다.
+
+GitHub 배포가 실패하면 `minefed-build-failure-main-<run_id>-<run_attempt>` artifact에
+해당 실행의 `gradle-*.log`만 3일간 보존한다. 이 진단 artifact는 공개 릴리즈 파일과
+분리되며 JAR, 개인 리소스팩, 자격 증명 파일을 포함하지 않는다.
+
 `check`는 `modpack`의 선행 조건이 아니므로, 패키징이 끝난 뒤 검사 태스크에서 실패하면 ZIP과
 `latest.json`이 이미 만들어져 있을 수 있다. `latest.json`은 패키징 성공을 가리키며 전체 `build`의
 검사 통과를 보증하지 않는다. 전체 빌드의 성공 여부는 Gradle 종료 코드와 검사 결과를 함께 확인한다.
