@@ -493,13 +493,14 @@
       "tasks": [
         "remapJar",
         "verifyDisplayBezelTrace",
-        "verifyDisplayCursor"
+          "verifyDisplayCursor",
+          "verifyDisplayBezelVisibility"
       ],
       "args": [],
       "artifactGlobs": [
-        "build/libs/minefed-display-1.0.1.jar"
+          "build/libs/minefed-display-1.0.2.jar"
       ],
-      "expectedVersion": "1.0.1"
+        "expectedVersion": "1.0.2"
     },
     {
       "modId": "mishanguc",
