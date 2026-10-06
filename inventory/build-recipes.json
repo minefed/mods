@@ -94,6 +94,7 @@
       "sourcePath": "Chisels-and-Bits",
       "java": 17,
       "tasks": [
+        ":core:test",
         ":fabric:remapJar"
       ],
       "args": [],

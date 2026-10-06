@@ -495,7 +495,7 @@
         "url": "https://github.com/minefed/Chisels-and-Bits",
         "upstream": "https://github.com/ChiselsAndBits/Chisels-and-Bits",
         "ref": "minefed-1.20.4",
-        "commit": "353dbfbb1cbaddad499338f5c54a4b6b81f6529f",
+        "commit": "28723461a5afbfba6aa5c6e6349ffecd8da54ec0",
         "trackingBranch": "minefed-1.20.4",
         "baselineRef": "version/1.20.4",
         "baselineCommit": "f64db2d6124e004ae498cd1a1154909afd81a96d"
