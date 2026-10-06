@@ -1,0 +1,116 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-06",
+  "minecraftVersion": "1.20.4",
+  "loader": "Fabric",
+  "java": 17,
+  "buildJava": 21,
+  "purpose": "Release bootstrap reliability repair and per-pass vehicle shadow checks",
+  "releaseFailure": {
+    "runUrl": "https://github.com/minefed/mods/actions/runs/37376898848",
+    "jobUrl": "https://github.com/minefed/mods/actions/runs/37376898848/job/111988181908",
+    "cause": "mc-realtime Gradle 8.11.1 bootstrap download returned HTTP 500 after MTR built successfully",
+    "retryPolicy": "At most three attempts with 2s/4s backoff, only explicit transient wrapper bootstrap failures; build/test/integrity failures are not retried",
+    "diagnostics": "Failed source Gradle logs are retained as a separate workflow artifact for three days"
+  },
+  "entries": [
+    {
+      "modId": "mtr",
+      "version": "4.0.5",
+      "fileName": "fabric-4.0.5.jar",
+      "artifactPath": "Minecraft-Transit-Railway/fabric/build/libs/fabric-4.0.5.jar",
+      "sha256": "dc1b179f53d125187b4f392daecbb73a70bbcb313b58a3d3e7848549cf340a52",
+      "size": 83178730,
+      "source": {
+        "path": "Minecraft-Transit-Railway",
+        "url": "https://github.com/minefed/Minecraft-Transit-Railway",
+        "trackingBranch": "minefed-1.20.4",
+        "commit": "b63de38863bfb9afd8a04bf983a8dc65fa66146c"
+      },
+      "sourceUrl": "https://github.com/minefed/Minecraft-Transit-Railway/commit/b63de38863bfb9afd8a04bf983a8dc65fa66146c",
+      "license": "MIT",
+      "binaryLicense": "MIT",
+      "compatibility": {
+        "fabric": "*",
+        "minecraft": "1.20.4"
+      },
+      "provenanceInventory": "inventory/client-device-performance-2026-10-06.json",
+      "licenseNotices": [
+        {
+          "sourcePath": "Minecraft-Transit-Railway/LICENSE",
+          "sourceCommit": "b63de38863bfb9afd8a04bf983a8dc65fa66146c",
+          "sha256": "c4445a98dbe7fc73944796bcc54c5fefc659f3cacced0ad1cc9c6f794eea0b0e",
+          "size": 1068
+        },
+        {
+          "sourcePath": "Minecraft-Transit-Railway/LICENSE_ORIGINAL",
+          "sourceCommit": "b63de38863bfb9afd8a04bf983a8dc65fa66146c",
+          "sha256": "4d52d2934d6a874ccbb3ece33566801c6796c86d0c86f1b27989b2710f30644b",
+          "size": 1068
+        }
+      ]
+    }
+  ],
+  "validation": {
+    "mtr": {
+      "test": 89,
+      "railRendering": 8,
+      "mixinCompatibility": 8,
+      "lightCompatibility": 3,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "remapJar": true,
+      "independentBytecodeInspection": true
+    },
+    "buildModpackTests": {
+      "tests": 65,
+      "failures": 0,
+      "errors": 0
+    },
+    "parallelBuildTests": {
+      "tests": 10,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 2,
+      "skipReason": "POSIX-only signal contracts on Windows"
+    },
+    "releaseControlTests": {
+      "tests": 13,
+      "failures": 0,
+      "errors": 0
+    },
+    "actionlint": "1.7.12 passed",
+    "artifactComparison": {
+      "newSha256": "dc1b179f53d125187b4f392daecbb73a70bbcb313b58a3d3e7848549cf340a52",
+      "newSize": 83178730,
+      "added": [],
+      "removed": [],
+      "changed": [
+        "org/mtr/mod/render/RenderVehicles$PreviousConnectionPositions.class",
+        "org/mtr/mod/render/RenderVehicles$PreviousGangwayMovementPositions.class",
+        "org/mtr/mod/render/RenderVehicles$RidingPlayerInterpolation.class",
+        "org/mtr/mod/render/RenderVehicles.class"
+      ]
+    },
+    "releaseInputsTests": {
+      "tests": 17,
+      "failures": 0,
+      "errors": 0
+    }
+  },
+  "performanceEvidence": {
+    "change": "Reuse the existing shadow-pass result across synchronous per-car callbacks, querying afresh on each render invocation",
+    "newInGameFpsMeasurement": false,
+    "priorDeviceMeasurements": "docs/CLIENT_DEVICE_PERFORMANCE_2026-10-06.md",
+    "behaviorProof": "Minecraft-Transit-Railway/docs/vehicle-shadow-check.md"
+  },
+  "localInstallation": {
+    "applied": true,
+    "previousMtrSourceCommit": "8167073c541f88996eb2ab4a184f1c27aac2462b",
+    "previousMtrSha256": "60961be723771edbd3bfc5c22e75e0cbc021df261b21907ed172422b1d6349c1",
+    "optionsChanged": false,
+    "displayChanged": false,
+    "serverFilesChanged": false
+  }
+}
