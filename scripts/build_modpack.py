@@ -18,6 +18,7 @@ import subprocess
 import sys
 import tempfile
 import time
+from typing import Callable
 import zipfile
 
 import mods
@@ -472,6 +473,57 @@ def run_gradle_process(command: list[str], *, cwd: Path, env: dict, stdout) -> s
         raise
 
 
+def is_transient_wrapper_download_failure(log: str) -> bool:
+    """Recognize bootstrap failures, never retry a Gradle build or its tasks."""
+    if not (re.search(r'^Downloading https?://\S+', log, re.MULTILINE) and
+            re.search(r'^Exception in thread "main" ', log, re.MULTILINE) and
+            re.search(r'^\s+at org\.gradle\.wrapper\.GradleWrapperMain\.main\(', log, re.MULTILINE) and
+            re.search(r'^\s+at org\.gradle\.wrapper\.(?:Install|Download)[.$]', log, re.MULTILINE)):
+        return False
+    # Even a task that launches another wrapper is a build failure, not a
+    # bootstrap failure of this invocation. Configuration failures count too.
+    if re.search(r'^(?:> (?:Task|Configure project)\b|Welcome to Gradle\b|'
+                 r'FAILURE:|BUILD (?:FAILED|SUCCESSFUL)\b|\* (?:What went wrong|Where):)|'
+                 r'^\s+at org\.gradle\.(?!wrapper\.)', log, re.MULTILINE):
+        return False
+    if re.search(r'checksum|verification of gradle distribution|zip(?:file|exception)|'
+                 r'SSLHandshakeException|CertificateException', log, re.IGNORECASE):
+        return False
+    statuses = re.findall(r'HTTP response code:\s*(\d{3})\b', log)
+    if statuses:
+        return all(code == '429' or 500 <= int(code) <= 599 for code in statuses)
+    return bool(re.search(r'(?:java\.net\.SocketTimeoutException|'
+                          r'java\.net\.http\.Http(?:Connect)?TimeoutException):|'
+                          r'java\.net\.ConnectException: (?:Connection timed out|connect timed out)', log))
+
+
+def run_gradle_with_bootstrap_retry(command: list[str], *, cwd: Path, env: dict,
+                                   log_path: Path, before_attempt: Callable[[], None]) -> subprocess.CompletedProcess:
+    """Retry only transient wrapper downloads while retaining the caller's lock."""
+    for attempt in range(1, 4):
+        before_attempt()
+        attempt_log = log_path.with_name(f'{log_path.stem}-attempt-{attempt}{log_path.suffix}')
+        try:
+            with log_path.open('w', encoding='utf-8') as log:
+                result = run_gradle_process(command, cwd=cwd, env=env, stdout=log)
+        finally:
+            # Keep the established main log path, including on cancellation,
+            # and preserve each attempt before any retry can overwrite it.
+            if log_path.is_file():
+                shutil.copyfile(log_path, attempt_log)
+        # An uncaught Java bootstrap exception exits with 1. Signals, launcher
+        # errors and cancellation statuses must not restart another process.
+        if result.returncode != 1 or attempt == 3:
+            return result
+        if not is_transient_wrapper_download_failure(log_path.read_text(encoding='utf-8', errors='replace')):
+            return result
+        delay = 2 ** attempt
+        print(f'Transient Gradle Wrapper download failure; retry {attempt + 1}/3 in {delay}s. '
+              f'Attempt log: {attempt_log}', file=sys.stderr, flush=True)
+        time.sleep(delay)
+    raise AssertionError('Unreachable Gradle retry state')
+
+
 def _build_source(root: Path, run: str, identity: str) -> None:
     manifest, plan = load_plan(root)
     work = check_run(root, run, manifest, plan)
@@ -541,8 +593,9 @@ def _build_source(root: Path, run: str, identity: str) -> None:
             invocation = command + common + phase
             commands.append(invocation)
             print(f"Building {recipe['sourcePath']} ({number}/{len(phases)}): {' '.join(phase)}", flush=True)
-            with (output / f"gradle-{number}.log").open('w', encoding='utf-8') as log:
-                result = run_gradle_process(invocation, cwd=source, env=environment, stdout=log)
+            result = run_gradle_with_bootstrap_retry(
+                invocation, cwd=source, env=environment, log_path=output / f"gradle-{number}.log",
+                before_attempt=lambda: check_tool_fingerprint(root, plan, recipe, tool_inputs))
             if result.returncode:
                 tail = (output / f"gradle-{number}.log").read_text(encoding='utf-8', errors='replace').splitlines()[-65:]
                 print('\n'.join(tail), file=sys.stderr)

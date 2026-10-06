@@ -276,6 +276,175 @@ with _file_lock(directory / (role + '.lock'), 'Unexpected test lock contender'):
             self.assertIn('build failed', (directory / 'output.log').read_text())
 
 
+class GradleWrapperRetryTests(unittest.TestCase):
+    @staticmethod
+    def failure(message='java.io.IOException: Server returned HTTP response code: 500 for URL: https://example.invalid/gradle.zip',
+                frame='Install.forceFetch'):
+        return ('Downloading https://services.gradle.org/distributions/gradle-8.11.1-bin.zip\n\n'
+                f'Exception in thread "main" {message}\n'
+                f'\tat org.gradle.wrapper.{frame}(SourceFile:2)\n'
+                '\tat org.gradle.wrapper.Install$1.call(SourceFile:8)\n'
+                '\tat org.gradle.wrapper.GradleWrapperMain.main(SourceFile:67)\n')
+
+    def test_only_explicit_transient_bootstrap_errors_are_retryable(self):
+        for code in (429, 500, 502, 503, 504, 599):
+            with self.subTest(status=code):
+                self.assertTrue(builder.is_transient_wrapper_download_failure(self.failure(
+                    f'java.io.IOException: Server returned HTTP response code: {code} for URL: https://example.invalid/gradle.zip')))
+        for message in ('java.net.SocketTimeoutException: Read timed out',
+                        'java.net.ConnectException: Connection timed out: connect',
+                        'java.net.http.HttpConnectTimeoutException: HTTP connect timed out'):
+            with self.subTest(exception=message):
+                self.assertTrue(builder.is_transient_wrapper_download_failure(self.failure(message, 'Download.downloadInternal')))
+
+    def test_permanent_and_post_bootstrap_failures_are_not_retryable(self):
+        for message in ('java.io.IOException: Server returned HTTP response code: 404 for URL: https://example.invalid/gradle.zip',
+                        'java.io.IOException: Server returned HTTP response code: 401 for URL: https://example.invalid/gradle.zip',
+                        'java.io.IOException: Verification of Gradle distribution failed! Checksum mismatch',
+                        'java.util.zip.ZipException: zip END header not found',
+                        'javax.net.ssl.SSLHandshakeException: Certificate verification failed',
+                        'java.net.UnknownHostException: example.invalid',
+                        'java.lang.UnsupportedClassVersionError: Unsupported class version'):
+            with self.subTest(exception=message):
+                self.assertFalse(builder.is_transient_wrapper_download_failure(self.failure(message)))
+        for started in ('> Task :compileJava FAILED\n', '> Task :test FAILED\n',
+                        '> Configure project :\n', 'FAILURE: Build failed with an exception.\n',
+                        'Welcome to Gradle 8.11.1!\n', '\tat org.gradle.launcher.GradleMain.main(GradleMain.java:23)\n'):
+            with self.subTest(started=started):
+                self.assertFalse(builder.is_transient_wrapper_download_failure(started + self.failure()))
+        # An earlier transient message cannot override a final integrity/404 failure.
+        for final in ('checksum mismatch', 'java.util.zip.ZipException: invalid zip',
+                      'Server returned HTTP response code: 404'):
+            with self.subTest(final=final):
+                self.assertFalse(builder.is_transient_wrapper_download_failure(self.failure() + final))
+        for missing in ('Downloading https://services.gradle.org/distributions/gradle-8.11.1-bin.zip',
+                        'Exception in thread "main" ',
+                        '\tat org.gradle.wrapper.GradleWrapperMain.main(SourceFile:67)'):
+            with self.subTest(missing=missing):
+                self.assertFalse(builder.is_transient_wrapper_download_failure(self.failure().replace(missing, '')))
+        no_install = self.failure().replace('org.gradle.wrapper.Install', 'org.example.Other')
+        self.assertFalse(builder.is_transient_wrapper_download_failure(no_install))
+
+    def test_transient_recovery_retains_attempts_main_log_and_identical_command(self):
+        with tempfile.TemporaryDirectory(prefix='minefed-wrapper-retry-') as temporary:
+            directory = Path(temporary)
+            command, environment = ['wrapper', '--project-dir', 'source', ':remapJar'], {'FIXTURE': 'unchanged'}
+            outputs = [self.failure(), 'BUILD SUCCESSFUL\n']
+            checks = []
+
+            def invoke(actual_command, *, cwd, env, stdout):
+                self.assertEqual(actual_command, command)
+                self.assertEqual(cwd, directory)
+                self.assertEqual(env, environment)
+                self.assertEqual(len(checks), 2 - len(outputs) + 1)
+                text = outputs.pop(0)
+                stdout.write(text)
+                return subprocess.CompletedProcess(actual_command, 1 if outputs else 0)
+
+            with patch.object(builder, 'run_gradle_process', side_effect=invoke) as process, \
+                    patch.object(builder.time, 'sleep') as sleep, redirect_stderr(io.StringIO()):
+                result = builder.run_gradle_with_bootstrap_retry(
+                    command, cwd=directory, env=environment, log_path=directory / 'gradle-2.log',
+                    before_attempt=lambda: checks.append(True))
+            self.assertEqual(result.returncode, 0)
+            self.assertEqual(process.call_count, 2)
+            sleep.assert_called_once_with(2)
+            self.assertEqual((directory / 'gradle-2-attempt-1.log').read_text(), self.failure())
+            self.assertEqual((directory / 'gradle-2-attempt-2.log').read_text(), 'BUILD SUCCESSFUL\n')
+            self.assertEqual((directory / 'gradle-2.log').read_text(), 'BUILD SUCCESSFUL\n')
+            self.assertFalse((directory / 'gradle-2-attempt-3.log').exists())
+
+    def test_retry_exhaustion_stops_after_three_attempts(self):
+        with tempfile.TemporaryDirectory(prefix='minefed-wrapper-exhaust-') as temporary:
+            directory = Path(temporary)
+            attempts = []
+
+            def invoke(command, **kwargs):
+                attempts.append(len(attempts) + 1)
+                kwargs['stdout'].write(self.failure() + f'Attempt {attempts[-1]}\n')
+                return subprocess.CompletedProcess(command, 1)
+
+            with patch.object(builder, 'run_gradle_process', side_effect=invoke), \
+                    patch.object(builder.time, 'sleep') as sleep, redirect_stderr(io.StringIO()):
+                result = builder.run_gradle_with_bootstrap_retry(
+                    ['wrapper'], cwd=directory, env={}, log_path=directory / 'gradle-1.log', before_attempt=lambda: None)
+            self.assertEqual(result.returncode, 1)
+            self.assertEqual(attempts, [1, 2, 3])
+            self.assertEqual([call.args[0] for call in sleep.call_args_list], [2, 4])
+            for attempt in attempts:
+                self.assertTrue((directory / f'gradle-1-attempt-{attempt}.log').read_text().endswith(f'Attempt {attempt}\n'))
+            self.assertEqual((directory / 'gradle-1.log').read_bytes(), (directory / 'gradle-1-attempt-3.log').read_bytes())
+
+    def test_failure_after_successful_bootstrap_is_not_retried_again(self):
+        with tempfile.TemporaryDirectory(prefix='minefed-wrapper-build-') as temporary:
+            directory = Path(temporary)
+            outputs = [self.failure(), '> Task :test FAILED\nFAILURE: Build failed with an exception.\n']
+
+            def invoke(command, **kwargs):
+                kwargs['stdout'].write(outputs.pop(0))
+                return subprocess.CompletedProcess(command, 1)
+
+            with patch.object(builder, 'run_gradle_process', side_effect=invoke) as process, \
+                    patch.object(builder.time, 'sleep') as sleep, redirect_stderr(io.StringIO()):
+                result = builder.run_gradle_with_bootstrap_retry(
+                    ['wrapper'], cwd=directory, env={}, log_path=directory / 'gradle-1.log', before_attempt=lambda: None)
+            self.assertEqual(result.returncode, 1)
+            self.assertEqual(process.call_count, 2)
+            sleep.assert_called_once_with(2)
+
+    def test_signal_exit_status_does_not_retry_transient_looking_output(self):
+        for status in (-15, -2, 130, 143, 3221225786):
+            with self.subTest(status=status), tempfile.TemporaryDirectory(prefix='minefed-wrapper-signal-') as temporary:
+                directory = Path(temporary)
+
+                def invoke(command, **kwargs):
+                    kwargs['stdout'].write(self.failure())
+                    return subprocess.CompletedProcess(command, status)
+
+                with patch.object(builder, 'run_gradle_process', side_effect=invoke) as process, \
+                        patch.object(builder.time, 'sleep') as sleep:
+                    result = builder.run_gradle_with_bootstrap_retry(
+                        ['wrapper'], cwd=directory, env={}, log_path=directory / 'gradle-1.log', before_attempt=lambda: None)
+                self.assertEqual(result.returncode, status)
+                process.assert_called_once()
+                sleep.assert_not_called()
+
+    def test_cancellation_propagates_and_preserves_partial_log_without_retry(self):
+        for exception in (KeyboardInterrupt, SystemExit):
+            with self.subTest(exception=exception.__name__), tempfile.TemporaryDirectory(prefix='minefed-wrapper-cancel-') as temporary:
+                directory = Path(temporary)
+
+                def invoke(command, **kwargs):
+                    kwargs['stdout'].write('Downloading partial distribution\n')
+                    raise exception('cancelled')
+
+                with patch.object(builder, 'run_gradle_process', side_effect=invoke) as process, \
+                        patch.object(builder.time, 'sleep') as sleep:
+                    with self.assertRaisesRegex(exception, 'cancelled'):
+                        builder.run_gradle_with_bootstrap_retry(
+                            ['wrapper'], cwd=directory, env={}, log_path=directory / 'gradle-1.log', before_attempt=lambda: None)
+                process.assert_called_once()
+                sleep.assert_not_called()
+                self.assertEqual((directory / 'gradle-1.log').read_text(), 'Downloading partial distribution\n')
+                self.assertEqual((directory / 'gradle-1-attempt-1.log').read_bytes(), (directory / 'gradle-1.log').read_bytes())
+
+    def test_cancellation_during_backoff_never_relaunches(self):
+        with tempfile.TemporaryDirectory(prefix='minefed-wrapper-backoff-') as temporary:
+            directory = Path(temporary)
+
+            def invoke(command, **kwargs):
+                kwargs['stdout'].write(self.failure())
+                return subprocess.CompletedProcess(command, 1)
+
+            with patch.object(builder, 'run_gradle_process', side_effect=invoke) as process, \
+                    patch.object(builder.time, 'sleep', side_effect=KeyboardInterrupt), redirect_stderr(io.StringIO()):
+                with self.assertRaises(KeyboardInterrupt):
+                    builder.run_gradle_with_bootstrap_retry(
+                        ['wrapper'], cwd=directory, env={}, log_path=directory / 'gradle-1.log', before_attempt=lambda: None)
+            process.assert_called_once()
+            self.assertFalse((directory / 'gradle-1-attempt-2.log').exists())
+
+
 class MixedBuildTests(unittest.TestCase):
     def setUp(self):
         self.temporary = tempfile.TemporaryDirectory(prefix="minefed-build-test-")
@@ -649,6 +818,71 @@ class MixedBuildTests(unittest.TestCase):
         with self.assertRaisesRegex(mods.ModError, "Missing successful source build"):
             builder.assemble(self.root, "test-run")
         self.assertFalse((self.root / "build" / "distributions").exists())
+
+    def test_wrapper_retry_only_repeats_current_phase_and_retains_logs(self):
+        self.recipe['phases'] = [[':generateResources'], [':test', ':remapJar']]
+        self.save_inputs()
+        self.prepare()
+        commands = []
+
+        def invoke(command, **kwargs):
+            commands.append(command)
+            if len(commands) == 2:
+                kwargs['stdout'].write(GradleWrapperRetryTests.failure())
+                return subprocess.CompletedProcess(command, 1)
+            kwargs['stdout'].write('BUILD SUCCESSFUL\n')
+            if len(commands) == 3:
+                self.jar(self.source / 'build/libs/alpha-built.jar', 'alpha')
+            return subprocess.CompletedProcess(command, 0)
+
+        with patch.object(builder, 'wrapper_command', return_value=['fake-gradle']), \
+                patch.object(builder, 'run_gradle_process', side_effect=invoke), \
+                patch.object(builder.time, 'sleep') as sleep:
+            builder.build_source(self.root, 'test-run', 'alpha')
+        self.assertEqual(len(commands), 3)
+        self.assertEqual(commands[0][-1:], [':generateResources'])
+        self.assertEqual(commands[1][-2:], [':test', ':remapJar'])
+        self.assertEqual(commands[1], commands[2])
+        sleep.assert_called_once_with(2)
+        output = self.receipt_path().parent
+        self.assertEqual((output / 'gradle-1.log').read_text(), 'BUILD SUCCESSFUL\n')
+        self.assertEqual((output / 'gradle-2-attempt-1.log').read_text(), GradleWrapperRetryTests.failure())
+        self.assertEqual((output / 'gradle-2.log').read_text(), 'BUILD SUCCESSFUL\n')
+        self.assertEqual(builder.read_json(self.receipt_path())['tasks'], self.recipe['phases'])
+
+    def test_exhausted_wrapper_retry_never_publishes_receipt_or_falls_back(self):
+        self.prepare()
+
+        def invoke(command, **kwargs):
+            kwargs['stdout'].write(GradleWrapperRetryTests.failure())
+            return subprocess.CompletedProcess(command, 1)
+
+        with patch.object(builder, 'wrapper_command', return_value=['fake-gradle']), \
+                patch.object(builder, 'run_gradle_process', side_effect=invoke) as process, \
+                patch.object(builder.time, 'sleep'):
+            with self.assertRaisesRegex(mods.ModError, 'Source build failed: alpha; no binary fallback'):
+                builder.build_source(self.root, 'test-run', 'alpha')
+        self.assertEqual(process.call_count, 3)
+        self.assertFalse(self.receipt_path().exists())
+        self.assertFalse(list((self.root / 'build/source-cache').glob('*/result.json')))
+        with self.assertRaisesRegex(mods.ModError, 'Missing successful source build'):
+            builder.assemble(self.root, 'test-run')
+
+    def test_tool_change_during_retry_backoff_prevents_next_attempt(self):
+        self.prepare()
+
+        def invoke(command, **kwargs):
+            kwargs['stdout'].write(GradleWrapperRetryTests.failure())
+            return subprocess.CompletedProcess(command, 1)
+
+        with patch.object(builder, 'wrapper_command', return_value=['fake-gradle']), \
+                patch.object(builder, 'run_gradle_process', side_effect=invoke) as process, \
+                patch.object(builder.time, 'sleep', side_effect=lambda seconds: self.change_tool()):
+            with self.assertRaisesRegex(mods.ModError, 'Build tools changed'):
+                builder.build_source(self.root, 'test-run', 'alpha')
+        process.assert_called_once()
+        self.assertFalse(self.receipt_path().exists())
+        self.assertFalse((self.receipt_path().parent / 'gradle-1-attempt-2.log').exists())
 
     def test_verified_source_cache_reuses_only_identical_inputs(self):
         self.prepare('first')
