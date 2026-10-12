@@ -6,26 +6,26 @@
     "path": "BlueMap",
     "url": "https://github.com/minefed/BlueMap",
     "trackingBranch": "minefed-1.20.4",
-    "commit": "54327c4d6fc3eea73483992506b69b5b2a8a5160",
+    "commit": "b6141244c2cea20748f9890ca134f27d8e8873d8",
     "previousCommit": "13ac1898e2117a90c837ccedd952cdce587a53ba",
     "remotelyVerified": true
   },
   "artifact": {
     "path": "BlueMap/build/release/BlueMap-5.3-minefed.1-fabric-1.20.jar",
     "version": "5.3-minefed.1",
-    "sha256": "0e0ac542c88ab8867a5a7dc0eda38194d579a965d3c81f38238f5ff567923144",
-    "size": 4838372,
+    "sha256": "9e59ce3e96f3c649285c04eaac23d7d9e8dfff5147f4e19a729419dac8d3c41e",
+    "size": 4838385,
     "minecraft": "1.20.4",
     "loader": "Fabric",
     "java": 17,
     "sourceLicense": "MIT",
     "binaryLicense": "MIT with bundled dependencies retaining their original notices",
-    "licenseUrl": "https://github.com/minefed/BlueMap/blob/54327c4d6fc3eea73483992506b69b5b2a8a5160/LICENSE",
+    "licenseUrl": "https://github.com/minefed/BlueMap/blob/b6141244c2cea20748f9890ca134f27d8e8873d8/LICENSE",
     "runtimeGameValidated": false
   },
   "validation": {
     "coreTests": {
-      "tests": 34,
+      "tests": 35,
       "failures": 0,
       "errors": 0,
       "skippedOptionalExportTest": 1
@@ -48,10 +48,11 @@
       "Core tests pass serialized NBT through Chunk_1_18 and ResourceModelBuilder to verify TrafficCraft vertex colors.",
       "The optional real-client export integration test is separate from this source build; local generated packs carry their own export report and input provenance.",
       "No production files, BlueMap configuration or rendered map tiles were changed.",
-      "PFM tests cover per-index water/white and toilet state colors; a serialized TrafficCraft chunk regression verifies that tinted side faces cannot pollute an untinted top or its low-resolution color."
+      "PFM tests cover per-index water/white and toilet state colors; a serialized TrafficCraft chunk regression verifies that tinted side faces cannot pollute an untinted top or its low-resolution color.",
+      "The real 16,031-model export exposed straight-alpha texture averages; both regular and baked-quad low-resolution paths now restore premultiplied alpha, covered by a translucent-PNG regression and the passing full-pack render test."
     ],
     "pfmColorTests": {
-      "tests": 5,
+      "tests": 6,
       "failures": 0
     },
     "postMergeBuildTests": {
@@ -66,11 +67,113 @@
     "exporterPythonTests": {
       "tests": 20,
       "failures": 0
-    }
+    },
+    "actualClientExportRenderTest": {
+      "tests": 1,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "blockstateFiles": 2326,
+      "models": 16031,
+      "triangles": 1389352,
+      "missingTextures": 0,
+      "positionsAndUvsMatch": true
+    },
+    "allCoreCasesVerified": 35
   },
   "generatedModelPacks": {
     "distribution": "local-only",
     "reason": "Generated geometry and textures retain PFM PolyForm Shield and other original asset terms; exporter MIT licensing grants no asset redistribution rights.",
-    "instructions": "docs/BLUEMAP.md"
+    "instructions": "docs/BLUEMAP.md",
+    "exportedBlocks": 2326,
+    "exportedStates": 263018,
+    "isolatedContextStates": 16225,
+    "models": 16031,
+    "textures": 436,
+    "rejectedBlocks": [],
+    "animatedTextures": 5,
+    "exporterSourceCommit": "82d168fedc2f1bf46412a54620ba7c3514e254ae",
+    "namespaceCoverage": {
+      "pfm": 2005,
+      "diagonalfences": 127,
+      "diagonalwalls": 159,
+      "diagonalwindows": 35
+    },
+    "captureComponents": [
+      {
+        "name": "full-v3",
+        "namespaces": [
+          "pfm"
+        ],
+        "wholeRunComplete": false,
+        "namespaceComplete": true,
+        "blockCount": 2005,
+        "stateCount": 17258,
+        "evidence": "The exporter sorts all pfm IDs before Diagonal IDs; all 2005 registered PFM IDs completed without failure before this run entered Diagonal capture. Its original interrupted report is retained.",
+        "originalReport": "capture-evidence/full-v3-report-interrupted.json",
+        "reportSha256": "c2a9a5b7d45f313e762954536291f66c9513186a11797f9a7d3a8e730443a17a",
+        "exporterJarSha256": "fa9021c1f912dfe987418768069a46ff408eedc4920c3daf3f65f972ee4dddbf"
+      },
+      {
+        "name": "diagonal-final",
+        "namespaces": [
+          "diagonalfences",
+          "diagonalwalls",
+          "diagonalwindows"
+        ],
+        "wholeRunComplete": true,
+        "namespaceComplete": false,
+        "selectedBlockCount": 321,
+        "successfulBlockCount": 319,
+        "repairedSeparately": [
+          "diagonalwalls:minecraft/red_sandstone_wall",
+          "diagonalwalls:minecraft/sandstone_wall"
+        ],
+        "originalReport": "capture-evidence/diagonal-report.json",
+        "reportSha256": "cc07ae9986df6ad1c9a441b1a894bc8e24873a0844f9cdd1be1a64c28754542e",
+        "exporterJarSha256": "6dc534efdad902ab334b4570c26482a5bf62df6da8c97a7abb4cce3cda255ad1"
+      },
+      {
+        "name": "diagonal-repair",
+        "wholeRunComplete": true,
+        "blockCount": 2,
+        "blocks": [
+          "diagonalwalls:minecraft/red_sandstone_wall",
+          "diagonalwalls:minecraft/sandstone_wall"
+        ],
+        "originalReport": "capture-evidence/diagonal-repair-report.json",
+        "reportSha256": "9b158a50d64c4629350055489e6152bd184064a76a85a691f855a1ce6d50234b",
+        "exporterJarSha256": "ff628476dabc0759c45daa045cb8f3c3966e21d0a0e5e06f71330954978d7e2c"
+      }
+    ],
+    "limitations": [
+      "16,225 context-dependent states use isolated surroundings, including connected PFM furniture and some Continuity CTM effects.",
+      "PFM lamp block-entity dye/material changes and other block-entity/entity-only renderers are outside this export; TrafficCraft saved paint is supported separately.",
+      "Generated asset redistribution remains local-only; source exporter licensing does not license the derived assets."
+    ]
+  },
+  "localDelivery": {
+    "directory": "build/bluemap-compat/deliverable",
+    "files": [
+      {
+        "file": "10-minefed.zip",
+        "size": 799511,
+        "sha256": "a599456cf2ccffa702aab0d67c118fdd985a7f02348e7a55370cfb7a206ed462"
+      },
+      {
+        "file": "90-minefed-models.zip",
+        "size": 26927553,
+        "sha256": "6a6ec84cc0bfaef7ea04671807748fdcf4d1ee5a1edf4ddace365efa379f7c34"
+      },
+      {
+        "file": "BlueMap-5.3-minefed.1-fabric-1.20.jar",
+        "size": 4838385,
+        "sha256": "9e59ce3e96f3c649285c04eaac23d7d9e8dfff5147f4e19a729419dac8d3c41e"
+      }
+    ],
+    "archiveCrcAndUniqueEntriesVerified": true,
+    "resourcePackSource": "ddbec63dcbbeecafe9f7044cdcd0f6dc935ec005",
+    "capturePackSource": "cb1f0cf1ed0ff9ee7ce9d2d3be56a52ba5b57914",
+    "resourcePackUpdate": "Only 11 MTR vehicle BBMODEL payloads differ. All block model JSON, PNG bytes and atlas declarations are unchanged."
   }
 }
