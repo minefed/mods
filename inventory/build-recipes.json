@@ -580,7 +580,9 @@
         ":fabric:setupFiles",
         ":fabric:remapJar",
         ":verifyRenderReuse",
-        ":fabric:verifyLightTypeContract"
+        ":fabric:verifyLightTypeContract",
+        ":fabric:verifyDataResponse",
+        ":fabric:verifySignDerivedData"
       ],
       "args": [
         "-PminecraftVersion=1.20.4",
