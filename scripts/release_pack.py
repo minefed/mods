@@ -28,6 +28,7 @@ import release_resources
 
 ROOT = Path(__file__).resolve().parents[1]
 MRPACK_HOSTS = {'cdn.modrinth.com', 'github.com', 'raw.githubusercontent.com', 'gitlab.com'}
+MTR_PUBLIC_ROUTES_PATH = 'config/mtr/bluemap-public-routes.json'
 
 # A standalone stdlib installer is shipped with both profiles. It does not install
 # Minecraft or accept its EULA, and never replaces an existing modified file.
@@ -47,9 +48,9 @@ def target(root, value):
     parts = value.split('/') if isinstance(value, str) else []
     standard = len(parts) == 2 and parts[0] in ('mods', 'plugins', 'resourcepacks')
     bluemap = len(parts) == 4 and parts[:3] == ['config', 'bluemap', 'packs']
-    vehicle_catalog = value == 'config/mtr/bluemap-vehicles.json'
-    if not (standard or bluemap or vehicle_catalog):
-        raise ValueError('Expected a reviewed mod, plugin, resource pack or MTR BlueMap catalog path: ' + str(value))
+    mtr_config = value in ('config/mtr/bluemap-vehicles.json', 'config/mtr/bluemap-public-routes.json')
+    if not (standard or bluemap or mtr_config):
+        raise ValueError('Expected a reviewed mod, plugin, resource pack or MTR BlueMap configuration path: ' + str(value))
     if PureWindowsPath(value).drive or any(p in ('', '.', '..') or re.search(r'[<>:"|?*\\\x00-\x1f]', p) or p.endswith((' ', '.')) for p in parts):
         raise ValueError('Unsafe mod path: ' + value)
     path = root
@@ -90,7 +91,8 @@ def main():
     manifest = json.loads((Path(__file__).resolve().parent / 'download-manifest.json').read_text(encoding='utf-8'))
     items = (manifest['files'] + manifest.get('plugins', []) + manifest.get('resourcePacks', [])
              + manifest.get('bluemapPacks', []) + manifest.get('generatedConfigs', []))
-    if not items:
+    defaults = manifest.get('editableDefaults', [])
+    if not items and not defaults:
         raise ValueError('Installation manifest contains no required mods')
     seen, pending = set(), []
     for item in items:
@@ -106,6 +108,23 @@ def main():
             check(path, item)
         else:
             pending.append((path, item))
+    editable = []
+    for item in defaults:
+        if item['path'] != 'config/mtr/bluemap-public-routes.json' or item.get('preserveExisting') is not True:
+            raise ValueError('Unreviewed editable configuration path or replacement policy')
+        path = target(root, item['path'])
+        if item['path'].casefold() in seen:
+            raise ValueError('Duplicate installation path')
+        seen.add(item['path'].casefold())
+        content = item.get('defaultContent')
+        if not isinstance(content, str):
+            raise ValueError('Missing editable configuration default')
+        content = content.encode('utf-8')
+        if hashlib.sha256(content).hexdigest() != item.get('sha256') or len(content) != item.get('size'):
+            raise ValueError('Modified or corrupt editable configuration default')
+        if path.exists() and not path.is_file():
+            raise ValueError('Editable configuration path is not a file: ' + str(path))
+        editable.append((path, item, content))
     missing = []
     opener = build_opener(HTTPSOnly())
     for path, item in pending:
@@ -136,6 +155,15 @@ def main():
         raise ValueError('Installation incomplete. Required files must be restored manually:\n' + '\n'.join(missing))
     for item in items:
         check(target(root, item['path']), item)
+    for path, item, content in editable:
+        target(root, item['path'])
+        path.parent.mkdir(parents=True, exist_ok=True)
+        try:
+            with path.open('xb') as stream:
+                stream.write(content)
+        except FileExistsError:
+            if not path.is_file():
+                raise ValueError('Editable configuration path is not a file: ' + str(path))
     print('All required mod files verified. Minecraft/Fabric startup has not been validated.')
     if manifest.get('plugins'):
         print('All included server plugin files verified. Plugin runtime has not been validated.')
@@ -145,6 +173,8 @@ def main():
         print('All included BlueMap resource pack files verified. Rendering has not been validated.')
     if manifest.get('generatedConfigs'):
         print('All generated configuration files verified. Live map rendering has not been validated.')
+    if defaults:
+        print('Editable configuration defaults installed where missing; existing user settings preserved.')
 
 if __name__ == '__main__':
     try:
@@ -629,6 +659,7 @@ def write_profile(root, destination, side, selected, notices, version, loader, r
     resource_records = [r for r, _, _ in chosen_packs]
     bluemap_records = []
     generated_configs = []
+    editable_defaults = []
     catalog_bytes = None
     if side == 'server':
         resource_digest, resource_size = mods.file_digest(resource)
@@ -644,6 +675,13 @@ def write_profile(root, destination, side, selected, notices, version, loader, r
                                       'vehicleCount': len(catalog['vehicles']), 'sourceArtifact': 'resourcepack.zip',
                                       'sourceSha256': resource_digest, 'archiveIncluded': True,
                                       'reason': 'Vehicle names and dimensions from the reviewed Minefed resource pack; live MTR routes supply colors. Restore this generated file from the server archive if missing.'})
+        if any(r['modId'] == 'mtr' for r in records):
+            public_routes = json_bytes({'schema': 1, 'worlds': {}})
+            editable_defaults.append({'id': 'mtr-bluemap-public-routes', 'path': MTR_PUBLIC_ROUTES_PATH,
+                                      'sha256': hashlib.sha256(public_routes).hexdigest(), 'size': len(public_routes),
+                                      'archiveIncluded': True, 'preserveExisting': True,
+                                      'defaultContent': public_routes.decode('utf-8'),
+                                      'reason': 'Owner-edited public route selection. New installations publish no routes; retain existing settings during updates.'})
     prefix = 'overrides/' if side == 'client' else ''
     with zipfile.ZipFile(destination, 'x', compression=zipfile.ZIP_DEFLATED) as archive:
         for record, path, entry in chosen:
@@ -662,10 +700,13 @@ def write_profile(root, destination, side, selected, notices, version, loader, r
             archive.write(resource, record['path'])
         if catalog_bytes is not None:
             archive.writestr(mtr_bluemap_catalog.OUTPUT_PATH, catalog_bytes)
+        for record in editable_defaults:
+            archive.writestr(record['path'], record['defaultContent'].encode('utf-8'))
         archive.writestr(prefix + 'download-manifest.json', json_bytes({'schemaVersion': 1, 'version': version, 'side': side,
                                                                      'files': records, 'plugins': plugin_records,
                                                                      'resourcePacks': resource_records, 'bluemapPacks': bluemap_records,
-                                                                     'generatedConfigs': generated_configs}))
+                                                                     'generatedConfigs': generated_configs,
+                                                                     'editableDefaults': editable_defaults}))
         archive.writestr(prefix + 'install-mods.py', INSTALLER)
         source_text = source_notices(records, version)
         for record in plugin_records:
@@ -686,7 +727,7 @@ def write_profile(root, destination, side, selected, notices, version, loader, r
         archive.writestr(prefix + 'MINEFED-RELEASE.json', json_bytes({'version': version, 'side': side, 'minecraft': '1.20.4',
                           'fabricLoader': loader, 'runtimeValidated': False, 'files': records, 'plugins': plugin_records,
                           'resourcePacks': resource_records, 'bluemapPacks': bluemap_records,
-                          'generatedConfigs': generated_configs}))
+                          'generatedConfigs': generated_configs, 'editableDefaults': editable_defaults}))
         for name, content in notices.items():
             archive.writestr(prefix + name, content)
         if chosen_plugins:
@@ -716,6 +757,13 @@ def write_profile(root, destination, side, selected, notices, version, loader, r
         if generated_configs:
             instructions += ['MTR live BlueMap vehicles use config/mtr/bluemap-vehicles.json, generated from every registered Minefed vehicle.',
                              'Vehicle lengths come from the resource pack and colors come from the active MTR route.', '']
+        if editable_defaults:
+            instructions += ['MTR public route selection: config/mtr/bluemap-public-routes.json starts with {"schema":1,"worlds":{}}; no routes are public initially.',
+                             'Keep your existing public route settings when updating. Extract updates to a separate staging directory; do not overwrite this configuration with the bundled empty default.',
+                             'Run the staged install-mods.py --directory <server-directory> after installing the required JARs/resources. It creates this default only if missing and preserves all existing file contents.',
+                             'The private config/mtr/bluemap-routes.json inventory is generated by MTR at runtime and is not included in this archive.',
+                             'Use world IDs and route IDs from that private inventory. Each worlds entry accepts routes: [route IDs] and groups: [{id, name, color (optional), routeIds: [route IDs]}].',
+                             'Selecting a group also publishes its member routes. Keep the full runtime inventory outside the BlueMap web root.', '']
         if side == 'client':
             instructions += ['Import this .mrpack in a Modrinth-compatible launcher.',
                              'Enable the included Minefed resource pack in Minecraft resource-pack settings.',
@@ -768,11 +816,16 @@ def write_profile(root, destination, side, selected, notices, version, loader, r
         for record in generated_configs:
             if hashlib.sha256(archive.read(record['path'])).hexdigest() != record['sha256']:
                 raise mods.ModError('Embedded generated configuration bytes changed: ' + record['id'])
+        for record in editable_defaults:
+            payload = archive.read(record['path'])
+            if hashlib.sha256(payload).hexdigest() != record['sha256'] or len(payload) != record['size']:
+                raise mods.ModError('Embedded editable configuration default changed: ' + record['id'])
     return {'modCount': len(records), 'embeddedCount': sum(archive_included(r) for r in records),
             'pluginCount': len(plugin_records), 'totalJarCount': sum(archive_included(r) for r in records) + len(plugin_records),
             'additionalResourcePackCount': len(resource_records),
             'bluemapResourcePackCount': len(bluemap_records),
             'mtrBlueMapVehicleCount': sum(r['vehicleCount'] for r in generated_configs),
+            'editableDefaultCount': len(editable_defaults),
             'downloadCount': sum(r['distribution'] == 'download' and not archive_included(r) for r in records), 'manualCount': len(manual),
             'excludedModIds': [r['modId'] for r, _, _ in selected if not r[side]]}
 

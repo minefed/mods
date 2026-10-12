@@ -879,7 +879,8 @@ class ReleaseTests(unittest.TestCase):
         exec(compile(release.INSTALLER, 'install-mods.py', 'exec'), namespace)
         for path in ('config/other/packs/10-minefed.zip', 'config/bluemap/packs/../core.conf',
                      'config/bluemap/packs/sub/pack.zip', 'config/bluemap/core.conf',
-                     'config/mtr/other.json', 'config/mtr/../bluemap-vehicles.json'):
+                     'config/mtr/other.json', 'config/mtr/bluemap-routes.json',
+                     'config/mtr/../bluemap-vehicles.json'):
             with self.subTest(path=path), self.assertRaises(ValueError):
                 namespace['target'](installation, path)
 
@@ -929,6 +930,99 @@ class ReleaseTests(unittest.TestCase):
         verified = subprocess.run(command, capture_output=True, text=True)
         self.assertNotEqual(0, verified.returncode)
         self.assertIn('incomplete', verified.stderr)
+
+    def test_public_route_defaults_are_empty_and_server_only(self):
+        entry = self.jar('mtr.jar', 'mtr', '4.0.5')
+        record = {**entry, **self.decision('mtr'), 'path': 'mods/mtr.jar', 'archiveIncluded': True,
+                  'replacesBuiltArtifact': False}
+        resource = self.root / 'vehicle-resource.zip'
+        model = {'modelResource': 'mtr:model.bbmodel', 'textureResource': 'mtr:texture.png',
+                 'modelPropertiesResource': 'mtr:properties.json', 'positionDefinitionsResource': 'mtr:positions.json'}
+        with zipfile.ZipFile(resource, 'w') as archive:
+            archive.writestr('assets/mtr/mtr_custom_resources_pending_migration.json', json.dumps({'vehicles': [
+                {'id': 'fixture_cab', 'name': 'Fixture', 'length': 25, 'width': 2, 'models': [model]}]}))
+            for identifier in model.values():
+                archive.writestr(release.mtr_bluemap_catalog.ResourceReader.asset(identifier), '{}')
+        for side in ('server', 'client'):
+            destination = self.root / (side + '-public-routes.zip')
+            result = release.write_profile(self.root, destination, side,
+                [(record, self.root / entry['artifact']['path'], entry)], {}, '20261012123456', '0.18.4', resource, {})
+            prefix = 'overrides/' if side == 'client' else ''
+            with zipfile.ZipFile(destination) as archive:
+                manifest = json.loads(archive.read(prefix + 'download-manifest.json'))
+                self.assertNotIn(prefix + 'config/mtr/bluemap-routes.json', archive.namelist())
+                self.assertEqual(manifest['editableDefaults'], json.loads(archive.read(prefix + 'MINEFED-RELEASE.json'))['editableDefaults'])
+                if side == 'client':
+                    self.assertEqual([], manifest['editableDefaults'])
+                    self.assertNotIn(prefix + release.MTR_PUBLIC_ROUTES_PATH, archive.namelist())
+                    self.assertEqual(0, result['editableDefaultCount'])
+                else:
+                    default, = manifest['editableDefaults']
+                    self.assertEqual(release.MTR_PUBLIC_ROUTES_PATH, default['path'])
+                    self.assertTrue(default['preserveExisting'])
+                    payload = archive.read(default['path'])
+                    self.assertEqual({'schema': 1, 'worlds': {}}, json.loads(payload))
+                    self.assertEqual(payload, default['defaultContent'].encode('utf-8'))
+                    self.assertEqual(hashlib.sha256(payload).hexdigest(), default['sha256'])
+                    self.assertEqual(len(payload), default['size'])
+                    self.assertEqual(1, result['editableDefaultCount'])
+                    instructions = archive.read('INSTALL.txt').decode()
+                    self.assertIn('no routes are public initially', instructions)
+                    self.assertIn('separate staging directory', instructions)
+                    self.assertIn('groups:', instructions)
+
+    def test_installer_preserves_public_route_edits_and_initializes_missing_defaults(self):
+        staging = self.root / 'staging'
+        staging.mkdir()
+        script = staging / 'install-mods.py'
+        script.write_text(release.INSTALLER, encoding='utf-8')
+        payload = release.json_bytes({'schema': 1, 'worlds': {}})
+        record = {'path': release.MTR_PUBLIC_ROUTES_PATH, 'sha256': hashlib.sha256(payload).hexdigest(),
+                  'size': len(payload), 'defaultContent': payload.decode(), 'preserveExisting': True}
+        self.write('staging/download-manifest.json', {'files': [], 'editableDefaults': [record]})
+        installation = self.root / 'existing-server'
+        target = installation / record['path']
+        target.parent.mkdir(parents=True)
+        custom = b'{"schema":1,"worlds":{"world-uuid":{"routes":["123"],"groups":[{"id":"metro","name":"Metro","routeIds":["456"]}]}}}\r\n'
+        target.write_bytes(custom)
+        command = [sys.executable, str(script), '--directory', str(installation)]
+        result = subprocess.run(command, capture_output=True, text=True)
+        self.assertEqual(0, result.returncode, result.stderr)
+        self.assertIn('existing user settings preserved', result.stdout)
+        self.assertEqual(custom, target.read_bytes())
+        target.unlink()
+        result = subprocess.run(command, capture_output=True, text=True)
+        self.assertEqual(0, result.returncode, result.stderr)
+        self.assertEqual(payload, target.read_bytes())
+        # Syntax/semantic validation belongs to MTR; even an unfinished edit must
+        # never be replaced or rejected by an archive installation check.
+        target.write_bytes(b'{unfinished user edit')
+        result = subprocess.run(command, capture_output=True, text=True)
+        self.assertEqual(0, result.returncode, result.stderr)
+        self.assertEqual(b'{unfinished user edit', target.read_bytes())
+
+    def test_installer_rejects_unreviewed_editable_defaults_and_corrupt_templates(self):
+        installation = self.root / 'editable-check'
+        installation.mkdir()
+        script = installation / 'install-mods.py'
+        script.write_text(release.INSTALLER, encoding='utf-8')
+        content = release.json_bytes({'schema': 1, 'worlds': {}})
+        record = {'path': release.MTR_PUBLIC_ROUTES_PATH, 'sha256': hashlib.sha256(content).hexdigest(),
+                  'size': len(content), 'defaultContent': content.decode(), 'preserveExisting': True}
+        invalid = [{**record, 'path': path} for path in ('mods/required.jar', 'config/mtr/bluemap-routes.json',
+                   'config/mtr/bluemap-vehicles.json', 'config/bluemap/core.conf')]
+        invalid += [{**record, 'preserveExisting': False}, {**record, 'defaultContent': 'corrupt'}]
+        for item in invalid:
+            with self.subTest(item=item):
+                self.write('editable-check/download-manifest.json', {'files': [], 'editableDefaults': [item]})
+                result = subprocess.run([sys.executable, str(script)], capture_output=True, text=True)
+                self.assertNotEqual(0, result.returncode)
+                self.assertFalse((installation / 'config').exists())
+        self.write('editable-check/download-manifest.json', {'files': [], 'editableDefaults': [record, record]})
+        result = subprocess.run([sys.executable, str(script)], capture_output=True, text=True)
+        self.assertNotEqual(0, result.returncode)
+        self.assertIn('Duplicate', result.stderr)
+        self.assertFalse((installation / 'config').exists())
 
     def test_installer_download_checks_bytes_and_rejects_insecure_redirects(self):
         installation = self.root / 'download-installation'
