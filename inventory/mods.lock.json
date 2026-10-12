@@ -293,7 +293,7 @@
         "url": "https://github.com/minefed/BlueMap",
         "upstream": "https://github.com/BlueMap-Minecraft/BlueMap",
         "ref": "minefed-1.20.4",
-        "commit": "fe0e66c302b8d1d5116740c384d243acc09ac173",
+        "commit": "54327c4d6fc3eea73483992506b69b5b2a8a5160",
         "trackingBranch": "minefed-1.20.4",
         "baselineRef": "v5.3",
         "baselineCommit": "eed8f79e68b053c119f88bbf358bed893a78d110"
@@ -330,7 +330,7 @@
       "licenseNoticesPath": "inventory/notices/bluemap-bd23d5bc5cf1",
       "notes": [
         "Peeled annotated v5.3 tag; do not use tag object 5475fb02a6a3032fab7612b3e03ab22630a67a20 as gitlink.",
-        "2026-10-12: minefed-1.20.4 source fe0e66c302b8d1d5116740c384d243acc09ac173 adds saved TrafficCraft paint colors, atlas sprite aliases and baked client-model quads. Build 5.3-minefed.1 with Java 17 for Fabric/Minecraft 1.20.4. The original 5.3 artifact metadata remains the historical baseline; see inventory/bluemap-rendering-2026-10-12.json for the patched build hash."
+        "2026-10-12: minefed-1.20.4 source 54327c4d6fc3eea73483992506b69b5b2a8a5160 adds saved TrafficCraft paint colors, PFM per-face colors, atlas sprite aliases with cache replacement, baked client-model quads and untinted low-resolution color isolation. Build 5.3-minefed.1 with Java 17 for Fabric/Minecraft 1.20.4. The original 5.3 artifact metadata remains the historical baseline; see inventory/bluemap-rendering-2026-10-12.json for the patched build hash."
       ],
       "compatibility": {
         "minecraft": "*",

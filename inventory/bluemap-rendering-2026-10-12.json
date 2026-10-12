@@ -6,35 +6,67 @@
     "path": "BlueMap",
     "url": "https://github.com/minefed/BlueMap",
     "trackingBranch": "minefed-1.20.4",
-    "commit": "fe0e66c302b8d1d5116740c384d243acc09ac173",
+    "commit": "54327c4d6fc3eea73483992506b69b5b2a8a5160",
     "previousCommit": "13ac1898e2117a90c837ccedd952cdce587a53ba",
     "remotelyVerified": true
   },
   "artifact": {
     "path": "BlueMap/build/release/BlueMap-5.3-minefed.1-fabric-1.20.jar",
     "version": "5.3-minefed.1",
-    "sha256": "a2299324b42d07cb8f026c3e1b67ba4c2cf063bb74cc24c60726aee63db895a4",
-    "size": 4837527,
+    "sha256": "0e0ac542c88ab8867a5a7dc0eda38194d579a965d3c81f38238f5ff567923144",
+    "size": 4838372,
     "minecraft": "1.20.4",
     "loader": "Fabric",
     "java": 17,
     "sourceLicense": "MIT",
     "binaryLicense": "MIT with bundled dependencies retaining their original notices",
-    "licenseUrl": "https://github.com/minefed/BlueMap/blob/fe0e66c302b8d1d5116740c384d243acc09ac173/LICENSE",
+    "licenseUrl": "https://github.com/minefed/BlueMap/blob/54327c4d6fc3eea73483992506b69b5b2a8a5160/LICENSE",
     "runtimeGameValidated": false
   },
   "validation": {
-    "coreTests": { "tests": 27, "failures": 0, "errors": 0, "skippedOptionalExportTest": 1 },
-    "trafficCraftTests": { "tests": 9, "failures": 0 },
-    "serverPackTests": { "tests": 39, "failures": 0 },
-    "buildPipelineTests": { "tests": 65, "failures": 0 },
+    "coreTests": {
+      "tests": 34,
+      "failures": 0,
+      "errors": 0,
+      "skippedOptionalExportTest": 1
+    },
+    "trafficCraftTests": {
+      "tests": 10,
+      "failures": 0
+    },
+    "serverPackTests": {
+      "tests": 39,
+      "failures": 0
+    },
+    "buildPipelineTests": {
+      "tests": 65,
+      "failures": 0
+    },
     "fabricRemappedShadowJar": "passed",
     "jarMetadataGitCommitMatchesSource": true,
     "notes": [
       "Core tests pass serialized NBT through Chunk_1_18 and ResourceModelBuilder to verify TrafficCraft vertex colors.",
       "The optional real-client export integration test is separate from this source build; local generated packs carry their own export report and input provenance.",
-      "No production files, BlueMap configuration or rendered map tiles were changed."
-    ]
+      "No production files, BlueMap configuration or rendered map tiles were changed.",
+      "PFM tests cover per-index water/white and toilet state colors; a serialized TrafficCraft chunk regression verifies that tinted side faces cannot pollute an untinted top or its low-resolution color."
+    ],
+    "pfmColorTests": {
+      "tests": 5,
+      "failures": 0
+    },
+    "postMergeBuildTests": {
+      "tests": 75,
+      "failures": 0,
+      "skippedPosixOnlyOnWindows": 2
+    },
+    "postMergeReleaseInputTests": {
+      "tests": 17,
+      "failures": 0
+    },
+    "exporterPythonTests": {
+      "tests": 20,
+      "failures": 0
+    }
   },
   "generatedModelPacks": {
     "distribution": "local-only",
