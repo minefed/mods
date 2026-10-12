@@ -297,6 +297,16 @@ public final class ModelExporter implements ClientModInitializer {
     private static List<String> canonicalQuads(Collection<?> quads) {
         return quads.stream().map(ModelExporter::json).sorted().toList();
     }
+    @SuppressWarnings("unchecked")
+    private boolean intentionallyEmptyMultipart(Object root,Object state) throws Exception {
+        Object multi=multipart(root);
+        if(multi==null)return false;
+        List<?> selectors=(List<?>)field(multi,"field_5427");
+        if(selectors.isEmpty())return false;
+        for(Object selector:selectors)
+            if(((Predicate<Object>)call(selector,"getLeft")).test(state))return false;
+        return true;
+    }
     private Object immutableSegment(Object model) throws Exception {
         Set<Object> visited=Collections.newSetFromMap(new IdentityHashMap<>());
         Class<?> baked=type("net.minecraft.class_1087");
@@ -416,9 +426,10 @@ public final class ModelExporter implements ClientModInitializer {
             try {
                 Object model=model(state);
                 Capture primary=new Capture(state,42);
-                Map<String,Object> data=primary.capture(model);
+                boolean allowEmpty=id.startsWith("diagonal")&&intentionallyEmptyMultipart(model,state);
+                Map<String,Object> data=primary.capture(model,allowEmpty);
                 // A state-only export must not silently freeze random-weighted model selection.
-                if(!json(data).equals(json(new Capture(state,987654321).capture(model))))
+                if(!json(data).equals(json(new Capture(state,987654321).capture(model,allowEmpty))))
                     throw new IllegalStateException("Random-dependent model requires weighted model export");
                 if(data.containsKey("minefed_export_context"))contextual++;
                 // Only mark a whole block opaque after every registered state passes
