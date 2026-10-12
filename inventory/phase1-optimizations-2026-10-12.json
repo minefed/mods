@@ -1,0 +1,503 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-12",
+  "minecraftVersion": "1.20.4",
+  "loader": "Fabric",
+  "runtimeJava": 17,
+  "parentBaselineCommit": "44d6abe575d4f8606c9c72d9bc90f01f57363bd7",
+  "scope": "Source implementation, local build and repository integration; no operating server or game installation changes.",
+  "distributionScope": "Local build outputs remain ignored; no JAR or design files committed.",
+  "entries": [
+    {
+      "modId": "oritech",
+      "version": "0.5.1+1.20.4",
+      "artifactPath": "Oritech/build/libs/oritech-0.5.1+1.20.4.jar",
+      "sha256": "d76d2c2e7b9e4b5ce1ef3228c119183c53e3f74fd2723272a8af98026a9ec620",
+      "size": 2891456,
+      "source": {
+        "path": "Oritech",
+        "url": "https://github.com/minefed/Oritech",
+        "trackingBranch": "minefed-1.20.4",
+        "baselineCommit": "5085fb1e03783d19f47d5b68f12d5d269d6f08ba",
+        "commit": "a6c9c79ecf58430bdc1ead54b9d03aadd22302fc",
+        "unitCommits": [
+          "a6c9c79ecf58430bdc1ead54b9d03aadd22302fc"
+        ]
+      },
+      "sourceLicense": "CC0-1.0",
+      "binaryLicense": "CC0-1.0",
+      "licenseScope": "Mod itself; bundled dependencies retain their own licenses. Existing notices preserved.",
+      "licenseNotices": [
+        {
+          "sourcePath": "Oritech/LICENSE.md",
+          "sha256": "7ef8f07001a76a23b8a24a0a5d668812d19c227c8815bef6c3094bc1f4550418",
+          "size": 7166
+        }
+      ],
+      "buildJava": 17,
+      "compatibility": {
+        "fabricloader": ">=0.15.9",
+        "minecraft": "~1.20.4",
+        "java": ">=17",
+        "fabric-api": "*",
+        "team_reborn_energy": ">=3.0.0",
+        "owo": "*",
+        "geckolib": "*"
+      },
+      "artifactInspection": {
+        "baselineSha256": "1b6dba1ff092eaa752e3657d20d004dadd809db09b55e91e33504b4e3b7dd685",
+        "baselineProvenance": "Existing local build output captured before this implementation; not claimed to be a freshly rebuilt baseline.",
+        "resourcesUnchangedFromSourceBaseline": true,
+        "sourceResourceInspection": {
+          "sourceCommit": "5085fb1e03783d19f47d5b68f12d5d269d6f08ba",
+          "sourcePaths": [
+            "src/main/generated/assets",
+            "src/main/generated/data",
+            "src/main/resources/assets",
+            "src/main/resources/data"
+          ],
+          "resourceCount": 1144,
+          "sourceResourcePathsUnchanged": true,
+          "packagedBytesMatchBaselineSource": true
+        },
+        "resourcesUnchangedFromHistoricalJar": true,
+        "historicalResourceDifferences": [],
+        "noticesUnchanged": true,
+        "noticePaths": [
+          "LICENSE.md_oritech"
+        ],
+        "testFixturesExcluded": true,
+        "added": [
+          "rearth/oritech/block/base/entity/ItemEnergyFrameInteractionBlockEntity$GuiSnapshot.class",
+          "rearth/oritech/block/entity/pipes/EnergyPipeInterfaceEntity$1.class"
+        ],
+        "removed": [],
+        "changed": [
+          "rearth/oritech/block/base/entity/FluidMultiblockGeneratorBlockEntity.class",
+          "rearth/oritech/block/base/entity/ItemEnergyFrameInteractionBlockEntity$1.class",
+          "rearth/oritech/block/base/entity/ItemEnergyFrameInteractionBlockEntity$2.class",
+          "rearth/oritech/block/base/entity/ItemEnergyFrameInteractionBlockEntity.class",
+          "rearth/oritech/block/base/entity/MachineBlockEntity$1.class",
+          "rearth/oritech/block/base/entity/MachineBlockEntity$2.class",
+          "rearth/oritech/block/base/entity/MachineBlockEntity$SimpleMachineInventory.class",
+          "rearth/oritech/block/base/entity/MachineBlockEntity.class",
+          "rearth/oritech/block/base/entity/UpgradableGeneratorBlockEntity.class",
+          "rearth/oritech/block/entity/machines/interaction/LaserArmBlockEntity$1.class",
+          "rearth/oritech/block/entity/machines/interaction/LaserArmBlockEntity$2.class",
+          "rearth/oritech/block/entity/machines/interaction/LaserArmBlockEntity.class",
+          "rearth/oritech/block/entity/pipes/EnergyPipeInterfaceEntity.class",
+          "rearth/oritech/client/renderers/SmallTankRenderer$1.class",
+          "rearth/oritech/client/renderers/SmallTankRenderer.class",
+          "rearth/oritech/client/ui/BasicMachineScreenHandler.class",
+          "rearth/oritech/network/NetworkContent$CentrifugeFluidSyncPacket.class",
+          "rearth/oritech/network/NetworkContent$DeepDrillSyncPacket.class",
+          "rearth/oritech/network/NetworkContent$DroneCardEventPacket.class",
+          "rearth/oritech/network/NetworkContent$DroneSendEventPacket.class",
+          "rearth/oritech/network/NetworkContent$GeneratorUISyncPacket.class",
+          "rearth/oritech/network/NetworkContent$GenericEnergySyncPacket.class",
+          "rearth/oritech/network/NetworkContent$InventoryInputModeSelectorPacket.class",
+          "rearth/oritech/network/NetworkContent$InventoryProxySlotSelectorPacket.class",
+          "rearth/oritech/network/NetworkContent$InventorySyncPacket.class",
+          "rearth/oritech/network/NetworkContent$ItemFilterSyncPacket.class",
+          "rearth/oritech/network/NetworkContent$LaserArmSyncPacket.class",
+          "rearth/oritech/network/NetworkContent$MachineFrameGuiPacket.class",
+          "rearth/oritech/network/NetworkContent$MachineFrameMovementPacket.class",
+          "rearth/oritech/network/NetworkContent$MachineSetupEventPacket.class",
+          "rearth/oritech/network/NetworkContent$MachineSyncPacket.class",
+          "rearth/oritech/network/NetworkContent$PumpWorkSyncPacket.class",
+          "rearth/oritech/network/NetworkContent$QuarryTargetPacket.class",
+          "rearth/oritech/network/NetworkContent$SingleVariantFluidSyncPacket.class",
+          "rearth/oritech/network/NetworkContent.class"
+        ],
+        "changedClassVersions": {
+          "rearth/oritech/block/base/entity/ItemEnergyFrameInteractionBlockEntity$GuiSnapshot.class": 61,
+          "rearth/oritech/block/entity/pipes/EnergyPipeInterfaceEntity$1.class": 61,
+          "rearth/oritech/block/base/entity/FluidMultiblockGeneratorBlockEntity.class": 61,
+          "rearth/oritech/block/base/entity/ItemEnergyFrameInteractionBlockEntity$1.class": 61,
+          "rearth/oritech/block/base/entity/ItemEnergyFrameInteractionBlockEntity$2.class": 61,
+          "rearth/oritech/block/base/entity/ItemEnergyFrameInteractionBlockEntity.class": 61,
+          "rearth/oritech/block/base/entity/MachineBlockEntity$1.class": 61,
+          "rearth/oritech/block/base/entity/MachineBlockEntity$2.class": 61,
+          "rearth/oritech/block/base/entity/MachineBlockEntity$SimpleMachineInventory.class": 61,
+          "rearth/oritech/block/base/entity/MachineBlockEntity.class": 61,
+          "rearth/oritech/block/base/entity/UpgradableGeneratorBlockEntity.class": 61,
+          "rearth/oritech/block/entity/machines/interaction/LaserArmBlockEntity$1.class": 61,
+          "rearth/oritech/block/entity/machines/interaction/LaserArmBlockEntity$2.class": 61,
+          "rearth/oritech/block/entity/machines/interaction/LaserArmBlockEntity.class": 61,
+          "rearth/oritech/block/entity/pipes/EnergyPipeInterfaceEntity.class": 61,
+          "rearth/oritech/client/renderers/SmallTankRenderer$1.class": 61,
+          "rearth/oritech/client/renderers/SmallTankRenderer.class": 61,
+          "rearth/oritech/client/ui/BasicMachineScreenHandler.class": 61,
+          "rearth/oritech/network/NetworkContent$CentrifugeFluidSyncPacket.class": 61,
+          "rearth/oritech/network/NetworkContent$DeepDrillSyncPacket.class": 61,
+          "rearth/oritech/network/NetworkContent$DroneCardEventPacket.class": 61,
+          "rearth/oritech/network/NetworkContent$DroneSendEventPacket.class": 61,
+          "rearth/oritech/network/NetworkContent$GeneratorUISyncPacket.class": 61,
+          "rearth/oritech/network/NetworkContent$GenericEnergySyncPacket.class": 61,
+          "rearth/oritech/network/NetworkContent$InventoryInputModeSelectorPacket.class": 61,
+          "rearth/oritech/network/NetworkContent$InventoryProxySlotSelectorPacket.class": 61,
+          "rearth/oritech/network/NetworkContent$InventorySyncPacket.class": 61,
+          "rearth/oritech/network/NetworkContent$ItemFilterSyncPacket.class": 61,
+          "rearth/oritech/network/NetworkContent$LaserArmSyncPacket.class": 61,
+          "rearth/oritech/network/NetworkContent$MachineFrameGuiPacket.class": 61,
+          "rearth/oritech/network/NetworkContent$MachineFrameMovementPacket.class": 61,
+          "rearth/oritech/network/NetworkContent$MachineSetupEventPacket.class": 61,
+          "rearth/oritech/network/NetworkContent$MachineSyncPacket.class": 61,
+          "rearth/oritech/network/NetworkContent$PumpWorkSyncPacket.class": 61,
+          "rearth/oritech/network/NetworkContent$QuarryTargetPacket.class": 61,
+          "rearth/oritech/network/NetworkContent$SingleVariantFluidSyncPacket.class": 61,
+          "rearth/oritech/network/NetworkContent.class": 61
+        },
+        "nestedJars": [
+          {
+            "path": "META-INF/jars/owo-sentinel-0.12.6+1.20.3.jar",
+            "sha256": "1cd213322cb814bbc3ff8fbfb0d744ef7bb66982c22f46e0b10825d7e770f7ae",
+            "unchanged": true
+          },
+          {
+            "path": "META-INF/jars/energy-3.0.0.jar",
+            "sha256": "fa90c3e7bfd5f17ba60981e57c5b965d3618ebc6c512fd3b5947920e9cb81aef",
+            "unchanged": true
+          }
+        ]
+      }
+    },
+    {
+      "modId": "msd",
+      "version": "1.4.5",
+      "artifactPath": "MTR-Station-Decoration-Addon/fabric/build/libs/fabric-1.4.5.jar",
+      "sha256": "34f29681a09c63d1101eaae9d3237222e8a65c326a7684ed6fe1e6131f9fefc3",
+      "size": 7312106,
+      "source": {
+        "path": "MTR-Station-Decoration-Addon",
+        "url": "https://github.com/minefed/MTR-Station-Decoration-Addon",
+        "trackingBranch": "minefed-1.20.4",
+        "baselineCommit": "286791d619421d1cf7a14ac843c4d766303c9fa5",
+        "commit": "ebd2b46c5554393cc9ffdce70ecfb647ded1d8bd",
+        "unitCommits": [
+          "5234b158437e92c973756f19507eee27c367e99c",
+          "164ca57cfab37e188bb187dfff200811a7f5b12b",
+          "ebd2b46c5554393cc9ffdce70ecfb647ded1d8bd"
+        ]
+      },
+      "sourceLicense": "MIT",
+      "binaryLicense": "MIT",
+      "licenseScope": "Mod itself; bundled dependencies retain their own licenses. Existing notices preserved.",
+      "licenseNotices": [
+        {
+          "sourcePath": "MTR-Station-Decoration-Addon/LICENSE.txt",
+          "sha256": "1d3d8bd5193e3d32c5a1626a772c032d9395360f971044f3d0db73f0bb4793a3",
+          "size": 1084
+        }
+      ],
+      "buildJava": 17,
+      "compatibility": {
+        "fabric": "*",
+        "minecraft": "1.20.4",
+        "mtr": ">=4.0.0-beta.14 <4.1"
+      },
+      "artifactInspection": {
+        "baselineSha256": "3518c920191e4b0c784accca28830937ab1f1cbdf87d237d72ecf59ff34b392f",
+        "baselineProvenance": "Existing local build output captured before this implementation; not claimed to be a freshly rebuilt baseline.",
+        "resourcesUnchangedFromSourceBaseline": true,
+        "sourceResourceInspection": {
+          "sourceCommit": "286791d619421d1cf7a14ac843c4d766303c9fa5",
+          "sourcePaths": [
+            "fabric/src/main/resources/assets"
+          ],
+          "resourceCount": 493,
+          "sourceResourcePathsUnchanged": true,
+          "packagedBytesMatchBaselineSource": true
+        },
+        "resourcesUnchangedFromHistoricalJar": false,
+        "historicalResourceDifferences": [
+          "assets/msd/textures/block/railing_stair_iron.png",
+          "assets/msd/models/block/book_1.json",
+          "assets/msd/models/block/book_2.json",
+          "assets/msd/models/block/display_board_horizontal_1.json",
+          "assets/msd/models/block/display_board_horizontal_2.json",
+          "assets/msd/models/block/display_board_horizontal_3.json",
+          "assets/msd/models/block/display_board_horizontal_4.json",
+          "assets/msd/models/block/display_board_horizontal_5.json",
+          "assets/msd/models/block/display_board_horizontal_6.json",
+          "assets/msd/models/block/display_board_vertically_1.json",
+          "assets/msd/models/block/display_board_vertically_2.json",
+          "assets/msd/models/block/display_board_vertically_3.json",
+          "assets/msd/models/block/display_board_vertically_4.json",
+          "assets/msd/models/block/display_board_vertically_5.json",
+          "assets/msd/models/block/display_board_vertically_6.json",
+          "assets/msd/models/block/railing_stair_glass.json",
+          "assets/msd/models/block/railing_stair_glass_corner.json",
+          "assets/msd/models/block/railing_stair_glass_corner_2.json",
+          "assets/msd/models/block/railing_stair_glass_corner_2_mirror.json",
+          "assets/msd/models/block/railing_stair_glass_corner_mirror.json",
+          "assets/msd/models/block/railing_stair_glass_end.json",
+          "assets/msd/models/block/railing_stair_glass_end_mirror.json",
+          "assets/msd/models/block/railing_stair_glass_flat.json",
+          "assets/msd/models/block/railing_stair_glass_mirror.json",
+          "assets/msd/models/block/railing_stair_glass_start.json",
+          "assets/msd/models/block/railing_stair_glass_start_mirror.json",
+          "assets/msd/models/block/yuuni_2_pids.json",
+          "assets/msd/models/block/yuuni_pids.json",
+          "assets/msd/models/block/yuuni_pids_pole.json",
+          "assets/msd/models/block/yuuni_sign_1.json",
+          "assets/msd/models/block/yuuni_sign_1_east_west.json",
+          "assets/msd/models/block/yuuni_sign_1_east_west_en.json",
+          "assets/msd/models/block/yuuni_sign_1_en.json",
+          "assets/msd/models/block/yuuni_sign_east.json",
+          "assets/msd/models/block/yuuni_sign_east_en.json",
+          "assets/msd/models/block/yuuni_sign_north.json",
+          "assets/msd/models/block/yuuni_sign_north_en.json",
+          "assets/msd/models/block/yuuni_sign_pole_bottom.json",
+          "assets/msd/models/block/yuuni_sign_pole_top.json",
+          "assets/msd/models/block/yuuni_sign_south.json",
+          "assets/msd/models/block/yuuni_sign_south_en.json",
+          "assets/msd/models/block/yuuni_sign_west.json",
+          "assets/msd/models/block/yuuni_sign_west_en.json",
+          "assets/msd/textures/block/board_horizonta.png",
+          "assets/msd/textures/block/board_vertically.png",
+          "assets/msd/textures/block/book.png",
+          "assets/msd/textures/block/railing_stair_glass.png",
+          "assets/msd/textures/block/yuuni_2_pids.png",
+          "assets/msd/textures/block/yuuni_pids.png",
+          "assets/msd/textures/block/yuuni_sign.png",
+          "assets/msd/textures/block/yuuni_sign_en.png"
+        ],
+        "noticesUnchanged": true,
+        "noticePaths": [
+          "LICENSE-MSD.txt"
+        ],
+        "testFixturesExcluded": true,
+        "added": [
+          "top/mcmtr/mixin/MinecraftClientDataMixin.class",
+          "top/mcmtr/mod/blocks/BlockCustomTextBase$BlockCustomTextEntity$MessageParts.class",
+          "top/mcmtr/mod/render/SignDerivedDataCache$Entry.class",
+          "top/mcmtr/mod/render/SignDerivedDataCache$Key.class",
+          "top/mcmtr/mod/render/SignDerivedDataCache$Platforms.class",
+          "top/mcmtr/mod/render/SignDerivedDataCache.class"
+        ],
+        "removed": [
+          "assets/msd/textures/block/railing_stair_iron.png"
+        ],
+        "changed": [
+          "META-INF/MANIFEST.MF",
+          "assets/msd/models/block/book_1.json",
+          "assets/msd/models/block/book_2.json",
+          "assets/msd/models/block/display_board_horizontal_1.json",
+          "assets/msd/models/block/display_board_horizontal_2.json",
+          "assets/msd/models/block/display_board_horizontal_3.json",
+          "assets/msd/models/block/display_board_horizontal_4.json",
+          "assets/msd/models/block/display_board_horizontal_5.json",
+          "assets/msd/models/block/display_board_horizontal_6.json",
+          "assets/msd/models/block/display_board_vertically_1.json",
+          "assets/msd/models/block/display_board_vertically_2.json",
+          "assets/msd/models/block/display_board_vertically_3.json",
+          "assets/msd/models/block/display_board_vertically_4.json",
+          "assets/msd/models/block/display_board_vertically_5.json",
+          "assets/msd/models/block/display_board_vertically_6.json",
+          "assets/msd/models/block/railing_stair_glass.json",
+          "assets/msd/models/block/railing_stair_glass_corner.json",
+          "assets/msd/models/block/railing_stair_glass_corner_2.json",
+          "assets/msd/models/block/railing_stair_glass_corner_2_mirror.json",
+          "assets/msd/models/block/railing_stair_glass_corner_mirror.json",
+          "assets/msd/models/block/railing_stair_glass_end.json",
+          "assets/msd/models/block/railing_stair_glass_end_mirror.json",
+          "assets/msd/models/block/railing_stair_glass_flat.json",
+          "assets/msd/models/block/railing_stair_glass_mirror.json",
+          "assets/msd/models/block/railing_stair_glass_start.json",
+          "assets/msd/models/block/railing_stair_glass_start_mirror.json",
+          "assets/msd/models/block/yuuni_2_pids.json",
+          "assets/msd/models/block/yuuni_pids.json",
+          "assets/msd/models/block/yuuni_pids_pole.json",
+          "assets/msd/models/block/yuuni_sign_1.json",
+          "assets/msd/models/block/yuuni_sign_1_east_west.json",
+          "assets/msd/models/block/yuuni_sign_1_east_west_en.json",
+          "assets/msd/models/block/yuuni_sign_1_en.json",
+          "assets/msd/models/block/yuuni_sign_east.json",
+          "assets/msd/models/block/yuuni_sign_east_en.json",
+          "assets/msd/models/block/yuuni_sign_north.json",
+          "assets/msd/models/block/yuuni_sign_north_en.json",
+          "assets/msd/models/block/yuuni_sign_pole_bottom.json",
+          "assets/msd/models/block/yuuni_sign_pole_top.json",
+          "assets/msd/models/block/yuuni_sign_south.json",
+          "assets/msd/models/block/yuuni_sign_south_en.json",
+          "assets/msd/models/block/yuuni_sign_west.json",
+          "assets/msd/models/block/yuuni_sign_west_en.json",
+          "assets/msd/textures/block/board_horizonta.png",
+          "assets/msd/textures/block/board_vertically.png",
+          "assets/msd/textures/block/book.png",
+          "assets/msd/textures/block/railing_stair_glass.png",
+          "assets/msd/textures/block/yuuni_2_pids.png",
+          "assets/msd/textures/block/yuuni_pids.png",
+          "assets/msd/textures/block/yuuni_sign.png",
+          "assets/msd/textures/block/yuuni_sign_en.png",
+          "msd.mixins.json",
+          "top/mcmtr/core/data/MSDClientData.class",
+          "top/mcmtr/core/operation/MSDDataResponse.class",
+          "top/mcmtr/mixin/RenderRailsMixin$1.class",
+          "top/mcmtr/mixin/RenderRailsMixin.class",
+          "top/mcmtr/mod/InitClient.class",
+          "top/mcmtr/mod/blocks/BlockCustomTextBase$BlockCustomTextEntity.class",
+          "top/mcmtr/mod/blocks/BlockCustomTextBase.class",
+          "top/mcmtr/mod/client/MSDMinecraftClientData$CatenaryWrapper.class",
+          "top/mcmtr/mod/client/MSDMinecraftClientData$RigidCatenaryWrapper.class",
+          "top/mcmtr/mod/packet/MSDPacketRequestResponseBase$ResponseType.class",
+          "top/mcmtr/mod/packet/MSDPacketRequestResponseBase.class",
+          "top/mcmtr/mod/render/RenderCustomText.class",
+          "top/mcmtr/mod/render/RenderYamanoteRailwaySign.class"
+        ],
+        "changedClassVersions": {
+          "top/mcmtr/mixin/MinecraftClientDataMixin.class": 61,
+          "top/mcmtr/mod/blocks/BlockCustomTextBase$BlockCustomTextEntity$MessageParts.class": 61,
+          "top/mcmtr/mod/render/SignDerivedDataCache$Entry.class": 61,
+          "top/mcmtr/mod/render/SignDerivedDataCache$Key.class": 61,
+          "top/mcmtr/mod/render/SignDerivedDataCache$Platforms.class": 61,
+          "top/mcmtr/mod/render/SignDerivedDataCache.class": 61,
+          "top/mcmtr/core/data/MSDClientData.class": 61,
+          "top/mcmtr/core/operation/MSDDataResponse.class": 61,
+          "top/mcmtr/mixin/RenderRailsMixin$1.class": 61,
+          "top/mcmtr/mixin/RenderRailsMixin.class": 61,
+          "top/mcmtr/mod/InitClient.class": 61,
+          "top/mcmtr/mod/blocks/BlockCustomTextBase$BlockCustomTextEntity.class": 61,
+          "top/mcmtr/mod/blocks/BlockCustomTextBase.class": 61,
+          "top/mcmtr/mod/client/MSDMinecraftClientData$CatenaryWrapper.class": 61,
+          "top/mcmtr/mod/client/MSDMinecraftClientData$RigidCatenaryWrapper.class": 61,
+          "top/mcmtr/mod/packet/MSDPacketRequestResponseBase$ResponseType.class": 61,
+          "top/mcmtr/mod/packet/MSDPacketRequestResponseBase.class": 61,
+          "top/mcmtr/mod/render/RenderCustomText.class": 61,
+          "top/mcmtr/mod/render/RenderYamanoteRailwaySign.class": 61
+        },
+        "nestedJars": []
+      }
+    }
+  ],
+  "resourcepack": {
+    "source": {
+      "path": "resourcepack",
+      "url": "https://github.com/minefed/resourcepack",
+      "visibility": "private",
+      "trackingBranch": "main",
+      "commit": "cb1f0cf1ed0ff9ee7ce9d2d3be56a52ba5b57914"
+    },
+    "licenseManifest": "inventory/resourcepacks.lock.json",
+    "licenseScope": "Existing owner-authorized game files only; original notices and private design materials preserved.",
+    "verification": {
+      "baselineCommit": "7f2b21632421bf10973ca13f44fc632ee8018762",
+      "registrationChanges": 10,
+      "unchangedTrackedFiles": 316,
+      "preservedVehicleRegistrations": 6,
+      "validatedModelEntries": 26,
+      "textureIdsBefore": [
+        "mtr:minefed/vehicles/mxr_a1000/atlas.png",
+        "mtr:minefed/vehicles/mxr_a1000/labels.png",
+        "mtr:minefed/vehicles/mxr_a1000/trailer-labels.png",
+        "mtr:minefed/vehicles/mxr_mistilteinn/atlas.png",
+        "mtr:minefed/vehicles/mxr_mistilteinn/labels.png",
+        "mtr:minefed/vehicles/mxr_mistilteinn/trailer-labels.png"
+      ],
+      "textureIdsAfter": [
+        "mtr:minefed/vehicles/mxr_a1000/labels.png",
+        "mtr:minefed/vehicles/mxr_mistilteinn/atlas.png",
+        "mtr:minefed/vehicles/mxr_mistilteinn/labels.png",
+        "mtr:minefed/vehicles/mxr_mistilteinn/trailer-labels.png"
+      ],
+      "rgbaBytesBefore": 201326592,
+      "rgbaBytesAfter": 117440512,
+      "rgbaBytesSaved": 83886080,
+      "effectScope": "Simultaneous residency of these six unique model textures, base-level RGBA arithmetic; actual GPU allocation and in-game visuals not measured.",
+      "registrationSha256Before": "e05390905452f2ec744ef6f0a137816078b09e27f66c2d1e215d59da81b84f57",
+      "registrationSha256After": "cdc90afc2f2adc25558a050c463b9b81efce876e0bfa7cef097ab77c2d098a94",
+      "gameValidation": "not_run",
+      "sharedTextureLifetimeAssertions": 18,
+      "textureHashes": {
+        "mtr:minefed/vehicles/mxr_mistilteinn/atlas.png": "f1833a3c4dbe1448f7d96a90464f1372adc1b3ab05108272c0cdaf8f58cfd5a8",
+        "mtr:minefed/vehicles/mxr_mistilteinn/labels.png": "41ffd6e07d227b6798f6d3855e18879b5e5ffd9629d44afa000844c403ef08a3",
+        "mtr:minefed/vehicles/mxr_mistilteinn/trailer-labels.png": "901dc629a9a90b61a0092d5d4e40d460692414f7c3f17dddac1ddb00be578995",
+        "mtr:minefed/vehicles/mxr_a1000/labels.png": "e123a7825e40ec701e66293451b9cca5867818167c9eb8dbaef814f137fd109f"
+      }
+    }
+  },
+  "tests": {
+    "oritech": {
+      "task": ":verifyFrameGuiSync",
+      "scenarios": 13,
+      "assertions": 96,
+      "platform": "Production methods with platform doubles; actual remapJar compile separately passed.",
+      "recipientsExample": {
+        "trackers": 10,
+        "viewers": 1,
+        "ticks": 20,
+        "idleLegacyDeliveries": 200,
+        "idleNewOpeningDeliveries": 1,
+        "changingLegacyDeliveries": 200,
+        "changingNewDeliveries": 20,
+        "scope": "Deterministic recipient counts, not measured bandwidth."
+      }
+    },
+    "msdDataResponse": {
+      "task": ":fabric:verifyDataResponse",
+      "checks": 26,
+      "objects": "Actual core data, fastutil and production client wrappers",
+      "repeatedUnchangedResponsesPerDataType": 1000,
+      "additionalRebuilds": 0
+    },
+    "msdSignDerived": {
+      "task": ":fabric:verifySignDerivedData",
+      "checks": 4812,
+      "randomizedWorlds": 200,
+      "coldDerivationsBothModes": 2,
+      "warmFramesBothModes": 1000,
+      "additionalWarmDerivations": 0,
+      "maxEntries": 256,
+      "maxWeightUnits": 65536,
+      "weightScope": "Selection elements/result IDs/string characters plus fixed overhead; not a byte memory cap."
+    },
+    "msdExistingRender": {
+      "task": ":verifyRenderReuse",
+      "fabric": {
+        "renderTraces": 937,
+        "lightQueryTraces": 24,
+        "assertions": 6757
+      },
+      "generatedForge": {
+        "renderTraces": 937,
+        "lightQueryTraces": 24,
+        "assertions": 6757
+      },
+      "forgeFullBinaryBuild": false
+    },
+    "msdLightType": {
+      "task": ":fabric:verifyLightTypeContract",
+      "actualDependencySingletonIdentityPassed": true
+    },
+    "builds": {
+      "oritech": ":verifyFrameGuiSync :remapJar",
+      "msd": ":fabric:setupFiles :fabric:verifyDataResponse :fabric:verifySignDerivedData :verifyRenderReuse :fabric:verifyLightTypeContract :fabric:remapJar"
+    },
+    "rootTooling": {
+      "unittestTests": 226,
+      "skipped": 12,
+      "focusedBuildRecipeTests": 65,
+      "repositoryPolicyProbes": 2,
+      "workflowYamlParsed": true,
+      "finalBuildPlanPassed": true,
+      "finalSourcesAndRecordedArtifactsVerified": 70
+    }
+  },
+  "measurements": {
+    "liveGame": false,
+    "OpenGLVisualCheck": false,
+    "FPSOrFrameTime": false,
+    "actualVRAM": false,
+    "actualGPUUsage": false,
+    "actualCPUUsage": false,
+    "actualRAMUsage": false,
+    "actualNetworkTxRx": false,
+    "gameConnectionAttempt": "Status tool returned UNAVAILABLE; no control or live measurement performed."
+  },
+  "limitations": [
+    "Historical local baseline JARs were captured before implementation, not freshly rebuilt from the previous source pins.",
+    "MSD historical JAR differs in 51 resources; all 493 new packaged resources exactly match the pre-change source pin. This phase changes no source assets.",
+    "This bundle reduces targeted GUI TX and client repeated work. Incoming packet contents/request rates and draw resolution are unchanged."
+  ]
+}

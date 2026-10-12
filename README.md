@@ -41,6 +41,10 @@ MTR·웹 화면의 메모리 누수와 JVM 설정 제안을 정리했다.
 그중 1~3단계의 [구현 결과](docs/RAM_GPU_OPTIMIZATION_RESULTS_2026-09-29.md)는 MTR·MSD·minefed-display·webstreamer·client-compat 1.4.0에 반영해 고정했다.
 [Mixin audit](tools/mixin-audit/README.md)로 모드 전체의 Mixin 적용을 실제 Knot 실행에서 확인한다.
 
+2026-10-12 [1차 추가 최적화 구현·검증](docs/PHASE1_OPTIMIZATION_2026-10-12.md)에서
+차량의 동일 텍스처 ID 공유, Oritech GUI 전송 축소, MSD 불변 응답과 안내판 파생 데이터 캐시를 반영했다.
+새 JAR의 해시·출처·호환성과 측정 범위는 [산출물 기록](inventory/phase1-optimizations-2026-10-12.json)에 남긴다.
+
 ## 시작하기
 
 Git과 Python 3.10 이상이 필요하다. 서브모듈은 `.gitmodules`에 기록한 minefed fork와 정확한 gitlink 커밋으로 초기화한다.
