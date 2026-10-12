@@ -5,6 +5,9 @@ Minefed는 Minecraft 1.20.4 / Fabric용 BlueMap 5.3을 기반으로
 `minefed-1.20.4` 브랜치이며, 정확한 커밋은 `inventory/mods.lock.json`에 고정한다.
 운영 기준본 5.3의 파일명·해시는 과거 입력 기록으로 보존한다.
 
+MTR의 선로·실시간 열차·노선 경로·역 POI는 별도
+[MTR 실시간 교통 지도 연동](MTR_BLUEMAP.md)에서 다룬다.
+
 ## 수정 범위
 
 - TrafficCraft 1.1.3의 색상 BlockEntity NBT `color`를 읽고, 게임과 같은

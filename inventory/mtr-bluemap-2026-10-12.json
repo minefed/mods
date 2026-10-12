@@ -1,0 +1,150 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-12",
+  "productionDeployed": false,
+  "runtimeGameValidated": false,
+  "source": {
+    "path": "Minecraft-Transit-Railway",
+    "url": "https://github.com/minefed/Minecraft-Transit-Railway",
+    "trackingBranch": "minefed-1.20.4",
+    "commit": "39c484b15f39fc6b352f6fb9e478e0bc4051efe5",
+    "previousCommit": "d1b0f5681f1e4b78c3be965da1b040d226574401",
+    "remotelyVerified": true
+  },
+  "compatibility": {
+    "minecraft": "1.20.4",
+    "loader": "Fabric",
+    "runtimeJava": 17,
+    "buildJava": 21,
+    "mtr": "4.0.5",
+    "bluemap": "5.3-minefed.1",
+    "bluemapCommit": "b6141244c2cea20748f9890ca134f27d8e8873d8"
+  },
+  "artifact": {
+    "path": "Minecraft-Transit-Railway/fabric/build/libs/fabric-4.0.5.jar",
+    "sha256": "6657da99650c9d0e1989cbb84e68073b6d31b3ccb0001c5bf0231da10dad3370",
+    "size": 83209710
+  },
+  "licenses": {
+    "source": "MIT",
+    "binary": "MIT; bundled dependencies retain their own original notices",
+    "noticesInJar": [
+      "LICENSE",
+      "META-INF/licenses/mtr/LICENSE",
+      "META-INF/licenses/mtr/LICENSE_ORIGINAL",
+      "META-INF/licenses/website/3rdpartylicenses.txt",
+      "org/mtr/libraries/okhttp3/internal/publicsuffix/NOTICE"
+    ],
+    "sourceEvidenceUnchanged": true,
+    "newThirdPartyAssetsIncluded": false,
+    "licenseUrl": "https://github.com/minefed/Minecraft-Transit-Railway/blob/39c484b15f39fc6b352f6fb9e478e0bc4051efe5/LICENSE"
+  },
+  "vehicleCatalog": {
+    "resourcePackCommit": "ddbec63dcbbeecafe9f7044cdcd0f6dc935ec005",
+    "registeredModels": [
+      "minefed_mxr_a1000_cab_1",
+      "minefed_mxr_a1000_cab_2",
+      "minefed_mxr_a1000_trailer",
+      "minefed_mxr_mistilteinn_cab_1",
+      "minefed_mxr_mistilteinn_cab_2",
+      "minefed_mxr_mistilteinn_trailer"
+    ],
+    "count": 6,
+    "colors": "live MTR route colors",
+    "sourceAssetsRepublished": false,
+    "runtimeVehicles": "all vehicles in all sidings, including unattended and parked vehicles; unknown model IDs retain generic rendering",
+    "file": {
+      "path": "build/mtr-bluemap/deliverable/config/mtr/bluemap-vehicles.json",
+      "sha256": "68ff0cf095b122670d6e0d2dd0a11a4e1f48c1a653ce81a31d9e77fc5952d0ab",
+      "size": 5944
+    }
+  },
+  "validation": {
+    "test": {
+      "tests": 99,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "verifyRailRendering": {
+      "tests": 8,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "verifyMixinCompatibility": {
+      "tests": 8,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "verifyLightTypeCompatibility": {
+      "tests": 3,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "webUnitTests": {
+      "tests": 12,
+      "failures": 0
+    },
+    "realThreeIntegration": {
+      "tests": 1,
+      "failures": 0
+    },
+    "catalogAndServerPackTests": {
+      "tests": 45,
+      "failures": 0
+    },
+    "releaseInputTests": {
+      "tests": 17,
+      "failures": 0
+    },
+    "browserQA": {
+      "data": "synthetic; actual BlueMap HtmlMarker/CSS2DRenderer and Three.js r147",
+      "passed": [
+        "per-car 3D geometry",
+        "city-scale live markers",
+        "shared station POI",
+        "route color legend",
+        "layer toggles",
+        "stale snapshots hidden",
+        "map switch clears selected details"
+      ],
+      "consoleWarningsOrErrors": 0
+    },
+    "finalJarMatchesWebSource": true,
+    "newClassesJavaMajorVersion": 61,
+    "archiveCrcVerified": true,
+    "buildPipelineTests": {
+      "tests": 65,
+      "failures": 0
+    }
+  },
+  "localDelivery": {
+    "directory": "build/mtr-bluemap/deliverable",
+    "files": [
+      {
+        "path": "build/mtr-bluemap/deliverable/mods/MTR-fabric-4.0.5-minefed-bluemap.jar",
+        "sha256": "6657da99650c9d0e1989cbb84e68073b6d31b3ccb0001c5bf0231da10dad3370",
+        "size": 83209710
+      },
+      {
+        "path": "build/mtr-bluemap/deliverable/config/mtr/bluemap-vehicles.json",
+        "sha256": "68ff0cf095b122670d6e0d2dd0a11a4e1f48c1a653ce81a31d9e77fc5952d0ab",
+        "size": 5944
+      }
+    ],
+    "archive": {
+      "path": "build/mtr-bluemap/minefed-mtr-bluemap-1.20.4-39c484b1.zip",
+      "sha256": "2d37965997a197ad8fecd937daa815906aaf618f0eed515f6eb2b6e6061680d5",
+      "size": 83223858,
+      "crcAndUniqueEntriesVerified": true
+    }
+  },
+  "limitations": [
+    "Simplified car bodies; original vehicle textures, models and door animation are not reproduced.",
+    "Routes require generated MTR depot paths; unresolved legs are omitted and reported rather than drawn as straight lines.",
+    "Browser verification uses synthetic data; no production-world test or deployment."
+  ]
+}
