@@ -878,9 +878,57 @@ class ReleaseTests(unittest.TestCase):
         namespace = {'__name__': 'installer_test'}
         exec(compile(release.INSTALLER, 'install-mods.py', 'exec'), namespace)
         for path in ('config/other/packs/10-minefed.zip', 'config/bluemap/packs/../core.conf',
-                     'config/bluemap/packs/sub/pack.zip', 'config/bluemap/core.conf'):
+                     'config/bluemap/packs/sub/pack.zip', 'config/bluemap/core.conf',
+                     'config/mtr/other.json', 'config/mtr/../bluemap-vehicles.json'):
             with self.subTest(path=path), self.assertRaises(ValueError):
                 namespace['target'](installation, path)
+
+    def test_vehicle_catalog_is_generated_from_reviewed_pack_and_verified_only_on_server(self):
+        model = {'modelResource': 'mtr:fixture/model.bbmodel', 'textureResource': 'mtr:fixture/texture.png',
+                 'modelPropertiesResource': 'mtr:fixture/properties.json',
+                 'positionDefinitionsResource': 'mtr:fixture/positions.json'}
+        vehicle = {'id': 'minefed_fixture_cab', 'name': 'Fixture cab', 'length': 25, 'width': 2,
+                   'models': [model]}
+        self.write('resourcepack/resource_pack/assets/mtr/mtr_custom_resources_pending_migration.json', {'vehicles': [vehicle]})
+        for identifier in model.values():
+            self.write('resourcepack/resource_pack/' + release.mtr_bluemap_catalog.ResourceReader.asset(identifier), {})
+        self.git('add', '.')
+        self.git('commit', '-qm', 'test(resource): register fixture vehicle')
+        self.resource_lock['entries'][0]['commit'] = self.git('rev-parse', 'HEAD')
+        self.write('inventory/resourcepacks.lock.json', self.resource_lock)
+        result = self.run_release()
+        with zipfile.ZipFile(result.parent / 'server.zip') as archive:
+            manifest = json.loads(archive.read('download-manifest.json'))
+            record, = manifest['generatedConfigs']
+            self.assertEqual('config/mtr/bluemap-vehicles.json', record['path'])
+            payload = archive.read(record['path'])
+            self.assertEqual(hashlib.sha256(payload).hexdigest(), record['sha256'])
+            self.assertEqual(1, record['vehicleCount'])
+            self.assertEqual(['minefed_fixture_cab'], list(json.loads(payload)['vehicles']))
+            self.assertEqual(manifest['bluemapPacks'][0]['sha256'], record['sourceSha256'])
+            self.assertEqual(manifest['generatedConfigs'], json.loads(archive.read('MINEFED-RELEASE.json'))['generatedConfigs'])
+            installation = self.root / 'catalog-installation'
+            installation.mkdir()
+            for name in ('install-mods.py', record['path']):
+                target = installation / name
+                target.parent.mkdir(parents=True, exist_ok=True)
+                target.write_bytes(archive.read(name))
+        with zipfile.ZipFile(result.parent / 'client.mrpack') as archive:
+            self.assertNotIn('overrides/' + record['path'], archive.namelist())
+            self.assertEqual([], json.loads(archive.read('overrides/download-manifest.json'))['generatedConfigs'])
+        self.write('catalog-installation/download-manifest.json', {'files': [], 'generatedConfigs': [record]})
+        command = [sys.executable, str(installation / 'install-mods.py')]
+        verified = subprocess.run(command, capture_output=True, text=True)
+        self.assertEqual(0, verified.returncode, verified.stderr)
+        target = installation / record['path']
+        target.write_bytes(b'user modifications')
+        verified = subprocess.run(command, capture_output=True, text=True)
+        self.assertNotEqual(0, verified.returncode)
+        self.assertEqual(b'user modifications', target.read_bytes())
+        target.unlink()
+        verified = subprocess.run(command, capture_output=True, text=True)
+        self.assertNotEqual(0, verified.returncode)
+        self.assertIn('incomplete', verified.stderr)
 
     def test_installer_download_checks_bytes_and_rejects_insecure_redirects(self):
         installation = self.root / 'download-installation'
