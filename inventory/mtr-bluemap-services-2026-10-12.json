@@ -1,0 +1,126 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-12",
+  "productionDeployed": false,
+  "runtimeGameValidated": false,
+  "source": {
+    "path": "Minecraft-Transit-Railway",
+    "url": "https://github.com/minefed/Minecraft-Transit-Railway",
+    "trackingBranch": "minefed-1.20.4",
+    "commit": "550b07cd73ce3a4181af64e553894abbb5d94079",
+    "previousCommit": "0b64dd174823210189f635fd6f4222b43c8ecfae",
+    "remotelyVerified": true
+  },
+  "compatibility": {
+    "minecraft": "1.20.4",
+    "loader": "Fabric",
+    "runtimeJava": 17,
+    "buildJava": 21,
+    "mtr": "4.0.5",
+    "bluemap": "5.3-minefed.1",
+    "bluemapCommit": "b6141244c2cea20748f9890ca134f27d8e8873d8"
+  },
+  "licenses": {
+    "source": "MIT",
+    "binary": "MIT; bundled dependencies retain their own original notices",
+    "noticesInJar": [
+      "LICENSE",
+      "META-INF/licenses/mtr/LICENSE",
+      "META-INF/licenses/mtr/LICENSE_ORIGINAL",
+      "META-INF/licenses/website/3rdpartylicenses.txt",
+      "org/mtr/libraries/okhttp3/internal/publicsuffix/NOTICE"
+    ],
+    "sourceEvidenceUnchanged": true,
+    "newThirdPartyAssetsIncluded": false,
+    "licenseUrl": "https://github.com/minefed/Minecraft-Transit-Railway/blob/550b07cd73ce3a4181af64e553894abbb5d94079/LICENSE"
+  },
+  "artifact": {
+    "path": "Minecraft-Transit-Railway/fabric/build/libs/fabric-4.0.5.jar",
+    "sha256": "23a8dc2955ae0bfdc700859a86b8995a0e1aa1f10a8cf5ea7e7a0f7bc55edb01",
+    "size": 83241978
+  },
+  "scope": [
+    "Configure group services with custom names and multiple source route IDs",
+    "Toggle each service caption across legend, station, train and arrivals",
+    "Exclude depot-waiting vehicles while retaining in-service station dwells and timetable arrivals",
+    "Retain original routeIds configuration and optional routeNames aliases"
+  ],
+  "configuration": {
+    "file": "config/mtr/bluemap-public-routes.json",
+    "schema": 1,
+    "servicesFields": [
+      "id",
+      "name",
+      "routeIds",
+      "showName"
+    ],
+    "showNameDefault": true,
+    "reloadSeconds": 2,
+    "legacyRouteIdsSupported": true,
+    "emptyInitialPublicationPreserved": true,
+    "duplicateMembership": "rejected",
+    "routeNamesScope": "legacy direct group.routeIds members only"
+  },
+  "validation": {
+    "test": {
+      "tests": 121,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "verifyRailRendering": {
+      "tests": 8,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "verifyMixinCompatibility": {
+      "tests": 8,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "verifyLightTypeCompatibility": {
+      "tests": 3,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "finalJarMatchesWebSource": true,
+    "newClassesJavaMajorVersion": 61,
+    "archiveCrcVerified": true,
+    "webUnitTests": {
+      "tests": 22,
+      "failures": 0
+    },
+    "realThreeIntegration": {
+      "tests": 1,
+      "failures": 0
+    },
+    "exampleConfiguration": {
+      "productionParser": true,
+      "runtimeJava": 17,
+      "jar": "delivered final jar",
+      "catalog": "synthetic catalog for format checking; actual route existence was not queried from production"
+    },
+    "independentReview": "No blocking findings in configuration validation, publication fingerprint, service deduplication, depot status filtering and display flags.",
+    "buildCommand": "gradlew :fabric:verifyRailRendering :fabric:verifyMixinCompatibility :fabric:test :fabric:verifyLightTypeCompatibility :fabric:verifyBlueMapLiveWeb -PminecraftVersion=1.20.4 -PexcludeAssets=false"
+  },
+  "localDelivery": [
+    {
+      "path": "build/mtr-bluemap-services/deliverable/fabric-4.0.5.jar",
+      "sha256": "23a8dc2955ae0bfdc700859a86b8995a0e1aa1f10a8cf5ea7e7a0f7bc55edb01",
+      "size": 83241978
+    },
+    {
+      "path": "build/mtr-bluemap-services/deliverable/bluemap-public-routes.example.json",
+      "sha256": "846cae1e7346311728ec9eef51521f4d32542f370fd223d50eb82b4cf5087b29",
+      "size": 1550
+    }
+  ],
+  "limitations": [
+    "No production server files changed, restart, or runtime-world test performed.",
+    "Depot exclusion uses MTR getIsOnRoute status, not a geographic depot-area exclusion.",
+    "Existing simplified train models and bounded MTR arrival query behavior remain unchanged."
+  ]
+}
