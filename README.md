@@ -82,6 +82,8 @@ CityCraft와 Macaw Doors/Fences는 공개된 Fabric 1.20.4용 공식 JAR를 사�
 각 JAR의 실제 버전·해시, 소스 커밋과 내용 해시, 라이선스 고지도 ZIP에 포함한다.
 환경 설정과 개별 모드 빌드, 로그 확인 방법은 [빌드 안내](docs/BUILDING.md)를 참고한다.
 실제 통합 빌드의 결과물 해시와 확인 범위는 [빌드 검증 기록](docs/BUILD_VALIDATION.md)에 정리했다.
+BlueMap의 모드 모델·TrafficCraft 저장 색상 지원과 생성 모델 팩 준비는
+[BlueMap 안내](docs/BLUEMAP.md)를 참고한다.
 
 ## 공개 릴리즈와 리소스팩
 

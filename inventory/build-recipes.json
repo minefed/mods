@@ -46,19 +46,20 @@
     {
       "modId": "bluemap",
       "mode": "source",
-      "reason": "Legacy fabric-1.20 implementation explicitly supports 1.20 through 1.20.4; run this implementation directly to avoid modern loaders. Explicit releaseVersion preserves deployed version after policy commits.",
+      "reason": "Minefed BlueMap adds TrafficCraft saved paint colors, atlas sprite aliases and exported client model quads. Test Core and build the legacy Fabric 1.20 implementation compatible with Minecraft 1.20.4; keep the patched artifact distinct from the historical 5.3 baseline.",
       "sourcePath": "BlueMap",
       "java": 17,
       "tasks": [
+        ":BlueMapCore:test",
         "remappedShadowJar"
       ],
       "args": [
-        "-PreleaseVersion=5.3"
+        "-PreleaseVersion=5.3-minefed.1"
       ],
       "artifactGlobs": [
-        "build/release/BlueMap-5.3-fabric-1.20.jar"
+        "build/release/BlueMap-5.3-minefed.1-fabric-1.20.jar"
       ],
-      "expectedVersion": "5.3",
+      "expectedVersion": "5.3-minefed.1",
       "sourceWorkDir": "implementations/fabric-1.20",
       "env": {}
     },
