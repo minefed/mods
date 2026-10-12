@@ -11,6 +11,7 @@ Minefed는 Minecraft 1.20.4 / Fabric용 BlueMap 5.3을 기반으로
   16색 팔레트 및 미도색 기본색을 모델의 `tintindex` 면에 적용한다.
   같은 블록 ID라도 각 좌표의 저장 색상을 독립적으로 사용한다.
   기본 Asphalt 바탕처럼 tint가 없는 면은 원래 텍스처를 유지한다.
+  이후 다시 칠한 색상은 월드 저장과 BlueMap의 지도 갱신 주기에 맞춰 반영된다.
   색상 처리기가 없는 TrafficCraft 가로등 등은 흰색 배율을 사용한다.
   명시적인 `blockColors.json` 블록별 재정의는 계속 우선한다.
 - Minecraft `assets/minecraft/atlases/blocks.json`의 `single` sprite 별칭을
@@ -79,5 +80,6 @@ BlueMap Core 테스트는 저장 NBT를 실제 청크 파서로 읽은 뒤 모�
 
 실제 생성 팩도 같은 렌더 경로로 검사할 수 있다. 환경 변수
 `BLUEMAP_TEST_PACK`에 생성 디렉터리의 절대 경로를 설정하고 BlueMap Core의
-`test`를 실행한다. 참조 모델을 모두 로드하여 누락 텍스처가 없는지,
+`test`를 `--rerun`으로 실행한다([명령](../tools/bluemap-model-exporter/README.md)).
+참조 모델을 모두 로드하여 누락 텍스처가 없는지,
 삼각형 수·꼭짓점·UV가 추출 결과와 같은지 확인한다.

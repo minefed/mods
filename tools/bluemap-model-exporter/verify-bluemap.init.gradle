@@ -1,0 +1,6 @@
+// Opt in only for testing a large local export; production build defaults are unchanged.
+allprojects {
+    tasks.withType(Test).configureEach {
+        maxHeapSize = '2g'
+    }
+}

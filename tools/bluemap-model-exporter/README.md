@@ -91,6 +91,21 @@ The second form also rejects a report with any unsupported selected block. This
 validator checks structural coverage and references; the actual client capture
 and a BlueMap render still need separate runtime verification.
 
+With the patched BlueMap submodule initialized and JDK 17 configured, run its
+actual renderer integration test from the repository root (PowerShell):
+
+```powershell
+$env:BLUEMAP_TEST_PACK = (Resolve-Path <export-directory>).Path
+$init = (Resolve-Path tools/bluemap-model-exporter/verify-bluemap.init.gradle).Path
+.\gradlew.bat -p BlueMap/implementations/fabric-1.20 -I $init :BlueMapCore:test --tests '*BakedQuadResourceTest.exportedClientPackRendersEveryModelWithoutMissingMaterials' --rerun
+```
+
+The init script gives the test worker 2 GB for large packs. `--rerun` is required
+when a preceding test run skipped the optional pack test: changing only an
+environment variable does not invalidate Gradle's test task cache. This test
+loads every referenced model, then checks rendered triangle counts, positions,
+UVs and missing texture indices against the captured quad data.
+
 The standalone regression checks do not launch Minecraft:
 
 ```powershell
