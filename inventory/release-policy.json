@@ -708,8 +708,8 @@
       "reason": "Distribute the reviewed built artifact under its original license with all copyright/license notices and corresponding-source obligations. MIT",
       "evidenceUrls": [
         "https://github.com/jonafanho/Minecraft-Transit-Railway",
-        "https://github.com/minefed/Minecraft-Transit-Railway/commit/550b07cd73ce3a4181af64e553894abbb5d94079",
-        "https://github.com/minefed/Minecraft-Transit-Railway/archive/550b07cd73ce3a4181af64e553894abbb5d94079.tar.gz"
+        "https://github.com/minefed/Minecraft-Transit-Railway/commit/9ec29731ca442b08aca493c5a427687102983b99",
+        "https://github.com/minefed/Minecraft-Transit-Railway/archive/9ec29731ca442b08aca493c5a427687102983b99.tar.gz"
       ],
       "client": true,
       "server": true

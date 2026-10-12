@@ -1,0 +1,420 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-13",
+  "timezone": "Asia/Seoul",
+  "productionDeployed": false,
+  "runtimeGameValidated": false,
+  "deliveryScope": "User requested corrected files only.",
+  "source": {
+    "path": "Minecraft-Transit-Railway",
+    "url": "https://github.com/minefed/Minecraft-Transit-Railway",
+    "trackingBranch": "minefed-1.20.4",
+    "commit": "9ec29731ca442b08aca493c5a427687102983b99",
+    "previousCommit": "550b07cd73ce3a4181af64e553894abbb5d94079",
+    "remotelyVerified": true
+  },
+  "compatibility": {
+    "minecraft": "1.20.4",
+    "loader": "Fabric",
+    "runtimeJava": 17,
+    "buildJava": 21,
+    "mtr": "4.0.5",
+    "bluemap": "5.3-minefed.1"
+  },
+  "licenses": {
+    "source": "MIT",
+    "binary": "MIT; bundled dependencies retain their original notices",
+    "licenseUrl": "https://github.com/minefed/Minecraft-Transit-Railway/blob/9ec29731ca442b08aca493c5a427687102983b99/LICENSE",
+    "noticesInJar": [
+      "LICENSE",
+      "META-INF/licenses/mtr/LICENSE",
+      "META-INF/licenses/mtr/LICENSE_ORIGINAL",
+      "META-INF/licenses/website/3rdpartylicenses.txt",
+      "org/mtr/libraries/okhttp3/internal/publicsuffix/NOTICE"
+    ],
+    "newThirdPartyAssetsIncluded": false
+  },
+  "investigation": {
+    "url": "https://map.minefed.team/",
+    "reportedSymptom": "Slow PC and difficulty opening the map from initial navigation.",
+    "http": "Index, settings, map texture metadata, a spawn terrain tile and MTR public data returned HTTP 200.",
+    "productionScriptMatchesPreviousSource": true,
+    "productionScriptSha256": "dca98c5d70c8bdf0e7aba6c81e32323751a8e42077d10084ce20e419ce70830a",
+    "findings": [
+      "Fresh trains invoked viewer.redraw every render frame, continuously waking the full terrain renderer.",
+      "Identical infrastructure rebuilt rail/route meshes, station markers and the legend every 30 seconds.",
+      "Distant train markers rewrote unchanged label and color DOM properties every frame."
+    ],
+    "terrain": {
+      "textureMetadataBytes": 26712304,
+      "textureEntries": 7902,
+      "newExportTextures": 436,
+      "newExportDecodedMiBApprox": 0.69,
+      "sampleSpawnTileTriangles": 10190,
+      "conclusion": "No large new atlas or malformed spawn geometry regression established."
+    },
+    "limits": "The reported connection failure was not reproduced as an HTTP error. Production was observed read-only."
+  },
+  "validation": {
+    "gradle": {
+      "test": {
+        "tests": 121,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "verifyRailRendering": {
+        "tests": 8,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "verifyMixinCompatibility": {
+        "tests": 8,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "verifyLightTypeCompatibility": {
+        "tests": 3,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      }
+    },
+    "webTests": {
+      "tests": 26,
+      "failures": 0,
+      "includesRealThreeR147": true
+    },
+    "buildCommand": "gradlew :fabric:verifyRailRendering :fabric:verifyMixinCompatibility :fabric:test :fabric:verifyLightTypeCompatibility :fabric:verifyBlueMapLiveWeb -PminecraftVersion=1.20.4 -PexcludeAssets=false --offline --max-workers=2",
+    "localBuildEnvironment": "Java 21 daemon used file.encoding=MS949 for Java 17 worker classpath files under the Korean Windows path; a local init script kept Java compilation, test text and resource filtering at UTF-8, following docs/performance-optimizations.md.",
+    "archiveCrcAndUniqueEntriesVerified": true,
+    "bundledScriptMatchesSource": true,
+    "runtimeJavaMajorVersion": 61,
+    "browser": {
+      "method": "Local HTTP replay/proxy of public production map assets with original or patched MTR script; background Codex browser.",
+      "baseline": {
+        "observedMs": 20422.3,
+        "renderEvents": 102,
+        "overlayRedrawCalls": 102
+      },
+      "fixed": {
+        "observedMs": 38757.8,
+        "renderEvents": 267,
+        "overlayRedrawCalls": 0
+      },
+      "functionalChecks": [
+        "Terrain loaded",
+        "4 public routes",
+        "Moving live train markers",
+        "Train detail card",
+        "Station routes/services and arrival estimates"
+      ],
+      "consoleWarningsAndErrors": 0,
+      "limits": "Background tab throttling and different live snapshots prevent a foreground FPS or whole-PC CPU comparison."
+    },
+    "offlineInfrastructureBenchmark": {
+      "schemaVersion": 1,
+      "measuredAtUtc": "2026-10-12T17:07:02.323Z",
+      "purpose": "Offline JavaScript CPU benchmark using a downloaded public infrastructure snapshot; no production modifications",
+      "method": {
+        "node": "v22.23.2",
+        "platform": "win32",
+        "architecture": "x64",
+        "gcBeforeMeasuredOperations": true,
+        "warmupsPerImplementation": 1,
+        "iterationsPerImplementation": 5,
+        "scope": "refreshRails CPU work, including signature generation and chunk expansion; excludes network, JSON parse, WebGL draw, DOM layout and live browser performance",
+        "fixtures": "Identical in-memory JSON per run; only timestamp changes on second refresh; two loaded mesh stubs represent visible rail and route chunks"
+      },
+      "inputs": {
+        "fixture": {
+          "path": "build\\bluemap-live-rails.json",
+          "sha256": "b59203e2e8aaca5b97933d94ad27e5dca64fe1c77e3f900a41f14921c236592b",
+          "bytes": 1469717,
+          "rails": 259,
+          "routes": 4,
+          "stations": 16
+        },
+        "sources": {
+          "baseline": {
+            "path": "build\\bluemap-live-baseline.js",
+            "sha256": "dca98c5d70c8bdf0e7aba6c81e32323751a8e42077d10084ce20e419ce70830a"
+          },
+          "fixed": {
+            "path": "Minecraft-Transit-Railway\\fabric\\src\\main\\resources\\assets\\mtr\\bluemap\\mtr-live.js",
+            "sha256": "7d08c9a253c61e942d381ae499f8a35dfe20bb011e65653f6b3508dad05ea0c6"
+          }
+        }
+      },
+      "summary": {
+        "baseline": {
+          "initial": {
+            "medianMs": 255.488,
+            "minMs": 235.423,
+            "maxMs": 349.973
+          },
+          "timestampOnly": {
+            "medianMs": 306.81,
+            "minMs": 253.487,
+            "maxMs": 356.062
+          }
+        },
+        "fixed": {
+          "initial": {
+            "medianMs": 386.833,
+            "minMs": 289.034,
+            "maxMs": 482.511
+          },
+          "timestampOnly": {
+            "medianMs": 56.395,
+            "minMs": 48.19,
+            "maxMs": 60.046
+          }
+        }
+      },
+      "results": {
+        "baseline": [
+          {
+            "iteration": 1,
+            "initialMs": 349.973,
+            "timestampOnlyMs": 356.062,
+            "initialCounts": {
+              "meshDisposals": 0,
+              "stationClears": 1,
+              "legendRebuilds": 1
+            },
+            "timestampOnlyCounts": {
+              "meshDisposals": 2,
+              "stationClears": 1,
+              "legendRebuilds": 1
+            },
+            "preservesChunkIdentity": false,
+            "preservesRouteChunkIdentity": false,
+            "preservesStationIdentity": false,
+            "remainingLoadedRailChunks": 0,
+            "remainingLoadedRouteChunks": 0
+          },
+          {
+            "iteration": 2,
+            "initialMs": 235.423,
+            "timestampOnlyMs": 265.644,
+            "initialCounts": {
+              "meshDisposals": 0,
+              "stationClears": 1,
+              "legendRebuilds": 1
+            },
+            "timestampOnlyCounts": {
+              "meshDisposals": 2,
+              "stationClears": 1,
+              "legendRebuilds": 1
+            },
+            "preservesChunkIdentity": false,
+            "preservesRouteChunkIdentity": false,
+            "preservesStationIdentity": false,
+            "remainingLoadedRailChunks": 0,
+            "remainingLoadedRouteChunks": 0
+          },
+          {
+            "iteration": 3,
+            "initialMs": 255.488,
+            "timestampOnlyMs": 309.516,
+            "initialCounts": {
+              "meshDisposals": 0,
+              "stationClears": 1,
+              "legendRebuilds": 1
+            },
+            "timestampOnlyCounts": {
+              "meshDisposals": 2,
+              "stationClears": 1,
+              "legendRebuilds": 1
+            },
+            "preservesChunkIdentity": false,
+            "preservesRouteChunkIdentity": false,
+            "preservesStationIdentity": false,
+            "remainingLoadedRailChunks": 0,
+            "remainingLoadedRouteChunks": 0
+          },
+          {
+            "iteration": 4,
+            "initialMs": 236.928,
+            "timestampOnlyMs": 253.487,
+            "initialCounts": {
+              "meshDisposals": 0,
+              "stationClears": 1,
+              "legendRebuilds": 1
+            },
+            "timestampOnlyCounts": {
+              "meshDisposals": 2,
+              "stationClears": 1,
+              "legendRebuilds": 1
+            },
+            "preservesChunkIdentity": false,
+            "preservesRouteChunkIdentity": false,
+            "preservesStationIdentity": false,
+            "remainingLoadedRailChunks": 0,
+            "remainingLoadedRouteChunks": 0
+          },
+          {
+            "iteration": 5,
+            "initialMs": 295.12,
+            "timestampOnlyMs": 306.81,
+            "initialCounts": {
+              "meshDisposals": 0,
+              "stationClears": 1,
+              "legendRebuilds": 1
+            },
+            "timestampOnlyCounts": {
+              "meshDisposals": 2,
+              "stationClears": 1,
+              "legendRebuilds": 1
+            },
+            "preservesChunkIdentity": false,
+            "preservesRouteChunkIdentity": false,
+            "preservesStationIdentity": false,
+            "remainingLoadedRailChunks": 0,
+            "remainingLoadedRouteChunks": 0
+          }
+        ],
+        "fixed": [
+          {
+            "iteration": 1,
+            "initialMs": 449.267,
+            "timestampOnlyMs": 48.19,
+            "initialCounts": {
+              "meshDisposals": 0,
+              "stationClears": 1,
+              "legendRebuilds": 1
+            },
+            "timestampOnlyCounts": {
+              "meshDisposals": 0,
+              "stationClears": 0,
+              "legendRebuilds": 0
+            },
+            "preservesChunkIdentity": true,
+            "preservesRouteChunkIdentity": true,
+            "preservesStationIdentity": true,
+            "remainingLoadedRailChunks": 1,
+            "remainingLoadedRouteChunks": 1
+          },
+          {
+            "iteration": 2,
+            "initialMs": 482.511,
+            "timestampOnlyMs": 56.395,
+            "initialCounts": {
+              "meshDisposals": 0,
+              "stationClears": 1,
+              "legendRebuilds": 1
+            },
+            "timestampOnlyCounts": {
+              "meshDisposals": 0,
+              "stationClears": 0,
+              "legendRebuilds": 0
+            },
+            "preservesChunkIdentity": true,
+            "preservesRouteChunkIdentity": true,
+            "preservesStationIdentity": true,
+            "remainingLoadedRailChunks": 1,
+            "remainingLoadedRouteChunks": 1
+          },
+          {
+            "iteration": 3,
+            "initialMs": 386.833,
+            "timestampOnlyMs": 56.006,
+            "initialCounts": {
+              "meshDisposals": 0,
+              "stationClears": 1,
+              "legendRebuilds": 1
+            },
+            "timestampOnlyCounts": {
+              "meshDisposals": 0,
+              "stationClears": 0,
+              "legendRebuilds": 0
+            },
+            "preservesChunkIdentity": true,
+            "preservesRouteChunkIdentity": true,
+            "preservesStationIdentity": true,
+            "remainingLoadedRailChunks": 1,
+            "remainingLoadedRouteChunks": 1
+          },
+          {
+            "iteration": 4,
+            "initialMs": 289.034,
+            "timestampOnlyMs": 58.818,
+            "initialCounts": {
+              "meshDisposals": 0,
+              "stationClears": 1,
+              "legendRebuilds": 1
+            },
+            "timestampOnlyCounts": {
+              "meshDisposals": 0,
+              "stationClears": 0,
+              "legendRebuilds": 0
+            },
+            "preservesChunkIdentity": true,
+            "preservesRouteChunkIdentity": true,
+            "preservesStationIdentity": true,
+            "remainingLoadedRailChunks": 1,
+            "remainingLoadedRouteChunks": 1
+          },
+          {
+            "iteration": 5,
+            "initialMs": 345.093,
+            "timestampOnlyMs": 60.046,
+            "initialCounts": {
+              "meshDisposals": 0,
+              "stationClears": 1,
+              "legendRebuilds": 1
+            },
+            "timestampOnlyCounts": {
+              "meshDisposals": 0,
+              "stationClears": 0,
+              "legendRebuilds": 0
+            },
+            "preservesChunkIdentity": true,
+            "preservesRouteChunkIdentity": true,
+            "preservesStationIdentity": true,
+            "remainingLoadedRailChunks": 1,
+            "remainingLoadedRouteChunks": 1
+          }
+        ]
+      }
+    },
+    "independentReview": "No blocking findings; BlueMap idle loop still renders and dispatches overlay updates at roughly 20 FPS or below."
+  },
+  "artifacts": [
+    {
+      "path": "build/bluemap-performance-20261013/deliverable/fabric-4.0.5.jar",
+      "sha256": "6344e9cdb82aedeb2420058ddab8b2385e0a21c94b8348aff25506d8d38a07e2",
+      "bytes": 83242256
+    },
+    {
+      "path": "build/bluemap-performance-20261013/deliverable/LICENSE-MTR.txt",
+      "sha256": "a0a2b036de6f39f3da9f8a817f2f9c0cd2f0dff356dadc3f6aa1325feeff4892",
+      "bytes": 1089
+    },
+    {
+      "path": "build/bluemap-performance-20261013/deliverable/mtr-live.js",
+      "sha256": "7d08c9a253c61e942d381ae499f8a35dfe20bb011e65653f6b3508dad05ea0c6",
+      "bytes": 67652
+    },
+    {
+      "path": "build/bluemap-performance-20261013/deliverable/README.txt",
+      "sha256": "6ec9a4da14f777ec0197df92fb5063e92c9ce04dd7c0ac4c1d0e05c5a086ba0c",
+      "bytes": 1587
+    }
+  ],
+  "deployment": {
+    "instructions": "docs/MTR_BLUEMAP.md",
+    "immediate": "Back up and replace <BlueMap web root>/mtr-live/mtr-live.js, refresh script cache and browser.",
+    "persistent": "Replace the MTR JAR during a server restart, preserving public-route and vehicle settings.",
+    "warning": "An old MTR JAR can reinstall its old script on BlueMap reconnect/reload/server restart.",
+    "terrainRerenderRequired": false
+  },
+  "limitations": [
+    "Initial texture decoding and initial infrastructure expansion remain; no first-load speedup claimed.",
+    "The repeat-refresh CPU benchmark excludes network, JSON parsing, GPU rendering and DOM layout.",
+    "No production files uploaded, server restarted or post-deployment performance verified."
+  ]
+}
