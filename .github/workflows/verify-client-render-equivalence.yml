@@ -55,6 +55,8 @@ jobs:
             source: minefed-display
           - mod: oritech
             source: Oritech
+          - mod: chiselsandbits
+            source: Chisels-and-Bits
     steps:
       - name: Check out the exact feature commit without persisted credentials
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
@@ -161,7 +163,18 @@ jobs:
           bash ./gradlew --no-daemon --max-workers=2 \
             '-Dorg.gradle.jvmargs=-Xmx1536m' -Dorg.gradle.parallel=false \
             --init-script ../scripts/source-repositories.gradle \
-            :verifyFrameGuiSync :remapJar
+            :verifyFrameGuiSync :verifyMachineInventorySnapshots :remapJar
+      - name: Verify and build Chisels and Bits for Fabric 1.20.4
+        if: matrix.mod == 'chiselsandbits'
+        working-directory: Chisels-and-Bits
+        env:
+          JAVA_HOME: ${{ steps.java17.outputs.path }}
+        run: |
+          set -euo pipefail
+          bash ./gradlew --no-daemon --max-workers=2 \
+            '-Dorg.gradle.jvmargs=-Xmx1536m' -Dorg.gradle.parallel=false \
+            --init-script ../scripts/source-repositories.gradle \
+            :core:test :fabric:remapJar
       - name: Verify and build display with headless OpenGL
         if: matrix.mod == 'display'
         working-directory: minefed-display
@@ -182,7 +195,7 @@ jobs:
           import json, os, pathlib, xml.etree.ElementTree as ET
           source = pathlib.Path(os.environ['SOURCE'])
           summaries = {}
-          for base in (source, source / 'fabric', source / 'forge'):
+          for base in (source, source / 'fabric', source / 'forge', source / 'core'):
               for report in (base / 'build' / 'test-results').glob('*/TEST-*.xml'):
                   suite = ET.parse(report).getroot()
                   key = str(report.parent.relative_to(source))
