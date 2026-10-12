@@ -348,7 +348,7 @@
     {
       "path": "BlueMap",
       "kind": "mod",
-      "reviewedCommit": "dd63c74e1b8251cde574e1beca1025a840e6761c",
+      "reviewedCommit": "fe0e66c302b8d1d5116740c384d243acc09ac173",
       "licenseFiles": {
         "BlueMapCommon/webapp/README.md": "3088eaed505f470f6432143af02f2d8dd4ef4cef16e9bec38479d94c29993d83",
         "BlueMapCore/src/main/java/de/bluecolored/bluemap/core/util/CopyingPathVisitor.java": "21f00135dcbed7fc6fb614a6b9b161e27152be418209cba9a11b6db626ae587b",

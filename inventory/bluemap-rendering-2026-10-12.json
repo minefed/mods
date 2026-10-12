@@ -1,0 +1,44 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-12",
+  "productionDeployed": false,
+  "source": {
+    "path": "BlueMap",
+    "url": "https://github.com/minefed/BlueMap",
+    "trackingBranch": "minefed-1.20.4",
+    "commit": "fe0e66c302b8d1d5116740c384d243acc09ac173",
+    "previousCommit": "13ac1898e2117a90c837ccedd952cdce587a53ba",
+    "remotelyVerified": true
+  },
+  "artifact": {
+    "path": "BlueMap/build/release/BlueMap-5.3-minefed.1-fabric-1.20.jar",
+    "version": "5.3-minefed.1",
+    "sha256": "a2299324b42d07cb8f026c3e1b67ba4c2cf063bb74cc24c60726aee63db895a4",
+    "size": 4837527,
+    "minecraft": "1.20.4",
+    "loader": "Fabric",
+    "java": 17,
+    "sourceLicense": "MIT",
+    "binaryLicense": "MIT with bundled dependencies retaining their original notices",
+    "licenseUrl": "https://github.com/minefed/BlueMap/blob/fe0e66c302b8d1d5116740c384d243acc09ac173/LICENSE",
+    "runtimeGameValidated": false
+  },
+  "validation": {
+    "coreTests": { "tests": 27, "failures": 0, "errors": 0, "skippedOptionalExportTest": 1 },
+    "trafficCraftTests": { "tests": 9, "failures": 0 },
+    "serverPackTests": { "tests": 39, "failures": 0 },
+    "buildPipelineTests": { "tests": 65, "failures": 0 },
+    "fabricRemappedShadowJar": "passed",
+    "jarMetadataGitCommitMatchesSource": true,
+    "notes": [
+      "Core tests pass serialized NBT through Chunk_1_18 and ResourceModelBuilder to verify TrafficCraft vertex colors.",
+      "The optional real-client export integration test is separate from this source build; local generated packs carry their own export report and input provenance.",
+      "No production files, BlueMap configuration or rendered map tiles were changed."
+    ]
+  },
+  "generatedModelPacks": {
+    "distribution": "local-only",
+    "reason": "Generated geometry and textures retain PFM PolyForm Shield and other original asset terms; exporter MIT licensing grants no asset redistribution rights.",
+    "instructions": "docs/BLUEMAP.md"
+  }
+}
