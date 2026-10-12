@@ -195,5 +195,58 @@ class TextureAnimationTest(unittest.TestCase):
             VERIFY.verify(root)
 
 
+class ExportPropertiesTest(unittest.TestCase):
+    def setUp(self):
+        self.directory = tempfile.TemporaryDirectory()
+        self.addCleanup(self.directory.cleanup)
+        self.root = Path(self.directory.name)
+        self.block = {'block': 'test:block', 'exported': True, 'failures': [], 'states': 1, 'opaqueFullCube': True}
+        self.write('pack.mcmeta', {'pack': {'pack_format': 22}})
+        self.write('export-report.json', {'schemaVersion': 1, 'minecraft': '1.20.4', 'complete': True,
+                                         'distribution': 'local-only', 'blocks': [self.block],
+                                         'exportedBlocks': 1, 'exportedStates': 1})
+        self.write('assets/test/blockstates/block.json', {'variants': {'': {'model': 'test:part'}}})
+        self.model = {'ambientocclusion': False, 'bluemap_quads': [], 'minefed_export_empty': True}
+        self.write('assets/test/models/part.json', self.model)
+        self.flags = {'culling': True, 'occluding': True}
+        self.write('assets/test/blockProperties.json', {'test:block': self.flags})
+
+    def write(self, relative, data):
+        path = self.root / relative
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_text(json.dumps(data), encoding='utf-8')
+
+    def test_verified_opaque_block_requires_both_properties(self):
+        VERIFY.verify(self.root)
+        self.write('assets/test/blockProperties.json', {})
+        with self.assertRaisesRegex(ValueError, 'missing generated'):
+            VERIFY.verify(self.root)
+        self.write('assets/test/blockProperties.json', {'test:block': {'culling': True, 'occluding': False}})
+        with self.assertRaisesRegex(ValueError, 'opaque-full-cube coverage'):
+            VERIFY.verify(self.root)
+
+    def test_unverified_extra_property_block_is_rejected(self):
+        self.write('assets/test/blockProperties.json', {'test:block': self.flags, 'test:unknown': self.flags})
+        with self.assertRaisesRegex(ValueError, 'opaque-full-cube coverage'):
+            VERIFY.verify(self.root)
+        report = VERIFY.read(self.root / 'export-report.json')
+        report['blocks'][0]['opaqueFullCube'] = False
+        self.write('export-report.json', report)
+        self.write('assets/test/blockProperties.json', {'test:block': self.flags})
+        with self.assertRaisesRegex(ValueError, 'opaque-full-cube coverage'):
+            VERIFY.verify(self.root)
+
+    def test_optional_ambient_occlusion_must_be_boolean(self):
+        for value in [False, True]:
+            self.model['ambientocclusion'] = value
+            self.write('assets/test/models/part.json', self.model)
+            VERIFY.verify(self.root)
+        for value in ['false', 0, None]:
+            self.model['ambientocclusion'] = value
+            self.write('assets/test/models/part.json', self.model)
+            with self.assertRaisesRegex(ValueError, 'ambientocclusion must be boolean'):
+                VERIFY.verify(self.root)
+
+
 if __name__ == '__main__':
     unittest.main()

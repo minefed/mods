@@ -161,12 +161,15 @@ def verify(root: Path, *, require_all: bool = False) -> dict:
     animated_files = {}
     rejected = []
     identities = set()
+    opaque_blocks = set()
     for block in report['blocks']:
         identity = block['block']
         if identity in identities:
             raise ValueError('Duplicate block in export report: ' + identity)
         identities.add(identity)
         path = resource(root, identity, 'blockstates', '.json')
+        if 'opaqueFullCube' in block and type(block['opaqueFullCube']) is not bool:
+            raise ValueError('Invalid opaque-full-cube flag')
         if not block['exported']:
             rejected.append(identity)
             if path.exists():
@@ -176,6 +179,10 @@ def verify(root: Path, *, require_all: bool = False) -> dict:
             raise ValueError('Exported block has failed states: ' + identity)
         if type(block['states']) is not int or block['states'] <= 0:
             raise ValueError('Invalid block state count')
+        if block.get('opaqueFullCube') is True:
+            if block.get('format') == 'multipart':
+                raise ValueError('Opaque-full-cube metadata requires complete variant coverage')
+            opaque_blocks.add(identity)
         blockstate = read(path)
         if 'variants' in blockstate and 'multipart' in blockstate:
             raise ValueError('Ambiguous blockstate export format')
@@ -200,6 +207,8 @@ def verify(root: Path, *, require_all: bool = False) -> dict:
                 continue
             model_files.add(model_path)
             model = read(model_path)
+            if 'ambientocclusion' in model and type(model['ambientocclusion']) is not bool:
+                raise ValueError('Model ambientocclusion must be boolean')
             if model.get('minefed_export_context') and report.get('contextualMode') != 'isolated':
                 raise ValueError('Unacknowledged context-dependent snapshot')
             quads = model.get('bluemap_quads')
@@ -225,6 +234,22 @@ def verify(root: Path, *, require_all: bool = False) -> dict:
                 frame_count = texture_animation(texture_path)
                 if frame_count is not None:
                     animated_files[texture_path] = frame_count
+    property_blocks = set()
+    for path in (root / 'assets').glob('*/blockProperties.json'):
+        properties = read(path)
+        if not isinstance(properties, dict):
+            raise ValueError('Generated block properties must be an object')
+        for identity, flags in properties.items():
+            resource(root, identity, 'blockstates', '.json')
+            if identity.split(':', 1)[0] != path.parent.name or identity in property_blocks:
+                raise ValueError('Generated block properties use the wrong namespace or duplicate a block')
+            if (identity not in opaque_blocks or not isinstance(flags, dict) or
+                    set(flags) != {'culling', 'occluding'} or
+                    flags.get('culling') is not True or flags.get('occluding') is not True):
+                raise ValueError('Generated block properties lack verified opaque-full-cube coverage')
+            property_blocks.add(identity)
+    if property_blocks != opaque_blocks:
+        raise ValueError('Opaque-full-cube block is missing generated block properties')
     declared_animations = report.get('animatedTextures', {})
     if not isinstance(declared_animations, dict):
         raise ValueError('Invalid animated texture manifest')
