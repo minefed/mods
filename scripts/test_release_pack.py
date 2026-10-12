@@ -160,6 +160,12 @@ class ReleaseTests(unittest.TestCase):
             self.assertNotIn('mods/gamma.jar', server.namelist())
             self.assertEqual(b'Preserved build author notice', server.read('licenses/jars/alpha-built.jar/LICENSE'))
             self.assertEqual(3, len(json.loads(server.read('download-manifest.json'))['files']))
+            bluemap = json.loads(server.read('download-manifest.json'))['bluemapPacks']
+            self.assertEqual(['config/bluemap/packs/10-minefed.zip'], [r['path'] for r in bluemap])
+            resource_bytes = (manifest_path.parent / 'resourcepack.zip').read_bytes()
+            self.assertEqual(resource_bytes, server.read(bluemap[0]['path']))
+            self.assertEqual(hashlib.sha256(resource_bytes).hexdigest(), bluemap[0]['sha256'])
+            self.assertEqual(bluemap, json.loads(server.read('MINEFED-RELEASE.json'))['bluemapPacks'])
         with zipfile.ZipFile(manifest_path.parent / 'client.mrpack') as client:
             self.assertNotIn('overrides/mods/beta.jar', client.namelist())
             self.assertEqual((self.root / self.built['artifact']['path']).read_bytes(), client.read('overrides/mods/alpha-built.jar'))
@@ -849,6 +855,32 @@ class ReleaseTests(unittest.TestCase):
         result = subprocess.run(command, capture_output=True, text=True)
         self.assertNotEqual(0, result.returncode)
         self.assertFalse((self.root / 'outside.jar').exists())
+
+    def test_installer_verifies_bluemap_pack_and_limits_configuration_paths(self):
+        installation = self.root / 'bluemap-installation'
+        installation.mkdir()
+        script = installation / 'install-mods.py'
+        script.write_text(release.INSTALLER, encoding='utf-8')
+        content = b'reviewed bluemap pack'
+        pack = installation / 'config/bluemap/packs/10-minefed.zip'
+        pack.parent.mkdir(parents=True)
+        pack.write_bytes(content)
+        record = {'path': 'config/bluemap/packs/10-minefed.zip',
+                  'sha256': hashlib.sha256(content).hexdigest(), 'size': len(content)}
+        self.write('bluemap-installation/download-manifest.json', {'files': [], 'bluemapPacks': [record]})
+        result = subprocess.run([sys.executable, str(script)], capture_output=True, text=True)
+        self.assertEqual(0, result.returncode, result.stderr)
+        self.assertIn('BlueMap resource pack files verified', result.stdout)
+        pack.write_bytes(b'user customization')
+        result = subprocess.run([sys.executable, str(script)], capture_output=True, text=True)
+        self.assertNotEqual(0, result.returncode)
+        self.assertEqual(b'user customization', pack.read_bytes())
+        namespace = {'__name__': 'installer_test'}
+        exec(compile(release.INSTALLER, 'install-mods.py', 'exec'), namespace)
+        for path in ('config/other/packs/10-minefed.zip', 'config/bluemap/packs/../core.conf',
+                     'config/bluemap/packs/sub/pack.zip', 'config/bluemap/core.conf'):
+            with self.subTest(path=path), self.assertRaises(ValueError):
+                namespace['target'](installation, path)
 
     def test_installer_download_checks_bytes_and_rejects_insecure_redirects(self):
         installation = self.root / 'download-installation'
