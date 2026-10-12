@@ -1,0 +1,142 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-12",
+  "productionDeployed": false,
+  "runtimeGameValidated": false,
+  "source": {
+    "path": "Minecraft-Transit-Railway",
+    "url": "https://github.com/minefed/Minecraft-Transit-Railway",
+    "trackingBranch": "minefed-1.20.4",
+    "commit": "0b64dd174823210189f635fd6f4222b43c8ecfae",
+    "previousCommit": "39c484b15f39fc6b352f6fb9e478e0bc4051efe5",
+    "remotelyVerified": true
+  },
+  "compatibility": {
+    "minecraft": "1.20.4",
+    "loader": "Fabric",
+    "runtimeJava": 17,
+    "buildJava": 21,
+    "mtr": "4.0.5",
+    "bluemap": "5.3-minefed.1",
+    "bluemapCommit": "b6141244c2cea20748f9890ca134f27d8e8873d8"
+  },
+  "artifact": {
+    "path": "Minecraft-Transit-Railway/fabric/build/libs/fabric-4.0.5.jar",
+    "sha256": "a6b0c1b9cff87c7225c08f226293055b144c048930f8cca20f531aa6f0a7c0fb",
+    "size": 83239295
+  },
+  "licenses": {
+    "source": "MIT",
+    "binary": "MIT; bundled dependencies retain their own original notices",
+    "noticesInJar": [
+      "LICENSE",
+      "META-INF/licenses/mtr/LICENSE",
+      "META-INF/licenses/mtr/LICENSE_ORIGINAL",
+      "META-INF/licenses/website/3rdpartylicenses.txt",
+      "org/mtr/libraries/okhttp3/internal/publicsuffix/NOTICE"
+    ],
+    "sourceEvidenceUnchanged": true,
+    "newThirdPartyAssetsIncluded": false,
+    "licenseUrl": "https://github.com/minefed/Minecraft-Transit-Railway/blob/0b64dd174823210189f635fd6f4222b43c8ecfae/LICENSE"
+  },
+  "scope": [
+    "Opt-in public route configuration, initially empty",
+    "Automatic private all-world route catalog",
+    "Grouped lines retaining per-service labels",
+    "MTR station arrival predictions and timetable entries",
+    "Refined map controls and station POI; nearby vehicle menu removed"
+  ],
+  "configuration": {
+    "catalog": "config/mtr/bluemap-routes.json",
+    "publicSelection": "config/mtr/bluemap-public-routes.json",
+    "initialSelection": {
+      "schema": 1,
+      "worlds": {}
+    },
+    "reloadSeconds": 2,
+    "privateCatalogRefreshSeconds": 30,
+    "malformedSelection": "fail closed",
+    "editableSettingsPreservedByInstaller": true
+  },
+  "validation": {
+    "browserQA": {
+      "data": "Synthetic fixture rendered with actual BlueMap HtmlMarker/CSS2DRenderer and Three.js r147; no production server test",
+      "viewports": [
+        "1280x720",
+        "390x844"
+      ],
+      "passed": [
+        "Grouped line legend preserves regular and express services",
+        "Station click shows shared routes, services, destinations and upcoming arrivals",
+        "Dwelling trains and timetable-only predictions are distinguished",
+        "Mobile station card fits viewport and panel collapses",
+        "Empty publication removes geometry, trains, POI and selected details",
+        "Publication restoration repopulates routes and POI",
+        "Stale arrivals disappear with refresh-failure notice; stale trains hidden",
+        "Map change clears selected station information",
+        "Markup-like station names render as inert text"
+      ],
+      "consoleWarningsOrErrors": 0,
+      "screenshots": [
+        "station-preview.jpg",
+        "mobile-preview.jpg"
+      ]
+    },
+    "catalogAndServerPackTests": {
+      "tests": 48,
+      "failures": 0
+    },
+    "releaseInputTests": {
+      "tests": 17,
+      "failures": 0
+    },
+    "buildPipelineTests": {
+      "tests": 65,
+      "failures": 0
+    },
+    "webUnitTests": {
+      "tests": 19,
+      "failures": 0
+    },
+    "realThreeIntegration": {
+      "tests": 1,
+      "failures": 0
+    },
+    "test": {
+      "tests": 113,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "verifyRailRendering": {
+      "tests": 8,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "verifyMixinCompatibility": {
+      "tests": 8,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "verifyLightTypeCompatibility": {
+      "tests": 3,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "finalJarMatchesWebSource": true,
+    "newClassesJavaMajorVersion": 61,
+    "archiveCrcVerified": true,
+    "buildCommand": "gradlew :fabric:verifyRailRendering :fabric:verifyMixinCompatibility :fabric:test :fabric:verifyLightTypeCompatibility :fabric:verifyBlueMapLiveWeb -PminecraftVersion=1.20.4 -PexcludeAssets=false",
+    "independentBackendReview": "Policy revocation, removed-world cleanup, selected rails/stations/arrivals, mailbox revision fencing reviewed; reported issues fixed and covered by regression tests."
+  },
+  "limitations": [
+    "Simplified train bodies and live route colors; original textures/models/door animations are not reproduced.",
+    "Route geometry requires generated MTR depot paths; unresolved legs are omitted.",
+    "Station predictions use MTR data, distinguish real-time and timetable-only entries, and show up to eight upcoming trains per station.",
+    "Browser verification uses synthetic data; production-world runtime and deployment not performed.",
+    "MTR arrivals queries are bounded per platform/siding; exceptionally many private services can exhaust the query limit before some public predictions, which are omitted instead of estimated."
+  ]
+}
