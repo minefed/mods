@@ -1,0 +1,10 @@
+{
+  "schemaVersion": 1,
+  "id": "minefed_bluemap_model_exporter",
+  "version": "1.0.0",
+  "name": "Minefed BlueMap model exporter (offline tool)",
+  "environment": "client",
+  "entrypoints": {"client": ["team.minefed.bluemap.ModelExporter"]},
+  "depends": {"fabricloader": ">=0.18.4", "minecraft": "=1.20.4", "java": ">=17", "fabric-renderer-api-v1": "*"},
+  "license": "MIT"
+}
