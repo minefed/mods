@@ -297,6 +297,25 @@ public final class ModelExporter implements ClientModInitializer {
     private static List<String> canonicalQuads(Collection<?> quads) {
         return quads.stream().map(ModelExporter::json).sorted().toList();
     }
+    private Object immutableSegment(Object model) throws Exception {
+        Set<Object> visited=Collections.newSetFromMap(new IdentityHashMap<>());
+        Class<?> baked=type("net.minecraft.class_1087");
+        while(model!=null&&visited.add(model)) {
+            String kind=model.getClass().getName();
+            if(kind.endsWith(".MultipartSegmentBakedModelFabric")||kind.equals("net.minecraft.class_1093"))return model;
+            Object child=null;
+            for(Class<?> c=model.getClass();c!=null;c=c.getSuperclass())for(Field f:c.getDeclaredFields()) {
+                if(Modifier.isStatic(f.getModifiers())||!baked.isAssignableFrom(f.getType()))continue;
+                f.setAccessible(true);Object candidate=f.get(model);
+                if(candidate!=null) {
+                    if(child!=null&&child!=candidate)return null;
+                    child=candidate;
+                }
+            }
+            model=child;
+        }
+        return null;
+    }
     /** Preserve runtime-translated Diagonal selectors without expanding every geometry combination. */
     @SuppressWarnings("unchecked")
     private boolean exportMultipart(String id,List<?> states) throws Exception {
@@ -315,6 +334,7 @@ public final class ModelExporter implements ClientModInitializer {
         List<Object> parts=new ArrayList<>(); List<Integer> matchedCounts=new ArrayList<>();
         List<BitSet> matches=new ArrayList<>(); List<Map<String,Object>> models=new ArrayList<>();
         Set<Integer> probes=new TreeSet<>(); BitSet covered=new BitSet(states.size());
+        boolean exhaustiveGeometry=root!=multi;
         for(int i=0;i<Math.min(16,states.size());i++)probes.add(i*(states.size()-1)/Math.max(1,Math.min(16,states.size())-1));
         // An unknown wrapper can change only a rare state; sample checks are not
         // sufficient to strip it. Keep the compact output but validate every state.
@@ -328,14 +348,12 @@ public final class ModelExporter implements ClientModInitializer {
             // These final Diagonal segment classes return a fixed quadMap, independent of state/random.
             // Refuse unknown components rather than inferring this from only a few captures.
             String kind=part.getClass().getName();
-            Object immutable=part;
-            while(immutable.getClass().getName().equals("me.pepperbell.continuity.client.model.EmissiveBakedModel"))
-                immutable=field(immutable,"wrapped");
-            String immutableKind=immutable.getClass().getName();
-            // Continuity's known wrapper passes through base quads and only adds
-            // emissive sprites, which recordQuad rejects. Keep capturing the wrapper.
-            if(!immutableKind.endsWith(".MultipartSegmentBakedModelFabric")&&!immutableKind.equals("net.minecraft.class_1086"))
+            Object immutable=immutableSegment(part);
+            if(immutable==null)
                 throw new IllegalStateException("Unsupported multipart component: "+kind);
+            // Keep actual wrapped emissions. Any wrapper, including Continuity CTM,
+            // requires the complete state/seed union check below, not a class allowlist.
+            exhaustiveGeometry|=part!=immutable;
             int first=matching.nextSetBit(0),last=matching.length()-1;
             Map<String,Object> data=new Capture(states.get(first),42).capture(part);
             Map<String,Object> check=new Capture(states.get(last),987654321).capture(part);
@@ -349,6 +367,7 @@ public final class ModelExporter implements ClientModInitializer {
         }
         // Every state must point to the same multipart graph. Wrappers may decorate it;
         // compare their final emitted quads with the selected component union at probes.
+        if(exhaustiveGeometry)for(int i=0;i<states.size();i++)probes.add(i);
         for(int i=0;i<states.size();i++) {
             Object stateModel=model(states.get(i));
             if(multipart(stateModel)!=multi)throw new IllegalStateException("Multipart graph differs across states");
@@ -364,7 +383,7 @@ public final class ModelExporter implements ClientModInitializer {
                 throw new IllegalStateException("Multipart wrapper changes component geometry: "+descriptions.get(index));
             if(!actual.get("ambientocclusion").equals(call(root,"method_4708")))
                 throw new IllegalStateException("Multipart wrapper changes ambient occlusion across states");
-            if(model(states.get(index))!=multi&&!json(actual).equals(json(new Capture(states.get(index),987654321)
+            if((exhaustiveGeometry||model(states.get(index))!=multi)&&!json(actual).equals(json(new Capture(states.get(index),987654321)
                     .capture(model(states.get(index)),expected.isEmpty()))))
                 throw new IllegalStateException("Multipart wrapper changes geometry with random seed");
         }
