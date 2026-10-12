@@ -1,0 +1,1348 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-12",
+  "minecraftVersion": "1.20.4",
+  "loader": "Fabric",
+  "runtimeJava": 17,
+  "parentBaselineCommit": "a6725d3738831d3da88069c3c07843f61051b670",
+  "scope": "Source implementation, local verification/builds and integration into recorded branches; no operating server or game installation changes.",
+  "distributionScope": "No JARs committed. Full authoring originals are archived only in the private resourcepack repository, outside the public resource_pack game directory.",
+  "entries": [
+    {
+      "modId": "oritech",
+      "version": "0.5.1+1.20.4",
+      "artifactPath": "Oritech/build/libs/oritech-0.5.1+1.20.4.jar",
+      "sha256": "ef1a3afa76ec862ad7cb52ccf71c9942348a4dd537d4dc85bb241e474e674838",
+      "size": 2897471,
+      "source": {
+        "path": "Oritech",
+        "url": "https://github.com/minefed/Oritech",
+        "trackingBranch": "minefed-1.20.4",
+        "baselineCommit": "a6c9c79ecf58430bdc1ead54b9d03aadd22302fc",
+        "commit": "a3051c0f1ac1eaab0d995f8d1540e49561bc2ac1",
+        "unitCommits": [
+          "f5474ea31ff82d36ad8c40bea70e3422336019ef",
+          "a3051c0f1ac1eaab0d995f8d1540e49561bc2ac1"
+        ]
+      },
+      "buildJava": 17,
+      "sourceLicense": "CC0-1.0",
+      "binaryLicense": "CC0-1.0",
+      "licenseScope": "Mod itself; bundled dependencies retain their own licenses and prior provenance. No existing notices removed.",
+      "licenseNotices": [
+        {
+          "sourcePath": "Oritech/LICENSE.md",
+          "sha256": "d504e681c66e5b9b23bd0ff751d2cd721da2f99f983b5a5fd0bb138135e4e8d9",
+          "size": 7045,
+          "byteSource": "Pinned source Git blob; checkout line endings may differ."
+        }
+      ],
+      "compatibility": {
+        "fabricloader": ">=0.15.9",
+        "minecraft": "~1.20.4",
+        "java": ">=17",
+        "fabric-api": "*",
+        "team_reborn_energy": ">=3.0.0",
+        "owo": "*",
+        "geckolib": "*"
+      },
+      "artifactInspection": {
+        "baselineSha256": "d76d2c2e7b9e4b5ce1ef3228c119183c53e3f74fd2723272a8af98026a9ec620",
+        "baselineProvenance": "Existing local build output captured before this implementation; not claimed to be a freshly rebuilt baseline.",
+        "resourcesUnchangedFromSourceBaseline": true,
+        "sourceResourceInspection": {
+          "sourceCommit": "a6c9c79ecf58430bdc1ead54b9d03aadd22302fc",
+          "sourcePaths": [
+            "src/main/generated/assets",
+            "src/main/generated/data",
+            "src/main/resources/assets",
+            "src/main/resources/data"
+          ],
+          "resourceCount": 1144,
+          "sourceResourcePathsUnchanged": true,
+          "packagedBytesMatchBaselineSource": true
+        },
+        "resourcesUnchangedFromHistoricalJar": true,
+        "historicalResourceDifferences": [],
+        "noticesUnchanged": true,
+        "noticePaths": [
+          "LICENSE.md_oritech"
+        ],
+        "testFixturesExcluded": true,
+        "added": [
+          "rearth/oritech/block/base/entity/MachineBlockEntity$3.class",
+          "rearth/oritech/block/base/entity/MachineBlockEntity$RecipeSnapshotEligibility.class",
+          "rearth/oritech/block/base/entity/MachineBlockEntity$SnapshotPaths.class",
+          "rearth/oritech/util/MachineInventorySnapshot.class"
+        ],
+        "removed": [],
+        "changed": [
+          "oritech.accesswidener",
+          "rearth/oritech/block/base/entity/MachineBlockEntity$1.class",
+          "rearth/oritech/block/base/entity/MachineBlockEntity$2.class",
+          "rearth/oritech/block/base/entity/MachineBlockEntity$SimpleMachineInventory.class",
+          "rearth/oritech/block/base/entity/MachineBlockEntity.class",
+          "rearth/oritech/block/entity/machines/processing/PoweredFurnaceBlockEntity.class"
+        ],
+        "changedClassVersions": {
+          "rearth/oritech/block/base/entity/MachineBlockEntity$3.class": 61,
+          "rearth/oritech/block/base/entity/MachineBlockEntity$RecipeSnapshotEligibility.class": 61,
+          "rearth/oritech/block/base/entity/MachineBlockEntity$SnapshotPaths.class": 61,
+          "rearth/oritech/util/MachineInventorySnapshot.class": 61,
+          "rearth/oritech/block/base/entity/MachineBlockEntity$1.class": 61,
+          "rearth/oritech/block/base/entity/MachineBlockEntity$2.class": 61,
+          "rearth/oritech/block/base/entity/MachineBlockEntity$SimpleMachineInventory.class": 61,
+          "rearth/oritech/block/base/entity/MachineBlockEntity.class": 61,
+          "rearth/oritech/block/entity/machines/processing/PoweredFurnaceBlockEntity.class": 61
+        },
+        "nestedJars": [
+          {
+            "path": "META-INF/jars/owo-sentinel-0.12.6+1.20.3.jar",
+            "sha256": "1cd213322cb814bbc3ff8fbfb0d744ef7bb66982c22f46e0b10825d7e770f7ae",
+            "unchanged": true
+          },
+          {
+            "path": "META-INF/jars/energy-3.0.0.jar",
+            "sha256": "fa90c3e7bfd5f17ba60981e57c5b965d3618ebc6c512fd3b5947920e9cb81aef",
+            "unchanged": true
+          }
+        ]
+      }
+    },
+    {
+      "modId": "chiselsandbits",
+      "version": "1.5.10-FC",
+      "artifactPath": "Chisels-and-Bits/fabric/build/libs/chisels-and-bits-fabric-1.5.10-FC.jar",
+      "sha256": "d247e54b1073ad9cdc64765c1aa9307d9647a80b4927cb239d2b759f7fff975e",
+      "size": 2714280,
+      "source": {
+        "path": "Chisels-and-Bits",
+        "url": "https://github.com/minefed/Chisels-and-Bits",
+        "trackingBranch": "minefed-1.20.4",
+        "baselineCommit": "28723461a5afbfba6aa5c6e6349ffecd8da54ec0",
+        "commit": "4d7b7c871aec5df68156a19b5ef855f8b6e3a0a1",
+        "unitCommits": [
+          "821c01073be1e43309ae28626db09a452ab14799",
+          "6ebf5de4eb7870ec72ec13ea3e3f021e4c159c00",
+          "4d7b7c871aec5df68156a19b5ef855f8b6e3a0a1"
+        ]
+      },
+      "buildJava": 17,
+      "sourceLicense": "MIT",
+      "binaryLicense": "MIT (compiled mod source; existing metadata placeholder retained)",
+      "licenseScope": "Mod itself; bundled dependencies retain their own licenses and prior provenance. No existing notices removed.",
+      "licenseNotices": [
+        {
+          "sourcePath": "Chisels-and-Bits/LICENSE",
+          "sha256": "340e9ed2e5c1c8b29ec59d7c797d9f292557bd23446f537fb763b85bf034f3d6",
+          "size": 1077,
+          "byteSource": "Pinned source Git blob; checkout line endings may differ."
+        }
+      ],
+      "compatibility": {
+        "fabricloader": ">=0.15.6",
+        "fabric": ">=0.95.4",
+        "minecraft": "1.20.4",
+        "java": ">=17",
+        "scena": ">=1.0.141"
+      },
+      "artifactInspection": {
+        "sourceBaselineCommit": "28723461a5afbfba6aa5c6e6349ffecd8da54ec0",
+        "baselineSha256": "5c6e00436159d3988591c8d29c42dad8911c7dc279ad930a47160c4a04bca5ab",
+        "baselineProvenance": "Existing local build output captured before implementation; older than the preceding source pin and not freshly rebuilt.",
+        "sourceAssetPathsUnchanged": true,
+        "historicalResourcesUnchanged": true,
+        "sourceResourceInspection": {
+          "sourceCommit": "28723461a5afbfba6aa5c6e6349ffecd8da54ec0",
+          "sourcePaths": [
+            "core/src/main/resources",
+            "core/src/datagen/generated"
+          ],
+          "resourceCount": 517,
+          "packagedBytesMatchBaselineSource": true
+        },
+        "recursiveContainers": [
+          {
+            "path": "chisels-and-bits-fabric-1.5.10-FC.jar",
+            "id": "chiselsandbits",
+            "version": "1.5.10-FC",
+            "sha256": "d247e54b1073ad9cdc64765c1aa9307d9647a80b4927cb239d2b759f7fff975e",
+            "unchanged": false,
+            "resourceCount": 0,
+            "historicalResourcesUnchanged": true,
+            "noticePaths": [],
+            "noticesUnchanged": true,
+            "testFixturesExcluded": true,
+            "added": [],
+            "removed": [],
+            "changed": [
+              "META-INF/MANIFEST.MF",
+              "META-INF/jars/chisels-and-bits-fabric-1.5.10-FC-api-fabric.jar",
+              "META-INF/jars/chisels-and-bits-fabric-1.5.10-FC-core-fabric.jar"
+            ],
+            "changedClassVersions": {}
+          },
+          {
+            "path": "chisels-and-bits-fabric-1.5.10-FC.jar!META-INF/jars/lz4-pure-java-1.8.0.jar",
+            "id": "org_lz4_lz4-pure-java",
+            "version": "1.8.0",
+            "sha256": "b891dddbc908bbd3db2c4f299a9cef9d9fafb7f11a5b9dbbf79faa55566f098c",
+            "unchanged": true,
+            "resourceCount": 0,
+            "historicalResourcesUnchanged": true,
+            "noticePaths": [],
+            "noticesUnchanged": true,
+            "testFixturesExcluded": true,
+            "added": [],
+            "removed": [],
+            "changed": [],
+            "changedClassVersions": {}
+          },
+          {
+            "path": "chisels-and-bits-fabric-1.5.10-FC.jar!META-INF/jars/scena-fabric-1.0.141.jar",
+            "id": "scena",
+            "version": "1.0.141",
+            "sha256": "8a79d7485fccd67beb50df086ba66827c0218a67565efca1c753a37dbee152b5",
+            "unchanged": true,
+            "resourceCount": 0,
+            "historicalResourcesUnchanged": true,
+            "noticePaths": [],
+            "noticesUnchanged": true,
+            "testFixturesExcluded": true,
+            "added": [],
+            "removed": [],
+            "changed": [],
+            "changedClassVersions": {}
+          },
+          {
+            "path": "chisels-and-bits-fabric-1.5.10-FC.jar!META-INF/jars/scena-fabric-1.0.141.jar!META-INF/jars/saecularia-caudices-fabric-1.0.39.jar",
+            "id": "saeculariacaudices",
+            "version": "1.0.39",
+            "sha256": "d9f00d87a3ea530798ba5a3e63967111ec9f837e370600b98b73e4f853a945e4",
+            "unchanged": true,
+            "resourceCount": 0,
+            "historicalResourcesUnchanged": true,
+            "noticePaths": [],
+            "noticesUnchanged": true,
+            "testFixturesExcluded": true,
+            "added": [],
+            "removed": [],
+            "changed": [],
+            "changedClassVersions": {}
+          },
+          {
+            "path": "chisels-and-bits-fabric-1.5.10-FC.jar!META-INF/jars/scena-fabric-1.0.141.jar!META-INF/jars/saecularia-caudices-fabric-1.0.39.jar!META-INF/jars/saecularia-caudices-fabric-1.0.39-core-fabric.jar",
+            "id": "com_communi-suggestu_saecularia-caudices_core",
+            "version": "1.0.39",
+            "sha256": "a17b4b728124a2db8f6d8c7b2f08808914e34041a33424991243a357182ec13e",
+            "unchanged": true,
+            "resourceCount": 0,
+            "historicalResourcesUnchanged": true,
+            "noticePaths": [],
+            "noticesUnchanged": true,
+            "testFixturesExcluded": true,
+            "added": [],
+            "removed": [],
+            "changed": [],
+            "changedClassVersions": {}
+          },
+          {
+            "path": "chisels-and-bits-fabric-1.5.10-FC.jar!META-INF/jars/scena-fabric-1.0.141.jar!META-INF/jars/scena-fabric-1.0.141-core-fabric.jar",
+            "id": "com_communi-suggestu_scena_core",
+            "version": "1.0.141",
+            "sha256": "d0d69a95f6dbb6d41964786db84479a4c7444c4fe0d7fb80c04c5592663193e4",
+            "unchanged": true,
+            "resourceCount": 2,
+            "historicalResourcesUnchanged": true,
+            "noticePaths": [],
+            "noticesUnchanged": true,
+            "testFixturesExcluded": true,
+            "added": [],
+            "removed": [],
+            "changed": [],
+            "changedClassVersions": {}
+          },
+          {
+            "path": "chisels-and-bits-fabric-1.5.10-FC.jar!META-INF/jars/scena-fabric-1.0.141.jar!META-INF/jars/scena-fabric-1.0.141-core-fabric.jar!META-INF/jars/saecularia-caudices-fabric-1.0.39.jar",
+            "id": "saeculariacaudices",
+            "version": "1.0.39",
+            "sha256": "d9f00d87a3ea530798ba5a3e63967111ec9f837e370600b98b73e4f853a945e4",
+            "unchanged": true,
+            "resourceCount": 0,
+            "historicalResourcesUnchanged": true,
+            "noticePaths": [],
+            "noticesUnchanged": true,
+            "testFixturesExcluded": true,
+            "added": [],
+            "removed": [],
+            "changed": [],
+            "changedClassVersions": {}
+          },
+          {
+            "path": "chisels-and-bits-fabric-1.5.10-FC.jar!META-INF/jars/scena-fabric-1.0.141.jar!META-INF/jars/scena-fabric-1.0.141-core-fabric.jar!META-INF/jars/saecularia-caudices-fabric-1.0.39.jar!META-INF/jars/saecularia-caudices-fabric-1.0.39-core-fabric.jar",
+            "id": "com_communi-suggestu_saecularia-caudices_core",
+            "version": "1.0.39",
+            "sha256": "a17b4b728124a2db8f6d8c7b2f08808914e34041a33424991243a357182ec13e",
+            "unchanged": true,
+            "resourceCount": 0,
+            "historicalResourcesUnchanged": true,
+            "noticePaths": [],
+            "noticesUnchanged": true,
+            "testFixturesExcluded": true,
+            "added": [],
+            "removed": [],
+            "changed": [],
+            "changedClassVersions": {}
+          },
+          {
+            "path": "chisels-and-bits-fabric-1.5.10-FC.jar!META-INF/jars/chisels-and-bits-fabric-1.5.10-FC-api-fabric.jar",
+            "id": "mod_chiselsandbits_api",
+            "version": "1.5.10-FC",
+            "sha256": "8e76e4ca75dd4d87c92ad4e433ed3ff1453ce8ab794b7579630e675b4a70d61a",
+            "unchanged": false,
+            "resourceCount": 0,
+            "historicalResourcesUnchanged": true,
+            "noticePaths": [],
+            "noticesUnchanged": true,
+            "testFixturesExcluded": true,
+            "added": [],
+            "removed": [],
+            "changed": [
+              "META-INF/MANIFEST.MF",
+              "mod/chiselsandbits/api/config/IClientConfiguration.class"
+            ],
+            "changedClassVersions": {
+              "mod/chiselsandbits/api/config/IClientConfiguration.class": 61
+            }
+          },
+          {
+            "path": "chisels-and-bits-fabric-1.5.10-FC.jar!META-INF/jars/chisels-and-bits-fabric-1.5.10-FC-api-fabric.jar!META-INF/jars/lz4-pure-java-1.8.0.jar",
+            "id": "org_lz4_lz4-pure-java",
+            "version": "1.8.0",
+            "sha256": "b891dddbc908bbd3db2c4f299a9cef9d9fafb7f11a5b9dbbf79faa55566f098c",
+            "unchanged": true,
+            "resourceCount": 0,
+            "historicalResourcesUnchanged": true,
+            "noticePaths": [],
+            "noticesUnchanged": true,
+            "testFixturesExcluded": true,
+            "added": [],
+            "removed": [],
+            "changed": [],
+            "changedClassVersions": {}
+          },
+          {
+            "path": "chisels-and-bits-fabric-1.5.10-FC.jar!META-INF/jars/chisels-and-bits-fabric-1.5.10-FC-api-fabric.jar!META-INF/jars/scena-fabric-1.0.141.jar",
+            "id": "scena",
+            "version": "1.0.141",
+            "sha256": "8a79d7485fccd67beb50df086ba66827c0218a67565efca1c753a37dbee152b5",
+            "unchanged": true,
+            "resourceCount": 0,
+            "historicalResourcesUnchanged": true,
+            "noticePaths": [],
+            "noticesUnchanged": true,
+            "testFixturesExcluded": true,
+            "added": [],
+            "removed": [],
+            "changed": [],
+            "changedClassVersions": {}
+          },
+          {
+            "path": "chisels-and-bits-fabric-1.5.10-FC.jar!META-INF/jars/chisels-and-bits-fabric-1.5.10-FC-api-fabric.jar!META-INF/jars/scena-fabric-1.0.141.jar!META-INF/jars/saecularia-caudices-fabric-1.0.39.jar",
+            "id": "saeculariacaudices",
+            "version": "1.0.39",
+            "sha256": "d9f00d87a3ea530798ba5a3e63967111ec9f837e370600b98b73e4f853a945e4",
+            "unchanged": true,
+            "resourceCount": 0,
+            "historicalResourcesUnchanged": true,
+            "noticePaths": [],
+            "noticesUnchanged": true,
+            "testFixturesExcluded": true,
+            "added": [],
+            "removed": [],
+            "changed": [],
+            "changedClassVersions": {}
+          },
+          {
+            "path": "chisels-and-bits-fabric-1.5.10-FC.jar!META-INF/jars/chisels-and-bits-fabric-1.5.10-FC-api-fabric.jar!META-INF/jars/scena-fabric-1.0.141.jar!META-INF/jars/saecularia-caudices-fabric-1.0.39.jar!META-INF/jars/saecularia-caudices-fabric-1.0.39-core-fabric.jar",
+            "id": "com_communi-suggestu_saecularia-caudices_core",
+            "version": "1.0.39",
+            "sha256": "a17b4b728124a2db8f6d8c7b2f08808914e34041a33424991243a357182ec13e",
+            "unchanged": true,
+            "resourceCount": 0,
+            "historicalResourcesUnchanged": true,
+            "noticePaths": [],
+            "noticesUnchanged": true,
+            "testFixturesExcluded": true,
+            "added": [],
+            "removed": [],
+            "changed": [],
+            "changedClassVersions": {}
+          },
+          {
+            "path": "chisels-and-bits-fabric-1.5.10-FC.jar!META-INF/jars/chisels-and-bits-fabric-1.5.10-FC-api-fabric.jar!META-INF/jars/scena-fabric-1.0.141.jar!META-INF/jars/scena-fabric-1.0.141-core-fabric.jar",
+            "id": "com_communi-suggestu_scena_core",
+            "version": "1.0.141",
+            "sha256": "d0d69a95f6dbb6d41964786db84479a4c7444c4fe0d7fb80c04c5592663193e4",
+            "unchanged": true,
+            "resourceCount": 2,
+            "historicalResourcesUnchanged": true,
+            "noticePaths": [],
+            "noticesUnchanged": true,
+            "testFixturesExcluded": true,
+            "added": [],
+            "removed": [],
+            "changed": [],
+            "changedClassVersions": {}
+          },
+          {
+            "path": "chisels-and-bits-fabric-1.5.10-FC.jar!META-INF/jars/chisels-and-bits-fabric-1.5.10-FC-api-fabric.jar!META-INF/jars/scena-fabric-1.0.141.jar!META-INF/jars/scena-fabric-1.0.141-core-fabric.jar!META-INF/jars/saecularia-caudices-fabric-1.0.39.jar",
+            "id": "saeculariacaudices",
+            "version": "1.0.39",
+            "sha256": "d9f00d87a3ea530798ba5a3e63967111ec9f837e370600b98b73e4f853a945e4",
+            "unchanged": true,
+            "resourceCount": 0,
+            "historicalResourcesUnchanged": true,
+            "noticePaths": [],
+            "noticesUnchanged": true,
+            "testFixturesExcluded": true,
+            "added": [],
+            "removed": [],
+            "changed": [],
+            "changedClassVersions": {}
+          },
+          {
+            "path": "chisels-and-bits-fabric-1.5.10-FC.jar!META-INF/jars/chisels-and-bits-fabric-1.5.10-FC-api-fabric.jar!META-INF/jars/scena-fabric-1.0.141.jar!META-INF/jars/scena-fabric-1.0.141-core-fabric.jar!META-INF/jars/saecularia-caudices-fabric-1.0.39.jar!META-INF/jars/saecularia-caudices-fabric-1.0.39-core-fabric.jar",
+            "id": "com_communi-suggestu_saecularia-caudices_core",
+            "version": "1.0.39",
+            "sha256": "a17b4b728124a2db8f6d8c7b2f08808914e34041a33424991243a357182ec13e",
+            "unchanged": true,
+            "resourceCount": 0,
+            "historicalResourcesUnchanged": true,
+            "noticePaths": [],
+            "noticesUnchanged": true,
+            "testFixturesExcluded": true,
+            "added": [],
+            "removed": [],
+            "changed": [],
+            "changedClassVersions": {}
+          },
+          {
+            "path": "chisels-and-bits-fabric-1.5.10-FC.jar!META-INF/jars/chisels-and-bits-fabric-1.5.10-FC-core-fabric.jar",
+            "id": "mod_chiselsandbits_core",
+            "version": "1.5.10-FC",
+            "sha256": "1721b49b72f3bea4cbd186fec5cdb50fcd5977a58bab7fb2a29e7490a2915477",
+            "unchanged": false,
+            "resourceCount": 517,
+            "historicalResourcesUnchanged": true,
+            "noticePaths": [],
+            "noticesUnchanged": true,
+            "testFixturesExcluded": true,
+            "added": [
+              "mod/chiselsandbits/client/model/baked/cache/BakedModelCacheWeight.class",
+              "mod/chiselsandbits/client/model/baked/cache/EstimatedBakedModel.class",
+              "mod/chiselsandbits/utils/SimpleMaxWeightedCache$Entry.class",
+              "mod/chiselsandbits/utils/SimpleMaxWeightedCache.class"
+            ],
+            "removed": [],
+            "changed": [
+              "META-INF/MANIFEST.MF",
+              "mod/chiselsandbits/change/ChangeTrackerSyncManager$Entry.class",
+              "mod/chiselsandbits/change/ChangeTrackerSyncManager.class",
+              "mod/chiselsandbits/client/model/baked/chiseled/ChiseledBlockBakedModel$1.class",
+              "mod/chiselsandbits/client/model/baked/chiseled/ChiseledBlockBakedModel.class",
+              "mod/chiselsandbits/client/model/baked/chiseled/DataAwareChiseledBlockBakedModel.class",
+              "mod/chiselsandbits/client/model/baked/simple/CombinedModel.class",
+              "mod/chiselsandbits/client/reloading/ClientResourceReloadingManager.class",
+              "mod/chiselsandbits/config/ClientConfiguration.class",
+              "mod/chiselsandbits/registrars/ModEventHandler.class",
+              "mod/chiselsandbits/utils/SimpleMaxSizedCache.class"
+            ],
+            "changedClassVersions": {
+              "mod/chiselsandbits/change/ChangeTrackerSyncManager$Entry.class": 61,
+              "mod/chiselsandbits/change/ChangeTrackerSyncManager.class": 61,
+              "mod/chiselsandbits/client/model/baked/chiseled/ChiseledBlockBakedModel$1.class": 61,
+              "mod/chiselsandbits/client/model/baked/chiseled/ChiseledBlockBakedModel.class": 61,
+              "mod/chiselsandbits/client/model/baked/chiseled/DataAwareChiseledBlockBakedModel.class": 61,
+              "mod/chiselsandbits/client/model/baked/simple/CombinedModel.class": 61,
+              "mod/chiselsandbits/client/reloading/ClientResourceReloadingManager.class": 61,
+              "mod/chiselsandbits/config/ClientConfiguration.class": 61,
+              "mod/chiselsandbits/registrars/ModEventHandler.class": 61,
+              "mod/chiselsandbits/utils/SimpleMaxSizedCache.class": 61,
+              "mod/chiselsandbits/client/model/baked/cache/BakedModelCacheWeight.class": 61,
+              "mod/chiselsandbits/client/model/baked/cache/EstimatedBakedModel.class": 61,
+              "mod/chiselsandbits/utils/SimpleMaxWeightedCache$Entry.class": 61,
+              "mod/chiselsandbits/utils/SimpleMaxWeightedCache.class": 61
+            }
+          },
+          {
+            "path": "chisels-and-bits-fabric-1.5.10-FC.jar!META-INF/jars/chisels-and-bits-fabric-1.5.10-FC-core-fabric.jar!META-INF/jars/lz4-pure-java-1.8.0.jar",
+            "id": "org_lz4_lz4-pure-java",
+            "version": "1.8.0",
+            "sha256": "b891dddbc908bbd3db2c4f299a9cef9d9fafb7f11a5b9dbbf79faa55566f098c",
+            "unchanged": true,
+            "resourceCount": 0,
+            "historicalResourcesUnchanged": true,
+            "noticePaths": [],
+            "noticesUnchanged": true,
+            "testFixturesExcluded": true,
+            "added": [],
+            "removed": [],
+            "changed": [],
+            "changedClassVersions": {}
+          },
+          {
+            "path": "chisels-and-bits-fabric-1.5.10-FC.jar!META-INF/jars/chisels-and-bits-fabric-1.5.10-FC-core-fabric.jar!META-INF/jars/scena-fabric-1.0.141.jar",
+            "id": "scena",
+            "version": "1.0.141",
+            "sha256": "8a79d7485fccd67beb50df086ba66827c0218a67565efca1c753a37dbee152b5",
+            "unchanged": true,
+            "resourceCount": 0,
+            "historicalResourcesUnchanged": true,
+            "noticePaths": [],
+            "noticesUnchanged": true,
+            "testFixturesExcluded": true,
+            "added": [],
+            "removed": [],
+            "changed": [],
+            "changedClassVersions": {}
+          },
+          {
+            "path": "chisels-and-bits-fabric-1.5.10-FC.jar!META-INF/jars/chisels-and-bits-fabric-1.5.10-FC-core-fabric.jar!META-INF/jars/scena-fabric-1.0.141.jar!META-INF/jars/saecularia-caudices-fabric-1.0.39.jar",
+            "id": "saeculariacaudices",
+            "version": "1.0.39",
+            "sha256": "d9f00d87a3ea530798ba5a3e63967111ec9f837e370600b98b73e4f853a945e4",
+            "unchanged": true,
+            "resourceCount": 0,
+            "historicalResourcesUnchanged": true,
+            "noticePaths": [],
+            "noticesUnchanged": true,
+            "testFixturesExcluded": true,
+            "added": [],
+            "removed": [],
+            "changed": [],
+            "changedClassVersions": {}
+          },
+          {
+            "path": "chisels-and-bits-fabric-1.5.10-FC.jar!META-INF/jars/chisels-and-bits-fabric-1.5.10-FC-core-fabric.jar!META-INF/jars/scena-fabric-1.0.141.jar!META-INF/jars/saecularia-caudices-fabric-1.0.39.jar!META-INF/jars/saecularia-caudices-fabric-1.0.39-core-fabric.jar",
+            "id": "com_communi-suggestu_saecularia-caudices_core",
+            "version": "1.0.39",
+            "sha256": "a17b4b728124a2db8f6d8c7b2f08808914e34041a33424991243a357182ec13e",
+            "unchanged": true,
+            "resourceCount": 0,
+            "historicalResourcesUnchanged": true,
+            "noticePaths": [],
+            "noticesUnchanged": true,
+            "testFixturesExcluded": true,
+            "added": [],
+            "removed": [],
+            "changed": [],
+            "changedClassVersions": {}
+          },
+          {
+            "path": "chisels-and-bits-fabric-1.5.10-FC.jar!META-INF/jars/chisels-and-bits-fabric-1.5.10-FC-core-fabric.jar!META-INF/jars/scena-fabric-1.0.141.jar!META-INF/jars/scena-fabric-1.0.141-core-fabric.jar",
+            "id": "com_communi-suggestu_scena_core",
+            "version": "1.0.141",
+            "sha256": "d0d69a95f6dbb6d41964786db84479a4c7444c4fe0d7fb80c04c5592663193e4",
+            "unchanged": true,
+            "resourceCount": 2,
+            "historicalResourcesUnchanged": true,
+            "noticePaths": [],
+            "noticesUnchanged": true,
+            "testFixturesExcluded": true,
+            "added": [],
+            "removed": [],
+            "changed": [],
+            "changedClassVersions": {}
+          },
+          {
+            "path": "chisels-and-bits-fabric-1.5.10-FC.jar!META-INF/jars/chisels-and-bits-fabric-1.5.10-FC-core-fabric.jar!META-INF/jars/scena-fabric-1.0.141.jar!META-INF/jars/scena-fabric-1.0.141-core-fabric.jar!META-INF/jars/saecularia-caudices-fabric-1.0.39.jar",
+            "id": "saeculariacaudices",
+            "version": "1.0.39",
+            "sha256": "d9f00d87a3ea530798ba5a3e63967111ec9f837e370600b98b73e4f853a945e4",
+            "unchanged": true,
+            "resourceCount": 0,
+            "historicalResourcesUnchanged": true,
+            "noticePaths": [],
+            "noticesUnchanged": true,
+            "testFixturesExcluded": true,
+            "added": [],
+            "removed": [],
+            "changed": [],
+            "changedClassVersions": {}
+          },
+          {
+            "path": "chisels-and-bits-fabric-1.5.10-FC.jar!META-INF/jars/chisels-and-bits-fabric-1.5.10-FC-core-fabric.jar!META-INF/jars/scena-fabric-1.0.141.jar!META-INF/jars/scena-fabric-1.0.141-core-fabric.jar!META-INF/jars/saecularia-caudices-fabric-1.0.39.jar!META-INF/jars/saecularia-caudices-fabric-1.0.39-core-fabric.jar",
+            "id": "com_communi-suggestu_saecularia-caudices_core",
+            "version": "1.0.39",
+            "sha256": "a17b4b728124a2db8f6d8c7b2f08808914e34041a33424991243a357182ec13e",
+            "unchanged": true,
+            "resourceCount": 0,
+            "historicalResourcesUnchanged": true,
+            "noticePaths": [],
+            "noticesUnchanged": true,
+            "testFixturesExcluded": true,
+            "added": [],
+            "removed": [],
+            "changed": [],
+            "changedClassVersions": {}
+          }
+        ],
+        "recursiveResourceEntries": 523
+      }
+    }
+  ],
+  "resourcepack": {
+    "source": {
+      "path": "resourcepack",
+      "url": "https://github.com/minefed/resourcepack",
+      "visibility": "private",
+      "trackingBranch": "main",
+      "baselineCommit": "cb1f0cf1ed0ff9ee7ce9d2d3be56a52ba5b57914",
+      "commit": "ddbec63dcbbeecafe9f7044cdcd0f6dc935ec005",
+      "unitCommits": [
+        "ddbec63dcbbeecafe9f7044cdcd0f6dc935ec005"
+      ]
+    },
+    "target": "Minecraft 1.20.4 / MTR 4.0.5 Fabric",
+    "licenseManifest": "inventory/resourcepacks.lock.json",
+    "licenseScope": "Existing owner-authorized game files only. Full design/editor originals remain private and excluded from public packaging; existing copyrights preserved.",
+    "verification": {
+      "status": "passed",
+      "baselineCommit": "cb1f0cf1ed0ff9ee7ce9d2d3be56a52ba5b57914",
+      "target": "Minecraft 1.20.4 / MTR 4.0.5 Fabric",
+      "modelCount": 11,
+      "authoringBytes": 7547160,
+      "runtimeBytes": 2040498,
+      "savedBytes": 5506662,
+      "unchangedTrackedFiles": 303,
+      "lineEndingOnlyDifferences": [],
+      "registrationEntries": 26,
+      "models": [
+        {
+          "runtime": "resource_pack/assets/mtr/minefed/vehicles/mxr_a1000/bogie.bbmodel",
+          "authoring": "design/vehicles/mxr_a1000/source/blockbench/bogie.bbmodel",
+          "authoringSha256": "482c5b8cc9eb289ab05be3305ba76ea5ff294107e2a47e98c4f06a98bb3e3459",
+          "authoringBytes": 393131,
+          "baselineWindowsCheckoutSha256": "f474d78e2f12ac405b2346690edc2bb30056295181ca021c1e5aa345b5a9591c",
+          "baselineWindowsCheckoutBytes": 396328,
+          "baselineGitBlobSha256": "482c5b8cc9eb289ab05be3305ba76ea5ff294107e2a47e98c4f06a98bb3e3459",
+          "runtimeSha256": "b6b818a4ee3a8d948b074d7e9a160b3bce27a523b1a1b485ee3e6ad1ed6f5b93",
+          "runtimeBytes": 19916,
+          "elements": 34,
+          "outlines": 1,
+          "runtimeStructureSha256": "b6b818a4ee3a8d948b074d7e9a160b3bce27a523b1a1b485ee3e6ad1ed6f5b93"
+        },
+        {
+          "runtime": "resource_pack/assets/mtr/minefed/vehicles/mxr_a1000/cab.bbmodel",
+          "authoring": "design/vehicles/mxr_a1000/source/blockbench/cab.bbmodel",
+          "authoringSha256": "003c46534b833399ddd75f95bf05bfb7e4990713a46db2a66a2c20b6ed13aec7",
+          "authoringBytes": 1660445,
+          "baselineWindowsCheckoutSha256": "eb00127650bfdef3da08c5df4691933ab59d7624b2719ba76a397b3a040c0dce",
+          "baselineWindowsCheckoutBytes": 1739331,
+          "baselineGitBlobSha256": "003c46534b833399ddd75f95bf05bfb7e4990713a46db2a66a2c20b6ed13aec7",
+          "runtimeSha256": "1299e00af01f848e4938e68bc459746fbb5eb9c034117d3c474e300f0e7b99cf",
+          "runtimeBytes": 513572,
+          "elements": 847,
+          "outlines": 48,
+          "runtimeStructureSha256": "1299e00af01f848e4938e68bc459746fbb5eb9c034117d3c474e300f0e7b99cf"
+        },
+        {
+          "runtime": "resource_pack/assets/mtr/minefed/vehicles/mxr_a1000/destination.bbmodel",
+          "authoring": "design/vehicles/mxr_a1000/source/blockbench/destination.bbmodel",
+          "authoringSha256": "61cf191142246bddad6f818b8f4ca5abfc34fb597cade14d532afc3f612f734d",
+          "authoringBytes": 50648,
+          "baselineWindowsCheckoutSha256": "bd8b18242cb6f07ea480209b600a728dd447deb3383acacd47c36c644c95db97",
+          "baselineWindowsCheckoutBytes": 50809,
+          "baselineGitBlobSha256": "61cf191142246bddad6f818b8f4ca5abfc34fb597cade14d532afc3f612f734d",
+          "runtimeSha256": "9741e6b4695330502c177a12fdfd1ca454b11d85cbd8c6b455d915f7e5112794",
+          "runtimeBytes": 800,
+          "elements": 1,
+          "outlines": 1,
+          "runtimeStructureSha256": "9741e6b4695330502c177a12fdfd1ca454b11d85cbd8c6b455d915f7e5112794"
+        },
+        {
+          "runtime": "resource_pack/assets/mtr/minefed/vehicles/mxr_a1000/labels.bbmodel",
+          "authoring": "design/vehicles/mxr_a1000/source/blockbench/labels.bbmodel",
+          "authoringSha256": "df7c1e3ecf90bcc223a89a88beae8df2db35e4c687bc4b669253efdd88715ea6",
+          "authoringBytes": 55137,
+          "baselineWindowsCheckoutSha256": "41478cdc205db0c4106b54cdc16e0f8d380825e3de2fe52a78840e7fddaf4132",
+          "baselineWindowsCheckoutBytes": 55574,
+          "baselineGitBlobSha256": "df7c1e3ecf90bcc223a89a88beae8df2db35e4c687bc4b669253efdd88715ea6",
+          "runtimeSha256": "e5f1905688c184dfc94849e4d4e75f0fb770bb378f9d4e592d925f0b1a87c8ba",
+          "runtimeBytes": 2460,
+          "elements": 4,
+          "outlines": 1,
+          "runtimeStructureSha256": "e5f1905688c184dfc94849e4d4e75f0fb770bb378f9d4e592d925f0b1a87c8ba"
+        },
+        {
+          "runtime": "resource_pack/assets/mtr/minefed/vehicles/mxr_a1000/trailer-labels.bbmodel",
+          "authoring": "design/vehicles/mxr_a1000/source/blockbench/trailer-labels.bbmodel",
+          "authoringSha256": "e3696999f4401721360e7d63262db5e769add1508708b2c3189723641da4cca0",
+          "authoringBytes": 58013,
+          "baselineWindowsCheckoutSha256": "2704337e131508c313eb371a36deb7416321e1350f1b1bb7d88e42c2c2746478",
+          "baselineWindowsCheckoutBytes": 58266,
+          "baselineGitBlobSha256": "e3696999f4401721360e7d63262db5e769add1508708b2c3189723641da4cca0",
+          "runtimeSha256": "9313c7a71f40071e09ea5f3d936f60350944771cc68d3ce7cf61a1d9a544d507",
+          "runtimeBytes": 1354,
+          "elements": 2,
+          "outlines": 1,
+          "runtimeStructureSha256": "9313c7a71f40071e09ea5f3d936f60350944771cc68d3ce7cf61a1d9a544d507"
+        },
+        {
+          "runtime": "resource_pack/assets/mtr/minefed/vehicles/mxr_a1000/trailer.bbmodel",
+          "authoring": "design/vehicles/mxr_a1000/source/blockbench/trailer.bbmodel",
+          "authoringSha256": "cb353808701bee253fe4d76329e2b07f7cb7a4522bea054a3ca88c21987e5bdc",
+          "authoringBytes": 1580094,
+          "baselineWindowsCheckoutSha256": "3b99bd39e94cd535ef09305472102edeaccd3e28c09a049612d86cb9ace937f3",
+          "baselineWindowsCheckoutBytes": 1654158,
+          "baselineGitBlobSha256": "cb353808701bee253fe4d76329e2b07f7cb7a4522bea054a3ca88c21987e5bdc",
+          "runtimeSha256": "13a4db8b4c0abb1fb70f48e0dcd764d4387014970764be316a536bdb19098ff4",
+          "runtimeBytes": 482547,
+          "elements": 795,
+          "outlines": 46,
+          "runtimeStructureSha256": "13a4db8b4c0abb1fb70f48e0dcd764d4387014970764be316a536bdb19098ff4"
+        },
+        {
+          "runtime": "resource_pack/assets/mtr/minefed/vehicles/mxr_mistilteinn/bogie.bbmodel",
+          "authoring": "design/vehicles/mxr_mistilteinn/source/blockbench/bogie.bbmodel",
+          "authoringSha256": "edcaccf71fb7a921a7db9041b85c661b69b27f137b0d20110b84486809a3783d",
+          "authoringBytes": 393139,
+          "baselineWindowsCheckoutSha256": "f098c40f18b1a7b476b49375c62cf78c559d575f59e9b06f490a7c63675518c7",
+          "baselineWindowsCheckoutBytes": 396336,
+          "baselineGitBlobSha256": "edcaccf71fb7a921a7db9041b85c661b69b27f137b0d20110b84486809a3783d",
+          "runtimeSha256": "b6b818a4ee3a8d948b074d7e9a160b3bce27a523b1a1b485ee3e6ad1ed6f5b93",
+          "runtimeBytes": 19916,
+          "elements": 34,
+          "outlines": 1,
+          "runtimeStructureSha256": "b6b818a4ee3a8d948b074d7e9a160b3bce27a523b1a1b485ee3e6ad1ed6f5b93"
+        },
+        {
+          "runtime": "resource_pack/assets/mtr/minefed/vehicles/mxr_mistilteinn/cab.bbmodel",
+          "authoring": "design/vehicles/mxr_mistilteinn/source/blockbench/cab.bbmodel",
+          "authoringSha256": "6b6cf1a2a05b81de337acdac920e0a91a80bf3d5561302e5b8edf8d4921074b9",
+          "authoringBytes": 1660453,
+          "baselineWindowsCheckoutSha256": "028c955466833c97cf82f26680b3ab625fb179a2099f7a48d755b540303cc2ff",
+          "baselineWindowsCheckoutBytes": 1739339,
+          "baselineGitBlobSha256": "6b6cf1a2a05b81de337acdac920e0a91a80bf3d5561302e5b8edf8d4921074b9",
+          "runtimeSha256": "1299e00af01f848e4938e68bc459746fbb5eb9c034117d3c474e300f0e7b99cf",
+          "runtimeBytes": 513572,
+          "elements": 847,
+          "outlines": 48,
+          "runtimeStructureSha256": "1299e00af01f848e4938e68bc459746fbb5eb9c034117d3c474e300f0e7b99cf"
+        },
+        {
+          "runtime": "resource_pack/assets/mtr/minefed/vehicles/mxr_mistilteinn/labels.bbmodel",
+          "authoring": "design/vehicles/mxr_mistilteinn/source/blockbench/labels.bbmodel",
+          "authoringSha256": "49352c45f44dd65172a679bba8f12bae278895a1fddba4f54af72c0fbfe22d99",
+          "authoringBytes": 57977,
+          "baselineWindowsCheckoutSha256": "6dcdae55cbac084b4451905619f5431c49b8061c49eb5101f2ab2dd03f7c85ea",
+          "baselineWindowsCheckoutBytes": 58414,
+          "baselineGitBlobSha256": "49352c45f44dd65172a679bba8f12bae278895a1fddba4f54af72c0fbfe22d99",
+          "runtimeSha256": "e5f1905688c184dfc94849e4d4e75f0fb770bb378f9d4e592d925f0b1a87c8ba",
+          "runtimeBytes": 2460,
+          "elements": 4,
+          "outlines": 1,
+          "runtimeStructureSha256": "e5f1905688c184dfc94849e4d4e75f0fb770bb378f9d4e592d925f0b1a87c8ba"
+        },
+        {
+          "runtime": "resource_pack/assets/mtr/minefed/vehicles/mxr_mistilteinn/trailer-labels.bbmodel",
+          "authoring": "design/vehicles/mxr_mistilteinn/source/blockbench/trailer-labels.bbmodel",
+          "authoringSha256": "ba060292d89c5ba4270e16f9b9ca2da931029789700799087404a021504d5c65",
+          "authoringBytes": 58021,
+          "baselineWindowsCheckoutSha256": "ba3897c2fea398fe9bd487e71a083391f05ddb7d8bbf4e13bc0eb4128ba94008",
+          "baselineWindowsCheckoutBytes": 58274,
+          "baselineGitBlobSha256": "ba060292d89c5ba4270e16f9b9ca2da931029789700799087404a021504d5c65",
+          "runtimeSha256": "9313c7a71f40071e09ea5f3d936f60350944771cc68d3ce7cf61a1d9a544d507",
+          "runtimeBytes": 1354,
+          "elements": 2,
+          "outlines": 1,
+          "runtimeStructureSha256": "9313c7a71f40071e09ea5f3d936f60350944771cc68d3ce7cf61a1d9a544d507"
+        },
+        {
+          "runtime": "resource_pack/assets/mtr/minefed/vehicles/mxr_mistilteinn/trailer.bbmodel",
+          "authoring": "design/vehicles/mxr_mistilteinn/source/blockbench/trailer.bbmodel",
+          "authoringSha256": "cb89487334b968a5daf60f71c47da3bfa72fd3afe02a1127206ecb12c830a96f",
+          "authoringBytes": 1580102,
+          "baselineWindowsCheckoutSha256": "a09dd50c88e02753331a971130d1c08362ab175a4c46abb80acdc9cbe9f95b7b",
+          "baselineWindowsCheckoutBytes": 1654166,
+          "baselineGitBlobSha256": "cb89487334b968a5daf60f71c47da3bfa72fd3afe02a1127206ecb12c830a96f",
+          "runtimeSha256": "13a4db8b4c0abb1fb70f48e0dcd764d4387014970764be316a536bdb19098ff4",
+          "runtimeBytes": 482547,
+          "elements": 795,
+          "outlines": 46,
+          "runtimeStructureSha256": "13a4db8b4c0abb1fb70f48e0dcd764d4387014970764be316a536bdb19098ff4"
+        }
+      ],
+      "externalTexturePixels": [
+        {
+          "vehicle": "minefed_mxr_mistilteinn_cab_1",
+          "group": "models",
+          "modelResource": "mtr:minefed/vehicles/mxr_mistilteinn/cab.bbmodel",
+          "textureResource": "mtr:minefed/vehicles/mxr_mistilteinn/atlas.png",
+          "size": [
+            4096,
+            4096
+          ],
+          "rgbaSha256": "a221cb649c6c29858aef57b89270514a49aea8449e2727aedd227caf07fb8809",
+          "pngSha256": "f1833a3c4dbe1448f7d96a90464f1372adc1b3ab05108272c0cdaf8f58cfd5a8"
+        },
+        {
+          "vehicle": "minefed_mxr_mistilteinn_cab_1",
+          "group": "models",
+          "modelResource": "mtr:minefed/vehicles/mxr_mistilteinn/labels.bbmodel",
+          "textureResource": "mtr:minefed/vehicles/mxr_mistilteinn/labels.png",
+          "size": [
+            2048,
+            2048
+          ],
+          "rgbaSha256": "b41759f431f3311c283630ac55ef2dfc69fe0e135444625169ae5ff481581749",
+          "pngSha256": "41ffd6e07d227b6798f6d3855e18879b5e5ffd9629d44afa000844c403ef08a3"
+        },
+        {
+          "vehicle": "minefed_mxr_mistilteinn_cab_1",
+          "group": "bogie1Models",
+          "modelResource": "mtr:minefed/vehicles/mxr_mistilteinn/bogie.bbmodel",
+          "textureResource": "mtr:minefed/vehicles/mxr_mistilteinn/atlas.png",
+          "size": [
+            4096,
+            4096
+          ],
+          "rgbaSha256": "a221cb649c6c29858aef57b89270514a49aea8449e2727aedd227caf07fb8809",
+          "pngSha256": "f1833a3c4dbe1448f7d96a90464f1372adc1b3ab05108272c0cdaf8f58cfd5a8"
+        },
+        {
+          "vehicle": "minefed_mxr_mistilteinn_cab_1",
+          "group": "bogie2Models",
+          "modelResource": "mtr:minefed/vehicles/mxr_mistilteinn/bogie.bbmodel",
+          "textureResource": "mtr:minefed/vehicles/mxr_mistilteinn/atlas.png",
+          "size": [
+            4096,
+            4096
+          ],
+          "rgbaSha256": "a221cb649c6c29858aef57b89270514a49aea8449e2727aedd227caf07fb8809",
+          "pngSha256": "f1833a3c4dbe1448f7d96a90464f1372adc1b3ab05108272c0cdaf8f58cfd5a8"
+        },
+        {
+          "vehicle": "minefed_mxr_mistilteinn_cab_2",
+          "group": "models",
+          "modelResource": "mtr:minefed/vehicles/mxr_mistilteinn/cab.bbmodel",
+          "textureResource": "mtr:minefed/vehicles/mxr_mistilteinn/atlas.png",
+          "size": [
+            4096,
+            4096
+          ],
+          "rgbaSha256": "a221cb649c6c29858aef57b89270514a49aea8449e2727aedd227caf07fb8809",
+          "pngSha256": "f1833a3c4dbe1448f7d96a90464f1372adc1b3ab05108272c0cdaf8f58cfd5a8"
+        },
+        {
+          "vehicle": "minefed_mxr_mistilteinn_cab_2",
+          "group": "models",
+          "modelResource": "mtr:minefed/vehicles/mxr_mistilteinn/labels.bbmodel",
+          "textureResource": "mtr:minefed/vehicles/mxr_mistilteinn/labels.png",
+          "size": [
+            2048,
+            2048
+          ],
+          "rgbaSha256": "b41759f431f3311c283630ac55ef2dfc69fe0e135444625169ae5ff481581749",
+          "pngSha256": "41ffd6e07d227b6798f6d3855e18879b5e5ffd9629d44afa000844c403ef08a3"
+        },
+        {
+          "vehicle": "minefed_mxr_mistilteinn_cab_2",
+          "group": "bogie1Models",
+          "modelResource": "mtr:minefed/vehicles/mxr_mistilteinn/bogie.bbmodel",
+          "textureResource": "mtr:minefed/vehicles/mxr_mistilteinn/atlas.png",
+          "size": [
+            4096,
+            4096
+          ],
+          "rgbaSha256": "a221cb649c6c29858aef57b89270514a49aea8449e2727aedd227caf07fb8809",
+          "pngSha256": "f1833a3c4dbe1448f7d96a90464f1372adc1b3ab05108272c0cdaf8f58cfd5a8"
+        },
+        {
+          "vehicle": "minefed_mxr_mistilteinn_cab_2",
+          "group": "bogie2Models",
+          "modelResource": "mtr:minefed/vehicles/mxr_mistilteinn/bogie.bbmodel",
+          "textureResource": "mtr:minefed/vehicles/mxr_mistilteinn/atlas.png",
+          "size": [
+            4096,
+            4096
+          ],
+          "rgbaSha256": "a221cb649c6c29858aef57b89270514a49aea8449e2727aedd227caf07fb8809",
+          "pngSha256": "f1833a3c4dbe1448f7d96a90464f1372adc1b3ab05108272c0cdaf8f58cfd5a8"
+        },
+        {
+          "vehicle": "minefed_mxr_mistilteinn_trailer",
+          "group": "models",
+          "modelResource": "mtr:minefed/vehicles/mxr_mistilteinn/trailer.bbmodel",
+          "textureResource": "mtr:minefed/vehicles/mxr_mistilteinn/atlas.png",
+          "size": [
+            4096,
+            4096
+          ],
+          "rgbaSha256": "a221cb649c6c29858aef57b89270514a49aea8449e2727aedd227caf07fb8809",
+          "pngSha256": "f1833a3c4dbe1448f7d96a90464f1372adc1b3ab05108272c0cdaf8f58cfd5a8"
+        },
+        {
+          "vehicle": "minefed_mxr_mistilteinn_trailer",
+          "group": "models",
+          "modelResource": "mtr:minefed/vehicles/mxr_mistilteinn/trailer-labels.bbmodel",
+          "textureResource": "mtr:minefed/vehicles/mxr_mistilteinn/trailer-labels.png",
+          "size": [
+            2048,
+            2048
+          ],
+          "rgbaSha256": "2bc25f8c4b395d31c24a075848de7b49e2b76e2cd4cb23a6d92822a4a5b06dac",
+          "pngSha256": "901dc629a9a90b61a0092d5d4e40d460692414f7c3f17dddac1ddb00be578995"
+        },
+        {
+          "vehicle": "minefed_mxr_mistilteinn_trailer",
+          "group": "bogie1Models",
+          "modelResource": "mtr:minefed/vehicles/mxr_mistilteinn/bogie.bbmodel",
+          "textureResource": "mtr:minefed/vehicles/mxr_mistilteinn/atlas.png",
+          "size": [
+            4096,
+            4096
+          ],
+          "rgbaSha256": "a221cb649c6c29858aef57b89270514a49aea8449e2727aedd227caf07fb8809",
+          "pngSha256": "f1833a3c4dbe1448f7d96a90464f1372adc1b3ab05108272c0cdaf8f58cfd5a8"
+        },
+        {
+          "vehicle": "minefed_mxr_mistilteinn_trailer",
+          "group": "bogie2Models",
+          "modelResource": "mtr:minefed/vehicles/mxr_mistilteinn/bogie.bbmodel",
+          "textureResource": "mtr:minefed/vehicles/mxr_mistilteinn/atlas.png",
+          "size": [
+            4096,
+            4096
+          ],
+          "rgbaSha256": "a221cb649c6c29858aef57b89270514a49aea8449e2727aedd227caf07fb8809",
+          "pngSha256": "f1833a3c4dbe1448f7d96a90464f1372adc1b3ab05108272c0cdaf8f58cfd5a8"
+        },
+        {
+          "vehicle": "minefed_mxr_a1000_cab_1",
+          "group": "models",
+          "modelResource": "mtr:minefed/vehicles/mxr_a1000/cab.bbmodel",
+          "textureResource": "mtr:minefed/vehicles/mxr_mistilteinn/atlas.png",
+          "size": [
+            4096,
+            4096
+          ],
+          "rgbaSha256": "a221cb649c6c29858aef57b89270514a49aea8449e2727aedd227caf07fb8809",
+          "pngSha256": "f1833a3c4dbe1448f7d96a90464f1372adc1b3ab05108272c0cdaf8f58cfd5a8"
+        },
+        {
+          "vehicle": "minefed_mxr_a1000_cab_1",
+          "group": "models",
+          "modelResource": "mtr:minefed/vehicles/mxr_a1000/labels.bbmodel",
+          "textureResource": "mtr:minefed/vehicles/mxr_a1000/labels.png",
+          "size": [
+            2048,
+            2048
+          ],
+          "rgbaSha256": "d5527d0ebb0f45f493ea2fc77313f71a7148c365947989f149267c7e1f793218",
+          "pngSha256": "e123a7825e40ec701e66293451b9cca5867818167c9eb8dbaef814f137fd109f"
+        },
+        {
+          "vehicle": "minefed_mxr_a1000_cab_1",
+          "group": "models",
+          "modelResource": "mtr:minefed/vehicles/mxr_a1000/destination.bbmodel",
+          "textureResource": "mtr:minefed/vehicles/mxr_a1000/labels.png",
+          "size": [
+            2048,
+            2048
+          ],
+          "rgbaSha256": "d5527d0ebb0f45f493ea2fc77313f71a7148c365947989f149267c7e1f793218",
+          "pngSha256": "e123a7825e40ec701e66293451b9cca5867818167c9eb8dbaef814f137fd109f"
+        },
+        {
+          "vehicle": "minefed_mxr_a1000_cab_1",
+          "group": "bogie1Models",
+          "modelResource": "mtr:minefed/vehicles/mxr_a1000/bogie.bbmodel",
+          "textureResource": "mtr:minefed/vehicles/mxr_mistilteinn/atlas.png",
+          "size": [
+            4096,
+            4096
+          ],
+          "rgbaSha256": "a221cb649c6c29858aef57b89270514a49aea8449e2727aedd227caf07fb8809",
+          "pngSha256": "f1833a3c4dbe1448f7d96a90464f1372adc1b3ab05108272c0cdaf8f58cfd5a8"
+        },
+        {
+          "vehicle": "minefed_mxr_a1000_cab_1",
+          "group": "bogie2Models",
+          "modelResource": "mtr:minefed/vehicles/mxr_a1000/bogie.bbmodel",
+          "textureResource": "mtr:minefed/vehicles/mxr_mistilteinn/atlas.png",
+          "size": [
+            4096,
+            4096
+          ],
+          "rgbaSha256": "a221cb649c6c29858aef57b89270514a49aea8449e2727aedd227caf07fb8809",
+          "pngSha256": "f1833a3c4dbe1448f7d96a90464f1372adc1b3ab05108272c0cdaf8f58cfd5a8"
+        },
+        {
+          "vehicle": "minefed_mxr_a1000_cab_2",
+          "group": "models",
+          "modelResource": "mtr:minefed/vehicles/mxr_a1000/cab.bbmodel",
+          "textureResource": "mtr:minefed/vehicles/mxr_mistilteinn/atlas.png",
+          "size": [
+            4096,
+            4096
+          ],
+          "rgbaSha256": "a221cb649c6c29858aef57b89270514a49aea8449e2727aedd227caf07fb8809",
+          "pngSha256": "f1833a3c4dbe1448f7d96a90464f1372adc1b3ab05108272c0cdaf8f58cfd5a8"
+        },
+        {
+          "vehicle": "minefed_mxr_a1000_cab_2",
+          "group": "models",
+          "modelResource": "mtr:minefed/vehicles/mxr_a1000/labels.bbmodel",
+          "textureResource": "mtr:minefed/vehicles/mxr_a1000/labels.png",
+          "size": [
+            2048,
+            2048
+          ],
+          "rgbaSha256": "d5527d0ebb0f45f493ea2fc77313f71a7148c365947989f149267c7e1f793218",
+          "pngSha256": "e123a7825e40ec701e66293451b9cca5867818167c9eb8dbaef814f137fd109f"
+        },
+        {
+          "vehicle": "minefed_mxr_a1000_cab_2",
+          "group": "models",
+          "modelResource": "mtr:minefed/vehicles/mxr_a1000/destination.bbmodel",
+          "textureResource": "mtr:minefed/vehicles/mxr_a1000/labels.png",
+          "size": [
+            2048,
+            2048
+          ],
+          "rgbaSha256": "d5527d0ebb0f45f493ea2fc77313f71a7148c365947989f149267c7e1f793218",
+          "pngSha256": "e123a7825e40ec701e66293451b9cca5867818167c9eb8dbaef814f137fd109f"
+        },
+        {
+          "vehicle": "minefed_mxr_a1000_cab_2",
+          "group": "bogie1Models",
+          "modelResource": "mtr:minefed/vehicles/mxr_a1000/bogie.bbmodel",
+          "textureResource": "mtr:minefed/vehicles/mxr_mistilteinn/atlas.png",
+          "size": [
+            4096,
+            4096
+          ],
+          "rgbaSha256": "a221cb649c6c29858aef57b89270514a49aea8449e2727aedd227caf07fb8809",
+          "pngSha256": "f1833a3c4dbe1448f7d96a90464f1372adc1b3ab05108272c0cdaf8f58cfd5a8"
+        },
+        {
+          "vehicle": "minefed_mxr_a1000_cab_2",
+          "group": "bogie2Models",
+          "modelResource": "mtr:minefed/vehicles/mxr_a1000/bogie.bbmodel",
+          "textureResource": "mtr:minefed/vehicles/mxr_mistilteinn/atlas.png",
+          "size": [
+            4096,
+            4096
+          ],
+          "rgbaSha256": "a221cb649c6c29858aef57b89270514a49aea8449e2727aedd227caf07fb8809",
+          "pngSha256": "f1833a3c4dbe1448f7d96a90464f1372adc1b3ab05108272c0cdaf8f58cfd5a8"
+        },
+        {
+          "vehicle": "minefed_mxr_a1000_trailer",
+          "group": "models",
+          "modelResource": "mtr:minefed/vehicles/mxr_a1000/trailer.bbmodel",
+          "textureResource": "mtr:minefed/vehicles/mxr_mistilteinn/atlas.png",
+          "size": [
+            4096,
+            4096
+          ],
+          "rgbaSha256": "a221cb649c6c29858aef57b89270514a49aea8449e2727aedd227caf07fb8809",
+          "pngSha256": "f1833a3c4dbe1448f7d96a90464f1372adc1b3ab05108272c0cdaf8f58cfd5a8"
+        },
+        {
+          "vehicle": "minefed_mxr_a1000_trailer",
+          "group": "models",
+          "modelResource": "mtr:minefed/vehicles/mxr_a1000/trailer-labels.bbmodel",
+          "textureResource": "mtr:minefed/vehicles/mxr_mistilteinn/trailer-labels.png",
+          "size": [
+            2048,
+            2048
+          ],
+          "rgbaSha256": "2bc25f8c4b395d31c24a075848de7b49e2b76e2cd4cb23a6d92822a4a5b06dac",
+          "pngSha256": "901dc629a9a90b61a0092d5d4e40d460692414f7c3f17dddac1ddb00be578995"
+        },
+        {
+          "vehicle": "minefed_mxr_a1000_trailer",
+          "group": "bogie1Models",
+          "modelResource": "mtr:minefed/vehicles/mxr_a1000/bogie.bbmodel",
+          "textureResource": "mtr:minefed/vehicles/mxr_mistilteinn/atlas.png",
+          "size": [
+            4096,
+            4096
+          ],
+          "rgbaSha256": "a221cb649c6c29858aef57b89270514a49aea8449e2727aedd227caf07fb8809",
+          "pngSha256": "f1833a3c4dbe1448f7d96a90464f1372adc1b3ab05108272c0cdaf8f58cfd5a8"
+        },
+        {
+          "vehicle": "minefed_mxr_a1000_trailer",
+          "group": "bogie2Models",
+          "modelResource": "mtr:minefed/vehicles/mxr_a1000/bogie.bbmodel",
+          "textureResource": "mtr:minefed/vehicles/mxr_mistilteinn/atlas.png",
+          "size": [
+            4096,
+            4096
+          ],
+          "rgbaSha256": "a221cb649c6c29858aef57b89270514a49aea8449e2727aedd227caf07fb8809",
+          "pngSha256": "f1833a3c4dbe1448f7d96a90464f1372adc1b3ab05108272c0cdaf8f58cfd5a8"
+        }
+      ],
+      "mtrSourceEvidence": {
+        "commit": "d1b0f5681f1e4b78c3be965da1b040d226574401",
+        "sourceSha256": {
+          "fabric/src/main/java/org/mtr/mod/generated/resource/BlockbenchModelSchema.java": "6aa59576c9e9f3128db5376ec5d5f62c8171a1872311fd1b7459c142c4ac3693",
+          "fabric/src/main/java/org/mtr/mod/resource/BlockbenchModel.java": "c8ab1c02c6028172a528437d4fd4eaa0263d4f2ea43819464856e2d4794aa94b",
+          "fabric/src/main/java/org/mtr/mod/generated/resource/BlockbenchElementSchema.java": "d3b50d756778900a6ff8d253e181ad527d63906e871f4fc3bc5add2b50a7856c",
+          "fabric/src/main/java/org/mtr/mod/resource/BlockbenchElement.java": "7ea1b2f347db5dd1e345eb3996e9f5cc107fa8a0ed996df0bbf136fe97479237",
+          "fabric/src/main/java/org/mtr/mod/generated/resource/BlockbenchOutlineSchema.java": "d9edc34bbe009f5aa4e674090700b965c58dd0d58be72c032ff3eb2cf89c76b0",
+          "fabric/src/main/java/org/mtr/mod/resource/BlockbenchOutline.java": "6baf42830044a1ba3c2ad274b5b553f6bb9321d22d8faa8ce811a354f55d23ce",
+          "fabric/src/main/java/org/mtr/mod/generated/resource/BlockbenchResolutionSchema.java": "36d4bb18d8d68e197d00ebe225d98444349572b2745f3710a628ddd7fb5fc9a7",
+          "fabric/src/main/java/org/mtr/mod/resource/BlockbenchResolution.java": "cb19e013ec97c1932c62f651d109344cea4faf655eebb0ba13da229b7fed1c01",
+          "fabric/src/main/java/org/mtr/mod/render/DynamicVehicleModel.java": "9c114b805529bbfc654b8fdc4c2be09c006da10d93ad7c7252d66f01994cbaf3",
+          "fabric/src/main/java/org/mtr/mod/resource/GroupTransformations.java": "e6d6972fe86425584f9d7aa7ad6ac18356e73c24fd53cdaab7427e96595f33dc",
+          "fabric/src/main/java/org/mtr/mod/resource/VehicleModel.java": "7f31846746e56f27464e478e24a20aa59067f7f62a8796bcac48e9834d65872a",
+          "fabric/src/main/java/org/mtr/mod/resource/StoredModelResourceBase.java": "914abaf431377cebb2b99eafdcb530e0e9c6a26a46c2dabd5b8444b25ce2e073",
+          "fabric/src/main/java/org/mtr/mod/resource/BlockbenchModelValidator.java": "e9360af0e5cac8c5fb7dc71b739ddd9671d31f1941bd7d45dd98deb876d32ab7"
+        }
+      },
+      "gameValidation": "not_run",
+      "cpuRamGpuVramMeasurement": "not_run"
+    },
+    "contractPath": "resourcepack/verification/runtime-models/contract.json",
+    "authoringPolicy": "Exact baseline Git blob bytes; original Windows CRLF checkout hash/size retained separately.",
+    "actualParserTracePath": "resourcepack/verification/runtime-models/actual-parser-results.tsv",
+    "actualParserTraces": 11,
+    "freshWindowsCheckoutPassed": true,
+    "gitSourceArchivePassed": true,
+    "forcedLfTextFixturePassed": true,
+    "mixedA1000ExportCapturePassed": true,
+    "compactWriteIdempotencePassed": true,
+    "localGameFilesZipComparison": {
+      "baselineCommit": "cb1f0cf1ed0ff9ee7ce9d2d3be56a52ba5b57914",
+      "finalCommit": "ddbec63dcbbeecafe9f7044cdcd0f6dc935ec005",
+      "byteSource": "Raw Git blob bytes for both source commits via cat-file --batch, without checkout/archive attribute conversion.",
+      "zipScope": "Deterministic resource_pack game files only, DEFLATE default compression, fixed 1980 timestamp and sorted names; excludes additional release notices/metadata. This is a local packaging comparison, not network measurement.",
+      "fileCount": 115,
+      "models": [
+        {
+          "path": "assets/mtr/minefed/vehicles/mxr_a1000/bogie.bbmodel",
+          "beforeBytes": 393131,
+          "afterBytes": 19916
+        },
+        {
+          "path": "assets/mtr/minefed/vehicles/mxr_a1000/cab.bbmodel",
+          "beforeBytes": 1660445,
+          "afterBytes": 513572
+        },
+        {
+          "path": "assets/mtr/minefed/vehicles/mxr_a1000/destination.bbmodel",
+          "beforeBytes": 50648,
+          "afterBytes": 800
+        },
+        {
+          "path": "assets/mtr/minefed/vehicles/mxr_a1000/labels.bbmodel",
+          "beforeBytes": 55137,
+          "afterBytes": 2460
+        },
+        {
+          "path": "assets/mtr/minefed/vehicles/mxr_a1000/trailer-labels.bbmodel",
+          "beforeBytes": 58013,
+          "afterBytes": 1354
+        },
+        {
+          "path": "assets/mtr/minefed/vehicles/mxr_a1000/trailer.bbmodel",
+          "beforeBytes": 1580094,
+          "afterBytes": 482547
+        },
+        {
+          "path": "assets/mtr/minefed/vehicles/mxr_mistilteinn/bogie.bbmodel",
+          "beforeBytes": 393139,
+          "afterBytes": 19916
+        },
+        {
+          "path": "assets/mtr/minefed/vehicles/mxr_mistilteinn/cab.bbmodel",
+          "beforeBytes": 1660453,
+          "afterBytes": 513572
+        },
+        {
+          "path": "assets/mtr/minefed/vehicles/mxr_mistilteinn/labels.bbmodel",
+          "beforeBytes": 57977,
+          "afterBytes": 2460
+        },
+        {
+          "path": "assets/mtr/minefed/vehicles/mxr_mistilteinn/trailer-labels.bbmodel",
+          "beforeBytes": 58021,
+          "afterBytes": 1354
+        },
+        {
+          "path": "assets/mtr/minefed/vehicles/mxr_mistilteinn/trailer.bbmodel",
+          "beforeBytes": 1580102,
+          "afterBytes": 482547
+        }
+      ],
+      "before": {
+        "path": ".cache/performance/20261012-phase2/baseline-git-resource-files.zip",
+        "bytes": 1053704,
+        "sha256": "9140e267134b3ed7115a87de808e10511c387f80140163bebc257ee9bc480197"
+      },
+      "after": {
+        "path": ".cache/performance/20261012-phase2/compact-git-resource-files.zip",
+        "bytes": 797604,
+        "sha256": "47bca4832bacc2f5225eea9f16d54d2e694b731e2004a18017ee476e8776f006"
+      },
+      "savedZipBytes": 256100
+    },
+    "archiveExportGameFilesZipComparison": {
+      "baselineCommit": "cb1f0cf1ed0ff9ee7ce9d2d3be56a52ba5b57914",
+      "zipScope": "Deterministic resource_pack game files only, deflate default; excludes additional release notices/metadata. This is a local packaging comparison, not network measurement.",
+      "fileCount": 115,
+      "models": [
+        {
+          "path": "assets/mtr/minefed/vehicles/mxr_a1000/bogie.bbmodel",
+          "beforeBytes": 396328,
+          "afterBytes": 19916
+        },
+        {
+          "path": "assets/mtr/minefed/vehicles/mxr_a1000/cab.bbmodel",
+          "beforeBytes": 1739331,
+          "afterBytes": 513572
+        },
+        {
+          "path": "assets/mtr/minefed/vehicles/mxr_a1000/destination.bbmodel",
+          "beforeBytes": 50809,
+          "afterBytes": 800
+        },
+        {
+          "path": "assets/mtr/minefed/vehicles/mxr_a1000/labels.bbmodel",
+          "beforeBytes": 55574,
+          "afterBytes": 2460
+        },
+        {
+          "path": "assets/mtr/minefed/vehicles/mxr_a1000/trailer-labels.bbmodel",
+          "beforeBytes": 58266,
+          "afterBytes": 1354
+        },
+        {
+          "path": "assets/mtr/minefed/vehicles/mxr_a1000/trailer.bbmodel",
+          "beforeBytes": 1654158,
+          "afterBytes": 482547
+        },
+        {
+          "path": "assets/mtr/minefed/vehicles/mxr_mistilteinn/bogie.bbmodel",
+          "beforeBytes": 396336,
+          "afterBytes": 19916
+        },
+        {
+          "path": "assets/mtr/minefed/vehicles/mxr_mistilteinn/cab.bbmodel",
+          "beforeBytes": 1739339,
+          "afterBytes": 513572
+        },
+        {
+          "path": "assets/mtr/minefed/vehicles/mxr_mistilteinn/labels.bbmodel",
+          "beforeBytes": 58414,
+          "afterBytes": 2460
+        },
+        {
+          "path": "assets/mtr/minefed/vehicles/mxr_mistilteinn/trailer-labels.bbmodel",
+          "beforeBytes": 58274,
+          "afterBytes": 1354
+        },
+        {
+          "path": "assets/mtr/minefed/vehicles/mxr_mistilteinn/trailer.bbmodel",
+          "beforeBytes": 1654166,
+          "afterBytes": 482547
+        }
+      ],
+      "before": {
+        "path": ".cache/performance/20261012-phase2/baseline-resource-files.zip",
+        "bytes": 1060995,
+        "sha256": "fedfcbd0f335433ed3712eabdfa490c7a5fe42754d494d08006493371b9adb5f"
+      },
+      "after": {
+        "path": ".cache/performance/20261012-phase2/compact-resource-files.zip",
+        "bytes": 797712,
+        "sha256": "71bdd793b69e6f75056da84fb86a820d230a07db99e236864506af7a608f09d6"
+      },
+      "savedZipBytes": 263283,
+      "byteSource": "Baseline Git archive/export representation matches captured Windows CRLF model bytes; final archive/export representation matches runtime files. This differs from raw Git blob bytes."
+    }
+  },
+  "tests": {
+    "oritechInventory": {
+      "task": ":verifyMachineInventorySnapshots",
+      "scenarios": 12,
+      "assertions": 433,
+      "platform": "Actual production and frozen pre-change Java sources with platform doubles; real Minecraft/Fabric compile and remap checked separately.",
+      "warmAllocationWorkload": {
+        "inputLookups": 10000,
+        "outputChecks": 10000,
+        "baselineTemporaryVarargsInventories": 20000,
+        "newTemporaryVarargsInventories": 0,
+        "baselineToArrayCalls": 20000,
+        "newToArrayCalls": 0,
+        "scope": "Platform-double construction counters after reuse warmup, not measured CPU time or heap/GC. First use retains scoped inventories."
+      },
+      "furnaceWorkload": {
+        "ticksAndProgressQueries": 1000,
+        "baselineTemporaryVarargsInventories": 3000,
+        "newTemporaryVarargsInventories": 0,
+        "recipeQueryCountAndOrderPreserved": true
+      }
+    },
+    "oritechGui": {
+      "task": ":verifyFrameGuiSync",
+      "scenarios": 13,
+      "assertions": 96
+    },
+    "chiselsandbits": {
+      "task": ":core:test",
+      "suites": 12,
+      "tests": 50,
+      "newWeightedCacheTests": 9,
+      "newActualModelTests": 7,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "defaultItemCacheCount": 100,
+      "defaultEstimatedItemCacheBytes": 67108864,
+      "scope": "Actual cache/DataAware factory/Chiseled and Combined model/real NBT/BakedQuad arrays; registry/config fixtures; no client/OpenGL."
+    },
+    "builds": {
+      "oritech": ":verifyMachineInventorySnapshots :verifyFrameGuiSync :remapJar",
+      "chiselsandbits": ":core:test :fabric:remapJar"
+    },
+    "rootTooling": {
+      "unittestTests": 226,
+      "skipped": 12,
+      "focusedBuildRecipeTests": 65,
+      "repositoryPolicyProbes": 2,
+      "workflowYamlParsed": true,
+      "finalBuildPlanPassed": true,
+      "finalSourcesAndRecordedArtifactsVerified": 70
+    },
+    "independentReadOnlyReviews": [
+      "Oritech inventory contracts",
+      "Chisels-and-Bits cache/model contracts",
+      "Resourcepack parser/export and source preservation contracts"
+    ]
+  },
+  "measurements": {
+    "liveGame": false,
+    "OpenGLVisualCheck": false,
+    "FPSOrFrameTime": false,
+    "actualVRAM": false,
+    "actualGPUUsage": false,
+    "actualCPUUsage": false,
+    "actualRAMUsage": false,
+    "actualNetworkTxRx": false
+  },
+  "limitations": [
+    "No live game/client/OpenGL or real performance/network measurements; geometry/UV/lighting/parser and recipe behavior are validated by deterministic contracts and builds.",
+    "The 64 MiB estimate excludes shared textures/native/JVM overhead and other model caches; it is not a total heap or VRAM cap. Bypassed/evicted entries can incur rebuilding CPU cost.",
+    "Historical baseline JARs were captured before implementation, not freshly rebuilt. The C&B local baseline predates its preceding source pin; JAR class differences can include older work/compiler effects.",
+    "C&B preserves the existing Fabric @license@ placeholder and existing absence of license/notice filenames in its mod containers; source MIT and dependency provenance remain separately recorded.",
+    "The ZIP comparison uses deterministic resource_pack files only, excluding extra release metadata/notices; it is not an actual release or measured server bandwidth reduction.",
+    "This phase changes no packet format, request rate or game resolution/options. Server RX and GPU load reduction are not established."
+  ]
+}
