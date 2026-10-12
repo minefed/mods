@@ -45,6 +45,10 @@ MTR·웹 화면의 메모리 누수와 JVM 설정 제안을 정리했다.
 차량의 동일 텍스처 ID 공유, Oritech GUI 전송 축소, MSD 불변 응답과 안내판 파생 데이터 캐시를 반영했다.
 새 JAR의 해시·출처·호환성과 측정 범위는 [산출물 기록](inventory/phase1-optimizations-2026-10-12.json)에 남긴다.
 
+2026-10-12 [2차 추가 최적화 구현·검증](docs/PHASE2_OPTIMIZATION_2026-10-12.md)에서
+차량 배포 모델의 제작 데이터 정리, Oritech 내부 Inventory 재사용과 C&B 아이템 모델 캐시 예산을 반영했다.
+원본 보존·동작 비교·소스 통합과 새 JAR의 해시·출처는 [2차 산출물 기록](inventory/phase2-optimizations-2026-10-12.json)에 남긴다.
+
 ## 시작하기
 
 Git과 Python 3.10 이상이 필요하다. 서브모듈은 `.gitmodules`에 기록한 minefed fork와 정확한 gitlink 커밋으로 초기화한다.

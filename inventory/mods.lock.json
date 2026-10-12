@@ -23,7 +23,7 @@
       "url": "https://github.com/minefed/resourcepack",
       "upstream": "https://github.com/minefed/resourcepack",
       "ref": "main",
-      "commit": "cb1f0cf1ed0ff9ee7ce9d2d3be56a52ba5b57914",
+      "commit": "ddbec63dcbbeecafe9f7044cdcd0f6dc935ec005",
       "baselineRef": "main",
       "baselineCommit": "5565738520f8ef0632462198a426781f124ae382",
       "trackingBranch": "main",
@@ -496,7 +496,7 @@
         "url": "https://github.com/minefed/Chisels-and-Bits",
         "upstream": "https://github.com/ChiselsAndBits/Chisels-and-Bits",
         "ref": "minefed-1.20.4",
-        "commit": "28723461a5afbfba6aa5c6e6349ffecd8da54ec0",
+        "commit": "4d7b7c871aec5df68156a19b5ef855f8b6e3a0a1",
         "trackingBranch": "minefed-1.20.4",
         "baselineRef": "version/1.20.4",
         "baselineCommit": "f64db2d6124e004ae498cd1a1154909afd81a96d"
@@ -517,7 +517,8 @@
       "licenseNoticesPath": null,
       "notes": [
         "Already forked from ChiselsAndBits/Chisels-and-Bits. Latest fork commit2026-02-20 per user instruction. Deployed jar built2026-02-17, likely near preceding82689bf73fa1e83e052d012f588d8032fca876ac but exact correspondence is not proven. Build-version scheme uses localVersion1.1.10-FC; deployed metadata1.5.10-FC has unresolved @license@ and malformed source URL. Preserve server binary separately.",
-        "2026-09-28: Behavior-preserving network/FPS optimizations fast-forwarded minefed-1.20.4 to 353dbfbb1cbaddad499338f5c54a4b6b81f6529f; see docs/OPTIMIZATION_RESULTS_2026-09-28.md. Captured artifact hashes remain historical baseline evidence."
+        "2026-09-28: Behavior-preserving network/FPS optimizations fast-forwarded minefed-1.20.4 to 353dbfbb1cbaddad499338f5c54a4b6b81f6529f; see docs/OPTIMIZATION_RESULTS_2026-09-28.md. Captured artifact hashes remain historical baseline evidence.",
+        "2026-10-12 phase two: Keep full ItemStack NBT snapshot keys and the existing FIFO/count policy; add an insertion-time 64 MiB default budget for estimated item model/NBT storage, oversized/unknown-model bypass and resource-reload clear with in-flight generation protection. This is not a total heap or GPU/VRAM limit. Minecraft 1.20.4/Fabric/Java 17; minefed-1.20.4 commit 4d7b7c871aec5df68156a19b5ef855f8b6e3a0a1 is remotely available. core:test passed 50 tests including 16 new cache/model checks; Fabric remapJar passed and all 517 packaged resources match the preceding pinned source. New local artifact hashes/provenance are recorded separately in inventory/phase2-optimizations-2026-10-12.json; captured operating JAR hashes are unchanged."
       ],
       "compatibility": {
         "minecraft": "1.20.4",
@@ -3057,7 +3058,7 @@
         "url": "https://github.com/minefed/Oritech",
         "upstream": "https://github.com/Rearth/Oritech",
         "ref": "minefed-1.20.4",
-        "commit": "a6c9c79ecf58430bdc1ead54b9d03aadd22302fc",
+        "commit": "a3051c0f1ac1eaab0d995f8d1540e49561bc2ac1",
         "trackingBranch": "minefed-1.20.4",
         "baselineRef": "v0.5.1+1.20.4",
         "baselineCommit": "83ba099a700478e4fd7e85548ced4f5d7227d114"
@@ -3091,7 +3092,8 @@
       "notes": [
         "Exact deployed tag and1.20.4 branch tip gradle.properties0.5.1+1.20.4. v0.6.1+1.20.4 tag points to same commit. Current Modrinth license CC-BY-4.0 differs; deployed historical tag/JAR both CC0.",
         "2026-09-28: Behavior-preserving network/FPS optimizations fast-forwarded minefed-1.20.4 to 5085fb1e03783d19f47d5b68f12d5d269d6f08ba; see docs/OPTIMIZATION_RESULTS_2026-09-28.md. Captured artifact hashes remain historical baseline evidence.",
-        "2026-10-12: Target frame-machine GUI packets to actual BasicMachineScreenHandler viewers and suppress unchanged energy/capacity/progress. Minecraft 1.20.4 / Fabric / Java 17; minefed-1.20.4 commit a6c9c79ecf58430bdc1ead54b9d03aadd22302fc is remotely available. Initial/reopened menu snapshots, multi-viewer lifetime and original Placer inventory/render contract passed 13 scenarios / 96 assertions; remapJar passed. Add verifyFrameGuiSync to source build and CI. Captured JAR hashes remain historical baseline evidence; new build hashes are recorded separately. No operating server or live game was changed."
+        "2026-10-12: Target frame-machine GUI packets to actual BasicMachineScreenHandler viewers and suppress unchanged energy/capacity/progress. Minecraft 1.20.4 / Fabric / Java 17; minefed-1.20.4 commit a6c9c79ecf58430bdc1ead54b9d03aadd22302fc is remotely available. Initial/reopened menu snapshots, multi-viewer lifetime and original Placer inventory/render contract passed 13 scenarios / 96 assertions; remapJar passed. Add verifyFrameGuiSync to source build and CI. Captured JAR hashes remain historical baseline evidence; new build hashes are recorded separately. No operating server or live game was changed.",
+        "2026-10-12 phase two: Reuse scoped detached input/output inventory snapshots only for verified synchronous recipe paths; protected getters, custom recipes/manager/getter overrides and re-entry retain the existing snapshot path. Recipe map identity changes invalidate weak-owner eligibility. Minecraft 1.20.4/Fabric/Java 17; minefed-1.20.4 commit a3051c0f1ac1eaab0d995f8d1540e49561bc2ac1 is remotely available. Production-vs-frozen-baseline verification passed 12 scenarios/433 assertions, existing GUI 13 scenarios/96 assertions, and remapJar. New local artifact provenance is recorded separately in inventory/phase2-optimizations-2026-10-12.json; recorded operating JAR hashes are unchanged."
       ],
       "compatibility": {
         "minecraft": "~1.20.4",
