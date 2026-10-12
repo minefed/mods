@@ -670,7 +670,8 @@
       "sourcePath": "Oritech",
       "java": 17,
       "tasks": [
-        ":remapJar"
+        ":remapJar",
+        ":verifyFrameGuiSync"
       ],
       "args": [],
       "artifactGlobs": [

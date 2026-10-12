@@ -53,6 +53,8 @@ jobs:
             source: MTR-Station-Decoration-Addon
           - mod: display
             source: minefed-display
+          - mod: oritech
+            source: Oritech
     steps:
       - name: Check out the exact feature commit without persisted credentials
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
@@ -149,6 +151,17 @@ jobs:
             sudo apt-get update
             sudo apt-get install --yes xvfb
           fi
+      - name: Verify and build Oritech for Fabric 1.20.4
+        if: matrix.mod == 'oritech'
+        working-directory: Oritech
+        env:
+          JAVA_HOME: ${{ steps.java17.outputs.path }}
+        run: |
+          set -euo pipefail
+          bash ./gradlew --no-daemon --max-workers=2 \
+            '-Dorg.gradle.jvmargs=-Xmx1536m' -Dorg.gradle.parallel=false \
+            --init-script ../scripts/source-repositories.gradle \
+            :verifyFrameGuiSync :remapJar
       - name: Verify and build display with headless OpenGL
         if: matrix.mod == 'display'
         working-directory: minefed-display
