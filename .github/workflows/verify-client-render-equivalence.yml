@@ -122,8 +122,9 @@ jobs:
             }
           }
           GRADLE
-          bash ./gradlew --no-daemon --max-workers=2 --configure-on-demand \
-            '-Dorg.gradle.jvmargs=-Xmx1536m -Dfile.encoding=COMPAT' -Dfabric.loom.ci=true \
+          # Full build also remaps sources; allow heap headroom and serialize workers.
+          bash ./gradlew --no-daemon --max-workers=1 --configure-on-demand \
+            '-Dorg.gradle.jvmargs=-Xmx3g -Dfile.encoding=COMPAT' -Dfabric.loom.ci=true \
             --init-script ../scripts/source-repositories.gradle \
             --init-script "$RUNNER_TEMP/minefed-test-logging.gradle" \
             -Porg.gradle.java.installations.paths="$JAVA17_HOME,$JAVA21_HOME" \
