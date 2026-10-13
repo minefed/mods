@@ -140,11 +140,19 @@ jobs:
           PYTHONUTF8: '1'
         run: |
           set -euo pipefail
+          # Match the release builder's tracked and nonignored source-byte guard.
+          snapshot_source() {
+            git ls-files --cached --others --exclude-standard -z |
+              LC_ALL=C sort -zu | xargs -0 -r sha256sum --
+          }
+          snapshot_source > "$RUNNER_TEMP/msd-source-before.sha256"
           bash ./gradlew --no-daemon --max-workers=2 --configure-on-demand \
             --init-script ../scripts/source-repositories.gradle \
             -Porg.gradle.java.installations.paths="$JAVA17_HOME,$JAVA21_HOME" \
             -PminecraftVersion=1.20.4 \
             :fabric:setupFiles :verifyRenderReuse :fabric:verifyLightTypeContract :fabric:build
+          snapshot_source > "$RUNNER_TEMP/msd-source-after.sha256"
+          diff -u "$RUNNER_TEMP/msd-source-before.sha256" "$RUNNER_TEMP/msd-source-after.sha256"
       - name: Ensure a headless OpenGL test context is available
         if: matrix.mod == 'display'
         run: |
