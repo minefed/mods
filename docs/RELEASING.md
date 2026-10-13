@@ -177,6 +177,13 @@ Linux에서만 실행하는 프로세스 취소 검사도 긴 소스 컴파일 �
 서로 다른 `GRADLE_USER_HOME`을 사용해 Loom의 Minecraft 캐시 충돌을 막으며, 각 작업자 안에서는
 모드를 직렬 빌드한다. 준비·최종 무결성 검사·패키징은 기존 단일 실행 경로를 사용한다.
 
+Gradle이 성공한 뒤 `Source changed while building`으로 중단되면 추적 파일과
+Git에서 제외하지 않은 신규 파일의 빌드 전후 바이트를 비교한다. 검증 코드가 만든
+런타임 출력도 원인일 수 있다. MSD 계약 검증의 빈 `fabric/logs/latest.log`는 실제
+생성 경로를 재현한 후 해당 모드의 `/fabric/logs/`만 제외했다. 소스 변경 검사는 유지한다.
+`Verify client render equivalence`의 MSD 단계도 같은 파일 목록을 전후 비교하므로,
+같은 문제가 재발하면 전체 팩 빌드 전에 변경된 경로와 SHA-256을 확인할 수 있다.
+
 `sourceBuildWorkers`는 `1` 또는 `2`만 허용하며 생략한 로컬 `./gradlew build`는 기존처럼 직렬로
 실행한다. 병렬 모드는 사용자 Gradle 설정이나 init script가 있으면 직렬 모드 사용을 안내하고
 중단한다. 개인 PC의 공유 캐시나 다른 작업 공간을 삭제하지 않는다.

@@ -2683,7 +2683,7 @@
         "url": "https://github.com/minefed/MTR-Station-Decoration-Addon",
         "upstream": "https://github.com/AIDA64S/MTR-Station-Decoration-Addon",
         "ref": "minefed-1.20.4",
-        "commit": "d71bea39cae0ee796215fdd292615e2cc81a3009",
+        "commit": "3a3f75f37c62327d9064096b01c7166c64bcde32",
         "trackingBranch": "minefed-1.20.4",
         "baselineRef": "4.0.0",
         "baselineCommit": "14b0a8c9687bdbbfd755f282bbfab4030a92f3d3"
@@ -2721,7 +2721,8 @@
         "2026-09-29: RAM/GPU optimizations fast-forwarded minefed-1.20.4 to 91cdd24f6fbf94a1b12f5432ce93d7168246e769 (station cache released on disconnect, unused railing_stair_iron texture removed, eight large block textures repacked to the texels their models use with UV-only model edits); see docs/RAM_GPU_OPTIMIZATION_RESULTS_2026-09-29.md. Captured artifact hashes remain historical baseline evidence.",
         "2026-09-30: Approved behavior-preserving client rendering changes pinned for integration on minefed-1.20.4 at 286791d619421d1cf7a14ac843c4d766303c9fa5. Signal/read-order, light singleton, text reuse and display trace checks are recorded by the build recipes and CI. Existing captured JAR hashes remain historical baseline evidence.",
         "2026-10-12: Skip unchanged keep-only graph/wrapper rebuilds and cache bounded Yamanote sign route/platform derivations. Minecraft 1.20.4 / Fabric / Java 17 / MTR 4.0.5; minefed-1.20.4 commit ebd2b46c5554393cc9ffdce70ecfb647ded1d8bd is remotely available. Production response/core/wrapper 26 checks, sign data 4812 checks, existing Fabric and generated Forge render/light traces and Fabric LightType/remapJar passed. Texture getters/draw paths retained; 493 packaged resources match pre-change source bytes. Add both contract tasks to source builds and Fabric check. Captured JAR hashes remain historical baseline evidence; new build hashes are recorded separately. No operating server or live game was changed.",
-        "2026-10-13: minefed-1.20.4 d71bea39cae0ee796215fdd292615e2cc81a3009 indexes request existing IDs and response keep IDs per invocation, preserving serialized lists and graph update semantics. Minecraft 1.20.4 / Fabric / Java 17. 160 baseline-equivalence checks and 26 response contracts pass; original artifact hashes remain historical baseline evidence."
+        "2026-10-13: minefed-1.20.4 d71bea39cae0ee796215fdd292615e2cc81a3009 indexes request existing IDs and response keep IDs per invocation, preserving serialized lists and graph update semantics. Minecraft 1.20.4 / Fabric / Java 17. 160 baseline-equivalence checks and 26 response contracts pass; original artifact hashes remain historical baseline evidence.",
+        "2026-10-13: minefed-1.20.4 3a3f75f37c62327d9064096b01c7166c64bcde32 excludes only the generated fabric/logs/ runtime output from headless contract checks, preserving the release source-byte guard. Minecraft 1.20.4 / Fabric / Java 17; all six build/verification tasks pass and the source tree hash remains unchanged. Captured JAR hashes remain historical baseline evidence."
       ],
       "compatibility": {
         "minecraft": "1.20.4",

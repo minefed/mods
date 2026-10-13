@@ -489,7 +489,7 @@
     {
       "path": "MTR-Station-Decoration-Addon",
       "kind": "mod",
-      "reviewedCommit": "d71bea39cae0ee796215fdd292615e2cc81a3009",
+      "reviewedCommit": "3a3f75f37c62327d9064096b01c7166c64bcde32",
       "licenseFiles": {
         "LICENSE.txt": "bfaf4fd2e0cb41e02554476bd760cb5d40f38ba8b10c34e9d73cb809c9f4ccb0",
         "README.md": "5099d7e06fd13725efb74d3d32cf693f47b1d07b95e170b3108154985d042c6c",
