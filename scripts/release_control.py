@@ -304,7 +304,6 @@ def publish(root: Path, assets_path: Path, plan_path: Path, patch: Path) -> dict
     if not token():
         raise mods.ModError('Publishing requires a GitHub token')
     manifest, plan = read_json(assets_path), read_json(plan_path)
-    assets = validate_assets(root, manifest, plan)
     repository = github('GET', f'repos/{REPOSITORY}')
     if repository.get('private') or repository.get('default_branch') != 'main':
         raise mods.ModError('Expected the public minefed/mods repository with default main')
@@ -322,6 +321,9 @@ def publish(root: Path, assets_path: Path, plan_path: Path, patch: Path) -> dict
     if remote != f'https://github.com/{REPOSITORY}':
         raise mods.ModError('Publisher origin is not the authorized release repository')
     commit = release_commit(root, plan, patch)
+    # Packaging records the materialized inventories, including resource-pack pins.
+    # Reconstruct those exact inputs before checking hashes, still before any push.
+    assets = validate_assets(root, manifest, plan)
     git_with_token(root, ['push', 'origin', f"{commit}:refs/tags/{plan['version']}"])
     release = github('POST', f'repos/{REPOSITORY}/releases', {
         'tag_name': plan['version'], 'target_commitish': commit,

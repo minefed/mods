@@ -202,6 +202,10 @@ job 간 artifact에는 세 공개 파일과 `release-assets.json`, 계획 JSON, 
 
 게시 job은 별도의 깨끗한 runner에서 같은 root 커밋의 게시 도구를 checkout한다. 이 job만
 `contents: write`를 가지며 모드 소스를 checkout하거나 Gradle을 실행하지 않는다.
+계획된 root 커밋과 깨끗한 작업 트리를 확인해 입력 패치를 적용하고, 패치 허용 경로와
+소스 gitlink 및 패키징 때 기록한 모든 파일·manifest 해시를 검증한다. 이 순서로 빌드 중
+갱신된 `resourcepacks.lock.json`도 동일한 바이트를 기준으로 확인한다. 검증을 모두
+통과한 후 원격 태그를 만들고 배포 파일을 업로드한다.
 
 ```sh
 python scripts/release_control.py publish \

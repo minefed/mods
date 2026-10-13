@@ -2,6 +2,7 @@ import contextlib
 import io
 import json
 from pathlib import Path
+import subprocess
 import tempfile
 import unittest
 from unittest.mock import patch
@@ -234,6 +235,111 @@ class ReleaseControlTests(unittest.TestCase):
 
     def test_three_verified_assets_are_published_together(self):
         self.run_publication()
+
+    def prepare_publication_patch(self, *, unrelated=False):
+        """Model the separate clean build and publish checkouts with a real Git patch."""
+        def git(*args):
+            return subprocess.run(['git', '-C', str(self.root), *args], check=True, capture_output=True).stdout
+
+        old_commit, new_commit = '1' * 40, '2' * 40
+        lock = self.root / 'inventory/resourcepacks.lock.json'
+        lock.write_text(json.dumps({'entries': [{'sourcePath': 'resourcepack', 'commit': old_commit}]}))
+        (self.root / '.gitignore').write_text('build/\n')
+        (self.root / 'README.md').write_text('Reviewed root input\n')
+        (self.root / 'resourcepack').mkdir()
+        git('init', '-q')
+        git('config', 'user.name', 'Release test')
+        git('config', 'user.email', 'release-test@example.invalid')
+        git('config', 'core.autocrlf', 'false')
+        git('remote', 'add', 'origin', 'https://github.com/minefed/mods.git')
+        git('add', '.gitignore', 'README.md', 'inventory')
+        git('update-index', '--add', '--cacheinfo', f'160000,{old_commit},resourcepack')
+        git('commit', '-qm', 'test(release): create publisher fixture')
+        self.plan['rootCommit'] = git('rev-parse', 'HEAD').decode().strip()
+        self.plan['sources'] = [{'path': 'resourcepack', 'kind': 'resourcepack', 'commit': new_commit}]
+        lock.write_text(json.dumps({'entries': [{'sourcePath': 'resourcepack', 'commit': new_commit}]}))
+        self.manifest['resourcePack'] = {'commit': new_commit}
+        self.manifest['resourcePackManifest'] = {
+            'path': 'inventory/resourcepacks.lock.json', 'sha256': mods.file_digest(lock)[0]}
+        git('add', 'inventory/resourcepacks.lock.json')
+        git('update-index', '--cacheinfo', f'160000,{new_commit},resourcepack')
+        if unrelated:
+            (self.root / 'README.md').write_text('Unreviewed root input\n')
+            git('add', 'README.md')
+        self.patch_path.write_bytes(git('diff', '--cached', '--binary', '--submodule=short'))
+        git('reset', '--hard', 'HEAD')
+        self.plan_path.write_text(json.dumps(self.plan))
+        self.manifest_path.write_text(json.dumps(self.manifest))
+        self.assertNotEqual(mods.file_digest(lock)[0], self.manifest['resourcePackManifest']['sha256'])
+
+    @contextlib.contextmanager
+    def isolated_publication(self):
+        """Run actual local Git operations, but record and block all remote writes."""
+        writes = []
+        local_git = control.git_with_token
+
+        def git(root, args, **kwargs):
+            if args[0] == 'push':
+                writes.append(('push', args))
+                return ''
+            return local_git(root, args, **kwargs)
+
+        def api(method, path, body=None):
+            if method != 'GET':
+                writes.append((method, path))
+            if path == 'repos/minefed/mods':
+                return {'private': False, 'default_branch': 'main'}
+            if '/releases/tags/' in path or '/git/ref/tags/' in path:
+                raise HTTPError(path, 404, 'not found', {}, None)
+            if method == 'POST':
+                return {'id': 1}
+            result = {'assets': [self.remote_asset(a) for a in self.manifest['assets']]}
+            if method == 'PATCH':
+                result.update(draft=False, html_url='https://github.com/minefed/mods/releases/tag/' + self.plan['version'])
+            return result
+
+        def upload(identity, asset, path):
+            writes.append(('upload', asset['name']))
+            return self.remote_asset(asset)
+
+        with patch.object(control, 'token', return_value='test-token'), \
+                patch.object(control, 'github', side_effect=api), \
+                patch.object(control, 'git_with_token', side_effect=git), \
+                patch.object(control, 'upload_asset', side_effect=upload), contextlib.redirect_stdout(io.StringIO()):
+            yield writes
+
+    def test_publish_validates_resource_manifest_after_applying_reviewed_patch(self):
+        self.prepare_publication_patch()
+        with self.isolated_publication() as writes:
+            control.publish(self.root, self.manifest_path, self.plan_path, self.patch_path)
+        self.assertEqual(['push', 'POST', 'upload', 'upload', 'upload', 'PATCH'], [kind for kind, _ in writes])
+        lock = self.root / 'inventory/resourcepacks.lock.json'
+        self.assertEqual(self.manifest['resourcePackManifest']['sha256'], mods.file_digest(lock)[0])
+
+    def test_publish_rejects_tampered_resource_hash_before_remote_writes(self):
+        self.prepare_publication_patch()
+        self.manifest['resourcePackManifest']['sha256'] = '0' * 64
+        self.manifest_path.write_text(json.dumps(self.manifest))
+        with self.isolated_publication() as writes:
+            with self.assertRaisesRegex(mods.ModError, 'Resource pack manifest changed'):
+                control.publish(self.root, self.manifest_path, self.plan_path, self.patch_path)
+        self.assertEqual([], writes)
+
+    def test_publish_rejects_tampered_asset_before_remote_writes(self):
+        self.prepare_publication_patch()
+        asset = self.root / self.manifest['assets'][0]['path']
+        asset.write_bytes(asset.read_bytes() + b'tampered')
+        with self.isolated_publication() as writes:
+            with self.assertRaisesRegex(mods.ModError, 'Release asset SHA-256/size mismatch'):
+                control.publish(self.root, self.manifest_path, self.plan_path, self.patch_path)
+        self.assertEqual([], writes)
+
+    def test_publish_rejects_unrelated_patch_before_remote_writes(self):
+        self.prepare_publication_patch(unrelated=True)
+        with self.isolated_publication() as writes:
+            with self.assertRaisesRegex(mods.ModError, 'Release pin patch contains unrelated files'):
+                control.publish(self.root, self.manifest_path, self.plan_path, self.patch_path)
+        self.assertEqual([], writes)
 
 
 if __name__ == '__main__':
