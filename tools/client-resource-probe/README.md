@@ -22,6 +22,13 @@ showblock state models, their facing and backup model, the item model, and an
 unrelated vanilla model. It unwraps other mods' forwarding model layers before
 checking the Yuushya wrapper.
 
+With `-Daudit.togglePack=file/probe-server-pack.zip`, put that ZIP in the disposable
+profile's `resourcepacks` directory and leave it disabled initially. The two reloads
+then enable and disable it through the real resource pack manager on the client
+thread. Missing/already-enabled packs fail the probe. This exercises local loading
+of the same pack contents, including restored base resources after removal; it does
+not test server download latency, login or the server-pack acknowledgement protocol.
+
 Optional `-Daudit.dumpRegistries=true` writes the actual registered blocks/states
 and items for asset coverage investigation. Optional `-Daudit.jfr=<absolute path>`
 dumps an already running JFR recording before the client exits. On Windows use a

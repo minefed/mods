@@ -92,11 +92,39 @@ public class LoadingProbe implements ClientModInitializer {
         Thread.sleep(3000);
         long start=System.nanoTime();
         CompletableFuture<Void> done=new CompletableFuture<>();
+        final boolean enablePack=i==0;
         execute.invoke(mc,(Runnable)()->{try {
-          ((CompletableFuture<?>)type.getMethod("method_1521").invoke(mc)).whenComplete((v,e)->{if(e!=null)done.completeExceptionally(e);else done.complete(null);});
-        }catch(Exception e){done.completeExceptionally(e);}});
+          String togglePack=System.getProperty("audit.togglePack");
+          if(togglePack!=null) {
+            Object packs=type.getMethod("method_1520").invoke(mc);
+            Class<?> packType=Class.forName("net.minecraft.class_3283");
+            packType.getMethod("method_14445").invoke(packs);
+            if(!(Boolean)packType.getMethod("method_29207",String.class).invoke(packs,togglePack))
+              throw new AssertionError("Missing test pack: "+togglePack);
+            Collection<?> current=(Collection<?>)packType.getMethod("method_29210").invoke(packs);
+            List<Object> enabled=new ArrayList<>(current);
+            if(enablePack) {
+              if(enabled.contains(togglePack))throw new AssertionError("Test pack must start disabled");
+              enabled.add(togglePack);
+            } else if(!enabled.remove(togglePack))throw new AssertionError("Test pack was not applied");
+            packType.getMethod("method_14447",Collection.class).invoke(packs,enabled);
+          }
+          ((CompletableFuture<?>)type.getMethod("method_1521").invoke(mc)).whenComplete((v,e)->{
+            if(e!=null){done.completeExceptionally(e);return;}
+            try {
+              if(togglePack!=null) {
+                Object packs=type.getMethod("method_1520").invoke(mc);
+                Collection<?> applied=(Collection<?>)Class.forName("net.minecraft.class_3283").getMethod("method_29210").invoke(packs);
+                if(applied.contains(togglePack)!=enablePack)
+                  throw new AssertionError("Reload reverted the test pack selection");
+              }
+              done.complete(null);
+            }catch(Throwable failure){done.completeExceptionally(failure);}
+          });
+        }catch(Throwable e){done.completeExceptionally(e);}});
         done.get(10,TimeUnit.MINUTES);
         record("reload_"+i+"_ms\t"+(System.nanoTime()-start)/1000000);
+        if(System.getProperty("audit.togglePack")!=null)record("pack_"+(enablePack?"apply":"remove")+"\ttrue");
         verifyShowblock(mc);
       }
       record("complete\ttrue");
