@@ -46,20 +46,21 @@
     {
       "modId": "bluemap",
       "mode": "source",
-      "reason": "Minefed BlueMap adds TrafficCraft saved paint colors, atlas sprite aliases and exported client model quads. Test Core and build the legacy Fabric 1.20 implementation compatible with Minecraft 1.20.4; keep the patched artifact distinct from the historical 5.3 baseline.",
+      "reason": "Minefed BlueMap adds TrafficCraft saved paint colors, atlas sprite aliases and exported client model quads. Test Core and build the legacy Fabric 1.20 implementation compatible with Minecraft 1.20.4; keep the patched artifact distinct from the historical 5.3 baseline. Version 5.3-minefed.2 batches PRBM numeric writes with byte-equivalence and stream-failure tests. Gradle uses Java21 with COMPAT encoding and explicit Java17 Core test launcher; emitted class targets remain compatible with Java17.",
       "sourcePath": "BlueMap",
-      "java": 17,
+      "java": 21,
       "tasks": [
         ":BlueMapCore:test",
         "remappedShadowJar"
       ],
       "args": [
-        "-PreleaseVersion=5.3-minefed.1"
+        "-PreleaseVersion=5.3-minefed.2",
+        "-Dorg.gradle.jvmargs=-Xmx2G -Dfile.encoding=COMPAT"
       ],
       "artifactGlobs": [
-        "build/release/BlueMap-5.3-minefed.1-fabric-1.20.jar"
+        "build/release/BlueMap-5.3-minefed.2-fabric-1.20.jar"
       ],
-      "expectedVersion": "5.3-minefed.1",
+      "expectedVersion": "5.3-minefed.2",
       "sourceWorkDir": "implementations/fabric-1.20",
       "env": {}
     },
