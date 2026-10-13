@@ -32,7 +32,11 @@ public class LoadingProbe implements ClientModInitializer {
     Method[] flags={modelType.getMethod("method_4708"),modelType.getMethod("method_4712"),modelType.getMethod("method_24304"),modelType.getMethod("method_4713")};
     List<Object> faces=new ArrayList<>(Arrays.asList(faceType.getEnumConstants()));faces.add(null);
     Object manager=mc.getClass().getMethod("method_1554").invoke(mc);
-    List<String> lines=new ArrayList<>();long quadCount=0;int stateCount=0,itemCount=0;
+    List<String> lines=new ArrayList<>(),canonicalLines=new ArrayList<>(),dumpLines=new ArrayList<>();
+    Set<String> dumpModels=new HashSet<>();
+    for(String selected:System.getProperty("audit.dumpModelQuads","").split(","))if(!selected.isBlank())dumpModels.add(selected.trim());
+    if(dumpModels.size()>16)throw new IllegalArgumentException("Select at most 16 model IDs for audit.dumpModelQuads");
+    long quadCount=0;int stateCount=0,itemCount=0;
     for(String kind:List.of("blocks","items")) {
       Object values=Class.forName("net.minecraft.class_7923").getField(kind.equals("blocks")?"field_41175":"field_41178").get(null);
       for(Object value:(Iterable<?>)values) {
@@ -46,28 +50,60 @@ public class LoadingProbe implements ClientModInitializer {
           Object modelId=state==null?idType.getConstructor(String.class,String.class,String.class).newInstance(key.substring(0,key.indexOf(':')),key.substring(key.indexOf(':')+1),"inventory"):toModelId.invoke(null,state);
           Object model=modelGetter.invoke(manager,modelId);
           MessageDigest digest=MessageDigest.getInstance("SHA-256");
+          MessageDigest canonicalDigest=MessageDigest.getInstance("SHA-256");
           DataOutputStream out=new DataOutputStream(new DigestOutputStream(OutputStream.nullOutputStream(),digest));
-          for(Method flag:flags)out.writeBoolean((Boolean)flag.invoke(model));
-          out.writeUTF(spriteId.invoke(spriteContents.invoke(modelType.getMethod("method_4711").invoke(model))).toString());
+          DataOutputStream canonicalOut=new DataOutputStream(new DigestOutputStream(OutputStream.nullOutputStream(),canonicalDigest));
+          for(Method flag:flags) {
+            boolean flagValue=(Boolean)flag.invoke(model);out.writeBoolean(flagValue);canonicalOut.writeBoolean(flagValue);
+          }
+          String particle=spriteId.invoke(spriteContents.invoke(modelType.getMethod("method_4711").invoke(model))).toString();
+          out.writeUTF(particle);canonicalOut.writeUTF(particle);
+          ByteArrayOutputStream quadBuffer=new ByteArrayOutputStream(192);
+          DataOutputStream quadOut=new DataOutputStream(quadBuffer);
+          boolean dump=dumpModels.contains(modelId.toString());
           // Reset the RNG for each face, as the vanilla block renderer does.
           for(long seed:new long[]{0,1,42,Long.MIN_VALUE})for(Object side:faces) {
             List<?> quads=(List<?>)getQuads.invoke(model,state,side,random.invoke(null,seed));
-            out.writeInt(quads.size());quadCount+=quads.size();
+            out.writeInt(quads.size());canonicalOut.writeInt(quads.size());quadCount+=quads.size();
+            List<byte[]> canonicalQuads=new ArrayList<>(quads.size());int quadIndex=0;
             for(Object quad:quads) {
-              int[] data=(int[])vertices.invoke(quad);out.writeInt(data.length);
-              for(int component:data)out.writeInt(component);
-              out.writeInt((Integer)tint.invoke(quad));out.writeUTF(face.invoke(quad).toString());out.writeBoolean((Boolean)shade.invoke(quad));
-              out.writeUTF(spriteId.invoke(spriteContents.invoke(sprite.invoke(quad))).toString());
+              quadBuffer.reset();
+              int[] data=(int[])vertices.invoke(quad);quadOut.writeInt(data.length);
+              for(int component:data)quadOut.writeInt(component);
+              quadOut.writeInt((Integer)tint.invoke(quad));quadOut.writeUTF(face.invoke(quad).toString());quadOut.writeBoolean((Boolean)shade.invoke(quad));
+              quadOut.writeUTF(spriteId.invoke(spriteContents.invoke(sprite.invoke(quad))).toString());
+              byte[] encoded=quadBuffer.toByteArray();
+              // Ordered output is byte-for-byte the original serialization. Canonicalization only
+              // reorders whole records inside this one seed/face group, never vertex or float data.
+              out.write(encoded);canonicalQuads.add(encoded);
+              if(dump)dumpLines.add(kind+"\t"+modelId+"\t"+seed+"\t"+(side==null?"unculled":side)+"\t"+quadIndex+"\t"+HexFormat.of().formatHex(encoded));
+              quadIndex++;
             }
+            canonicalQuads.sort(Arrays::compareUnsigned);
+            for(byte[] encoded:canonicalQuads)canonicalOut.write(encoded);
           }
-          out.close();
+          out.close();canonicalOut.close();quadOut.close();
           lines.add(kind+"\t"+modelId+"\t"+HexFormat.of().formatHex(digest.digest()));
+          canonicalLines.add(kind+"\t"+modelId+"\t"+HexFormat.of().formatHex(canonicalDigest.digest()));
           if(state==null)itemCount++;else stateCount++;
         }
       }
     }
     Collections.sort(lines);Files.write(Path.of("model-digest-"+phase+".tsv"),lines);
+    Collections.sort(canonicalLines);Files.write(Path.of("model-digest-canonical-"+phase+".tsv"),canonicalLines);
+    if(!dumpModels.isEmpty())Files.write(Path.of("model-quad-dump-"+phase+".tsv"),dumpLines);
     record("model_digest_"+phase+"\tstates="+stateCount+",items="+itemCount+",quads="+quadCount);
+    record("model_digest_canonical_"+phase+"\tstates="+stateCount+",items="+itemCount+",quads="+quadCount);
+  }
+  static void recordScenaStatistics(String phase) throws Exception {
+    if(!Boolean.getBoolean("audit.scenaStatistics"))return;
+    final Class<?> cache;
+    try {cache=Class.forName("team.minefed.mods.clientcompat.scena.ScenaAbsentLoaderCache");}
+    catch(ClassNotFoundException unavailable){record("scena_cache_"+phase+"\tunavailable");return;}
+    Object statistics=cache.getMethod("sharedStatistics").invoke(null);
+    List<String> fields=new ArrayList<>();
+    for(String field:List.of("hits","misses","entries","retainedBytes"))fields.add(field+"="+statistics.getClass().getMethod(field).invoke(statistics));
+    record("scena_cache_"+phase+"\t"+String.join(",",fields));
   }
   static Object unwrap(Object model, Class<?> target) throws Exception {
     Class<?> baked=Class.forName("net.minecraft.class_1087");
@@ -135,6 +171,7 @@ public class LoadingProbe implements ClientModInitializer {
       }
       if(!reachedTitle)throw new TimeoutException("Title screen did not finish loading");
       record("title_ms\t"+java.lang.management.ManagementFactory.getRuntimeMXBean().getUptime());
+      recordScenaStatistics("title");
       Class<?> registries=Class.forName("net.minecraft.class_7923");
       verifyShowblock(mc);
       digestOnClient(mc,execute,"title");
@@ -188,6 +225,7 @@ public class LoadingProbe implements ClientModInitializer {
         }catch(Throwable e){done.completeExceptionally(e);}});
         done.get(10,TimeUnit.MINUTES);
         record("reload_"+i+"_ms\t"+(System.nanoTime()-start)/1000000);
+        recordScenaStatistics(enablePack?"apply":"remove");
         if(System.getProperty("audit.togglePack")!=null)record("pack_"+(enablePack?"apply":"remove")+"\ttrue");
         verifyShowblock(mc);
         digestOnClient(mc,execute,enablePack?"apply":"remove");

@@ -48,6 +48,29 @@ each timing is recorded. They add CPU work and warm caches, so keep these runs
 separate from timing comparisons. These hashes do not cover item override
 predicates, block entity rendering, or custom Fabric renderer emission paths.
 
+The original order-sensitive hashes remain unchanged. The same run additionally
+writes `model-digest-canonical-<phase>.tsv`, sorting complete serialized quad records
+**within each seed and requested-face group** before hashing. It preserves quad
+multiplicity, vertex order, every integer/float/UV bit, tint, direction, shade and
+sprite identifiers, as well as the model flags and particle sprite. This distinguishes
+quad-list ordering differences from changed geometry or materials. Vanilla generated
+items store their front/back faces in a `HashMap` keyed by direction enums, whose
+iteration order can differ between JVM launches. Canonical equality alone does not
+prove draw order is visually irrelevant, so retain and inspect ordered differences.
+
+For a narrow raw comparison, add
+`-Daudit.dumpModelQuads=automobility:crowbar#inventory,minecraft:iron_ingot#inventory`.
+With model digests enabled, it writes `model-quad-dump-<phase>.tsv`: kind, model ID,
+seed, requested face, original quad index and the complete serialized quad in hex.
+At most 16 exact model IDs may be selected. This is a diagnostic output only; the
+probe does not reorder or mutate the actual baked model.
+
+Optional `-Daudit.scenaStatistics=true` records Scena absent-loader cache hits,
+misses, retained entries and retained bytes immediately after each timing is
+recorded. Counts are cumulative for that client process; use phase differences
+to assess reuse. Older compatibility JARs record `unavailable`. This option works
+without model digests and does not include its work in the recorded reload time.
+
 After each run, summarize resource warnings separately:
 
 ```powershell
