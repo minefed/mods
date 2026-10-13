@@ -1,0 +1,124 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-14",
+  "productionDeployed": false,
+  "runtimeGameValidated": false,
+  "source": {
+    "path": "Minecraft-Transit-Railway",
+    "url": "https://github.com/minefed/Minecraft-Transit-Railway",
+    "trackingBranch": "minefed-1.20.4",
+    "commit": "91b0a4d2f0bbeeb16e2035eb88d4dd1cc780b7c3",
+    "previousCommit": "1df66b4492e59989527cdc6a63f898709f33637e",
+    "remotelyVerified": true
+  },
+  "compatibility": {
+    "minecraft": "1.20.4",
+    "loader": "Fabric",
+    "fabricLoader": "0.18.4",
+    "runtimeJava": 17,
+    "buildJava": 21,
+    "mtr": "4.0.5",
+    "bluemap": "5.3-minefed.1"
+  },
+  "configuration": {
+    "file": "config/mtr/bluemap-public-routes.json",
+    "schema": 1,
+    "operators": "Separate root registry of IDs and names",
+    "operatorPrecedence": "world.routeOperators[sourceRouteId] overrides group.operatorId",
+    "interchanges": "Explicit world-local station IDs; only already-public stations are linked; fewer than two public members hides the interchange",
+    "privateCatalog": "config/mtr/bluemap-routes.json now includes stations with id, name and routeIds",
+    "reloadSeconds": 2,
+    "legacySettingsSupported": true,
+    "invalidSettings": "fail closed",
+    "example": "examples/mtr-bluemap-public-routes.example.json"
+  },
+  "validation": {
+    "test": {
+      "tests": 133,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "verifyRailRendering": {
+      "tests": 8,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "verifyMixinCompatibility": {
+      "tests": 8,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "verifyLightTypeCompatibility": {
+      "tests": 3,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "webTestsIncludingRealThree": {
+      "tests": 32,
+      "failures": 0
+    },
+    "browserQA": {
+      "data": "Synthetic local BlueMap HtmlMarker and Three.js, not production",
+      "passed": [
+        "Distinct same-name stations show configured transfer rings",
+        "Local route/operator labels and source-specific train/arrival operators",
+        "Peer selection changes station and keeps each arrival board separate",
+        "Publication revocation clears markers, legend and details",
+        "Mobile card scrolling, peer selection and close controls"
+      ],
+      "consoleErrors": 0,
+      "viewports": [
+        "desktop",
+        "390x844",
+        "390x568"
+      ]
+    },
+    "independentReview": "Backend publication/filtering/reload reviewed; frontend group-union fallback and physical-station operator contamination corrected with regression coverage.",
+    "exampleProductionParserJava17": true,
+    "jarCrcVerified": true,
+    "jarWebSourceMatches": true,
+    "blueMapClassMajorVersion": 61,
+    "buildCommand": "gradlew :fabric:test :fabric:verifyRailRendering :fabric:verifyMixinCompatibility :fabric:verifyLightTypeCompatibility :fabric:verifyBlueMapLiveWeb -PminecraftVersion=1.20.4 -PexcludeAssets=false --offline --max-workers=2 --configure-on-demand -Dorg.gradle.jvmargs=\"-Xmx1536m -Dfile.encoding=COMPAT\""
+  },
+  "licenses": {
+    "source": "MIT",
+    "binary": "MIT; bundled dependencies retain their original notices",
+    "licenseUrl": "https://github.com/minefed/Minecraft-Transit-Railway/blob/91b0a4d2f0bbeeb16e2035eb88d4dd1cc780b7c3/LICENSE",
+    "noticesInJar": [
+      "LICENSE",
+      "META-INF/licenses/mtr/LICENSE",
+      "META-INF/licenses/mtr/LICENSE_ORIGINAL",
+      "META-INF/licenses/website/3rdpartylicenses.txt",
+      "org/mtr/libraries/okhttp3/internal/publicsuffix/NOTICE"
+    ],
+    "sourceEvidenceUnchanged": true,
+    "newThirdPartyAssetsIncluded": false
+  },
+  "artifacts": [
+    {
+      "path": "build/mtr-bluemap-operators/deliverable/bluemap-public-routes.example.json",
+      "sha256": "af022a00c9a2ee718f85505c2c08309d13e61d98b59f3f82aa8495d511de9486",
+      "size": 876
+    },
+    {
+      "path": "build/mtr-bluemap-operators/deliverable/fabric-4.0.5.jar",
+      "sha256": "4afa1d00d0a0a954d2e08c30a23d00893588bb4f9dcba5179c40a18d9f6f1587",
+      "size": 83249461
+    },
+    {
+      "path": "build/mtr-bluemap-operators/deliverable/LICENSE-MTR.txt",
+      "sha256": "a0a2b036de6f39f3da9f8a817f2f9c0cd2f0dff356dadc3f6aa1325feeff4892",
+      "size": 1089
+    }
+  ],
+  "limitations": [
+    "No production server files, uploads, restarts or live-world configuration were changed.",
+    "Operator assignments and actual station IDs must be supplied in the server configuration; example names and IDs are fictitious.",
+    "Requires the new MTR JAR on initial deployment; subsequent configuration reloads do not need a restart.",
+    "Indirect transfers annotate the map without merging MTR stations, platforms, geometry or arrival boards."
+  ]
+}

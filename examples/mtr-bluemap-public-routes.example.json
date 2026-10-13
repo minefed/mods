@@ -1,0 +1,35 @@
+{
+  "schema": 1,
+  "operators": {
+    "example-rail": {"name": "예시철도"},
+    "example-transit": {"name": "예시교통"}
+  },
+  "worlds": {
+    "minecraft/overworld": {
+      "routes": ["300"],
+      "routeOperators": {
+        "201": "example-transit",
+        "300": "example-transit"
+      },
+      "groups": [
+        {
+          "id": "example-line",
+          "name": "예시선",
+          "color": "#2B8C72",
+          "operatorId": "example-rail",
+          "services": [
+            {"id": "local", "name": "일반", "routeIds": ["100"], "showName": true},
+            {"id": "rapid", "name": "쾌속", "routeIds": ["200", "201"], "showName": true}
+          ]
+        }
+      ],
+      "interchanges": [
+        {
+          "id": "example-transfer",
+          "name": "예시 환승역",
+          "stationIds": ["1000", "2000"]
+        }
+      ]
+    }
+  }
+}
