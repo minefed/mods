@@ -91,14 +91,16 @@
     {
       "modId": "chiselsandbits",
       "mode": "source",
-      "reason": "Fabric MC1.20.4; api/core nested remapped JARs and Scena included; localVersion1.1.10-FC receives MC offset to1.5.10-FC.",
+      "reason": "Fabric MC1.20.4; api/core nested remapped JARs and Scena included; localVersion1.1.10-FC receives MC offset to1.5.10-FC. Tick priority reuse is verified by core tests. Gradle uses Java21 with COMPAT argument-file encoding; module classfiles and test toolchain stay Java17.",
       "sourcePath": "Chisels-and-Bits",
-      "java": 17,
+      "java": 21,
       "tasks": [
         ":core:test",
         ":fabric:remapJar"
       ],
-      "args": [],
+      "args": [
+        "-Dorg.gradle.jvmargs=-Xmx1536m -Dfile.encoding=COMPAT"
+      ],
       "artifactGlobs": [
         "fabric/build/libs/chisels-and-bits-fabric-1.5.10-FC.jar"
       ],
