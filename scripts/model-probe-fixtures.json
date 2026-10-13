@@ -1,0 +1,44 @@
+{
+  "schemaVersion": 1,
+  "minecraftVersion": "1.20.4",
+  "purpose": "Local build-time bytecode fixtures only; none of these artifacts are release-pack inputs.",
+  "artifacts": {
+    "minecraft": {
+      "fileName": "minecraft-client-1.20.4.jar",
+      "url": "https://piston-data.mojang.com/v1/objects/fd19469fed4a4b4c15b2d5133985f0e3e7816a8a/client.jar",
+      "size": 24445539,
+      "sha256": "9221ab461a491bf9661cd8e773a5e662aaa43d600fa7970b8c12bbfb0431b838",
+      "publishedSha1": "fd19469fed4a4b4c15b2d5133985f0e3e7816a8a",
+      "source": "Minecraft 1.20.4 official version metadata, downloads.client",
+      "license": "Proprietary; local-only verification fixture, no redistribution",
+      "licenseUrl": "https://www.minecraft.net/eula"
+    },
+    "mappings": {
+      "fileName": "intermediary-1.20.4-v2.jar",
+      "url": "https://maven.fabricmc.net/net/fabricmc/intermediary/1.20.4/intermediary-1.20.4-v2.jar",
+      "size": 539409,
+      "sha256": "c2df2c16cfdbf291a748aa937c80e79dc74cf7a3ef6266891d370a0e1f03cc4f",
+      "source": "FabricMC official Maven; mappings/mappings.tiny, official -> intermediary",
+      "license": "CC0-1.0",
+      "licenseUrl": "https://github.com/FabricMC/intermediary/blob/master/LICENSE"
+    },
+    "remapper": {
+      "fileName": "tiny-remapper-0.10.3-fat.jar",
+      "url": "https://maven.fabricmc.net/net/fabricmc/tiny-remapper/0.10.3/tiny-remapper-0.10.3-fat.jar",
+      "size": 741529,
+      "sha256": "95cd1d91d13535d9a8fddfe81d07f19246ab7589fd39e55227441f8475a6713c",
+      "source": "FabricMC official Maven; original executable fat JAR and bundled dependency notices remain intact",
+      "license": "LGPL-3.0-or-later; includes dependencies with their own notices",
+      "licenseUrl": "https://github.com/FabricMC/tiny-remapper/blob/master/LICENSE"
+    },
+    "scena": {
+      "fileName": "scena-fabric-1.0.141.jar",
+      "url": "https://ldtteam.jfrog.io/ldtteam/modding/com/communi-suggestu/scena/scena-fabric/1.0.141/scena-fabric-1.0.141.jar",
+      "size": 356322,
+      "sha256": "8a79d7485fccd67beb50df086ba66827c0218a67565efca1c753a37dbee152b5",
+      "source": "Official repository declared by Communi-Suggestu/Scena and ChiselsAndBits/Chisels-and-Bits version/1.20.4 build.gradle; same bytes pinned by ScenaModelCacheProbe",
+      "license": "MIT; nested dependency notices remain intact",
+      "licenseUrl": "https://github.com/Communi-Suggestu/Scena/blob/version/1.20.4/LICENSE"
+    }
+  }
+}

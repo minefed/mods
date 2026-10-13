@@ -420,6 +420,13 @@ def tool_fingerprint(root: Path, plan: dict, recipe: dict) -> dict:
                                      for p in sorted(init_files) if p.is_file()}
     for variable in ('JAVA_TOOL_OPTIONS', '_JAVA_OPTIONS', 'JDK_JAVA_OPTIONS'):
         tool_inputs[variable] = os.environ.get(variable)
+    if recipe['sourcePath'] == 'minefed-client-compat':
+        # Model probes consume shared, independently prepared bytecode fixtures,
+        # never the incidental cache contents of a parallel Gradle worker.
+        import prepare_model_fixtures
+        tasks = {task for phase in recipe.get('phases', [recipe.get('tasks', [])]) for task in phase}
+        if tasks & prepare_model_fixtures.PROBE_TASKS:
+            tool_inputs['modelProbeFixtures'] = prepare_model_fixtures.fingerprint(root)
     # MTR's website is compiled by the host Node/npm, rather than a downloaded
     # version pinned by an upstream Gradle Node plugin (as BlueMap uses).
     if recipe['sourcePath'] == 'Minecraft-Transit-Railway':

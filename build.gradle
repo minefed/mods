@@ -76,6 +76,15 @@ def trafficCraftFixture = tasks.register('prepareTrafficCraftFixture', Exec) {
             'inventory/compatibility-fixtures.lock.json', 'hydrate'
 }
 compatibilityFixtures.configure { dependsOn trafficCraftFixture }
+
+// Model probes must not depend on a source worker's private Gradle cache.
+def modelFixtures = tasks.register('prepareModelFixtures', Exec) {
+    group = 'verification'
+    description = 'Prepare hash-pinned Minecraft and Scena model probe fixtures.'
+    workingDir rootDir
+    commandLine pythonExecutable, 'scripts/prepare_model_fixtures.py', 'prepare'
+}
+compatibilityFixtures.configure { dependsOn modelFixtures }
 tasks.named('source_minefed_client_compat') { dependsOn compatibilityFixtures }
 parallelSources.configure { dependsOn compatibilityFixtures }
 
