@@ -4,7 +4,7 @@
   "rootCommit": "cdab06282cf25e319c1922e3bcec38d7358b6f86",
   "minecraft": "1.20.4",
   "loader": "fabric",
-  "status": "code-and-client-log-audit; received server logs and JFR are empty; client duplicate pack removal applied",
+  "status": "code-client-log-and-valid-server-JFR-audit; lag-warning-not-captured; client-duplicate-pack-removal-applied",
   "coverage": {
     "verifiedRecordedArtifacts": 70,
     "sourceRecipes": 47,
@@ -139,9 +139,17 @@
     "runtimeArtifactsVerified": false,
     "profileReceived": true,
     "msptImprovementMeasured": false,
-    "profileUsable": false,
-    "profileReceivedBytes": 0,
-    "receivedFiles": [
+    "profileUsable": true,
+    "profileReceivedBytes": 2113516,
+    "initialContainerStats": {
+      "cpuPercentDisplayed": 19.93,
+      "averageCpuPercentDisplayed": 19.93,
+      "memoryUsageDisplayed": "12.05GB",
+      "memoryLimitDisplayed": "33.14GB",
+      "pidsDisplayed": 94,
+      "limits": "One --no-stream first sample, potentially lifetime-average CPU; memory is container usage, not Java heap; PIDS includes tasks; does not rule out CPU, I/O or GC stalls."
+    },
+    "initialReceivedFiles": [
       {
         "name": "minefed-container-stats.txt",
         "bytes": 287,
@@ -163,14 +171,26 @@
         "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
       }
     ],
-    "initialContainerStats": {
-      "cpuPercentDisplayed": 19.93,
-      "averageCpuPercentDisplayed": 19.93,
-      "memoryUsageDisplayed": "12.05GB",
-      "memoryLimitDisplayed": "33.14GB",
-      "pidsDisplayed": 94,
-      "limits": "One --no-stream first sample, potentially lifetime-average CPU; memory is container usage, not Java heap; PIDS includes tasks; does not rule out CPU, I/O or GC stalls."
-    }
+    "receivedFiles": [
+      {
+        "name": "minefed-perf-retry.jfr",
+        "bytes": 2113516,
+        "sha256": "b79201aa1475420f5be5a153ac0a4555b7132c3ff6136e816266ef85493781cf"
+      },
+      {
+        "name": "minefed-latest.log",
+        "bytes": 50550,
+        "sha256": "31ac9e214e9c99c193781c436ef3c578b9d24a28d2d0234608e541c297bd7d53"
+      },
+      {
+        "name": "minefed-stats-stream.txt",
+        "bytes": 4295,
+        "sha256": "677e7fc7e0a87b5c77dbf06cf2027aa51dc4c0b51cf8afca7fab4da84847d1b3"
+      }
+    ],
+    "followupProfileAnalysis": "inventory/server-performance-profile-2026-10-13.json",
+    "lagWarningCaptured": false,
+    "mtrBlueMapBridgeRuntimeObserved": true
   },
   "webstreamer": {
     "sourceCommit": "58fa06bbe8fa3e7c22a4dd426093e2b72880fc58",

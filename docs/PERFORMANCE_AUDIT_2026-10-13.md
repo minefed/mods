@@ -2,8 +2,8 @@
 
 2026년 10월 13일 기준으로 **기능과 화질을 유지하면서 개선할 여지가 있다.**
 가장 강한 실행 증거는 WebStreamer의 반복 이미지 로딩과 긴 전체 리소스 재로딩이다.
-서버에는 전차선 ID 검색, 자동 저장과 지도 연동 계산을 개선할 후보가 있다.
-운영 서버의 `ticks behind` 원인과 전체 MSPT 개선율은 서버 프로파일을 받은 뒤 확정해야 한다.
+후속 5분 서버 JFR에서는 MTR–BlueMap 도착 정보 계산과 BlueMap 지도 생성의 실행 비중을 확인했다.
+다만 녹화가 `ticks behind` 경고 시각과 겹치지 않아 경고의 직접 원인과 전체 MSPT 개선율은 미확정이다.
 
 ## 조사 대상과 측정 범위
 
@@ -14,9 +14,10 @@
 - 실제 클라이언트: Modrinth `client`, 팩 `20261012140108`, 배포 명세상 Java 17.
   로컬 설치 명세의 상위 소스는 `67c81d63115fb9ad7a3047b1b166eb6b147e6e95`다.
   최신 저장소와 운영 설치가 모두 같다고 가정하지 않았다.
-- 사용자 확인 서버: Podman `minefed_fabric_1`, GraalVM JDK 21 이미지,
-  Java PID 1 / UID 0. 운영 서버 모드 해시·설정은 미확인이고, 후속 전달된 JFR은
-  0바이트여서 유효한 tick 프로파일은 아직 확보하지 못했다.
+- 사용자 확인 서버: Podman `minefed_fabric_1`, Java PID 1 / UID 0.
+  재전달된 유효 JFR은 GraalVM 계열 Java 21.0.10, 2026-10-13 10:00:35~10:05:35 KST의
+  300초 기록이다. 로그에서 Fabric Loader 0.18.4, 힙 8GiB와 ZGC를 확인했다.
+  운영 JAR 해시는 미확인이며 `minecraft.ServerTickTime` 이벤트는 없어 MSPT 분포는 미측정이다.
 - 전체 인벤토리와 기존 최적화 이력을 확인하고, 증상과 연결된 이미지·모델 리로드·MTR·MSD·
   BlueMap·C&B·PFM 등의 실행 경로를 집중 분석했다. 모든 모드의 모든 실행 경로를
   동적으로 디버깅 완료했다는 의미는 아니다. 바이너리 전용 모드는 설치 JAR와 로그를 사용했다.
@@ -194,13 +195,116 @@ Core의 이 큐는 simulator tick 안에서 시간 예산 없이 처리된다. �
 정적 geometry를 데이터 revision마다 재사용하면 변경 없는 시간의 전체 재생성을
 최대 약 120회/시간에서 최초 1회로 줄일 수 있다. 최소 snapshot만 simulator에서 만들고
 나머지 처리를 worker로 옮기는 방안도 가능하다. 동적 갱신 주기와 자료 일관성은 유지해야 한다.
-bridge 도입은 10월 12일이며 **운영 서버 배포 여부 미확인**이다. 기존 증상의 원인으로
-선정할 수 없고, 최신 JS 웹 화면 최적화가 서버 계산까지 해결한 것도 아니다.
+bridge 도입은 10월 12일이다. 후속 운영 로그와 JFR에서 **실행이 확인**되었다.
+지연 경고와 동시 녹화되지 않았으므로 경고의 직접 원인으로 확정하지 않는다.
+최신 JS 웹 화면 최적화가 서버 계산까지 해결한 것도 아니다.
 
 BlueMap 본체 렌더는 별도 worker이며 서버 CPU·디스크와 경합할 가능성을 확인해야 한다.
 수동 지도 update 등의 `FabricWorld.persistWorldChanges`는 서버 executor에서 저장을 실행한다.
 이를 평상시 매 tick 실행하는 것으로 해석하지 않는다. Oritech의 레시피 조회도 후보지만
 실제 기계 수와 프로파일 비중을 보기 전에는 이득을 수치화할 수 없다.
+
+## 후속 운영 서버 JFR 결과
+
+`minefed-perf-retry.jfr` 2,113,516 bytes를 Java 21 JFR 도구와 별도 consumer로 검증했다.
+300초 기록의 이벤트는 63,509개이며, 최초에 전달된 0바이트 파일과 별개의 유효 자료다.
+비식별 근거는 `inventory/server-performance-profile-2026-10-13.json`에 보관한다.
+
+### 지연 경고와 녹화 시점
+
+서버 로그의 명시적 `-Duser.timezone=Asia/Seoul`과 JFR UTC 시각을 대조했다.
+로그는 날짜를 포함하지 않지만, 경고의 시각은 녹화 시각 10:00~10:05 KST와 겹치지 않는다.
+
+| 로그 시각 KST | 기록된 뒤처짐 | 로그 줄 |
+| --- | ---: | ---: |
+| 02:31:41 | 2,060ms / 41 ticks | 526 |
+| 02:32:48 | 4,206ms / 84 ticks | 527 |
+| 02:45:24 | 4,071ms / 81 ticks | 539 |
+
+이 값은 서버 일정에 대한 뒤처짐이며 단일 tick의 실행시간이나 평균 MSPT가 아니다.
+첫 경고는 접속 로그 02:31:04로부터 37초 뒤다. 접속 해제는 07:28:40이며 이후 새 접속은
+전달 로그에 없다. 녹화가 비교적 한산한 시점일 가능성이 있으나 실제 접속자 수는 미계측이다.
+따라서 이번 자료로 과거 경고를 GC, 저장, 특정 모드의 탓으로 확정할 수 없다.
+
+### 실행 경로별 샘플
+
+| 경로 | Java 실행 샘플 | 해석 |
+| --- | ---: | --- |
+| 전체 스레드 | 1,505 | Java 실행 샘플 모집단 |
+| Server thread | 295 | 이하 서버 내 비중의 분모 |
+| MTR `Main.manualTick` / `Simulator.tick` | 166 / 295 = 56.3% | 메인 스레드에서 simulation 실행 확인 |
+| 그중 MTR–BlueMap bridge | 88 / 295 = 29.8% | MTR 166개의 부분집합 |
+| 그중 `BlueMapSnapshot.arrivals` | 83 / 295 = 28.1% | bridge 88개의 부분집합, 개선 우선 대상 |
+| 별도 BlueMap 렌더 worker 2개 | 1,144 / 1,505 = 76.0% | 서버 tick과 별도 스레드의 작업 |
+| 렌더 worker의 `PRBMWriter.write` 포함 | 304 / 1,144 = 26.6% | 지도 모델 직렬화 경로 |
+
+이 비율은 **CPU 사용률, 300초 중 점유시간, 전체 tick 지연 비율이 아니다.**
+Java/native 샘플을 혼합하거나 서로 중첩되는 inclusive 경로의 비율을 더하지 않는다.
+특히 녹화 구간으로 잘라 합친 BlueMap 렌더 worker별 monitor 대기는 282.314초와 282.770초,
+즉 300초의 94.10%와 94.26%다. 따라서
+Java 샘플의 76%를 차지한다는 이유로 5분 내내 CPU를 76% 점유했다고 해석할 수 없다.
+native 샘플 14,930개 중 14,917개는 poll/epoll/accept 대기 계열이다.
+표시된 RUNNABLE 상태만 보고 이들을 CPU 계산으로 세지 않는다.
+
+`BlueMapLiveBridge.java:312`에서 2초 주기로 호출하는 도착 정보가 우선 개선 대상이다.
+`BlueMapSnapshot.java:227`은 Core에 플랫폼별 수집 한도 128, 전체 응답 수 제한 없음으로
+도착 정보를 요청하고, 정렬·공개 노선
+필터를 거쳐 역별 8개를 출력한다. Core 응답 생성과 필터/정렬에 각각 48개와 35개 샘플이 있다.
+공개 노선 lookup 재사용, 불필요한 상세 응답 생성을 줄이는 수집 경로를 검토하되,
+비공개 열차 필터·정렬·역별 8개·2초 갱신 의미를 보존해야 한다.
+단순히 128을 8로 줄이면 비공개 열차가 먼저 선택되어 공개 안내가 비는 문제가 생길 수 있다.
+`BlueMapRoutePolicy.java:280`의 문자열 ID 변환을 포함한 lookup은 24개 샘플에 나타난다.
+동일 정책에서 숫자 ID 조회를 재사용할 수 있는 구체적인 후보다.
+`ArrivalResponse.setCarDetails`는 12개 샘플에 나타나지만 최종 지도 JSON은 차량 상세를
+사용하지 않는다. Core의 다른 소비자는 보존하고 지도용 경량 조회를 별도로 검토한다.
+
+BlueMap `PRBMWriter.java:299`는 float/int 하나를 1바이트 쓰기 4회로 직렬화한다.
+`BufferedOutputStream.growIfNeeded`가 렌더 worker의 최상위 샘플 290개를 차지한다.
+형상·색·조명·PRBM 바이트를 동일하게 유지하는 묶음 쓰기가 후보이며, 현재 이 경로를
+디스크 속도 문제로 분류할 근거는 없다. 원격 설치 JAR의 전체 해시는 아직 비교하지 않았다.
+
+MTR `FileLoader`는 서버 샘플 2개, MSD simulator는 1개이고 MSD 요청 검색은 관측되지 않았다.
+이전 정적 후보보다 이번 녹화에서 우선순위는 낮지만, 접속·편집·자동 저장 순간의 긴 지연까지
+배제하는 결과는 아니다. 짧은 표본에서 나오지 않았다고 실행 비용이 0인 것은 아니다.
+
+### GC와 컨테이너
+
+ZGC minor cycle은 13회, 각 cycle의 정지 단계 3개씩 총 39회다.
+기록된 GC 정지 합계는 **0.304299ms**, p95 **0.010468ms**, 최대 **0.015637ms**다.
+동시에 진행되는 GC cycle 전체 시간과 구분했다. 이번 구간에서 수초 지연을 GC 정지로
+설명할 증거는 없다. GC 이후 힙 평균은 약 6.784GiB / 8GiB이며, 이것만으로 메모리 누수나
+힙 부족을 확정하거나 힙 축소를 권할 수 없다.
+
+Podman 연속 통계 15개 중 첫 CPU 19.72%는 누적 평균과 같아 구간 평균에서 제외했다.
+후속 14개는 평균 13.888%, 중앙값 6.415%, 범위 5.86~59.93%다.
+통계에 시각이 없어 JFR과 동시 수집됐다고 가정하지 않는다. 12.07GB는 컨테이너 메모리이며
+8GiB Java 힙과 측정 범위가 다르다. PIDS 94도 플레이어 수가 아니다.
+
+이 JFR의 CPU load, 컨테이너 throttling, Minecraft tick 시간, FileRead/FileWrite 이벤트는 0개다.
+활성 설정에는 파일 I/O 10ms 임계값 등이 존재하므로, 이벤트 0개를 I/O 없음·제한 없음·정상 TPS의
+증거로 쓰지 않는다.
+
+스레드별 할당 카운터의 시작·끝 차이로 서버 스레드의 객체 생성은 300.594초 동안
+7,723,975,280 bytes, 약 **25.70MB/s**였다. exporter는 2.83MB/s, 렌더 worker 두 개는
+각각 2.40MB/s와 2.03MB/s다. 이는 생성된 객체의 누적 크기이며 잔존 힙이나 누수량이 아니다.
+allocation sample의 첫 가중치에는 녹화 전 누적분으로 보이는 거대한 값이 포함되어
+그대로 합산하지 않았다. 이를 제외한 서버 합계와 할당 카운터의 차이는 약 0.003%였다.
+보정된 inclusive 추정치에서 `Rail.tick1` 약 4.166GB, 도착 정보 약 2.559GB가 나타난다.
+도착 정보 안의 차량 상세 생성 약 605MB는 같은 2.559GB의 부분집합이다.
+샘플 기반 경로별 추정치를 정확한 바이트 수로 취급하거나 중첩 합산하지 않는다.
+
+### 이번 자료로 계산할 수 있는 조건부 범위
+
+도착 정보 경로의 실제 작업을 2~4배 빠르게 하고 이 샘플 구성이 유지된다고 **가정**하면,
+서버 Java 작업 감소량의 산술 추정은 `83/295 × (1 - 1/s)` = **14.1~21.1%**다.
+이는 구현 벤치마크나 전체 MSPT·TPS의 예측값이 아니다. 현재 2~4배 개선 자체도 미검증이다.
+BlueMap 직렬화가 2배 빨라진다는 가정에서는 렌더 worker 작업의 약 **13.3%** 감소이며,
+지도 생성 속도와 자원 경합에 관련된 수치라 위 서버 수치와 더하지 않는다.
+
+기능을 유지하며 개선할 위치는 좁혀졌지만, 경고 해소율과 절대 ms는 여전히 산정 불가다.
+다음 비교 녹화는 접속·이동·이미지 표시 등 평소 문제가 나는 동작과 실제 경고를 포함하고,
+같은 시간대 로그 및 tick 계측을 함께 수집해야 한다. 클라이언트 리로드 CPU 프로파일은
+별도로 필요하며 서버 JFR만으로 49~54초 리로드의 내부 비중을 계산할 수 없다.
 
 ## 추가 클라이언트 병목
 
@@ -238,7 +342,8 @@ WebStreamer PNG로 확인되었으므로 원인에서 구분한다.
 | --- | --- | --- |
 | 1 | WebStreamer 원본 캐시와 GPU 수명 분리, 요청 합치기·취소 | 불변 43개 캐시 적중 조건에서 반복 cold fetch 기회 최대 96.2% 제거 |
 | 1 | 클라이언트 리로드 단계 계측과 변경 범위 제한 | 현재 접속 아틀라스 구간 49~54초, 제거 가능한 비중은 프로파일·구현 검증 필요 |
-| 1 | 운영 서버 JFR와 로그의 지연 시점 대조 | 서버 전체 MSPT/TPS 개선율은 아직 계산 불가 |
+| 1 | MTR–BlueMap 도착 정보 계산 축소와 지연 동시 계측 | 서버 Java 샘플 83/295, 2~4배 가정 시 작업 14.1~21.1% 감소; MSPT 미측정 |
+| 2 | BlueMap PRBM 묶음 쓰기 | 렌더 샘플 304/1,144, 해당 단계 2배 가정 시 렌더 작업 13.3% 감소 |
 | 2 | MSD ID lookup을 처리용 HashSet으로 변경 | 독립 5,000-ID kernel 42.931→0.427ms, 전체 tick과 구분 |
 | 2 | C&B 누락 없는 backpressure와 우선순위 계산 개선 | 2,048개 drain의 2,098,176 scorer 호출이 개선 대상 |
 | 2 | 서버 저장과 정적 지도 snapshot 작업 축소 | 정적 재생성 약 120회/시간→최초 1회와 실제 변경 시점 |
@@ -254,29 +359,40 @@ WebStreamer PNG로 확인되었으므로 원인에서 구분한다.
 전후 비교는 동일 JAR·팩·JVM·월드·인원·동선으로 반복하고 p50/p95/p99와 실패 수를 함께 본다.
 기존 10월 12일 최적화의 작업량 감소와 과거 한 장면의 FPS 결과는 이번 개선 예상치에 더하지 않는다.
 
-## 서버 자료 수집
+## 서버 자료 수집 이력
 
 후속 전달본은 `minefed-container-stats.txt`만 287 bytes이고, 로그 두 파일과
 `minefed-perf.jfr`은 각각 0 bytes였다. 통계의 메모리 12.05GB / 33.14GB는 컨테이너
 메모리이며 Java 힙 사용량이 아니다. CPU 19.93%는 `--no-stream` 첫 표본이므로
-순간 부하를 판정하는 데 쓰지 않는다. 현재 자료로 CPU·디스크·GC 병목을 배제할 수 없다.
+순간 부하를 판정하는 데 쓰지 않는다. 이 최초 자료만으로 CPU·디스크·GC 병목을 배제할 수 없었다.
 [Podman 첫 CPU 표본 설명](https://github.com/podman-container-tools/podman/issues/25709).
 
 현재 사용자의 `podman-compose`는 `ps -q fabric`을 지원하지 않아 컨테이너 이름을 직접 사용한다.
 `jcmd -l`에는 도구 자신만 표시되었지만 `/proc`에서 서버 PID 1 / UID 0을 확인했다.
-다음 직접 attach에서 `Started recording`이 확인되면 5분 동안 평소 부하를 기록한다.
-기록 완료 후 `jfr summary`가 유효한 이벤트 표를 출력한 경우에만 복사한다.
+직접 attach 방식으로 유효한 재전달본을 확보했다. 이전 명령은 통계를 녹화 뒤에 수집했으므로,
+다음 녹화에서는 아래처럼 녹화 시작 직후 타임스탬프가 있는 통계를 병행 수집한다.
+실제 문제 동작을 5분 동안 재현하고, 완료 후 `jfr summary`가 유효한 이벤트 표를 출력한 경우에만
+복사한다. 실행마다 새 디렉터리와 녹화명을 사용한다. 아래 명령은 Bash 기준이다.
 
 ```bash
+task_capture="minefed-perf-$(date -u +%Y%m%dT%H%M%SZ)"
+mkdir "$task_capture"
 podman exec --user 0 minefed_fabric_1 jcmd 1 JFR.start \
-  name=minefed_perf_retry settings=profile duration=300s filename=/tmp/minefed-perf-retry.jfr
-# Started recording 성공을 확인한 경우에만 아래를 실행
+  name="$task_capture" settings=profile duration=300s filename="/tmp/$task_capture.jfr"
+# Started recording 성공을 확인한 경우에만 아래를 실행. 이 동안 평소 문제 동작 재현.
+(
+  timeout 310s podman stats --interval 2 minefed_fabric_1 |
+  while IFS= read -r task_stats_line; do
+    printf '%s %s\n' "$(date -u +%Y-%m-%dT%H:%M:%SZ)" "$task_stats_line"
+  done
+) > "$task_capture/stats-stream.txt" 2>&1 &
+task_stats_pid=$!
 sleep 310
-podman exec --user 0 minefed_fabric_1 jfr summary /tmp/minefed-perf-retry.jfr &&
-podman cp minefed_fabric_1:/tmp/minefed-perf-retry.jfr ./minefed-perf-retry.jfr
-podman exec minefed_fabric_1 sh -c 'cat /proc/1/cwd/logs/latest.log' > minefed-latest.log
-timeout 30s podman stats --interval 2 minefed_fabric_1 > minefed-stats-stream.txt
-wc -c minefed-perf-retry.jfr minefed-latest.log minefed-stats-stream.txt
+wait "$task_stats_pid"
+podman exec --user 0 minefed_fabric_1 jfr summary "/tmp/$task_capture.jfr" &&
+podman cp "minefed_fabric_1:/tmp/$task_capture.jfr" "$task_capture/server.jfr"
+podman exec minefed_fabric_1 sh -c 'cat /proc/1/cwd/logs/latest.log' > "$task_capture/latest.log"
+wc -c "$task_capture/server.jfr" "$task_capture/latest.log" "$task_capture/stats-stream.txt"
 ```
 
 재시작은 필요 없고 profile 기록은 측정 부하를 추가한다. JFR에서 `Server thread`,
@@ -287,8 +403,9 @@ simulator·FileLoader·BlueMapSnapshot·MSDDataRequest, GC 정지와 파일 I/O�
 [Podman compose provider 설명](https://docs.podman.io/en/latest/markdown/podman-compose.1.html).
 
 원시 로그·URL·프로파일은 공개 Git에 넣지 않는다. 비식별 집계와 계산 근거는
-`inventory/performance-audit-2026-10-13.json`에 기록한다. 유효한 서버 프로파일이 없는 현재는
-운영 지연의 원인 규명과 모든 문제의 해결이 완료된 상태가 아니다.
+`inventory/performance-audit-2026-10-13.json`과 후속 서버 집계에 기록한다.
+유효한 서버 프로파일은 확보했지만 지연 경고 동시 기록과 전후 실측은 없으므로,
+운영 지연의 원인 규명과 모든 문제의 해결이 완료된 상태는 아니다.
 
 ## 후속 클라이언트팩 수정
 

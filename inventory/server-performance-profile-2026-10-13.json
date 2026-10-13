@@ -1,0 +1,505 @@
+{
+  "schemaVersion": 1,
+  "auditedAt": "2026-10-13",
+  "status": "valid-server-recording; workload-candidates-confirmed; lag-warning-not-captured; no-runtime-A/B",
+  "sources": [
+    {
+      "file": "minefed-perf-retry.jfr",
+      "bytes": 2113516,
+      "sha256": "b79201aa1475420f5be5a153ac0a4555b7132c3ff6136e816266ef85493781cf"
+    },
+    {
+      "file": "minefed-latest.log",
+      "bytes": 50550,
+      "sha256": "31ac9e214e9c99c193781c436ef3c578b9d24a28d2d0234608e541c297bd7d53"
+    },
+    {
+      "file": "minefed-stats-stream.txt",
+      "bytes": 4295,
+      "sha256": "677e7fc7e0a87b5c77dbf06cf2027aa51dc4c0b51cf8afca7fab4da84847d1b3"
+    }
+  ],
+  "recording": {
+    "formatVersion": "2.1",
+    "chunks": 1,
+    "summaryStartUTC": "2026-10-13T01:00:35Z",
+    "durationSeconds": 300,
+    "activeRecordingMetadata": [
+      {
+        "declaredStartUTC": "2026-10-13T01:00:35.029Z",
+        "configuredDurationSeconds": 300.0
+      }
+    ],
+    "startKST": "2026-10-13T10:00:35+09:00",
+    "endKST": "2026-10-13T10:05:35+09:00",
+    "totalEvents": 63509,
+    "selectedEventCounts": {
+      "jdk.ExecutionSample": 1505,
+      "jdk.NativeMethodSample": 14930,
+      "jdk.GarbageCollection": 13,
+      "jdk.ZYoungGarbageCollection": 13,
+      "jdk.GCPhasePause": 39,
+      "jdk.ObjectAllocationSample": 33073,
+      "jdk.ThreadAllocationStatistics": 140,
+      "jdk.CPULoad": 0,
+      "jdk.FileRead": 0,
+      "jdk.FileWrite": 0,
+      "jdk.ContainerCPUThrottling": 0,
+      "minecraft.ServerTickTime": 0,
+      "jdk.DataLoss": 0,
+      "jdk.ZAllocationStall": 0
+    },
+    "relevantRecordedSettings": [
+      {
+        "setting": "period",
+        "value": "30 s",
+        "event": "jdk.ContainerCPUThrottling"
+      },
+      {
+        "setting": "enabled",
+        "value": "true",
+        "event": "jdk.ContainerCPUThrottling"
+      },
+      {
+        "setting": "threshold",
+        "value": "10 ms",
+        "event": "jdk.FileWrite"
+      },
+      {
+        "setting": "stackTrace",
+        "value": "true",
+        "event": "jdk.FileWrite"
+      },
+      {
+        "setting": "enabled",
+        "value": "true",
+        "event": "jdk.FileWrite"
+      },
+      {
+        "setting": "threshold",
+        "value": "10 ms",
+        "event": "jdk.FileRead"
+      },
+      {
+        "setting": "stackTrace",
+        "value": "true",
+        "event": "jdk.FileRead"
+      },
+      {
+        "setting": "enabled",
+        "value": "true",
+        "event": "jdk.FileRead"
+      },
+      {
+        "setting": "period",
+        "value": "1 s",
+        "event": "minecraft.ServerTickTime"
+      },
+      {
+        "setting": "enabled",
+        "value": "true",
+        "event": "minecraft.ServerTickTime"
+      },
+      {
+        "setting": "threshold",
+        "value": "10 ms",
+        "event": "jdk.ThreadPark"
+      },
+      {
+        "setting": "stackTrace",
+        "value": "true",
+        "event": "jdk.ThreadPark"
+      },
+      {
+        "setting": "enabled",
+        "value": "true",
+        "event": "jdk.ThreadPark"
+      },
+      {
+        "setting": "threshold",
+        "value": "10 ms",
+        "event": "jdk.JavaMonitorWait"
+      },
+      {
+        "setting": "stackTrace",
+        "value": "true",
+        "event": "jdk.JavaMonitorWait"
+      },
+      {
+        "setting": "enabled",
+        "value": "true",
+        "event": "jdk.JavaMonitorWait"
+      },
+      {
+        "setting": "period",
+        "value": "1000 ms",
+        "event": "jdk.CPULoad"
+      },
+      {
+        "setting": "enabled",
+        "value": "true",
+        "event": "jdk.CPULoad"
+      },
+      {
+        "setting": "period",
+        "value": "10 s",
+        "event": "jdk.ThreadCPULoad"
+      },
+      {
+        "setting": "enabled",
+        "value": "true",
+        "event": "jdk.ThreadCPULoad"
+      },
+      {
+        "setting": "period",
+        "value": "10 ms",
+        "event": "jdk.ExecutionSample"
+      },
+      {
+        "setting": "enabled",
+        "value": "true",
+        "event": "jdk.ExecutionSample"
+      },
+      {
+        "setting": "period",
+        "value": "20 ms",
+        "event": "jdk.NativeMethodSample"
+      },
+      {
+        "setting": "enabled",
+        "value": "true",
+        "event": "jdk.NativeMethodSample"
+      }
+    ]
+  },
+  "serverLog": {
+    "timeZone": "Asia/Seoul",
+    "timeZoneEvidence": "Explicit JVM argument -Duser.timezone=Asia/Seoul",
+    "timestampsContainCalendarDate": false,
+    "firstLocalTime": "02:27:19",
+    "lastLocalTime": "07:29:00",
+    "minecraft": "1.20.4",
+    "fabricLoader": "0.18.4",
+    "java": "21",
+    "jvmBuild": "21.0.10+8-LTS-jvmci-23.1-b84",
+    "loadedModEntriesIncludingNested": 156,
+    "selectedMods": [
+      "- bluemap 5.3-minefed.1",
+      "- fabricloader 0.18.4",
+      "- java 21",
+      "- lithium 0.12.1+git.532b9c9",
+      "- minecraft 1.20.4",
+      "- minefed-client-compat 1.4.0",
+      "- minefed-display 1.0.2",
+      "- modernfix 5.17.1-beta.5+mc1.20.4.6c6e",
+      "- msd 1.4.5",
+      "- mtr 4.0.5",
+      "- starlight 1.1.3+fabric.bd536f7",
+      "- webstreamer 1.5.0+minefed.1"
+    ],
+    "heapInitialMiB": 8192,
+    "heapMaximumMiB": 8192,
+    "gc": "ZGC",
+    "warnings": [
+      {
+        "localTime": "02:31:41",
+        "msBehind": 2060,
+        "ticksBehind": 41,
+        "line": 526
+      },
+      {
+        "localTime": "02:32:48",
+        "msBehind": 4206,
+        "ticksBehind": 84,
+        "line": 527
+      },
+      {
+        "localTime": "02:45:24",
+        "msBehind": 4071,
+        "ticksBehind": 81,
+        "line": 539
+      }
+    ],
+    "playerActivity": [
+      {
+        "localTime": "02:31:04",
+        "event": "player_login",
+        "line": 521
+      },
+      {
+        "localTime": "02:31:04",
+        "event": "player_join",
+        "line": 523
+      },
+      {
+        "localTime": "07:28:40",
+        "event": "connection_lost",
+        "line": 578
+      },
+      {
+        "localTime": "07:28:40",
+        "event": "player_leave",
+        "line": 579
+      }
+    ],
+    "imageTimeoutOrLayerEvents": 0,
+    "outOfMemoryEvents": 0,
+    "explicitGcPauseEvents": 0,
+    "wirelessRedstoneConfigLoadErrorCount": 1,
+    "mixinOptionalClassNotFoundWarnings": 5,
+    "mtrBlueMapExportObserved": true,
+    "mtrBlueMapExportLocalTime": "02:28:18",
+    "mtrBlueMapExportWorlds": 3
+  },
+  "timeComparison": {
+    "requestedUtcStart": "2026-10-13T01:00:35Z",
+    "requestedUtcEnd": "2026-10-13T01:05:35Z",
+    "seoulStart": "2026-10-13T10:00:35+09:00",
+    "seoulEnd": "2026-10-13T10:05:35+09:00",
+    "overlapWithWarnClockTimes": false,
+    "limits": "Log lines contain local clock time but no date. Explicit Asia/Seoul confirms UTC offset; supplied warnings are at 02:31-02:45 local, not within the 10:00-10:05 local recording. Logs alone cannot establish full calendar dating or profiler/clock synchronization."
+  },
+  "podmanStats": {
+    "samples": 15,
+    "timestampsPresent": false,
+    "firstSample": {
+      "cpuPercent": 19.72,
+      "memoryGB": 12.07,
+      "limitGB": 33.14,
+      "memoryPercent": 36.42,
+      "networkRx": "4.901MB",
+      "networkTx": "19.78MB",
+      "blockRead": "0B",
+      "blockWrite": "0B",
+      "pids": 94,
+      "cumulativeCpuTime": "1h30m26.577955s",
+      "cumulativeAverageCpuPercent": 19.72,
+      "cumulativeCpuSeconds": 5426.577955
+    },
+    "intervalSamples": 14,
+    "subsequentCpuMinPercent": 5.86,
+    "subsequentCpuMaxPercent": 59.93,
+    "subsequentCpuMeanPercent": 13.887857142857142,
+    "subsequentCpuMedianPercent": 6.415,
+    "approximateIntervalSecondsFromCpuTime": 2.0013496569863896,
+    "cumulativeCpuIncreaseSeconds": 3.8913940000002185,
+    "displayedMemoryGB": [
+      12.07
+    ],
+    "displayedLimitGB": [
+      33.14
+    ],
+    "pids": [
+      94
+    ],
+    "networkCountersConstant": true,
+    "limits": "First CPU sample equals displayed cumulative AVG CPU and must not be treated as an interval observation. Subsequent samples have about 2-second intervals inferred from cumulative CPU-time differences and CPU%; there are no capture timestamps, so simultaneity with JFR is unverified. Container CPU% is not server-thread MSPT, memory usage is not Java heap, and 0B BLOCK IO does not prove absence of filesystem I/O."
+  },
+  "safeRuntimeMetadata": {
+    "scope": "Whitelist-only metadata from server retry JFR; no command lines, environment, hostnames, IP addresses, or source paths.",
+    "jdk.ContainerConfiguration": [
+      {
+        "containerType": "cgroupv2",
+        "cpuSlicePeriod": "PT0.1S",
+        "cpuQuota": "PT-0.000001S",
+        "cpuShares": -1,
+        "effectiveCpuCount": 12
+      }
+    ],
+    "jdk.CPUInformation": [
+      {
+        "sockets": 1,
+        "cores": 6,
+        "hwThreads": 12
+      }
+    ],
+    "jdk.JVMInformation": [
+      {
+        "jvmVersion": "Java HotSpot(TM) 64-Bit Server VM (21.0.10+8-LTS-jvmci-23.1-b84) for linux-amd64 JRE (21.0.10+8-LTS-jvmci-23.1-b84), built on 2025-12-22T21:03:27Z by \"buildslave\" with gcc 14.2.0"
+      }
+    ],
+    "cpuset": "Not present in jdk.ContainerConfiguration event fields; not inferred from effectiveCpuCount.",
+    "notes": [
+      "effectiveCpuCount reflects JVM container accounting, not a measurement of usable CPU time.",
+      "CPUInformation hardware topology and container CPU limits describe different scopes.",
+      "Heap and GC measurements are separately reported by the Java API analyzer; high post-GC use alone does not establish a leak."
+    ]
+  },
+  "executionSamples": {
+    "totalJava": 1505,
+    "serverJava": 295,
+    "mtrManualTickInclusive": 166,
+    "mtrBlueMapBridgeInclusive": 88,
+    "mtrBlueMapArrivalsInclusive": 83,
+    "serverSelectedMethodsInclusive": {
+      "org.mtr.core.Main.manualTick": 166,
+      "org.mtr.mod.bluemap.BlueMapSnapshot.arrivals": 83,
+      "org.mtr.core.operation.ArrivalsRequest.getArrivals": 48,
+      "org.mtr.mod.bluemap.BlueMapSnapshot.filterArrivals": 35,
+      "org.mtr.mod.bluemap.BlueMapRoutePolicy$WorldSelection.route": 24
+    },
+    "renderWorkerJava": [
+      564,
+      580
+    ],
+    "renderWorkerPrbmWriterInclusive": [
+      158,
+      146
+    ],
+    "renderWorkerBufferedGrowTop": [
+      148,
+      142
+    ],
+    "serverFileLoaderInclusive": 2,
+    "serverMsdSimulatorInclusive": 1,
+    "nativeTotal": 14930,
+    "nativeBlockingPollAcceptTop": 14917,
+    "nativeTopMethods": [
+      {
+        "key": "STATE_RUNNABLE / sun.nio.ch.EPoll.wait",
+        "count": 8702
+      },
+      {
+        "key": "STATE_RUNNABLE / io.netty.channel.epoll.Native.epollWait",
+        "count": 2486
+      },
+      {
+        "key": "STATE_RUNNABLE / sun.nio.fs.LinuxWatchService.poll",
+        "count": 2486
+      },
+      {
+        "key": "STATE_RUNNABLE / sun.nio.ch.Net.accept",
+        "count": 1243
+      },
+      {
+        "key": "STATE_RUNNABLE / java.util.zip.Deflater.deflateBytesBytes",
+        "count": 10
+      },
+      {
+        "key": "STATE_RUNNABLE / sun.nio.fs.UnixNativeDispatcher.rename0",
+        "count": 2
+      },
+      {
+        "key": "STATE_RUNNABLE / java.lang.reflect.Array.set",
+        "count": 1
+      }
+    ],
+    "limits": "Samples are not CPU%, wall time, average MSPT or TPS. Inclusive paths overlap; do not add percentages. Native RUNNABLE includes blocking calls."
+  },
+  "waits": {
+    "blueMapRenderWorkerMonitorWaitUnionMs": [
+      282313.887594,
+      282769.71261
+    ],
+    "mtrBlueMapExporterParkUnionMs": 298306.073892,
+    "clampedToRecordingSeconds": 300,
+    "serverRecordedParkWaitSleepEvents": 0,
+    "limits": "Per-thread unions clipped to recording, not added across threads. Missing server wait events do not imply 300 seconds of server CPU execution."
+  },
+  "gc": {
+    "collector": "Generational ZGC",
+    "minorCycles": 13,
+    "topLevelPauseCount": 39,
+    "pauseMs": {
+      "mean": 0.0078025384615384615,
+      "max": 0.015637,
+      "min": 0.003,
+      "p99": 0.015637,
+      "n": 39,
+      "p95": 0.010468,
+      "p50": 0.008249,
+      "sum": 0.304299
+    },
+    "heapCommittedGiB": 8,
+    "meanPostGcHeapGiBApprox": 6.784,
+    "limits": "Top-level GCPhasePause only; concurrent GC cycle duration excluded. High heap use alone is not a leak, and this interval does not establish GC behavior during earlier warnings."
+  },
+  "allocations": {
+    "threadCounterDeltas": {
+      "server": {
+        "lastUTC": "2026-10-13T01:05:35.630356927Z",
+        "firstUTC": "2026-10-13T01:00:35.035945111Z",
+        "samples": 2,
+        "allocatedCounterDeltaBytes": 7723975280,
+        "spanSeconds": 300.594411,
+        "decimalMBPerSecond": 25.69567163376168,
+        "allocationSampleWeightWithoutFirstEventBytes": 7723740312
+      },
+      "mtrBlueMapExporter": {
+        "lastUTC": "2026-10-13T01:05:35.630356927Z",
+        "firstUTC": "2026-10-13T01:00:35.035945111Z",
+        "samples": 2,
+        "allocatedCounterDeltaBytes": 850931256,
+        "spanSeconds": 300.594411,
+        "decimalMBPerSecond": 2.8308286011345705,
+        "allocationSampleWeightWithoutFirstEventBytes": 850164368
+      },
+      "blueMapRenderWorker1": {
+        "lastUTC": "2026-10-13T01:05:35.630356927Z",
+        "firstUTC": "2026-10-13T01:00:35.035945111Z",
+        "samples": 2,
+        "allocatedCounterDeltaBytes": 722804408,
+        "spanSeconds": 300.594411,
+        "decimalMBPerSecond": 2.4045836567466985,
+        "allocationSampleWeightWithoutFirstEventBytes": 719663256
+      },
+      "blueMapRenderWorker2": {
+        "lastUTC": "2026-10-13T01:05:35.630356927Z",
+        "firstUTC": "2026-10-13T01:00:35.035945111Z",
+        "samples": 2,
+        "allocatedCounterDeltaBytes": 609990328,
+        "spanSeconds": 300.594411,
+        "decimalMBPerSecond": 2.029280338149734,
+        "allocationSampleWeightWithoutFirstEventBytes": 605810880
+      }
+    },
+    "serverSampleWeightedInclusiveBytesWithoutFirstEvent": {
+      "org.mtr.core.data.Rail.tick1": 4166226616,
+      "org.mtr.mod.bluemap.BlueMapSnapshot.arrivals": 2558852528,
+      "org.mtr.core.operation.ArrivalsRequest.getArrivals": 2020774416,
+      "org.mtr.core.operation.ArrivalResponse.setCarDetails": 605374208,
+      "org.mtr.mod.bluemap.BlueMapSnapshot.filterArrivals": 536247488
+    },
+    "limits": "Thread allocation counter deltas span approximately 300.594 seconds including recording finalization; allocations are not retained heap. Initial per-thread sample weights contain large pre-recording accumulation and are excluded from stack estimates. Corrected weights are sampling estimates, inclusive and overlapping, not exact stack bytes."
+  },
+  "conditionalScenarios": {
+    "measuredSpeedup": false,
+    "arrivals": {
+      "sampleFraction": 0.28135593220338984,
+      "assumedStageSpeedups": [
+        2,
+        4
+      ],
+      "conditionalSampledServerJavaWorkReduction": [
+        0.14067796610169492,
+        0.21101694915254238
+      ]
+    },
+    "prbm": {
+      "sampleFractionOfRenderer": 0.26573426573426573,
+      "assumedStageSpeedup": 2,
+      "conditionalSampledRendererWorkReduction": 0.13286713286713286
+    },
+    "limits": "Illustrative Amdahl calculations assuming representative unchanged work mix and unverified stage speedups; not measured predictions of total CPU, MSPT, TPS or warning elimination. Separate thread populations must not be added."
+  },
+  "runtimeArtifactsVerified": false,
+  "msptImprovementMeasured": false,
+  "productionChanges": false,
+  "rawFilesPublished": false,
+  "privateIdentifiersExcluded": [
+    "player names",
+    "IP addresses",
+    "coordinates",
+    "image URL paths",
+    "container ID",
+    "raw JVM arguments",
+    "environment",
+    "host names",
+    "file-system paths"
+  ],
+  "localAnalysisEvidence": [
+    ".cache/performance/20261013-server-resourcepack/AnalyzeServerJfr.java",
+    ".cache/performance/20261013-server-resourcepack/AnalyzeServerDetails.java"
+  ],
+  "report": "docs/PERFORMANCE_AUDIT_2026-10-13.md"
+}
