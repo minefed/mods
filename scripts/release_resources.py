@@ -134,11 +134,10 @@ def prepare(root: Path, lock_path: str, work: Path, selected) -> tuple[list, dic
     return prepared, notices, snapshot
 
 
-def options(records: list[dict], version: str, builtin: list[str]) -> str:
+def options(records: list[dict], builtin: list[str]) -> str:
     """Defaults for a newly imported instance; upstream archives stay byte-identical."""
     enabled = [record for record in records if record['enabledByDefault']]
-    packs = ['vanilla', 'fabric', *builtin, *['file/' + r['fileName'] for r in enabled],
-             f'file/minefed-{version}.zip']
+    packs = ['vanilla', 'fabric', *builtin, *['file/' + r['fileName'] for r in enabled]]
     incompatible = ['file/' + r['fileName'] for r in enabled if r.get('allowIncompatibleFormat')]
     return (f'version:{OPTIONS_DATA_VERSION}\n'
             + 'resourcePacks:' + json.dumps(packs, ensure_ascii=False, separators=(',', ':')) + '\n'

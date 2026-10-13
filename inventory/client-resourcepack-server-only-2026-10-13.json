@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 1,
+  "changedAt": "2026-10-13T10:01:56.687141+09:00",
+  "status": "removed-and-verified",
+  "removedPack": "minefed-20261012140108.zip",
+  "removedPackSha256": "a599456cf2ccffa702aab0d67c118fdd985a7f02348e7a55370cfb7a206ed462",
+  "optionsBeforeSha256": "e651a436f27db1823208906cb4188c50f819059fe963a6edc04ef11a599f7518",
+  "optionsAfterSha256": "69ecdfc5c6ce493eb476d9d27414fcfee1a87fe1c5bec3f7b83e1fe67df44172",
+  "changedOptionKeys": [
+    "resourcePacks"
+  ],
+  "preservedFoliageSha256": "0a612f147a560acafe029307a4428193e8da39d1ef7414c7f96194ec1d3fbfac",
+  "serverDownloadsChanged": false,
+  "modsChanged": false,
+  "scope": "Remove duplicate Minefed client pack only; server supplies Minefed resources; keep Foliage and built-in packs",
+  "backup": ".cache/performance/20261013-server-resourcepack/profile-backup",
+  "packagingValidation": {
+    "testSuite": "scripts/test_release_pack.py",
+    "testsPassed": 43
+  },
+  "runtimeValidated": false,
+  "productionServerChanged": false
+}

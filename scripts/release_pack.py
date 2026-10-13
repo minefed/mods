@@ -766,7 +766,8 @@ def write_profile(root, destination, side, selected, notices, version, loader, r
                              'Selecting a group also publishes its member routes. Keep the full runtime inventory outside the BlueMap web root.', '']
         if side == 'client':
             instructions += ['Import this .mrpack in a Modrinth-compatible launcher.',
-                             'Enable the included Minefed resource pack in Minecraft resource-pack settings.',
+                             'The Minefed resource pack is supplied by the server. Accept it when connecting.',
+                             'When updating an existing instance, deselect and remove previous Minefed resourcepacks/minefed-*.zip files; retain other resource packs and personal options.',
                              'You may run install-mods.py from the imported instance to verify all required files.']
             if any(record['modId'] == 'mcef' for record in records):
                 instructions += ['The MCEF mod JAR is included. On first launch, MCEF separately prepares the platform-specific Chromium/CEF native runtime from https://mcef-download.cinemamod.com.',
@@ -777,13 +778,11 @@ def write_profile(root, destination, side, selected, notices, version, loader, r
                                  'All upstream game commands, input and building actions are available. Use enter_control_mode before input; Minecraft server permissions still apply.',
                                  'Local native processes and the same-origin web dashboard can use this API. No multiplayer bot or server mod is installed.',
                                  'Use the separate minefed-game MCP adapter; this pack does not configure AI clients or install an MCP bridge.']
-            archive.write(resource, f'overrides/resourcepacks/minefed-{version}.zip')
             if resource_records or builtin_packs:
-                archive.writestr('overrides/options.txt', release_resources.options(resource_records, version, list(builtin_packs)))
+                archive.writestr('overrides/options.txt', release_resources.options(resource_records, list(builtin_packs)))
                 instructions += ['New instances preselect the included resource packs and reviewed built-in packs.',
                                  'When updating an existing instance, retain personal options and enable these packs manually:',
                                  *list(builtin_packs), *['file/' + r['fileName'] for r in resource_records if r['enabledByDefault']],
-                                 f'file/minefed-{version}.zip (highest priority)',
                                  'The Foliage Addon retains its original older pack_format; its publisher supports 1.20.4.']
             downloads = [{'path': r['path'], 'hashes': r['hashes'], 'env': {'client': 'required', 'server': 'unsupported'},
                           'downloads': [r['downloadUrl']], 'fileSize': r['size']}

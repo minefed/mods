@@ -40,7 +40,13 @@ MCEF의 Chromium/CEF 네이티브 런타임은 JAR와 별개이며 첫 클라이
 1. `vanilla`, `fabric`
 2. `yuushya:mcpatcher_feature` — Yuushya 내장 연결 텍스처 정의
 3. `file/Yuushya Foliage Addon 1.3.zip`
-4. `file/minefed-<version>.zip`
+
+2026-10-13부터 중복 Minefed 팩은 클라이언트 MRPACK에 동봉하거나 자동 선택하지 않는다.
+Minefed 리소스는 서버 접속 시 서버가 제공하는 팩을 수락하여 적용한다.
+독립 `resourcepack.zip` 생성과 서버팩의 BlueMap용 사본은 유지한다.
+기존 인스턴스는 개인 옵션을 보존하면서 `resourcepacks/minefed-<version>.zip`을
+프로필 밖에 백업하고 해당 팩의 선택만 해제한다. 서버에서 받은 `downloads/` 캐시는 유지한다.
+Yuushya Foliage Addon과 모드 내장 팩은 그대로 사용한다.
 
 Foliage 1.3은 배포자가 1.20.4 지원을 명시했으나 원본 `pack_format`은 8이다.
 ZIP을 수정하지 않고 해당 파일만 `incompatibleResourcePacks`에도 등록하여 선택을 유지한다.

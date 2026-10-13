@@ -173,7 +173,10 @@ class ReleaseTests(unittest.TestCase):
             self.assertEqual('20260907123456', index['versionId'])
             self.assertEqual({'sha1', 'sha512'}, set(index['files'][0]['hashes']))
             self.assertEqual(hashlib.sha512((self.root / self.gamma['artifact']['path']).read_bytes()).hexdigest(), index['files'][0]['hashes']['sha512'])
-            self.assertIn('overrides/resourcepacks/minefed-20260907123456.zip', client.namelist())
+            self.assertFalse(any(name.startswith('overrides/resourcepacks/minefed-') for name in client.namelist()))
+            instructions = client.read('overrides/INSTALL.txt').decode()
+            self.assertIn('The Minefed resource pack is supplied by the server.', instructions)
+            self.assertNotIn('Enable the included Minefed resource pack', instructions)
         with zipfile.ZipFile(manifest_path.parent / 'resourcepack.zip') as resources:
             self.assertEqual(b'{"real":"game bytes"}', resources.read('assets/minefed/fixture.json'))
             self.assertFalse(any('design' in n or 'private-project' in n for n in resources.namelist()))
@@ -464,8 +467,9 @@ class ReleaseTests(unittest.TestCase):
             # The launcher may merge current key names into these defaults.
             # Mark them as 1.20.4 so Minecraft does not run numeric-key migrations.
             self.assertEqual('3700', options['version'])
-            self.assertEqual(['vanilla', 'fabric', 'file/' + entry['fileName'], 'file/minefed-20260907123456.zip'],
+            self.assertEqual(['vanilla', 'fabric', 'file/' + entry['fileName']],
                              json.loads(options['resourcePacks']))
+            self.assertEqual([resource_path], [name for name in archive.namelist() if name.startswith('overrides/resourcepacks/')])
             self.assertEqual(['file/' + entry['fileName']], json.loads(options['incompatibleResourcePacks']))
             self.assertIn('Fixture Author', archive.read('overrides/LICENSES.md').decode())
             self.assertEqual([], json.loads(archive.read('modrinth.index.json'))['files'])
