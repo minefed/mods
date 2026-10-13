@@ -4,8 +4,71 @@ import java.lang.reflect.*;
 import java.nio.file.*;
 import java.util.*;
 import java.util.concurrent.*;
+import java.io.*;
+import java.security.*;
 /** Manual offline probe for the pinned Minecraft 1.20.4 Fabric client. */
 public class LoadingProbe implements ClientModInitializer {
+  static void digestOnClient(Object mc,Method execute,String phase) throws Exception {
+    if(System.getProperty("audit.digestModels")==null)return;
+    CompletableFuture<Void> result=new CompletableFuture<>();
+    execute.invoke(mc,(Runnable)()->{try{digestModels(mc,phase);result.complete(null);}catch(Throwable e){result.completeExceptionally(e);}});
+    result.get(5,TimeUnit.MINUTES);
+  }
+  /** Optional correctness run; deliberately kept out of the timed reload interval. */
+  static void digestModels(Object mc,String phase) throws Exception {
+    String mode=System.getProperty("audit.digestModels");
+    if(mode==null)return;
+    if(!mode.equals("default")&&!mode.equals("all"))throw new IllegalArgumentException("audit.digestModels must be default or all");
+    Class<?> registry=Class.forName("net.minecraft.class_2378"),blockType=Class.forName("net.minecraft.class_2248");
+    Class<?> modelType=Class.forName("net.minecraft.class_1087"),quadType=Class.forName("net.minecraft.class_777");
+    Class<?> stateType=Class.forName("net.minecraft.class_2680"),faceType=Class.forName("net.minecraft.class_2350");
+    Class<?> randomType=Class.forName("net.minecraft.class_5819"),idType=Class.forName("net.minecraft.class_1091");
+    Method id=registry.getMethod("method_10221",Object.class),toModelId=Class.forName("net.minecraft.class_773").getMethod("method_3340",stateType);
+    Method modelGetter=Class.forName("net.minecraft.class_1092").getMethod("method_4742",idType);
+    Method getQuads=modelType.getMethod("method_4707",stateType,faceType,randomType),random=randomType.getMethod("method_43049",long.class);
+    Method vertices=quadType.getMethod("method_3357"),tint=quadType.getMethod("method_3359"),face=quadType.getMethod("method_3358"),shade=quadType.getMethod("method_24874"),sprite=quadType.getMethod("method_35788");
+    Method spriteContents=Class.forName("net.minecraft.class_1058").getMethod("method_45851");
+    Method spriteId=Class.forName("net.minecraft.class_7764").getMethod("method_45816");
+    Method[] flags={modelType.getMethod("method_4708"),modelType.getMethod("method_4712"),modelType.getMethod("method_24304"),modelType.getMethod("method_4713")};
+    List<Object> faces=new ArrayList<>(Arrays.asList(faceType.getEnumConstants()));faces.add(null);
+    Object manager=mc.getClass().getMethod("method_1554").invoke(mc);
+    List<String> lines=new ArrayList<>();long quadCount=0;int stateCount=0,itemCount=0;
+    for(String kind:List.of("blocks","items")) {
+      Object values=Class.forName("net.minecraft.class_7923").getField(kind.equals("blocks")?"field_41175":"field_41178").get(null);
+      for(Object value:(Iterable<?>)values) {
+        String key=id.invoke(values,value).toString();
+        Iterable<?> states=Collections.singletonList(null);
+        if(kind.equals("blocks")) {
+          if(mode.equals("all"))states=(Iterable<?>)Class.forName("net.minecraft.class_2689").getMethod("method_11662").invoke(blockType.getMethod("method_9595").invoke(value));
+          else states=List.of(blockType.getMethod("method_9564").invoke(value));
+        }
+        for(Object state:states) {
+          Object modelId=state==null?idType.getConstructor(String.class,String.class,String.class).newInstance(key.substring(0,key.indexOf(':')),key.substring(key.indexOf(':')+1),"inventory"):toModelId.invoke(null,state);
+          Object model=modelGetter.invoke(manager,modelId);
+          MessageDigest digest=MessageDigest.getInstance("SHA-256");
+          DataOutputStream out=new DataOutputStream(new DigestOutputStream(OutputStream.nullOutputStream(),digest));
+          for(Method flag:flags)out.writeBoolean((Boolean)flag.invoke(model));
+          out.writeUTF(spriteId.invoke(spriteContents.invoke(modelType.getMethod("method_4711").invoke(model))).toString());
+          // Reset the RNG for each face, as the vanilla block renderer does.
+          for(long seed:new long[]{0,1,42,Long.MIN_VALUE})for(Object side:faces) {
+            List<?> quads=(List<?>)getQuads.invoke(model,state,side,random.invoke(null,seed));
+            out.writeInt(quads.size());quadCount+=quads.size();
+            for(Object quad:quads) {
+              int[] data=(int[])vertices.invoke(quad);out.writeInt(data.length);
+              for(int component:data)out.writeInt(component);
+              out.writeInt((Integer)tint.invoke(quad));out.writeUTF(face.invoke(quad).toString());out.writeBoolean((Boolean)shade.invoke(quad));
+              out.writeUTF(spriteId.invoke(spriteContents.invoke(sprite.invoke(quad))).toString());
+            }
+          }
+          out.close();
+          lines.add(kind+"\t"+modelId+"\t"+HexFormat.of().formatHex(digest.digest()));
+          if(state==null)itemCount++;else stateCount++;
+        }
+      }
+    }
+    Collections.sort(lines);Files.write(Path.of("model-digest-"+phase+".tsv"),lines);
+    record("model_digest_"+phase+"\tstates="+stateCount+",items="+itemCount+",quads="+quadCount);
+  }
   static Object unwrap(Object model, Class<?> target) throws Exception {
     Class<?> baked=Class.forName("net.minecraft.class_1087");
     for(int i=0;i<16 && !target.isInstance(model);i++) {
@@ -74,6 +137,7 @@ public class LoadingProbe implements ClientModInitializer {
       record("title_ms\t"+java.lang.management.ManagementFactory.getRuntimeMXBean().getUptime());
       Class<?> registries=Class.forName("net.minecraft.class_7923");
       verifyShowblock(mc);
+      digestOnClient(mc,execute,"title");
       Class<?> registry=Class.forName("net.minecraft.class_2378");
       Method id=registry.getMethod("method_10221",Object.class);
       if (Boolean.getBoolean("audit.dumpRegistries")) for(String kind:List.of("blocks","items")) {
@@ -126,13 +190,20 @@ public class LoadingProbe implements ClientModInitializer {
         record("reload_"+i+"_ms\t"+(System.nanoTime()-start)/1000000);
         if(System.getProperty("audit.togglePack")!=null)record("pack_"+(enablePack?"apply":"remove")+"\ttrue");
         verifyShowblock(mc);
+        digestOnClient(mc,execute,enablePack?"apply":"remove");
       }
       record("complete\ttrue");
       if (System.getProperty("audit.jfr") != null)
         for(jdk.jfr.Recording recording:jdk.jfr.FlightRecorder.getFlightRecorder().getRecordings())
           recording.dump(Path.of(System.getProperty("audit.jfr")));
       execute.invoke(mc,(Runnable)()->{try{type.getMethod("method_1490").invoke(mc);}catch(Exception e){throw new RuntimeException(e);}});
-    }catch(Throwable e){e.printStackTrace();try{record("failed\t"+e);}catch(Exception ignored){}}},"Minefed-loading-probe");
+    }catch(Throwable e){
+      e.printStackTrace();try{record("failed\t"+e);}catch(Exception ignored){}
+      try {
+        Class<?> type=Class.forName("net.minecraft.class_310");Object mc=type.getMethod("method_1551").invoke(null);
+        type.getMethod("execute",Runnable.class).invoke(mc,(Runnable)()->{try{type.getMethod("method_1490").invoke(mc);}catch(Exception failure){failure.printStackTrace();}});
+      }catch(Exception failure){failure.printStackTrace();}
+    }},"Minefed-loading-probe");
     worker.setDaemon(true);worker.start();
   }
 }

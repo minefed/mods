@@ -35,6 +35,19 @@ dumps an already running JFR recording before the client exits. On Windows use a
 writable ASCII path for both JFR output and repository when the JDK cannot write
 recordings through a non-ASCII profile path.
 
+For a separate correctness run, `-Daudit.digestModels=default` writes sorted
+`model-digest-title.tsv`, `model-digest-apply.tsv`, and `model-digest-remove.tsv`.
+It hashes the vanilla baked-quad output of every registered block's default state
+and every registered item's inventory model with four fixed random seeds and all
+six faces plus unculled quads. The digest includes exact vertex/UV data, tint,
+direction, shade, sprite identifiers, model lighting flags and particle sprite.
+Use `all` instead of `default` to cover every registered block state. Compare each
+phase against the same phase in an unmodified run; server-pack textures may
+legitimately differ from the base phase. The checks run on the client thread after
+each timing is recorded. They add CPU work and warm caches, so keep these runs
+separate from timing comparisons. These hashes do not cover item override
+predicates, block entity rendering, or custom Fabric renderer emission paths.
+
 After each run, summarize resource warnings separately:
 
 ```powershell
