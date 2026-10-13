@@ -4117,7 +4117,7 @@
         "url": "https://github.com/minefed/fabric-webstreamer",
         "upstream": "https://github.com/theorzr/fabric-webstreamer",
         "ref": "minefed-1.20.4",
-        "commit": "58fa06bbe8fa3e7c22a4dd426093e2b72880fc58",
+        "commit": "0f7dcf1890245a4fcc297b28e1364e592089aedf",
         "trackingBranch": "minefed-1.20.4",
         "baselineRef": "master",
         "baselineCommit": "ff3796b835d7a61055f218cdddb718429507a1c4"
@@ -4142,7 +4142,8 @@
         "Before binary redistribution, provide the corresponding source required by LGPL. The managed source pin is not proof of byte-identical correspondence to this deployed JAR.",
         "Minefed 1.5.0+minefed.1 targets Minecraft 1.20.4 / Fabric Loader 0.16.14 / Java 17. Displays use the effective client/server chunk render distance instead of the default 64-block limit. The fix is integrated into the tracked minefed-1.20.4 release branch. The deployed baseline JAR and its hashes are unchanged.",
         "2026-09-28: Behavior-preserving network/FPS optimizations fast-forwarded minefed-1.20.4 to 0ac6413a2e02a45b08b66b2ee26d80b8d5bc0fbd; see docs/OPTIMIZATION_RESULTS_2026-09-28.md. Captured artifact hashes remain historical baseline evidence.",
-        "2026-09-29: RAM/GPU optimizations fast-forwarded minefed-1.20.4 to 58fa06bbe8fa3e7c22a4dd426093e2b72880fc58: current grabber stopped when an HLS layer is freed, idle raw file buffers released, FFmpeg decoding limited to three threads, texture uploads skipped for streams not drawn since the previous tick; see docs/RAM_GPU_OPTIMIZATION_RESULTS_2026-09-29.md. Captured artifact hashes remain historical baseline evidence."
+        "2026-09-29: RAM/GPU optimizations fast-forwarded minefed-1.20.4 to 58fa06bbe8fa3e7c22a4dd426093e2b72880fc58: current grabber stopped when an HLS layer is freed, idle raw file buffers released, FFmpeg decoding limited to three threads, texture uploads skipped for streams not drawn since the previous tick; see docs/RAM_GPU_OPTIMIZATION_RESULTS_2026-09-29.md. Captured artifact hashes remain historical baseline evidence.",
+        "2026-10-13: minefed-1.20.4 0f7dcf1890245a4fcc297b28e1364e592089aedf / 1.5.0+minefed.2 adds a bounded HTTP original-byte cache, coalesced requests, separate image workers, idle-body timeout and native decode ownership cleanup. Minecraft 1.20.4 / Fabric Loader 0.18.4 / Java 17 runtime. 33 tests pass, bundled dependencies and licenses unchanged; historical baseline artifact hashes remain unchanged."
       ],
       "compatibility": {
         "minecraft": ">=1.20.3",

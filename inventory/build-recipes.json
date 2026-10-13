@@ -864,17 +864,20 @@
     {
       "modId": "webstreamer",
       "mode": "source",
-      "reason": "Fabric MC1.20.4/Java17; upstream does not commit wrapper, use rootGradle8.13 wrapper from this working directory. Runtime includes native JavaCV/FFmpeg nested dependencies.",
+      "reason": "Fabric MC1.20.4/Java17; upstream does not commit wrapper, use rootGradle8.13 wrapper from this working directory. Runtime includes native JavaCV/FFmpeg nested dependencies. Build with Java21 and COMPAT encoding for Gradle test-worker argument files on Windows paths; emitted classfiles stay Java17. Run image HTTP/cache/ownership and existing rendering/HLS tests before packaging.",
       "sourcePath": "fabric-webstreamer",
-      "java": 17,
+      "java": 21,
       "tasks": [
+        "test",
         "remapJar"
       ],
-      "args": [],
-      "artifactGlobs": [
-        "build/libs/webstreamer-1.5.0+minefed.1.jar"
+      "args": [
+        "-Dorg.gradle.jvmargs=-Xmx1536m -Dfile.encoding=COMPAT"
       ],
-      "expectedVersion": "1.5.0+minefed.1",
+      "artifactGlobs": [
+        "build/libs/webstreamer-1.5.0+minefed.2.jar"
+      ],
+      "expectedVersion": "1.5.0+minefed.2",
       "sourceWorkDir": ".",
       "env": {},
       "wrapperFromRoot": true
