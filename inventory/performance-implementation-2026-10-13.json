@@ -1,0 +1,405 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-13",
+  "minecraft": "1.20.4",
+  "fabricLoader": "0.18.4",
+  "runtimeJava": 17,
+  "serverFilesChanged": false,
+  "liveClientModsChanged": false,
+  "description": "Behavior-preserving targeted optimizations; measured kernels and client reloads are not dedicated-server MSPT measurements.",
+  "artifacts": [
+    {
+      "modId": "webstreamer",
+      "fabricModId": "webstreamer",
+      "version": "1.5.0+minefed.2",
+      "sourcePath": "fabric-webstreamer",
+      "sourceCommit": "0f7dcf1890245a4fcc297b28e1364e592089aedf",
+      "trackingBranch": "minefed-1.20.4",
+      "sourceUrl": "https://github.com/minefed/fabric-webstreamer/commit/0f7dcf1890245a4fcc297b28e1364e592089aedf",
+      "artifactPath": "fabric-webstreamer/build/libs/webstreamer-1.5.0+minefed.2.jar",
+      "sha256": "b68f1157c7bfa39d184c194272415aa24dd0323c5386f75f107af5f0410037fe",
+      "size": 77487440,
+      "license": "LGPL-3.0",
+      "binaryRedistribution": "allowed",
+      "depends": {
+        "fabricloader": ">=0.15.6",
+        "fabric-api": ">=0.94.1",
+        "minecraft": ">=1.20.3",
+        "java": ">=17"
+      },
+      "testsPassed": 33,
+      "verifiedSha256": true,
+      "licenseEntries": [
+        "LICENSE_webstreamer"
+      ]
+    },
+    {
+      "modId": "mtr",
+      "fabricModId": "mtr",
+      "version": "4.0.5",
+      "sourcePath": "Minecraft-Transit-Railway",
+      "sourceCommit": "1df66b4492e59989527cdc6a63f898709f33637e",
+      "trackingBranch": "minefed-1.20.4",
+      "sourceUrl": "https://github.com/minefed/Minecraft-Transit-Railway/commit/1df66b4492e59989527cdc6a63f898709f33637e",
+      "artifactPath": "Minecraft-Transit-Railway/fabric/build/libs/fabric-4.0.5.jar",
+      "sha256": "6604aa218aeb157b14b8b246a134282af327aa02a8067218d0352575dc9e668d",
+      "size": 83242811,
+      "license": "MIT",
+      "binaryRedistribution": "allowed",
+      "depends": {
+        "fabric": "*",
+        "minecraft": "1.20.4"
+      },
+      "testsPassed": 123,
+      "verifiedSha256": true,
+      "licenseEntries": [
+        "LICENSE",
+        "META-INF/licenses/",
+        "META-INF/licenses/mtr/",
+        "META-INF/licenses/mtr/LICENSE",
+        "META-INF/licenses/mtr/LICENSE_ORIGINAL",
+        "META-INF/licenses/website/",
+        "META-INF/licenses/website/3rdpartylicenses.txt",
+        "org/mtr/libraries/okhttp3/internal/publicsuffix/NOTICE"
+      ]
+    },
+    {
+      "modId": "msd",
+      "fabricModId": "msd",
+      "version": "1.4.5",
+      "sourcePath": "MTR-Station-Decoration-Addon",
+      "sourceCommit": "d71bea39cae0ee796215fdd292615e2cc81a3009",
+      "trackingBranch": "minefed-1.20.4",
+      "sourceUrl": "https://github.com/minefed/MTR-Station-Decoration-Addon/commit/d71bea39cae0ee796215fdd292615e2cc81a3009",
+      "artifactPath": "MTR-Station-Decoration-Addon/fabric/build/libs/fabric-1.4.5.jar",
+      "sha256": "e2a2948beb82f6864dd7c5ce09d7a7d7b66776920249f764713468403d9cdc99",
+      "size": 7312421,
+      "license": "MIT",
+      "binaryRedistribution": "allowed",
+      "depends": {
+        "fabric": "*",
+        "minecraft": "1.20.4",
+        "mtr": ">=4.0.0-beta.14 <4.1"
+      },
+      "testsPassed": 186,
+      "verifiedSha256": true,
+      "licenseEntries": [
+        "LICENSE-MSD.txt"
+      ]
+    },
+    {
+      "modId": "minefed-client-compat",
+      "fabricModId": "minefed-client-compat",
+      "version": "1.5.0",
+      "sourcePath": "minefed-client-compat",
+      "sourceCommit": "3c63cca29324ba4958ab5f29554bf2a3d14607c0",
+      "trackingBranch": "main",
+      "sourceUrl": "https://github.com/minefed/minefed-client-compat/commit/3c63cca29324ba4958ab5f29554bf2a3d14607c0",
+      "artifactPath": "minefed-client-compat/build/libs/minefed-client-compat-1.5.0.jar",
+      "sha256": "31f93649ac42e96572c397ff56a2da37f3ce9162756d37860d25a29afd501638",
+      "size": 48398,
+      "license": "MIT",
+      "binaryRedistribution": "allowed",
+      "depends": {
+        "fabricloader": ">=0.18.0",
+        "minecraft": "=1.20.4",
+        "java": ">=17",
+        "ptsdeco": "=4.0.0",
+        "pfm": "=1.5.0",
+        "dragonlib": "=1.20.4-2.2.24",
+        "trafficcraft": "=1.20.4-1.1.3"
+      },
+      "testsPassed": null,
+      "verifiedSha256": true,
+      "licenseEntries": [
+        "LICENSE"
+      ]
+    },
+    {
+      "modId": "bluemap",
+      "fabricModId": "bluemap",
+      "version": "5.3-minefed.2",
+      "sourcePath": "BlueMap",
+      "sourceCommit": "8731665b54b8089e67edd11861fbedd4df90a05a",
+      "trackingBranch": "minefed-1.20.4",
+      "sourceUrl": "https://github.com/minefed/BlueMap/commit/8731665b54b8089e67edd11861fbedd4df90a05a",
+      "artifactPath": "BlueMap/build/release/BlueMap-5.3-minefed.2-fabric-1.20.jar",
+      "sha256": "c7845a179a4310397d6f904a37c0a105629d95caf6c6bf2097e67f6f041555e4",
+      "size": 4839034,
+      "license": "MIT",
+      "binaryRedistribution": "allowed",
+      "depends": {
+        "fabricloader": ">=0.14.21",
+        "fabric": "*",
+        "fabric-api-base": "*",
+        "minecraft": "*"
+      },
+      "testsPassed": 40,
+      "verifiedSha256": true,
+      "licenseEntries": [
+        "LICENSE.txt",
+        "META-INF/LICENSE",
+        "META-INF/LICENSE.txt"
+      ]
+    },
+    {
+      "modId": "chiselsandbits",
+      "fabricModId": "chiselsandbits",
+      "version": "1.5.10-FC",
+      "sourcePath": "Chisels-and-Bits",
+      "sourceCommit": "d12537c2293441aab0dbd6fc7ff100c3198c38e1",
+      "trackingBranch": "minefed-1.20.4",
+      "sourceUrl": "https://github.com/minefed/Chisels-and-Bits/commit/d12537c2293441aab0dbd6fc7ff100c3198c38e1",
+      "artifactPath": "Chisels-and-Bits/fabric/build/libs/chisels-and-bits-fabric-1.5.10-FC.jar",
+      "sha256": "05ca213561a89497ded61d292fecbc2ffb41f7cc4c01d239f0fc84d183bfe7a9",
+      "size": 2718173,
+      "license": "MIT",
+      "binaryRedistribution": "allowed",
+      "depends": {
+        "fabricloader": ">=0.15.6",
+        "fabric": ">=0.95.4",
+        "minecraft": "1.20.4",
+        "java": ">=17",
+        "scena": ">=1.0.141"
+      },
+      "testsPassed": 56,
+      "verifiedSha256": true,
+      "licenseEntries": []
+    }
+  ],
+  "validation": {
+    "parentTests": {
+      "total": 129,
+      "failures": 0,
+      "skipped": 1
+    },
+    "clientIntegration": {
+      "status": "passed",
+      "runs": {
+        "baseline-b1": {
+          "titleMs": 133501,
+          "applyMs": 60614,
+          "removeMs": 66754,
+          "modelChecks": [
+            129,
+            129,
+            129
+          ],
+          "complete": true,
+          "jfrSha256": "19ffe6bc5ed0c6800cec08602d15d54278fd4c73c28e32a1ad38a034844d222e",
+          "jfrBytes": 15161342,
+          "resourceDiagnosticCount": 86,
+          "resourceDiagnosticCounts": {
+            "incompatibleModel": 14,
+            "missingModel": 38,
+            "missingState": 4,
+            "missingTexture": 30
+          }
+        },
+        "candidate-c1": {
+          "titleMs": 131830,
+          "applyMs": 56743,
+          "removeMs": 53196,
+          "modelChecks": [
+            129,
+            129,
+            129
+          ],
+          "complete": true,
+          "jfrSha256": "2b51742b1158d00ae9ebec5af8b6008f358bcabae56b72012bb57914aa4aefbb",
+          "jfrBytes": 16578215,
+          "resourceDiagnosticCount": 86,
+          "resourceDiagnosticCounts": {
+            "incompatibleModel": 14,
+            "missingModel": 38,
+            "missingState": 4,
+            "missingTexture": 30
+          }
+        }
+      },
+      "eachConditionRuns": 1,
+      "minecraftHeap": "-Xms1G -Xmx8G",
+      "profile": "Disposable copy of the unchanged 72-JAR live client plus the loading probe; candidate replaces exactly six mod IDs.",
+      "jfr": "Profile recording enabled in both runs; raw recordings remain local.",
+      "limits": "Local server-pack-content ZIP apply/remove only; no live server download/login/world entry. Builds using the shared lock were serialized. Single comparison; order, OS cache and unrelated host activity can affect timings. Percent changes are observations, not guaranteed or statistically established speedups.",
+      "sameResourceDiagnostics": true,
+      "observedReductionPercent": {
+        "titleMs": 1.2516760174081094,
+        "applyMs": 6.386313392945524,
+        "removeMs": 20.310393384666085
+      }
+    },
+    "artifactCrcAndHashes": "all six passed",
+    "serverMixinAudit": {
+      "status": "passed",
+      "fabricLoader": "0.18.4",
+      "java": 17,
+      "durationMs": 5968,
+      "scope": "KnotServer preLaunch MixinEnvironment.audit; no live server or world tick measurement."
+    },
+    "chiselsandbits": {
+      "tests": 56,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "runtimeClassMajor": 61
+    }
+  },
+  "remaining": [
+    "Core arrival car-detail generation is unchanged.",
+    "C&B overflow recovery still requires scheduler lifecycle changes.",
+    "Full model baking dominates client resource reloads.",
+    "Production ticks-behind incident was outside the supplied server JFR recording."
+  ],
+  "kernels": {
+    "atlas": {
+      "texturesCompared": 8928,
+      "oldMedianMs": 828.631,
+      "newMedianMs": 420.067,
+      "repeatCount": 5,
+      "scope": "Warm pixel transform only; excludes decode, baking, GPU upload. First fill has additional hashing."
+    },
+    "pfm": {
+      "files": 1911,
+      "oldFingerprintChars": 1684688,
+      "newFingerprintChars": 156702,
+      "oldMedianMs": 1738.736,
+      "newMedianMs": 1747.791,
+      "scope": "Traversal and JSON, excludes disk save. No measured time improvement; legacy disk cache shrinks on the next normal save."
+    },
+    "bluemap": {
+      "triangles": 8193,
+      "outputBytes": 774320,
+      "oldWriteCalls": 774286,
+      "newWriteCalls": 359509,
+      "oldMedianMs": 26.6342,
+      "newMedianMs": 15.514,
+      "alternatingRuns": 41,
+      "oldAllocatedBytes": 1602352,
+      "newAllocatedBytes": 1602384,
+      "scope": "Buffered in-memory writer; excludes compression, disk and rendering."
+    },
+    "chiselsandbits": {
+      "queue": 2048,
+      "oldScoreCalls": 2098176,
+      "newScoreCallsByEpochPolls": {
+        "1": 2098176,
+        "4": 525312,
+        "8": 263168,
+        "2048": 2048
+      },
+      "scope": "Scorer calls, not CPU/FPS. Single-poll epochs have no reduction and extra ranking overhead."
+    },
+    "mtr": {
+      "serverJavaSamples": 295,
+      "filterInclusiveSamples": 35,
+      "hypotheticalFilterSpeedup": [
+        2,
+        3
+      ],
+      "conditionalSampledWorkReductionPercent": [
+        5.932203389830509,
+        7.909604519774012
+      ],
+      "scope": "Conditional calculation, not measured MSPT/TPS/CPU. Route string samples overlap filter samples; not additive."
+    }
+  },
+  "baselineClientJfrFindings": {
+    "rows": [
+      {
+        "phase": "bootstrap",
+        "boundsUTC": [
+          "2026-10-13T01:54:19Z",
+          "2026-10-13T01:55:16Z"
+        ],
+        "probeWallSeconds": null,
+        "javaSamples": 868,
+        "resourceWorkerJavaSamples": 0,
+        "modelLoadingBakingIncluded": 1,
+        "modelCacheKeyIncluded": 0,
+        "quadDedupIncluded": 0,
+        "MtrIncluded": 13,
+        "atlasIncluded": 0,
+        "treeFindIncluded": 0,
+        "gcPauseSeconds": 0.558468,
+        "allocationWeightGiB": 7.99451644718647
+      },
+      {
+        "phase": "initial-reload",
+        "boundsUTC": [
+          "2026-10-13T01:55:16Z",
+          "2026-10-13T01:56:32Z"
+        ],
+        "probeWallSeconds": null,
+        "javaSamples": 3259,
+        "resourceWorkerJavaSamples": 2873,
+        "modelLoadingBakingIncluded": 2516,
+        "modelCacheKeyIncluded": 162,
+        "quadDedupIncluded": 314,
+        "MtrIncluded": 44,
+        "atlasIncluded": 284,
+        "treeFindIncluded": 27,
+        "gcPauseSeconds": 2.3683625000000004,
+        "allocationWeightGiB": 33.25161512196064
+      },
+      {
+        "phase": "pack-apply",
+        "boundsUTC": [
+          "2026-10-13T01:56:35Z",
+          "2026-10-13T01:57:36Z"
+        ],
+        "probeWallSeconds": 60.614,
+        "javaSamples": 3379,
+        "resourceWorkerJavaSamples": 3156,
+        "modelLoadingBakingIncluded": 2899,
+        "modelCacheKeyIncluded": 280,
+        "quadDedupIncluded": 470,
+        "MtrIncluded": 34,
+        "atlasIncluded": 221,
+        "treeFindIncluded": 69,
+        "gcPauseSeconds": 2.2193807000000003,
+        "allocationWeightGiB": 31.78210039436817
+      },
+      {
+        "phase": "pack-remove",
+        "boundsUTC": [
+          "2026-10-13T01:57:38Z",
+          "2026-10-13T01:58:46Z"
+        ],
+        "probeWallSeconds": 66.754,
+        "javaSamples": 3922,
+        "resourceWorkerJavaSamples": 3748,
+        "modelLoadingBakingIncluded": 3528,
+        "modelCacheKeyIncluded": 346,
+        "quadDedupIncluded": 519,
+        "MtrIncluded": 26,
+        "atlasIncluded": 192,
+        "treeFindIncluded": 73,
+        "gcPauseSeconds": 2.5632498,
+        "allocationWeightGiB": 31.671086750924587
+      }
+    ],
+    "startupTitleProbeSeconds": 133.501,
+    "conclusions": [
+      "Block model loading and baking dominate reload Java execution samples. These counts are not elapsed-time percentages or predicted speedup.",
+      "BakedModelCacheKey uses record equals/hashCode. Its hottest equality path is a normal cache lookup from weighted/multipart model baking; no recursive equality was found.",
+      "Most HashMap TreeNode.find samples occur in a separate BakedModelManager blockstate-to-ModelIdentifier getOrDefault mapping. Tree-node stack depth is usually 1 or 2. No causal evidence of pathological BakedModelCacheKey hash collisions.",
+      "AffineTransformation equality compares its matrix once. Hashing uses Objects.hash(matrix); changing caching assumptions about mutable transforms is not justified.",
+      "FerriteCore quad dedup uses synchronized ObjectOpenCustomHashSet with per-int murmurHash3 hashing. Disabling it would trade away memory savings, so no disable recommendation.",
+      "Raw/transformed game class dumps were unavailable. Vanilla intermediary bytecode and installed FerriteCore/ModernFix mixin bytecode were inspected; actual applied injection semantics are corroborated only by JFR stacks.",
+      "A narrowly scoped explicit BakedModelCacheKey.equals preserving exact record equality and leaving hashCode/cache lifetime untouched is a possible experiment. Benchmark first; benefit is unproven and cannot be inferred as 8-9% elapsed-time savings."
+    ],
+    "notes": [
+      "Bounds use second-resolution client log timestamps converted from KST to UTC; ends include the printed completion second. Approximate boundary uncertainty is up to one second. Probe duration is the precise wall-clock measurement.",
+      "Java execution samples are statistical observations, not CPU seconds or elapsed-time percentages. Inclusive/category counts overlap and must not be added.",
+      "Allocation weights are JFR sampled estimates, not live heap sizes or exact allocations. No user data, file I/O paths, environment, arguments, or process fields are exported."
+    ]
+  },
+  "localBundle": {
+    "path": "build/performance-20261013/minefed-performance-patch-20261013.zip",
+    "sha256": "91c64c5eeb245efb92c181e4d72013fd9b4bdd4ba268456933fa10349a526e06",
+    "bytes": 175656387,
+    "contents": "Six unchanged JARs, source/hash/license records and replacement notes",
+    "published": false
+  }
+}
