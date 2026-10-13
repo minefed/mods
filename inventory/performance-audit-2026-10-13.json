@@ -1,0 +1,381 @@
+{
+  "schemaVersion": 1,
+  "auditedAt": "2026-10-13",
+  "rootCommit": "cdab06282cf25e319c1922e3bcec38d7358b6f86",
+  "minecraft": "1.20.4",
+  "loader": "fabric",
+  "status": "code-and-client-log-audit; server-profile-pending; no production patch",
+  "coverage": {
+    "verifiedRecordedArtifacts": 70,
+    "sourceRecipes": 47,
+    "binaryRecipes": 25,
+    "installedTopLevelClientJars": 72,
+    "allRuntimePathsDebugged": false
+  },
+  "client": {
+    "profileVersion": "20261012140108",
+    "provenanceRootCommit": "67c81d63115fb9ad7a3047b1b166eb6b147e6e95",
+    "manifestJava": 17,
+    "logs": [
+      {
+        "file": "2026-10-12-1.log.gz",
+        "sha256": "26b9ae74ddff87427664f668ee3e64005ad924797b19b62d6a00dffdf51af16b",
+        "startupSeconds": [
+          175.027
+        ],
+        "timeouts": 128,
+        "keepUpWarnings": 0,
+        "reloads": [
+          {
+            "start": "23:23:22",
+            "line": 435,
+            "kind": "local-only",
+            "startSeconds": 84202,
+            "atlasSeconds": 90,
+            "atlasLine": 462,
+            "vehiclesSeconds": 93,
+            "vehiclesLine": 480
+          },
+          {
+            "start": "23:26:11",
+            "line": 495,
+            "kind": "server-pack-present",
+            "startSeconds": 84371,
+            "atlasSeconds": 49,
+            "atlasLine": 505,
+            "vehiclesSeconds": 50,
+            "vehiclesLine": 570
+          }
+        ],
+        "chiseledMetrics": {
+          "samples": 142,
+          "maxReportedQueue": 2048,
+          "maxReportedHistoricalQueue": 2048,
+          "maxDropped": 7590,
+          "lastCacheHitRate": 46.44
+        }
+      },
+      {
+        "file": "2026-10-13-1.log.gz",
+        "sha256": "232153a83e5865b94b08405abe4c496010e82533297c04f654b99c44ddc260e8",
+        "startupSeconds": [],
+        "timeouts": 58,
+        "keepUpWarnings": 0,
+        "reloads": [
+          {
+            "start": "02:22:43",
+            "line": 4727,
+            "kind": "local-only",
+            "startSeconds": 8563
+          }
+        ],
+        "chiseledMetrics": {
+          "samples": 396,
+          "maxReportedQueue": 2048,
+          "maxReportedHistoricalQueue": 2048,
+          "maxDropped": 15006,
+          "lastCacheHitRate": 69.96
+        }
+      },
+      {
+        "file": "latest.log",
+        "sha256": "e7a5ad8a5618d05569c7d82080063c7d512fef5439b5e4ea78c7c64dc74ccd6c",
+        "startupSeconds": [
+          118.07
+        ],
+        "timeouts": 0,
+        "keepUpWarnings": 0,
+        "reloads": [
+          {
+            "start": "02:28:58",
+            "line": 435,
+            "kind": "local-only",
+            "startSeconds": 8938,
+            "atlasSeconds": 59,
+            "atlasLine": 462,
+            "vehiclesSeconds": 62,
+            "vehiclesLine": 480
+          },
+          {
+            "start": "02:30:08",
+            "line": 495,
+            "kind": "server-pack-present",
+            "startSeconds": 9008,
+            "atlasSeconds": 54,
+            "atlasLine": 505,
+            "vehiclesSeconds": 55,
+            "vehiclesLine": 570
+          },
+          {
+            "start": "07:28:42",
+            "line": 667,
+            "kind": "local-only",
+            "startSeconds": 26922
+          }
+        ],
+        "chiseledMetrics": {
+          "samples": 0,
+          "maxReportedQueue": null,
+          "maxReportedHistoricalQueue": null,
+          "maxDropped": null,
+          "lastCacheHitRate": null
+        }
+      }
+    ],
+    "logTimingLimits": "Historical local client logs, timestamp resolution one second; atlas/vehicle milestones are not reload completion. No server MSPT measurements.",
+    "staticJarResources": {
+      "models": 77203,
+      "blockstates": 18653,
+      "pngs": 9606,
+      "excludes": "nested jars, vanilla, runtime-generated resources"
+    }
+  },
+  "server": {
+    "container": "minefed_fabric_1",
+    "image": "container-registry.oracle.com/graalvm/jdk:21",
+    "pid": 1,
+    "uid": 0,
+    "runtimeArtifactsVerified": false,
+    "profileReceived": false,
+    "msptImprovementMeasured": false
+  },
+  "webstreamer": {
+    "sourceCommit": "58fa06bbe8fa3e7c22a4dd426093e2b72880fc58",
+    "timeouts": 186,
+    "failedDistinctUrls": 40,
+    "lifecycle": {
+      "AllAllocations": 1137,
+      "UniqueUrls": 43,
+      "RepeatedAllocations": 1094,
+      "RepeatFraction": 0.9621811785400176,
+      "MaxAllocationsPerUrl": 74.0,
+      "UploadLatencyMedianSeconds": 7.0,
+      "UploadLatencyP95Seconds": 21.0,
+      "UploadLatencyMaxSeconds": 148.0,
+      "SuccessfulAfterFailure": 12,
+      "RemovedWithoutUpload": 209,
+      "AllocationsByHost": [
+        {
+          "Name": "cdn.minefed.team",
+          "Count": 1137
+        }
+      ],
+      "AllocationCountsPerUrlSorted": [
+        74,
+        74,
+        74,
+        57,
+        56,
+        56,
+        54,
+        54,
+        52,
+        52
+      ],
+      "FastLoadsUnder1Second": 7,
+      "LoadsOver10Seconds": 282,
+      "SlowestLoads": [
+        {
+          "Allocated": "2026-10-12 23:44:33",
+          "DelaySeconds": 148.0,
+          "FailuresBeforeSuccess": 2
+        },
+        {
+          "Allocated": "2026-10-13 00:50:44",
+          "DelaySeconds": 97.0,
+          "FailuresBeforeSuccess": 0
+        },
+        {
+          "Allocated": "2026-10-12 23:44:33",
+          "DelaySeconds": 94.0,
+          "FailuresBeforeSuccess": 2
+        },
+        {
+          "Allocated": "2026-10-12 23:44:33",
+          "DelaySeconds": 86.0,
+          "FailuresBeforeSuccess": 2
+        },
+        {
+          "Allocated": "2026-10-12 23:42:23",
+          "DelaySeconds": 84.0,
+          "FailuresBeforeSuccess": 2
+        }
+      ]
+    },
+    "cdnReadProbe": [
+      {
+        "Image": 1,
+        "Attempt": 1,
+        "Exit": 0,
+        "HttpStatus": "200",
+        "DnsSeconds": "0.734147",
+        "ConnectSeconds": "0.674220",
+        "TlsSeconds": "0.944108",
+        "TtfbSeconds": "1.100475",
+        "TotalSeconds": "1.281262",
+        "Bytes": "7343",
+        "HttpVersion": "1.1"
+      },
+      {
+        "Image": 1,
+        "Attempt": 2,
+        "Exit": 0,
+        "HttpStatus": "200",
+        "DnsSeconds": "0.021493",
+        "ConnectSeconds": "0.089074",
+        "TlsSeconds": "0.198999",
+        "TtfbSeconds": "0.412676",
+        "TotalSeconds": "0.475606",
+        "Bytes": "7343",
+        "HttpVersion": "1.1"
+      },
+      {
+        "Image": 2,
+        "Attempt": 1,
+        "Exit": 0,
+        "HttpStatus": "200",
+        "DnsSeconds": "0.014305",
+        "ConnectSeconds": "0.164774",
+        "TlsSeconds": "0.419514",
+        "TtfbSeconds": "0.484079",
+        "TotalSeconds": "1.162443",
+        "Bytes": "94819",
+        "HttpVersion": "1.1"
+      },
+      {
+        "Image": 2,
+        "Attempt": 2,
+        "Exit": 0,
+        "HttpStatus": "200",
+        "DnsSeconds": "0.019371",
+        "ConnectSeconds": "0.327930",
+        "TlsSeconds": "0.555548",
+        "TtfbSeconds": "0.840691",
+        "TotalSeconds": "1.217404",
+        "Bytes": "94819",
+        "HttpVersion": "1.1"
+      },
+      {
+        "Image": 3,
+        "Attempt": 1,
+        "Exit": 0,
+        "HttpStatus": "200",
+        "DnsSeconds": "0.008863",
+        "ConnectSeconds": "0.054344",
+        "TlsSeconds": "0.103683",
+        "TtfbSeconds": "0.162008",
+        "TotalSeconds": "0.268896",
+        "Bytes": "86769",
+        "HttpVersion": "1.1"
+      },
+      {
+        "Image": 3,
+        "Attempt": 2,
+        "Exit": 0,
+        "HttpStatus": "200",
+        "DnsSeconds": "0.006848",
+        "ConnectSeconds": "0.073990",
+        "TlsSeconds": "0.145460",
+        "TtfbSeconds": "0.193547",
+        "TotalSeconds": "0.325633",
+        "Bytes": "86769",
+        "HttpVersion": "1.1"
+      }
+    ],
+    "probeLimits": "Six current HTTP/1.1 curl GETs; not Java HttpClient or proof of historical timeout cause. URL paths and queries omitted.",
+    "conditionalColdFetchAvoidance": {
+      "fraction": 0.9621811785400176,
+      "assumptions": "All 43 images immutable during the session and fit in cache; count is cold-fetch opportunities, not measured downloads or wall-time speedup."
+    },
+    "lifecycleTimingLimits": "928 successful Uploading image messages only; one-second log timestamps from layer allocation to the message immediately before GPU upload. Includes queue, network, decode, frame waiting and pauses; not GPU completion or isolated CDN latency."
+  },
+  "resourcePacks": {
+    "local": {
+      "bytes": 799511,
+      "files": 117
+    },
+    "server": {
+      "bytes": 798136,
+      "files": 121
+    },
+    "byteIdenticalFiles": 96,
+    "commonByteDifferentFiles": 19,
+    "commonDifferentOnlyJsonFormatting": 18,
+    "serverOnlyFiles": 6,
+    "localOnlyNotices": 2,
+    "safeToSkipUnconditionally": false
+  },
+  "microbenchmarks": {
+    "msdMembership": {
+      "java": "17.0.20.1",
+      "processor": "Ryzen 7 7730U",
+      "warmups": 40,
+      "samples": 21,
+      "statistic": "median",
+      "setConstructionIncluded": true,
+      "rows": [
+        {
+          "ids": 1000,
+          "listMs": 1.45,
+          "setMs": 0.19
+        },
+        {
+          "ids": 5000,
+          "listMs": 42.931,
+          "setMs": 0.427
+        },
+        {
+          "ids": 10000,
+          "listMs": 217.174,
+          "setMs": 0.822
+        }
+      ],
+      "limits": "Isolated actual shaded fastutil membership kernel; not full MSD requests or production GraalVM21 MSPT.",
+      "localEvidence": [
+        ".cache/performance-audit-20261013-server/MembershipProbe.java",
+        ".cache/performance-audit-20261013-server/membership-results.txt"
+      ]
+    },
+    "chiseledCoalescer": {
+      "productionSourceExecuted": true,
+      "queueSize": 2048,
+      "drained": 2048,
+      "scoringCalls": 2098176,
+      "overflowResult": "DROPPED_QUEUE_FULL",
+      "limits": "Deterministic operation count, no game CPU timing.",
+      "localEvidence": [
+        ".cache/performance/20261013-audit/CoalescerProbe.java",
+        ".cache/performance/20261013-audit/coalescer-probe.txt"
+      ]
+    },
+    "svgConversion": {
+      "rows": [
+        {
+          "width": 1024,
+          "height": 640,
+          "pngStbMs": 38.693,
+          "directRgbaMs": 3.605
+        },
+        {
+          "width": 2048,
+          "height": 1280,
+          "pngStbMs": 149.278,
+          "directRgbaMs": 13.428
+        },
+        {
+          "width": 4096,
+          "height": 2560,
+          "pngStbMs": 491.54,
+          "directRgbaMs": 52.14
+        }
+      ],
+      "warmups": 3,
+      "samples": 7,
+      "pixelEquality": true,
+      "limits": "Synthetic SVG conversion only; unrelated to reported PNG HTTP timeouts."
+    }
+  },
+  "productionChanges": false,
+  "rawLogsPublished": false,
+  "report": "docs/PERFORMANCE_AUDIT_2026-10-13.md"
+}
