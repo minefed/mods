@@ -156,10 +156,24 @@ python scripts/release_control.py bootstrap --plan build/release-plan.json
 키와 임시 Git URL 설정은 이 단계 직후 제거하며 실패한 경우에도 정리를 실행한다.
 그 뒤 모드 소스를 실행하는 환경에는 리소스팩 키나 게시 토큰을 전달하지 않는다.
 
+`materialize`가 `License/notice inputs changed; review required`로 중단되면
+`inventory/release-inputs.json`의 검토 기록과 추적 브랜치의 문서가 달라진 것이다.
+검사 대상에는 `LICENSE`·`NOTICE`뿐 아니라 하위 디렉터리의 README도 포함된다.
+README에 재배포 허가나 고지가 들어갈 수 있으므로 테스트 설명서도 자동 제외하지 않는다.
+
+소스를 갱신할 때는 기존 `reviewedCommit`과 새 원격 커밋 사이에서 추가·변경·삭제된
+검사 대상 문서를 읽고 라이선스·저작권·재배포 조건의 변화를 확인한다. 검토가 끝난
+소스에 한해 `reviewedCommit`과 `licenseFiles`를 함께 갱신한다. 해시는 checkout 파일의
+줄바꿈 대신 `scripts/release_inputs.py`의 `license_files(source, commit)`가 읽는
+Git blob을 기준으로 기록한다. 중첩 서브모듈이 바뀌었다면 해당 소스도 검토해야 한다.
+오류를 없애기 위한 무조건적인 전체 해시 재생성이나 검사 우회는 하지 않는다.
+한 소스의 오류 뒤에 다른 누락이 남아 있을 수 있으므로 전체 추적 소스를 대조한 뒤
+수정된 root 커밋의 Actions에서 `materialize` 성공 여부를 확인한다.
+
 JDK 17·21과 Node.js 22를 준비한 후 CI는 `./gradlew check assemble -PsourceBuildWorkers=2`를 실행한다.
 `build`와 같은 검사·조립 태스크를 실행하되 도구 회귀 검사와 저장소 정책 검사를 먼저 끝낸다.
 Linux에서만 실행하는 프로세스 취소 검사도 긴 소스 컴파일 전에 통과해야 한다.
-루트 Gradle은 JDK 17을 사용하고, 모드 47개는 각자의 wrapper로 최대 두 개씩 빌드한다. 두 작업자는
+루트 Gradle은 JDK 17을 사용하고, 소스 모드는 각자의 wrapper로 최대 두 개씩 빌드한다. 두 작업자는
 서로 다른 `GRADLE_USER_HOME`을 사용해 Loom의 Minecraft 캐시 충돌을 막으며, 각 작업자 안에서는
 모드를 직렬 빌드한다. 준비·최종 무결성 검사·패키징은 기존 단일 실행 경로를 사용한다.
 
