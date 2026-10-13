@@ -908,10 +908,10 @@
     {
       "path": "minefed-client-compat",
       "kind": "mod",
-      "reviewedCommit": "3c63cca29324ba4958ab5f29554bf2a3d14607c0",
+      "reviewedCommit": "ec5f7204ce10188f87e7d6cb3a59d69bcd114a14",
       "licenseFiles": {
         "LICENSE": "c69748264df729daf1c5ebcf5fe5b7872ac997780fc81d0337d0f59ed6caa99b",
-        "README.md": "0db9f36962ce8343a20f4885efa0dd8a1049df657ebad7a00f6f22f77d35f66a"
+        "README.md": "b9809178f416743b11d3dd403e1c435334c63de426e34fd63e23f997163541e0"
       },
       "nestedGitlinks": {}
     },

@@ -1019,7 +1019,7 @@
     {
       "modId": "minefed-client-compat",
       "mode": "source",
-      "reason": "PTS-Deco recipe synchronization, PFM first-frame herringbone textures, DragonLib Wikidata requests, and behavior-preserving PFM/TrafficCraft performance Mixins. Loads on client and server; verify every Mixin against hash-pinned official PTS, PFM and TrafficCraft bytecode. Version 1.4.0 adds client-only block atlas sprite rules and deferred MCEF initialization; verifyAtlasSprites checks the sprite rules without fixtures. Version 1.5.0 reuses identical atlas pixel transformations and streams PFM asset fingerprints; verifyPfmCache checks official-bytecode legacy cache migration and invalidation.",
+      "reason": "PTS-Deco recipe synchronization, PFM first-frame herringbone textures, DragonLib Wikidata requests, and behavior-preserving PFM/TrafficCraft performance Mixins. Loads on client and server; verify every Mixin against hash-pinned official PTS, PFM and TrafficCraft bytecode. Version 1.4.0 adds client-only block atlas sprite rules and deferred MCEF initialization; verifyAtlasSprites checks the sprite rules without fixtures. Version 1.5.0 reuses identical atlas pixel transformations and streams PFM asset fingerprints; verifyPfmCache checks official-bytecode legacy cache migration and invalidation. Version 1.6.0 indexes parsed block-state conditions, reuses standard rotation calculations, and caches exact loader-absent Scena JSON checks on clients. The parent prepareModelFixtures task supplies reviewed Minecraft 1.20.4 and Scena 1.0.141 fixtures independently of worker Gradle caches for the four model probes.",
       "sourcePath": "minefed-client-compat",
       "java": 17,
       "tasks": [
@@ -1029,17 +1029,23 @@
         "verifyPfmPerformance",
         "verifyTrafficCraftPerformance",
         "verifyAtlasSprites",
-        "verifyPfmCache"
+        "verifyPfmCache",
+        "verifyModelVariantIndex",
+        "verifyModelVariantMixin",
+        "verifyModelRotation",
+        "verifyScenaModelCache"
       ],
       "args": [
         "-PptsJar=../artifacts/local/PTS-Deco-4.0.0-Fabric1.20.4.jar",
         "-PpfmJar=../artifacts/local/paladin-furniture-mod-1.5.0-fabric-mc1.20.4.jar",
-        "-PtrafficcraftJar=../artifacts/local/trafficcraft-fabric-1.20.4-1.1.3.jar"
+        "-PtrafficcraftJar=../artifacts/local/trafficcraft-fabric-1.20.4-1.1.3.jar",
+        "-PminecraftJar=../build/compatibility-fixtures/minecraft-1.20.4-intermediary.jar",
+        "-PscenaJar=../build/compatibility-fixtures/scena-fabric-1.0.141.jar"
       ],
       "artifactGlobs": [
-        "build/libs/minefed-client-compat-1.5.0.jar"
+        "build/libs/minefed-client-compat-1.6.0.jar"
       ],
-      "expectedVersion": "1.5.0",
+      "expectedVersion": "1.6.0",
       "sourceWorkDir": ".",
       "env": {}
     },
