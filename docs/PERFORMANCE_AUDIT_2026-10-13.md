@@ -15,12 +15,14 @@
   로컬 설치 명세의 상위 소스는 `67c81d63115fb9ad7a3047b1b166eb6b147e6e95`다.
   최신 저장소와 운영 설치가 모두 같다고 가정하지 않았다.
 - 사용자 확인 서버: Podman `minefed_fabric_1`, GraalVM JDK 21 이미지,
-  Java PID 1 / UID 0. 운영 서버 모드 해시·설정·tick 프로파일은 아직 미수신이다.
+  Java PID 1 / UID 0. 운영 서버 모드 해시·설정은 미확인이고, 후속 전달된 JFR은
+  0바이트여서 유효한 tick 프로파일은 아직 확보하지 못했다.
 - 전체 인벤토리와 기존 최적화 이력을 확인하고, 증상과 연결된 이미지·모델 리로드·MTR·MSD·
   BlueMap·C&B·PFM 등의 실행 경로를 집중 분석했다. 모든 모드의 모든 실행 경로를
   동적으로 디버깅 완료했다는 의미는 아니다. 바이너리 전용 모드는 설치 JAR와 로그를 사용했다.
-- 이 감사에서 생산 코드, 게임 설치, 서버 파일·설정·업로드·재시작은 변경하지 않았다.
-  새 게임 실행과 운영 A/B 성능 측정은 하지 않았다. 게임 연결 도구는 unavailable이었다.
+- 최초 분석은 기존 코드와 로그를 읽어 수행했다. 이후 적용한 중복 클라이언트팩 제거는
+  마지막 절에 별도로 기록한다. 운영 서버 파일·설정·업로드·재시작, 새 게임 실행과
+  운영 A/B 성능 측정은 하지 않았다. 게임 연결 도구는 unavailable이었다.
 
 ## 실제로 확인한 지연
 
@@ -254,18 +256,27 @@ WebStreamer PNG로 확인되었으므로 원인에서 구분한다.
 
 ## 서버 자료 수집
 
+후속 전달본은 `minefed-container-stats.txt`만 287 bytes이고, 로그 두 파일과
+`minefed-perf.jfr`은 각각 0 bytes였다. 통계의 메모리 12.05GB / 33.14GB는 컨테이너
+메모리이며 Java 힙 사용량이 아니다. CPU 19.93%는 `--no-stream` 첫 표본이므로
+순간 부하를 판정하는 데 쓰지 않는다. 현재 자료로 CPU·디스크·GC 병목을 배제할 수 없다.
+[Podman 첫 CPU 표본 설명](https://github.com/podman-container-tools/podman/issues/25709).
+
 현재 사용자의 `podman-compose`는 `ps -q fabric`을 지원하지 않아 컨테이너 이름을 직접 사용한다.
 `jcmd -l`에는 도구 자신만 표시되었지만 `/proc`에서 서버 PID 1 / UID 0을 확인했다.
-다음 직접 attach가 성공하면 5분 동안 평소 부하를 기록한다.
+다음 직접 attach에서 `Started recording`이 확인되면 5분 동안 평소 부하를 기록한다.
+기록 완료 후 `jfr summary`가 유효한 이벤트 표를 출력한 경우에만 복사한다.
 
 ```bash
-podman logs --timestamps --since 30m minefed_fabric_1 > minefed-fabric-logs.txt 2>&1
-podman stats --no-stream minefed_fabric_1 > minefed-container-stats.txt
 podman exec --user 0 minefed_fabric_1 jcmd 1 JFR.start \
-  name=minefed_perf settings=profile duration=300s filename=/tmp/minefed-perf.jfr
-# Started recording 성공을 확인하고 5분이 지난 뒤
-podman cp minefed_fabric_1:/tmp/minefed-perf.jfr ./minefed-perf.jfr
-podman logs --timestamps --since 15m minefed_fabric_1 > minefed-fabric-profile-window.txt 2>&1
+  name=minefed_perf_retry settings=profile duration=300s filename=/tmp/minefed-perf-retry.jfr
+# Started recording 성공을 확인한 경우에만 아래를 실행
+sleep 310
+podman exec --user 0 minefed_fabric_1 jfr summary /tmp/minefed-perf-retry.jfr &&
+podman cp minefed_fabric_1:/tmp/minefed-perf-retry.jfr ./minefed-perf-retry.jfr
+podman exec minefed_fabric_1 sh -c 'cat /proc/1/cwd/logs/latest.log' > minefed-latest.log
+timeout 30s podman stats --interval 2 minefed_fabric_1 > minefed-stats-stream.txt
+wc -c minefed-perf-retry.jfr minefed-latest.log minefed-stats-stream.txt
 ```
 
 재시작은 필요 없고 profile 기록은 측정 부하를 추가한다. JFR에서 `Server thread`,
@@ -276,5 +287,14 @@ simulator·FileLoader·BlueMapSnapshot·MSDDataRequest, GC 정지와 파일 I/O�
 [Podman compose provider 설명](https://docs.podman.io/en/latest/markdown/podman-compose.1.html).
 
 원시 로그·URL·프로파일은 공개 Git에 넣지 않는다. 비식별 집계와 계산 근거는
-`inventory/performance-audit-2026-10-13.json`에 기록한다. 서버 프로파일 미수신 상태인 현재는
+`inventory/performance-audit-2026-10-13.json`에 기록한다. 유효한 서버 프로파일이 없는 현재는
 운영 지연의 원인 규명과 모든 문제의 해결이 완료된 상태가 아니다.
+
+## 후속 클라이언트팩 수정
+
+사용자 요청에 따라 중복 Minefed ZIP만 클라이언트 패키징과 새 인스턴스 기본 선택에서 제거했다.
+기존 로컬 프로필의 `minefed-20261012140108.zip`은 프로필 밖에 백업한 뒤 제거하고,
+`options.txt`의 해당 선택만 해제했다. Foliage·내장 팩·나머지 개인 옵션·서버 다운로드 캐시와
+모드 JAR는 보존했다. 패키징 테스트 43개가 통과했으며 서버용 리소스팩 출력은 유지된다.
+변경 내역은 `inventory/client-resourcepack-server-only-2026-10-13.json`에 기록했다.
+이 조치는 위 조사의 중복 팩 상태를 변경하지만, 전체 리로드 생략이나 시간 개선은 별도 실측 대상이다.

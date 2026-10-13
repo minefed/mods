@@ -4,7 +4,7 @@
   "rootCommit": "cdab06282cf25e319c1922e3bcec38d7358b6f86",
   "minecraft": "1.20.4",
   "loader": "fabric",
-  "status": "code-and-client-log-audit; server-profile-pending; no production patch",
+  "status": "code-and-client-log-audit; received server logs and JFR are empty; client duplicate pack removal applied",
   "coverage": {
     "verifiedRecordedArtifacts": 70,
     "sourceRecipes": 47,
@@ -128,7 +128,8 @@
       "blockstates": 18653,
       "pngs": 9606,
       "excludes": "nested jars, vanilla, runtime-generated resources"
-    }
+    },
+    "followupDuplicatePackRemoval": "inventory/client-resourcepack-server-only-2026-10-13.json"
   },
   "server": {
     "container": "minefed_fabric_1",
@@ -136,8 +137,40 @@
     "pid": 1,
     "uid": 0,
     "runtimeArtifactsVerified": false,
-    "profileReceived": false,
-    "msptImprovementMeasured": false
+    "profileReceived": true,
+    "msptImprovementMeasured": false,
+    "profileUsable": false,
+    "profileReceivedBytes": 0,
+    "receivedFiles": [
+      {
+        "name": "minefed-container-stats.txt",
+        "bytes": 287,
+        "sha256": "86dba901008198c452c9ab09da91f5351b8d2e114aafa3cb0fb56b09a2d599b1"
+      },
+      {
+        "name": "minefed-fabric-logs.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "name": "minefed-fabric-profile-window.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "name": "minefed-perf.jfr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    ],
+    "initialContainerStats": {
+      "cpuPercentDisplayed": 19.93,
+      "averageCpuPercentDisplayed": 19.93,
+      "memoryUsageDisplayed": "12.05GB",
+      "memoryLimitDisplayed": "33.14GB",
+      "pidsDisplayed": 94,
+      "limits": "One --no-stream first sample, potentially lifetime-average CPU; memory is container usage, not Java heap; PIDS includes tasks; does not rule out CPU, I/O or GC stalls."
+    }
   },
   "webstreamer": {
     "sourceCommit": "58fa06bbe8fa3e7c22a4dd426093e2b72880fc58",
