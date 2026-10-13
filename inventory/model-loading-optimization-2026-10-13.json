@@ -1,0 +1,284 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-13",
+  "description": "Compatibility-mod replacement patch for client model loading, with source and functional validation provenance.",
+  "minecraft": "1.20.4",
+  "testedFabricLoader": "0.18.4",
+  "runtimeJava": 17,
+  "serverFilesChanged": false,
+  "liveClientModsChanged": false,
+  "distribution": "local replacement patch; no deployment performed",
+  "source": {
+    "path": "minefed-client-compat",
+    "repository": "https://github.com/minefed/minefed-client-compat",
+    "trackingBranch": "main",
+    "commit": "ec5f7204ce10188f87e7d6cb3a59d69bcd114a14",
+    "commitUrl": "https://github.com/minefed/minefed-client-compat/commit/ec5f7204ce10188f87e7d6cb3a59d69bcd114a14",
+    "remoteBranchCommitVerified": true,
+    "remoteVerificationUtc": "2026-10-13T04:52:40.929529+00:00"
+  },
+  "artifact": {
+    "modId": "minefed-client-compat",
+    "version": "1.6.0",
+    "sourceArtifactPath": "minefed-client-compat/build/libs/minefed-client-compat-1.6.0.jar",
+    "bundleEntry": "mods/minefed-client-compat-1.6.0.jar",
+    "sha256": "6adcf9280c8d71f31163c7069b9e92f7e3302f235c0b30c388f09b243e1004dc",
+    "sizeBytes": 68893,
+    "license": "MIT",
+    "binaryRedistribution": "allowed under included MIT license",
+    "licenseEntries": [
+      "LICENSE"
+    ],
+    "licenseJarEntrySha256": "0f2bf729dd118b5a4b82f950c1b66594ee3ab6967820e07629e4c09d8d8c0b5c",
+    "licenseGitBlobSha256": "c69748264df729daf1c5ebcf5fe5b7872ac997780fc81d0337d0f59ed6caa99b",
+    "licenseTextEqualAfterNewlineNormalization": true,
+    "jarCrcVerified": true,
+    "classCount": 41,
+    "classFileMajorVersion": 61,
+    "dependencyAndStubClassesExcluded": true,
+    "newModelMixinsClientOnly": true,
+    "depends": {
+      "fabricloader": ">=0.18.0",
+      "minecraft": "=1.20.4",
+      "java": ">=17",
+      "ptsdeco": "=4.0.0",
+      "pfm": "=1.5.0",
+      "dragonlib": "=1.20.4-2.2.24",
+      "trafficcraft": "=1.20.4-1.1.3"
+    },
+    "breaks": {
+      "scena": [
+        "<1.0.141",
+        ">1.0.141"
+      ]
+    }
+  },
+  "replacement": {
+    "previousBundleInventory": "inventory/performance-implementation-2026-10-13.json",
+    "previousCompatVersion": "1.5.0",
+    "previousCompatSha256": "31f93649ac42e96572c397ff56a2da37f3ce9162756d37860d25a29afd501638",
+    "onlyReplacedModId": "minefed-client-compat",
+    "otherFiveOptimizedJarsIncluded": false,
+    "instruction": "Remove the existing minefed-client-compat JAR before copying the included replacement; never retain duplicate JARs for this mod ID.",
+    "otherModsAndSettingsChanged": false,
+    "yuushyaAddonRetained": true,
+    "duplicateLocalMinefedResourcePackRemainsExcluded": true
+  },
+  "build": {
+    "java": 17,
+    "recipePath": "inventory/build-recipes.json",
+    "tasks": [
+      "build",
+      "verifyPtsCompatibility",
+      "verifyPfmCompatibility",
+      "verifyPfmPerformance",
+      "verifyTrafficCraftPerformance",
+      "verifyAtlasSprites",
+      "verifyPfmCache",
+      "verifyModelVariantIndex",
+      "verifyModelVariantMixin",
+      "verifyModelRotation",
+      "verifyScenaModelCache"
+    ],
+    "fixturePreparation": "scripts/prepare_model_fixtures.py; independently pinned Minecraft 1.20.4 official client and Scena 1.0.141",
+    "fullVerificationLog": {
+      "path": ".cache/performance/20261013-model-loading/new-probes.log",
+      "sha256": "ef2cc2977b0a04d5ec9edb8a65ed41604f91a242a7dd1f35ddc013e30c6698e2"
+    },
+    "packagingRanJavaOrGradle": false
+  },
+  "validation": {
+    "scope": "Observed default baked-model quads for fixed seeds and faces; this is not a proof for every dynamic model, shader, or future mod combination.",
+    "baselineLabel": "correctness-base3",
+    "candidateLabel": "correctness-candidate2",
+    "phases": {
+      "title": {
+        "modelRows": 42651,
+        "orderedDigestsEqual": true,
+        "canonicalDigestsEqual": true,
+        "canonicalSha256": "3912641c31a2c14719f880b0c8469616828c25054ea3489e166179eb6c94e2f3"
+      },
+      "apply": {
+        "modelRows": 42651,
+        "orderedDigestsEqual": true,
+        "canonicalDigestsEqual": true,
+        "canonicalSha256": "b8bed2811a521faa86063cef2a02812e7ad52f8ee3a83d955c3b5ad65f04221b"
+      },
+      "remove": {
+        "modelRows": 42651,
+        "orderedDigestsEqual": true,
+        "canonicalDigestsEqual": true,
+        "canonicalSha256": "3912641c31a2c14719f880b0c8469616828c25054ea3489e166179eb6c94e2f3"
+      }
+    },
+    "showblockChecksPerPhase": 129,
+    "resourcePackApplyAndRemovePassed": true,
+    "fixedInputFilesCompared": 225,
+    "fixedInputsEqual": true,
+    "resourceDiagnosticCountsAndTargetsEqual": true,
+    "resourceDiagnosticsPerRun": 86,
+    "fixtureEquivalence": {
+      "classes": 4,
+      "methods": 61,
+      "fields": 53,
+      "instructions": 2376,
+      "exceptionHandlers": 18,
+      "allMembersAndInstructionsEqual": true,
+      "controlFlowAndExceptionRangesEqual": true,
+      "negativeControls": 6,
+      "nullableDescriptorSubstitutions": 5,
+      "normalization": [
+        "source/line/local-variable debug metadata and parameter names (not flags)",
+        "verifier frame encoding",
+        "instruction-offset labels",
+        "Fabric CLIENT environment annotation",
+        "empty javax/JetBrains Nullable annotation descriptor"
+      ]
+    },
+    "fixtureRuns": [
+      {
+        "fixture": "official-client-1.20.4-tinyremapper-0.10.3",
+        "variantMixinPassed": true,
+        "scenaChecksPassed": 61,
+        "rotation": {
+          "rawFloatBitCases": 19392,
+          "standardRotations": 36,
+          "parallelWorkers": 6,
+          "pinnedVanillaBytecode": true,
+          "minecraftFixture": "official-client-1.20.4-tinyremapper-0.10.3",
+          "pinnedJoml105": true,
+          "realMixinTransformation": true,
+          "mutableOrigin": true,
+          "mutatingTransformHook": true,
+          "nonstandardFallback": true,
+          "originalFallbackBytecodeUnchanged": true,
+          "finiteResultsRawBitExact": true,
+          "observedOriginalFallbackNaNPayloadVariations": 10,
+          "strictNaNPayloadComparison": false
+        },
+        "evidence": {
+          "path": ".cache/performance/20261013-model-loading/fixture-probes/client.log",
+          "sha256": "32daf34ba63b1fc9f0d1183ac51045f7e52e0040f752be7cea2cb2e1118bcdf5"
+        }
+      },
+      {
+        "fixture": "loom-merged-1.20.4",
+        "variantMixinPassed": true,
+        "scenaChecksPassed": 61,
+        "rotation": {
+          "rawFloatBitCases": 19392,
+          "standardRotations": 36,
+          "parallelWorkers": 6,
+          "pinnedVanillaBytecode": true,
+          "minecraftFixture": "loom-merged-1.20.4",
+          "pinnedJoml105": true,
+          "realMixinTransformation": true,
+          "mutableOrigin": true,
+          "mutatingTransformHook": true,
+          "nonstandardFallback": true,
+          "originalFallbackBytecodeUnchanged": true,
+          "finiteResultsRawBitExact": true,
+          "observedOriginalFallbackNaNPayloadVariations": 0,
+          "strictNaNPayloadComparison": false
+        },
+        "evidence": {
+          "path": ".cache/performance/20261013-model-loading/fixture-probes/loom.log",
+          "sha256": "5b1778ecc3261adc95f3b235b715a044152ad97e7dc0b76fb9e42749122657ea"
+        }
+      }
+    ],
+    "strictInterpretedRotation": {
+      "rawFloatBitCases": 19392,
+      "standardRotations": 36,
+      "parallelWorkers": 6,
+      "pinnedVanillaBytecode": true,
+      "pinnedJoml105": true,
+      "realMixinTransformation": true,
+      "mutableOrigin": true,
+      "mutatingTransformHook": true,
+      "nonstandardFallback": true,
+      "originalFallbackBytecodeUnchanged": true,
+      "finiteResultsRawBitExact": true,
+      "observedOriginalFallbackNaNPayloadVariations": 0,
+      "strictNaNPayloadComparison": true
+    },
+    "parentChecks": {
+      "testsRun": 146,
+      "testsPassed": 145,
+      "testsSkipped": 1,
+      "elapsedSeconds": 150.7,
+      "evidence": {
+        "path": ".cache/performance/20261013-model-loading/parent-checks.log",
+        "sha256": "5526b6a49c992530e9fe0204bc1e61f20e45f992b36995d706b3b011ae80b1e7"
+      }
+    },
+    "serverMixinAudit": {
+      "environment": "Fabric SERVER",
+      "passed": true,
+      "elapsedMs": 5819,
+      "scope": "Isolated local Fabric server Mixin audit; no production-server deployment.",
+      "evidence": {
+        "path": ".cache/performance/20261013-model-loading/server-mixin-audit.log",
+        "sha256": "645316968c49c17df6e8f16863d665d682d3d64a84237660313fc09ff9bed906"
+      }
+    },
+    "rotationNaNNote": "Finite results are raw-bit exact. JIT tests allow NaN sign/payload differences only on proven unchanged original-bytecode fallback calls; strict interpreted tests retain exact NaN bits.",
+    "variantIndexKernel": {
+      "queries": 80,
+      "originalPredicateCallsBefore": 327680,
+      "originalPredicateCallsAfter": 4175,
+      "wholeClientSpeedClaim": false
+    },
+    "evidence": [
+      {
+        "path": ".cache/performance/20261013-model-loading/artifact-verified.json",
+        "sha256": "77e8481706553e81026a1d0816f7a1a085958c04f596c5dfb9d50e88e41db78d"
+      },
+      {
+        "path": ".cache/performance/20261013-model-loading/canonical-summary.json",
+        "sha256": "0d2ba4c44131879a87315979700a31f449354a1f139acfd27ccb49fd7cce1f96"
+      },
+      {
+        "path": ".cache/performance/20261013-model-loading/fixture-equivalence/summary.json",
+        "sha256": "2889a4419868eee66b4ab3373ef01adf9ede508732dfcfd3976a3a6ecbe2ce56"
+      },
+      {
+        "path": ".cache/performance/20261013-model-loading/rotation-final-int-summary.json",
+        "sha256": "35ee74f4016f411bb8e5e53e2538a1e87589816b6459a4f9cd28e65758610985"
+      }
+    ]
+  },
+  "timingReport": "docs/MODEL_LOADING_OPTIMIZATION_2026-10-13.md",
+  "timingScope": "Timing statistics are intentionally omitted from this package. The referenced report provides individual runs and host-load confounding limits; model correctness runs are not performance benchmarks.",
+  "bundle": {
+    "path": "build/model-loading-20261013/minefed-model-loading-patch-20261013.zip",
+    "sha256": "27b74e152a5372264e386f7b87644031913a58896e65377982bd6ecd582526c0",
+    "sizeBytes": 66326,
+    "entries": [
+      {
+        "path": "README.md",
+        "sha256": "caa767ab07d74e1fdc98e9bbdf8223a5b7633ab6335552f9892705e0902e57e0",
+        "sizeBytes": 3883
+      },
+      {
+        "path": "SHA256SUMS",
+        "sha256": "7cb0ef39cbc5a15a8aee5b8148720ee3b9705b94a3d32a3164338dc4821b0c18",
+        "sizeBytes": 261
+      },
+      {
+        "path": "mods/minefed-client-compat-1.6.0.jar",
+        "sha256": "6adcf9280c8d71f31163c7069b9e92f7e3302f235c0b30c388f09b243e1004dc",
+        "sizeBytes": 68893
+      },
+      {
+        "path": "provenance.json",
+        "sha256": "5bfbc2fe484c863896b4f4675172661e2e55c87dee552872125193afee45c7e8",
+        "sizeBytes": 10019
+      }
+    ],
+    "onlyOneModJar": true,
+    "zipCrcVerified": true,
+    "checksumsVerified": true,
+    "embeddedProvenanceMatchesInventoryExceptBundleMetadata": true
+  }
+}
