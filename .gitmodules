@@ -206,3 +206,7 @@
 	path = minefed-client-compat
 	url = https://github.com/minefed/minefed-client-compat
 	branch = main
+[submodule "minefed-regions"]
+	path = minefed-regions
+	url = https://github.com/minefed/minefed-regions
+	branch = minefed-1.20.4

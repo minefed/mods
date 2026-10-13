@@ -19,6 +19,10 @@ Minefed 서버의 모드 소스와 운영 JAR를 한 곳에서 관리한다. Min
 독립 클라이언트 모드 `minefed-client-compat` 소스 저장소를 추가했다.
 관측한 운영 기준본 70개와 새 소스 항목을 구분한다. 2026-09-28 1.3.0부터 PFM·TrafficCraft 성능 믹스인 때문에 서버에도 설치한다.
 
+2026-10-13 [행정구역 모드 설계와 구성](docs/ADMINISTRATIVE_REGIONS.md)에
+`minefed-regions`의 가변 주소 체계, 영토 편집, 위임 권한, HUD·BlueMap 표시와 API 연동을 정리했다.
+공개 MIT 소스를 서버·클라이언트 빌드 입력으로 추가하며 운영 설치는 별도다.
+
 2026-09-24 [Modern Glass Doors 생성 리소스 누락](docs/MODERN_GLASS_DOORS_FIX_2026-09-24.md)과
 [Minefed Display의 블록 가림 판정](docs/DISPLAY_DEPTH_FIX_2026-09-24.md)을 수정했다.
 두 교체 JAR의 소스 커밋·SHA-256·검증 범위는
@@ -78,7 +82,7 @@ Gradle 직접 실행은 `gradlew.bat build` 또는 `./gradlew build`다. JDK 17�
 MTR 웹 UI용 Node.js 22/npm이 필요하다. 이 작업 공간의 도구 경로는 Git에서 제외한
 `build.local.json`에 설정되어 있다.
 
-`inventory/build-recipes.json`은 소스 빌드 47개와 JAR 사용 25개를 구분한다. 기반 라이브러리
+`inventory/build-recipes.json`은 소스 빌드 48개와 JAR 사용 25개를 구분한다. 기반 라이브러리
 7개와 공식 후속 바이너리 8개, 클라이언트 전용 Continuity·MCEF·Sodium·Indium은 `dependencies.lock.json`의 총 19개 pin을 사용한다. 기존 소스 중
 CityCraft와 Macaw Doors/Fences는 공개된 Fabric 1.20.4용 공식 JAR를 사용한다. PFM과 Puzzles Lib의
 소스 빌드는 유지하고 공개팩에는 `published-artifacts.lock.json`의 공식 배포본 2개를 선택한다.
@@ -112,8 +116,8 @@ BlueMap의 모드 모델·TrafficCraft 저장 색상 지원과 생성 모델 팩
 GitHub Actions는 `mods/main` 변경과 하위 배포 대상 브랜치의 변경을 감지해 세 파일을
 [GitHub Releases](https://github.com/minefed/mods/releases)에 공개한다. 하위 브랜치는
 15분 간격으로 확인하며, 동일 입력의 중복 릴리즈는 건너뛴다.
-서버팩 `mods/`에는 전체 모드 JAR 69개, 클라이언트팩 `overrides/mods/`에는 서버 전용
-2개를 제외하고 Continuity·MCEF·Sodium·Indium을 추가하고 레시피·리소스 호환 모드를 포함한 71개가 직접 포함된다. 공식 JAR도 버전·해시·원본 URL을 유지한 채 내장하며,
+행정구역 모드를 추가한 서버팩 `mods/`에는 전체 모드 JAR 70개, 클라이언트팩 `overrides/mods/`에는 서버 전용
+2개를 제외하고 Continuity·MCEF·Sodium·Indium, 레시피·리소스 호환 모드와 관찰용 Minecraft MCP를 포함한 73개가 직접 포함된다. 공식 JAR도 버전·해시·원본 URL을 유지한 채 내장하며,
 Modern Lights는 소스 전용 공식 업로드 대신 검증된 2.5.0 실행 JAR를 양쪽에 포함한다.
 정상적으로 압축 해제하거나 MRPACK을 가져오면 추가 모드 다운로드·수동 복원이 필요 없다.
 MCEF의 Chromium 네이티브 런타임은 첫 클라이언트 실행에서 공식 서버로부터 별도로 준비된다([MCEF 구성](docs/MCEF.md)).
@@ -121,7 +125,7 @@ Sodium `0.5.8+mc1.20.4`와 Indium `1.0.31+mc1.20.4`는 클라이언트 렌더링
 기존 Continuity의 연결 텍스처 호환성을 함께 제공한다([Sodium 구성](docs/SODIUM.md)).
 선택적 `install-mods.py` 실행으로 모든 모드의 해시를 검사할 수 있다. 정책에 따른 원본
 선택과 자체 빌드 결과의 차이, 기존 재배포 분류와 라이선스는 팩 안의 기록에 보존한다.
-서버팩은 TCPShield 2.8.1을 `plugins/`에 별도 포함하여 총 JAR 70개다. TCPShield는
+서버팩은 TCPShield 2.8.1을 `plugins/`에 별도 포함하여 총 JAR 71개다. TCPShield는
 Bukkit/Bungee/Velocity용 플러그인이며 Fabric Loader가 실행하는 모드가 아니다.
 자동화와 최초 릴리즈, 설치 방법은 [릴리즈 안내](docs/RELEASING.md)를 참고한다.
 

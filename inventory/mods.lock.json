@@ -4593,6 +4593,60 @@
         "https://github.com/minefed/minefed-client-compat/commit/e27ee63ddc883343e554d32f511fe3bebcc565dd",
         "https://modrinth.com/version/etl5lvBR"
       ]
+    },
+    {
+      "fileName": "minefed-regions-1.0.0.jar",
+      "sha256": "3477e2c1e934edf5cfb1838d6906bf1ade516f1c8c742fed387e81bfc5f5858c",
+      "size": 71405,
+      "modId": "minefed-regions",
+      "version": "1.0.0",
+      "environment": "*",
+      "management": "submodule",
+      "source": {
+        "path": "minefed-regions",
+        "url": "https://github.com/minefed/minefed-regions",
+        "upstream": "https://github.com/minefed/minefed-regions",
+        "ref": "minefed-1.20.4",
+        "commit": "40c761c2b895fc3a0698cf2dac03759cd7d2e4f5",
+        "trackingBranch": "minefed-1.20.4",
+        "baselineRef": "minefed-1.20.4",
+        "baselineCommit": "40c761c2b895fc3a0698cf2dac03759cd7d2e4f5"
+      },
+      "artifact": {
+        "path": "artifacts/local/minefed-regions-1.0.0.jar",
+        "redistribution": "allowed",
+        "url": null,
+        "sha512": "2f006456cbf573e3cf8751e8b3ab0c0055a1e643501c7a79c8d4d764a2f62f6520b99888abba23a7d5c06fb6f9d3185cf2a7be3ec19063a8dc7692a3d19767d1",
+        "publishedHashMatch": false,
+        "verificationAlgorithm": null,
+        "publishedRelease": null
+      },
+      "included": true,
+      "exclusionReason": null,
+      "capturedServerBaseline": false,
+      "license": "MIT",
+      "licenseUrl": "https://github.com/minefed/minefed-regions/blob/40c761c2b895fc3a0698cf2dac03759cd7d2e4f5/LICENSE",
+      "licenseNoticesPath": "inventory/notices/minefed-regions-3477e2c1e934",
+      "notes": [
+        "Added 2026-10-13: independent public MIT source and local build, not an observed operational JAR. No operating server files or API deployment are changed by this registration.",
+        "Server and client administrative-region management, address HUD and optional BlueMap integration. Empty initial data; the authoritative Minefed API must be configured separately.",
+        "Minecraft 1.20.4 / Fabric Loader >=0.18.4 / Java >=17; integration and tracking branch minefed-1.20.4. No bundled external runtime libraries or assets."
+      ],
+      "compatibility": {
+        "minecraft": "=1.20.4",
+        "fabricLoader": ">=0.18.4",
+        "java": ">=17",
+        "dependencies": {
+          "fabricloader": ">=0.18.4",
+          "fabric-api": "*",
+          "minecraft": "=1.20.4",
+          "java": ">=17"
+        }
+      },
+      "evidenceUrls": [
+        "https://github.com/minefed/minefed-regions/blob/40c761c2b895fc3a0698cf2dac03759cd7d2e4f5/LICENSE",
+        "https://github.com/minefed/minefed-regions/commit/40c761c2b895fc3a0698cf2dac03759cd7d2e4f5"
+      ]
     }
   ],
   "sourcePolicy": {

@@ -1,0 +1,19 @@
+{
+  "modId": "minefed-regions",
+  "version": "1.0.0",
+  "sha256": "3477e2c1e934edf5cfb1838d6906bf1ade516f1c8c742fed387e81bfc5f5858c",
+  "size": 71405,
+  "source": {
+    "path": "minefed-regions",
+    "url": "https://github.com/minefed/minefed-regions",
+    "upstream": "https://github.com/minefed/minefed-regions",
+    "ref": "minefed-1.20.4",
+    "commit": "40c761c2b895fc3a0698cf2dac03759cd7d2e4f5",
+    "trackingBranch": "minefed-1.20.4",
+    "baselineRef": "minefed-1.20.4",
+    "baselineCommit": "40c761c2b895fc3a0698cf2dac03759cd7d2e4f5"
+  },
+  "license": "MIT",
+  "licenseSha256": "381896c16741de5d7dcfd9234f71d73e99e05e65e482758c3cd239334dc7694e",
+  "note": "License extracted unchanged from the newly built JAR. Independent public MIT source; no external runtime libraries/assets bundled. Not part of the 2026-09-06 captured server baseline."
+}
