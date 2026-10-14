@@ -3,12 +3,15 @@
 
 import argparse
 from concurrent.futures import FIRST_COMPLETED, ThreadPoolExecutor, wait
+import json
+import math
 import os
 from pathlib import Path
 import signal
 import subprocess
 import sys
 import threading
+import time
 
 import build_modpack as builder
 import mods
@@ -43,6 +46,29 @@ def source_recipes(root, plan):
                                     + str(previous) + '; use -PsourceBuildWorkers=1')
         paths.append(path)
     return recipes
+
+
+def previous_build_seconds(root):
+    """Read compile durations from earlier source cache receipts; only used for ordering."""
+    durations = {}
+    for record in (root / 'build/source-cache').glob('*/result.json'):
+        try:
+            value = json.loads(record.read_text(encoding='utf-8'))
+            identity, seconds = value['modId'], value['buildSeconds']
+        except (OSError, ValueError, TypeError, KeyError):
+            continue
+        if (isinstance(identity, str) and type(seconds) in (int, float)
+                and math.isfinite(seconds) and seconds >= 0):
+            durations[identity] = max(seconds, durations.get(identity, 0))
+    return durations
+
+
+def longest_first(recipes, durations):
+    """Start unmeasured sources, then the slowest, so one long build does not end the run alone."""
+    order = {recipe['modId']: index for index, recipe in enumerate(recipes)}
+    return sorted(recipes, key=lambda recipe: (recipe['modId'] in durations,
+                                               -durations.get(recipe['modId'], 0),
+                                               order[recipe['modId']]))
 
 
 def worker_homes(root, work, workers, default_home):
@@ -113,6 +139,20 @@ def run_source(root, run, recipe, home, environment, processes):
     return processes.run(command, root, child_environment)
 
 
+def print_timings(work, timings):
+    """Log each finished source's wall time so slow CI builds can be compared."""
+    if not timings:
+        return
+    print('Source wall times (cache: hit = reused verified build):', flush=True)
+    for identity, seconds in sorted(timings.items(), key=lambda item: -item[1]):
+        try:
+            receipt = json.loads((work / 'sources' / identity / 'result.json').read_text(encoding='utf-8'))
+            cache = 'hit' if receipt.get('cacheHit') else 'miss'
+        except (OSError, ValueError):
+            cache = 'none'
+        print(f'  {seconds:7.1f}s  {cache:4}  {identity}', flush=True)
+
+
 def build_sources(root, run, workers=2):
     if type(workers) is not int or workers != 2:
         raise mods.ModError('This optional dispatcher supports exactly two workers; '
@@ -124,8 +164,10 @@ def build_sources(root, run, workers=2):
     default_home = require_plain_gradle_home(root)
     homes = worker_homes(root, work, workers, default_home)
     environment = dict(os.environ)
-    pending = iter(recipes)
+    # Earlier receipts only change the start order; every source still runs.
+    pending = iter(longest_first(recipes, previous_build_seconds(root)))
     successes, failures = [], []
+    timings = {}
     active = {}
     processes = SourceProcesses()
 
@@ -134,7 +176,8 @@ def build_sources(root, run, workers=2):
         if recipe is None:
             return
         print(f"Source worker {slot}: {recipe['modId']} (Gradle home {homes[slot]})", flush=True)
-        active[pool.submit(run_source, root, run, recipe, homes[slot], environment, processes)] = (slot, recipe['modId'])
+        active[pool.submit(run_source, root, run, recipe, homes[slot], environment, processes)] = (
+            slot, recipe['modId'], time.monotonic())
 
     # At most one subprocess uses each home. On failure, drain running sources
     # without submitting more work; their existing CLI retains locks/receipts.
@@ -147,7 +190,8 @@ def build_sources(root, run, workers=2):
                 finished = [future for future in active if future.done()]
                 free_slots = []
                 for future in finished:
-                    slot, identity = active.pop(future)
+                    slot, identity, started = active.pop(future)
+                    timings[identity] = time.monotonic() - started
                     free_slots.append(slot)
                     try:
                         code = future.result()
@@ -165,6 +209,7 @@ def build_sources(root, run, workers=2):
             # Cancel before ThreadPoolExecutor.__exit__ waits for active futures.
             processes.cancel()
             raise
+    print_timings(work, timings)
     if failures:
         raise mods.ModError('Parallel source build failed; running sources were allowed to finish '
                             'and no pack was assembled. ' + '; '.join(failures))

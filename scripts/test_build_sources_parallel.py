@@ -189,6 +189,42 @@ class ParallelSourceTests(unittest.TestCase):
                 parallel.build_sources(self.root, self.run, workers)
         self.assertFalse(self.events())
 
+    def write_cached_duration(self, key, identity, seconds):
+        builder.write_json(self.root / 'build/source-cache' / key / 'result.json',
+                           {'modId': identity, 'buildSeconds': seconds})
+
+    def test_previous_durations_start_unmeasured_then_slowest_sources(self):
+        self.write_cached_duration('a' * 64, 'alpha', 10.0)
+        self.write_cached_duration('b' * 64, 'alpha', 30.0)
+        self.write_cached_duration('c' * 64, 'gamma', 120.5)
+        self.write_cached_duration('d' * 64, 'delta', 45)
+        for key, value in (('e' * 64, {'modId': 'beta', 'buildSeconds': -1}),
+                           ('f' * 64, {'modId': 'beta', 'buildSeconds': True}),
+                           ('0' * 64, {'modId': 'epsilon'})):
+            builder.write_json(self.root / 'build/source-cache' / key / 'result.json', value)
+        (self.root / 'build/source-cache' / ('1' * 64)).mkdir()
+        (self.root / 'build/source-cache' / ('1' * 64) / 'result.json').write_text('{broken')
+        durations = parallel.previous_build_seconds(self.root)
+        self.assertEqual(durations, {'alpha': 30.0, 'gamma': 120.5, 'delta': 45})
+        ordered = parallel.longest_first(self.plan['entries'], durations)
+        self.assertEqual([r['modId'] for r in ordered], ['beta', 'epsilon', 'gamma', 'delta', 'alpha'])
+
+    def test_dispatch_submits_sources_in_longest_first_order(self):
+        for key, identity, seconds in (('a', 'epsilon', 300), ('b', 'delta', 200), ('c', 'gamma', 100),
+                                       ('d', 'beta', 50), ('e', 'alpha', 1)):
+            self.write_cached_duration(key * 64, identity, seconds)
+        submitted = []
+        real_submit = ThreadPoolExecutor.submit
+
+        def record(pool, function, *args):
+            submitted.append(args[2]['modId'])
+            return real_submit(pool, function, *args)
+
+        with patch.object(ThreadPoolExecutor, 'submit', autospec=True, side_effect=record):
+            result = parallel.build_sources(self.root, self.run)
+        self.assertEqual(submitted, ['epsilon', 'delta', 'gamma', 'beta', 'alpha'])
+        self.assertEqual(set(result), set(self.identities))
+
     def test_interrupt_during_dispatch_stops_owned_real_source_processes(self):
         for identity in ('alpha', 'beta'):
             self.control[identity] = {'seconds': 30}
