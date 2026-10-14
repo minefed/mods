@@ -82,7 +82,14 @@
     "Live Minecraft server with real MTR transit API and region data",
     "Production BlueMap web root"
   ],
-  "openReviewItems": [
-    "inventory/release-inputs.json still records Minecraft-Transit-Railway README.md hash a056039e...; README.md changed in 62586359 (public transit API documentation, not part of this change) and needs license-input review before a release plan materializes."
+  "reviewedItems": [
+    {
+      "item": "Minecraft-Transit-Railway README.md license-input hash",
+      "result": "Reviewed 9ec29731..5d30cd41: README adds a public transit data section and rewords the change-scope notice to include server integrations; the MIT distribution statement, LICENSE, LICENSE_ORIGINAL and patches/dependencies/README.md are unchanged. inventory/release-inputs.json updated to reviewedCommit 5d30cd41f85143e6f93d1c5b71c77acd45a2d516."
+    },
+    {
+      "item": "Concurrent MTR public transit API work (5a34a3ce..2e5dc099)",
+      "result": "5d30cd41 changes only mtr-live.js and its web test on top of that work; its removed lines are three replaced method signatures. The parent change rewrites only the UI paragraph of docs/MTR_BLUEMAP.md; inventory/mtr-transit-api-2026-10-14.json is unchanged."
+    }
   ]
 }
