@@ -1128,8 +1128,8 @@
       "artifact": "built",
       "reason": "Independent public MIT administrative-region code with exact source and copyright/license notice. Server provides API-backed region management; client provides address HUD. No external runtime libraries are bundled. API configuration and deployment are separate operating steps.",
       "evidenceUrls": [
-        "https://github.com/minefed/minefed-regions/blob/40c761c2b895fc3a0698cf2dac03759cd7d2e4f5/LICENSE",
-        "https://github.com/minefed/minefed-regions/commit/40c761c2b895fc3a0698cf2dac03759cd7d2e4f5"
+        "https://github.com/minefed/minefed-regions/blob/9fd4fb51bd63338dbe75b1686b3587151a9340cc/LICENSE",
+        "https://github.com/minefed/minefed-regions/commit/9fd4fb51bd63338dbe75b1686b3587151a9340cc"
       ],
       "client": true,
       "server": true
