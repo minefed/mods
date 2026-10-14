@@ -218,7 +218,7 @@ jobs:
           rebuild_args=()
           if [[ "$FORCE_RELEASE" = true ]]; then rebuild_args+=(-PrebuildSources=true); fi
           env -u GH_TOKEN -u GITHUB_TOKEN -u MINEFED_RESOURCEPACK_SSH_KEY \
-            -u GIT_SSH_COMMAND -u SSH_AUTH_SOCK ./gradlew check assemble -PsourceBuildWorkers=2 "${rebuild_args[@]}"
+            -u GIT_SSH_COMMAND -u SSH_AUTH_SOCK ./gradlew check assemble -PsourceBuildWorkers=3 "${rebuild_args[@]}"
 
       # Also after a failure, so the sources that did compile are not rebuilt.
       - name: Keep only the source cache entries of this run's inputs

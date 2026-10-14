@@ -171,10 +171,11 @@ Git blob을 기준으로 기록한다. 중첩 서브모듈이 바뀌었다면 �
 한 소스의 오류 뒤에 다른 누락이 남아 있을 수 있으므로 전체 추적 소스를 대조한 뒤
 수정된 root 커밋의 Actions에서 `materialize` 성공 여부를 확인한다.
 
-JDK 17·21과 Node.js 22를 준비한 후 CI는 `./gradlew check assemble -PsourceBuildWorkers=2`를 실행한다.
+JDK 17·21과 Node.js 22를 준비한 후 CI는 `./gradlew check assemble -PsourceBuildWorkers=3`을 실행한다.
 `build`와 같은 검사·조립 태스크를 실행하되 도구 회귀 검사와 저장소 정책 검사를 먼저 끝낸다.
 Linux에서만 실행하는 프로세스 취소 검사도 긴 소스 컴파일 전에 통과해야 한다.
-루트 Gradle은 JDK 17을 사용하고, 소스 모드는 각자의 wrapper로 최대 두 개씩 빌드한다. 두 작업자는
+루트 Gradle은 JDK 17을 사용하고, 소스 모드는 각자의 wrapper로 최대 세 개씩 빌드한다. 4코어·16 GB
+hosted runner에서 각 작업자는 Gradle JVM 하나(최대 2 GiB heap)만 쓴다. 작업자는
 서로 다른 `GRADLE_USER_HOME`을 사용해 Loom의 Minecraft 캐시 충돌을 막으며, 각 작업자 안에서는
 모드를 직렬 빌드한다. 준비·최종 무결성 검사·패키징은 기존 단일 실행 경로를 사용한다.
 병렬 모드는 이전 소스 캐시 receipt의 `buildSeconds`가 없는 소스를 먼저, 그다음 오래 걸린
