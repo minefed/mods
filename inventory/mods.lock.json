@@ -2753,7 +2753,7 @@
         "url": "https://github.com/minefed/Minecraft-Transit-Railway",
         "upstream": "https://github.com/Minecraft-Transit-Railway/Minecraft-Transit-Railway",
         "ref": "minefed-1.20.4",
-        "commit": "8df9ad29b90499fb1a01c58d30caa9974af62542",
+        "commit": "2e5dc0995160028557f0448acfa384f6dab190ee",
         "trackingBranch": "minefed-1.20.4",
         "baselineRef": "main",
         "baselineCommit": "53cdc36ebef57c42bdc8633957be1b0e923c40b5"
@@ -2781,7 +2781,8 @@
         "2026-10-05: Pin bounded dense occlusion cache regression correction on minefed-1.20.4. Minecraft 1.20.4 / Fabric Loader 0.18.4 / Java 17. Use dense dirty blocks through 16 chunks (at most 32 MiB payload) and preserve sparse storage beyond that. Historical baseline JAR hashes are unchanged.",
         "2026-10-13: minefed-1.20.4 1df66b4492e59989527cdc6a63f898709f33637e adds a primitive route display index and streams Core-sorted arrivals while preserving station limits, public-route filtering, timestamps, expiry, stable ties and Core car details. Minecraft 1.20.4 / Fabric Loader 0.18.4 / Java 17 runtime. Full 123 JUnit and 23 web checks pass; historical baseline artifact hashes are unchanged.",
         "2026-10-14: minefed-1.20.4 91b0a4d2f0bbeeb16e2035eb88d4dd1cc780b7c3 adds a separate operator registry with route/group assignments and explicit station-ID indirect interchanges. Minecraft 1.20.4 / Fabric Loader 0.18.4 / Java 17 runtime; validation and new artifact hashes are recorded in inventory/mtr-bluemap-operators-2026-10-14.json. Historical baseline JAR hashes remain unchanged; no production deployment.",
-        "2026-10-14: minefed-1.20.4 8df9ad29b90499fb1a01c58d30caa9974af62542 publishes selected public transit data through minefed-api and switches BlueMap to the same public API. Existing route/group/service/operator/interchange settings and 500 ms / 2 s / 30 s refresh periods are preserved. Minecraft 1.20.4 / Fabric Loader 0.18.4 / Java 17 runtime. Validation, API source and new JAR hashes are recorded in inventory/mtr-transit-api-2026-10-14.json. Historical baseline JAR hashes remain unchanged; no production deployment."
+        "2026-10-14: minefed-1.20.4 8df9ad29b90499fb1a01c58d30caa9974af62542 publishes selected public transit data through minefed-api and switches BlueMap to the same public API. Existing route/group/service/operator/interchange settings and 500 ms / 2 s / 30 s refresh periods are preserved. Minecraft 1.20.4 / Fabric Loader 0.18.4 / Java 17 runtime. Validation, API source and new JAR hashes are recorded in inventory/mtr-transit-api-2026-10-14.json. Historical baseline JAR hashes remain unchanged; no production deployment.",
+        "2026-10-14: Documentation-only source update to minefed-1.20.4 2e5dc0995160028557f0448acfa384f6dab190ee translates the transit API setup guide into Korean. Minecraft 1.20.4 / Fabric Loader 0.18.4 / Java 17 compatibility and the previously verified JAR hashes are unchanged."
       ],
       "compatibility": {
         "minecraft": "1.20.4",
@@ -2809,7 +2810,7 @@
         "url": "https://github.com/minefed/Minecraft-Transit-Railway",
         "upstream": "https://github.com/Minecraft-Transit-Railway/Minecraft-Transit-Railway",
         "ref": "minefed-1.20.4",
-        "commit": "8df9ad29b90499fb1a01c58d30caa9974af62542",
+        "commit": "2e5dc0995160028557f0448acfa384f6dab190ee",
         "trackingBranch": "minefed-1.20.4",
         "baselineRef": "main",
         "baselineCommit": "53cdc36ebef57c42bdc8633957be1b0e923c40b5"
@@ -2840,7 +2841,8 @@
         "2026-10-05: Pin bounded dense occlusion cache regression correction on minefed-1.20.4. Minecraft 1.20.4 / Fabric Loader 0.18.4 / Java 17. Use dense dirty blocks through 16 chunks (at most 32 MiB payload) and preserve sparse storage beyond that. Historical baseline JAR hashes are unchanged.",
         "2026-10-13: minefed-1.20.4 1df66b4492e59989527cdc6a63f898709f33637e adds a primitive route display index and streams Core-sorted arrivals while preserving station limits, public-route filtering, timestamps, expiry, stable ties and Core car details. Minecraft 1.20.4 / Fabric Loader 0.18.4 / Java 17 runtime. Full 123 JUnit and 23 web checks pass; historical baseline artifact hashes are unchanged.",
         "2026-10-14: minefed-1.20.4 91b0a4d2f0bbeeb16e2035eb88d4dd1cc780b7c3 adds a separate operator registry with route/group assignments and explicit station-ID indirect interchanges. Minecraft 1.20.4 / Fabric Loader 0.18.4 / Java 17 runtime; validation and new artifact hashes are recorded in inventory/mtr-bluemap-operators-2026-10-14.json. Historical baseline JAR hashes remain unchanged; no production deployment.",
-        "2026-10-14: minefed-1.20.4 8df9ad29b90499fb1a01c58d30caa9974af62542 publishes selected public transit data through minefed-api and switches BlueMap to the same public API. Existing route/group/service/operator/interchange settings and 500 ms / 2 s / 30 s refresh periods are preserved. Minecraft 1.20.4 / Fabric Loader 0.18.4 / Java 17 runtime. Validation, API source and new JAR hashes are recorded in inventory/mtr-transit-api-2026-10-14.json. Historical baseline JAR hashes remain unchanged; no production deployment."
+        "2026-10-14: minefed-1.20.4 8df9ad29b90499fb1a01c58d30caa9974af62542 publishes selected public transit data through minefed-api and switches BlueMap to the same public API. Existing route/group/service/operator/interchange settings and 500 ms / 2 s / 30 s refresh periods are preserved. Minecraft 1.20.4 / Fabric Loader 0.18.4 / Java 17 runtime. Validation, API source and new JAR hashes are recorded in inventory/mtr-transit-api-2026-10-14.json. Historical baseline JAR hashes remain unchanged; no production deployment.",
+        "2026-10-14: Documentation-only source update to minefed-1.20.4 2e5dc0995160028557f0448acfa384f6dab190ee translates the transit API setup guide into Korean. Minecraft 1.20.4 / Fabric Loader 0.18.4 / Java 17 compatibility and the previously verified JAR hashes are unchanged."
       ],
       "compatibility": {
         "minecraft": "1.20.4",
