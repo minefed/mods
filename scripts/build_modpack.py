@@ -596,6 +596,8 @@ def _build_source(root: Path, run: str, identity: str) -> None:
     # Keep resource generation and compilation in the same critical section.
     with gradle_cache_lock(root):
         check_tool_fingerprint(root, plan, recipe, tool_inputs)
+        # Excludes the lock wait; the parallel dispatcher orders sources by this.
+        started = time.monotonic()
         for number, phase in enumerate(phases, 1):
             invocation = command + common + phase
             commands.append(invocation)
@@ -607,6 +609,7 @@ def _build_source(root: Path, run: str, identity: str) -> None:
                 tail = (output / f"gradle-{number}.log").read_text(encoding='utf-8', errors='replace').splitlines()[-65:]
                 print('\n'.join(tail), file=sys.stderr)
                 raise mods.ModError(f"Source build failed: {identity}; no binary fallback. Full log: {output / f'gradle-{number}.log'}")
+        build_seconds = round(time.monotonic() - started, 1)
     artifact, metadata = select_runtime_jar(source, recipe)
     destination = output / artifact.name
     shutil.copyfile(artifact, destination)
@@ -621,13 +624,13 @@ def _build_source(root: Path, run: str, identity: str) -> None:
                         "artifactPath": destination.relative_to(root).as_posix(), "sha256": digest, "size": size,
                         "metadata": metadata, "java": recipe["java"], "tasks": phases, "args": recipe.get("args", []),
                         "recipeSha256": canonical_digest(recipe), "cacheKey": cache_key, "cacheHit": False,
-                        "buildTools": tool_inputs}
+                        "buildTools": tool_inputs, "buildSeconds": build_seconds}
     write_json(receipt, result_record)
     cache.mkdir(parents=True, exist_ok=True)
     cache_artifact = cache / destination.name
     shutil.copyfile(destination, cache_artifact)
     write_json(cached_record, {**result_record, 'artifactPath': cache_artifact.relative_to(root).as_posix()})
-    print(f"Built {identity} {metadata['version']}: {artifact.name}", flush=True)
+    print(f"Built {identity} {metadata['version']} in {build_seconds:.0f}s: {artifact.name}", flush=True)
 
 
 def collect_entries(root: Path, run: str, manifest: dict, plan: dict) -> tuple[list[dict], list[dict]]:
