@@ -4604,8 +4604,8 @@
     },
     {
       "fileName": "minefed-regions-1.0.0.jar",
-      "sha256": "18df2879fcdc89c0daae342d034a42fd186870d128ab4971bba160b9db731291",
-      "size": 83767,
+      "sha256": "6e786090985c7153d9d60a562b626f967360b8fc9ace91f0273a218b76baa3c6",
+      "size": 87561,
       "modId": "minefed-regions",
       "version": "1.0.0",
       "environment": "*",
@@ -4615,7 +4615,7 @@
         "url": "https://github.com/minefed/minefed-regions",
         "upstream": "https://github.com/minefed/minefed-regions",
         "ref": "minefed-1.20.4",
-        "commit": "9fd4fb51bd63338dbe75b1686b3587151a9340cc",
+        "commit": "535fa27a81b12a1468669ef68e43c3e10d4b8563",
         "trackingBranch": "minefed-1.20.4",
         "baselineRef": "minefed-1.20.4",
         "baselineCommit": "40c761c2b895fc3a0698cf2dac03759cd7d2e4f5"
@@ -4624,7 +4624,7 @@
         "path": "artifacts/local/minefed-regions-1.0.0.jar",
         "redistribution": "allowed",
         "url": null,
-        "sha512": "5c2856abf64c91a22f1673817e54d3423ff873357d1b95e46cd93d0f143b582d947deb5a51e032d48a6d8a7b43c5ca2d41690251af68587b3458a62b50186b8f",
+        "sha512": "d3cf2aab032e9ed289a2f0b89eaaa24a0cb48762a0d3df25fae7b16feb17d395951427fdc0ecac538404397d977ecf8ef8bf330dc0a007d86915f0c72409b24a",
         "publishedHashMatch": false,
         "verificationAlgorithm": null,
         "publishedRelease": null
@@ -4633,13 +4633,14 @@
       "exclusionReason": null,
       "capturedServerBaseline": false,
       "license": "MIT",
-      "licenseUrl": "https://github.com/minefed/minefed-regions/blob/9fd4fb51bd63338dbe75b1686b3587151a9340cc/LICENSE",
-      "licenseNoticesPath": "inventory/notices/minefed-regions-18df2879fcdc",
+      "licenseUrl": "https://github.com/minefed/minefed-regions/blob/535fa27a81b12a1468669ef68e43c3e10d4b8563/LICENSE",
+      "licenseNoticesPath": "inventory/notices/minefed-regions-6e786090985c",
       "notes": [
         "Added 2026-10-13: independent public MIT source and local build, not an observed operational JAR. No operating server files or API deployment are changed by this registration.",
         "Server and client administrative-region management, address HUD and optional BlueMap integration. Empty initial data; the authoritative Minefed API must be configured separately.",
         "Minecraft 1.20.4 / Fabric Loader >=0.18.4 / Java >=17; integration and tracking branch minefed-1.20.4. No bundled external runtime libraries or assets.",
-        "2026-10-14: Add console/RCON GeoJSON validate/create/boundary imports with bounded files and API bodies, structural validation, expected-revision conflict checks and asynchronous save confirmation. Source-built local JAR for Minecraft 1.20.4 / Fabric Loader >=0.18.4 / Java >=17; no operational server or API changes."
+        "2026-10-14: Add console/RCON GeoJSON validate/create/boundary imports with bounded files and API bodies, structural validation, expected-revision conflict checks and asynchronous save confirmation. Source-built local JAR for Minecraft 1.20.4 / Fabric Loader >=0.18.4 / Java >=17; no operational server or API changes.",
+        "2026-10-14: minefed-1.20.4 535fa27a81b12a1468669ef68e43c3e10d4b8563 draws region boundaries with a white casing under a bold line, keeps parent outlines while subdivisions appear on zoom, lets map clicks pass through region fills and integrates labels, search, addresses and saved places with the redesigned Minefed BlueMap place panel (BlueMap 5.3-minefed.3). Source-built local JAR for Minecraft 1.20.4 / Fabric Loader >=0.18.4 / Java >=17; no operational server or API changes."
       ],
       "compatibility": {
         "minecraft": "=1.20.4",

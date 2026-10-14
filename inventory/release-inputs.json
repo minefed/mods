@@ -918,10 +918,10 @@
     {
       "path": "minefed-regions",
       "kind": "mod",
-      "reviewedCommit": "9fd4fb51bd63338dbe75b1686b3587151a9340cc",
+      "reviewedCommit": "535fa27a81b12a1468669ef68e43c3e10d4b8563",
       "licenseFiles": {
         "LICENSE": "62d5823d76f215f93ee2f62db066161d21e0a1135faa9ac15a5e247c8cc1211d",
-        "README.md": "c623be551b7edb593ccd01ce461936ee5c82a44f48b64c6c436abea6a13099d4"
+        "README.md": "16d1829be6f1e0bc6b5a1c4373b43b4d4841ffc12510a6f1781b2c335c71cc71"
       },
       "nestedGitlinks": {}
     }

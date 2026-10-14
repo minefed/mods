@@ -1,0 +1,19 @@
+{
+  "modId": "minefed-regions",
+  "version": "1.0.0",
+  "sha256": "6e786090985c7153d9d60a562b626f967360b8fc9ace91f0273a218b76baa3c6",
+  "size": 87561,
+  "source": {
+    "path": "minefed-regions",
+    "url": "https://github.com/minefed/minefed-regions",
+    "upstream": "https://github.com/minefed/minefed-regions",
+    "ref": "minefed-1.20.4",
+    "commit": "535fa27a81b12a1468669ef68e43c3e10d4b8563",
+    "trackingBranch": "minefed-1.20.4",
+    "baselineRef": "minefed-1.20.4",
+    "baselineCommit": "40c761c2b895fc3a0698cf2dac03759cd7d2e4f5"
+  },
+  "license": "MIT",
+  "licenseSha256": "381896c16741de5d7dcfd9234f71d73e99e05e65e482758c3cd239334dc7694e",
+  "note": "License extracted unchanged from the newly built JAR. Independent public MIT source; no external runtime libraries/assets bundled. Map boundary and BlueMap place-panel update, not an operational deployment or part of the 2026-09-06 captured server baseline."
+}

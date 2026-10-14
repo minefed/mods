@@ -1545,21 +1545,21 @@
     {
       "modId": "minefed-regions",
       "fileName": "minefed-regions-1.0.0.jar",
-      "sha256": "18df2879fcdc89c0daae342d034a42fd186870d128ab4971bba160b9db731291",
+      "sha256": "6e786090985c7153d9d60a562b626f967360b8fc9ace91f0273a218b76baa3c6",
       "reviewedAt": "2026-10-14",
       "deployedMetadataLicense": null,
       "embeddedLicenseFiles": [
         "LICENSE"
       ],
       "license": "MIT",
-      "licenseUrl": "https://github.com/minefed/minefed-regions/blob/9fd4fb51bd63338dbe75b1686b3587151a9340cc/LICENSE",
+      "licenseUrl": "https://github.com/minefed/minefed-regions/blob/535fa27a81b12a1468669ef68e43c3e10d4b8563/LICENSE",
       "redistributionFinding": "Independently authored MIT source and binary may be redistributed with the copyright and license notice.",
       "notes": "New source-built addition, not a captured operational JAR. No Minecraft, Fabric API, BlueMap, or other external runtime JARs/assets are bundled.",
       "sourceRef": "minefed-1.20.4",
-      "sourceCommit": "9fd4fb51bd63338dbe75b1686b3587151a9340cc",
+      "sourceCommit": "535fa27a81b12a1468669ef68e43c3e10d4b8563",
       "evidenceUrls": [
-        "https://github.com/minefed/minefed-regions/blob/9fd4fb51bd63338dbe75b1686b3587151a9340cc/LICENSE",
-        "https://github.com/minefed/minefed-regions/commit/9fd4fb51bd63338dbe75b1686b3587151a9340cc"
+        "https://github.com/minefed/minefed-regions/blob/535fa27a81b12a1468669ef68e43c3e10d4b8563/LICENSE",
+        "https://github.com/minefed/minefed-regions/commit/535fa27a81b12a1468669ef68e43c3e10d4b8563"
       ]
     }
   ]
