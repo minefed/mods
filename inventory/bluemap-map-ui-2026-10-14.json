@@ -1,0 +1,88 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-14",
+  "productionDeployed": false,
+  "runtimeGameValidated": false,
+  "summary": "Google-Maps-like BlueMap web UI with a window.bluemap.ui add-on API, and its minefed-regions and MTR integrations.",
+  "sources": [
+    {
+      "path": "BlueMap",
+      "url": "https://github.com/minefed/BlueMap",
+      "trackingBranch": "minefed-1.20.4",
+      "commit": "375e4e731e8e76c49d5ce3b9fdd3d7d259cb5887",
+      "previousCommit": "8731665b54b8089e67edd11861fbedd4df90a05a",
+      "remotelyVerified": true
+    },
+    {
+      "path": "minefed-regions",
+      "url": "https://github.com/minefed/minefed-regions",
+      "trackingBranch": "minefed-1.20.4",
+      "commit": "535fa27a81b12a1468669ef68e43c3e10d4b8563",
+      "previousCommit": "9fd4fb51bd63338dbe75b1686b3587151a9340cc",
+      "remotelyVerified": true
+    },
+    {
+      "path": "Minecraft-Transit-Railway",
+      "url": "https://github.com/minefed/Minecraft-Transit-Railway",
+      "trackingBranch": "minefed-1.20.4",
+      "commit": "5d30cd41f85143e6f93d1c5b71c77acd45a2d516",
+      "previousCommit": "2e5dc0995160028557f0448acfa384f6dab190ee",
+      "remotelyVerified": true
+    }
+  ],
+  "compatibility": {
+    "minecraft": "1.20.4",
+    "loader": "Fabric",
+    "fabricLoader": "0.18.4",
+    "runtimeJava": 17,
+    "buildJava": 21,
+    "bluemap": "5.3-minefed.3"
+  },
+  "artifacts": [
+    {
+      "fileName": "BlueMap-5.3-minefed.3-fabric-1.20.jar",
+      "localOnly": true,
+      "sha256": "7da8c9b4b2ecf784b8cfa5dc27ff4295f3c46b4654ef3598cd9b93e70bf6384e",
+      "sha512": "36dacd8ed74ccbe47f6207ddbcc081fb123a3b55bf1c2ede73ea98f979fade1e43b3009774438090b9bbebd2b076b3ef088b1d3c5724d0b54a4dad80a8db517f",
+      "size": 4858955,
+      "build": "remappedShadowJar -PreleaseVersion=5.3-minefed.3 with JDK 21; the webapp bundle was built with `vite build` from the same clean commit at the real checkout path and packaged with -x :BlueMapCommon:buildWebapp, because Vite misresolves index.html through the local ASCII junction used for the JDK. CI builds are unaffected."
+    },
+    {
+      "fileName": "minefed-regions-1.0.0.jar",
+      "sha256": "6e786090985c7153d9d60a562b626f967360b8fc9ace91f0273a218b76baa3c6",
+      "size": 87561,
+      "recorded": "inventory/mods.lock.json"
+    }
+  ],
+  "validation": {
+    "bluemapWebapp": {
+      "viteBuild": "pass",
+      "eslintChangedFiles": "pass",
+      "preexistingLintErrorsElsewhere": 2,
+      "browser": "desktop and phone layouts, light/dark themes, search, chips, place panel, POI label click, location card, layer menu, menu drawer, share dialog checked against BlueMap's public demo map through the Vite dev proxy"
+    },
+    "minefedRegions": {
+      "gradleTest": "pass (RegionMapDataTest 7/7 and all other suites; skips unchanged)",
+      "nodeTest": {
+        "tests": 10,
+        "failures": 0
+      },
+      "browser": "synthetic region markers: casings under lines, parent outlines kept, deepest labels, label click opens region panel with highlight, address provider"
+    },
+    "mtr": {
+      "nodeTest": {
+        "mtr-live.test.cjs": 41,
+        "mtr-live-three.test.cjs": 4,
+        "failures": 0
+      },
+      "browser": "synthetic stations and routes: chips, station panel with badges, operators, arrivals, routes and region address"
+    }
+  },
+  "notValidated": [
+    "Live Minecraft server with real MTR transit API and region data",
+    "Production BlueMap web root"
+  ],
+  "openReviewItems": [
+    "inventory/release-inputs.json still records Minecraft-Transit-Railway README.md hash a056039e...; README.md changed in 62586359 (public transit API documentation, not part of this change) and needs license-input review before a release plan materializes."
+  ]
+}
