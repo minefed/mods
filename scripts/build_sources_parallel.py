@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Run audited source CLIs in two slots with separate, disposable Gradle homes."""
+"""Run audited source CLIs in two or three slots with separate, disposable Gradle homes."""
 
 import argparse
 from concurrent.futures import FIRST_COMPLETED, ThreadPoolExecutor, wait
@@ -17,6 +17,9 @@ import build_modpack as builder
 import mods
 
 ROOT = Path(__file__).resolve().parents[1]
+# Each worker runs one Gradle JVM (up to 2 GiB heap) with its own caches; three
+# fit the 4-core, 16 GB hosted runner. More would compete for memory and disk.
+WORKER_COUNTS = (2, 3)
 
 
 def require_plain_gradle_home(root):
@@ -154,8 +157,8 @@ def print_timings(work, timings):
 
 
 def build_sources(root, run, workers=2):
-    if type(workers) is not int or workers != 2:
-        raise mods.ModError('This optional dispatcher supports exactly two workers; '
+    if type(workers) is not int or workers not in WORKER_COUNTS:
+        raise mods.ModError('This optional dispatcher supports two or three workers; '
                             'use -PsourceBuildWorkers=1 for the default serial build')
     root = Path(root).resolve()
     manifest, plan = builder.load_plan(root)
@@ -225,7 +228,7 @@ def build_sources(root, run, workers=2):
 def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--run', required=True)
-    parser.add_argument('--workers', type=int, choices=[2], default=2)
+    parser.add_argument('--workers', type=int, choices=WORKER_COUNTS, default=2)
     args = parser.parse_args(argv)
     def interrupted(signum, frame):
         raise KeyboardInterrupt

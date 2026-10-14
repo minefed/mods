@@ -113,10 +113,17 @@ class ParallelSourceTests(unittest.TestCase):
         return [json.loads(path.read_text()) for path in (self.root / 'build/events').glob('*.json')]
 
     def test_two_real_children_overlap_with_isolated_homes_and_preserved_environment(self):
-        self.control['alpha']['waitFor'] = ['beta']
-        self.control['beta']['waitFor'] = ['alpha']
+        self.assert_children_overlap(['alpha', 'beta'])
+
+    def test_three_real_children_overlap_with_isolated_homes_and_preserved_environment(self):
+        self.assert_children_overlap(['alpha', 'beta', 'gamma'])
+
+    def assert_children_overlap(self, first):
+        for identity in first:
+            self.control[identity]['waitFor'] = [other for other in first if other != identity]
         self.write_control()
-        result = parallel.build_sources(self.root, self.run)
+        workers = len(first)
+        result = parallel.build_sources(self.root, self.run, workers)
         self.assertEqual(set(result), set(self.identities))
         events = self.events()
         self.assertEqual(len(events), len(self.identities))
@@ -125,9 +132,9 @@ class ParallelSourceTests(unittest.TestCase):
         for _, change in timeline:
             active += change
             maximum = max(maximum, active)
-        self.assertEqual(maximum, 2)
+        self.assertEqual(maximum, workers)
         homes = {e['home'] for e in events}
-        self.assertEqual(homes, {str(self.root / 'build/modpack-work' / self.run / 'gradle-homes' / ('worker-' + str(i))) for i in range(2)})
+        self.assertEqual(homes, {str(self.root / 'build/modpack-work' / self.run / 'gradle-homes' / ('worker-' + str(i))) for i in range(workers)})
         for home in homes:
             ordered = sorted([e for e in events if e['home'] == home], key=lambda e: e['start'])
             for previous, following in zip(ordered, ordered[1:]):
@@ -184,7 +191,7 @@ class ParallelSourceTests(unittest.TestCase):
         builder.write_json(self.root / builder.RECIPES, self.plan)
         with self.assertRaisesRegex(builder.mods.ModError, 'changed during this run'):
             parallel.build_sources(self.root, self.run)
-        for workers in (0, 1, 3, True):
+        for workers in (0, 1, 4, 2.0, True):
             with self.subTest(workers=workers), self.assertRaises(builder.mods.ModError):
                 parallel.build_sources(self.root, self.run, workers)
         self.assertFalse(self.events())

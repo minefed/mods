@@ -16,8 +16,8 @@ def pythonExecutable = providers.gradleProperty('pythonExecutable')
         .orElse(providers.environmentVariable('MINEFED_PYTHON')).getOrElse('python')
 
 def sourceBuildWorkers = providers.gradleProperty('sourceBuildWorkers').getOrElse('1')
-if (!(sourceBuildWorkers in ['1', '2'])) {
-    throw new GradleException('sourceBuildWorkers must be 1 or 2')
+if (!(sourceBuildWorkers in ['1', '2', '3'])) {
+    throw new GradleException('sourceBuildWorkers must be 1, 2 or 3')
 }
 def runId = new Date().format('yyyyMMdd-HHmmss', TimeZone.getTimeZone('UTC')) + '-' + UUID.randomUUID().toString().take(8)
 def runner = { List<String> arguments ->
@@ -48,12 +48,12 @@ recipes.entries.findAll { it.mode == 'source' }.each { recipe ->
 
 def parallelSources = tasks.register('buildSourcesParallel', Exec) {
     group = 'mod sources'
-    description = 'Build source mods with two workers using separate Gradle caches.'
+    description = 'Build source mods with two or three workers using separate Gradle caches.'
     dependsOn prepare
     mustRunAfter sourceTasks
     workingDir rootDir
     commandLine pythonExecutable, file('scripts/build_sources_parallel.py').absolutePath,
-            '--run', runId, '--workers', '2'
+            '--run', runId, '--workers', sourceBuildWorkers == '1' ? '2' : sourceBuildWorkers
 }
 
 // PFM is normally source-built, so prepareModpack's binary selection does not
@@ -92,7 +92,7 @@ def resourceAudit = tasks.register('verifyModpackResources', Exec) {
     group = 'verification'
     description = 'Reject missing generated resource families and invalid runtime JSON before packaging.'
     dependsOn prepare
-    dependsOn sourceBuildWorkers == '2' ? parallelSources : sourceTasks
+    dependsOn sourceBuildWorkers == '1' ? sourceTasks : parallelSources
     workingDir rootDir
     commandLine pythonExecutable, 'scripts/audit_pack_resources.py', '--run', runId
 }
@@ -101,7 +101,7 @@ tasks.register('modpack', Exec) {
     group = 'build'
     description = 'Build source mods and package them with pinned binary-only JARs.'
     dependsOn prepare
-    dependsOn sourceBuildWorkers == '2' ? parallelSources : sourceTasks
+    dependsOn sourceBuildWorkers == '1' ? sourceTasks : parallelSources
     dependsOn resourceAudit
     workingDir rootDir
     commandLine runner(['assemble', '--run', runId])
