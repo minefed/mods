@@ -601,7 +601,7 @@
     {
       "modId": "mtr",
       "mode": "source",
-      "reason": "Build Fabric 1.20.4 with cached 3D rails and the optional BlueMap live vehicles, routes and stations bridge, pinned Loader 0.18.4, embedded website and Java 17 bytecode; verify live-map behavior, rail geometry and the remapped JAR's matrix bridge/Mixin compatibility, preserving license notices.",
+      "reason": "Build Fabric 1.20.4 with cached 3D rails, public transit publication through minefed-api and the optional BlueMap API consumer, pinned Loader 0.18.4, embedded website and Java 17 bytecode; verify publication transport, live-map behavior, rail geometry and the remapped JAR matrix bridge/Mixin compatibility, preserving license notices.",
       "sourcePath": "Minecraft-Transit-Railway",
       "java": 21,
       "tasks": [

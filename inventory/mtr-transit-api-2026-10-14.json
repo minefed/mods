@@ -1,0 +1,156 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-14",
+  "productionDeployed": false,
+  "runtimeGameValidated": false,
+  "source": {
+    "path": "Minecraft-Transit-Railway",
+    "url": "https://github.com/minefed/Minecraft-Transit-Railway",
+    "trackingBranch": "minefed-1.20.4",
+    "commit": "8df9ad29b90499fb1a01c58d30caa9974af62542",
+    "previousCommit": "91b0a4d2f0bbeeb16e2035eb88d4dd1cc780b7c3",
+    "remotelyVerified": true
+  },
+  "apiSource": {
+    "url": "https://github.com/minefed/minefed-api",
+    "trackingBranch": "main",
+    "commit": "3ff5c9c03266b92888596cd1b48ebed09ebd97be",
+    "remotelyVerified": true
+  },
+  "compatibility": {
+    "minecraft": "1.20.4",
+    "loader": "Fabric",
+    "fabricLoader": "0.18.4",
+    "runtimeJava": 17,
+    "buildJava": 21,
+    "mtr": "4.0.5",
+    "bluemap": "5.3-minefed.1"
+  },
+  "configuration": {
+    "file": "config/mtr/transit-api.json",
+    "privateIngestion": "PUT /v1/transit/{dataset}/snapshot with server environment token",
+    "publicReads": [
+      "GET /v1/transit/{dataset}/worlds",
+      "GET /v1/transit/{dataset}/worlds/{id}/vehicles",
+      "GET /v1/transit/{dataset}/worlds/{id}/infrastructure",
+      "GET /v1/transit/{dataset}/catalog"
+    ],
+    "existingPublicRoutesFile": "config/mtr/bluemap-public-routes.json",
+    "existingSettingsPreserved": true,
+    "privateRouteCatalogNotExported": true,
+    "defaultEnabled": false,
+    "blueMapBootstrapSchema": 2,
+    "blueMapOptional": true,
+    "vehicleAndBrowserPollMs": 500,
+    "arrivalsAndPolicyMs": 2000,
+    "infrastructureAndCatalogMs": 30000,
+    "browserInterpolationMs": 650,
+    "staleAfterMs": 6000,
+    "documentation": "Minecraft-Transit-Railway/docs/transit-api.md"
+  },
+  "validation": {
+    "test": {
+      "tests": 140,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "verifyLightTypeCompatibility": {
+      "tests": 3,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "verifyMixinCompatibility": {
+      "tests": 8,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "verifyRailRendering": {
+      "tests": 8,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "webTestsIncludingRealThree": {
+      "tests": 44,
+      "failures": 0,
+      "skipped": 0,
+      "command": "node --test tools/bluemap/mtr-live.test.cjs tools/bluemap/mtr-live-three.test.cjs",
+      "verifiedWebCommit": "55d9613d31a221563b2a94eaa2f7ff564f994c4d"
+    },
+    "api": {
+      "goTestAll": "passed; existing PostgreSQL integration skipped without AUTH_TEST_DATABASE_URL",
+      "goVetAll": "passed",
+      "deploymentOfflineTests": 70,
+      "composeConfiguration": "passed without deployment"
+    },
+    "generatedJavaToGoContract": {
+      "test": "TestMTRGeneratedContract",
+      "result": "passed: actual Core public snapshot authenticated PUT and public GET preserve every field",
+      "fixtureSha256": "915ac93096a0cac3f2f3ca630dbcfc745e8956527b8c214a3c06b2415a0b4314"
+    },
+    "independentReview": "Publication filtering, concurrency, timeouts, stale data, cache bounds and documentation reviewed; findings fixed with regression coverage.",
+    "jarCrcVerified": true,
+    "jarWebSourceMatches": true,
+    "transitClassMajorVersion": 61,
+    "buildTasks": [
+      ":fabric:verifyRailRendering",
+      ":fabric:verifyBlueMapLiveWeb",
+      ":fabric:verifyMixinCompatibility",
+      ":fabric:test",
+      ":fabric:verifyLightTypeCompatibility"
+    ],
+    "buildInvocation": "Gradle 8.14 through repository build_modpack toolchain and source/cache locks; --offline --max-workers=1 --configure-on-demand -PminecraftVersion=1.20.4 -PexcludeAssets=false; JDK 21 compiler and Java 17 runtime tests",
+    "localBuildLog": "build/mtr-transit-api/verification/gradle-final.log"
+  },
+  "licenses": {
+    "source": "MIT",
+    "binary": "MIT; bundled dependencies retain their original notices",
+    "licenseUrl": "https://github.com/minefed/Minecraft-Transit-Railway/blob/8df9ad29b90499fb1a01c58d30caa9974af62542/LICENSE",
+    "noticesInJar": [
+      "LICENSE",
+      "META-INF/licenses/mtr/LICENSE",
+      "META-INF/licenses/mtr/LICENSE_ORIGINAL",
+      "META-INF/licenses/website/3rdpartylicenses.txt",
+      "org/mtr/libraries/okhttp3/internal/publicsuffix/NOTICE"
+    ],
+    "sourceEvidenceUnchanged": true,
+    "newThirdPartyAssetsIncluded": false
+  },
+  "artifacts": [
+    {
+      "path": "build/mtr-transit-api/deliverable/fabric-4.0.5.jar",
+      "sha256": "6b599f89599dc50af181614afb15d3f002ff85b22ba0b18b4655e15816ab6ffe",
+      "size": 83259050
+    },
+    {
+      "path": "build/mtr-transit-api/deliverable/LICENSE-MTR-ORIGINAL.txt",
+      "sha256": "e403d62df2ac54f62589de4bb7ce7db54ddbb593b0e1bf19020df972abd1c509",
+      "size": 1089
+    },
+    {
+      "path": "build/mtr-transit-api/deliverable/LICENSE-MTR.txt",
+      "sha256": "a0a2b036de6f39f3da9f8a817f2f9c0cd2f0dff356dadc3f6aa1325feeff4892",
+      "size": 1089
+    },
+    {
+      "path": "build/mtr-transit-api/deliverable/transit-api.example.json",
+      "sha256": "3092728ee673e53cd010849ba931444c237d3ce760a5f1bc849e91120a7c087e",
+      "size": 185
+    },
+    {
+      "path": "build/mtr-transit-api/deliverable/transit-api.md",
+      "sha256": "9e7116f9cde9b3efde70ad932faaf301fd24e7ab83c162c6a7adb2e2ac895e10",
+      "size": 5625
+    }
+  ],
+  "limitations": [
+    "No production server files, uploads, restarts or live-world configuration were changed.",
+    "Enable the API HTTP listener and public HTTPS route, then configure the MTR API base and server token environment and deploy the new JAR.",
+    "MTR and API host clocks must be synchronized; source future skew is limited to 5 seconds.",
+    "This migration requires the new Java publisher and schema-2 web script together. Existing public-route configuration remains unchanged.",
+    "No live Minecraft runtime or production browser validation was performed in this change."
+  ]
+}
