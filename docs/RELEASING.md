@@ -231,7 +231,9 @@ Gradle 및 플러그인 다운로드로 수 시간이 걸릴 수 있다. job 간
 디스크 확보는 이 임시 GitHub hosted Ubuntu 이미지에만 적용한다. 공식 이미지 설치 경로인
 `/usr/local/lib/android`, `/usr/share/dotnet`, `/usr/local/.ghcup`,
 `/opt/hostedtoolcache/CodeQL`이 실제로 같은 절대 경로인지 확인한 뒤 사용하지 않는 SDK를 지운다.
-두 작업자의 독립 캐시 공간을 위해 소스 checkout 전에 55 GiB 이상 남아 있는지 확인한다.
+삭제는 소스 materialize와 동시에 백그라운드에서 진행하고, 바이너리 입력 복원 전에 끝날 때까지
+기다려 실패 여부를 확인한다. 작업자별 독립 캐시 공간을 위해 그 시점의 여유 공간에 checkout한
+작업 공간 크기를 더해 55 GiB 이상인지 확인한다. 즉 소스 checkout 전 기준과 같은 하한이다.
 이 값은 초기 하한이며 전체 빌드 용량을
 보증하지 않는다. 디스크나 시간 한도를 넘으면 runner 용량·빌드 구성을 검토해야 한다.
 

@@ -93,7 +93,7 @@ jobs:
           if [[ "$FORCE_RELEASE" = true ]]; then force_args+=(--force); fi
           python scripts/release_control.py plan --output build/release-plan.json "${force_args[@]}"
 
-      - name: Reserve disk space on the disposable hosted runner
+      - name: Start freeing disk space on the disposable hosted runner
         if: steps.plan.outputs.changed == 'true'
         env:
           RELEASE_RUNNER_ENVIRONMENT: ${{ runner.environment }}
@@ -105,18 +105,22 @@ jobs:
           test "$RUNNER_TOOL_CACHE" = /opt/hostedtoolcache
           # Paths come from actions/runner-images Ubuntu installers. Never run
           # this cleanup on a developer machine or an arbitrary runner path.
-          for sdk in /usr/local/lib/android /usr/share/dotnet /usr/local/.ghcup /opt/hostedtoolcache/CodeQL; do
-            if [[ -e "$sdk" ]]; then
-              test "$(realpath -- "$sdk")" = "$sdk"
-              sudo rm -rf --one-file-system -- "$sdk"
-            fi
-          done
-          df -h "$GITHUB_WORKSPACE"
-          available=$(df --output=avail -B1 "$GITHUB_WORKSPACE" | tail -n 1 | tr -d ' ')
-          if (( available < 55 * 1024 * 1024 * 1024 )); then
-            echo 'At least 55 GiB free space is required before cloning and compiling the source mods.' >&2
-            exit 1
-          fi
+          # Deletion overlaps source cloning; a later step waits for its status.
+          cleanup_dir="$RUNNER_TEMP/minefed-disk-cleanup"
+          install -d -m 700 "$cleanup_dir"
+          (
+            status=0
+            bash -euo pipefail -c '
+              for sdk in /usr/local/lib/android /usr/share/dotnet /usr/local/.ghcup /opt/hostedtoolcache/CodeQL; do
+                if [[ -e "$sdk" ]]; then
+                  test "$(realpath -- "$sdk")" = "$sdk"
+                  sudo rm -rf --one-file-system -- "$sdk"
+                fi
+              done
+            ' || status=$?
+            echo "$status" > "$cleanup_dir/status.part"
+            mv -- "$cleanup_dir/status.part" "$cleanup_dir/status"
+          ) > "$cleanup_dir/log" 2>&1 < /dev/null &
 
       - name: Materialize exact source commits and the release input patch
         if: steps.plan.outputs.changed == 'true'
@@ -138,6 +142,25 @@ jobs:
           if [[ -d "$access_dir" ]]; then rmdir -- "$access_dir"; fi
           test ! -e "$access_dir/key"
           git config --global --unset-all url."ssh://git@github.com/minefed/resourcepack".insteadOf || test "$?" -eq 5
+
+      - name: Wait for the disk cleanup before restoring inputs and compiling
+        if: steps.plan.outputs.changed == 'true'
+        timeout-minutes: 15
+        run: |
+          set -euo pipefail
+          cleanup_dir="$RUNNER_TEMP/minefed-disk-cleanup"
+          until [[ -f "$cleanup_dir/status" ]]; do sleep 2; done
+          cat -- "$cleanup_dir/log"
+          test "$(cat -- "$cleanup_dir/status")" = 0
+          df -h "$GITHUB_WORKSPACE"
+          # Count the cloned sources as free space so the threshold keeps
+          # meaning "55 GiB before cloning and compiling".
+          available=$(df --output=avail -B1 "$GITHUB_WORKSPACE" | tail -n 1 | tr -d ' ')
+          cloned=$(du -sB1 -- "$GITHUB_WORKSPACE" | cut -f1)
+          if (( available + cloned < 55 * 1024 * 1024 * 1024 )); then
+            echo 'At least 55 GiB free space is required before cloning and compiling the source mods.' >&2
+            exit 1
+          fi
 
       - name: Restore approved binary build inputs from the public release
         if: steps.plan.outputs.changed == 'true'
