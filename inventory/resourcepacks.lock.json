@@ -6,7 +6,7 @@
       "id": "minefed",
       "sourcePath": "resourcepack",
       "sourceDir": "resource_pack",
-      "commit": "ddbec63dcbbeecafe9f7044cdcd0f6dc935ec005",
+      "commit": "0565d837934f0bffb1f21f7cf9b58dece5b8fbef",
       "ref": "main",
       "url": "https://github.com/minefed/resourcepack",
       "sourceVisibility": "private",
@@ -36,7 +36,8 @@
         "Existing MTR signs, sounds and six MTR 4.0.5 vehicle registrations are retained. Design references and server speed-limit merge fragments are excluded.",
         "File validation and packaging do not establish Minecraft client/server runtime validation.",
         "2026-10-12: Share byte-identical atlas and trailer-label texture identifiers across the two Minefed vehicle families. Minecraft 1.20.4 / MTR 4.0.5; main commit cb1f0cf1ed0ff9ee7ce9d2d3be56a52ba5b57914 is remotely available. All PNG bytes, geometry, UVs and authoring files are unchanged; six vehicle registrations and 26 model references passed semantic and asset checks. Shared-texture lifetime probe passed 18 assertions; no live game or OpenGL visual test was run.",
-        "2026-10-12 phase two: Compact 11 runtime BBMODELs to the actual MTR 4.0.5 top-level reader fields while preserving all nested values and exact baseline Git authoring blobs outside resource_pack. main commit ddbec63dcbbeecafe9f7044cdcd0f6dc935ec005 is remotely available. All PNGs and six registrations remain unchanged; 26 model/PNG pairs, 11 actual-parser traces, 303 other tracked inputs, existing validators, fresh checkouts/LF fixture and mixed-export capture passed. Runtime bytes 7547160 to 2040498; no live game or actual memory/network measurement. Private authoring originals remain excluded from public packaging; provenance is in inventory/phase2-optimizations-2026-10-12.json."
+        "2026-10-12 phase two: Compact 11 runtime BBMODELs to the actual MTR 4.0.5 top-level reader fields while preserving all nested values and exact baseline Git authoring blobs outside resource_pack. main commit ddbec63dcbbeecafe9f7044cdcd0f6dc935ec005 is remotely available. All PNGs and six registrations remain unchanged; 26 model/PNG pairs, 11 actual-parser traces, 303 other tracked inputs, existing validators, fresh checkouts/LF fixture and mixed-export capture passed. Runtime bytes 7547160 to 2040498; no live game or actual memory/network measurement. Private authoring originals remain excluded from public packaging; provenance is in inventory/phase2-optimizations-2026-10-12.json.",
+        "2026-10-14: Pin pantograph commits 055b590..0565d837934f0bffb1f21f7cf9b58dece5b8fbef on main (remotely available). Adds one raised single-arm pantograph model, PNG and EXTERIOR/NORMAL part setting to each Mistilteinn and A1000 trailer, sized for the MSD default catenary height; cabs are unchanged and the six vehicle registrations keep their behavior. Minecraft 1.20.4 / MTR 4.0.5. Compact contract check passed (13 preserved authoring models, 28 model/PNG pixel checks, 370 other tracked files unchanged; runtime BBMODEL bytes 7767254 to 2121734); both vehicle validators and the pantograph validator passed. No live game or MSD catenary contact test was run; new images are Minefed-owned assets under the existing game-files-only authorization."
       ]
     }
   ],
