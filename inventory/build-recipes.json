@@ -678,8 +678,8 @@
       "java": 17,
       "tasks": [
         ":remapJar",
-          ":verifyFrameGuiSync",
-          ":verifyMachineInventorySnapshots"
+        ":verifyFrameGuiSync",
+        ":verifyMachineInventorySnapshots"
       ],
       "args": [],
       "artifactGlobs": [

@@ -23,7 +23,7 @@
       "url": "https://github.com/minefed/resourcepack",
       "upstream": "https://github.com/minefed/resourcepack",
       "ref": "main",
-      "commit": "ddbec63dcbbeecafe9f7044cdcd0f6dc935ec005",
+      "commit": "0565d837934f0bffb1f21f7cf9b58dece5b8fbef",
       "baselineRef": "main",
       "baselineCommit": "5565738520f8ef0632462198a426781f124ae382",
       "trackingBranch": "main",
