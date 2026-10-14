@@ -115,7 +115,8 @@ PFM/Puzzles Lib는 소스 빌드를 유지하면서 `artifact: published`로 공
 
 수동 실행의 **Rebuild and publish even when inputs are unchanged** (`force`) 옵션은 기본으로
 꺼져 있다. 명시적으로 켜면 입력이 같아도 전체 빌드와 검증을 다시 수행하고 새 날짜·시간 버전으로
-게시한다. 첫 로컬 릴리스 이후 hosted runner 빌드를 확인할 때 사용할 수 있다. 기존 버전의 파일은
+게시한다. 이때 이전 실행의 소스 캐시를 복원하지 않고 `-PrebuildSources=true`로 모든 소스를
+새로 컴파일하며, 그 결과가 다음 실행의 캐시가 된다. 캐시가 의심스러울 때도 이 옵션을 쓴다. 첫 로컬 릴리스 이후 hosted runner 빌드를 확인할 때 사용할 수 있다. 기존 버전의 파일은
 덮어쓰지 않으며, `main` push와 정기 실행은 계속 변경 없는 입력을 건너뛴다.
 
 다른 저장소의 push가 이 workflow를 즉시 호출하는 webhook은 설치하지 않는다. 별도 쓰기 PAT
@@ -225,8 +226,21 @@ python scripts/release_control.py publish \
 ## 실행 환경과 한계
 
 공개 저장소의 `ubuntu-24.04` hosted runner에서 실행한다. 많은 소스를 처음 빌드하면 Minecraft,
-Gradle 및 플러그인 다운로드로 수 시간이 걸릴 수 있다. job 간 빌드 캐시를 업로드하지 않으므로
-다음 변경의 빌드는 새 runner에서 다시 시작하며, 한 build job의 제한 시간은 6시간이다.
+Gradle 및 플러그인 다운로드로 수 시간이 걸릴 수 있다. 한 build job의 제한 시간은 6시간이다.
+
+`main` 실행 사이에는 검증된 소스 빌드 결과인 `build/source-cache`만 GitHub Actions cache로
+넘긴다. Gradle 홈, 소스 checkout, 로그는 넘기지 않는다. 각 항목의 키는 소스 커밋과 추적·신규
+파일 해시, recipe, JDK `release` 파일, 빌드 도구 해시로 정해진다. 재사용 직전에 키와 JAR
+SHA-256을 다시 대조하므로, 바뀐 소스만 컴파일되고 나머지는 이전 결과를 쓴다.
+`build_modpack.py`, `mods.py`, `source-repositories.gradle`, 루트 wrapper가 바뀌거나 runner의
+JDK 패치 버전이 바뀌면 모든 키가 달라져 전체를 다시 빌드한다.
+
+빌드 뒤에는 실패한 경우에도 `scripts/source_cache.py prune`이 이번 실행에서 쓰거나 만든 항목만
+남긴다. 이번 실행이 도달하지 못한 소스의 항목은 유지하고, 사라진 recipe나 불완전한 항목은
+지운다. 새로 컴파일했거나 지운 항목이 있을 때만 실행마다 다른 키로 저장한다. GitHub cache
+항목은 덮어쓸 수 없으며, 다음 실행은 가장 최근 항목을 복원한다. cache는 `main` 범위에서만
+쓰므로 PR이 쓴 캐시를 받지 않는다. 다만 소스 빌드 코드가 같은 runner에서 실행되므로, 문제가
+있던 소스 pin을 되돌린 뒤에는 `force` 실행으로 캐시를 새로 만든다.
 
 디스크 확보는 이 임시 GitHub hosted Ubuntu 이미지에만 적용한다. 공식 이미지 설치 경로인
 `/usr/local/lib/android`, `/usr/share/dotnet`, `/usr/local/.ghcup`,

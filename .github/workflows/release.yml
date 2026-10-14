@@ -193,6 +193,16 @@ jobs:
           node-version: '22'
           package-manager-cache: false
 
+      # Each entry is keyed by the source tree, recipe, JDK and build tools, and
+      # the build re-verifies it before reuse. A forced release ignores it.
+      - name: Restore verified source builds from earlier main runs
+        if: steps.plan.outputs.changed == 'true' && !(github.event_name == 'workflow_dispatch' && inputs.force)
+        uses: actions/cache/restore@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        with:
+          path: build/source-cache
+          key: minefed-source-cache-v1-${{ runner.os }}-${{ github.run_id }}-${{ github.run_attempt }}
+          restore-keys: minefed-source-cache-v1-${{ runner.os }}-
+
       - name: Build all source mods and the verified mixed pack
         if: steps.plan.outputs.changed == 'true'
         env:
@@ -201,11 +211,31 @@ jobs:
           MINEFED_JAVA21_HOME: ${{ steps.java21.outputs.path }}
           MINEFED_PYTHON: python
           PYTHONUTF8: '1'
+          FORCE_RELEASE: ${{ github.event_name == 'workflow_dispatch' && inputs.force || false }}
         run: |
           set -euo pipefail
           test ! -e "$RUNNER_TEMP/minefed-resourcepack-access/key"
+          rebuild_args=()
+          if [[ "$FORCE_RELEASE" = true ]]; then rebuild_args+=(-PrebuildSources=true); fi
           env -u GH_TOKEN -u GITHUB_TOKEN -u MINEFED_RESOURCEPACK_SSH_KEY \
-            -u GIT_SSH_COMMAND -u SSH_AUTH_SOCK ./gradlew check assemble -PsourceBuildWorkers=2
+            -u GIT_SSH_COMMAND -u SSH_AUTH_SOCK ./gradlew check assemble -PsourceBuildWorkers=2 "${rebuild_args[@]}"
+
+      # Also after a failure, so the sources that did compile are not rebuilt.
+      - name: Keep only the source cache entries of this run's inputs
+        id: source-cache
+        if: always() && steps.plan.outputs.changed == 'true'
+        run: |
+          set -euo pipefail
+          python scripts/source_cache.py prune --github-output "$GITHUB_OUTPUT"
+          du -sh build/source-cache 2>/dev/null || true
+          df -h "$GITHUB_WORKSPACE"
+
+      - name: Save verified source builds for later main runs
+        if: always() && steps.source-cache.outputs.changed == 'true'
+        uses: actions/cache/save@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        with:
+          path: build/source-cache
+          key: minefed-source-cache-v1-${{ runner.os }}-${{ github.run_id }}-${{ github.run_attempt }}
 
       - name: Create the three public release files
         if: steps.plan.outputs.changed == 'true'
