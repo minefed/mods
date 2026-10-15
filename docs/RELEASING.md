@@ -260,3 +260,5 @@ Action의 변경 사항과 runner 요구사항을 확인하고 SHA도 함께 검
 ZIP·해시·정책 검증 성공은 실제 Minecraft 클라이언트 접속이나 서버 기동 검증을 뜻하지 않는다.
 `runtimeValidated`는 별도 게임 검증을 마치기 전까지 `false`다. 이 배포 흐름은 GitHub Release를
 게시하며 운영 서버 파일·설정·월드 변경, 업로드 또는 재시작을 수행하지 않는다.
+
+운영 서버의 주간 예약 배포와 운영 런처 동시 반영 설계는 [예약 배포 설계](SCHEDULED_DEPLOYMENT.md)에 정리했다.
