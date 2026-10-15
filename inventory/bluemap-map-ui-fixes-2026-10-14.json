@@ -1,0 +1,76 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-14",
+  "productionDeployed": false,
+  "runtimeGameValidated": false,
+  "summary": "Fixes for the redesigned BlueMap web UI found by checking it against the approved mockup and the live map data, plus clearer MTR train labels.",
+  "sources": [
+    {
+      "path": "BlueMap",
+      "url": "https://github.com/minefed/BlueMap",
+      "trackingBranch": "minefed-1.20.4",
+      "commit": "eb9265af82412f0bb230615c53e79039a6fecdc8",
+      "previousCommit": "375e4e731e8e76c49d5ce3b9fdd3d7d259cb5887",
+      "remotelyVerified": true
+    },
+    {
+      "path": "Minecraft-Transit-Railway",
+      "url": "https://github.com/minefed/Minecraft-Transit-Railway",
+      "trackingBranch": "minefed-1.20.4",
+      "commit": "3456308166f1b088ab02c2f225e1d9678c0f22cd",
+      "previousCommit": "5d30cd41f85143e6f93d1c5b71c77acd45a2d516",
+      "remotelyVerified": true
+    }
+  ],
+  "compatibility": {
+    "minecraft": "1.20.4",
+    "loader": "Fabric",
+    "fabricLoader": "0.18.4",
+    "runtimeJava": 17,
+    "buildJava": 21,
+    "bluemap": "5.3-minefed.4"
+  },
+  "fixes": [
+    "Context-menu actions read the menu state after closing it and threw a TypeError, so copy, what's here, center, measure, share and save did nothing.",
+    "The marker file reload removed the UI overlay marker set within a second, so measured lines and region highlights never stayed on the map.",
+    "Lowres hits report y = 0 because lowres tiles are lifted in the shader; the context menu now shows only X and Z without a hires hit.",
+    "Searched coordinates and the context menu's what's-here entry now drop the location pin; map clicks while measuring no longer drop it.",
+    "On phones the location card covered the map buttons and hid behind an open bottom sheet, and toasts covered the card.",
+    "A broken SCSS nesting kept the online-players label and dot visible on phones.",
+    "The 14px layers-button icon had no size rule; the search input showed a focus rectangle; matched search text is now bold as in the mockup.",
+    "World thumbnails of unrendered maps use the world's void colour.",
+    "The webapp started in English next to Korean add-on chips. Korean is now the default, and only a language picked in the settings is stored (new key), because BlueMap stored the active language on every visit.",
+    "MTR train tooltips, dots and panels showed internal vehicle IDs, car indexes and raw model IDs; they now show line, visible service and car count."
+  ],
+  "validation": {
+    "bluemapWebapp": {
+      "viteBuild": "pass",
+      "eslintChangedFiles": "pass",
+      "preexistingLintErrorsElsewhere": 2,
+      "i18nKeys": "every key used by the webapp exists in en.conf and ko.conf",
+      "browser": "webapp source served by a local Vite proxy against https://map.minefed.team data and the local MTR/regions add-on scripts: desktop 1366x800 and phone 390x844, light and dark themes, search and coordinate search, chips, station/route/region/player panels, region label click with highlight, context menu, distance measuring, location card, save, share, layer menu and quick layers, menu drawer, settings language switch; injected test players for the online list, player panel and follow. No uncaught errors."
+    },
+    "mtr": {
+      "nodeTest": {
+        "mtr-live.test.cjs": 42,
+        "mtr-live-three.test.cjs": 4,
+        "failures": 0
+      }
+    }
+  },
+  "artifacts": [],
+  "notValidated": [
+    "BlueMap 5.3-minefed.4 JAR build (no local artifact was built)",
+    "Production BlueMap web root: the server only re-extracts bundled web files when index.html is missing, so the old lang/settings.conf and bundle stay until the web files are replaced"
+  ],
+  "reviewedItems": [
+    {
+      "item": "BlueMap BlueMapCommon/webapp/README.md license-input hash",
+      "result": "Reviewed 375e4e73..eb9265af: the README only adds onDone and placePin to the add-on helper list; LICENSE, README.md and other license inputs are unchanged. inventory/release-inputs.json updated to reviewedCommit eb9265af82412f0bb230615c53e79039a6fecdc8."
+    },
+    {
+      "item": "Minecraft-Transit-Railway license inputs",
+      "result": "Reviewed 5d30cd41..34563081: only mtr-live.js and its test changed; no license input changed. inventory/release-inputs.json updated to reviewedCommit 3456308166f1b088ab02c2f225e1d9678c0f22cd."
+    }
+  ]
+}

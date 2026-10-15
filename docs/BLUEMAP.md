@@ -33,6 +33,14 @@ BlueMap의 기존 주소 형식을 그대로 쓴다. 외부 지도 서비스, �
 위치 주소를 추가한다. API는 BlueMap의
 [`webapp/README.md`](https://github.com/minefed/BlueMap/blob/minefed-1.20.4/BlueMapCommon/webapp/README.md)에 정리했다.
 한국어와 영어 문구를 추가했으며 다른 언어는 새 문구에 영어를 사용한다.
+`5.3-minefed.4`부터 기본 언어는 한국어다. 설정에서 직접 고른 언어만 브라우저에
+기억하며, 이전 버전이 방문할 때마다 자동으로 저장한 언어 값은 무시한다.
+
+BlueMap 서버는 웹 루트에 `index.html`이 없을 때만 JAR에 포함된 웹 파일을 다시
+풀어 놓는다. JAR만 교체하면 기존 웹 루트의 화면 파일과 `lang/settings.conf`가 그대로
+남는다. 새 웹 화면을 적용할 때는 JAR 교체 후 웹 루트의 `index.html`을 지우고 서버를
+다시 시작하거나 BlueMap을 reload한다. 이때 포함된 웹 파일만 덮어쓰며 `settings.json`,
+`maps/`와 애드온 스크립트 폴더(`mtr-live/`, `minefed-regions/`)는 그대로 유지된다.
 
 ## 수정 범위
 

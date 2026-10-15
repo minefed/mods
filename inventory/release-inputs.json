@@ -355,9 +355,9 @@
     {
       "path": "BlueMap",
       "kind": "mod",
-      "reviewedCommit": "375e4e731e8e76c49d5ce3b9fdd3d7d259cb5887",
+      "reviewedCommit": "eb9265af82412f0bb230615c53e79039a6fecdc8",
       "licenseFiles": {
-        "BlueMapCommon/webapp/README.md": "1da949cd74f0832de8c194caeefe21cc999097124be84041461b805e6fd62d2c",
+        "BlueMapCommon/webapp/README.md": "428c1aa862e95fc710d6fc5dea1abcd22be20dce881b0037e3908baa55e0cc8a",
         "BlueMapCore/src/main/java/de/bluecolored/bluemap/core/util/CopyingPathVisitor.java": "21f00135dcbed7fc6fb614a6b9b161e27152be418209cba9a11b6db626ae587b",
         "BlueMapCore/src/test/resources/prbm/README.txt": "60e552b2c83cbc0707110c7f756b2377320b10dd79935e461ffe1441cf7706b4",
         "LICENSE": "f1c190d4a1ff29606cbed7a0d97fc7b7117cc2e1169e19caa753198957dbbfd6",

@@ -293,7 +293,7 @@
         "url": "https://github.com/minefed/BlueMap",
         "upstream": "https://github.com/BlueMap-Minecraft/BlueMap",
         "ref": "minefed-1.20.4",
-        "commit": "375e4e731e8e76c49d5ce3b9fdd3d7d259cb5887",
+        "commit": "eb9265af82412f0bb230615c53e79039a6fecdc8",
         "trackingBranch": "minefed-1.20.4",
         "baselineRef": "v5.3",
         "baselineCommit": "eed8f79e68b053c119f88bbf358bed893a78d110"
@@ -332,7 +332,8 @@
         "Peeled annotated v5.3 tag; do not use tag object 5475fb02a6a3032fab7612b3e03ab22630a67a20 as gitlink.",
         "2026-10-12: minefed-1.20.4 source b6141244c2cea20748f9890ca134f27d8e8873d8 adds saved TrafficCraft paint colors, PFM per-face colors, atlas sprite aliases with cache replacement, baked client-model quads and untinted low-resolution color isolation. Build 5.3-minefed.1 with Java 17 for Fabric/Minecraft 1.20.4. The original 5.3 artifact metadata remains the historical baseline; see inventory/bluemap-rendering-2026-10-12.json for the patched build hash.",
         "2026-10-13: minefed-1.20.4 8731665b54b8089e67edd11861fbedd4df90a05a / 5.3-minefed.2 batches PRBM numeric writes through a reused four-byte buffer, preserving raw/gzip output and failure/close behavior. Minecraft 1.20.4 / Fabric Loader 0.18.4 / Java 17 runtime. Core suite passes with its existing optional fixture skip; original artifact hashes remain historical evidence.",
-        "2026-10-14: minefed-1.20.4 375e4e731e8e76c49d5ce3b9fdd3d7d259cb5887 / 5.3-minefed.3 replaces the web control bar and side menu with a Google-Maps-like map UI (search, chips, place panel, layer menu, location card, context menu, saved places, link sharing and distance measuring) and adds the window.bluemap.ui add-on API used by minefed-regions and MTR. Server Java code is unchanged. Minecraft 1.20.4 / Fabric Loader 0.18.4 / Java 17 runtime; see inventory/bluemap-map-ui-2026-10-14.json. Original artifact hashes remain historical evidence; no production deployment."
+        "2026-10-14: minefed-1.20.4 375e4e731e8e76c49d5ce3b9fdd3d7d259cb5887 / 5.3-minefed.3 replaces the web control bar and side menu with a Google-Maps-like map UI (search, chips, place panel, layer menu, location card, context menu, saved places, link sharing and distance measuring) and adds the window.bluemap.ui add-on API used by minefed-regions and MTR. Server Java code is unchanged. Minecraft 1.20.4 / Fabric Loader 0.18.4 / Java 17 runtime; see inventory/bluemap-map-ui-2026-10-14.json. Original artifact hashes remain historical evidence; no production deployment.",
+        "2026-10-14: minefed-1.20.4 eb9265af82412f0bb230615c53e79039a6fecdc8 / 5.3-minefed.4 fixes the redesigned map UI: context-menu actions no longer throw, the UI overlay (distance measuring, region highlight) survives marker reloads, searched and context-menu locations get the pin, phone map buttons and toasts stay clear of the location card, and the webapp defaults to Korean while remembering only languages picked in the settings. Server Java code is unchanged. Minecraft 1.20.4 / Fabric Loader 0.18.4 / Java 17 runtime; see inventory/bluemap-map-ui-fixes-2026-10-14.json. Original artifact hashes remain historical evidence; no production deployment."
       ],
       "compatibility": {
         "minecraft": "*",
