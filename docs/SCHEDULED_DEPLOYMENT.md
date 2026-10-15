@@ -43,12 +43,19 @@
 
 | 항목 | 결정 |
 | --- | --- |
-| 운영 서버 환경 | VPS + podman, podman compose |
-| 배포 시각 | 주간 정기 점검 (요일·시각은 [열린 질문](#13-열린-질문)) |
+| 운영 서버 환경 | VPS + rootless podman, podman compose, 자체 Minecraft 이미지 |
+| 배포 시각 | 매주 일요일 06:00 KST 정기 점검. 공지는 30·10·5·1분 전 |
+| 승인 릴리스가 없는 주 | 같은 시각에 정기 재시작(공지·저장·백업·재시작·상태 확인)만 수행 |
 | 운영 반영 대상 | 수동 승인한 릴리스만 다음 점검에 예약 |
 | 운영 클라이언트 반영 | 서버 반영 성공과 동시 |
 | 기준 상태 | minefed-api DB가 프로필별 승인·적용 릴리스를 소유 (B안) |
-| 실행 주체 | VPS의 systemd timer가 실행하는 pull 방식 배포 에이전트 |
+| 실행 주체 | VPS의 systemd user timer가 실행하는 pull 방식 배포 에이전트 |
+| 서버 리소스팩 | 자체 호스팅 고정 URL 대신 태그별 GitHub Release URL. 에이전트가 URL·SHA-1을 갱신 |
+| 상태 확인 중 접속 차단 | 점검용 빈 화이트리스트. OP만 접속 가능 |
+| 백업 | 배포·재시작 직전 `tar` + zstd, 같은 VPS에 최근 4개 보존 |
+| 알림 | 별도 채널 없음. journald 로그와 API 실행 기록으로 확인 |
+
+결정 과정과 남은 확인 항목은 [결정 기록](#13-결정-기록)에 있다.
 
 GitHub `latest` 플래그만 쓰는 A안은 서버에 `contents: write` 토큰이 필요하고 승인 기록을 둘 곳이
 없어 택하지 않았다. GitHub Actions의 `schedule`과 SSH로 밀어 넣는 방식은 공개 저장소에 운영
@@ -110,6 +117,7 @@ sequenceDiagram
 | --- | --- |
 | `id uuid` | 실행 ID |
 | `profile_id` | 대상 프로필 |
+| `kind` | `deploy`(릴리스 교체) 또는 `restart`(승인 릴리스가 없는 주의 정기 재시작) |
 | `target_release`, `previous_release` | 적용하려는 태그와 시작 시점의 `active_release` |
 | `state` | `running`, `succeeded`, `rolled_back`, `failed`, `aborted` |
 | `started_at`, `lease_expires_at`, `finished_at` | 시각과 실행 임대 만료 |
@@ -150,8 +158,8 @@ API 세션 토큰, `GRPC_AUTH_TOKENS`, `REGIONS_SERVER_TOKEN`은 이 자격을 �
 
 | 요청 | 동작 |
 | --- | --- |
-| `GET /v1/deployments/{profile}/plan` | `activeRelease`, `approvedRelease`(`auto`이면 최신 prerelease), 대상 릴리스의 `server` asset(URL·크기·SHA-256), 진행 중 실행, 점검 상태 |
-| `POST /v1/deployments/{profile}/runs` | 본문 `targetRelease`, `previousRelease`, `agent`. `target = approved`이고 `previous = active`일 때만 201과 `runId`, 그렇지 않으면 409. 성공 시 점검 상태를 켠다 |
+| `GET /v1/deployments/{profile}/plan` | `activeRelease`, `approvedRelease`(`auto`이면 최신 prerelease), 대상 릴리스의 `server`·`resourcepack` asset(URL·크기·SHA-256), 진행 중 실행, 점검 상태 |
+| `POST /v1/deployments/{profile}/runs` | 본문 `kind`, `targetRelease`, `previousRelease`, `agent`. `deploy`는 `target = approved`이고 `previous = active`일 때, `restart`는 `target = previous = active`일 때만 201과 `runId`, 그렇지 않으면 409. 성공 시 점검 상태를 켠다 |
 | `POST /v1/deployments/{profile}/runs/{id}/heartbeat` | 임대 연장 |
 | `POST /v1/deployments/{profile}/runs/{id}/finish` | 본문 `result`(`succeeded`·`rolled_back`·`failed`), `serverManifestSha256`, `message`. 결과는 아래 표와 같다 |
 
@@ -159,7 +167,10 @@ API 세션 토큰, `GRPC_AUTH_TOKENS`, `REGIONS_SERVER_TOKEN`은 이 자격을 �
 | --- | --- | --- | --- |
 | `succeeded` | 대상 태그로 갱신 | 같은 태그면 비움 | 해제 |
 | `rolled_back` | 유지 | 유지 (다음 점검에 재시도할지는 운영자가 결정) | 해제 |
-| `failed` (롤백도 실패) | 유지 | 유지 | **유지**하고 알림 |
+| `failed` (롤백도 실패) | 유지 | 유지 | **유지** |
+
+`restart` 실행은 릴리스 상태를 바꾸지 않고 점검 상태만 켜고 끈다. 별도 알림 채널을 두지 않으므로
+`failed`의 신호는 런처·API의 점검 표시, `deployment_runs` 기록과 VPS journald 로그다.
 
 모든 상태 변경은 한 트랜잭션에서 `running` 실행과 `previous_release = active_release`를 다시
 확인한다(compare-and-set). 동시에 다른 경로로 `active_release`가 바뀌었으면 409로 거부한다.
@@ -200,62 +211,101 @@ WHERE id = 'prod';
 
 `deploy/server-agent/`에 Python 3.11 표준 라이브러리만 쓰는 에이전트를 둔다.
 
-- 설정: `/etc/minefed-deploy/<profile>.toml`. API URL, 토큰 파일 경로, compose 프로젝트 경로,
-  컨테이너 이름, 릴리스 저장 경로, 공지 일정, 제한 시간, 알림 웹훅 파일 경로를 담는다.
-- 자격: 토큰과 웹훅 URL은 systemd `LoadCredential=`로 전달한다. 로그에 출력하지 않는다.
+- 실행 계정: rootless podman을 실행하는 사용자. 시스템 설정 대신 사용자 홈 아래에 둔다.
+  아래에서 `<DEPLOY_ROOT>`는 예시 `~/minefed-deploy`다.
+- 설정: `~/.config/minefed-deploy/<profile>.toml`. API URL, 토큰 파일 경로, compose 프로젝트 경로와
+  서비스 이름, 서버 루트의 호스트 경로, RCON 주소, `<DEPLOY_ROOT>`, 공지 일정, 제한 시간,
+  정기 재시작 여부, 보존 개수를 담는다.
+- 자격: 토큰은 소유자만 읽을 수 있는(`0600`) 파일로 두고 경로만 설정에 적는다. 로그에 출력하지 않는다.
+- RCON: 자체 이미지라 `rcon-cli`를 가정하지 않는다. 에이전트에 RCON 프로토콜 클라이언트를 내장하고
+  `127.0.0.1`에만 게시한 RCON 포트로 접속한다. RCON 비밀번호도 `0600` 파일로 둔다.
+- 서버 루트의 파일(`server.properties`, `whitelist.json`, 월드)의 소유자가 컨테이너 안 사용자에
+  대응하는 subuid라면 `podman unshare` 안에서 읽고 쓴다.
 - 동시 실행 방지: 프로필별 `flock`과 API 실행 임대를 함께 쓴다.
 - `--dry-run`: 다운로드·검증·공지 문구 출력까지만 하고 중지·교체·API 상태 변경을 하지 않는다.
-- 테스트: 가짜 API·가짜 `podman` 실행기로 성공, 롤백, 롤백 실패, 임대 충돌, 해시 불일치를 검증한다.
+- 로그: 표준 출력으로 단계별 결과를 남기고 journald가 수집한다. 별도 알림은 보내지 않는다.
+- 테스트: 가짜 API·가짜 `podman`·가짜 RCON으로 배포 성공, 정기 재시작, 롤백, 롤백 실패, 임대 충돌,
+  해시 불일치, 디스크 부족, 설정 파일 복원을 검증한다.
 
-systemd 단위:
+systemd user 단위(`~/.config/systemd/user/`, `loginctl enable-linger <user>` 필요):
 
 | 단위 | 일정 |
 | --- | --- |
 | `minefed-deploy@.service` | 프로필을 인스턴스 이름으로 받는 oneshot |
-| `minefed-deploy-prod.timer` | 점검 시각 30분 전 (예: `OnCalendar=Thu *-*-* 04:30:00 Asia/Seoul`), `Persistent=false` |
-| `minefed-deploy-dev.timer` | 15분 간격 (`OnCalendar=*:0/15`) |
+| `minefed-deploy-prod.timer` | `OnCalendar=Sun *-*-* 05:30:00 Asia/Seoul`, `Persistent=false` |
+| `minefed-deploy-dev.timer` | 15분 간격 (`OnCalendar=*:0/15`), 정기 재시작 없음 |
 
 운영 timer는 `Persistent=false`로 둔다. VPS가 꺼져 있어 놓친 점검을 부팅 직후 실행하지 않는다.
-rootless podman이면 해당 사용자의 `systemctl --user`와 linger로 실행한다.
+
+### compose 변경
+
+현재 마운트 구조와 무관하게 쓰도록 Minecraft 서비스에 bind mount를 하나 추가한다.
+
+```yaml
+volumes:
+  - <DEPLOY_ROOT>/current/mods:<컨테이너 안 서버 루트>/mods:ro
+```
+
+서버 루트 전체를 bind mount하거나 named volume을 쓰는 경우에도 이 마운트가 `mods/`만 덮는다.
+`current`는 `<DEPLOY_ROOT>/releases/<tag>`를 가리키는 심볼릭 링크이며, 링크는 컨테이너 생성 시
+해석되므로 교체 후 `podman compose down`과 `up -d`로 컨테이너를 다시 만든다. SELinux가 켜진
+호스트면 레이블 옵션을 추가한다. 읽기 전용 마운트에서 쓰기를 시도하는 모드가 확인되면 `:ro`를 뺀다.
+최초 설치 때 기존 `mods/`와 [최근 릴리스](https://github.com/minefed/mods/releases)의 서버팩이
+같은지 확인한 뒤 전환한다.
 
 ## 8. 운영 배포 절차
 
-점검 시각을 T로 둔다. timer는 T-30분에 에이전트를 시작한다.
+점검 시각 T는 일요일 06:00 KST다. timer는 T-30분(05:30)에 에이전트를 시작한다.
 
-1. **계획 확인:** `GET plan`. 승인된 릴리스가 없거나 `active`와 같으면 기록만 남기고 끝낸다.
-2. **사전 준비:** 대상 `server.zip`을 내려받아 크기·SHA-256을 확인한다.
-   `/srv/minefed/releases/<tag>/`에 풀고 `MINEFED-RELEASE.json`의 `side = server`와
-   `version = <tag>`, 동봉 `install-mods.py`의 해시 검사를 통과시킨다. 실패하면 공지 없이 중단한다.
-3. **변경 범위 판단:** 현재 릴리스와 서버팩 manifest의 JAR 해시 집합 및 관리 경로 파일이 같으면
-   (클라이언트만 바뀐 릴리스) T에 실행 시작·성공 보고만 하고 재시작하지 않는다.
-4. **공지:** T-30, T-10, T-5, T-1분에 RCON `say`로 알린다.
-5. **점검 시작 (T):** `POST runs`. 409이면 중단한다. RCON `save-all flush` 후
-   `podman compose stop`을 실행한다. 정해진 시간 안에 멈추지 않으면 중단·알림하고 그대로 두지 않는다.
-6. **백업:** 월드와 관리 경로를 백업한다. 백업에 실패하면 이전 구성으로 다시 시작하고
-   `rolled_back`(변경 없음)으로 보고한다.
-7. **교체:** 서버팩이 관리하는 경로만 바꾼다.
-   - `mods/`: `/srv/minefed/current` 심볼릭 링크를 `releases/<tag>`로 바꾸고 compose가
-     `current/mods`를 bind mount한다. 링크는 컨테이너 생성 시 해석되므로
-     `podman compose down`과 `up -d`로 컨테이너를 다시 만든다. SELinux 호스트면 마운트 레이블을 지정한다.
-   - `config/bluemap/packs/10-minefed.zip`: 이전 파일을 보관하고 새 파일로 바꾼다.
-   - 그 밖의 `config/`, `server.properties`, 월드는 건드리지 않는다.
-8. **시작과 상태 확인:** `podman compose up -d` 후 제한 시간(예: 10분) 안에 다음을 모두 확인한다.
-   - 이번 시작 이후 로그의 `Done (`
-   - 새 crash report, Mixin 적용 실패, 모드 해석 오류가 없음
-   - 백엔드 포트의 Server List Ping 응답
-   - RCON `list` 응답
-9. **성공:** `finish succeeded`. API가 `active_release`를 바꾸고 점검을 해제한다.
-   런처는 다음 확인이나 게임 시작 전 확인에서 새 클라이언트팩을 받는다.
-10. **실패:** 링크와 BlueMap 팩을 되돌린다. 새 버전이 월드를 불러왔을 수 있으므로 6단계의 월드
-    백업도 복원한 뒤 컨테이너를 다시 만들고 같은 상태 확인을 한다. 통과하면 `rolled_back`,
-    통과하지 못하면 `failed`로 보고하고 점검 상태를 유지한 채 알린다.
+1. **계획 확인:** `GET plan`. 승인된 릴리스가 `active`와 다르면 `deploy`, 없거나 같으면 `restart`로 진행한다.
+2. **사전 준비 (`deploy`만):** 대상 `server.zip`과 `resourcepack.zip`을 내려받아 크기·SHA-256을 확인한다.
+   `server.zip`은 `<DEPLOY_ROOT>/releases/<tag>/`에 풀고 `MINEFED-RELEASE.json`의 `side = server`와
+   `version = <tag>`, 동봉 `install-mods.py`의 해시 검사를 통과시킨다. `resourcepack.zip`의 SHA-1을
+   계산한다. 실패하면 공지 없이 중단한다.
+3. **디스크 확인:** 직전 백업 크기의 1.5배와 새 릴리스 크기만큼 여유가 없으면 공지 없이 중단한다.
+4. **변경 범위 판단 (`deploy`만):** 현재 릴리스와 서버팩 manifest의 JAR 해시 집합, BlueMap 팩,
+   리소스팩 SHA-1이 모두 같으면(클라이언트만 바뀐 릴리스) 서버 교체 없이 진행한다.
+   이 경우에도 정기 재시작은 한다.
+5. **공지:** T-30, T-10, T-5, T-1분에 RCON `say`로 알린다. `deploy`와 `restart`의 문구를 구분한다.
+6. **점검 시작 (T):** `POST runs`. 409이면 중단한다. RCON `save-all flush` 후
+   `podman compose stop`을 실행한다. 정해진 시간 안에 멈추지 않으면 강제 종료하지 않고
+   `failed`로 보고한 뒤 중단한다.
+7. **백업:** 월드(`level-name`의 디렉터리)와 `server.properties`, `whitelist.json`,
+   `config/bluemap/packs/10-minefed.zip`을 `tar` + zstd로 `<DEPLOY_ROOT>/backups/`에 저장한다.
+   BlueMap 렌더 결과처럼 다시 만들 수 있는 데이터는 제외한다. 최근 4개만 남긴다.
+   백업에 실패하면 변경 없이 다시 시작하고 `rolled_back`으로 보고한다.
+8. **접속 차단:** `whitelist.json`을 보관하고 빈 목록(`[]`)으로 바꾼다. `server.properties`의
+   `white-list`, `enforce-whitelist`의 원래 값을 기록하고 둘 다 `true`로 둔다.
+   바닐라 규칙상 OP는 화이트리스트를 우회하므로 운영자만 접속할 수 있다.
+9. **교체 (`deploy`이고 서버 변경이 있을 때):** 서버팩이 관리하는 경로와 리소스팩 설정만 바꾼다.
+   - `mods/`: `current` 링크를 `releases/<tag>`로 바꾼다.
+   - `config/bluemap/packs/10-minefed.zip`: 새 파일로 바꾼다.
+   - `server.properties`: `resource-pack`을
+     `https://github.com/minefed/mods/releases/download/<tag>/resourcepack.zip`으로,
+     `resource-pack-sha1`을 2단계에서 계산한 값으로 바꾼다. `resource-pack-id`는 태그에서
+     결정적으로 만든 UUID로 바꾼다. 그 밖의 키와 `config/`, 월드는 건드리지 않는다.
+10. **시작과 상태 확인:** `podman compose down`, `up -d` 후 제한 시간(예: 10분) 안에 다음을 모두 확인한다.
+    - 이번 시작 이후 로그의 `Done (`
+    - 새 crash report, Mixin 적용 실패, 모드 해석 오류가 없음
+    - 백엔드 포트의 Server List Ping 응답
+    - RCON `list` 응답
+11. **접속 허용:** 보관한 `whitelist.json`을 되돌리고 RCON `whitelist reload`를 실행한다.
+    원래 `white-list`가 꺼져 있었다면 `whitelist off`를 실행한다. `server.properties`의 두 값도
+    원래대로 되돌려 다음 시작에 영향을 주지 않게 한다.
+12. **성공:** `finish succeeded`. `deploy`면 API가 `active_release`를 바꾸고, 두 경우 모두 점검을 해제한다.
+    런처는 다음 확인이나 게임 시작 전 확인에서 새 클라이언트팩을 받는다.
+13. **실패:** 링크, BlueMap 팩, `server.properties`의 리소스팩 값을 되돌린다. 새 버전이 월드를 불러왔을 수
+    있으므로 7단계의 월드 백업도 복원한 뒤 컨테이너를 다시 만들고 같은 상태 확인을 한다. 통과하면
+    11단계를 수행하고 `rolled_back`, 통과하지 못하면 화이트리스트를 유지한 채 `failed`로 보고한다.
 
-시작·성공·롤백·실패는 알림 채널로 보낸다. 오래된 `releases/<tag>`와 백업은 설정한 개수만 남긴다.
+별도 알림은 보내지 않는다. 결과는 `journalctl --user -u minefed-deploy@prod`, API의
+`deployment_runs`, 런처의 점검 표시로 확인한다. 오래된 `releases/<tag>`는 현재·직전 릴리스를 포함해
+최근 4개만 남긴다.
 
 ## 9. 개발 서버
 
 개발 프로필은 `approval_mode = 'auto'`로 둔다. 같은 에이전트가 15분마다 최신 prerelease와
-`active_release`를 비교해, 다르면 짧은 공지(예: 1분) 후 같은 절차로 반영한다.
+`active_release`를 비교해, 다르면 짧은 공지(예: 1분) 후 같은 절차로 반영한다. 정기 재시작은 하지 않는다.
 개발 런처도 `active_release`를 받으므로 개발 서버와 클라이언트가 같은 릴리스를 쓴다.
 운영 승인은 개발 서버에서 확인한 태그를 기준으로 한다.
 
@@ -266,6 +316,8 @@ rootless podman이면 해당 사용자의 `systemctl --user`와 linger로 실행
 
 - 운영 `active_release`를 이전 태그로 되돌렸을 때 다시 설치되는지 실제 런처로 확인한다.
 - 점검 상태 표시가 배포 중 `maintenance`로 바뀌는지 확인한다.
+- GitHub Release URL의 서버 리소스팩을 1.20.4 클라이언트가 리다이렉트를 따라 받아 적용하는지
+  개발 서버에서 확인한다. 실패하면 운영 전환 전에 리소스팩 제공 방식을 다시 정한다.
 - 다음 점검 일정 표시는 범위 밖이다. 필요하면 기존 `maintenance` 공지로 안내한다.
 
 ## 11. 보안
@@ -281,7 +333,7 @@ rootless podman이면 해당 사용자의 `systemctl --user`와 linger로 실행
 
 | 단계 | 저장소 | 작업 | 완료 조건 |
 | --- | --- | --- | --- |
-| 0 | — | [열린 질문](#13-열린-질문) 결정 | 점검 시각, podman 구성, 리소스팩 제공 방식 확정 |
+| 0 | — | 설계 결정 | 완료 (2026-10-15, [결정 기록](#13-결정-기록)) |
 | 1 | minefed-api | 마이그레이션 `000004_deployments`와 복구 SQL | 격리 DB에서 up/down 확인 |
 | 2 | minefed-api | `releases` 태그 조회·`server` asset 검증, `GetUpdates`의 `active_release` 고정 | NULL일 때 기존 동작 유지 테스트 포함 `go test ./...` |
 | 3 | minefed-api | 서버 배포 HTTP 리스너와 실행 상태 전이 | 인증 누락·불일치, 409, 임대 만료, 결과별 전이 테스트 |
@@ -289,21 +341,30 @@ rootless podman이면 해당 사용자의 `systemctl --user`와 linger로 실행
 | 5★ | 운영 | API 배포, 마이그레이션 적용, 운영·개발 `active_release`를 현재 릴리스로 설정 | 런처가 받는 릴리스가 바뀌지 않음 |
 | 6 | minefed-launcher | 이전 태그 롤백과 점검 표시 확인 (코드 변경 없음 예상) | 확인 결과 기록 |
 | 7 | mods | `deploy/server-agent/`, systemd 단위, 테스트, 설치 안내 | 가짜 API·podman 테스트 통과, `--dry-run` 확인 |
-| 8★ | 개발 VPS | 에이전트 설치, `auto` 모드, 실제 prerelease 몇 회 반영 | 성공·롤백 경로를 한 번씩 확인 |
+| 8★ | 개발 VPS | compose 마운트 추가, 에이전트 설치, `auto` 모드, 실제 prerelease 몇 회 반영 | 성공·롤백 경로와 GitHub URL 리소스팩 적용을 한 번씩 확인 |
 | 9 | mods | `release_control.py`의 prerelease 게시와 `RELEASING.md` 갱신 | 5단계가 운영에 반영된 뒤 병합 |
-| 10★ | 운영 VPS | 에이전트와 운영 timer 설치. 첫 점검은 `--dry-run`, 다음 점검부터 실제 실행 | 첫 실제 점검 성공 기록 |
-| 11 | 선택 | GitHub `latest` 표시 동기화, 승인 관리 CLI, 점검 공지 자동 등록, 승인 없는 주의 정기 재시작 | 필요 시 개별 결정 |
+| 10★ | 운영 VPS | compose 마운트 추가, `resource-pack`을 GitHub URL로 전환, 에이전트와 운영 timer 설치. 첫 점검은 `--dry-run`, 다음 점검부터 실제 실행 | 첫 실제 점검 성공 기록 |
+| 11 | 선택 | GitHub `latest` 표시 동기화, 승인 관리 CLI, 점검 공지 자동 등록, 외부 알림 채널 | 필요 시 개별 결정 |
 
-## 13. 열린 질문
+## 13. 결정 기록
 
-1. **점검 일정:** 요일·시각(예: 목요일 05:00 KST)과 공지 시점.
-2. **승인 릴리스가 없는 주:** 그대로 건너뛸지, 메모리 정리를 위해 재시작만 할지.
-3. **podman 구성:** rootful과 rootless 중 무엇인지, compose 파일 위치·서비스 이름·이미지,
-   현재 `mods/`와 `config/`의 마운트 방식. 이에 따라 7단계 교체 방식이 정해진다.
-4. **서버 리소스팩:** 클라이언트가 접속 시 받는 Minefed 리소스팩을 `server.properties`의
-   `resource-pack` URL·SHA-1로 제공한다면 어디를 가리키는지. Release URL이면 에이전트가
-   두 값을 함께 바꿔야 하므로 관리 경로에 추가한다.
-5. **검증 중 접속 차단:** 상태 확인이 끝나기 전에 플레이어가 Velocity로 접속하지 못하게 할 방법
-   (Velocity 라우팅 전환, 임시 화이트리스트 등).
-6. **백업:** 방식(파일 시스템 스냅샷, `tar`, restic), 보존 개수, 디스크 여유.
-7. **알림 채널:** Discord 웹훅 등.
+2026-10-15 운영자와 정한 내용이다.
+
+| 질문 | 결정 | 근거·영향 |
+| --- | --- | --- |
+| 점검 일정 | 매주 일요일 06:00 KST, 공지 30·10·5·1분 전 | 운영 timer는 05:30에 시작 |
+| 승인 릴리스가 없는 주 | 정기 재시작 | MTR·웹 화면 등의 누적 메모리 정리와 주간 백업 확보. API에는 `restart` 실행으로 기록 |
+| podman 구성 | rootless, 자체 이미지 | systemd user 단위와 linger, 내장 RCON 클라이언트, 필요 시 `podman unshare` |
+| 데이터 마운트 | 확인 전 | 구조와 무관한 `mods/` 전용 bind mount를 추가하는 방식으로 설계 |
+| 서버 리소스팩 | 자체 호스팅 고정 URL을 태그별 GitHub Release URL로 전환 | 에이전트가 `resource-pack`·`resource-pack-sha1`·`resource-pack-id`를 함께 바꾸고 롤백 |
+| 상태 확인 중 접속 차단 | 점검용 빈 화이트리스트 | 백엔드만으로 완결. OP만 접속 가능 |
+| 백업 | `tar` + zstd, 같은 VPS에 최근 4개 | 디스크 여유를 사전 확인. VPS 장애에는 대비하지 못함 |
+| 알림 | 로그만 | journald, `deployment_runs`, 런처 점검 표시로 확인. 일요일 새벽 실패는 운영자가 직접 확인해야 발견됨 |
+
+설치 단계(8★, 10★)에서 확인할 항목:
+
+1. 실제 compose 파일의 서비스 이름, 컨테이너 안 서버 루트 경로, 기존 볼륨 구성.
+2. 서버 루트 파일의 소유자와 `podman unshare` 필요 여부.
+3. RCON 활성화 여부와 `127.0.0.1` 전용 포트 게시.
+4. 현재 `server.properties`의 `resource-pack` 관련 값과 `require-resource-pack`.
+5. 백업 4개를 보관할 디스크 여유와 BlueMap 렌더 결과 등 제외할 경로.
