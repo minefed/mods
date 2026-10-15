@@ -1,0 +1,34 @@
+# Production deployment agent. Copy to ~/.config/minefed-deploy/prod.toml.
+# Replace every <...> placeholder; paths must be absolute (~ is expanded).
+profile = "prod"
+api_url = "https://api.minefed.team"
+# One line with DEPLOY_PROD_TOKEN, chmod 600. Never commit it.
+token_file = "~/.config/minefed-deploy/prod.token"
+# Releases, backups and the current -> releases/<tag> link live here.
+deploy_root = "~/minefed-deploy"
+# Host path of the Minecraft server root (server.properties, world, config/).
+server_root = "<SERVER_ROOT>"
+# Directory with the podman compose file for the Minecraft service.
+compose_dir = "<COMPOSE_DIR>"
+compose_command = ["podman", "compose"]
+# RCON must listen on 127.0.0.1 only. One line with rcon.password, chmod 600.
+rcon_host = "127.0.0.1"
+rcon_port = 25575
+rcon_password_file = "~/.config/minefed-deploy/rcon.password"
+# Backend Minecraft port used for the Server List Ping health check.
+server_host = "127.0.0.1"
+server_port = 25565
+# The timer starts at 05:30; maintenance begins after the longest notice (06:00).
+announce_minutes = [30, 10, 5, 1]
+# Restart weekly even without an approved release.
+weekly_restart = true
+# Point server.properties resource-pack at the deployed release's GitHub asset.
+manage_resource_pack = true
+stop_timeout = 180
+start_timeout = 600
+keep_releases = 4
+keep_backups = 4
+# Paths inside the world directory to leave out of backups.
+backup_exclude = []
+# Download, verify and print the schedule only. Use for the first maintenance.
+dry_run = true

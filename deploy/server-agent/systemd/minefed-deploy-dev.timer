@@ -1,0 +1,10 @@
+[Unit]
+Description=Minefed development server deployment check
+
+[Timer]
+OnCalendar=*:0/15
+Persistent=false
+Unit=minefed-deploy@dev.service
+
+[Install]
+WantedBy=timers.target

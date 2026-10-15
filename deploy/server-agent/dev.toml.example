@@ -1,0 +1,24 @@
+# Development deployment agent. Copy to ~/.config/minefed-deploy/dev.toml.
+# The dev profile auto-approves the newest prerelease; the timer checks every 15 minutes.
+profile = "dev"
+api_url = "https://api.minefed.team"
+token_file = "~/.config/minefed-deploy/dev.token"
+deploy_root = "~/minefed-deploy-dev"
+server_root = "<DEV_SERVER_ROOT>"
+compose_dir = "<DEV_COMPOSE_DIR>"
+compose_command = ["podman", "compose"]
+rcon_host = "127.0.0.1"
+rcon_port = 25576
+rcon_password_file = "~/.config/minefed-deploy/dev-rcon.password"
+server_host = "127.0.0.1"
+server_port = 25566
+announce_minutes = [1]
+# Only deploy new prereleases; no scheduled restarts on the development server.
+weekly_restart = false
+manage_resource_pack = true
+stop_timeout = 120
+start_timeout = 600
+keep_releases = 4
+keep_backups = 4
+backup_exclude = []
+dry_run = false

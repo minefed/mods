@@ -1,0 +1,10 @@
+[Unit]
+Description=Minefed scheduled game server deployment (%i)
+Documentation=https://github.com/minefed/mods/blob/main/deploy/server-agent/README.md
+
+[Service]
+Type=oneshot
+# Announcements alone take up to 30 minutes; a deployment then needs restart and health checks.
+TimeoutStartSec=2h
+Environment=PYTHONUNBUFFERED=1
+ExecStart=/usr/bin/python3 -I %h/minefed-deploy/agent/minefed_deploy.py --config %h/.config/minefed-deploy/%i.toml

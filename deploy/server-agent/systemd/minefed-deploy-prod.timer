@@ -1,0 +1,12 @@
+[Unit]
+Description=Minefed weekly production maintenance (Sunday 06:00 KST)
+
+[Timer]
+# Starts 30 minutes early for in-game announcements.
+OnCalendar=Sun *-*-* 05:30:00 Asia/Seoul
+# Never run a missed maintenance window late, for example after the host was down.
+Persistent=false
+Unit=minefed-deploy@prod.service
+
+[Install]
+WantedBy=timers.target
