@@ -1,3 +1,5 @@
 # Preserve the bytes hashed in upstream legal-notice provenance on every platform.
 inventory/licenses/** text eol=lf
 inventory/notices/continuity-0fa002f7c67b/** text eol=lf
+# Agent files are installed on Linux hosts and must keep LF line endings.
+deploy/** text eol=lf
