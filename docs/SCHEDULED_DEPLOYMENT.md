@@ -1,6 +1,6 @@
 # 운영 서버 예약 배포 설계
 
-2026-10-15 작성. minefed-api 1~4단계를 구현했으며 운영 DB·API·VPS 변경은 하지 않았다
+2026-10-15 작성. minefed-api 1~4단계와 mods 7단계(배포 에이전트)를 구현했으며 운영 DB·API·VPS 변경은 하지 않았다
 ([진행 상황](#진행-상황)). 이 문서는 `minefed/mods`,
 `minefed/minefed-api`, `minefed/minefed-launcher` 세 저장소와 운영 VPS에 걸친 변경의 기준이다.
 각 저장소의 작업은 해당 저장소의 `AGENTS.md`를 따른다. 운영 서버·운영 DB의 변경과 설치는
@@ -261,12 +261,12 @@ volumes:
 1. **계획 확인:** `GET plan`. 승인된 릴리스가 `active`와 다르면 `deploy`, 없거나 같으면 `restart`로 진행한다.
 2. **사전 준비 (`deploy`만):** 대상 `server.zip`과 `resourcepack.zip`을 내려받아 크기·SHA-256을 확인한다.
    `server.zip`은 `<DEPLOY_ROOT>/releases/<tag>/`에 풀고 `MINEFED-RELEASE.json`의 `side = server`와
-   `version = <tag>`, 동봉 `install-mods.py`의 해시 검사를 통과시킨다. `resourcepack.zip`의 SHA-1을
-   계산한다. 실패하면 공지 없이 중단한다.
+   `version = <tag>`를 확인한다. 내려받은 코드를 실행하지 않고 `download-manifest.json`의 모든 관리 파일
+   해시와 `mods/` 구성을 에이전트가 직접 검사한다. `resourcepack.zip`의 SHA-1을 계산한다.
+   실패하면 공지 없이 중단한다.
 3. **디스크 확인:** 직전 백업 크기의 1.5배와 새 릴리스 크기만큼 여유가 없으면 공지 없이 중단한다.
-4. **변경 범위 판단 (`deploy`만):** 현재 릴리스와 서버팩 manifest의 JAR 해시 집합, BlueMap 팩,
-   리소스팩 SHA-1이 모두 같으면(클라이언트만 바뀐 릴리스) 서버 교체 없이 진행한다.
-   이 경우에도 정기 재시작은 한다.
+4. **변경 범위:** 클라이언트만 바뀐 릴리스도 같은 절차로 교체한다. 서버 파일 내용이 같으므로 교체는
+   결과를 바꾸지 않고, 어차피 재시작하므로 별도 비교를 두지 않는다.
 5. **공지:** T-30, T-10, T-5, T-1분에 RCON `say`로 알린다. `deploy`와 `restart`의 문구를 구분한다.
 6. **점검 시작 (T):** `POST runs`. 409이면 중단한다. RCON `save-all flush` 후
    `podman compose stop`을 실행한다. 정해진 시간 안에 멈추지 않으면 강제 종료하지 않고
@@ -280,7 +280,8 @@ volumes:
    바닐라 규칙상 OP는 화이트리스트를 우회하므로 운영자만 접속할 수 있다.
 9. **교체 (`deploy`이고 서버 변경이 있을 때):** 서버팩이 관리하는 경로와 리소스팩 설정만 바꾼다.
    - `mods/`: `current` 링크를 `releases/<tag>`로 바꾼다.
-   - `config/bluemap/packs/10-minefed.zip`: 새 파일로 바꾼다.
+   - `config/bluemap/packs/10-minefed.zip`, `config/mtr/bluemap-vehicles.json`: 새 파일로 바꾼다.
+   - `config/mtr/bluemap-public-routes.json`: 운영자가 편집하는 파일이므로 없을 때만 만든다.
    - `server.properties`: `resource-pack`을
      `https://github.com/minefed/mods/releases/download/<tag>/resourcepack.zip`으로,
      `resource-pack-sha1`을 2단계에서 계산한 값으로 바꾼다. `resource-pack-id`는 태그에서
@@ -295,7 +296,7 @@ volumes:
     원래대로 되돌려 다음 시작에 영향을 주지 않게 한다.
 12. **성공:** `finish succeeded`. `deploy`면 API가 `active_release`를 바꾸고, 두 경우 모두 점검을 해제한다.
     런처는 다음 확인이나 게임 시작 전 확인에서 새 클라이언트팩을 받는다.
-13. **실패:** 링크, BlueMap 팩, `server.properties`의 리소스팩 값을 되돌린다. 새 버전이 월드를 불러왔을 수
+13. **실패:** 링크, 관리 파일, `server.properties`를 되돌린다. 새 버전이 월드를 불러왔을 수
     있으므로 7단계의 월드 백업도 복원한 뒤 컨테이너를 다시 만들고 같은 상태 확인을 한다. 통과하면
     11단계를 수행하고 `rolled_back`, 통과하지 못하면 화이트리스트를 유지한 채 `failed`로 보고한다.
 
@@ -357,7 +358,8 @@ volumes:
 | 1~2 | 완료 | minefed-api `3574837`~`c30524f` (마이그레이션, 태그 조회, `GetUpdates` 고정, 로컬 검증 환경, 문서) |
 | 3~4 | 완료 | minefed-api `4ce16be`~`10cc046` (서버 팩 검증, 실행 기록 저장소, 배포 API, 리스너 연결, 배포 설정, `docs/DEPLOYMENT_API.md`) |
 | 5★ | 대기 | 운영 적용 요청 필요 |
-| 6~11 | 대기 | 7단계(배포 에이전트)부터 진행 |
+| 7 | 완료 | mods `bb021f4`, `63029bc` (`deploy/server-agent/`: 에이전트, 테스트, systemd 단위, 설정 예시, 설치 안내) |
+| 6, 8~11 | 대기 | 6단계(런처 확인)와 8단계(개발 VPS 설치)는 5단계 운영 적용 뒤 진행 |
 
 검증 범위:
 
@@ -367,7 +369,11 @@ volumes:
   digest 포함), 인증 실패 401, 시작, 중복 409, 하트비트, 완료 후 `active_release` 변경을 확인했다.
 - 배포 스크립트 테스트는 Linux 컨테이너에서 72개 중 71개가 통과했다. 남은 1개는 컨테이너 OpenSSL의
   `-days -1` 미지원으로 변경 전 코드에서도 같은 테스트가 실패한다.
-- 운영 DB, 운영 API, nginx, VPS, 실제 런처 동작은 검증하지 않았다.
+- 배포 에이전트 테스트 20개가 Linux 컨테이너의 Python 3.11·3.12에서 통과했다. 가짜 API·podman·RCON·백업으로
+  배포 성공, 정기 재시작, 롤백, 롤백 실패, 접속 복구 실패, 시작 거부, 서버팩 변조·경로 탈출, dry run 등을 확인한다.
+- 실제 GNU tar + zstd로 백업·제외 경로·복원·보존 개수를, `systemd-analyze`로 단위 문법과
+  운영 timer 일정(다음 실행 일요일 05:30 KST)을 확인했다.
+- 운영 DB, 운영 API, nginx, VPS, 실제 Minecraft 서버, 실제 런처 동작은 검증하지 않았다.
 
 구현하며 정한 세부 사항:
 
@@ -379,6 +385,13 @@ volumes:
 - 5단계에서 API를 배포하기 전에 운영 DB에 `000004`를 먼저 적용한다. 새 API는 이 스키마가 없으면
   시작하지 않고, 이전 API는 이 스키마에서도 동작한다.
 - 8·10단계에서 에이전트를 연결할 때 운영 nginx에 `/v1/deployments/` 전달과 `DEPLOY_*` 설정이 필요하다.
+- 에이전트는 처음 쓸 때 `--adopt`로 현재 실행 중인 릴리스의 `server.zip`을 `releases/<태그>`로 등록해야 한다.
+  `current` 링크가 활성 릴리스를 가리키지 않으면 공지·중지 전에 중단한다.
+- 새 서버 로그는 시작 전 `logs/latest.log`와 다른 파일(inode)인지로 판별해 이전 실행의 `Done (`를 오인하지 않는다.
+- 서버가 정상인데 접속 복구(RCON `whitelist`)만 실패하면 롤백하지 않고 성공을 보고하며 종료 코드 1로 남긴다.
+- 설정 `dry_run = true`면 timer 실행도 준비만 한다. 운영 첫 점검에 사용한다.
+- 백업 대상은 월드, `server.properties`, `whitelist.json`, 관리 파일뿐이며 BlueMap 렌더 결과는 포함하지 않는다.
+- 에이전트 사용법은 [`deploy/server-agent/README.md`](../deploy/server-agent/README.md)에 있다.
 
 ## 13. 결정 기록
 
