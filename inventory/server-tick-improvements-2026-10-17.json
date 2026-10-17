@@ -36,6 +36,24 @@
         "LICENSE.md_oritech"
       ],
       "change": "Preserve laser target and tie ordering while eliminating duplicate ray reads within one synchronous search, invalidating before chunk loads, and using stable bounded counting sort for area targets."
+    },
+    {
+      "modId": "mtr",
+      "sourcePath": "Minecraft-Transit-Railway",
+      "trackingBranch": "minefed-1.20.4",
+      "sourceCommit": "51b4bde81a5fb082fdc466ecd9c878d374bd254f",
+      "artifactPath": "Minecraft-Transit-Railway/fabric/build/libs/fabric-4.0.5.jar",
+      "version": "4.0.5",
+      "size": 83269182,
+      "sha256": "e9eb810da3c059a3383eaf39b412f42862ddaf1fc155b350503dc50ef5b7f030",
+      "sha512": "40b300f9d93d3e681524efa0ebedacd2e79c2098bd635c2456a0ae6fdb7e57d208551d970db354b30398e91e3def4299349c5fd85d74660c625ecc64f77186ed",
+      "license": "MIT",
+      "embeddedNotices": [
+        "LICENSE",
+        "META-INF/licenses/mtr/LICENSE",
+        "META-INF/licenses/mtr/LICENSE_ORIGINAL"
+      ],
+      "change": "Reuse bounded immutable rail geometry with RailMath identity invalidation and index first-match depot path legs per capture; retain fresh route/publication metadata and live arrivals."
     }
   ]
 }

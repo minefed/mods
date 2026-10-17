@@ -2756,7 +2756,7 @@
         "url": "https://github.com/minefed/Minecraft-Transit-Railway",
         "upstream": "https://github.com/Minecraft-Transit-Railway/Minecraft-Transit-Railway",
         "ref": "minefed-1.20.4",
-        "commit": "3456308166f1b088ab02c2f225e1d9678c0f22cd",
+        "commit": "51b4bde81a5fb082fdc466ecd9c878d374bd254f",
         "trackingBranch": "minefed-1.20.4",
         "baselineRef": "main",
         "baselineCommit": "53cdc36ebef57c42bdc8633957be1b0e923c40b5"
@@ -2787,7 +2787,8 @@
         "2026-10-14: minefed-1.20.4 8df9ad29b90499fb1a01c58d30caa9974af62542 publishes selected public transit data through minefed-api and switches BlueMap to the same public API. Existing route/group/service/operator/interchange settings and 500 ms / 2 s / 30 s refresh periods are preserved. Minecraft 1.20.4 / Fabric Loader 0.18.4 / Java 17 runtime. Validation, API source and new JAR hashes are recorded in inventory/mtr-transit-api-2026-10-14.json. Historical baseline JAR hashes remain unchanged; no production deployment.",
         "2026-10-14: Documentation-only source update to minefed-1.20.4 2e5dc0995160028557f0448acfa384f6dab190ee translates the transit API setup guide into Korean. Minecraft 1.20.4 / Fabric Loader 0.18.4 / Java 17 compatibility and the previously verified JAR hashes are unchanged.",
         "2026-10-14: minefed-1.20.4 5d30cd41f85143e6f93d1c5b71c77acd45a2d516 opens stations, routes and trains in the redesigned Minefed BlueMap place panel (BlueMap 5.3-minefed.3) with live arrivals, route stop diagrams, search, chips, saved places and layer-menu toggles; other BlueMap builds keep the floating cards. Minecraft 1.20.4 / Fabric Loader 0.18.4 / Java 17 runtime. 45 web checks pass; historical baseline JAR hashes remain unchanged; no production deployment.",
-        "2026-10-14: minefed-1.20.4 3456308166f1b088ab02c2f225e1d9678c0f22cd names live trains in BlueMap tooltips, train dots and the place panel by line, visible service and car count instead of internal vehicle IDs, car indexes and uncatalogued model IDs. Web-script only; Minecraft 1.20.4 / Fabric Loader 0.18.4 / Java 17 runtime. 46 web checks pass; see inventory/bluemap-map-ui-fixes-2026-10-14.json. Historical baseline JAR hashes remain unchanged; no production deployment."
+        "2026-10-14: minefed-1.20.4 3456308166f1b088ab02c2f225e1d9678c0f22cd names live trains in BlueMap tooltips, train dots and the place panel by line, visible service and car count instead of internal vehicle IDs, car indexes and uncatalogued model IDs. Web-script only; Minecraft 1.20.4 / Fabric Loader 0.18.4 / Java 17 runtime. 46 web checks pass; see inventory/bluemap-map-ui-fixes-2026-10-14.json. Historical baseline JAR hashes remain unchanged; no production deployment.",
+        "2026-10-17: 51b4bde81a5fb082fdc466ecd9c878d374bd254f on minefed-1.20.4. Reuse bounded immutable rail geometry with RailMath identity invalidation and index first-match depot path legs per capture; retain fresh route/publication metadata and live arrivals. Minecraft 1.20.4 / Fabric / Java 17 runtime. New build provenance: inventory/server-tick-improvements-2026-10-17.json. Historical baseline JAR metadata is unchanged; no operating server deployment."
       ],
       "compatibility": {
         "minecraft": "1.20.4",
