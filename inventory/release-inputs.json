@@ -936,7 +936,7 @@
     {
       "path": "minefed-diagnostics",
       "kind": "mod",
-      "reviewedCommit": "1317cb7c49766d6d4987e0501b6ab17bc1fb3e1d",
+      "reviewedCommit": "6876db4397f3b907305e4d37c0a36239e454682a",
       "licenseFiles": {
         "LICENSE": "62d5823d76f215f93ee2f62db066161d21e0a1135faa9ac15a5e247c8cc1211d",
         "README.md": "793333a3a46439007c012138c528ab887a77a6d71b1d04fc7fb35cb8cf179ef0"

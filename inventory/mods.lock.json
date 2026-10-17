@@ -4681,7 +4681,7 @@
         "url": "https://github.com/minefed/minefed-diagnostics",
         "upstream": "https://github.com/minefed/minefed-diagnostics",
         "ref": "minefed-1.20.4",
-        "commit": "1317cb7c49766d6d4987e0501b6ab17bc1fb3e1d",
+        "commit": "6876db4397f3b907305e4d37c0a36239e454682a",
         "trackingBranch": "minefed-1.20.4",
         "baselineRef": "minefed-1.20.4",
         "baselineCommit": "f9e99a6c243910dff5c45fb97e9cb345f791579c"
@@ -4703,7 +4703,8 @@
       "licenseNoticesPath": "inventory/notices/minefed-diagnostics-cca0d9d746f9",
       "notes": [
         "Added 2026-10-17: independent public MIT server-only diagnostics for Minecraft 1.20.4 / Fabric Loader >=0.18.4 / Java >=17. Integration and tracking branch minefed-1.20.4.",
-        "Starts bounded rolling JFR and OS history when the server starts; automatically captures tick stalls, sustained slow ticks, watchdog scheduling delay and chunk incidents. Shared cooldown and bounded retention. No external upload, restart or production deployment. Not a historical captured operating JAR."
+        "Starts bounded rolling JFR and OS history when the server starts; automatically captures tick stalls, sustained slow ticks, watchdog scheduling delay and chunk incidents. Shared cooldown and bounded retention. No external upload, restart or production deployment. Not a historical captured operating JAR.",
+        "Integration follow-up 6876db4397f3b907305e4d37c0a36239e454682a changes only the Unix Gradle wrapper executable bit; Java sources and recorded JAR built from 1317cb7c49766d6d4987e0501b6ab17bc1fb3e1d are unchanged."
       ],
       "compatibility": {
         "minecraft": "=1.20.4",

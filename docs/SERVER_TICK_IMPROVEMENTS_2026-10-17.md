@@ -19,6 +19,9 @@ JAR 경로·크기·SHA-256·SHA-512와 라이선스는
 | Minecraft Transit Railway | 4.0.5 | `51b4bde81a5fb082fdc466ecd9c878d374bd254f` | 정적 교통 정보의 곡선 재계산·차량기지 경로 반복 검색 감소 |
 | minefed-diagnostics | 1.1.0 | `1317cb7c49766d6d4987e0501b6ab17bc1fb3e1d` | 서버 기동 중 자동 이상 감지·순환 기록·파일 수집 |
 
+진단 모드의 최종 gitlink는 `6876db4397f3b907305e4d37c0a36239e454682a`다.
+위 빌드 커밋 이후 Unix Gradle wrapper의 실행 권한만 추가했으며 Java 소스와 JAR는 동일하다.
+
 ### 디스플레이
 
 가로·세로 각각 1–32블록인 기존 유효 범위를 서버에서도 적용한다. 범위 밖 크기는

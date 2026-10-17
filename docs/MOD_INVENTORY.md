@@ -38,7 +38,7 @@ JAR 재배포 분류는 허용 45개, 모드팩 한정 10개, 로컬 전용 15�
 
 2026-10-17 서버 전용 `minefed-diagnostics` 1.1.0을 자동 이상 수집용 소스로 추가했다.
 MIT / Minecraft 1.20.4 / Fabric / Java 17이며, 통합 브랜치 `minefed-1.20.4`의
-`1317cb7c49766d6d4987e0501b6ab17bc1fb3e1d`를 고정했다. 운영 관측 기준본과 구분해
+`6876db4397f3b907305e4d37c0a36239e454682a`를 고정했다. 운영 관측 기준본과 구분해
 `capturedServerBaseline: false`로 관리한다. 서버 배포 입력에 포함하고 클라이언트에서는 제외한다.
 전체 소스 빌드 입력은 49개, 바이너리 입력은 25개다. 디스플레이·MTR·Oritech의 새 JAR와
 진단 모드의 해시·검증 결과는 [서버 틱 개선 기록](SERVER_TICK_IMPROVEMENTS_2026-10-17.md)을 참고한다.

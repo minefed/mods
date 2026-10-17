@@ -69,7 +69,9 @@
       "embeddedNotices": [
         "LICENSE"
       ],
-      "change": "Automatic bounded JFR, JVM and OS history captured on server stalls, sustained slow ticks and chunk incidents; server-only."
+      "change": "Automatic bounded JFR, JVM and OS history captured on server stalls, sustained slow ticks and chunk incidents; server-only.",
+      "integrationCommit": "6876db4397f3b907305e4d37c0a36239e454682a",
+      "integrationNote": "Unix Gradle wrapper executable-bit fix only; original JAR/source provenance unchanged."
     }
   ],
   "validation": {
