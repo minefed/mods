@@ -20,6 +20,22 @@
         "LICENSE_minefed-display"
       ],
       "change": "Reject invalid display size before enqueue and world work, clamp NBT and ignore unloaded packet targets while preserving valid resize/render behavior."
+    },
+    {
+      "modId": "oritech",
+      "sourcePath": "Oritech",
+      "trackingBranch": "minefed-1.20.4",
+      "sourceCommit": "66df361a7357cf21cea8886b7e7c1aa55433eb3e",
+      "artifactPath": "Oritech/build/libs/oritech-0.5.1+1.20.4.jar",
+      "version": "0.5.1+1.20.4",
+      "size": 2900244,
+      "sha256": "2b63dfae2aacfe348421be5aab460ecf8eb5b3290f47c568622953e3f9332c58",
+      "sha512": "f8aff3a8e9763f8d508e492b444d52f2d8ae1236977f7f1ad9451258e54cf3493998db93f019286be28b3deaede1d0074e3047e0a1ebb852835ea6f3526b5f0e",
+      "license": "CC0-1.0",
+      "embeddedNotices": [
+        "LICENSE.md_oritech"
+      ],
+      "change": "Preserve laser target and tie ordering while eliminating duplicate ray reads within one synchronous search, invalidating before chunk loads, and using stable bounded counting sort for area targets."
     }
   ]
 }
