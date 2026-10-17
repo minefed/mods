@@ -4669,11 +4669,11 @@
       ]
     },
     {
-      "fileName": "minefed-diagnostics-1.1.0.jar",
-      "sha256": "cca0d9d746f98d88d566e20928b2685d98251f6a6db9a246fc9fb73bc2b7bc0a",
-      "size": 111288,
+      "fileName": "minefed-diagnostics-1.1.1.jar",
+      "sha256": "85bd685c4c287274069972ed1a202944e51b9393c772849504d91fd9a31bc571",
+      "size": 111601,
       "modId": "minefed-diagnostics",
-      "version": "1.1.0",
+      "version": "1.1.1",
       "environment": "server",
       "management": "submodule",
       "source": {
@@ -4681,16 +4681,16 @@
         "url": "https://github.com/minefed/minefed-diagnostics",
         "upstream": "https://github.com/minefed/minefed-diagnostics",
         "ref": "minefed-1.20.4",
-        "commit": "6876db4397f3b907305e4d37c0a36239e454682a",
+        "commit": "538a6e63a6b13c3e81fca1cda219d03046cae0c4",
         "trackingBranch": "minefed-1.20.4",
         "baselineRef": "minefed-1.20.4",
         "baselineCommit": "f9e99a6c243910dff5c45fb97e9cb345f791579c"
       },
       "artifact": {
-        "path": "artifacts/local/minefed-diagnostics-1.1.0.jar",
+        "path": "artifacts/local/minefed-diagnostics-1.1.1.jar",
         "redistribution": "allowed",
         "url": null,
-        "sha512": "edd85ffe4306668fd86f13059b2b238f13eb004c2145cea391e5b58b0a4bb90ae52352f84d7b2eb55ae07261f8c637b301fa5f27a806388f0b31e6ae34a20861",
+        "sha512": "856480003a372cd9ad2060b55459e98b570dbb07c6e424875e2927e429b13be863da4dfaed8ae4f502510edf57a5ae8ca96961831e670398d028a1349a40fd9f",
         "publishedHashMatch": false,
         "verificationAlgorithm": null,
         "publishedRelease": null
@@ -4699,12 +4699,12 @@
       "exclusionReason": null,
       "capturedServerBaseline": false,
       "license": "MIT",
-      "licenseUrl": "https://github.com/minefed/minefed-diagnostics/blob/1317cb7c49766d6d4987e0501b6ab17bc1fb3e1d/LICENSE",
-      "licenseNoticesPath": "inventory/notices/minefed-diagnostics-cca0d9d746f9",
+      "licenseUrl": "https://github.com/minefed/minefed-diagnostics/blob/538a6e63a6b13c3e81fca1cda219d03046cae0c4/LICENSE",
+      "licenseNoticesPath": "inventory/notices/minefed-diagnostics-85bd685c4c28",
       "notes": [
         "Added 2026-10-17: independent public MIT server-only diagnostics for Minecraft 1.20.4 / Fabric Loader >=0.18.4 / Java >=17. Integration and tracking branch minefed-1.20.4.",
         "Starts bounded rolling JFR and OS history when the server starts; automatically captures tick stalls, sustained slow ticks, watchdog scheduling delay and chunk incidents. Shared cooldown and bounded retention. No external upload, restart or production deployment. Not a historical captured operating JAR.",
-        "Integration follow-up 6876db4397f3b907305e4d37c0a36239e454682a changes only the Unix Gradle wrapper executable bit; Java sources and recorded JAR built from 1317cb7c49766d6d4987e0501b6ab17bc1fb3e1d are unchanged."
+        "1.1.1 fixes retention ordering for same-millisecond captures and clock rollback, restores monotonic filename ordering across restart, and preserves actual timestamps in reports. Java 17 test/build: 39 passed. Original 1.1.0 runtime smoke/Mixin evidence is preserved separately in server-tick-improvements-2026-10-17.json; no new runtime or GitHub Actions success is asserted here."
       ],
       "compatibility": {
         "minecraft": "=1.20.4",
@@ -4718,8 +4718,8 @@
         }
       },
       "evidenceUrls": [
-        "https://github.com/minefed/minefed-diagnostics/blob/1317cb7c49766d6d4987e0501b6ab17bc1fb3e1d/LICENSE",
-        "https://github.com/minefed/minefed-diagnostics/commit/1317cb7c49766d6d4987e0501b6ab17bc1fb3e1d"
+        "https://github.com/minefed/minefed-diagnostics/blob/538a6e63a6b13c3e81fca1cda219d03046cae0c4/LICENSE",
+        "https://github.com/minefed/minefed-diagnostics/commit/538a6e63a6b13c3e81fca1cda219d03046cae0c4"
       ]
     }
   ],

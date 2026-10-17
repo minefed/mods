@@ -59,19 +59,17 @@
       "modId": "minefed-diagnostics",
       "sourcePath": "minefed-diagnostics",
       "trackingBranch": "minefed-1.20.4",
-      "sourceCommit": "1317cb7c49766d6d4987e0501b6ab17bc1fb3e1d",
-      "artifactPath": "minefed-diagnostics/build/libs/minefed-diagnostics-1.1.0.jar",
-      "version": "1.1.0",
-      "size": 111288,
-      "sha256": "cca0d9d746f98d88d566e20928b2685d98251f6a6db9a246fc9fb73bc2b7bc0a",
-      "sha512": "edd85ffe4306668fd86f13059b2b238f13eb004c2145cea391e5b58b0a4bb90ae52352f84d7b2eb55ae07261f8c637b301fa5f27a806388f0b31e6ae34a20861",
+      "sourceCommit": "538a6e63a6b13c3e81fca1cda219d03046cae0c4",
+      "artifactPath": "minefed-diagnostics/build/libs/minefed-diagnostics-1.1.1.jar",
+      "version": "1.1.1",
+      "size": 111601,
+      "sha256": "85bd685c4c287274069972ed1a202944e51b9393c772849504d91fd9a31bc571",
+      "sha512": "856480003a372cd9ad2060b55459e98b570dbb07c6e424875e2927e429b13be863da4dfaed8ae4f502510edf57a5ae8ca96961831e670398d028a1349a40fd9f",
       "license": "MIT",
       "embeddedNotices": [
         "LICENSE"
       ],
-      "change": "Automatic bounded JFR, JVM and OS history captured on server stalls, sustained slow ticks and chunk incidents; server-only.",
-      "integrationCommit": "6876db4397f3b907305e4d37c0a36239e454682a",
-      "integrationNote": "Unix Gradle wrapper executable-bit fix only; original JAR/source provenance unchanged."
+      "change": "Automatic bounded diagnostics with monotonic capture filenames for deterministic newest-first retention, including clock rollback and restart; report timestamps retain actual times."
     }
   ],
   "validation": {
@@ -190,7 +188,10 @@
             "jdk.InitialEnvironmentVariable              0             0"
           ]
         }
-      ]
+      ],
+      "version": "1.1.0",
+      "sourceCommit": "1317cb7c49766d6d4987e0501b6ab17bc1fb3e1d",
+      "evidenceScope": "Original 1.1.0 isolated runtime evidence; not rerun for the 1.1.1 retention-only fix."
     },
     "fullServerMixin": {
       "passed": true,
@@ -202,7 +203,10 @@
         "minefed-display": "minefed-display\\build\\libs\\minefed-display-1.0.3.jar",
         "oritech": "Oritech\\build\\libs\\oritech-0.5.1+1.20.4.jar",
         "mtr": "Minecraft-Transit-Railway\\fabric\\build\\libs\\fabric-4.0.5.jar"
-      }
+      },
+      "diagnosticsVersion": "1.1.0",
+      "diagnosticsSourceCommit": "1317cb7c49766d6d4987e0501b6ab17bc1fb3e1d",
+      "evidenceScope": "Original 1.1.0 full-server Mixin audit; not rerun for the 1.1.1 retention-only fix."
     },
     "releaseInputToolTests": 17,
     "limits": [
@@ -210,6 +214,43 @@
       "Runtime smoke tests use isolated generated worlds and test-only 20-tick windows / 10-second capture cooldown.",
       "Linux proc/cgroup readers validated with fixtures; production Linux container runtime and overhead not measured.",
       "No operating-server deployment or restart."
-    ]
-  }
+    ],
+    "diagnosticsRetentionFix": {
+      "version": "1.1.1",
+      "sourceCommit": "538a6e63a6b13c3e81fca1cda219d03046cae0c4",
+      "javaBuild": 17,
+      "unitTests": 39,
+      "failures": 0,
+      "errors": 0,
+      "buildPassed": true,
+      "independentReview": "no findings",
+      "runtimeRepeated": false,
+      "githubActionsStatus": "pending",
+      "regressions": [
+        "same-millisecond captures retain the newest pair",
+        "clock rollback preserves capture filename order",
+        "restart resumes ordering from existing capture files"
+      ]
+    }
+  },
+  "previousArtifacts": [
+    {
+      "modId": "minefed-diagnostics",
+      "sourcePath": "minefed-diagnostics",
+      "trackingBranch": "minefed-1.20.4",
+      "sourceCommit": "1317cb7c49766d6d4987e0501b6ab17bc1fb3e1d",
+      "artifactPath": "minefed-diagnostics/build/libs/minefed-diagnostics-1.1.0.jar",
+      "version": "1.1.0",
+      "size": 111288,
+      "sha256": "cca0d9d746f98d88d566e20928b2685d98251f6a6db9a246fc9fb73bc2b7bc0a",
+      "sha512": "edd85ffe4306668fd86f13059b2b238f13eb004c2145cea391e5b58b0a4bb90ae52352f84d7b2eb55ae07261f8c637b301fa5f27a806388f0b31e6ae34a20861",
+      "license": "MIT",
+      "embeddedNotices": [
+        "LICENSE"
+      ],
+      "change": "Automatic bounded JFR, JVM and OS history captured on server stalls, sustained slow ticks and chunk incidents; server-only.",
+      "integrationCommit": "6876db4397f3b907305e4d37c0a36239e454682a",
+      "integrationNote": "Unix Gradle wrapper executable-bit fix only; original JAR/source provenance unchanged."
+    }
+  ]
 }
