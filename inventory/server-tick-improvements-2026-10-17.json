@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-17",
+  "minecraft": "1.20.4",
+  "loader": "Fabric 0.18.4",
+  "productionDeployed": false,
+  "entries": [
+    {
+      "modId": "minefed-display",
+      "sourcePath": "minefed-display",
+      "trackingBranch": "minefed-1.20.4",
+      "sourceCommit": "5652f3ddb72e09ae54c3801d20258e675a26c0a9",
+      "artifactPath": "minefed-display/build/libs/minefed-display-1.0.3.jar",
+      "version": "1.0.3",
+      "size": 96148,
+      "sha256": "816c81a66eb6f59019311c822fd11b08f730073ce08ea355d80eecde60deb25b",
+      "sha512": "b75568f527263340d9996e569a6c702f27624bdbf96869bd44e20f820225a47298aff3a83fd26e11c15a2f512edb04926c552aa6bc741dc81f9673b8b5500225",
+      "license": "MIT",
+      "embeddedNotices": [
+        "LICENSE_minefed-display"
+      ],
+      "change": "Reject invalid display size before enqueue and world work, clamp NBT and ignore unloaded packet targets while preserving valid resize/render behavior."
+    }
+  ]
+}

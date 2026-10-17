@@ -809,10 +809,10 @@
     {
       "path": "minefed-display",
       "kind": "mod",
-      "reviewedCommit": "b5821c6bed1cf80d3028ecaff2f3ea5077a8d2c5",
+      "reviewedCommit": "5652f3ddb72e09ae54c3801d20258e675a26c0a9",
       "licenseFiles": {
         "LICENSE": "df91ea5ffd7b7ef2859e0add9b7aa5bde9790ef51df4cccef63c4607a36e3268",
-        "README.md": "72cd54c9448955a0b3914dd06daf38d7de6df050639596cbef53e56eeed31e47"
+        "README.md": "6ab1050e40fac9f0c801ca323f78d4dec42d6d5ef4086942b5694b80a4c96276"
       },
       "nestedGitlinks": {}
     },

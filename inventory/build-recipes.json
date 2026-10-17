@@ -503,9 +503,9 @@
       ],
       "args": [],
       "artifactGlobs": [
-        "build/libs/minefed-display-1.0.2.jar"
+        "build/libs/minefed-display-1.0.3.jar"
       ],
-      "expectedVersion": "1.0.2"
+      "expectedVersion": "1.0.3"
     },
     {
       "modId": "mishanguc",
@@ -677,9 +677,10 @@
       "sourcePath": "Oritech",
       "java": 17,
       "tasks": [
+        "verifyLaserTargetSearch",
         ":remapJar",
-          ":verifyFrameGuiSync",
-          ":verifyMachineInventorySnapshots"
+        ":verifyFrameGuiSync",
+        ":verifyMachineInventorySnapshots"
       ],
       "args": [],
       "artifactGlobs": [
