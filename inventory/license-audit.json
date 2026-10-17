@@ -1563,22 +1563,22 @@
       ]
     },
     {
-      "fileName": "minefed-diagnostics-1.1.1.jar",
-      "sha256": "85bd685c4c287274069972ed1a202944e51b9393c772849504d91fd9a31bc571",
+      "fileName": "minefed-diagnostics-1.1.2.jar",
+      "sha256": "ff689ff13db4f43982669b063265ca142ff03f458a3563b7681bad6e4953d81e",
       "deployedMetadataLicense": null,
       "embeddedLicenseFiles": [
         "LICENSE"
       ],
       "license": "MIT",
-      "licenseUrl": "https://github.com/minefed/minefed-diagnostics/blob/538a6e63a6b13c3e81fca1cda219d03046cae0c4/LICENSE",
+      "licenseUrl": "https://github.com/minefed/minefed-diagnostics/blob/b67a7241f95273160564a75b63d8d3f4e4c4f56e/LICENSE",
       "redistributionFinding": "permitted subject to retaining applicable copyright/license notices",
       "notes": "New locally built server-only mod, not observed in the operating server baseline. MIT copyright 2026 minefed preserved verbatim. No runtime dependency JARs bundled.",
       "evidenceUrls": [
-        "https://github.com/minefed/minefed-diagnostics/blob/538a6e63a6b13c3e81fca1cda219d03046cae0c4/LICENSE",
-        "https://github.com/minefed/minefed-diagnostics/commit/538a6e63a6b13c3e81fca1cda219d03046cae0c4"
+        "https://github.com/minefed/minefed-diagnostics/blob/b67a7241f95273160564a75b63d8d3f4e4c4f56e/LICENSE",
+        "https://github.com/minefed/minefed-diagnostics/commit/b67a7241f95273160564a75b63d8d3f4e4c4f56e"
       ],
       "sourceRef": "minefed-1.20.4",
-      "sourceCommit": "538a6e63a6b13c3e81fca1cda219d03046cae0c4",
+      "sourceCommit": "b67a7241f95273160564a75b63d8d3f4e4c4f56e",
       "deployedSourceUrl": null,
       "deployedSourceRef": null,
       "deployedSourceCommit": null

@@ -1140,8 +1140,8 @@
       "artifact": "built",
       "reason": "Independent public MIT server-only diagnostics; preserve included copyright/license notice. No external runtime libraries or assets bundled.",
       "evidenceUrls": [
-        "https://github.com/minefed/minefed-diagnostics/blob/1317cb7c49766d6d4987e0501b6ab17bc1fb3e1d/LICENSE",
-        "https://github.com/minefed/minefed-diagnostics/commit/1317cb7c49766d6d4987e0501b6ab17bc1fb3e1d"
+        "https://github.com/minefed/minefed-diagnostics/blob/b67a7241f95273160564a75b63d8d3f4e4c4f56e/LICENSE",
+        "https://github.com/minefed/minefed-diagnostics/commit/b67a7241f95273160564a75b63d8d3f4e4c4f56e"
       ],
       "client": false,
       "server": true

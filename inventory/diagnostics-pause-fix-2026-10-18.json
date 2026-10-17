@@ -1,0 +1,215 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-18",
+  "modId": "minefed-diagnostics",
+  "version": "1.1.2",
+  "source": {
+    "repository": "https://github.com/minefed/minefed-diagnostics",
+    "ref": "minefed-1.20.4",
+    "commit": "b67a7241f95273160564a75b63d8d3f4e4c4f56e"
+  },
+  "compatibility": {
+    "minecraft": "1.20.4",
+    "fabricLoader": ">=0.18.4",
+    "java": ">=17",
+    "side": "server"
+  },
+  "artifact": {
+    "path": "artifacts/local/minefed-diagnostics-1.1.2.jar",
+    "size": 113708,
+    "sha256": "ff689ff13db4f43982669b063265ca142ff03f458a3563b7681bad6e4953d81e",
+    "sha512": "39b12b7934207040ed7d9bdc0aa09e5af917c61b75fc408465917f9cbd6b8a6708e30a11f682f9401f0118f3b033d2ac50d8d06049a347a9f2489917511c4c3a",
+    "license": "MIT"
+  },
+  "validation": {
+    "buildJava": 17,
+    "buildPassed": true,
+    "unitTestsByJavaVersion": {
+      "17": {
+        "tests": 49,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "21": {
+        "tests": 49,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      }
+    },
+    "independentSourceReview": "no blocking findings",
+    "runtimeEnvironment": {
+      "os": "Windows",
+      "java": 21,
+      "gc": "G1",
+      "heapMaxMiB": 2048,
+      "productionServer": false
+    },
+    "runtime": [
+      {
+        "mode": "vanilla",
+        "passed": true,
+        "checks": {
+          "automaticStallAndSlowTickCaptures": true,
+          "effectiveLegacySamplingClamp250": true,
+          "offthreadHooks": true,
+          "lockOwnerPreserved": true,
+          "boundedSnapshotNote": true,
+          "stallReportEnded": true,
+          "serverRecovered": true,
+          "noProbeFailure": true,
+          "normalExit": true,
+          "internalErrorsZero": true,
+          "validJfr": true,
+          "tickEvents": true,
+          "gcEvents": true,
+          "vmOperationEvents": true,
+          "noJfrThreadDump": true,
+          "noSensitiveJfrMetadata": true
+        },
+        "exitCode": 0,
+        "jfr": [
+          {
+            "name": "capture-20261017T172145113Z-500bcf08-4c5c-4c39-8ca7-00a83f9beb48.jfr",
+            "bytes": 237269,
+            "summaryExitCode": 0,
+            "events": {
+              "minefed.TickWindow": 0,
+              "jdk.GarbageCollection": 0,
+              "jdk.GCPhasePause": 0,
+              "jdk.ExecuteVMOperation": 1,
+              "jdk.ThreadDump": 0,
+              "jdk.InitialEnvironmentVariable": 0,
+              "jdk.InitialSystemProperty": 0,
+              "jdk.JVMInformation": 0
+            }
+          },
+          {
+            "name": "capture-20261017T172207542Z-87694686-a42a-4105-9171-7e2f03722b30.jfr",
+            "bytes": 754941,
+            "summaryExitCode": 0,
+            "events": {
+              "minefed.TickWindow": 16,
+              "jdk.GarbageCollection": 3,
+              "jdk.GCPhasePause": 3,
+              "jdk.ExecuteVMOperation": 4,
+              "jdk.ThreadDump": 0,
+              "jdk.InitialEnvironmentVariable": 0,
+              "jdk.InitialSystemProperty": 0,
+              "jdk.JVMInformation": 0
+            }
+          }
+        ],
+        "vmOperations": {
+          "recordingThresholdMs": 10,
+          "rollingOverlapDeduplicated": true,
+          "uniqueVmOperationCount": 4,
+          "recordedThreadDumpOperations": {
+            "count": 0,
+            "maxDurationMs": null,
+            "sumRecordedDurationMs": 0,
+            "events": []
+          },
+          "limitations": [
+            "Durations below the 10 ms recording threshold are absent; zero recorded ThreadDump events does not mean no ThreadDump calls occurred.",
+            "This isolated Windows Java 21 functional test does not establish performance on the operating Linux/GraalVM server or its larger world.",
+            "jdk.ThreadDump recording events are separate from jdk.ExecuteVMOperation events whose operation is ThreadDump."
+          ]
+        },
+        "notes": [
+          "Isolated generated world, localhost port 0, no operating server access.",
+          "Synthetic 6.5 second monitor contention and 40 x 90ms slow ticks.",
+          "A single explicit GC was requested by the test probe in this isolated JVM to validate GC events.",
+          "Functional runtime check, not a production performance benchmark."
+        ]
+      },
+      {
+        "mode": "lithium",
+        "passed": true,
+        "checks": {
+          "automaticStallAndSlowTickCaptures": true,
+          "effectiveLegacySamplingClamp250": true,
+          "offthreadHooks": true,
+          "lockOwnerPreserved": true,
+          "boundedSnapshotNote": true,
+          "stallReportEnded": true,
+          "serverRecovered": true,
+          "noProbeFailure": true,
+          "normalExit": true,
+          "internalErrorsZero": true,
+          "validJfr": true,
+          "tickEvents": true,
+          "gcEvents": true,
+          "vmOperationEvents": true,
+          "noJfrThreadDump": true,
+          "noSensitiveJfrMetadata": true
+        },
+        "exitCode": 0,
+        "jfr": [
+          {
+            "name": "capture-20261017T172314552Z-c56f7f06-2427-486e-97c0-461ab6ee1485.jfr",
+            "bytes": 242773,
+            "summaryExitCode": 0,
+            "events": {
+              "minefed.TickWindow": 0,
+              "jdk.GarbageCollection": 0,
+              "jdk.GCPhasePause": 0,
+              "jdk.ExecuteVMOperation": 1,
+              "jdk.ThreadDump": 0,
+              "jdk.InitialEnvironmentVariable": 0,
+              "jdk.InitialSystemProperty": 0,
+              "jdk.JVMInformation": 0
+            }
+          },
+          {
+            "name": "capture-20261017T172337008Z-2c28c45c-ad29-4a26-b5cc-e2b66b9d399d.jfr",
+            "bytes": 737883,
+            "summaryExitCode": 0,
+            "events": {
+              "minefed.TickWindow": 16,
+              "jdk.GarbageCollection": 3,
+              "jdk.GCPhasePause": 4,
+              "jdk.ExecuteVMOperation": 4,
+              "jdk.ThreadDump": 0,
+              "jdk.InitialEnvironmentVariable": 0,
+              "jdk.InitialSystemProperty": 0,
+              "jdk.JVMInformation": 0
+            }
+          }
+        ],
+        "vmOperations": {
+          "recordingThresholdMs": 10,
+          "rollingOverlapDeduplicated": true,
+          "uniqueVmOperationCount": 4,
+          "recordedThreadDumpOperations": {
+            "count": 0,
+            "maxDurationMs": null,
+            "sumRecordedDurationMs": 0,
+            "events": []
+          },
+          "limitations": [
+            "Durations below the 10 ms recording threshold are absent; zero recorded ThreadDump events does not mean no ThreadDump calls occurred.",
+            "This isolated Windows Java 21 functional test does not establish performance on the operating Linux/GraalVM server or its larger world.",
+            "jdk.ThreadDump recording events are separate from jdk.ExecuteVMOperation events whose operation is ThreadDump."
+          ]
+        },
+        "notes": [
+          "Isolated generated world, localhost port 0, no operating server access.",
+          "Synthetic 6.5 second monitor contention and 40 x 90ms slow ticks.",
+          "A single explicit GC was requested by the test probe in this isolated JVM to validate GC events.",
+          "Functional runtime check, not a production performance benchmark."
+        ]
+      }
+    ],
+    "parentInventory": {
+      "sourcesVerified": true,
+      "recordedArtifacts": 70,
+      "buildPlanPassed": true,
+      "jarCrcAndMetadataVerified": true,
+      "licensePreserved": true
+    }
+  },
+  "deploymentPerformed": false,
+  "previousEvidence": "inventory/server-tick-improvements-2026-10-17.json"
+}

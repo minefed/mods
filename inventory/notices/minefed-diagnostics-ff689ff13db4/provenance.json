@@ -1,0 +1,20 @@
+{
+  "modId": "minefed-diagnostics",
+  "version": "1.1.2",
+  "sha256": "ff689ff13db4f43982669b063265ca142ff03f458a3563b7681bad6e4953d81e",
+  "size": 113708,
+  "source": {
+    "path": "minefed-diagnostics",
+    "url": "https://github.com/minefed/minefed-diagnostics",
+    "upstream": "https://github.com/minefed/minefed-diagnostics",
+    "ref": "minefed-1.20.4",
+    "commit": "b67a7241f95273160564a75b63d8d3f4e4c4f56e",
+    "trackingBranch": "minefed-1.20.4",
+    "baselineRef": "minefed-1.20.4",
+    "baselineCommit": "f9e99a6c243910dff5c45fb97e9cb345f791579c"
+  },
+  "license": "MIT",
+  "licenseSha256": "381896c16741de5d7dcfd9234f71d73e99e05e65e482758c3cd239334dc7694e",
+  "validationReport": "docs/DIAGNOSTICS_PAUSE_FIX_2026-10-18.md",
+  "note": "License extracted unchanged from the 1.1.2 source-built JAR. Not deployed by this registration; no external runtime JARs bundled. All previous notices and 2026-10-17 evidence remain unchanged."
+}
