@@ -2,6 +2,9 @@
 
 Minefed 서버의 모드 소스와 운영 JAR를 한 곳에서 관리한다. Minecraft **1.20.4 / Fabric** 서버에서 2026-09-06 확인한 JAR **70개**를 기준으로 준비했다.
 
+서버 rx 저하·`ticks behind`는 [2026-10-17 코드 조사](docs/SERVER_STALL_AUDIT_2026-10-17.md)와
+[재시작 없는 JFR·스레드·OS 수집 도구](tools/server-stall-capture/README.md)를 참고한다.
+
 ## 관리 구조
 
 - **소스:** 운영 JAR 51개에 대응하는 minefed 저장소 50개를 Git 서브모듈로 관리한다. 기존 Automobility는 서브모듈에서 제거했으며, 실제 차량 모드는 Refueled 하나다. [분리 이유와 정리 방침](docs/AUTOMOBILITY.md)을 문서화했다.

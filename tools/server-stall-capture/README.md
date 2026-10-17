@@ -26,6 +26,8 @@ python3 tools/server-stall-capture/capture.py snapshot \
 
 `snapshot`은 `Thread.print -l`을 약 2초 간격으로 3회 수집한다. 다른 JFR을 시작하거나 종료하지 않는다. JVM attach 자체가 멈췄다면 각 명령은 실패로 남으며, 덤프를 얻었다고 보고하지 않는다. 컨테이너 안의 `timeout`과 호스트의 subprocess timeout을 함께 사용한다. 권한 부족, 도구 부재, attach 실패, timeout, JFR 검증 실패는 종료 코드 1과 `manifest.json`의 `failed`로 표시된다. 실행 전 인수·출력 경로 오류는 종료 코드 2다.
 
+증상과 회복 구간을 기록했다면 첫 터미널의 `record`에서 Ctrl+C 한 번으로 저장한다. 특히 `--duration`을 600초보다 길게 잡았다면 발생 후 계속 기다릴 때 마지막 10분 보관 창에서 장애 구간이 빠질 수 있다. `snapshot`은 별도 스레드 덤프이며 진행 중 JFR을 저장하는 명령은 아니다.
+
 두 명령 모두 3초 간격(`--interval 2`~`5`)으로 JVM `/proc` 상태·I/O와 컨테이너에서 보이는 CPU·메모리·pressure·네트워크 카운터를 별도 작업에서 수집한다. 샘플 명령이 오래 걸리면 실제 간격은 늘어난다. cgroup v2의 보고 경로와 후보 경로, 각 파일의 존재 여부를 그대로 기록한다. 파일 부재를 압력 0으로 해석하면 안 된다. `/proc` 일부 값은 컨테이너 제한값이 아닌 호스트 전체일 수 있으므로 `cpu.stat`, `cpu.max`, `memory.events` 및 실제 cgroup 경로와 함께 판독한다. `net/dev`는 컨테이너 네트워크 namespace 합계이며 Minecraft 연결만의 RX가 아니다.
 
 출력에는 UTC 시작·종료 시각, 최근 15분의 최대 10,000줄 컨테이너 로그, OS 원문 샘플, 덤프 또는 검증된 `recording.jfr`가 들어간다. JFR은 컨테이너의 `jfr summary` 성공·양수 chunk 수, 복사본의 헤더·최소 크기, 원격 파일과 복사본의 SHA-256 일치를 확인한다. 로그·덤프·JFR에는 플레이어 이름, 좌표, IP, 경로 등 민감한 정보가 들어갈 수 있으므로 공유 전에 비식별화한다. JFR 시작 시 `jdk.InitialEnvironmentVariable`, `jdk.InitialSystemProperty`, `jdk.JVMInformation` 이벤트를 비활성화하며 환경변수·전체 프로세스 명령행을 별도 수집하지 않는다. 다른 JFR recording이 이미 실행 중이면 JVM 전체 이벤트 설정의 영향으로 이 이벤트가 함께 기록될 수 있으므로 민감정보가 없다고 보장하지 않는다. heap dump와 GC 강제 실행은 하지 않는다. 컨테이너의 고유 `/tmp` JFR은 복구를 위해 남긴다.
