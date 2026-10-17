@@ -3,7 +3,9 @@
 Minefed 서버의 모드 소스와 운영 JAR를 한 곳에서 관리한다. Minecraft **1.20.4 / Fabric** 서버에서 2026-09-06 확인한 JAR **70개**를 기준으로 준비했다.
 
 서버 rx 저하·`ticks behind`는 [2026-10-17 코드 조사](docs/SERVER_STALL_AUDIT_2026-10-17.md)와
-[재시작 없는 JFR·스레드·OS 수집 도구](tools/server-stall-capture/README.md)를 참고한다.
+[디스플레이·MTR·Oritech 개선 및 자동 진단](docs/SERVER_TICK_IMPROVEMENTS_2026-10-17.md)을 참고한다.
+서버 전용 [minefed-diagnostics](minefed-diagnostics/README.md)는 기동 중 이상을 감지하면 JFR·스레드·OS 지표를 자동 저장한다.
+[외부 수집 도구](tools/server-stall-capture/README.md)도 독립 수집 수단으로 사용할 수 있다.
 
 ## 관리 구조
 
@@ -85,7 +87,7 @@ Gradle 직접 실행은 `gradlew.bat build` 또는 `./gradlew build`다. JDK 17�
 MTR 웹 UI용 Node.js 22/npm이 필요하다. 이 작업 공간의 도구 경로는 Git에서 제외한
 `build.local.json`에 설정되어 있다.
 
-`inventory/build-recipes.json`은 소스 빌드 48개와 JAR 사용 25개를 구분한다. 기반 라이브러리
+`inventory/build-recipes.json`은 소스 빌드 49개와 JAR 사용 25개를 구분한다. 기반 라이브러리
 7개와 공식 후속 바이너리 8개, 클라이언트 전용 Continuity·MCEF·Sodium·Indium은 `dependencies.lock.json`의 총 19개 pin을 사용한다. 기존 소스 중
 CityCraft와 Macaw Doors/Fences는 공개된 Fabric 1.20.4용 공식 JAR를 사용한다. PFM과 Puzzles Lib의
 소스 빌드는 유지하고 공개팩에는 `published-artifacts.lock.json`의 공식 배포본 2개를 선택한다.
