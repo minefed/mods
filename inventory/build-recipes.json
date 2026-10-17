@@ -1067,6 +1067,24 @@
       "expectedVersion": "1.0.0",
       "sourceWorkDir": ".",
       "env": {}
+    },
+    {
+      "modId": "minefed-diagnostics",
+      "mode": "source",
+      "reason": "Server-only automatic anomaly diagnostics, bounded JFR/OS capture; Java 17 / Fabric Minecraft 1.20.4. Verify detector, retention, JFR, chunk tracking and exception-preservation tests.",
+      "sourcePath": "minefed-diagnostics",
+      "java": 17,
+      "tasks": [
+        "test",
+        "remapJar"
+      ],
+      "args": [],
+      "artifactGlobs": [
+        "build/libs/minefed-diagnostics-1.1.0.jar"
+      ],
+      "expectedVersion": "1.1.0",
+      "sourceWorkDir": ".",
+      "env": {}
     }
   ],
   "dependencyManifest": "inventory/dependencies.lock.json"

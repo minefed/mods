@@ -54,6 +54,160 @@
         "META-INF/licenses/mtr/LICENSE_ORIGINAL"
       ],
       "change": "Reuse bounded immutable rail geometry with RailMath identity invalidation and index first-match depot path legs per capture; retain fresh route/publication metadata and live arrivals."
+    },
+    {
+      "modId": "minefed-diagnostics",
+      "sourcePath": "minefed-diagnostics",
+      "trackingBranch": "minefed-1.20.4",
+      "sourceCommit": "1317cb7c49766d6d4987e0501b6ab17bc1fb3e1d",
+      "artifactPath": "minefed-diagnostics/build/libs/minefed-diagnostics-1.1.0.jar",
+      "version": "1.1.0",
+      "size": 111288,
+      "sha256": "cca0d9d746f98d88d566e20928b2685d98251f6a6db9a246fc9fb73bc2b7bc0a",
+      "sha512": "edd85ffe4306668fd86f13059b2b238f13eb004c2145cea391e5b58b0a4bb90ae52352f84d7b2eb55ae07261f8c637b301fa5f27a806388f0b31e6ae34a20861",
+      "license": "MIT",
+      "embeddedNotices": [
+        "LICENSE"
+      ],
+      "change": "Automatic bounded JFR, JVM and OS history captured on server stalls, sustained slow ticks and chunk incidents; server-only."
     }
-  ]
+  ],
+  "validation": {
+    "display": {
+      "focusedTests": 7,
+      "bezelCases": 13616,
+      "bezelVertices": 23663936,
+      "visibilityCases": 1283,
+      "cursorRegression": "passed"
+    },
+    "oritech": {
+      "laserAssertions": 5104,
+      "guiAssertions": 96,
+      "inventoryAssertions": 433,
+      "rayReadsBefore": 2562,
+      "rayReadsAfter": 129
+    },
+    "mtr": {
+      "javaTests": 147,
+      "railChecks": 8,
+      "mixinChecks": 8,
+      "lightChecks": 3,
+      "webChecks": 42,
+      "curveSamplingCallsBefore": 24096,
+      "curveSamplingCallsCold": 12000,
+      "curveSamplingCallsWarm": 0,
+      "depotPathReadsBefore": 250992,
+      "depotPathReadsAfter": 998
+    },
+    "diagnostics": {
+      "unitTests": 36,
+      "javaBuild": 17,
+      "runtimeJava": 21,
+      "runtimeMinecraft": "1.20.4",
+      "runtimeFabricLoader": "0.18.4",
+      "vanilla": {
+        "passed": true,
+        "offthreadHooksVerified": true,
+        "exitCode": 0,
+        "reports": [
+          "capture-20261017T060034766Z-4d359be6-9457-4960-ae31-de64128dd6dd.txt",
+          "capture-20261017T060053703Z-06300e79-1962-4982-8e71-e922181b4522.txt"
+        ],
+        "jfr": [
+          {
+            "name": "capture-20261017T060034766Z-4d359be6-9457-4960-ae31-de64128dd6dd.jfr",
+            "size": 375118
+          },
+          {
+            "name": "capture-20261017T060053703Z-06300e79-1962-4982-8e71-e922181b4522.jfr",
+            "size": 956412
+          }
+        ],
+        "log": "build/diagnostics-smoke-20261017-v2-vanilla-final/console.log"
+      },
+      "lithium": {
+        "passed": true,
+        "offthreadHooksVerified": true,
+        "exitCode": 0,
+        "reports": [
+          "capture-20261017T055750085Z-f542f729-3ce4-4357-944d-cb1bd6e352b8.txt",
+          "capture-20261017T055809497Z-89638c7b-ab57-4ec2-8709-229f8ea2d380.txt"
+        ],
+        "jfr": [
+          {
+            "name": "capture-20261017T055750085Z-f542f729-3ce4-4357-944d-cb1bd6e352b8.jfr",
+            "size": 369561
+          },
+          {
+            "name": "capture-20261017T055809497Z-89638c7b-ab57-4ec2-8709-229f8ea2d380.jfr",
+            "size": 956447
+          }
+        ],
+        "log": "build/diagnostics-smoke-20261017-v2-lithium-final/console.log"
+      },
+      "jfrVerification": [
+        {
+          "variant": "vanilla-final",
+          "file": "capture-20261017T060034766Z-4d359be6-9457-4960-ae31-de64128dd6dd.jfr",
+          "size": 375118,
+          "events": [
+            "jdk.JVMInformation                          0             0",
+            "jdk.InitialSystemProperty                   0             0",
+            "jdk.InitialEnvironmentVariable              0             0"
+          ]
+        },
+        {
+          "variant": "vanilla-final",
+          "file": "capture-20261017T060053703Z-06300e79-1962-4982-8e71-e922181b4522.jfr",
+          "size": 956412,
+          "events": [
+            "minefed.TickWindow                         16           464",
+            "jdk.JVMInformation                          0             0",
+            "jdk.InitialSystemProperty                   0             0",
+            "jdk.InitialEnvironmentVariable              0             0"
+          ]
+        },
+        {
+          "variant": "lithium-final",
+          "file": "capture-20261017T055750085Z-f542f729-3ce4-4357-944d-cb1bd6e352b8.jfr",
+          "size": 369561,
+          "events": [
+            "jdk.JVMInformation                          0             0",
+            "jdk.InitialSystemProperty                   0             0",
+            "jdk.InitialEnvironmentVariable              0             0"
+          ]
+        },
+        {
+          "variant": "lithium-final",
+          "file": "capture-20261017T055809497Z-89638c7b-ab57-4ec2-8709-229f8ea2d380.jfr",
+          "size": 956447,
+          "events": [
+            "minefed.TickWindow                         16           464",
+            "jdk.JVMInformation                          0             0",
+            "jdk.InitialSystemProperty                   0             0",
+            "jdk.InitialEnvironmentVariable              0             0"
+          ]
+        }
+      ]
+    },
+    "fullServerMixin": {
+      "passed": true,
+      "exitCode": 0,
+      "runtimeJarCount": 71,
+      "baseRelease": "20261014150849",
+      "replacements": {
+        "minefed-diagnostics": "minefed-diagnostics\\build\\libs\\minefed-diagnostics-1.1.0.jar",
+        "minefed-display": "minefed-display\\build\\libs\\minefed-display-1.0.3.jar",
+        "oritech": "Oritech\\build\\libs\\oritech-0.5.1+1.20.4.jar",
+        "mtr": "Minecraft-Transit-Railway\\fabric\\build\\libs\\fabric-4.0.5.jar"
+      }
+    },
+    "releaseInputToolTests": 17,
+    "limits": [
+      "Synthetic kernels are not operating-server TPS/MSPT measurements.",
+      "Runtime smoke tests use isolated generated worlds and test-only 20-tick windows / 10-second capture cooldown.",
+      "Linux proc/cgroup readers validated with fixtures; production Linux container runtime and overhead not measured.",
+      "No operating-server deployment or restart."
+    ]
+  }
 }

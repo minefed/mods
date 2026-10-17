@@ -1133,6 +1133,18 @@
       ],
       "client": true,
       "server": true
+    },
+    {
+      "modId": "minefed-diagnostics",
+      "distribution": "embed",
+      "artifact": "built",
+      "reason": "Independent public MIT server-only diagnostics; preserve included copyright/license notice. No external runtime libraries or assets bundled.",
+      "evidenceUrls": [
+        "https://github.com/minefed/minefed-diagnostics/blob/1317cb7c49766d6d4987e0501b6ab17bc1fb3e1d/LICENSE",
+        "https://github.com/minefed/minefed-diagnostics/commit/1317cb7c49766d6d4987e0501b6ab17bc1fb3e1d"
+      ],
+      "client": false,
+      "server": true
     }
   ],
   "publishedManifest": "inventory/published-artifacts.lock.json",

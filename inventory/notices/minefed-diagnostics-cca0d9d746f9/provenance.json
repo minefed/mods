@@ -1,0 +1,19 @@
+{
+  "modId": "minefed-diagnostics",
+  "version": "1.1.0",
+  "sha256": "cca0d9d746f98d88d566e20928b2685d98251f6a6db9a246fc9fb73bc2b7bc0a",
+  "size": 111288,
+  "source": {
+    "path": "minefed-diagnostics",
+    "url": "https://github.com/minefed/minefed-diagnostics",
+    "upstream": "https://github.com/minefed/minefed-diagnostics",
+    "ref": "minefed-1.20.4",
+    "commit": "1317cb7c49766d6d4987e0501b6ab17bc1fb3e1d",
+    "trackingBranch": "minefed-1.20.4",
+    "baselineRef": "minefed-1.20.4",
+    "baselineCommit": "f9e99a6c243910dff5c45fb97e9cb345f791579c"
+  },
+  "license": "MIT",
+  "licenseSha256": "381896c16741de5d7dcfd9234f71d73e99e05e65e482758c3cd239334dc7694e",
+  "note": "License extracted unchanged from the new source-built JAR. Not deployed; no external runtime libraries or assets bundled."
+}

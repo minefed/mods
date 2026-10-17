@@ -4667,11 +4667,64 @@
         "https://github.com/minefed/minefed-regions/blob/9fd4fb51bd63338dbe75b1686b3587151a9340cc/LICENSE",
         "https://github.com/minefed/minefed-regions/commit/9fd4fb51bd63338dbe75b1686b3587151a9340cc"
       ]
+    },
+    {
+      "fileName": "minefed-diagnostics-1.1.0.jar",
+      "sha256": "cca0d9d746f98d88d566e20928b2685d98251f6a6db9a246fc9fb73bc2b7bc0a",
+      "size": 111288,
+      "modId": "minefed-diagnostics",
+      "version": "1.1.0",
+      "environment": "server",
+      "management": "submodule",
+      "source": {
+        "path": "minefed-diagnostics",
+        "url": "https://github.com/minefed/minefed-diagnostics",
+        "upstream": "https://github.com/minefed/minefed-diagnostics",
+        "ref": "minefed-1.20.4",
+        "commit": "1317cb7c49766d6d4987e0501b6ab17bc1fb3e1d",
+        "trackingBranch": "minefed-1.20.4",
+        "baselineRef": "minefed-1.20.4",
+        "baselineCommit": "f9e99a6c243910dff5c45fb97e9cb345f791579c"
+      },
+      "artifact": {
+        "path": "artifacts/local/minefed-diagnostics-1.1.0.jar",
+        "redistribution": "allowed",
+        "url": null,
+        "sha512": "edd85ffe4306668fd86f13059b2b238f13eb004c2145cea391e5b58b0a4bb90ae52352f84d7b2eb55ae07261f8c637b301fa5f27a806388f0b31e6ae34a20861",
+        "publishedHashMatch": false,
+        "verificationAlgorithm": null,
+        "publishedRelease": null
+      },
+      "included": true,
+      "exclusionReason": null,
+      "capturedServerBaseline": false,
+      "license": "MIT",
+      "licenseUrl": "https://github.com/minefed/minefed-diagnostics/blob/1317cb7c49766d6d4987e0501b6ab17bc1fb3e1d/LICENSE",
+      "licenseNoticesPath": "inventory/notices/minefed-diagnostics-cca0d9d746f9",
+      "notes": [
+        "Added 2026-10-17: independent public MIT server-only diagnostics for Minecraft 1.20.4 / Fabric Loader >=0.18.4 / Java >=17. Integration and tracking branch minefed-1.20.4.",
+        "Starts bounded rolling JFR and OS history when the server starts; automatically captures tick stalls, sustained slow ticks, watchdog scheduling delay and chunk incidents. Shared cooldown and bounded retention. No external upload, restart or production deployment. Not a historical captured operating JAR."
+      ],
+      "compatibility": {
+        "minecraft": "=1.20.4",
+        "fabricLoader": ">=0.18.4",
+        "java": ">=17",
+        "dependencies": {
+          "fabricloader": ">=0.18.4",
+          "fabric-api": "*",
+          "minecraft": "=1.20.4",
+          "java": ">=17"
+        }
+      },
+      "evidenceUrls": [
+        "https://github.com/minefed/minefed-diagnostics/blob/1317cb7c49766d6d4987e0501b6ab17bc1fb3e1d/LICENSE",
+        "https://github.com/minefed/minefed-diagnostics/commit/1317cb7c49766d6d4987e0501b6ab17bc1fb3e1d"
+      ]
     }
   ],
   "sourcePolicy": {
     "branch": "minefed-1.20.4",
-    "sourceRepositoryCount": 59,
+    "sourceRepositoryCount": 60,
     "guidanceFile": "AGENTS.md",
     "remoteCommitsVerified": true,
     "baselineCommitMeaning": "Audited source before the repository-local AGENTS.md policy commit",
