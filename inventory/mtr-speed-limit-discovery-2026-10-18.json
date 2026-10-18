@@ -1,0 +1,72 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-18",
+  "productionDeployed": false,
+  "runtimeGameValidated": false,
+  "source": {
+    "path": "Minecraft-Transit-Railway",
+    "url": "https://github.com/minefed/Minecraft-Transit-Railway",
+    "trackingBranch": "minefed-1.20.4",
+    "commit": "7dbee96627da15ba10795b9645fab90b45a84084",
+    "previousCommit": "616e68d8237f3809ce63c8f93ef2d33142a88369",
+    "remotelyVerified": true
+  },
+  "compatibility": {
+    "minecraft": "1.20.4",
+    "loader": "Fabric",
+    "fabricLoader": "0.18.4",
+    "runtimeJava": 17,
+    "buildJava": 21,
+    "mtr": "4.0.5"
+  },
+  "configuration": {
+    "file": "config/mtr-speed-limit.json",
+    "section": "vehicleDiscovery",
+    "enabledByDefault": true,
+    "defaultResourcePacks": [
+      "resourcepacks",
+      "config/bluemap/packs"
+    ],
+    "registrations": [
+      "assets/mtr/mtr_custom_resources.json",
+      "assets/mtr/mtr_custom_resources_pending_migration.json"
+    ],
+    "addedValue": -1,
+    "runsOn": "server start",
+    "minefedPackSource": "config/bluemap/packs/10-minefed.zip installed by the release"
+  },
+  "changes": [
+    "On server start, vehicles registered by the bundled MTR resources and server-side resource packs that no config entry covers are added with -1, grouped by car variant.",
+    "Existing values and order are preserved; the file is replaced atomically only when entries are added, and an unreadable file is left untouched."
+  ],
+  "validation": {
+    "gradleTasks": [
+      ":fabric:verifyRailRendering",
+      ":fabric:verifyBlueMapLiveWeb",
+      ":fabric:verifyMixinCompatibility",
+      ":fabric:test",
+      ":fabric:verifyLightTypeCompatibility"
+    ],
+    "javaTests": 170,
+    "failures": 0,
+    "minefedPackVehicles": 6,
+    "minefedPackEntries": [
+      "minefed_mxr_a1000",
+      "minefed_mxr_mistilteinn"
+    ]
+  },
+  "artifact": {
+    "path": "Minecraft-Transit-Railway/fabric/build/libs/fabric-4.0.5.jar",
+    "version": "4.0.5",
+    "size": 83296429,
+    "sha256": "80a5e7cc4fff62e2ee8fd876cbda0259d6bd197e9918488566d94a7bb3175df6",
+    "sha512": "0cbcffc70d2f38d49009e94ca8bb55f78307d99fb996facdb6b62a034e7ce487576c2a9b36205ebe36a271106355bf60eb94e85c0f864350f746223734015ade",
+    "license": "MIT",
+    "embeddedNotices": [
+      "LICENSE",
+      "META-INF/licenses/mtr/LICENSE",
+      "META-INF/licenses/mtr/LICENSE_ORIGINAL"
+    ],
+    "committed": false
+  }
+}
