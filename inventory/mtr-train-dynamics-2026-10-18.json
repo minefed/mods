@@ -1,0 +1,76 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-18",
+  "productionDeployed": false,
+  "runtimeGameValidated": false,
+  "source": {
+    "path": "Minecraft-Transit-Railway",
+    "url": "https://github.com/minefed/Minecraft-Transit-Railway",
+    "trackingBranch": "minefed-1.20.4",
+    "commit": "616e68d8237f3809ce63c8f93ef2d33142a88369",
+    "previousCommit": "51b4bde81a5fb082fdc466ecd9c878d374bd254f",
+    "remotelyVerified": true
+  },
+  "compatibility": {
+    "minecraft": "1.20.4",
+    "loader": "Fabric",
+    "fabricLoader": "0.18.4",
+    "runtimeJava": 17,
+    "buildJava": 21,
+    "mtr": "4.0.5"
+  },
+  "configuration": {
+    "file": "config/mtr-speed-limit.json",
+    "version": 2,
+    "acceptsVersion1": true,
+    "existingFileOverwritten": false,
+    "resourcePackSpeedLimits": "removed",
+    "defaultVehicleLimits": "none",
+    "curveSpeed": {
+      "enabled": true,
+      "lateralAccelerationMetersPerSecondSquared": 1.2,
+      "minimumSpeedKilometersPerHour": 15
+    },
+    "appliedOn": "server restart"
+  },
+  "changes": [
+    "Vehicle speed limits are read only from the server config; maxSpeedKilometersPerHour was removed from the vehicle resource schema and bundled templates.",
+    "Siding acceleration and service braking are limited to 0.4-1.3 m/s² (former 4 m/s² default becomes 1.0 m/s²); manual emergency braking uses 1.5 m/s² instead of 40 m/s².",
+    "Server-side train paths take the lower of the rail speed limit and sqrt(lateral acceleration x tightest horizontal radius).",
+    "Timetables brake for stops like vehicles, stopped vehicles measure delay 1 cm before their position, near-stop interpolation no longer returns -1, vehicles loaded while moving keep their speed, and vehicle limits also cap delay recovery, slower-rail braking and manual driving.",
+    "Siding vehicle, acceleration or vehicle count edits and syncs that change path speed limits regenerate the affected timetables and departures, except while paths are generating.",
+    "Client weather rendering treats vehicle cars near the camera as roofs: rain and snow stop on them, splashes land on them and the indoor rain sound plays inside."
+  ],
+  "validation": {
+    "gradleTasks": [
+      ":fabric:verifyRailRendering",
+      ":fabric:verifyBlueMapLiveWeb",
+      ":fabric:verifyMixinCompatibility",
+      ":fabric:test",
+      ":fabric:verifyLightTypeCompatibility"
+    ],
+    "javaTests": 168,
+    "failures": 0,
+    "timetableToleranceMillis": 250,
+    "timetableMaxObservedErrorMillis": 105,
+    "timetableErrorBeforeMillis": [1257, 2130],
+    "notCovered": [
+      "In-game client rendering of the weather shelter",
+      "Forge build (mixins mirrored but not compiled)"
+    ]
+  },
+  "artifact": {
+    "path": "Minecraft-Transit-Railway/fabric/build/libs/fabric-4.0.5.jar",
+    "version": "4.0.5",
+    "size": 83289347,
+    "sha256": "570d8ec8e57544199300c3b22b6009ba5df2a3fc602949b1558a98c173888f04",
+    "sha512": "87e4dd4f5e3a7942f73e8263a968cdaf707b2e265f82ca9182b89d25c461f33fb4de4169608ade390b98bc39adefb21b38a2d176b834bcba0590ce3eef5c48ef",
+    "license": "MIT",
+    "embeddedNotices": [
+      "LICENSE",
+      "META-INF/licenses/mtr/LICENSE",
+      "META-INF/licenses/mtr/LICENSE_ORIGINAL"
+    ],
+    "committed": false
+  }
+}
